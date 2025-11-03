@@ -6,6 +6,11 @@
 
 // TODO: Обрати внимание на каждый прок. Их нужно будет упростить по DRY.
 
+/world/proc/create_discord_embed_footer()
+	return new /datum/tgs_chat_embed/footer(
+		"[GLOB.rogue_round_id] / [time2text(world.timeofday, "DD.MM.YYYY hh:mm:ss", world.timezone)]"
+	)
+
 /// Отправляет средствами TGS сообщение о блокировке игрока или его ролей.
 /world/proc/TgsAnnounceBan(player_ckey, admin_ckey, duration, time_message, roles, reason, severity, applies_to_admins)
 	if(!TgsAvailable())
@@ -48,7 +53,7 @@
 	embed.title = title
 	embed.description = description
 	embed.colour = "#ed8796"
-	embed.footer = new(GLOB.rogue_round_id)
+	embed.footer = create_discord_embed_footer()
 
 	var/datum/tgs_message_content/message = new("")
 	message.embed = embed
@@ -94,7 +99,7 @@
 	embed.title = "Изменение PQ!"
 	embed.description = "```diff\n[value > 0 ? "+[value]" : value]\n```"
 	embed.colour = value > 0 ? "#a6da95" : "#ed8796"
-	embed.footer = new(GLOB.rogue_round_id)
+	embed.footer = create_discord_embed_footer()
 
 	var/datum/tgs_chat_embed/field/field_player_ckey = new(
 		"Игрок", "`[player_ckey]`"
@@ -140,7 +145,7 @@
 	embed.title = "PQ Note"
 	embed.description = note
 	embed.colour = "#8aadf4"
-	embed.footer = new(GLOB.rogue_round_id)
+	embed.footer = create_discord_embed_footer()
 
 	var/datum/tgs_chat_embed/field/field_player_ckey = new(
 		"Игрок", "`[player_ckey]`"
@@ -179,7 +184,7 @@
 	embed.title = capitalize(type)
 	embed.description = text
 	embed.colour = "#ef9f76"
-	embed.footer = new(GLOB.rogue_round_id)
+	embed.footer = create_discord_embed_footer()
 
 	var/datum/tgs_chat_embed/field/field_player_ckey = new(
 		"Игрок", "`[target_key]`"
