@@ -22,10 +22,10 @@
 		return
 
 	var/severity_dict = list(
-		"high" = "высокая",
-		"medium" = "средняя",
-		"minor" = "малая",
-		"none" = "none",
+		"high" = "Высокая",
+		"medium" = "Средняя",
+		"minor" = "Малая",
+		"none" = "None",
 	)
 
 	var/is_role_ban = roles[1] != "Server"
@@ -208,4 +208,47 @@
 	send2chat(
 		message,
 		admin_notes_channel
+	)
+
+/world/proc/TgsAnnounceUnban(player_ckey, admin_ckey, role)
+	if(!TgsAvailable())
+		return
+
+	var/admin_bans_channel = CONFIG_GET(string/admin_bans_channel)
+
+	if(!admin_bans_channel)
+		return
+
+	var/description = "Игроку доступна роль `[role]`!"
+	if(lowertext(role) == "server")
+		description = "Игрок может играть на сервере!"
+
+	var/datum/tgs_chat_embed/structure/embed = new()
+	embed.title = "Разбан"
+	embed.description = description
+	embed.colour = "#a6da95"
+	embed.footer = create_discord_embed_footer()
+
+	var/datum/tgs_message_content/message = new("")
+	message.embed = embed
+
+	var/datum/tgs_chat_embed/field/field_player_ckey = new(
+		"Игрок", "`[player_ckey]`"
+	)
+
+	var/datum/tgs_chat_embed/field/field_admin_ckey = new(
+		"Администратор", "`[admin_ckey]`"
+	)
+
+	field_player_ckey.is_inline = TRUE
+	field_admin_ckey.is_inline = TRUE
+
+	embed.fields = list(
+		field_player_ckey,
+		field_admin_ckey,
+	)
+
+	send2chat(
+		message,
+		admin_bans_channel
 	)
