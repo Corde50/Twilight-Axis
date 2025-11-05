@@ -171,7 +171,7 @@
 		admin_notes_channel
 	)
 
-/world/proc/TgsAnnounceAdminMessageEntry(admin_ckey, target_key, type, text, secret)
+/world/proc/TgsAnnounceAdminMessageEntry(admin_ckey, target_key, type, text, secret, expiry)
 	if(!TgsAvailable())
 		return
 
@@ -207,6 +207,9 @@
 		field_admin_ckey,
 		field_secret,
 	)
+
+	if(expiry)
+		embed.fields.Add(new /datum/tgs_chat_embed/field("Исчезнет", "[expiry]"))
 
 	var/datum/tgs_message_content/message = new("")
 	message.embed = embed
