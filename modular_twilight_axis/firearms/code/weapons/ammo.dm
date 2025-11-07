@@ -109,24 +109,25 @@
 /obj/projectile/bullet/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/T = target
-		switch(gunpowder) //Hande gunpowder types
-			if("fyrepowder")
-				T.adjust_fire_stacks(round(10 * (damage / 100)))
-				T.ignite_mob()
-			if("thunderpowder")
-				T.Immobilize(30)
-			if("corrosive gunpowder")
-				playsound(src, 'sound/misc/drink_blood.ogg', 100)
-				T.apply_status_effect(/datum/status_effect/buff/acidsplash)
-				new /obj/effect/temp_visual/acidsplash(get_turf(T))
-			if("arcyne gunpowder")
-				if(ishuman(T))
-					var/mob/living/carbon/human/H = T
-					if(istype(H.wear_ring, /obj/item/clothing/ring/fate_weaver))
-						H.wear_ring.obj_break()
-					H.set_silence(5 SECONDS)
-			if("terrorpowder")
-				gunpowder_npc_critfactor += 1
+		if(!istype(T.get_inactive_held_item(), /obj/item/rogueweapon/shield) && !istype(T.get_active_held_item(), /obj/item/rogueweapon/shield) && (blocked == 0))
+			switch(gunpowder) //Hande gunpowder types
+				if("fyrepowder")
+					T.adjust_fire_stacks(round(10 * (damage / 100)))
+					T.ignite_mob()
+				if("thunderpowder")
+					T.Immobilize(30)
+				if("corrosive gunpowder")
+					playsound(src, 'sound/misc/drink_blood.ogg', 100)
+					T.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					new /obj/effect/temp_visual/acidsplash(get_turf(T))
+				if("arcyne gunpowder")
+					if(ishuman(T))
+						var/mob/living/carbon/human/H = T
+						if(istype(H.wear_ring, /obj/item/clothing/ring/fate_weaver))
+							H.wear_ring.obj_break()
+						H.set_silence(5 SECONDS)
+				if("terrorpowder")
+					gunpowder_npc_critfactor += 1
 		if(!T.mind)
 			damage *= gunpowder_npc_critfactor
 	. = ..()
