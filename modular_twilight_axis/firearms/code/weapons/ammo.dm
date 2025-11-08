@@ -110,7 +110,7 @@
 	if(isliving(target))
 		var/mob/living/T = target
 		if(!istype(T.get_inactive_held_item(), /obj/item/rogueweapon/shield) && !istype(T.get_active_held_item(), /obj/item/rogueweapon/shield) && (blocked == 0))
-			switch(gunpowder) //Hande gunpowder types
+			switch(gunpowder) //Hande gunpowder types that are BLOCKED by shields and armor
 				if("fyrepowder")
 					T.adjust_fire_stacks(round(4 * (damage / 100), 1))
 					T.ignite_mob()
@@ -126,6 +126,14 @@
 						if(istype(H.wear_ring, /obj/item/clothing/ring/fate_weaver))
 							H.wear_ring.obj_break()
 						H.set_silence(5 SECONDS)
+				if("terrorpowder")
+					gunpowder_npc_critfactor += 1
+		else
+			switch(gunpowder) //Hande gunpowder types that are NOT BLOCKED by shields and armor
+				if("corrosive gunpowder")
+					playsound(src, 'sound/misc/drink_blood.ogg', 100)
+					T.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					new /obj/effect/temp_visual/acidsplash(get_turf(T))
 				if("terrorpowder")
 					gunpowder_npc_critfactor += 1
 		if(!T.mind)
