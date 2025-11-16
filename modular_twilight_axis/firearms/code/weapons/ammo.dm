@@ -98,6 +98,49 @@
 	silver = TRUE
 	blessed = TRUE
 
+/atom/movable/screen/alert/status_effect/debuff/thunderpowder
+	name = "Struck by Thunder"
+	desc = "I was struck by a Thunderpowder shot. My muscles are tense, and it's difficult to move."
+	icon_state = "muscles"
+
+/datum/status_effect/debuff/thunderpowder
+	id = "thunderpowder"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/thunderpowder
+	effectedstats = list(STATKEY_SPD = -2)
+	duration = 1 MINUTES
+
+/datum/status_effect/debuff/corrosivesplash
+	id = "corrosive splash"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/corrosivesplash
+	duration = 20 SECONDS
+
+/datum/status_effect/debuff/corrosivesplash/on_apply()
+	. = ..()
+	owner.playsound_local(get_turf(owner), 'sound/misc/lava_death.ogg', 35, FALSE, pressure_affected = FALSE)
+	owner.visible_message(span_warning("[owner] is covered in acid!"), span_danger("I am covered in acid!"))
+	owner.emote("scream")
+
+/atom/movable/screen/alert/status_effect/debuff/corrosivesplash
+	name = "Corrosion"
+	desc = "My armor is boiling on me!"
+	icon_state = "debuff"
+
+/datum/status_effect/debuff/corrosivesplash/tick()
+	var/mob/living/target = owner
+	target.adjustFireLoss(5)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		var/list/armor = list()
+		var/list/body_parts = list(H.head, H.wear_mask, H.wear_wrists, H.wear_shirt, H.wear_neck, H.wear_armor, H.wear_pants, H.gloves, H.shoes, H.belt, H.glasses)
+		for(var/bp in body_parts)
+			if(!bp)
+				continue
+			if(bp && istype(bp, /obj/item/clothing))
+				armor += bp
+		if(armor)
+			var/obj/item/clothing/C = pick(armor)
+			C.take_damage(damage_amount = (C.max_integrity * 0.03), damage_type = BURN, damage_flag = "fire")
+
 /obj/projectile/bullet/fire(angle, atom/direct_target)
 	if(istype(fired_from, /obj/item/gun/ballistic/twilight_firearm))
 		var/obj/item/gun/ballistic/twilight_firearm/gun = fired_from
@@ -141,9 +184,10 @@
 					T.ignite_mob()
 				if("thunderpowder")
 					T.Immobilize(30)
+					T.apply_status_effect(/datum/status_effect/debuff/thunderpowder)
 				if("corrosive gunpowder")
 					playsound(src, 'sound/misc/drink_blood.ogg', 100)
-					T.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					T.apply_status_effect(/datum/status_effect/debuff/corrosivesplash)
 					new /obj/effect/temp_visual/acidsplash(get_turf(T))
 				if("arcyne gunpowder")
 					if(ishuman(T))
@@ -157,7 +201,7 @@
 			switch(gunpowder) //Hande gunpowder types that are NOT BLOCKED by shields and armor
 				if("corrosive gunpowder")
 					playsound(src, 'sound/misc/drink_blood.ogg', 100)
-					T.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					T.apply_status_effect(/datum/status_effect/debuff/corrosivesplash)
 					new /obj/effect/temp_visual/acidsplash(get_turf(T))
 				if("terrorpowder")
 					gunpowder_npc_critfactor += 1
@@ -237,7 +281,7 @@
 			for(var/mob/living/L in range(1, T)) //apply damage over time to mobs
 				if(!(L == target))
 					var/mob/living/carbon/M = L
-					M.apply_status_effect(/datum/status_effect/buff/acidsplash)
+					M.apply_status_effect(/datum/status_effect/debuff/corrosivesplash)
 					new /obj/effect/temp_visual/acidsplash(get_turf(M))
 			for(var/turf/turfs_in_range in range(2, T)) //make a splash
 				new /obj/effect/temp_visual/acidsplash(turfs_in_range)
@@ -246,6 +290,7 @@
 			for(var/mob/living/L in range(2, T))
 				if(!(L == target))
 					L.Immobilize(30)
+					L.apply_status_effect(/datum/status_effect/debuff/thunderpowder)
 		if("arcyne gunpowder")
 			explosion(T, devastation_range = 0, heavy_impact_range = 0, light_impact_range = 1, smoke = TRUE, soundin = pick('sound/misc/explode/bottlebomb (1).ogg','sound/misc/explode/bottlebomb (2).ogg'))
 			for(var/mob/living/carbon/human/L in range(2, T))

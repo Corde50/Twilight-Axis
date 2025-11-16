@@ -11,9 +11,6 @@
 	subclass_languages = list(/datum/language/otavan)
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_blackpowder.ogg'
 	category_tags = list(CTAG_INQUISITION)
-	traits_applied = list(
-		TRAIT_MEDIUMARMOR,
-	)
 	subclass_stats = list(
 		STATKEY_PER = 3,
 		STATKEY_WIL = 1,
@@ -38,6 +35,7 @@
 	subclass_stashed_items = list(
 		"Tome of Psydon" = /obj/item/book/rogue/bibble/psy
 	)
+	extra_context = "This subclass can choose between light and medium armor options, gaining Dodge Expert or Mailie Training, respectively."
 
 /datum/outfit/job/roguetown/blackpowder_legionnaire
 	job_bitflag = BITFLAG_HOLY_WARRIOR
@@ -46,9 +44,7 @@
 	..()
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	cloak = /obj/item/clothing/cloak/psydontabard
 	neck = /obj/item/clothing/neck/roguetown/leather/blackpowder
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
@@ -83,6 +79,17 @@
 				backpack_contents = list(/obj/item/roguekey/inquisition = 1,
 				/obj/item/paper/inqslip/arrival/ortho = 1,
 				/obj/item/storage/belt/rogue/pouch/coins/mid = 1)
+		var/armors = list("Medium Armor", "Light Armor")
+		var/armor_choice = input(H, "Choose your ARMOR.", "TAKE UP PSYDON'S MANTLE.") as anything in armors
+		switch(armor_choice)
+			if("Medium Armor")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			if("Light Armor")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon
+				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	r_hand = /obj/item/rogueweapon/sword/short/psy
