@@ -77,6 +77,6 @@
 	belt = /obj/item/storage/belt/rogue/leather/black
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/half
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
 	backr = /obj/item/rogueweapon/scabbard/sword
 	cloak = /obj/item/clothing/suit/roguetown/armor/longcoat
