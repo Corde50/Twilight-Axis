@@ -146,7 +146,7 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 
 /datum/special_intent/proc/_draw(list/turfs)
 	for(var/turf/T in turfs)
-		var/obj/effect/temp_visual/fx = new (T, delay)
+		var/obj/effect/temp_visual/special_intent/fx = new (T, delay)
 		fx.icon = _icon
 		fx.icon_state = pre_icon_state
 	
@@ -194,7 +194,7 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 			return
 	if(post_icon_state)
 		for(var/turf/T in turfs)
-			var/obj/effect/temp_visual/fx = new /obj/effect/temp_visual(T, fade_delay)
+			var/obj/effect/temp_visual/special_intent/fx = new (T, fade_delay)
 			fx.icon = _icon
 			fx.icon_state = post_icon_state
 			apply_hit(T)
