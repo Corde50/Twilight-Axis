@@ -14,6 +14,7 @@
 	Lead your men to victory--and keep them in line--and you will see this realm prosper under a thousand suns."
 	display_order = JDO_GUARD_CAPTAIN
 	advclass_cat_rolls = list(CTAG_CAPTAIN = 20)
+	same_job_respawn_delay = 30 MINUTES
 
 	spells = list(/obj/effect/proc_holder/spell/self/convertrole/guard)
 	outfit = /datum/outfit/job/roguetown/captain
@@ -144,6 +145,9 @@
 				r_hand = /obj/item/rogueweapon/sword/sabre/knightcaptain
 				l_hand = /obj/item/rogueweapon/shield/buckler/knightcaptain
 				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Deliverance (Glaive)")
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 5, TRUE)
+				r_hand = /obj/item/rogueweapon/halberd/glaive/knightcaptain
 			if("Claymore")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 5, TRUE)
 				r_hand = /obj/item/rogueweapon/greatsword/zwei

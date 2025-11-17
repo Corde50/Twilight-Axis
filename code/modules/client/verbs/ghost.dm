@@ -2,8 +2,8 @@ GLOBAL_LIST_INIT(ghost_verbs, list(
 	/client/proc/ghost_up,
 	/client/proc/ghost_down,
 	/client/proc/descend,
-	/client/proc/reenter_corpse,
-	/client/proc/dead_observe
+	/client/proc/reenter_corpse
+//	/client/proc/dead_observe
 	))
 
 /client/proc/ghost_up()
@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(ghost_verbs, list(
 			mob.returntolobby()
 		if("No")
 			usr << "You have second thoughts."
-
+/*
 /client/proc/dead_observe()
 	set category = "Spirit"
 	set name = "Leave Your Body"
@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(ghost_verbs, list(
 	if(mob.stat == DEAD && isliving(mob))
 		message_admins("[key_name_admin(usr)] is ghosting from their dead body.")
 		mob.ghostize(TRUE, ignore_zombie = TRUE)
-
+*/
 /client/proc/reenter_corpse()
 	set category = "Spirit"
 	set name = "Reenter Corpse"
