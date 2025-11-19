@@ -111,6 +111,9 @@
 		var/mob/living/carbon/human/H = usr
 		H.print_levels(H)
 
+/atom/movable/screen/skills/should_click_on_mouse_up(var/atom/original_object)
+	return FALSE
+
 /atom/movable/screen/craft
 	name = "crafting menu"
 	icon_state = "craft"
@@ -633,6 +636,9 @@
 		else
 			L.toggle_cmode()
 			update_icon()
+
+/atom/movable/screen/cmode/should_click_on_mouse_up(var/atom/original_object)
+	return FALSE
 
 /atom/movable/screen/mov_intent
 	name = "run/walk toggle"

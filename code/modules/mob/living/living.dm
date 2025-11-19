@@ -635,7 +635,7 @@
 				var/obj/item/grabbing/I = get_inactive_held_item()
 				if(I.grabbed == pulling)
 					dropItemToGround(I, silent = FALSE)
-
+	reset_offsets("pulledby")
 	. = ..()
 
 	update_pull_movespeed()
