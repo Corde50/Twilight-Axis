@@ -1471,7 +1471,7 @@
 	max_blade_int = 200
 	icon_state = "assegai_steel"
 	gripsprite = FALSE
-
+	smeltresult = /obj/item/ingot/steel
 
 /////////////////////
 // Special Weapon! //

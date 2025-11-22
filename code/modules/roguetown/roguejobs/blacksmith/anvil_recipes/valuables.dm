@@ -42,6 +42,18 @@
 	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 	craftdiff = 1
 
+/datum/anvil_recipe/valuables/matthios
+	name = "Amulet of Matthios (1 gold)"
+	req_bar = /obj/item/ingot/gold
+	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios
+	craftdiff = 1
+
+/datum/anvil_recipe/valuables/graggar
+	name = "Amulet of Graggar (1 iron)"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar
+	craftdiff = 1
+
 /datum/anvil_recipe/valuables/ringg
 	name = "Rings, Gold (x3)"
 	req_bar = /obj/item/ingot/gold

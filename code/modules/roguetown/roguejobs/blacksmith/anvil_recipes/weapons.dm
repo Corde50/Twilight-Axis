@@ -315,7 +315,7 @@
 // IRON
 
 /datum/anvil_recipe/weapons/iron/sword
-	name = "Sword, Iron"
+	name = "Arming Sword, Iron"
 	req_bar = /obj/item/ingot/iron
 	req_blade = /obj/item/blade/iron_sword
 	created_item = /obj/item/rogueweapon/sword/iron
@@ -520,7 +520,7 @@
 	created_item = /obj/item/rogueweapon/sword/short/messer
 
 /datum/anvil_recipe/weapons/steel/sword
-	name = "Sword, Steel"
+	name = "Arming Sword, Steel"
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_sword
 	created_item = /obj/item/rogueweapon/sword

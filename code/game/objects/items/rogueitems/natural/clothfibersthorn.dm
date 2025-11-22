@@ -278,9 +278,9 @@
 		to_chat(user, span_warning("There is already a bandage."))
 		return
 	var/used_time = 70
-	used_time -= (H.get_skill_level(/datum/skill/misc/medicine) * 10)
+	used_time -= ((H.get_skill_level(/datum/skill/misc/medicine) * 10) + (H.STASPD / 2)) //With 20 SPD you can insta bandage at max medicine.
 	playsound(loc, 'sound/foley/bandage.ogg', 100, FALSE)
-	if(!do_mob(user, M, used_time))
+	if(!move_after(user, used_time, target = M))
 		return
 	playsound(loc, 'sound/foley/bandage.ogg', 100, FALSE)
 
@@ -289,9 +289,9 @@
 	H.update_damage_overlays()
 
 	if(M == user)
-		user.visible_message(span_notice("[user] bandages [user.p_their()] [affecting]."), span_notice("I bandage my [affecting]."))
+		user.visible_message(span_notice("[user] bandages [user.p_their()] [affecting]."), span_notice("I bandage my [affecting.name]."))
 	else
-		user.visible_message(span_notice("[user] bandages [M]'s [affecting]."), span_notice("I bandage [M]'s [affecting]."))
+		user.visible_message(span_notice("[user] bandages [M]'s [affecting]."), span_notice("I bandage [M]'s [affecting.name]."))
 
 /obj/item/natural/thorn
 	name = "thorn"
