@@ -10,7 +10,7 @@
 
 	// Check if user has a toy in hand
 	var/obj/item/held_item = user.get_active_held_item()
-	if(!held_item || !istype(held_item, /obj/item/toy))
+	if(!held_item || !istype(held_item, /obj/item/dildo))
 		return FALSE
 
 	return TRUE
