@@ -839,3 +839,6 @@
 // for mobs that are floating, flying, intangible, etc.
 /mob/proc/is_floor_hazard_immune()
 	return throwing || (movement_type & (FLYING|FLOATING))
+
+#undef MOVEMENT_DELAY_BUFFER
+#undef MOVEMENT_DELAY_BUFFER_DELTA

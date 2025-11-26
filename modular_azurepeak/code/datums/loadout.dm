@@ -570,6 +570,10 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Аксессуары"
 	path = /obj/item/clothing/head/roguetown/dendormask
 
+/datum/loadout_item/eorahood
+	name = "Opera Mask - Eoran Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/eorahood
+
 /datum/loadout_item/exoticsilkmask
 	name = "Exotic Silk Mask"
 	category = "Аксессуары"

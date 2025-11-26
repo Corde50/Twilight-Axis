@@ -419,3 +419,6 @@
 		return
 	return mind.add_antag_datum(/datum/antagonist/zombie)
 
+#undef ZOMBIE_FIRST_BITE_CHANCE
+#undef ZOMBIE_BITE_CONVERSION_TIME
+

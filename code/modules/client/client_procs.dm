@@ -1221,3 +1221,10 @@ GLOBAL_LIST_EMPTY(respawncounts)
 	else
 		if(/client/verb/ooc in verbs)
 			verbs -= /client/verb/ooc
+
+#undef LIMITER_SIZE
+#undef CURRENT_SECOND
+#undef SECOND_COUNT
+#undef CURRENT_MINUTE
+#undef MINUTE_COUNT
+#undef ADMINSWARNED_AT

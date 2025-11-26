@@ -725,3 +725,5 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 			to_chat(src, "Examines will be fully shown.")
 		else
 			to_chat(src, "Examines will have some information behind dropdowns.")
+
+#undef TOGGLE_CHECKBOX

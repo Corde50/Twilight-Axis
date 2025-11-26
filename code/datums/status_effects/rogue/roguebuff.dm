@@ -1655,3 +1655,7 @@
 		mob.apply_status_effect(/datum/status_effect/debuff/joybringer_druqks)
 
 #undef JOYBRINGER_FILTER
+
+#undef MIRACLE_BLOODHEAL_FILTER
+#undef PSYDON_HEALING_FILTER
+#undef PSYDON_REVIVED_FILTER
