@@ -453,8 +453,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_DUSTABLE = span_warning("If I die that is for the end for me, I will turn to dust."),
 	TRAIT_SECONDLIFE = span_warning("I may be granted another chance upon death, but who knows where I'll end up..."),
 	TRAIT_QUICKSILVERRESISTANT = span_warning("Quick silver won't work to cure me..."),
-  TRAIT_CLERGY = span_notice("I am a member of local clergy, sworn to defend the House of the Ten. My oath empowers me when within the Temple's walls, or near my spiritual guide, the Bishop."), //TA TRAITS FROM HERE
-  TRAIT_FIREARMS_MARKSMAN = span_greentext("I'm an experienced gunslinger, and have spent many years learning to shoot firearms accurately over great distances. Firearms can progress to Legendary levels."),
+	TRAIT_CLERGY = span_notice("I am a member of local clergy, sworn to defend the House of the Ten. My oath empowers me when within the Temple's walls, or near my spiritual guide, the Bishop."), //TA TRAITS FROM HERE
+	TRAIT_FIREARMS_MARKSMAN = span_greentext("I'm an experienced gunslinger, and have spent many years learning to shoot firearms accurately over great distances. Firearms can progress to Legendary levels."),
 ))
 
 // trait accessor defines
