@@ -56,3 +56,7 @@
   - rscadd: Item will remember the last intent you have selected when it is dropped,
       and your hands will remember the last intent you had selected with that hand
       when it was empty.
+2025-12-04:
+  WeNeedMorePhoron:
+  - bugfix: Alt right click on a massive pile of item shouldn't lag out the server
+      anymore (I'll find you)

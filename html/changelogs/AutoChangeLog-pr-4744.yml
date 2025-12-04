@@ -1,0 +1,5 @@
+author: "hazelrat"
+delete-after: True
+changes:
+  - rscadd: "Added servantry service bells to the keep. Ring them if you want attention from the servants!"
+  - rscadd: "Added a new, quieter sound effect to service bells."

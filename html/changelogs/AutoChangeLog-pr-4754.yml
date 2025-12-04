@@ -1,0 +1,4 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - config: "Game_options.txt is now provided out of the box for locally hosted build so no more zoomie speed"

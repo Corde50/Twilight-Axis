@@ -94,6 +94,9 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	. = ..()
 	equip()
 
+	if(HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
+		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, null)
+
 /datum/antagonist/vampire/proc/show_clan_selection(mob/living/carbon/human/vampdude)
 	var/list/clan_options = list()
 	var/list/available_clans = list()
@@ -148,9 +151,6 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 /datum/antagonist/vampire/proc/after_gain()
 	owner.current.set_bloodpool(owner.current.maxbloodpool / 100 * INITIAL_BLOODPOOL_PERCENTAGE)
 	add_antag_hud(antag_hud_type, antag_hud_name, owner.current)
-
-	if(HAS_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE))
-		REMOVE_TRAIT(owner, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 
 /datum/antagonist/vampire/on_removal()
 	remove_antag_hud(antag_hud_type, owner.current)

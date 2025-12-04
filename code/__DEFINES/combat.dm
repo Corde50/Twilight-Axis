@@ -182,7 +182,7 @@
 #define INTENT_HOTKEY_RIGHT "right"
 
 //the define for visible message range in combat
-#define COMBAT_MESSAGE_RANGE 3
+#define COMBAT_MESSAGE_RANGE 5
 #define DEFAULT_MESSAGE_RANGE 7
 
 //Shove knockdown lengths (deciseconds)
@@ -353,3 +353,6 @@ Medical defines
 #define DULLFACTOR_ANTAG 0.5 // For Grand Shaft. Also for dull blade
 // Previously value were closer to 0.4 - 0.5 and 1.5 - 1.7x, but it felt like it make weapons
 // counter certain shaft type too hard, so now the value is between 0.8 to 1.2x for regular type
+
+//Visible message presets.
+#define VISMSG_ARMOR_BLOCKED " <span class='armoralert'>Armor stops the damage.</span>"
