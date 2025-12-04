@@ -1,6 +1,6 @@
 /datum/charflaw/lawless
     name = "Lawless"
-    desc = "I've always felt the rules were a bit more like guidelines than actual rules, and have accrued enough notoriety to have a bounty out on my head. (Taking this vice when on a class that already has a roundstart bounty will randomize your flaw instead.)"
+    desc = "I've always felt the rules were a bit more like guidelines than actual rules, and have accrued enough notoriety to have a bounty out on my head."
     var/required_pq = 20
     var/static/list/allowed_jobs = list(
         "Adventurer",
