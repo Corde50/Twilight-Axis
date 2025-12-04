@@ -50,8 +50,7 @@
 
     add_bounty(user.real_name, race, gender, descriptor_height, descriptor_body, descriptor_voice, bounty_amount, FALSE, my_crime, chosen_state)
 
-    if(tgui_alert(user, "Is my face known?", "OUTLAW", list("Nae", "Yae")) == "Yae")
-        var/list/to_add = states[chosen_state]
-        to_add += user.real_name
+    var/list/to_add = states[chosen_state]
+    to_add += user.real_name
 
     to_chat(user, span_notice("I'm on the run from the law, and there's a sum of mammons out on my head... better lay low."))
