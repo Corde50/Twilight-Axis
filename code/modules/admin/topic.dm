@@ -1195,7 +1195,7 @@
 		var/amt2change = input("How much to modify the PQ by? (20 to -20, or 0 to just add a note)") as null|num
 		if(!check_rights(R_BAN,0))
 			amt2change = CLAMP(amt2change, -20, 20)
-		if(!amt2change)
+		if((!isnull(amt2change) && amt2change != 0))
 			return
 		var/raisin = stripped_input("State a short reason for this change", "Game Master", "", null)
 		if((!isnull(amt2change) && amt2change != 0) && !raisin)
@@ -1224,7 +1224,7 @@
 			return
 
 		var/amt2change = input(usr, "How much to modify the Triumphs by? (100 to -100)") as null|num
-		if(!amt2change)
+		if((!isnull(amt2change) && amt2change != 0))
 			return
 		amt2change = clamp(amt2change, -100, 100)
 		var/raisin = stripped_input(usr, "State a short reason for this change", "Game Master", null, null)
