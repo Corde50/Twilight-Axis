@@ -668,6 +668,10 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 
+/obj/item/clothing/head/roguetown/helmet/heavy/matthios/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_COMMIE, "ARMOR")
+
 /obj/item/clothing/head/roguetown/helmet/heavy/graggar
 	name = "vicious helmet"
 	desc = "A rugged helmet which stirs with the same violence which drives our world."

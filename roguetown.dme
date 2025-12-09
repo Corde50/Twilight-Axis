@@ -1789,7 +1789,7 @@
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\anthrax.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\atgervi.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\blackoak.dm"
-#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\condottiero.dm"
+#include "code\modules\jobs\job_types\roguetown\mercenaries\classes\etrusca.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\desertrider.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\forlorn.dm"
 #include "code\modules\jobs\job_types\roguetown\mercenaries\classes\freifechter.dm"

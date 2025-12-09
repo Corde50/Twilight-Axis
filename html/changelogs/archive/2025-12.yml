@@ -108,3 +108,13 @@
   - bugfix: fixed t2 and t3 obfuscate tier
   bearrrrrrrr:
   - bugfix: attacks targeting feet on taurs will no longer ignore their armor
+2025-12-09:
+  Lamasmaster:
+  - bugfix: Bascinet (nonvisor) FOV
+  - rscadd: Old Knight Helmet
+  - bugfix: Desert (the other one) hood
+  Matheo351:
+  - rscadd: Added sickle's instant crop harvest ability to scythe, as well as special
+      variants of those tools (Summer Scythe and Plaguebringer Sickle)
+  SillyMoff:
+  - bugfix: fixed switching inhumen patron to matthios
