@@ -139,8 +139,8 @@
 				armor += bp
 		if(armor)
 			var/obj/item/clothing/C = pick(armor)
-			C.take_damage(damage_amount = (C.max_integrity * 0.03), damage_type = BURN, damage_flag = "fire")
-			
+			if(C.integrity > C.max_integrity * 0.03)
+				C.take_damage(damage_amount = (C.max_integrity * 0.03), damage_type = BURN, damage_flag = "fire")
 
 /obj/projectile/bullet/fire(angle, atom/direct_target)
 	if(istype(fired_from, /obj/item/gun/ballistic/twilight_firearm))
