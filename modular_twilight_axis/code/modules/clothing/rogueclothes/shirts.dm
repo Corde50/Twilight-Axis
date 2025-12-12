@@ -157,7 +157,7 @@
 
 /obj/item/clothing/suit/roguetown/shirt/twilight_hammerhold/coat
 	name = "boyar coat"
-	desc = "Боярский плащ вдохновленный эльфийской культурой, который носят знатные представители Хаммерхольда"
+	desc = "Боярский плащ вдохновленный эльфийской культурой, который носят знатные представители Хаммерхолда"
 	icon_state = "coat_a"
 	item_state = "coat_a"
 	hammerhold_colors = list("red", "beige")
