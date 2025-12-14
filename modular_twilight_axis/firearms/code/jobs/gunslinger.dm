@@ -62,8 +62,8 @@
 				to_chat(H, span_warning("Even if Inhumen once watched over me, my loyalty to them did not survive the trials of Otava. Psydon is one true God!"))
 				H.set_patron(/datum/patron/old_god)
 			H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-			beltl = /obj/item/quiver/twilight_bullet/runed
-			beltr = /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock
+			beltl = /obj/item/quiver/twilight_bullet/lead
+			beltr = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol
 			backl = /obj/item/storage/backpack/rogue/satchel/otavan
 			r_hand = /obj/item/rogueweapon/sword/short/falchion
 			shoes = /obj/item/clothing/shoes/roguetown/boots/otavan
