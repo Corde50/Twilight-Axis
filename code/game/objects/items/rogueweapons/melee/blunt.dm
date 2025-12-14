@@ -96,6 +96,7 @@
 	minstr = 7
 	wdefense = 2
 	wbalance = WBALANCE_HEAVY
+	max_integrity = 350
 	icon_angle_wielded = 50
 	special = /datum/special_intent/ground_smash
 
@@ -451,6 +452,7 @@
 	smelt_bar_num = 2
 	wdefense_wbonus = 5
 	special = null
+	max_integrity = 300
 
 /obj/item/rogueweapon/mace/goden/steel/paalloy
 	name = "ancient grand mace"
@@ -477,14 +479,14 @@
 	icon_state = "kanabo"
 	slot_flags = ITEM_SLOT_BACK
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/stab, /datum/intent/effect/daze)
-	max_integrity = 225 // it's strong wood, but it's still wood.
+	max_integrity = 250 // it's strong wood, but it's still wood.
 
 /obj/item/rogueweapon/mace/goden/steel/ravox
 	name = "duel settler"
 	desc = "The tenets of ravoxian duels are enscribed upon the head of this maul."
 	icon_state = "ravoxhammer"
 	gripped_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash, /datum/intent/effect/daze) // It loses the Goden stab so I give it daze
-	max_integrity = 350 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
+	max_integrity = 400 // I am reluctant to give a steel goden more force as it breaks weapon so durability it is.
 
 /obj/item/rogueweapon/mace/goden/psymace
 	name = "psydonic mace"
@@ -526,13 +528,14 @@
 	wbalance = WBALANCE_HEAVY
 	smeltresult = /obj/item/ingot/iron
 	wdefense = 3
+	max_integrity = 200
 
 /obj/item/rogueweapon/mace/warhammer/alloy
 	name = "decrepit warhammer"
 	desc = "A macehead of frayed bronze, spiked and perched atop a thin shaft. To see such a knightly implement abandoned to decay and neglect; that wounds the heart greater than any well-poised strike."
 	icon_state = "awarhammer"
 	force = 17
-	max_integrity = 180
+	max_integrity = 150
 	blade_dulling = DULLING_SHAFT_CONJURED
 	color = "#bb9696"
 	smeltresult = /obj/item/ingot/aaslag
