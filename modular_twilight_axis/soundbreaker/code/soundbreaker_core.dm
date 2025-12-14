@@ -352,9 +352,8 @@
 	damage = str
 
 	// считаем 10 за базу, как “средний” человек
-	var/con_bonus = (con - 10) * 0.2  // ±20% за 1 CON
 	var/dex_bonus = (dex - 10) * 0.1  // ±10% за 1 DEX (чуть поменьше, как “точность/техника”)
-	damage += damage*dex_bonus + damage*con_bonus 
+	damage += damage*con_bonus 
 	damage *= damage_mult
 	
 	// --- НАВЫКИ ---

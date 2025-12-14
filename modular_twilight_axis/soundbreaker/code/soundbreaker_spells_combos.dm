@@ -2,7 +2,7 @@
 	if(!user || !target)
 		return
 	soundbreaker_apply_damage(user, target, 0.5, BCLASS_PUNCH)
-	sb_safe_offbalance(target, 0.5 SECONDS)
+	sb_safe_offbalance(target, 2.0 SECONDS)
 	user.visible_message(
 		span_danger("[user]'s rhythm echoes into [target], staggering them!"),
 		span_notice("Your echo beat staggers [target]."),
@@ -31,7 +31,7 @@
 	if(!user || !target)
 		return
 	soundbreaker_apply_damage(user, target, 1.5, BCLASS_PUNCH)
-	sb_safe_offbalance(target, 1.2 SECONDS)
+	sb_safe_offbalance(target, 3.0 SECONDS)
 	playsound(target, 'sound/magic/repulse.ogg', 90, TRUE)
 	user.visible_message(
 		span_danger("[user]'s rhythm drops heavy on [target]!"),
@@ -41,7 +41,7 @@
 /proc/soundbreaker_combo_crossfade(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	sb_small_bleed(target, 3)
+	sb_small_bleed(target, 4)
 	user.visible_message(
 		span_danger("[user]'s passing strike leaves [target] bleeding!"),
 		span_notice("Your crossfade cuts [target] open as you move through."),
@@ -50,7 +50,7 @@
 /proc/soundbreaker_combo_reverb_cut(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	sb_safe_slow(target, 3)
+	sb_safe_slow(target, 5)
 	soundbreaker_knockback(user, target, 2)
 	user.visible_message(
 		span_danger("[user]'s cutting reverb throws [target] back!"),
@@ -60,7 +60,7 @@
 /proc/soundbreaker_combo_syncopation(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	target.Immobilize(0.7 SECONDS)
+	target.Immobilize(1.5 SECONDS)
 	user.visible_message(
 		span_danger("[user]'s off-beat rhythm locks [target] in place!"),
 		span_notice("Your syncopated pattern roots [target] for a moment."),
@@ -79,8 +79,8 @@
 	if(!user || !target)
 		return
 	soundbreaker_apply_damage(user, target, 1.5, BCLASS_PUNCH)
-	target.Stun(0.5 SECONDS)
-	sb_safe_offbalance(target, 1.5 SECONDS)
+	target.Stun(1.0 SECONDS)
+	sb_safe_offbalance(target, 2.0 SECONDS)
 	user.visible_message(
 		span_danger("[user]'s crescendo crashes down on [target] in a brutal finale!"),
 		span_notice("Your crescendo finale crushes [target]'s guard."),
@@ -97,7 +97,7 @@
 			if(L.stat == DEAD)
 				continue
 			soundbreaker_apply_damage(user, L, 0.75, BCLASS_PUNCH)
-			sb_safe_offbalance(L, 0.4 SECONDS)
+			sb_safe_offbalance(L, 0.8 SECONDS)
 		sleep(0.4 SECONDS)
 
 	user.visible_message(
@@ -108,7 +108,7 @@
 /proc/soundbreaker_combo_blade_dancer(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	sb_small_bleed(target, 5)
+	sb_small_bleed(target, 7)
 	soundbreaker_apply_damage(user, target, 0.75, BCLASS_PUNCH)
 	user.visible_message(
 		span_danger("[user] dances around [target], leaving deep cuts in their wake!"),
@@ -125,8 +125,8 @@
 		if(L.stat == DEAD)
 			continue
 		soundbreaker_apply_damage(user, L, 1.25, BCLASS_PUNCH)
-		sb_safe_offbalance(L, 1 SECONDS)
-		L.Knockdown(0.7 SECONDS)
+		sb_safe_offbalance(L, 5 SECONDS)
+		L.Knockdown(1.5 SECONDS)
 
 	playsound(target, 'sound/combat/ground_smash1.ogg', 90, TRUE)
 

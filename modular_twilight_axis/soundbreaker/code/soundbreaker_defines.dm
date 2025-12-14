@@ -11,7 +11,7 @@
 /// Сколько последних нот храним
 #define SB_MAX_HISTORY 6
 
-#define SB_BASE_COOLDOWN (1 SECONDS)
+#define SB_BASE_COOLDOWN (1.5 SECONDS)
 
 /// Сигнал, который кидает статус, когда комбо-бафф истёк
 #define COMSIG_SOUNDBREAKER_COMBO_CLEARED "soundbreaker_combo_cleared"
