@@ -10,7 +10,7 @@
 	releasedrain = 0
 	chargedrain = 0
 	chargetime = 0
-	recharge_time = 3 SECONDS
+	recharge_time = SB_BASE_COOLDOWN
 
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -25,7 +25,7 @@
 	overlay_state = null
 
 	var/note_id = 0
-	var/base_damage = 0
+	var/damage_mult = 1
 	var/damage_type = BRUTE
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/cast(list/targets, mob/living/user)

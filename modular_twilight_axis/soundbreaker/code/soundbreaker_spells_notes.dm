@@ -3,10 +3,9 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/sound_strike
 	name = "Sound Strike"
 	desc = "A focused sound-empowered punch that hits up to two tiles ahead."
-	recharge_time = 3 SECONDS
 	note_id = SOUNDBREAKER_NOTE_STRIKE
-	base_damage = 10
 	damage_type = BRUTE
+	
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/sound_strike/perform_attack(mob/living/user)
 	var/list/hit_targets = list()
@@ -20,7 +19,7 @@
 
 		soundbreaker_swing_fx(T)
 
-		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, base_damage, damage_type)
+		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, damage_mult, damage_type)
 		if(target)
 			hit_targets |= target
 
@@ -42,9 +41,8 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/resonant_wave
 	name = "Resonant Wave"
 	desc = "A short wave of force that hits a small line in front of you and shoves enemies back."
-	recharge_time = 4 SECONDS
 	note_id = SOUNDBREAKER_NOTE_WAVE
-	base_damage = 8
+	damage_mult = 0.75
 	damage_type = BRUTE
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/resonant_wave/perform_attack(mob/living/user)
@@ -58,7 +56,7 @@
 
 		soundbreaker_swing_fx(T)
 
-		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, base_damage, damage_type)
+		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, damage_mult, damage_type)
 		if(target)
 			soundbreaker_knockback(user, target, 1)
 			hit_targets |= target
@@ -81,9 +79,8 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/dulce_step
 	name = "Dulce Step"
 	desc = "A quick step through the rhythm: rush forward and slip behind your target while striking."
-	recharge_time = 5 SECONDS
 	note_id = SOUNDBREAKER_NOTE_DULCE
-	base_damage = 12
+	damage_mult = 1.25
 	damage_type = BRUTE
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/dulce_step/perform_attack(mob/living/user)
@@ -104,7 +101,7 @@
 
 	var/mob/living/target = null
 	if(mid)
-		target = soundbreaker_hit_one_on_turf(user, mid, base_damage, damage_type)
+		target = soundbreaker_hit_one_on_turf(user, mid, damage_mult, damage_type)
 
 	if(target)
 		soundbreaker_step_behind(user, target)
@@ -129,9 +126,8 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/overload_chord
 	name = "Overload"
 	desc = "A burst of overloaded sound in a cone, shaking balance and focus."
-	recharge_time = 6 SECONDS
 	note_id = SOUNDBREAKER_NOTE_OVERLOAD
-	base_damage = 6
+	damage_mult = 0.5
 	damage_type = BRUTE
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/overload_chord/perform_attack(mob/living/user)
@@ -163,7 +159,7 @@
 
 		soundbreaker_swing_fx(T)
 
-		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, base_damage, damage_type)
+		var/mob/living/target = soundbreaker_hit_one_on_turf(user, T, damage_mult, damage_type)
 		if(target)
 			soundbreaker_apply_offbalance(user, target)
 			hit_targets |= target
@@ -186,12 +182,10 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/encore_line
 	name = "Encore"
 	desc = "A lingering line of sound, most punishing at close range."
-	recharge_time = 5 SECONDS
 	note_id = SOUNDBREAKER_NOTE_ENCORE
-	base_damage = 4
+	damage_mult = 0.75
 	damage_type = BRUTE
-	var/front_bonus = 6
-	var/second_row_bonus = 3
+	var/front_bonus = 0.5
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/encore_line/cast(list/targets, mob/living/user)
 	if(!isliving(user))
@@ -220,8 +214,8 @@
 /obj/effect/proc_holder/spell/invoked/soundbreaker/encore_line/proc/encore_phase2(mob/living/user, turf/front1, list/wave2)
 	if(user && front1)
 		soundbreaker_swing_fx(front1)
-		var/dmg1 = base_damage + front_bonus
-		soundbreaker_hit_one_on_turf(user, front1, dmg1, damage_type)
+		var/dmg_bonus = damage_mult + front_bonus
+		soundbreaker_hit_one_on_turf(user, front1, dmg_bonus, damage_type)
 
 	if(user && islist(wave2))
 		for(var/turf/T in wave2)
@@ -232,22 +226,19 @@
 	if(!user || !islist(wave2))
 		return
 
-	var/dmg2 = base_damage + second_row_bonus
-
 	for(var/turf/T in wave2)
 		if(!T)
 			continue
 		soundbreaker_swing_fx(T)
-		soundbreaker_hit_one_on_turf(user, T, dmg2, damage_type)
+		soundbreaker_hit_one_on_turf(user, T, damage_mult, damage_type)
 
 // 6) SOLO BREAK
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/solo_break
 	name = "Solo Break"
 	desc = "Lock a target in your solo and hammer the space in front of them with repeated strikes."
-	recharge_time = 8 SECONDS
 	note_id = SOUNDBREAKER_NOTE_SOLO
-	base_damage = 6
+	damage_mult = 0.75
 	damage_type = BRUTE
 
 /obj/effect/proc_holder/spell/invoked/soundbreaker/solo_break/cast(list/targets, mob/living/user)
@@ -288,7 +279,7 @@
 
 	soundbreaker_swing_fx(front)
 
-	var/mob/living/target = soundbreaker_hit_one_on_turf(user, front, base_damage, damage_type)
+	var/mob/living/target = soundbreaker_hit_one_on_turf(user, front, damage_mult, damage_type)
 
 	if(target && phase == 1)
 		soundbreaker_apply_short_stun(user, target)

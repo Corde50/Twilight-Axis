@@ -234,13 +234,17 @@
 /proc/soundbreaker_apply_damage(
 	mob/living/user,
 	mob/living/target,
-	damage,
+	damage_mult = 1,
 	bclass = BCLASS_PUNCH,
 	zone = BODY_ZONE_CHEST,
 	damage_type = BRUTE,
 	use_combo_pierce = TRUE,
 )
-	if(!target || damage <= 0)
+	if(!target)
+		return FALSE
+
+	var/final_damage = soundbreaker_scale_damage(user, damage_mult)
+	if(final_damage <= 0)
 		return FALSE
 
 	if(use_combo_pierce)
@@ -265,12 +269,12 @@
 			return FALSE
 
 		var/d_flag = soundbreaker_get_damage_flag(bclass, damage_type)
-		var/armor_block = H.run_armor_check(zone, d_flag, 0, damage = damage, used_weapon = null)
+		var/armor_block = H.run_armor_check(zone, d_flag, 0, damage = final_damage, used_weapon = null)
 
-		if(H.apply_damage(damage, damage_type, affecting, armor_block))
+		if(H.apply_damage(final_damage, damage_type, affecting, armor_block))
 			affecting.bodypart_attacked_by(
 				bclass,
-				damage,
+				final_damage,
 				user,
 				zone_precise = zone,
 				armor = armor_block,
@@ -283,19 +287,19 @@
 
 	// SIMPLE_WOUNDS
 	if(HAS_TRAIT(target, TRAIT_SIMPLE_WOUNDS))
-		if(target.apply_damage(damage, damage_type))
-			target.simple_woundcritroll(bclass, damage, user, zone)
+		if(target.apply_damage(final_damage, damage_type))
+			target.simple_woundcritroll(bclass, final_damage, user, zone)
 			return TRUE
 		return FALSE
 
 	// Всё остальное просто принимает урон
-	return target.apply_damage(damage, damage_type)
+	return target.apply_damage(final_damage, damage_type)
 
 /// Удар по одной случайной цели на тайле.
 /proc/soundbreaker_hit_one_on_turf(
 	mob/living/user,
 	turf/T,
-	damage,
+	damage_mult = 1,
 	damage_type = BRUTE,
 	bclass = BCLASS_PUNCH,
 	zone,
@@ -324,7 +328,54 @@
 	if(!zone)
 		zone = BODY_ZONE_CHEST
 
-	if(soundbreaker_apply_damage(user, target, damage, bclass, zone, damage_type))
+	if(soundbreaker_apply_damage(user, target, damage_mult, bclass, zone, damage_type))
 		return target
 
 	return null
+
+/// Скалирование урона саундбрекера от статов и навыков
+/// base_damage — то, что ты прописываешь в спелле/комбо (номинальный урон)
+/// Возвращает уже “боевой” урон.
+#define SB_MIN_DAMAGE_MULT 0.5
+#define SB_MAX_DAMAGE_MULT 3
+
+/proc/soundbreaker_scale_damage(mob/living/user, damage_mult)
+	if(!user || damage_mult <= 0)
+		return 0
+
+	var/damage = 10
+
+	// --- СТАТЫ ---
+	var/str = user.get_stat(STATKEY_STR)
+	var/dex = user.get_stat(STATKEY_SPD)
+	var/con = user.get_stat(STATKEY_CON)
+
+	// считаем 10 за базу, как “средний” человек
+	var/str_bonus = (str - 10) * 0.3  // ±30% за 1 STR
+	var/con_bonus = (con - 10) * 0.1  // ±10% за 1 CON
+	var/dex_bonus = (dex - 10) * 0.1  // ±10% за 1 DEX (чуть поменьше, как “точность/техника”)
+	damage += damage*str_bonus + damage*dex_bonus + damage*con_bonus
+	damage *= damage_mult
+	
+	// --- НАВЫКИ ---
+	var/unarmed_skill = user.get_skill_level(/datum/skill/combat/unarmed)
+	var/music_skill = user.get_skill_level(/datum/skill/misc/music)
+
+	// --- Активное оружие и его показатели ---
+	var/obj/holding = user.get_active_held_item()
+	if(holding)
+		if(istype(holding, /obj/item/rogueweapon/katar) || istype(holding, /obj/item/rogueweapon/knuckles))
+			var/weapon_force = holding.force
+			damage += weapon_force/2
+
+	// 25% за уровень безоружки, 15% за уровень музыки
+	var/skill_bonus = (unarmed_skill * 0.25) + (music_skill * 0.15)
+
+	skill_bonus = clamp(skill_bonus, SB_MIN_DAMAGE_MULT, SB_MAX_DAMAGE_MULT)
+
+	damage *= skill_bonus
+
+	return max(1, round(damage))
+
+#undef SB_MIN_DAMAGE_MULT
+#undef SB_MAX_DAMAGE_MULT

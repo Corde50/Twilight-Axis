@@ -1,7 +1,7 @@
 /proc/soundbreaker_combo_echo_beat(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 5, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 0.5, BCLASS_PUNCH)
 	sb_safe_offbalance(target, 0.5 SECONDS)
 	user.visible_message(
 		span_danger("[user]'s rhythm echoes into [target], staggering them!"),
@@ -11,7 +11,7 @@
 /proc/soundbreaker_combo_tempo_flick(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 5, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 0.5, BCLASS_PUNCH)
 	sb_safe_slow(target, 2)
 	user.visible_message(
 		span_danger("[user] knocks [target]'s tempo off with a flick of sound!"),
@@ -21,7 +21,7 @@
 /proc/soundbreaker_combo_snapback(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 8, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 0.75, BCLASS_PUNCH)
 	user.visible_message(
 		span_danger("[user]'s follow-up snaps back into [target]'s weak point!"),
 		span_notice("You snap your follow-up into a soft spot."),
@@ -30,7 +30,7 @@
 /proc/soundbreaker_combo_bass_drop(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 15, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 1.5, BCLASS_PUNCH)
 	sb_safe_offbalance(target, 1.2 SECONDS)
 	playsound(target, 'sound/magic/repulse.ogg', 90, TRUE)
 	user.visible_message(
@@ -69,7 +69,7 @@
 /proc/soundbreaker_combo_ritmo(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 7, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 0.75, BCLASS_PUNCH)
 	user.visible_message(
 		span_danger("[user]'s flurry of strikes peaks in a sharp hit on [target]!"),
 		span_notice("Your ritmo peaks in a stronger hit."),
@@ -78,7 +78,7 @@
 /proc/soundbreaker_combo_crescendo(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
-	soundbreaker_apply_damage(user, target, 15, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 1.5, BCLASS_PUNCH)
 	target.Stun(0.5 SECONDS)
 	sb_safe_offbalance(target, 1.5 SECONDS)
 	user.visible_message(
@@ -96,7 +96,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			soundbreaker_apply_damage(user, L, 6, BCLASS_PUNCH)
+			soundbreaker_apply_damage(user, L, 0.75, BCLASS_PUNCH)
 			sb_safe_offbalance(L, 0.4 SECONDS)
 		sleep(0.4 SECONDS)
 
@@ -109,7 +109,7 @@
 	if(!user || !target)
 		return
 	sb_small_bleed(target, 5)
-	soundbreaker_apply_damage(user, target, 8, BCLASS_PUNCH)
+	soundbreaker_apply_damage(user, target, 0.75, BCLASS_PUNCH)
 	user.visible_message(
 		span_danger("[user] dances around [target], leaving deep cuts in their wake!"),
 		span_notice("Your blade dancer combo carves into [target]."),
@@ -124,7 +124,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		soundbreaker_apply_damage(user, L, 10, BCLASS_PUNCH)
+		soundbreaker_apply_damage(user, L, 1.25, BCLASS_PUNCH)
 		sb_safe_offbalance(L, 1 SECONDS)
 		L.Knockdown(0.7 SECONDS)
 
