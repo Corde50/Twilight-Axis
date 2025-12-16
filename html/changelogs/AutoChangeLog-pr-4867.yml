@@ -1,0 +1,5 @@
+author: "dopamiin0"
+delete-after: True
+changes:
+  - bugfix: "wither now goes where it's aimed instead of stopping a tile short"
+  - bugfix: "many spells no longer inexplicably stop working when the lights are out"

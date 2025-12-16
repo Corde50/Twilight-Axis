@@ -31,13 +31,13 @@
 /obj/effect/proc_holder/spell/invoked/gravity/cast(list/targets, mob/user)
 	var/turf/T = get_turf(targets[1])
 
-	for(var/turf/affected_turf in view(area_of_effect, T))
+	for(var/turf/affected_turf in get_hear(area_of_effect, T)) 
 		if(affected_turf.density)
 			continue
 
 
-	for(var/turf/affected_turf in view(area_of_effect, T))
-
+	for(var/turf/affected_turf in get_hear(area_of_effect, T))
+	
 		new /obj/effect/temp_visual/gravity_trap(affected_turf)
 
 		playsound(T, 'sound/magic/gravity.ogg', 80, TRUE, soundping = FALSE)

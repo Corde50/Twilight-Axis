@@ -1,0 +1,4 @@
+author: "BurpleBineapple"
+delete-after: True
+changes:
+  - bugfix: "Sergeant-at-Arms now gets the weapon skill for the flail loadout they have."
