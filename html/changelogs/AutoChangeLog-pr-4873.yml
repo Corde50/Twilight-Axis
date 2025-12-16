@@ -1,0 +1,5 @@
+author: "SpadesNeil"
+delete-after: True
+changes:
+  - bugfix: "All cloaks now have inventory by default."
+  - refactor: "Moved a fake blacksteel helmet to not be in the file for cloaks."

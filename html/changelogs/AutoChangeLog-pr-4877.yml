@@ -1,0 +1,5 @@
+author: "Gigigger"
+delete-after: True
+changes:
+  - balance: "decrease required strength of maul from 14 to 13"
+  - bugfix: "now heavy gronn mercenary can wield his maul without additional statpacks or race bonuses, as intended"

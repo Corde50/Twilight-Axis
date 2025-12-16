@@ -245,3 +245,32 @@
   SpadesNeil:
   - image: Modified sling bullet sprite to be centered correctly.
   - image: Added sprite for "silver bullet" that is currently unused.
+2025-12-16:
+  JustSomeGal:
+  - bugfix: You can now actually make the Inquisition's armors with the Inquisition's
+      silver, rather than needing a Malum acolyte to bless silver ingots
+  Ketrai:
+  - balance: Crimson arils heal more on average, and are less deadly now
+  Lamasmaster:
+  - balance: Bonus explosion damage on bombs/fireball against players
+  - rscadd: Dried fish filet recipe
+  - bugfix: Drying recipes not being under COOKING
+  - rscadd: Padded Arming Cap
+  - balance: Arming Cap
+  - rscadd: Battlemaster trait (not for the class but Ravoxian cleric classes)
+  SirSwagmeyer:
+  - rscadd: Three new classes for Gronnites to use!
+  - rscadd: New Shortsword
+  - bugfix: fixed grammar mistakes and clarity issues with gronnite item descriptions
+  SpadesNeil:
+  - bugfix: Meathooks can no longer be constructed out of sticks. Now require small
+      logs.
+  - bugfix: Meat hook in crafting recipes is now one word to match the actual object
+      name.
+  - bugfix: Bag recipe is now appropriately called "sack" in crafting.
+  dopamiin0:
+  - bugfix: most staves now correctly use the staff skill instead of the polearms
+      skill
+  - balance: many staff wielders now have actual staff skill
+  - rscadd: the shillelagh, craftable wooden staff that still uses polearms. mostly
+      for training with

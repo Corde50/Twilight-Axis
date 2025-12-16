@@ -1,0 +1,4 @@
+author: "bearrrrrrrr"
+delete-after: True
+changes:
+  - rscadd: "Arcane Mark system; certain spells are now combo spells that apply a stack of 'arcane mark' that can be detonated by 'combo finishers'. Certain spells CD's reduced to be less spammable. You glow violently purplepink when you have max stacks, as well as making a big noise and **'MARKED'** appearing in your chat."
