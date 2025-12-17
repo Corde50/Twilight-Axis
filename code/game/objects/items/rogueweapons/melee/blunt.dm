@@ -214,6 +214,18 @@
 	hitsound = list('sound/combat/hits/blunt/woodblunt (1).ogg', 'sound/combat/hits/blunt/woodblunt (2).ogg')
 	penfactor = BLUNT_DEFAULT_PENFACTOR
 
+/obj/item/rogueweapon/mace/woodclub/deprived
+	name = "warped club"
+	desc = "It's a piece of wood marred by age and strife alike."
+	icon_state = "deprived"
+	force = 20
+	force_wielded = 22
+	wbalance = WBALANCE_HEAVY
+
+/obj/item/rogueweapon/mace/woodclub/deprived/New()
+	..()
+	icon_state = "deprived"
+
 /datum/intent/mace/smash/wood/ranged
 	reach = 2
 

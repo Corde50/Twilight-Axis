@@ -1,0 +1,8 @@
+author: "SayonaraEcho"
+delete-after: True
+changes:
+  - bugfix: "Ravoxian's gorget FOV removed"
+  - bugfix: "Heartfelt magos old age bonus spellpoints"
+  - bugfix: "Looking down no longer creates a chat message if you are sneaking"
+  - bugfix: "Marque bug powergaming exploit"
+  - bugfix: "Being unconscious, dead, or paralyzed prevents you from learning of hidden travel tile locations"
