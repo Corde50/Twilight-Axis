@@ -1,6 +1,4 @@
 #define SB_MAX_VISIBLE_NOTES 5
-#define SOUNDBREAKER_NOTES_ICON 'modular_twilight_axis/soundbreaker/icons/soundspells.dmi'
-#define SOUNDBREAKER_COMBOS_ICON 'modular_twilight_axis/soundbreaker/icons/soundspells.dmi'
 
 /proc/sb_get_note_icon_state(note_id)
 	switch(note_id)
@@ -80,4 +78,4 @@
 		return
 
 	var/duration = 0.7 SECONDS
-	user.play_overhead_indicator_flick(SOUNDBREAKER_COMBOS_ICON, icon_state, duration, ABOVE_MOB_LAYER + 0.3, null, 16, 0)
+	user.play_overhead_indicator_flick(SOUNDBREAKER_NOTES_ICON, icon_state, duration, ABOVE_MOB_LAYER + 0.3, null, 16, 0)

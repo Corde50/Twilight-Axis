@@ -39,10 +39,6 @@
 	if(L.incapacitated())
 		return
 
-	if(!soundbreaker_has_music(L))
-		to_chat(L, span_warning("Your fists fall silent without a song. You must be playing music to weave sound into strikes."))
-		return
-
 	// мгновенно заготавливаем удар на 5 секунд
 	if(!soundbreaker_prime_note(L, note_id, damage_mult, damage_type))
 		return

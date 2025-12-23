@@ -6,3 +6,4 @@
 #include "code/soundbreaker_spells_notes.dm"
 #include "code/soundbreaker_spells_combos.dm"
 #include "code/soundbreaker_overhead.dm"
+#include "code/soundbreaker_visuals.dm"

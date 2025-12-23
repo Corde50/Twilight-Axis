@@ -19,16 +19,7 @@
 	if(!user)
 		return
 
-	var/mob/living/hit = soundbreaker_line_hit_first(user, 5, 0.5, BRUTE, BCLASS_PUNCH, user.zone_selected)
-	if(hit)
-		sb_safe_slow(hit, 3)
-		user.visible_message(
-			span_danger("[user] spits a sharp note that bites into [hit]!"),
-			span_notice("You flick a note forward, slowing your mark."),
-		)
-		soundbreaker_show_combo_icon(hit, SB_COMBO_ICON_TEMPO)
-	else
-		playsound(user, 'sound/combat/sp_whip_whiff.ogg', 40, TRUE)
+	sb_fire_sound_note(user, 0.5, BRUTE, BODY_ZONE_CHEST)
 
 	soundbreaker_reset_rhythm(user)
 
@@ -262,7 +253,7 @@
 	soundbreaker_show_combo_icon(target, SB_COMBO_ICON_CRESCENDO)
 	soundbreaker_reset_rhythm(user)
 
-// 62114 — если цель уже offbalance -> knockdown 1s (+10% урона), иначе 200% урона
+// 63114 — если цель уже offbalance -> knockdown 1s (+10% урона), иначе 200% урона
 /proc/soundbreaker_combo_overture(mob/living/user, mob/living/target)
 	if(!user || !target)
 		return
