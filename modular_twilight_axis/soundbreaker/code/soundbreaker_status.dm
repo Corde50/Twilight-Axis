@@ -81,6 +81,7 @@
 
 /datum/status_effect/buff/soundbreaker_prepared
 	id = "soundbreaker_prepared"
+	name = "Prepared Soundbreaker Strike"
 	status_type = STATUS_EFFECT_REPLACE
 	duration = SB_PREP_WINDOW
 
@@ -103,10 +104,11 @@
 	damage_mult = mult_to_prime
 	damage_type = type_to_prime
 
-/datum/status_effect/buff/soundbreaker_prepared/proc/set_payload(new_note_id, new_damage_mult, new_damage_type)
+/datum/status_effect/buff/soundbreaker_prepared/proc/set_payload(new_note_id, new_damage_mult, new_damage_type, note_name)
 	note_id = new_note_id
 	damage_mult = new_damage_mult
 	damage_type = new_damage_type
+	name = note_name
 
 /datum/status_effect/buff/soundbreaker_riff
 	id = "soundbreaker_riff"

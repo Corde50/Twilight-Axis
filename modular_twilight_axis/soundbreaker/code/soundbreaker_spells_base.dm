@@ -40,7 +40,7 @@
 		return
 
 	// мгновенно заготавливаем удар на 5 секунд
-	if(!soundbreaker_prime_note(L, note_id, damage_mult, damage_type))
+	if(!soundbreaker_prime_note(L, note_id, damage_mult, damage_type, name))
 		return
 
 /obj/effect/proc_holder/spell/self/soundbreaker/proc/perform_attack(mob/living/user)

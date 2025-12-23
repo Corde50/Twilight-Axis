@@ -657,7 +657,7 @@
 #define SB_PRIME_NEW  1
 #define SB_PRIME_REFRESHED 2
 
-/proc/soundbreaker_prime_note(mob/living/user, note_id, damage_mult, damage_type)
+/proc/soundbreaker_prime_note(mob/living/user, note_id, damage_mult, damage_type, note_name)
 	if(!user || !note_id)
 		return SB_PRIME_FAIL
 
@@ -670,7 +670,7 @@
 		if(!P)
 			return SB_PRIME_FAIL
 
-		P.set_payload(note_id, damage_mult, damage_type)
+		P.set_payload(note_id, damage_mult, damage_type, note_name)
 		return SB_PRIME_REFRESHED
 
 	user.remove_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
@@ -680,7 +680,7 @@
 	if(!P)
 		return SB_PRIME_FAIL
 
-	P.set_payload(note_id, damage_mult, damage_type)
+	P.set_payload(note_id, damage_mult, damage_type, note_name)
 	return SB_PRIME_NEW
 
 #undef SB_PRIME_FAIL
