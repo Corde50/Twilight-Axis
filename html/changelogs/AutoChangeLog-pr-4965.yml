@@ -1,5 +1,0 @@
-author: "nauticall"
-delete-after: True
-changes:
-  - balance: "Crown can no longer be summoned if the Duke/Regent has the crown on their person (i.e. in a bag/clothing), not just worn."
-  - qol: "Crown & master key destruction text is now more conspicuous."

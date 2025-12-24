@@ -1,4 +1,0 @@
-author: "FreeStylaLT"
-delete-after: True
-changes:
-  - bugfix: "Floating hit text appearing when it shouldn't."

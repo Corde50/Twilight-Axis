@@ -1,8 +1,0 @@
-author: "dopamiin0"
-delete-after: True
-changes:
-  - balance: "fireball (and derivatives) no longer one shot most NPCs. fireball (base only) has had its anti NPC damage multiplier increased to keep its NPC damage equal to its pre-arcynemark levels"
-  - balance: "thunderstrike does slightly more damage, and the follow up strikes are faster"
-  - balance: "snapfreeze is slower, but does more damage to players"
-  - balance: "acid splash ticks twice as fast"
-  - balance: "wither is faster and does more damage"

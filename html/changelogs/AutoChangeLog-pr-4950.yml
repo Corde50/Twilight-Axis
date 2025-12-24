@@ -1,5 +1,0 @@
-author: "hazelrat"
-delete-after: True
-changes:
-  - rscadd: "Added several new fluff descriptions and mechanical hint drop-downs for mobs and objects."
-  - bugfix: "Fixed a few typos in existing descriptions."

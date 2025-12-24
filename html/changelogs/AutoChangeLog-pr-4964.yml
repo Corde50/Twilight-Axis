@@ -1,8 +1,0 @@
-author: "Ryan180602"
-delete-after: True
-changes:
-  - code_imp: "Adds skill_blessed component."
-  - code_imp: "Adds Master Longswordsman."
-  - code_imp: "Adds Renowned Sabrist."
-  - code_imp: "Adds accuracy_modifier to weapon intents. Additive. No intents have any accuracy_mod as of now."
-  - bugfix: "adjust_skilldown now actually works."
