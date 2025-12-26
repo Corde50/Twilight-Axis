@@ -8,7 +8,7 @@
 /datum/status_effect/buff/soundbreaker_combo
 	id = "soundbreaker_combo"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = 3 SECONDS
+	duration = SB_PREP_WINDOW
 	tick_interval = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/soundbreaker_combo
 
@@ -42,12 +42,7 @@
 			owner.cut_overlay(aura_overlay)
 		aura_overlay = null
 
-		soundbreaker_clear_note_icons(owner)
-
-		if(owner.soundbreaker_combo)
-			var/datum/soundbreaker_combo_tracker/T = owner.soundbreaker_combo
-			if(T && islist(T.history))
-				T.history.Cut()
+		SEND_SIGNAL(owner, COMSIG_SOUNDBREAKER_COMBO_CLEARED)
 
 	. = ..()
 
@@ -73,16 +68,19 @@
 		"size" = 1,
 	))
 
+	owner.regenerate_icons()
+
 /datum/status_effect/buff/soundbreaker_combo/proc/clear_visuals()
 	if(owner)
 		owner.remove_filter(SOUNDBREAKER_COMBO_FILTER)
+		owner.regenerate_icons()
 
 #undef SOUNDBREAKER_COMBO_FILTER
 
 /datum/status_effect/buff/soundbreaker_prepared
 	id = "soundbreaker_prepared"
 	status_type = STATUS_EFFECT_REPLACE
-	duration = SB_PREP_WINDOW
+	duration = SB_COMBO_WINDOW
 	alert_type = /atom/movable/screen/alert/status_effect/buff/soundbreaker_prepared
 
 	var/note_id = 0
@@ -125,7 +123,17 @@
 	linked_alert.name = "Prepared: [note_name]"
 	linked_alert.desc = "Your next strike will play this note."
 	linked_alert.icon_state = soundbreaker_note_icon_state(note_id)
-	
+
+/datum/status_effect/buff/soundbreaker_prepared/proc/soundbreaker_note_icon_state(note_id)
+	switch(note_id)
+		if(SOUNDBREAKER_NOTE_BEND) return "sb_note_bend"
+		if(SOUNDBREAKER_NOTE_BARE) return "sb_note_bare"
+		if(SOUNDBREAKER_NOTE_SLAP) return "sb_note_slap"
+		if(SOUNDBREAKER_NOTE_SHED) return "sb_note_shed"
+		if(SOUNDBREAKER_NOTE_SOLO) return "sb_note_solo"
+		if(SOUNDBREAKER_NOTE_RIFF) return "sb_note_riff"
+	return "buff"
+
 /atom/movable/screen/alert/status_effect/buff/soundbreaker_prepared
 	name = "Prepared Note"
 	desc = "A note is primed."
@@ -134,7 +142,7 @@
 /datum/status_effect/buff/soundbreaker_riff
 	id = "soundbreaker_riff"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = 1 SECONDS
+	duration = 4 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/soundbreaker_riff
 
 /datum/status_effect/buff/soundbreaker_riff/on_apply()

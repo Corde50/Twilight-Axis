@@ -23,7 +23,6 @@
 #define SB_BASE_COOLDOWN (1.5 SECONDS)
 #define SB_PREP_WINDOW (5 SECONDS)
 
-#define COMSIG_SOUNDBREAKER_COMBO_CLEARED 	"soundbreaker_combo_cleared"
 #define SOUNDBREAKER_FX_ICON 				'modular_twilight_axis/soundbreaker/icons/soundanims.dmi'
 #define SOUNDBREAKER_FX96_ICON 				'modular_twilight_axis/soundbreaker/icons/soundanims96.dmi'
 #define SOUNDBREAKER_NOTES_ICON 			'modular_twilight_axis/soundbreaker/icons/soundspells.dmi'
@@ -36,8 +35,27 @@
 #define SB_FX_RIFF_CLUSTER	"riff_aura"   
 #define SB_FX_PROJ_NOTE		"note_projectile"         
 
-/mob/living
-	var/datum/soundbreaker_combo_tracker/soundbreaker_combo
-	var/list/sb_note_history
-	var/list/sb_note_overlays
-	var/obj/item/soundbreaker_proxy/sb_proxy
+#define SB_MAX_VISIBLE_NOTES 5
+
+/// Prime prepared note
+/// Args: (note_id, damage_mult, damage_type, note_name)
+#define COMSIG_SOUNDBREAKER_PRIME_NOTE "soundbreaker_prime_note"
+#define COMPONENT_SOUNDBREAKER_PRIMED (1<<0)
+
+/// Consume prepared attack on swing attempt
+/// Args: (mob/living/target_or_null, zone)
+#define COMSIG_SOUNDBREAKER_TRY_CONSUME_PREPARED "soundbreaker_try_consume_prepared"
+#define COMPONENT_SOUNDBREAKER_CONSUMED (1<<0)
+
+/// Successful defense hook (Riff stance)
+/// Args: none
+#define COMSIG_SOUNDBREAKER_RIFF_DEFENSE_SUCCESS "soundbreaker_riff_defense_success"
+
+/// Projectile note hit
+/// Args: (mob/living/target, damage_mult, damage_type, zone)
+#define COMSIG_SOUNDBREAKER_NOTE_PROJECTILE_HIT "soundbreaker_note_projectile_hit"
+
+/// Combo cleared event (status effect removed etc)
+/// Args: none
+// already have COMSIG_SOUNDBREAKER_COMBO_CLEARED in your defines.dm; re-use if present
+#define COMSIG_SOUNDBREAKER_COMBO_CLEARED "soundbreaker_combo_cleared"

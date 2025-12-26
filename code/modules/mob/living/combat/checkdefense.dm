@@ -24,7 +24,7 @@
 			success = attempt_dodge(intenty, user)
 
 	if(success)
-		soundbreaker_riff_on_successful_defense(src)
+		soundbreaker_riff_defense_success(src)
 
 	return success
 	// TA Edit end - SOUNDBREAKER

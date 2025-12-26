@@ -1,3 +1,48 @@
+/obj/effect/proc_holder/spell/self/soundbreaker
+	name = "Soundbreaker Ability"
+	desc = "Base soundbreaking ability."
+	clothes_req = FALSE
+	charge_type = "recharge"
+	associated_skill = /datum/skill/misc/music
+	cost = 0
+	xp_gain = FALSE
+
+	releasedrain = 0
+	chargedrain = 0
+	chargetime = 0
+	recharge_time = SB_BASE_COOLDOWN
+
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = FALSE
+	spell_tier = 1
+
+	invocations = list()
+	invocation_type = "none"
+	hide_charge_effect = TRUE
+	charging_slowdown = 0
+	chargedloop = null
+	overlay_state = null
+
+	var/note_id = 0
+	var/damage_mult = 1
+	var/damage_type = BRUTE
+	action_icon = 'modular_twilight_axis/soundbreaker/icons/soundspells.dmi'
+
+/obj/effect/proc_holder/spell/self/soundbreaker/cast(list/targets, mob/living/user)
+	// ВАЖНО: возвращаем механику кулдауна (раньше её съедало отсутствие ..())
+	. = ..()
+	if(!isliving(user))
+		return
+	var/mob/living/L = user
+
+	if(L.incapacitated())
+		return
+
+	// мгновенно заготавливаем удар на 5 секунд
+	if(!soundbreaker_prime_note(L, note_id, damage_mult, damage_type, name))
+		return
+
 /obj/effect/proc_holder/spell/self/soundbreaker/bend
 	name = "Bend"
 	desc = "Prepare a resonant strike for your next blow. Does 90% damage."

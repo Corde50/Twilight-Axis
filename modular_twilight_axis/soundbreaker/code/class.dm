@@ -10,9 +10,7 @@
 	category_tags = list(CTAG_ADVENTURER)
 	subclass_stats = list(
 		STATKEY_STR = 2,
-		STATKEY_SPD = 1,
-		STATKEY_WIL = -1,
-		STATKEY_CON = -1,
+		STATKEY_SPD = 1
 	)
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
@@ -27,10 +25,10 @@
 /datum/outfit/job/roguetown/adventurer/soundbreaker/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("You are a Soundbreaker – a brawling bard who weaves strikes into melody. Your fists keep the rhythm, your enemies keep the bruises."))
-
+	head = /obj/item/clothing/head/roguetown/bardhat/soundbreakerhat
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest
+	armor = /obj/item/clothing/suit/roguetown/shirt/robe/spellcasterrobe/soundbreakerrobe
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -49,12 +47,7 @@
 	I.grant_inspiration(H, bard_tier = BARD_T3)
 
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/bend)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/bare)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/slap)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/shed)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/solo)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/soundbreaker/riff)
+		H.AddComponent(/datum/component/combo_core/soundbreaker, SB_COMBO_WINDOW, SB_MAX_HISTORY, SB_MAX_VISIBLE_NOTES)
 		var/weapons = list("Lute","Guitar","Hurdy-Gurdy")
 		var/weapon_choice = tgui_input_list(H, "Choose your instrument.", "TAKE UP ARMS", weapons)
 		H.set_blindness(0)

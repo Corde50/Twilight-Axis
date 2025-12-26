@@ -1,9 +1,23 @@
+#include "code/component/_defines.dm"
+#include "code/component/_helpers.dm"
+#include "code/component/combo_core.dm"
+#include "code/soundbreaker/_defines.dm"
+#include "code/soundbreaker/_helpers.dm"
+#include "code/soundbreaker/armor.dm"
+#include "code/soundbreaker/weapon.dm"
+#include "code/soundbreaker/combo_soundbreaker.dm"
+
 #include "code/class.dm"
-#include "code/soundbreaker_defines.dm"
 #include "code/soundbreaker_status.dm"
-#include "code/soundbreaker_core.dm"
-#include "code/soundbreaker_spells_base.dm"
-#include "code/soundbreaker_spells_notes.dm"
-#include "code/soundbreaker_spells_combos.dm"
-#include "code/soundbreaker_overhead.dm"
 #include "code/soundbreaker_visuals.dm"
+#include "code/soundbreaker_spells.dm"
+
+// BEGIN_INTERNALS
+// END_INTERNALS
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+// BEGIN_INCLUDE
+// END_INCLUDE
