@@ -1,0 +1,7 @@
+author: "Stutternov"
+delete-after: True
+changes:
+  - rscadd: "Added new Rapier special attack"
+  - balance: "Redid the 2x1 Shin Strike special into a 1x3"
+  - balance: "Gave WW claws the axe swinging special (tee-hee)"
+  - balance: "Jaked mauls giving them equal integrity to mace counterparts (except dwarf ones, still better)"
