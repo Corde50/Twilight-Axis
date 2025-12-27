@@ -341,7 +341,7 @@
 	REMOVE_TRAIT(user, TRAIT_MONK_ROBE, TRAIT_GENERIC)
 	to_chat(user, span_notice("I must lay down my robes and rest; even God's chosen must rest.."))
 
-/obj/item/clothing/suit/roguetown/shirt/robe/nun
+/obj/item/clothing/suit/roguetown/shirt/robe/nunTA
 	name = "nun dress"
 	desc = ""
 	icon_state = "nun_dress"

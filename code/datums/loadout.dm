@@ -1075,7 +1075,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donat/nun_dress
 	name = "Роба монашки (только для женщин)"
 	category = list("Одежда", "Донат")
-	path = /obj/item/clothing/suit/roguetown/shirt/robe/nun
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/nunTA
 	donatitem = TRUE
 
 /datum/loadout_item/donat/kimono
@@ -1320,7 +1320,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donat/nun_hood
 	name = "Капюшон монашки"
 	category = list("Головные уборы", "Донат")
-	path = /obj/item/clothing/head/roguetown/nun
+	path = /obj/item/clothing/head/roguetown/nunTA
 	donatitem = TRUE
 
 // Пояса

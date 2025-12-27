@@ -114,7 +114,7 @@
 		item_state = hammerhold_final_icon
 		update_icon()
 
-/obj/item/clothing/head/roguetown/nun
+/obj/item/clothing/head/roguetown/nunTA
 	name = "nun hood"
 	desc = ""
 	icon_state = "nun_hood"
@@ -124,7 +124,7 @@
 	slot_flags = ITEM_SLOT_HEAD
 	flags_inv = HIDEEARS
 
-/obj/item/clothing/head/roguetown/nun/MiddleClick(mob/user)
+/obj/item/clothing/head/roguetown/nunTA/MiddleClick(mob/user)
 	if(!ishuman(user))
 		return
 	if(flags_inv & HIDE_HEADTOP)
