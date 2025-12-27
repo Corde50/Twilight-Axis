@@ -1,4 +1,0 @@
-author: "SpadesNeil"
-delete-after: True
-changes:
-  - bugfix: "Rock pile density is now false."

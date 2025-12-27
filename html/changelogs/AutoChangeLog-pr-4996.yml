@@ -1,6 +1,0 @@
-author: "FreeStylaLT"
-delete-after: True
-changes:
-  - bugfix: "Fixed piercing damage not being able to crit through all armors."
-  - bugfix: "Fixed blunt damage mitigation not being ignored by NPC armor properly."
-  - bugfix: "Fixed penetrative intents dealing unintended extra damage to NPC armor."

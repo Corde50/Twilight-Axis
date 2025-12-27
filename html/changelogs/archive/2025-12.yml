@@ -511,3 +511,24 @@
   - rscadd: Dye brush can now use color presets.
   - bugfix: Royal gown and sleeves for latejoin duchesses should now properly take
       after the royal colors.
+2025-12-27:
+  FreeStylaLT:
+  - bugfix: Fixed piercing damage not being able to crit through all armors.
+  - bugfix: Fixed blunt damage mitigation not being ignored by NPC armor properly.
+  - bugfix: Fixed penetrative intents dealing unintended extra damage to NPC armor.
+  - bugfix: Fixed some runtimes in Dodge code that resulted in dodging not working.
+  - bugfix: Unarmored stab wounds not bleeding correctly.
+  - bugfix: Donator enchanting kits not working.
+  HeroWithYay:
+  - bugfix: Rotcure potions don't kill you now
+  SirSwagmeyer:
+  - bugfix: militia sword intents, hinterblade thrust fixed to what it was meant to
+      have
+  SpadesNeil:
+  - bugfix: Rock pile density is now false.
+  Stutternov:
+  - rscadd: Added new Rapier special attack
+  - balance: Redid the 2x1 Shin Strike special into a 1x3
+  - balance: Gave WW claws the axe swinging special (tee-hee)
+  - balance: Jaked mauls giving them equal integrity to mace counterparts (except
+      dwarf ones, still better)
