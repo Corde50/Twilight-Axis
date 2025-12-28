@@ -1,6 +1,6 @@
 #define SB_ARMOR_WEAR_MULT 1.2
 #define SB_ARMOR_WEAR_MIN  1
-#define SB_ARMOR_WEAR_MAX  50
+#define SB_ARMOR_WEAR_MAX  25
 
 /obj/item/soundbreaker_proxy/proc/_zone_to_covered_flag(zone)
 	switch(zone)
