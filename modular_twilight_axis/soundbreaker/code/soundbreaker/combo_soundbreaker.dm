@@ -321,17 +321,17 @@
 /datum/component/combo_core/soundbreaker/proc/GetNoteStaminaCost()
 	var/wil = owner.get_stat(STATKEY_WIL)
 	var/athl_skill = owner.get_skill_level(/datum/skill/misc/athletics)
-	var/wil_bonus = (wil - 10)
-	var/athl_bonus = (athl_skill * 0.5)
+	var/wil_bonus = (wil - 10) * 0.5
+	var/athl_bonus = (athl_skill)
 	var/deminer_bonus = wil_bonus + athl_bonus
 	var/cost = 10 - deminer_bonus
 
 	if(istype(owner.rmb_intent, /datum/rmb_intent/strong))
-		cost += 1
-	else if(istype(owner.rmb_intent, /datum/rmb_intent/swift))
-		cost += 0 // swift и так платит через releasedrain+penalty, пусть тут не страдает
-	else if(istype(owner.rmb_intent, /datum/rmb_intent/feint))
 		cost += 2
+	else if(istype(owner.rmb_intent, /datum/rmb_intent/swift))
+		cost += 1
+	else if(istype(owner.rmb_intent, /datum/rmb_intent/feint))
+		cost += 0
 	
 	return max(1, cost)
 
