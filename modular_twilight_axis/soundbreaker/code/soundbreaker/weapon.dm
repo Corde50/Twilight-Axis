@@ -145,17 +145,47 @@
 	else
 		selzone = accuracy_check(user.zone_selected, user, M, /datum/skill/combat/unarmed, user.used_intent)
 
-	var/obj/item/bodypart/affecting = M.get_bodypart(check_zone(selzone))
+	if(!isliving(M))
+		return FALSE
+
+	var/mob/living/L = M
+	var/hit_zone = check_zone(selzone) || BODY_ZONE_CHEST
+
+	if(!iscarbon(L))
+		last_attack_success = FALSE
+		last_attack_target = L
+
+		var/nodmg = FALSE
+
+		var/success = !!L.attacked_by(src, user)
+		if(!success)
+			nodmg = TRUE
+
+		SEND_SIGNAL(L, COMSIG_ATOM_ATTACK_HAND, user)
+
+		last_attack_success = success
+		if(user?.used_intent)
+			if(!nodmg)
+				if(user.used_intent.hitsound)
+					playsound(L.loc, user.used_intent.hitsound, 100, FALSE, -1)
+			else
+				playsound(L.loc, "nodmg", 100, FALSE, -1)
+
+		return success
+
+	var/mob/living/carbon/C = L
+	var/obj/item/bodypart/affecting = C.get_bodypart(hit_zone)
 	if(!affecting)
 		to_chat(user, span_warning("Unfortunately, there's nothing there."))
 		return FALSE
 
-	var/mob/living/carbon/human/target = M
+	var/mob/living/carbon/human/target = C
 	if(!target)
-		return
-	
+		return FALSE
+
 	if(!target.lying_attack_check(user))
 		return FALSE
+
 	if(target.has_status_effect(/datum/status_effect/buff/clash) && target.get_active_held_item() && ishuman(user))
 		var/obj/item/IM = target.get_active_held_item()
 		target.process_clash(user, IM)
@@ -169,6 +199,7 @@
 			attack_flag = "slash"
 		if(BCLASS_PICK, BCLASS_STAB, BCLASS_PIERCE)
 			attack_flag = "stab"
+
 	var/armor_block = target.run_armor_check(
 		selzone,
 		attack_flag,
@@ -198,7 +229,6 @@
 		if(affecting.body_zone == BODY_ZONE_HEAD)
 			SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
 
-
 	target.send_item_attack_message(src, user, selzone)
 
 	target.next_attack_msg.Cut()
@@ -215,8 +245,6 @@
 			playsound(target.loc, "nodmg", 100, FALSE, -1)
 
 	return last_attack_success
-
-#undef ATTACK_OVERRIDE_NODEFENSE
 
 /obj/projectile/soundbreaker_note
 	name = "sound note"
