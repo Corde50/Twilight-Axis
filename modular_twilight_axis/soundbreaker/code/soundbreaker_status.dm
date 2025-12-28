@@ -88,6 +88,15 @@
 	var/damage_type = BRUTE
 	var/note_name = "Prepared Note"
 
+/datum/status_effect/buff/soundbreaker_prepared/on_creation(mob/living/new_owner, ...)
+	var/old_alert = alert_type
+	alert_type = null
+
+	. = ..()
+
+	alert_type = old_alert
+	return .
+
 /datum/status_effect/buff/soundbreaker_prepared/on_apply(note_to_prime, mult_to_prime, type_to_prime, note_name_to_prime)
 	. = ..()
 	note_id = note_to_prime
@@ -95,6 +104,7 @@
 	damage_type = type_to_prime
 	if(note_name_to_prime)
 		note_name = note_name_to_prime
+
 	update_alert()
 	return TRUE
 
@@ -102,11 +112,13 @@
 	. = ..()
 	if(QDELETED(src))
 		return
+
 	note_id = note_to_prime
 	damage_mult = mult_to_prime
 	damage_type = type_to_prime
 	if(note_name_to_prime)
 		note_name = note_name_to_prime
+
 	update_alert()
 
 /datum/status_effect/buff/soundbreaker_prepared/proc/set_payload(new_note_id, new_damage_mult, new_damage_type, new_note_name)
@@ -115,17 +127,21 @@
 	damage_type = new_damage_type
 	if(new_note_name)
 		note_name = new_note_name
+
 	update_alert()
 
 /datum/status_effect/buff/soundbreaker_prepared/proc/update_alert()
 	if(!owner)
 		return
+	if(!owner.client || !owner.hud_used)
+		return
 
 	if(!linked_alert)
 		if(alert_type)
 			var/atom/movable/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
-			A?.attached_effect = src
-			linked_alert = A
+			if(A)
+				A.attached_effect = src
+				linked_alert = A
 
 	if(!linked_alert)
 		return

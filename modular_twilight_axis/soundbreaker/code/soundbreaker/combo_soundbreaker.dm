@@ -306,25 +306,12 @@
 	if(!owner || !note_id)
 		return FALSE
 
-	var/nname = note_name
-	if(!nname)
-		nname = NoteDisplayName(note_id)
-
-	var/datum/status_effect/buff/soundbreaker_prepared/P = owner.has_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
-	if(P && P.note_id == note_id)
-		owner.remove_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
-		owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_prepared, note_id, damage_mult, damage_type, nname)
-
-		P = owner.has_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
-		if(!P)
-			return FALSE
-		P.set_payload(note_id, damage_mult, damage_type, nname)
-		return TRUE
+	var/nname = note_name || NoteDisplayName(note_id)
 
 	owner.remove_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
 	owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_prepared, note_id, damage_mult, damage_type, nname)
 
-	P = owner.has_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
+	var/datum/status_effect/buff/soundbreaker_prepared/P = owner.has_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
 	if(!P)
 		return FALSE
 
@@ -389,7 +376,7 @@
 		if(SOUNDBREAKER_NOTE_SHED)
 			return NoteShedPlay(target_atom, aim_dir, damage_mult, damage_type, zone)
 		if(SOUNDBREAKER_NOTE_SOLO)
-			return NoteSoloPlay(ismob(target_atom) ? target_atom : null, damage_mult, damage_type, zone)
+			return NoteSoloPlay(target_atom, aim_dir, damage_mult, damage_type, zone)
 		if(SOUNDBREAKER_NOTE_RIFF)
 			return NoteRiffPlay(target_atom, aim_dir, damage_mult, damage_type, zone)
 
@@ -975,40 +962,56 @@
 	owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_riff)
 	return null
 
-/datum/component/combo_core/soundbreaker/proc/NoteSoloPlay(mob/living/primary, turf/target_turf, damage_mult, damage_type, zone)
+/datum/component/combo_core/soundbreaker/proc/NoteSoloPlay(atom/target_atom, aim_dir, damage_mult, damage_type, zone)
 	var/mob/living/last_hit = null
+
+	if(!owner)
+		return null
 
 	var/turf/start = get_turf(owner)
 	if(!start)
 		return null
 
-	var/dash_dir = owner.dir
+	// normalize inputs like other notes
+	if(!aim_dir)
+		aim_dir = owner.dir
+
+	var/turf/target_turf = GetTargetTurf(target_atom)
+	var/mob/living/primary = null
+	if(isliving(target_atom))
+		primary = target_atom
+
+	var/dash_dir = aim_dir
+
 	if(target_turf)
-		dash_dir = GetAimDir(start, target_turf)
+		dash_dir = GetAimDir(target_turf)
 	else if(primary)
 		var/turf/pt = get_turf(primary)
 		if(pt)
-			dash_dir = GetAimDir(start, pt)
+			dash_dir = GetAimDir(pt)
 
 	var/intent = owner.used_intent?.type
 	var/allow_attack = (intent != INTENT_HELP)
 
-	// 1-st tile
+	// 1st tile
 	var/turf/t1 = get_step(start, dash_dir)
 	if(!t1 || _turf_is_dash_blocked(t1))
 		soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
 		return null
 
-	// 2-nd tile
+	// 2nd tile
 	var/turf/t2 = get_step(t1, dash_dir)
 	if(!t2 || _turf_is_dash_blocked(t2))
 		soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
 		soundbreaker_spawn_afterimage(owner, t1, 0.8 SECONDS)
+
 		owner.forceMove(t1)
+
 		var/mob/living/v1 = _first_living_on_turf(t1)
 		if(v1 && allow_attack)
 			last_hit = v1
 			owner.face_atom(v1)
+
 		return last_hit
 
 	soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
@@ -1033,11 +1036,10 @@
 		owner.face_atom(v1)
 		if(allow_attack)
 			last_hit = v1
-
 	else
 		owner.forceMove(t2)
 
-	if(last_hit)
+	if(last_hit && allow_attack)
 		HitSpecific(last_hit, damage_mult, damage_type, BCLASS_PUNCH, zone)
 		return last_hit
 
