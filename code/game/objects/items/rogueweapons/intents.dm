@@ -75,7 +75,8 @@
 	var/obj/effect/mob_charge_effect = null
 	/// Custom icon for its swingdelay.
 	var/custom_swingdelay = null
-
+	var/charge_pointer = null // Simple unique charge icon
+	var/charged_pointer = null // Simple unique charged icon
 
 	var/list/static/bonk_animation_types = list(
 		BCLASS_BLUNT,

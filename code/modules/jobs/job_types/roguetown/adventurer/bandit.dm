@@ -16,9 +16,9 @@
 
 	display_order = JDO_BANDIT
 	announce_latejoin = FALSE
-	min_pq = 3
+	min_pq = 25
 	max_pq = null
-	round_contrib_points = 5
+	round_contrib_points = null
 
 	advclass_cat_rolls = list(CTAG_BANDIT = 20)
 	PQ_boost_divider = 10
@@ -28,7 +28,7 @@
 	always_show_on_latechoices = TRUE
 	job_reopens_slots_on_death = FALSE //no endless stream of bandits, unless the migration waves deem it so
 	job_traits = list(TRAIT_SELF_SUSTENANCE)
-	same_job_respawn_delay = 1 MINUTES
+	same_job_respawn_delay = 30 MINUTES
 	cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg'
 	job_subclasses = list(
 		/datum/advclass/brigand,
@@ -38,7 +38,8 @@
 		/datum/advclass/knave,
 		/datum/advclass/roguemage,
 		/datum/advclass/sawbones,
-		/datum/advclass/sellsword
+		/datum/advclass/sellsword,
+		/datum/advclass/twilight_afreet
 	)
 
 /datum/job/roguetown/bandit/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

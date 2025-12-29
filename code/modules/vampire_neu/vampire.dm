@@ -111,7 +111,8 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 			max_thralls = 1
 		if(vampdude.mind.special_role == "Vampire Lord")
 			max_thralls = 0
-
+		if(vampdude.mind.special_role == "Methuselah")
+			max_thralls = 0
 	// The clan system now handles most of the setup, but we can still do antagonist-specific things
 	after_gain()
 	. = ..()

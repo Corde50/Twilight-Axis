@@ -1193,7 +1193,8 @@ SUBSYSTEM_DEF(gamemode)
         STATS_ALIVE_TABAXI,
         STATS_ALIVE_VULPS,
         STATS_ALIVE_LUPIANS,
-        STATS_ALIVE_MOTHS
+        STATS_ALIVE_MOTHS,
+        STATS_ALIVE_AURA
 	)
 
 	for(var/stat_name in statistics_to_clear)
@@ -1210,7 +1211,6 @@ SUBSYSTEM_DEF(gamemode)
 	var/lowest_intelligence
 	var/lowest_speed
 	var/lowest_luck
-
 
 	for(var/client/client in GLOB.clients)
 		if(roundstart)
@@ -1322,6 +1322,8 @@ SUBSYSTEM_DEF(gamemode)
 				record_round_statistic(STATS_ALIVE_LUPIANS)
 			if(ismoth(human_mob))
 				record_round_statistic(STATS_ALIVE_MOTHS)
+			if(isaura(human_mob))
+				record_round_statistic(STATS_ALIVE_AURA)
 
 			// Chronicle statistics
 			if(human_mob.STASTR > highest_strength)

@@ -34,92 +34,106 @@
 //Plexiant - Custom rapier type
 /obj/item/enchantingkit/plexiant
 	name = "'Rapier di Aliseo' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Rapier"
 	target_items = list(/obj/item/rogueweapon/sword/rapier)		//Takes any subpated rapier and turns it into unique one.
-	result_item = /obj/item/rogueweapon/sword/rapier/aliseo
+	result_item = /obj/item/rogueweapon/sword/rapier/aliseo 
 
 //Ryebread - Custom estoc type
 /obj/item/enchantingkit/ryebread
 	name = "'Worttrager' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Estoc"
 	target_items = list(/obj/item/rogueweapon/estoc)		//Takes any subpated rapier and turns it into unique one.
 	result_item = /obj/item/rogueweapon/estoc/worttrager
 
 //Srusu - Custom dress type
 /obj/item/enchantingkit/srusu
 	name = "'Emerald Dress' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Dress"
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/dress)	//Literally any type of dress
-	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/emerald
+	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/emerald 
 
 //Strudle - Custom leather vest type
 /obj/item/enchantingkit/strudle
 	name = "'Grenzelhoft Mage Vest' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Robe"
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/robe)
-	result_item = /obj/item/clothing/suit/roguetown/shirt/robe/sofiavest
+	result_item = /obj/item/clothing/suit/roguetown/shirt/robe/sofiavest 
 
 //Bat - Custom harp type
 /obj/item/enchantingkit/bat
 	name = "'Handcrafted Harp' morphing elixir"
-	target_items = list(/obj/item/rogue/instrument/harp)
-	result_item = /obj/item/rogue/instrument/harp/handcarved
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Harp"
+	target_items = list(/obj/item/rogue/instrument/harp = /obj/item/rogue/instrument/harp/handcarved)
 
 //Rebel - Custom visored sallet type
 /obj/item/enchantingkit/rebel
 	name = "'Gilded Sallet' morphing elixir"
-	target_items = list(/obj/item/clothing/head/roguetown/helmet/sallet/visored)
-	result_item = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Visored Sallet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/sallet/visored = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gilded) 
 
 //Bigfoot - Custom knight helm type
 /obj/item/enchantingkit/bigfoot
 	name = "'Gilded Knight Helm' morphing elixir"
-	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/knight)
-	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight/gilded
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Knight Helmet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/knight = /obj/item/clothing/head/roguetown/helmet/heavy/knight/gilded)
 
 //Bigfoot - Custom great axe type
 /obj/item/enchantingkit/bigfoot_axe
 	name = "'Gilded Great Axe' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Steel Greataxe"
 	target_items = list(/obj/item/rogueweapon/greataxe/steel)
 	result_item = /obj/item/rogueweapon/greataxe/steel/gilded
 
 //Zydras donator item - bathmatron padded dress
 /obj/item/enchantingkit/zydras
 	name = "'Gold-Black silky dress morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Silky Dress"
 	target_items = list(/obj/item/clothing/suit/roguetown/shirt/dress/silkydress)
-	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress
+	result_item = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/zydrasdress 
 
 //Eiren - Zweihander and sabres
 /obj/item/enchantingkit/eiren
 	name = "'Regret' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Zweihander"
 	target_items = list(
 		/obj/item/rogueweapon/greatsword/zwei 				= /obj/item/rogueweapon/greatsword/zwei/eiren,
+		/obj/item/rogueweapon/greatsword/grenz 				= /obj/item/rogueweapon/greatsword/zwei/eiren/steel,
 		/obj/item/rogueweapon/greatsword	  				= /obj/item/rogueweapon/greatsword/eiren,
 		/obj/item/rogueweapon/greatsword/grenz/flamberge 	= /obj/item/rogueweapon/greatsword/grenz/flamberge/eiren
 		)
-	result_item = null
 
 /obj/item/enchantingkit/eirensabre
 	name = "'Lunae' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Sabre"
 	target_items = list(/obj/item/rogueweapon/sword/sabre)
 	result_item = /obj/item/rogueweapon/sword/sabre/eiren
 
 /obj/item/enchantingkit/eirensabre2
 	name = "'Cinis' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Sabre"
 	target_items = list(/obj/item/rogueweapon/sword/sabre)
 	result_item = /obj/item/rogueweapon/sword/sabre/eiren/small
 
 //pretzel - custom steel greatsword. PSYDON LYVES. PSYDON ENDVRES.
 /obj/item/enchantingkit/waff
 	name = "'Weeper's Lathe' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Greatsword"
 	target_items = list(/obj/item/rogueweapon/greatsword)		// i, uh. i really do promise i'm only gonna use it on steel greatswords.
-	result_item = /obj/item/rogueweapon/greatsword/weeperslathe
+	result_item = /obj/item/rogueweapon/greatsword/weeperslathe 
 
 //inverserun claymore
 /obj/item/enchantingkit/inverserun
 	name = "'Votive Thorns' morphing elixir"
-	target_items = list(/obj/item/rogueweapon/greatsword/zwei)
-	result_item = /obj/item/rogueweapon/greatsword/zwei/inverserun
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Zweihander"
+	target_items = list(
+		/obj/item/rogueweapon/greatsword/zwei = /obj/item/rogueweapon/greatsword/zwei/inverserun, 
+		/obj/item/rogueweapon/greatsword/grenz = /obj/item/rogueweapon/greatsword/zwei/inverserun/steel)
+
 
 //Zoe - Tytos Blackwood cloak
 /obj/item/enchantingkit/zoe
 	name = "'Shroud of the Undermaiden' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Direbear Cloak"
 	target_items = list(/obj/item/clothing/cloak/darkcloak/bear)
 	result_item = /obj/item/clothing/cloak/raincloak/feather_cloak
 

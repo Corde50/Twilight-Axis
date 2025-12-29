@@ -15,7 +15,7 @@
 	whitelist_req = TRUE
 	give_bank_account = TRUE
 	noble_income = 22
-	min_pq = 9 //The second most powerful person in the realm...
+	min_pq = 17 //The second most powerful person in the realm...
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'
@@ -25,6 +25,7 @@
 		/datum/advclass/hand/spymaster,
 		/datum/advclass/hand/advisor
 	)
+	same_job_respawn_delay = 30 MINUTES
 
 /datum/outfit/job/roguetown/hand
 	backr = /obj/item/storage/backpack/rogue/satchel/short
@@ -132,6 +133,7 @@
 
 //Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff.
 /datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
+	r_hand = /obj/item/rogueweapon/sword/rapier/foldsword
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
