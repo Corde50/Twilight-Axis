@@ -1,5 +1,0 @@
-author: "dopamiin0"
-delete-after: True
-changes:
-  - bugfix: "starting sentences with bold words no longer makes it a whisper"
-  - bugfix: "ending sentences with bold words no longer adds an extra period"
