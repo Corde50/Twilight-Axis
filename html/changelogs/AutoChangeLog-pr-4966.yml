@@ -1,0 +1,5 @@
+author: "kano-dot"
+delete-after: True
+changes:
+  - rscadd: "Tweaked roll stat dice emotes to be affected by relevant traits."
+  - rscadd: "Added a roll charisma emote."
