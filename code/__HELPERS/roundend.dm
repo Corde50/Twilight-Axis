@@ -131,7 +131,7 @@
 
 	log_game("The round has ended.")
 
-	to_chat(world, "<BR><BR><BR><span class='reallybig'>So ends this tale on Azure Peak.</span>")
+	to_chat(world, "<BR><BR><BR><span class='reallybig'>So ends this tale on Twilight Axis.</span>")
 	get_end_reason()
 
 	var/list/key_list = list()
@@ -209,6 +209,8 @@
 	//stop collecting feedback during grifftime
 	SSblackbox.Seal()
 
+	world.TgsAnnounceRoundEnd()
+
 	sleep(10 SECONDS)
 	SSvote.initiate_vote("map", "Actors")
 	ready_for_reboot = TRUE
@@ -229,7 +231,7 @@
 	if(vampire_werewolf() == "vampire")
 		end_reason = "When the Vampires finished sucking the town dry, they moved on to the next one."
 	if(vampire_werewolf() == "werewolf")
-		end_reason = "The Werevolves formed an unholy clan, marauding Azure Peak until the end of its daes."
+		end_reason = "The Werevolves formed an unholy clan, marauding Twilight Axis until the end of its daes."
 
 	if(SSmapping.retainer.head_rebel_decree)
 		end_reason = "The peasant rebels took control of the throne, hail the new community!"
