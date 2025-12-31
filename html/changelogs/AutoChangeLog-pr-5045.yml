@@ -1,0 +1,5 @@
+author: "Geevies"
+delete-after: True
+changes:
+  - rscadd: "You can now select the keep colours when using a dye station or when choosing tabard heraldry."
+  - bugfix: "Using the dye station will now automatically update the UI."

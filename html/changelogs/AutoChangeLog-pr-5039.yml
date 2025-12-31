@@ -1,0 +1,4 @@
+author: "Geevies"
+delete-after: True
+changes:
+  - qol: "SCOMM Machines, such as the Crownstone or the Crown itself will now show you your own message when sent."

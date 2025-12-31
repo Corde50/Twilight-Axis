@@ -1,0 +1,4 @@
+author: "Geevies"
+delete-after: True
+changes:
+  - balance: "Garrison line access is no longer inherent to your job, but rather whether you're wearing the Crown, a Crownstone, or a Houndstone."

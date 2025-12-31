@@ -26,6 +26,10 @@
 	else	//If we're sending messages it should be sent to a mob
 		if(loc && ishuman(loc))
 			L = loc
+
+	if(L)
+		amt -= L.get_tempo_bonus(TEMPO_TAG_DEF_SHARPNESSFACTOR)
+		amt = max(amt, 0)
 	
 	if(L && max_blade_int)	
 		var/ratio = blade_int / max_blade_int

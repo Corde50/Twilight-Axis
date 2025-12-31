@@ -1,0 +1,4 @@
+author: "FreeStylaLT"
+delete-after: True
+changes:
+  - rscadd: "Adds the functionality for Tempo -- a buff to an outnumbered fighter. Only Jester has it at the moment."

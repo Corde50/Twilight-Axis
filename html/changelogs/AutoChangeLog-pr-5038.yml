@@ -1,0 +1,4 @@
+author: "ToasterStrudes"
+delete-after: True
+changes:
+  - balance: "Mages are now able to use RMB Defense intents, however if mage armor is up it will be dropped and put on it's cooldown as if you were struck with it up."
