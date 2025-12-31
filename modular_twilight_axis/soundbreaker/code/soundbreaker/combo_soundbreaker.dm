@@ -1238,7 +1238,7 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboSyncopation(mob/living/target)
 	ApplyDamage(target, 0.5, BCLASS_PUNCH)
-	SafeOffbalance(target, 3 SECONDS)
+	SafeOffbalance(target, 1 SECONDS)
 
 	owner.visible_message(
 		span_danger("[owner]'s pattern locks [target]—and if they were already shaken, it drops them!"),
@@ -1290,7 +1290,7 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboCrescendo(mob/living/target)
-	ApplyDamage(target, 1.3, BCLASS_PUNCH)
+	ApplyDamage(target, 1.7, BCLASS_PUNCH)
 	SafeOffbalance(target, 2 SECONDS)
 
 	owner.visible_message(
