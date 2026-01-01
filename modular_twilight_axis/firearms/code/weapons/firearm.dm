@@ -194,7 +194,7 @@
 
 /obj/item/gun/ballistic/twilight_firearm/Initialize()
 	. = ..()
-	if(locktype == "Matchlock" || locktype = "Wheellock")
+	if(locktype == "Matchlock" || locktype == "Wheellock")
 		myrod = new /obj/item/twilight_ramrod(src)
 
 
@@ -227,7 +227,7 @@
 	if(user.get_active_held_item())
 		return
 	else
-		if(locktype == "Matchlock" || locktype = "Wheellock")
+		if(locktype == "Matchlock" || locktype == "Wheellock")
 			if(myrod)
 				playsound(src, "sound/items/sharpen_short1.ogg",  100, FALSE)
 				to_chat(user, "<span class='warning'>I draw the ramrod from [src]!</span>")
@@ -364,7 +364,7 @@
 					user.put_in_hands(E)
 			return
 	if(istype(A, /obj/item/twilight_ramrod))
-		if(locktype == "Matchlock" || locktype = "Wheellock")
+		if(locktype == "Matchlock" || locktype == "Wheellock")
 			var/obj/item/twilight_ramrod/R=A
 			if(!reloaded)
 				if(chambered)
@@ -532,7 +532,7 @@
 		else
 			icon = advanced_icon
 	spark_act()
-	if(locktype == "Matchlock" || locktype = "Wheellock")
+	if(locktype == "Matchlock" || locktype == "Wheellock")
 		..()
 		if(!silenced)
 			switch(gunpowder)
@@ -704,13 +704,15 @@
 	icon = 'modular_twilight_axis/firearms/icons/arquebus/arquebus.dmi'
 	icon_state = "arquebus"
 	item_state = "arquebus"
+	advanced_icon = 'modular_twilight_axis/firearms/icons/arquebus/arquebus.dmi'
 	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/arquebus_norod.dmi'
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/bayonet
 	name = "arquebus rifle"
 	desc = "Пороховое оружие второго поколения, стреляющее бронебойными свинцовыми пулями. Оснащена штыком для использования в ближнем бою."
 	icon = 'modular_twilight_axis/firearms/icons/arquebus/arquebusbaoynet.dmi'
-	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/arquebus_bayonet_norod.dmi'
+	advanced_icon = 'modular_twilight_axis/firearms/icons/arquebus/arquebusbaoynet.dmi'
+	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/arquebusbayonet_norod.dmi'
 	gripped_intents = list(/datum/intent/shoot/twilight_firearm, /datum/intent/arc/twilight_firearm, INTENT_GENERIC, /datum/intent/spear/thrust/militia)
 	wdefense = 5
 
@@ -718,12 +720,14 @@
 	name = "decorated arquebus rifle"
 	desc = "Настоящее произведение искусства в обличии огнестрельного оружия. Приклад и цевье аркебузы украшены золотыми пластинами и инкрустированным рубином, а на стволе выбита надпись: «Взгляните на мои деянья и дрожите»."
 	icon = 'modular_twilight_axis/firearms/icons/arquebus/decorated_arquebus.dmi'
+	advanced_icon = 'modular_twilight_axis/firearms/icons/arquebus/decorated_arquebus.dmi'
 	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/decorated_arquebus_norod.dmi'
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/jagerrifle
 	name = "Jägerbüchse"
 	desc = "Редкая разновидность колесцовой аркебузы, изготавливаемая мастерами Грензельхофта для егерей Фрейкорпс, отличившихся в ходе боевых действий. Легче и менее подвержена износу в сравнении с серийными образцами."
 	icon = 'modular_twilight_axis/firearms/icons/arquebus/jagerrifle.dmi'
+	advanced_icon = 'modular_twilight_axis/firearms/icons/arquebus/jagerrifle.dmi'
 	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/jagerrifle_norod.dmi'
 	locktype = "Wheellock"
 
@@ -731,6 +735,7 @@
 	name = "Jägerbüchse"
 	desc = "Редкая разновидность колесцовой аркебузы, изготавливаемая мастерами Грензельхофта для егерей Фрейкорпс, отличившихся в ходе боевых действий. Легче и менее подвержена износу в сравнении с серийными образцами. Оснащена штыком для использования в ближнем бою."
 	icon = 'modular_twilight_axis/firearms/icons/arquebus/jagerriflebayonet.dmi'
+	advanced_icon = 'modular_twilight_axis/firearms/icons/arquebus/jagerriflebayonet.dmi'
 	advanced_icon_norod = 'modular_twilight_axis/firearms/icons/arquebus/jagerrifle_bayonet_norod.dmi'
 	locktype = "Wheellock"
 
