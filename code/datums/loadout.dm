@@ -156,10 +156,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item/rosa_crown
 	name = "Rosa Crown"
+	category = "Головные уборы"
 	path = /obj/item/flowercrown/rosa
 
 /datum/loadout_item/salvia_crown
 	name = "Salvia Crown"
+	category = "Головные уборы"
 	path = /obj/item/flowercrown/salvia
 
 //CLOAKS
@@ -854,6 +856,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/necranhelm_oldrw
 	donatitem = TRUE
 
+/datum/loadout_item/donator_eoran_helm
+	name = "Donator Kit - Flower Eora Helmet - Required: Heavy Helmet"
+	category = list("Разное", "Донат")
+	path = /obj/item/enchantingkit/eoran_helm_resprite
+	donatitem = TRUE
+
 /datum/loadout_item/donator_astratanhelm_oldrw
 	name = "Donator Kit - Plumed Astrata Helmet - Required: Heavy Helmet"
 	category = list("Разное", "Донат")
@@ -1170,6 +1178,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/cloak/tabard/crusader/eora
 	donatitem = TRUE
 
+/datum/loadout_item/donat/tabard/crusader/eora/resprite
+	name = "Табард-плащ Эоры(респрайт)"
+	category = list("Плащи", "Донат")
+	path = /obj/item/clothing/cloak/templar/eoran/alt
+	donatitem = TRUE
+
 /datum/loadout_item/donat/tabard/eora
 	name = "Табард-плащ Эоры"
 	category = list("Плащи", "Донат")
@@ -1321,6 +1335,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Капюшон монашки"
 	category = list("Головные уборы", "Донат")
 	path = /obj/item/clothing/head/roguetown/nunTA
+	donatitem = TRUE
+
+/datum/loadout_item/donat/flowers_crown_eora
+	name = "Корона из цветов Эоры"
+	category = "Головные уборы"
+	path = /obj/item/flowercrown/rosa/resprite
 	donatitem = TRUE
 
 // Пояса

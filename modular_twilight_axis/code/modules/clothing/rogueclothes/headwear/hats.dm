@@ -155,3 +155,11 @@
 /obj/item/clothing/head/roguetown/roguehood/bishop/Initialize()
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_CHOSEN, "VISAGE")
+
+/obj/item/flowercrown/rosa/resprite
+	name = "crown of eora flowers"
+	desc = ""
+	item_state = "flower_crown_eora"
+	icon_state = "flower_crown_eora"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'

@@ -414,3 +414,66 @@
 		icon_state = kimono_final_icon
 		item_state = kimono_final_icon
 		update_icon()
+
+
+/obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite
+	name = "eoran robe"
+	desc = "Holy robes, intended for use by followers of Eora"
+	icon_state = "robe_blue"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
+
+/obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite/attack_right(mob/user)
+	switch(fanatic_wear)
+		if(FALSE)
+			name = "open eoran robe"
+			desc = "Used by more radical followers of the Eoran Church"
+			body_parts_covered = null
+			icon_state = "straps_blue"
+			fanatic_wear = TRUE
+			flags_inv = HIDEBOOB
+			to_chat(usr, span_warning("Now wearing radically!"))
+		if(TRUE)
+			name = "eoran robe"
+			desc = "Holy robes, intended for use by followers of Eora"
+			body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
+			icon_state = "robe_blue"
+			fanatic_wear = FALSE
+			flags_inv = HIDEBOOB|HIDECROTCH
+			to_chat(usr, span_warning("Now wearing normally!"))
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_armor()
+
+/obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite/pink
+	name = "eoran robe"
+	desc = "Holy robes, intended for use by followers of Eora"
+	icon_state = "robe_pink"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/shirts.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
+	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/shirts.dmi'
+
+/obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite/pink/attack_right(mob/user)
+	switch(fanatic_wear)
+		if(FALSE)
+			name = "open eoran robe"
+			desc = "Used by more radical followers of the Eoran Church"
+			body_parts_covered = null
+			icon_state = "straps_pink"
+			fanatic_wear = TRUE
+			flags_inv = HIDEBOOB
+			to_chat(usr, span_warning("Now wearing radically!"))
+		if(TRUE)
+			name = "eoran robe"
+			desc = "Holy robes, intended for use by followers of Eora"
+			body_parts_covered = CHEST|GROIN|ARMS|LEGS|VITALS
+			icon_state = "robe_pink"
+			fanatic_wear = FALSE
+			flags_inv = HIDEBOOB|HIDECROTCH
+			to_chat(usr, span_warning("Now wearing normally!"))
+	update_icon()
+	if(ismob(loc))
+		var/mob/L = loc
+		L.update_inv_armor()

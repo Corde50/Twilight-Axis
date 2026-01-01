@@ -43,6 +43,11 @@
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Heavy Helmet"
 	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy = /obj/item/clothing/head/roguetown/helmet/heavy/astratan/oldrw)
 
+/obj/item/enchantingkit/eoran_helm_resprite
+	name = "'Flower Eora Helmet' morphing elixer'"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Heavy Helmet"
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy = /obj/item/clothing/head/roguetown/helmet/heavy/eoran/resprite)
+
 //Jägerbüchse - Arquebus
 /obj/item/enchantingkit/jagerrifle
 	name = "'Jägerbüchse' morphing elixir"
