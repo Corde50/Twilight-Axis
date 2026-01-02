@@ -352,7 +352,7 @@
 	var/note_id = P.note_id
 	var/damage_mult = P.damage_mult
 	var/damage_type = P.damage_type
-	damage_mult *= (!HasMusic() ? 0.5 : 1)
+	damage_mult *= (!HasMusic() ? 0.6 : 1)
 
 	owner.remove_status_effect(/datum/status_effect/buff/soundbreaker_prepared)
 	owner.stamina_add(GetNoteStaminaCost())
