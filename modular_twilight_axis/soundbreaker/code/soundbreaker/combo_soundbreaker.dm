@@ -650,6 +650,10 @@
 	skill_bonus = clamp(skill_bonus, SB_MIN_DAMAGE_MULT, SB_MAX_DAMAGE_MULT)
 
 	damage *= skill_bonus
+
+	var/stacks = GetComboStacks()
+	damage += stacks * 0.1
+
 	return max(1, round(damage))
 
 #undef SB_MIN_DAMAGE_MULT
