@@ -75,9 +75,9 @@
 
 /obj/effect/proc_holder/spell/self/soundbreaker/solo
 	name = "Solo"
-	desc = "Prepare an solo-to-slide for your next blow. Does 75% damage, and blink you forward. Will turn you if you hit a target."
+	desc = "Prepare an solo-to-slide for your next blow. Does 50% damage all targets in front."
 	note_id = SOUNDBREAKER_NOTE_SOLO
-	damage_mult = 0.75
+	damage_mult = 0.5
 	damage_type = BRUTE
 	overlay_state = "active_encore"
 

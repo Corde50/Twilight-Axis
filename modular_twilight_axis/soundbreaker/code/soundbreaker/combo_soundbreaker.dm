@@ -939,9 +939,11 @@
 		sb_fx_wave_forward(T, aim_dir)
 
 		var/mob/living/M = _first_living_on_turf(T)
-		if(M)
-			if(HitSpecific(M, damage_mult, damage_type, BCLASS_PUNCH, zone))
-				last_hit = M
+		if(!M)
+			continue
+
+		if(HitSpecific(M, damage_mult, damage_type, BCLASS_PUNCH, zone))
+			last_hit = M
 
 	return last_hit
 
@@ -966,9 +968,11 @@
 	for(var/turf/T in turfs)
 		SwingFX(T)
 		var/mob/living/M = _first_living_on_turf(T)
-		if(M)
-			if(HitSpecific(M, damage_mult, damage_type, BCLASS_PUNCH, zone))
-				last_hit = M
+		if(!M)
+			continue
+
+		if(HitSpecific(M, damage_mult, damage_type, BCLASS_PUNCH, zone))
+			last_hit = M
 
 	return last_hit
 
@@ -1014,90 +1018,47 @@
 
 /datum/component/combo_core/soundbreaker/proc/NoteSoloPlay(atom/target_atom, aim_dir, damage_mult, damage_type, zone)
 	var/mob/living/last_hit = null
-
 	if(!owner)
 		return null
 
-	var/turf/start = get_turf(owner)
-	if(!start)
+	var/turf/t1 = get_turf(owner)
+	if(!t1)
 		return null
-
-	if(owner.pulledby)
-		if(!owner.resist_grab(TRUE))
-			soundbreaker_spawn_afterimage(owner, start, 0.3 SECONDS)
-			return null
 
 	if(!aim_dir)
 		aim_dir = owner.dir
 
-	var/turf/target_turf = GetTargetTurf(target_atom)
-	var/mob/living/primary = null
-	if(isliving(target_atom))
-		primary = target_atom
-
-	var/dash_dir = aim_dir
-
-	if(target_turf)
-		dash_dir = GetAimDir(target_turf)
-	else if(primary)
-		var/turf/pt = get_turf(primary)
-		if(pt)
-			dash_dir = GetAimDir(pt)
-
-	var/intent = owner.used_intent?.type
-	var/allow_attack = (intent != INTENT_HELP)
-
-	// 1st tile
-	var/turf/t1 = get_step(start, dash_dir)
-	if(!t1 || _turf_is_dash_blocked(t1))
-		soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
+	var/turf/center = get_step(t1, aim_dir)
+	if(!center)
 		return null
 
-	// 2nd tile
-	var/turf/t2 = get_step(t1, dash_dir)
-	if(!t2 || _turf_is_dash_blocked(t2))
-		soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
-		soundbreaker_spawn_afterimage(owner, t1, 0.8 SECONDS)
+	var/list/turfs = list(center)
 
-		owner.forceMove(t1)
+	var/turf/left = get_step(center, turn(aim_dir, 90))
+	if(left)
+		turfs += left
 
-		var/mob/living/v1 = _first_living_on_turf(t1)
-		if(v1 && allow_attack)
-			last_hit = v1
-			owner.face_atom(v1)
+	var/turf/right = get_step(center, turn(aim_dir, -90))
+	if(right)
+		turfs += right
 
-		return last_hit
+	sb_fx_ring(t1)
 
-	soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
-	soundbreaker_spawn_afterimage(owner, t1, 0.8 SECONDS)
+	for(var/turf/T in turfs)
+		if(!T)
+			continue
 
-	var/mob/living/v2 = _first_living_on_turf(t2)
-	var/mob/living/v1 = _first_living_on_turf(t1)
+		SwingFX(T)
 
-	if(v2)
-		var/turf/behind2 = get_step(t2, dash_dir)
-		if(behind2 && !_turf_is_dash_blocked(behind2))
-			owner.forceMove(behind2)
-		else
-			owner.forceMove(t2)
+		// first living on each affected tile
+		var/mob/living/M = _first_living_on_turf(T)
+		if(!M)
+			continue
 
-		owner.face_atom(v2)
-		if(allow_attack)
-			last_hit = v2
+		if(HitSpecific(M, damage_mult, damage_type, BCLASS_PUNCH, zone))
+			last_hit = M
 
-	else if(v1)
-		owner.forceMove(t2)
-		owner.face_atom(v1)
-		if(allow_attack)
-			last_hit = v1
-	else
-		owner.forceMove(t2)
-
-	if(last_hit && allow_attack)
-		HitSpecific(last_hit, damage_mult, damage_type, BCLASS_PUNCH, zone)
-		return last_hit
-
-	return null
+	return last_hit
 
 // ----------------- Riff defense proc -----------------
 /datum/component/combo_core/soundbreaker/proc/RiffOnSuccessfulDefense()
@@ -1253,17 +1214,90 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboHarmonicBurst(mob/living/target)
-	for(var/mob/living/L in view(1, owner))
-		if(L == owner) continue
-		if(L.stat == DEAD) continue
-		ApplyDamage(L, 0.3, BCLASS_PUNCH)
-		SmallBleed(L, 1)
+	if(!owner || !target)
+		return
 
-	playsound(get_turf(owner), 'sound/combat/ground_smash1.ogg', 90, TRUE)
+	var/turf/start = get_turf(owner)
+	if(!start)
+		return
+
+	if(owner.pulledby)
+		if(!owner.resist_grab(TRUE))
+			soundbreaker_spawn_afterimage(owner, start, 0.3 SECONDS)
+			ShowComboIcon(target, SB_COMBO_ICON_HARMONIC)
+			ResetRhythm()
+			return
+
+	var/dash_dir = get_dir(owner, target)
+	if(!dash_dir)
+		dash_dir = owner.dir
+
+	var/zone = TryGetZone(owner.zone_selected)
+
+	// tune: harmonic as dash-strike, not the old aoe nuke
+	var/dmg_mult = 0.85
+	var/dmg_type = BRUTE
+
+	var/turf/t1 = get_step(start, dash_dir)
+	if(!t1 || _turf_is_dash_blocked(t1))
+		soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
+		ShowComboIcon(target, SB_COMBO_ICON_HARMONIC)
+		ResetRhythm()
+		return
+
+	var/turf/t2 = get_step(t1, dash_dir)
+
+	soundbreaker_spawn_afterimage(owner, start, 0.8 SECONDS)
+	soundbreaker_spawn_afterimage(owner, t1, 0.8 SECONDS)
+
+	// track real hit to face it later
+	var/mob/living/hit_mob = null
+
+	if(!t2 || _turf_is_dash_blocked(t2))
+		owner.forceMove(t1)
+
+		var/mob/living/M1 = _first_living_on_turf(t1)
+		if(M1)
+			if(HitSpecific(M1, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
+				hit_mob = M1
+
+		if(hit_mob)
+			owner.face_atom(hit_mob)
+
+		owner.visible_message(
+			span_danger("[owner] surges forward in a sharp harmonic dash!"),
+			span_notice("You dash and strike on the beat."),
+		)
+		ShowComboIcon(target, SB_COMBO_ICON_HARMONIC)
+		ResetRhythm()
+		return
+
+	var/mob/living/M1 = _first_living_on_turf(t1)
+	if(M1)
+		if(HitSpecific(M1, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
+			hit_mob = M1
+
+	var/mob/living/M2 = _first_living_on_turf(t2)
+	if(M2)
+		if(HitSpecific(M2, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
+			hit_mob = M2 // приоритетнее, т.к. дальше по рывку
+
+	if(M2)
+		var/turf/behind2 = get_step(t2, dash_dir)
+		if(behind2 && !_turf_is_dash_blocked(behind2))
+			owner.forceMove(behind2)
+			soundbreaker_spawn_afterimage(behind2, t2, 0.8 SECONDS)
+		else
+			owner.forceMove(t2)
+	else
+		owner.forceMove(t2)
+
+	if(hit_mob)
+		owner.face_atom(hit_mob)
 
 	owner.visible_message(
-		span_danger("[owner]'s harmonic pulse tears at everyone nearby!"),
-		span_notice("You burst outward with a bleeding harmonic pulse."),
+		span_danger("[owner] surges forward in a sharp harmonic dash!"),
+		span_notice("You dash and strike on the beat."),
 	)
 
 	ShowComboIcon(target, SB_COMBO_ICON_HARMONIC)
