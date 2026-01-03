@@ -926,6 +926,24 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Одежда", "Донат")
 	donatitem = TRUE
 
+/datum/loadout_item/donator_dasfox
+	name = "Donator Kit - Archaic Ceremonial Valkyrhelm"
+	path = /obj/item/enchantingkit/dasfox_helm
+	category = list("Разное", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_dasfox/cuirass
+	name = "Donator Kit - Archaic Ceremonial Cuirass"
+	path = /obj/item/enchantingkit/dasfox_cuirass
+	category = list("Разное", "Донат")
+	donatitem = TRUE
+ 
+/datum/loadout_item/donator_dasfox/periapt
+	name = "Donator Item - Defiled Astratan Periapt"
+	path = /obj/item/clothing/neck/roguetown/psicross/astrata/dasfox
+	category = list("Разное", "Донат")
+	donatitem = TRUE
+
 /datum/loadout_item/donator_kumie
 	name = "Donator Kit - Aristocratic Boots - Required: Heavy Leather Boots or Noble Boots"
 	category = list("Разное", "Донат")
