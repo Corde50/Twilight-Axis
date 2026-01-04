@@ -453,6 +453,47 @@
 		return target
 	return null
 
+/// Apply extra armor wear on successful hit.
+/// Designed to be called AFTER a confirmed successful attack.
+/datum/component/combo_core/soundbreaker/proc/apply_combo_armor_wear(
+	mob/living/carbon/human/target,
+	hit_zone,
+	attack_flag,
+	force_dynamic,
+	multiplier = 1
+)
+	if(!target || !attack_flag || !force_dynamic)
+		return
+
+	// базовый расчёт износа
+	var/wear = round(force_dynamic * multiplier)
+	wear = clamp(wear, 1, 25)
+	if(wear <= 0)
+		return
+
+	var/cover_flag
+	switch(hit_zone)
+		if(BODY_ZONE_HEAD)   cover_flag = HEAD
+		if(BODY_ZONE_CHEST)  cover_flag = CHEST
+		if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM) cover_flag = ARMS
+		if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG) cover_flag = LEGS
+		else
+			return
+
+	for(var/obj/item/clothing/C in target.contents)
+		if(C.loc != target)
+			continue
+		if(!(C.body_parts_covered & cover_flag))
+			continue
+		if(!C.armor)
+			continue
+
+		var/rating = C.armor.getRating(attack_flag)
+		if(!isnum(rating) || rating <= 0)
+			continue
+
+		C.take_damage(wear, BRUTE, "blunt")
+
 /datum/component/combo_core/soundbreaker/proc/AttackViaPipeline(mob/living/target, damage, bclass = BCLASS_PUNCH, damage_type = BRUTE, zone = null, armor_penetration = 0, params = null)
 	if(!owner || !target)
 		return FALSE
@@ -521,7 +562,6 @@
 #define SB_MAX_DAMAGE_MULT 1.5
 
 /mob/living/carbon/human/get_punch_dmg()
-
 	var/damage
 	if(STASTR > UNARMED_DAMAGE_DEFAULT || STASTR < 10)
 		damage = STASTR
@@ -1160,7 +1200,7 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboCrossfade(mob/living/target)
 	ApplyDamage(target, 0.3, BCLASS_PUNCH)
-	target.Stun(1 SECONDS)
+	target.Stun(2 SECONDS)
 
 	owner.visible_message(
 		span_danger("[owner] catches [target] in a nasty cross-beat stun!"),
@@ -1197,7 +1237,12 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboSyncopation(mob/living/target)
 	ApplyDamage(target, 0.5, BCLASS_PUNCH)
-	SafeOffbalance(target, 1 SECONDS)
+
+	var/zone = TryGetZone(owner.zone_selected)
+
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		apply_combo_armor_wear(H, zone, "blunt", ScaleDamage(2), 1.6)
 
 	owner.visible_message(
 		span_danger("[owner]'s pattern locks [target]—and if they were already shaken, it drops them!"),
@@ -1295,7 +1340,7 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboRitmo(mob/living/target)
 	ApplyDamage(target, 0.6, BCLASS_PUNCH)
-	SafeSlow(target, 2)
+	SafeSlow(target, 5)
 
 	owner.visible_message(
 		span_danger("[owner] drags [target]'s tempo down into a heavy slow!"),
@@ -1307,7 +1352,7 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboBladeDancer(mob/living/target)
 	ApplyDamage(target, 0.9, BCLASS_PUNCH)
-	SmallBleed(target, 2)
+	SmallBleed(target, 5)
 
 	owner.visible_message(
 		span_danger("[owner] carves [target] in a shredding sequence!"),
@@ -1318,7 +1363,7 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboCrescendo(mob/living/target)
-	ApplyDamage(target, 1.7, BCLASS_PUNCH)
+	ApplyDamage(target, 1.5, BCLASS_PUNCH)
 	SafeOffbalance(target, 2 SECONDS)
 
 	owner.visible_message(
@@ -1331,10 +1376,11 @@
 
 /datum/component/combo_core/soundbreaker/proc/ComboOverture(mob/living/target)
 	if(IsOffbalanced(target))
-		ApplyDamage(target, 1.1, BCLASS_PUNCH)
-		target.Knockdown(1 SECONDS)
+		ApplyDamage(target, 1.25, BCLASS_PUNCH)
+		target.Knockdown(3 SECONDS)
 	else
 		ApplyDamage(target, 2.0, BCLASS_PUNCH)
+		SafeOffbalance(target, 1.0 SECONDS)
 
 	owner.visible_message(
 		span_danger("[owner] ends the phrase with a brutal finisher!"),
