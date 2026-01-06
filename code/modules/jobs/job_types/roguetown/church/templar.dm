@@ -9,13 +9,14 @@
 	allowed_races = ACCEPTED_RACES
 	allowed_patrons = ALL_DIVINE_PATRONS
 	outfit = /datum/outfit/job/roguetown/templar
-	min_pq = 3 //Deus vult, but only according to the proper escalation rules
+	min_pq = 10 //Deus vult, but only according to the proper escalation rules
 	max_pq = null
 	round_contrib_points = 2
 	total_positions = 4
 	spawn_positions = 4
 	advclass_cat_rolls = list(CTAG_TEMPLAR = 20)
 	display_order = JDO_TEMPLAR
+	same_job_respawn_delay = 30 MINUTES
 
 	give_bank_account = TRUE
 	job_traits = list(TRAIT_RITUALIST, TRAIT_STEELHEARTED, TRAIT_CLERGY)
@@ -24,7 +25,8 @@
 	virtue_restrictions = list(/datum/virtue/utility/noble)
 	job_subclasses = list(
 		/datum/advclass/templar/monk,
-		/datum/advclass/templar/crusader
+		/datum/advclass/templar/crusader,
+		/datum/advclass/templar/vigilant
 	)
 
 /datum/outfit/job/roguetown/templar
@@ -145,30 +147,30 @@
 	switch(weapon_choice)
 		if("Discipline - Unarmed")
 			H.adjust_skillrank_up_to(/datum/skill/combat/unarmed, 5, TRUE)
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/pugilist
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/pugilist, SLOT_GLOVES, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Katar")
 			H.put_in_hands(new /obj/item/rogueweapon/katar(H))
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/weighted, SLOT_GLOVES, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Knuckledusters")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles(H))
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/weighted, SLOT_GLOVES, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Quarterstaff")
 			H.adjust_skillrank_up_to(/datum/skill/combat/staves, 4, TRUE) //Tested with Disciples, first. Should hopefully be not too busted - reduce to Journeyman, otherwise.
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 3, TRUE)
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/weighted, SLOT_GLOVES, TRUE)
 			H.put_in_hands(new /obj/item/rogueweapon/woodstaff/quarterstaff/steel(H))
 			H.put_in_hands(new /obj/item/rogueweapon/scabbard/gwstrap(H))
 			H.change_stat(STATKEY_PER, 1) //Matches the Disciple's balance; exchanges the 'dodge expert' trait for additional accuracy with the staff.
 		if("Close Caress")
 			H.put_in_hands(new /obj/item/rogueweapon/knuckles/eora(H))
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/weighted, SLOT_GLOVES, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Barotrauma")
 			H.put_in_hands(new /obj/item/rogueweapon/katar/abyssor(H))
-			gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/roguetown/bandages/weighted, SLOT_GLOVES, TRUE)
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
 	// -- Start of section for god specific bonuses --
