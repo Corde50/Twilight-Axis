@@ -36,19 +36,13 @@
 //		new /obj/effect/temp_visual/small_smoke(src.loc)
 //	qdel(src)
 
-/obj/effect/hotspot/Initialize(mapload, starting_volume, starting_temperature, life)
+/obj/effect/hotspot/Initialize(mapload, starting_volume, starting_temperature)
 	. = ..()
 	SShotspots.hotspots += src
-
 	if(!isnull(starting_volume))
 		volume = starting_volume
-
 	if(!isnull(starting_temperature))
 		temperature = starting_temperature
-
-	if(!isnull(life))
-		src.life = life
-	
 	perform_exposure()
 	setDir(pick(GLOB.cardinals))
 	air_update_turf()

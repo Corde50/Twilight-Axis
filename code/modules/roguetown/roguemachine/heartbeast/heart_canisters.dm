@@ -1,6 +1,6 @@
 /obj/item/heart_canister
 	name = "alchemical canister"
-	desc = "A stout glass vial formed of unusually thick glass."
+	desc = ""
 	icon = 'icons/obj/structures/heart_items.dmi'
 	icon_state = "canister_empty"
 	w_class = WEIGHT_CLASS_TINY

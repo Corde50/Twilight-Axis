@@ -81,19 +81,12 @@
 			return
 		design = "_[design]"
 		symbol_chosen = TRUE
-	var/list/colors_to_pick = list()
-	if(GLOB.lordprimary)
-		colors_to_pick["Primary Keep Color"] = GLOB.lordprimary
-	if(GLOB.lordsecondary)
-		colors_to_pick["Secondary Keep Color"] = GLOB.lordsecondary
-	var/list/color_map_list = COLOR_MAP
-	colors_to_pick += color_map_list.Copy()
-	var/colorone = input(user, "Select a primary color.","Tabard Design") as null|anything in colors_to_pick
+	var/colorone = input(user, "Select a primary color.","Tabard Design") as null|anything in CLOTHING_COLOR_NAMES
 	if(!colorone)
 		return
 	var/colortwo
 	if(design != "None")
-		colortwo = input(user, "Select a secondary color.","Tabard Design") as null|anything in colors_to_pick
+		colortwo = input(user, "Select a primary color.","Tabard Design") as null|anything in CLOTHING_COLOR_NAMES
 		if(!colortwo)
 			return
 	if(world.time > (the_time + 30 SECONDS))
@@ -110,9 +103,9 @@
 		if("Diamonds")
 			detail_tag = "_dim"
 	boobed_detail = !symbol_chosen
-	color = colors_to_pick[colorone]
+	color = clothing_color2hex(colorone)
 	if(colortwo)
-		detail_color = colors_to_pick[colortwo]
+		detail_color = clothing_color2hex(colortwo)
 	update_icon()
 	if(ismob(loc))
 		var/mob/L = loc
@@ -204,7 +197,7 @@
 	alternate_worn_layer = TABARD_LAYER
 	boobed = FALSE
 	name = "astratan tabard"
-	desc = "The washed out golds of an Astratan crusader adorn these fine robes."
+	desc = "The washed out golds of an asratan crusader adorn these fine robes."
 	icon_state = "astratatabard"
 	resistance_flags = FIRE_PROOF
 
@@ -555,8 +548,8 @@
 /obj/item/clothing/cloak/tabard/stabard/mercenary/Initialize()
 	. = ..()
 	detail_tag = pick("_quad", "_spl", "_box", "_dim")
-	color = pick(CLOTHING_COLOR_MAP)
-	detail_color = pick(CLOTHING_COLOR_MAP)
+	color = clothing_color2hex(pick(CLOTHING_COLOR_NAMES))
+	detail_color = clothing_color2hex(pick(CLOTHING_COLOR_NAMES))
 	update_icon()
 	if(ismob(loc))
 		var/mob/L = loc
@@ -669,7 +662,6 @@
 	inhand_mod = TRUE
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	salvage_result = /obj/item/natural/fur
-	cold_protection = 20
 
 /obj/item/clothing/cloak/darkcloak/bear
 	name = "direbear cloak"
@@ -1075,18 +1067,6 @@
 	salvage_result = /obj/item/natural/fibers
 	salvage_amount = 2
 
-/obj/item/clothing/cloak/wickercloak/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
-
-/obj/item/clothing/cloak/wickercloak/dropped(mob/living/carbon/human/user)
-	..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	if(STR)
-		var/list/things = STR.contents()
-		for(var/obj/item/I in things)
-			STR.remove_from_storage(I, get_turf(src))
-
 /obj/item/clothing/cloak/tribal
 	name = "tribal pelt"
 	desc = "A haphazardly cured pelt of a creecher, thrown on top of one's body or armor, to serve as additional protection against the cold. Itchy."
@@ -1445,7 +1425,6 @@
 	name = "snow cloak"
 	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
 	icon_state = "snowcloak"
-	cold_protection = 15
 
 /obj/item/clothing/cloak/poncho
 	name = "cloth poncho"

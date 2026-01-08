@@ -238,7 +238,6 @@
 	smeltresult = /obj/item/ingot/steel	
 	var/worn = FALSE
 	slot_flags = ITEM_SLOT_MASK
-	stack_fovs = FALSE
 	
 /obj/item/clothing/mask/rogue/facemask/steel/confessor/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -314,7 +313,6 @@
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_HIP
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
-	stack_fovs = TRUE
 
 /obj/item/clothing/mask/rogue/facemask
 	name = "iron mask"
@@ -332,10 +330,6 @@
 	experimental_onhip = TRUE
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/iron
-	stack_fovs = TRUE
-
-/obj/item/clothing/mask/rogue/facemask/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/mask/rogue/facemask/shadowfacemask
 	name = "anthraxi war mask"
@@ -459,13 +453,11 @@
 	name = "oni mask"
 	desc = "A wood mask carved in the visage of demons said to stalk the mountains of Kazengun."
 	icon_state = "oni"
-	stack_fovs = FALSE
 
 /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
 	name = "kitsune mask"
 	desc = "A wood mask carved in the visage of the fox spirits said to ply their tricks in the forests of Kazengun."
 	icon_state = "kitsune"
-	stack_fovs = FALSE
 
 /obj/item/clothing/mask/rogue/facemask/steel/kazengun
 	name = "soldier's half-mask"

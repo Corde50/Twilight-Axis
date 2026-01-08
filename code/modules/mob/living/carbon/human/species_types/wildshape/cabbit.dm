@@ -24,7 +24,7 @@
 		STALUC = 15
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/cabbitclaws)
-		real_name = "cabbit"
+		real_name = "Cabbit"
 		faction += "cabbits"
 
 /datum/species/shapecabbit

@@ -27,7 +27,7 @@
 	smeltresult = null
 
 /datum/crafting_recipe/roguetown/survival/oar
-	name = "Oar"
+	name = "Oar (1 Log, 2 Fibers)"
 	result = /obj/item/rogueweapon/mace/oar
 	reqs = list(
 		/obj/item/grown/log/tree = 1,
@@ -36,7 +36,7 @@
 	time = 15
 
 /datum/crafting_recipe/roguetown/survival/boat
-	name = "Dinghy"
+	name = "Dinghy (4 Logs, 3 Ash, 5 Fibers)"
 	result = /obj/vehicle/ridden/dinghy
 	reqs = list(
 		/obj/item/grown/log/tree = 4,

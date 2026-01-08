@@ -20,6 +20,8 @@
 	var/fakename = "secret whisperer"
 
 /obj/item/speakerinq/proc/repeat_message(message, atom/A, tcolor, message_language)
+	if(A == src)
+		return
 	if(!ismob(loc))
 		return
 	if(tcolor)
@@ -49,9 +51,9 @@
 	. = ..()
 	switch(slot)
 		if(SLOT_RING)
-			fakename = "silver signet ring"
+			fakename = "silver signet ring"	
 			name = fakename
-	return TRUE
+	return TRUE		
 
 
 /obj/item/speakerinq/dropped(mob/user, silent)

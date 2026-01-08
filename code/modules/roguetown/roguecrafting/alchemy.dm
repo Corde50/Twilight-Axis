@@ -128,7 +128,7 @@
 	name = "paralytic venom activation"
 	category = "Table"
 	result = list(/obj/item/reagent_containers/glass/bottle/alchemical/spidervenom_paralytic = 1)
-	reqs = list(/obj/item/reagent_containers/spidervenom_inert = 2, /obj/item/reagent_containers/powder/moondust = 1, /obj/item/reagent_containers/glass/bottle/alchemical = 1)
+	reqs = list(/obj/item/reagent_containers/spidervenom_inert = 2, /obj/item/reagent_containers/powder/moondust, /obj/item/reagent_containers/glass/bottle/alchemical)
 	craftdiff = 5
 	verbage_simple = "mix"
 
@@ -368,13 +368,3 @@
 	verbage_simple = "mix"
 	required_tech_node = "LUX_FILTRATION"
 	tech_unlocked = FALSE
-
-
-/datum/crafting_recipe/roguetown/alchemy/bandage
-	name = "bandages (alchemy)"
-	result = list(/obj/item/natural/cloth/bandage)
-	reqs = list(
-		/obj/item/natural/cloth = 1,
-		/obj/item/alch/bonemeal = 1,
-		)
-	craftdiff = 2

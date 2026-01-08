@@ -278,8 +278,8 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 					say("You have not the noble blood to be regent.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return
-				if(!(H.job in GLOB.regency_positions))
-					say("You are not worthy of bearing the Crown.")
+				if(!(H.job in GLOB.noble_positions))
+					say("You are too estranged from this realm to be regent.")
 					playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 					return
 				if(SSticker.regentday == GLOB.dayspassed)
@@ -386,26 +386,18 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 	return null
 
 /proc/make_outlaw(raw_message)
-	var/mob/living/carbon/human/found_human
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		if(H.real_name == raw_message)
-			found_human = H
 	if(raw_message in GLOB.outlawed_players)
 		GLOB.outlawed_players -= raw_message
-		priority_announce("[raw_message] is no longer an outlaw in [SSticker.realm_name].", "The [SSticker.rulertype] Decrees", 'sound/misc/royal_decree.ogg', "Captain")
-		if(istype(found_human) && HAS_TRAIT(found_human, TRAIT_GUARDSMAN_DISGRACED))
-			REMOVE_TRAIT(found_human, TRAIT_GUARDSMAN_DISGRACED, TRAIT_GENERIC)
-			ADD_TRAIT(found_human, TRAIT_GUARDSMAN, JOB_TRAIT)
-			found_human.remove_status_effect(/datum/status_effect/debuff/disgracedguardsman)
+		priority_announce("[raw_message] is no longer an outlaw in the Twilight Axis.", "The [SSticker.rulertype] Decrees", 'sound/misc/royal_decree.ogg', "Captain")
 		return FALSE
-	if(!found_human)
+	var/found = FALSE
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.real_name == raw_message)
+			found = TRUE
+	if(!found)
 		return FALSE
 	GLOB.outlawed_players += raw_message
 	priority_announce("[raw_message] has been declared an outlaw and must be captured or slain.", "The [SSticker.rulertype] Decrees", 'sound/misc/royal_decree2.ogg', "Captain")
-	if(HAS_TRAIT(found_human, TRAIT_GUARDSMAN))
-		REMOVE_TRAIT(found_human, TRAIT_GUARDSMAN, JOB_TRAIT)
-		ADD_TRAIT(found_human, TRAIT_GUARDSMAN_DISGRACED, TRAIT_GENERIC)
-		found_human.apply_status_effect(/datum/status_effect/debuff/disgracedguardsman)
 	return TRUE
 
 /proc/make_law(raw_message)

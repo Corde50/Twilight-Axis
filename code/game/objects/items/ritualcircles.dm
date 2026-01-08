@@ -402,10 +402,10 @@
 				return
 
 			var/list/weapon_options = list(
-				"Dreamreaver Greataxe" = image(icon = 'icons/roguetown/weapons/axes64.dmi', icon_state = "dreamaxe"),
-				"Harmonious Spear" = image(icon = 'icons/roguetown/weapons/polearms64.dmi', icon_state = "dreamspear"),
-				"Oozing Sword" = image(icon = 'icons/roguetown/weapons/swords64.dmi', icon_state = "dreamsword"),
-				"Thunderous Trident" = image(icon = 'icons/roguetown/weapons/polearms64.dmi', icon_state = "dreamtri")
+				"Dreamreaver Greataxe" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamaxe"),
+				"Harmonious Spear" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamspear"),
+				"Oozing Sword" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamsword"),
+				"Thunderous Trident" = image(icon = 'icons/roguetown/weapons/64.dmi', icon_state = "dreamtri")
 			)
 
 			var/choice = show_radial_menu(user, src, weapon_options, require_near = TRUE, tooltips = TRUE)
@@ -1441,7 +1441,7 @@
 			if(perform_warritual())
 				user.apply_status_effect(/datum/status_effect/debuff/ritesexpended_heavy)
 			else
-				to_chat(user, span_smallred("The ritual fails. A noble, a member of the Inquisition or a Tennite clergy member must be in the center of the circle!"))
+				to_chat(user, span_smallred("The ritual fails. A noble, member of the inquisition or a tennite churchling body must be in the center of the circle!"))
 			spawn(120)
 				icon_state = "graggar_chalky" 
 /obj/structure/ritualcircle/graggar/proc/graggararmor(mob/living/carbon/human/target)
@@ -1460,14 +1460,14 @@
 		spawn(40)
 			to_chat(target, span_cult("Break them."))
 
-/// Performs the war ritual, which requires a noble, clergy, or inquisition member in the center of the circle. TRUE on success, FALSE on failure.
+/// Performs the war ritual, which requires a noble or inquisition member in the center of the circle. TRUE on success, FALSE on failure.
 /obj/structure/ritualcircle/graggar/proc/perform_warritual()
 	var/mob/living/carbon/human/victim = null
 	for(var/mob/living/carbon/human/H in get_turf(src))
 		if(H.has_status_effect(/datum/status_effect/debuff/ritualdefiled))
 			continue
 
-		if(H.is_noble() || HAS_TRAIT(H, TRAIT_INQUISITION) || HAS_TRAIT(H, TRAIT_CLERGY))
+		if(H.is_noble() || HAS_TRAIT(H, TRAIT_INQUISITION) || (H.mind?.assigned_role in list("Priest", "Templar", "Martyr")))
 			victim = H
 			break
 

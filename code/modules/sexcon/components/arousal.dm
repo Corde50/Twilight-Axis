@@ -113,7 +113,6 @@
 	if(is_spent())
 		return
 	ejaculate()
-	record_round_statistic(STATS_PLEASURES)
 
 /datum/component/arousal/proc/ejaculate()
 	var/mob/living/mob = parent
@@ -181,23 +180,12 @@
 
 	charge = max(0, charge - CHARGE_FOR_CLIMAX)
 
-	if(user == target)
-		user.add_stress(/datum/stressevent/cumself)
-	else
-		user.add_stress(/datum/stressevent/cumok)
+	user.add_stress(/datum/stressevent/cumok)
+	if(user.has_flaw(/datum/charflaw/addiction/lovefiend))
+		user.sate_addiction()
 	user.emote("moan", forced = TRUE)
 	user.playsound_local(user, 'sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time
-
-	if(user != target && !isnull(user.mind) && !isnull(target.mind))
-		if(user.has_flaw(/datum/charflaw/addiction/lovefiend))
-			user.sate_addiction()
-			if(intimate)
-				user.add_stress(/datum/stressevent/cummax)
-			else
-				user.add_stress(/datum/stressevent/cumgood)
-		if(target.has_flaw(/datum/charflaw/addiction/lovefiend))
-			target.sate_addiction()
 
 	if(intimate)
 		after_intimate_climax(user, target)

@@ -16,9 +16,6 @@
 	salvage_result = /obj/item/natural/fibers
 	salvage_amount = 2 // Major materials loss
 
-/obj/item/clothing/head/roguetown/armingcap/padded/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
-
 /obj/item/clothing/head/roguetown/armingcap/padded
 	name = "padded arming cap"
 	desc = "A padded up arming cap. It might even stop a mace!"
@@ -123,8 +120,8 @@
 /obj/item/clothing/head/roguetown/grenzelhofthat/attack_right(mob/user)
 	..()
 	if(!picked)
-		var/choice = input(user, "Choose a color.", "Grenzelhoft colors") as anything in COLOR_MAP
-		var/playerchoice = COLOR_MAP[choice]
+		var/choice = input(user, "Choose a color.", "Grenzelhoft colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
 		picked = TRUE
 		detail_color = playerchoice
 		detail_tag = "_detail"
@@ -150,17 +147,12 @@
 		add_overlay(pic2)
 
 //................ Briar Thorns ............... //	- Dendor Briar
-/obj/item/clothing/head/roguetown/briarthorns
+/obj/item/clothing/head/roguetown/padded/briarthorns
 	name = "briar thorns"
 	desc = "The pain of wearing it might distract you from the whispers of a mad God overpowering your sanity..."
 	icon_state = "briarthorns"
-	max_integrity = 150
-	body_parts_covered = HEAD|HAIR|EARS
-	armor = ARMOR_CLOTHING
-	salvage_result = /obj/item/natural/fibers
-	salvage_amount = 1
 
-/obj/item/clothing/head/roguetown/briarthorns/pickup(mob/living/user)
+/obj/item/clothing/head/roguetown/padded/briarthorns/pickup(mob/living/user)
 	. = ..()
 	to_chat(user, span_warning ("The thorns prick me."))
 	user.adjustBruteLoss(4)

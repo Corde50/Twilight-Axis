@@ -1,7 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/wheel
 	name = "The Wheel"
 	desc = "Spins the wheel, either buffing or debuffing the targets fortune."
-	overlay_state = "wheel" //Wheel of Fortune
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 3
@@ -27,7 +26,6 @@
 /obj/effect/proc_holder/spell/invoked/mastersillusion
 	name = "Set Decoy"
 	desc = "Creates a body double of yourself and makes you invisible, after a delay your clone explodes into smoke."
-	overlay_state = "decoy" //The Fool
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -90,8 +88,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mockery
 	name = "Vicious Mockery"
-	desc = "Mock your target, reducing their INT, SPD, STR and WIL for a time."
-	overlay_state = "mockery" //Judgement
+	desc = "Mock your target, reducing their INT, SPD, STR and END for a time."
 	releasedrain = 50
 	associated_skill = /datum/skill/misc/music
 	recharge_time = 2 MINUTES
@@ -152,12 +149,12 @@
 /atom/movable/screen/alert/status_effect/debuff/viciousmockery
 	name = "Vicious Mockery"
 	desc = "<span class='warning'>THAT ARROGANT BARD! ARGH!</span>\n"
-	icon_state = "mockery"
+	icon_state = "muscles"
 
 /obj/effect/proc_holder/spell/self/xylixslip
 	name = "Xylixian Slip"
 	desc = "Jumps you up to 3 tiles away."
-	overlay_state = "slip" //Chariot
+	overlay_state = "xylix_slip"
 	releasedrain = 10
 	chargedrain = 0
 	chargetime = 0
@@ -170,7 +167,7 @@
 	miracle = TRUE
 	var/leap_dist = 4	//3 tiles (+1 to account for origin tile)
 	var/static/list/sounds = list('sound/magic/xylix_slip1.ogg','sound/magic/xylix_slip2.ogg','sound/magic/xylix_slip3.ogg','sound/magic/xylix_slip4.ogg')
-
+	
 /obj/effect/proc_holder/spell/self/xylixslip/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(!ishuman(user))

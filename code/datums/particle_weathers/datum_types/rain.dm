@@ -28,7 +28,7 @@
 	maxSeverityChange = 2
 	severitySteps = 5
 	immunity_type = TRAIT_RAINSTORM_IMMUNE
-	probability = 70
+	probability = 1
 	target_trait = PARTICLEWEATHER_RAIN
 
 //Makes you a little chilly
@@ -52,7 +52,7 @@
 	maxSeverityChange = 50
 	severitySteps = 50
 	immunity_type = TRAIT_RAINSTORM_IMMUNE
-	probability = 40
+	probability = 1
 	target_trait = PARTICLEWEATHER_RAIN
 
 //Makes you a bit chilly

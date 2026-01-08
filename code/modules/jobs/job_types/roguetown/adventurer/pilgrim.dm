@@ -1,7 +1,7 @@
 /datum/job/roguetown/pilgrim
 	title = "Pilgrim"
 	flag = PILGRIM
-	department_flag = WANDERERS
+	department_flag = PEASANTS
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0 //disables round-start spawn of pilgrims but allows migrant waves

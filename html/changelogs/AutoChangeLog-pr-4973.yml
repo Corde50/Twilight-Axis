@@ -1,0 +1,5 @@
+author: "ToasterStrudes"
+delete-after: True
+changes:
+  - bugfix: "You can now tear pants again"
+  - refactor: "Tearing clothes now uses Shift Right Click (instead of MMB)"

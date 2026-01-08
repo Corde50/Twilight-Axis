@@ -103,7 +103,6 @@
 
 /obj/item/clothing/neck/roguetown/coif/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Soundless coif
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/neck/roguetown/leather
 	name = "hardened leather gorget"
@@ -142,7 +141,6 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/foley/equip/chain_equip.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
-	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/neck/roguetown/chaincoif/paalloy
 	name = "ancient coif"
@@ -172,7 +170,6 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/chainmantle/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (NECK), null, null, 'sound/foley/equip/equip_armor_chain.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK))	//Chain coif.
-	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron
 	name = "iron chain coif"
@@ -244,7 +241,6 @@
 
 /obj/item/clothing/neck/roguetown/bevor/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, 'sound/items/visor.ogg', null, (UPD_HEAD|UPD_MASK|UPD_NECK)) // adjustable falling buffe for the bevor
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/neck/roguetown/bevor/iron
 	name = "iron bevor"
@@ -310,8 +306,8 @@
 /obj/item/clothing/neck/roguetown/fencerguard/attack_right(mob/user)
 	..()
 	if(!picked)
-		var/choice = input(user, "Choose a color.", "Otavan colors") as anything in COLOR_MAP
-		var/playerchoice = COLOR_MAP[choice]
+		var/choice = input(user, "Choose a color.", "Otavan colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
 		picked = TRUE
 		detail_color = playerchoice
 		detail_tag = "_detail"
@@ -508,44 +504,6 @@
 	name = "amulet of Xylix"
 	desc = "In lyfe a smile is sharper than any blade."
 	icon_state = "xylix"
-	toggle_icon_state = FALSE
-
-/obj/item/clothing/neck/roguetown/psicross/xylix/examine(mob/user)
-	. = ..()
-
-	if(!ishuman(user))
-		return
-
-	var/mob/living/carbon/human/human = user
-	if(human.patron == GLOB.patronlist[/datum/patron/divine/xylix])
-		. += span_notice("This is an amulet of Xylix! I can alter the shape this one takes... (Shift-Right Click)")
-
-/obj/item/clothing/neck/roguetown/psicross/xylix/ShiftRightClick(mob/user, params)
-	if(!ishuman(user))
-		return
-
-	var/mob/living/carbon/human/human = user
-	if(human.patron != GLOB.patronlist[/datum/patron/divine/xylix])
-		return
-
-	var/list/psycross_types = typesof(/obj/item/clothing/neck/roguetown/psicross)
-	var/list/choices = list()
-	for(var/type in psycross_types)
-		var/obj/item/clothing/neck/roguetown/psicross/cross = type
-		choices[initial(cross.name)] = type
-
-	var/selected_cross = tgui_input_list(user, "Choose the Psycross you would like to disguise this one as.", "Psycross Selection", choices)
-	if(!selected_cross)
-		return
-
-	var/obj/item/clothing/neck/roguetown/psicross/cross_type = choices[selected_cross]
-
-	name = initial(cross_type.name)
-	desc = initial(cross_type.desc)
-	icon_state = initial(cross_type.icon_state)
-	item_state = initial(cross_type.item_state)
-
-	human.regenerate_clothes()
 
 /obj/item/clothing/neck/roguetown/psicross/wood
 	name = "wooden psycross"

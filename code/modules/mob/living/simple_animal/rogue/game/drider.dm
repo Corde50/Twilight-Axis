@@ -1,9 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/drider //lol
 	icon = 'icons/roguetown/mob/monster/drider.dmi'
 	name = "drider spider"
-	desc = "A monstrously large spider utilised by drow as mounts, better suited \
-	for the Underdark than any mammmalian mount. Fairly terrifying, but a sight one \
-	acclimates to with enough exposure."
+	desc = ""
 	pixel_x = -2
 	pixel_y = 7
 	faction = list("spider_lowers")

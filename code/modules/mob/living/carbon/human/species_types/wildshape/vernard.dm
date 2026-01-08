@@ -22,7 +22,7 @@
 		STASPD = 16
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/foxclaws)
-		real_name = "vernard"
+		real_name = "Vernard"
 		faction += "wolfs"
 
 /datum/species/shapefox

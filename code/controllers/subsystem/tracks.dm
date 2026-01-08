@@ -1,9 +1,12 @@
-PROCESSING_SUBSYSTEM_DEF(tracks)
+SUBSYSTEM_DEF(tracks)
 	name = "Tracks"
 	priority = FIRE_PRIORITY_TRACKS
 	wait = 100
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+
+	var/list/processing
+	var/list/currentrun
 
 	// Object pooling
 	var/list/track_pool
@@ -13,7 +16,9 @@ PROCESSING_SUBSYSTEM_DEF(tracks)
 	var/tracks_recycled
 	var/tracks_created
 
-/datum/controller/subsystem/processing/tracks/Initialize()
+/datum/controller/subsystem/tracks/Initialize()
+	processing = list()
+	currentrun = list()
 	track_pool = list()
 	structure_track_pool = list()
 	thievescant_pool = list()
@@ -22,11 +27,10 @@ PROCESSING_SUBSYSTEM_DEF(tracks)
 	tracks_recycled = 0
 	tracks_created = 0 
 
-/datum/controller/subsystem/processing/tracks/stat_entry()
-	if(processing)
-		..("P:[processing.len] | Pool:[track_pool.len+structure_track_pool.len+thievescant_pool.len] | R:[tracks_recycled] | N:[tracks_created]")
+/datum/controller/subsystem/tracks/stat_entry()
+	..("P:[processing.len] | Pool:[track_pool.len+structure_track_pool.len+thievescant_pool.len] | R:[tracks_recycled] | N:[tracks_created]")
 
-/datum/controller/subsystem/processing/tracks/fire(resumed = 0)
+/datum/controller/subsystem/tracks/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 
@@ -49,14 +53,14 @@ PROCESSING_SUBSYSTEM_DEF(tracks)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/processing/tracks/proc/add_track(obj/effect/track/T)
+/datum/controller/subsystem/tracks/proc/add_track(obj/effect/track/T)
 	if(T && !QDELETED(T))
 		processing |= T
 
-/datum/controller/subsystem/processing/tracks/proc/remove_track(obj/effect/track/T)
+/datum/controller/subsystem/tracks/proc/remove_track(obj/effect/track/T)
 	processing -= T
 
-/datum/controller/subsystem/processing/tracks/proc/get_track(track_type = /obj/effect/track, turf/location)
+/datum/controller/subsystem/tracks/proc/get_track(track_type = /obj/effect/track, turf/location)
 	var/list/pool
 	switch(track_type)
 		if(/obj/effect/track/structure)
@@ -79,7 +83,7 @@ PROCESSING_SUBSYSTEM_DEF(tracks)
 
 	return T
 
-/datum/controller/subsystem/processing/tracks/proc/recycle_track(obj/effect/track/T)
+/datum/controller/subsystem/tracks/proc/recycle_track(obj/effect/track/T)
 	if(!T || QDELETED(T))
 		return
 

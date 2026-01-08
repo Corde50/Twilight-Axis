@@ -15,9 +15,6 @@
 	salvage_result = /obj/item/natural/fur
 	color = "#7f829d"
 
-/obj/item/clothing/gloves/roguetown/angle/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
-
 /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	name = "grenzelhoft gloves"
 	desc = "Regal gloves of Grenzelhoftian design, more a fashion statement than actual protection."

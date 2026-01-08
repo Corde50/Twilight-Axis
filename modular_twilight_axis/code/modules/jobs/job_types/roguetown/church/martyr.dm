@@ -1,23 +1,6 @@
-/datum/job/roguetown/martyr/after_spawn(mob/living/H, mob/M, latejoin = TRUE)
-	..()
-	if(ishuman(H))
-		var/prev_real_name = H.real_name
-		var/prev_name = H.name
-		var/churchiny = "Brother"
-		if(should_wear_femme_clothes(H))
-			churchiny = "Sister"
-		H.real_name = "[churchiny] [prev_real_name]"
-		H.name = "[churchiny] [prev_name]"
-
-		for(var/X in peopleknowme)
-			for(var/datum/mind/MF in get_minds(X))
-				if(MF.known_people)
-					MF.known_people -= prev_real_name
-					H.mind.person_knows_me(MF)
-
 /datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
 	..()
-	ADD_TRAIT(H, TRAIT_CLERGY_TA, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_CLERGY, TRAIT_GENERIC)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_guidance)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_expedite)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/martyr_onfeet)
@@ -53,12 +36,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_guidance
 	name = "Dictat of Noc"
-	desc = "The Martyr has blessed me with Noc's guidance!"
+	desc = "My captain has blessed me with Noc's guidance!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/order/martyr_guidance/on_apply()
 	. = ..()
-	to_chat(owner, span_blue("The Martyr has blessed me with Noc's guidance!"))
+	to_chat(owner, span_blue("My captain has blessed me with Noc's guidance!"))
 
 /obj/effect/proc_holder/spell/invoked/order/martyr_guidance/cast(list/targets, mob/living/user)
 	. = ..()
@@ -113,12 +96,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_expedite
 	name = "Dictat of Xylix"
-	desc = "The Martyr has blessed me with Xylix's guidance!"
+	desc = "My captain has blessed me with Xylix's guidance!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/order/martyr_expedite/on_apply()
 	. = ..()
-	to_chat(owner, span_blue("The Martyr has blessed me with Xylix's guidance!"))
+	to_chat(owner, span_blue("My captain has blessed me with Xylix's guidance!"))
 
 /obj/effect/proc_holder/spell/invoked/order/martyr_expedite/cast(list/targets, mob/living/user)
 	. = ..()
@@ -171,12 +154,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_onfeet
 	name = "Dictat of Ravox"
-	desc = "The Martyr has blessed me with Ravox's guidance!"
+	desc = "My captain has blessed me with Ravox's guidance!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/order/martyr_onfeet/on_apply()
 	. = ..()
-	to_chat(owner, span_blue("The Martyr has blessed me with Ravox's guidance!"))
+	to_chat(owner, span_blue("My captain has blessed me with Ravox's guidance!"))
 
 /datum/status_effect/buff/order/martyr_onfeet/church/on_apply()
 	. = ..()
@@ -255,12 +238,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/order/martyr_laststand
 	name = "Dictat of Malum"
-	desc = "The Martyr has blessed me with Malum's guidance!"
+	desc = "My captain has blessed me with Malum's guidance!"
 	icon_state = "buff"
 
 /datum/status_effect/buff/order/martyr_laststand/on_apply()
 	. = ..()
-	to_chat(owner, span_blue("The Martyr has blessed me with Malum's guidance!"))
+	to_chat(owner, span_blue("My captain has blessed me with Malum's guidance!"))
 
 /obj/effect/proc_holder/spell/invoked/order/martyr_laststand/cast(list/targets, mob/living/user)
 	. = ..()

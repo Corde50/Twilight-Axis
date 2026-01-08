@@ -1,0 +1,5 @@
+author: "nauticall"
+delete-after: True
+changes:
+  - bugfix: "Fixed crown not being summonable if the crown was absent, i.e. no Duke, or crown is physically destroyed."
+  - code_imp: "Cleaned up the summon crown logic behind the scenes."

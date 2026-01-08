@@ -1,6 +1,6 @@
 /obj/item/rope
 	name = "rope"
-	desc = "A woven hemp rope. Useful for countless crafts, or to tie someone up in a pinch."
+	desc = "A woven hemp rope."
 	gender = PLURAL
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "rope"

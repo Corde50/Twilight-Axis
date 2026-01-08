@@ -72,6 +72,8 @@
 	return ..()
 
 /obj/item/mattcoin/proc/repeat_message(message, atom/A, tcolor, message_language)
+	if(A == src)
+		return
 	if(!ismob(loc))
 		return
 	if(tcolor)

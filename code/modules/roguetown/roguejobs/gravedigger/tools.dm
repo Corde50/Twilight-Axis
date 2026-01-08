@@ -91,6 +91,7 @@
 		if(heldclod)
 			if(istype(T, /turf/open/water))
 				qdel(heldclod)
+//				T.ChangeTurf(/turf/open/floor/rogue/dirt/road, flags = CHANGETURF_INHERIT_AIR)
 			else
 				heldclod.forceMove(T)
 			heldclod = null
@@ -100,9 +101,6 @@
 		if(istype(T, /turf/open/floor/rogue/grass) || istype(T, /turf/open/floor/rogue/grassred) || istype(T, /turf/open/floor/rogue/grassyel) || istype(T, /turf/open/floor/rogue/grasscold))
 			to_chat(user, span_warning("There is grass in the way."))
 			return
-		if(istype(T, /turf/open/floor/rogue/snow))
-			T.ChangeTurf(/turf/open/floor/rogue/dirt, flags = CHANGETURF_INHERIT_AIR)
-			to_chat(user, span_warning("You scoop away the snow!"))
 		return
 	. = ..()
 
@@ -298,7 +296,7 @@
 
 /obj/structure/closet/burial_shroud
 	name = "winding sheet"
-	desc = "A length of thin fabric used to encase the deceased."
+	desc = ""
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "shroud"
 	density = FALSE

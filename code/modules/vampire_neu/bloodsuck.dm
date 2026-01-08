@@ -70,7 +70,7 @@
 	else
 		blood_handle |= BLOOD_PREFERENCE_LIVING
 
-	if(HAS_TRAIT(victim, TRAIT_CLERGY) || HAS_TRAIT(victim, TRAIT_INQUISITION))
+	if(victim.job in list("Priest", "Priestess", "Cleric", "Acolyte", "Templar", "Churchling", "Crusader", "Inquisitor"))
 		blood_handle |= BLOOD_PREFERENCE_HOLY
 	if(VVictim)
 		blood_handle |= BLOOD_PREFERENCE_KIN
@@ -111,20 +111,17 @@
 
 	if(!victim.clan && victim.mind && ishuman(victim) && VDrinker.generation > GENERATION_THINBLOOD && victim.blood_volume <= BLOOD_VOLUME_BAD)
 		var/datum/antagonist/vampire/vdrinker = mind?.has_antag_datum(/datum/antagonist/vampire)
-		if((vdrinker.max_thralls <= 0) || (isnull(vdrinker.max_thralls))) //thin bloods or low level vampires can't make thralls, incase they get past the last check by leveling up off others
-			to_chat(src, span_warning("I cannot sire thralls, my blood is too weak!"))
-		else
-			if(vdrinker.thrall_count >= vdrinker.max_thralls) //you've hit your max
-				to_chat(src, span_warning("I cannot sire anymore thralls.."))
+		if(vdrinker.thrall_count < vdrinker.max_thralls || !vdrinker.max_thralls)
+			if(alert(src, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
+				to_chat(src, span_warning("I decide [victim] is unworthy."))
 			else
-				if(alert(src, "Would you like to sire a new spawn?", "THE CURSE OF KAIN", "MAKE IT SO", "I RESCIND") != "MAKE IT SO")
-					to_chat(src, span_warning("I decide [victim] is unworthy."))
-				else
-					visible_message(span_danger("[src] begins channeling their energies to [victim]!"))
-					if(!do_mob(src, victim, 7 SECONDS, double_progress = TRUE, can_move = FALSE))
-						to_chat(src, span_warning("I was interrupted during my siring!"))
-						return
-					INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/carbon/human, vampire_conversion_prompt), src)
+				visible_message(span_danger("[src] begins channeling their energies to [victim]!"))
+				if(!do_mob(src, victim, 7 SECONDS, double_progress = TRUE, can_move = FALSE))
+					to_chat(src, span_warning("I was interrupted during my siring!"))
+					return
+				INVOKE_ASYNC(victim, TYPE_PROC_REF(/mob/living/carbon/human, vampire_conversion_prompt), src)
+		else
+			to_chat(src, span_warning("I cannot sire anymore thralls.."))
 
 /mob/living/carbon/human/proc/vampire_conversion_prompt(mob/living/carbon/sire)
 	if(!mind)

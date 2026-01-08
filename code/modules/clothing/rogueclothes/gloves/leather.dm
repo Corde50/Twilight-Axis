@@ -16,10 +16,6 @@
 	unarmed_bonus = 1.1
 	color = "#66584c"
 	salvage_result = null // Recipe makes 2 so we cannot make this salvageable
-	cold_protection = 3
-
-/obj/item/clothing/gloves/roguetown/leather/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
 
 /obj/item/clothing/gloves/roguetown/leather/black
 	color = CLOTHING_BLACK

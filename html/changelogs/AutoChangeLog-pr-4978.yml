@@ -1,0 +1,5 @@
+author: "Ryan180602"
+delete-after: True
+changes:
+  - balance: "Slurbows can be shot 1-handed with aim penalty."
+  - balance: "Dual Wielder now affects slurbows."

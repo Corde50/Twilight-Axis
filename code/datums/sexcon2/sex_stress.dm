@@ -1,7 +1,3 @@
-/datum/stressevent/cumself
-	timer = 10 MINUTES
-	stressadd = -1
-	desc = "<span class='green'>I came by myself.</span>"
 
 /datum/stressevent/cumok
 	timer = 10 MINUTES

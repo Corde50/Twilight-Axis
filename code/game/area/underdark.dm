@@ -2,7 +2,6 @@
 	name = "Central Underdark" // Northern is Sunken City
 	icon_state = "cavewet"
 	warden_area = FALSE
-	drow_area = TRUE
 	first_time_text = "The Underdark" // This is where most people will enter Underdark
 	ambientsounds = AMB_CAVEWATER
 	ambientnight = AMB_CAVEWATER

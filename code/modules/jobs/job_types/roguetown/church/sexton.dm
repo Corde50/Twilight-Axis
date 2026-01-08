@@ -1,6 +1,6 @@
-/datum/job/roguetown/sexton
+/datum/job/roguetown/churchling
 	title = "Sexton"
-	flag = SEXTON
+	flag = CHURCHLING
 	department_flag = CHURCHMEN
 	faction = "Station"
 	total_positions = 2
@@ -11,25 +11,25 @@
 	tutorial = "You are the groundskeeper for the local church, and are responsible for all the little jobs that keep it running. \
 	Your duties range from digging graves and cleaning pews to managing the stores and conducting church business."
 
-	outfit = /datum/outfit/job/roguetown/sexton
-	display_order = JDO_SEXTON
+	outfit = /datum/outfit/job/roguetown/churchling
+	display_order = JDO_CHURCHLING
 	give_bank_account = TRUE
 	min_pq = -10
 	max_pq = null
 	round_contrib_points = 2
-	advclass_cat_rolls = list(CTAG_sexton = 2)
+	advclass_cat_rolls = list(CTAG_CHURCHLING = 2)
 	job_subclasses = list(
-		/datum/advclass/sexton
+		/datum/advclass/churchling
 	)
 	job_traits = list(TRAIT_HOMESTEAD_EXPERT)
 
-/datum/advclass/sexton
+/datum/advclass/churchling
 	name = "Sexton"
 	tutorial = "You are the groundskeeper for the local church, and are responsible for all the little jobs that keep it running. \
 	Your duties range from digging graves and cleaning pews to managing the stores and conducting church business."
-	outfit = /datum/outfit/job/roguetown/sexton/basic
+	outfit = /datum/outfit/job/roguetown/churchling/basic
 	cmode_music = 'sound/music/combat_holy.ogg'
-	category_tags = list(CTAG_SEXTON)
+	category_tags = list(CTAG_CHURCHLING)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 1,
@@ -45,7 +45,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/sexton/basic/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/churchling/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
@@ -84,7 +84,7 @@
 		if(/datum/patron/divine/ravox)
 			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
 		if(/datum/patron/divine/xylix)
-			neck = /obj/item/clothing/neck/roguetown/psicross/xylix
+			neck = /obj/item/clothing/neck/roguetown/luckcharm
 		else
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 

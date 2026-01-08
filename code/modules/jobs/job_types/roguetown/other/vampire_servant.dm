@@ -1,7 +1,7 @@
 /datum/job/roguetown/vampire_servant
 	title = "Vampire Servant"
 	flag = VAMPIRE_SERVANT
-	department_flag = ANTAGONIST
+	department_flag = SLOP
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0

@@ -9,9 +9,9 @@
 	antag_flag = ROLE_WEREWOLF
 	shared_occurence_type = SHARED_HIGH_THREAT
 
-	denominator = 50
+	denominator = 80
 
-	base_antags = 2
+	base_antags = 1
 	maximum_antags = 2
 	min_players = 25
 	weight = 7

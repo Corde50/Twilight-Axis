@@ -8,8 +8,6 @@
 		prob2defend = 0
 	
 	if(!can_see_cone(user))
-		if(!H.get_tempo_bonus(TEMPO_TAG_NOLOS_PARRY))
-			return FALSE
 		if(d_intent == INTENT_PARRY)
 			return FALSE
 		else
@@ -25,10 +23,7 @@
 		return FALSE
 	if(pulledby || pulling)
 		return FALSE
-
-	var/parrydelay = setparrytime
-	parrydelay -= get_tempo_bonus(TEMPO_TAG_PARRYCD_BONUS)
-	if(world.time < last_parry + parrydelay)
+	if(world.time < last_parry + setparrytime)
 		if(!istype(rmb_intent, /datum/rmb_intent/riposte))
 			return FALSE
 	if(has_status_effect(/datum/status_effect/debuff/exposed))
@@ -92,10 +87,6 @@
 
 	if(intenty.masteritem)
 		attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
-
-		if(intenty.sharpness_penalty)
-			intenty.masteritem.remove_bintegrity(intenty.sharpness_penalty)
-
 		prob2defend -= (attacker_skill * 20)
 		if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
 			var/spdmod = ((user.STASPD - src.STASPD) * 10)
@@ -132,10 +123,6 @@
 			var/mob/living/carbon/human/SH = H
 			var/sentinel = SH.calculate_sentinel_bonus()
 			prob2defend += sentinel
-
-	if(HAS_TRAIT(U, TRAIT_ARMOUR_LIKED))
-		if(HAS_TRAIT(U, TRAIT_FENCERDEXTERITY))
-			prob2defend -= 5
 
 	prob2defend = clamp(prob2defend, 5, 90)
 	if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
@@ -248,15 +235,9 @@
 				var/sharp_loss = SHARPNESS_ONHIT_DECAY
 				if(used_weapon == offhand)
 					intdam = INTEG_PARRY_DECAY_NOSHARP
-
 				if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 					sharp_loss += STRONG_SHP_BONUS
 					intdam += STRONG_INTG_BONUS
-          
-				var/tempobonus = H.get_tempo_bonus(TEMPO_TAG_DEF_INTEGFACTOR)
-				if(tempobonus)	//It is either null or 0.1 to 1, multiplication by null results in 0, so we check.
-					intdam *= tempobonus
-         
 				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
 				used_weapon.remove_bintegrity(sharp_loss, user)
 			return TRUE
@@ -287,8 +268,6 @@
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		//Tempo bonus
-		parrydrain -= H.get_tempo_bonus(TEMPO_TAG_STAMLOSS_PARRY)
 		if(H.stamina_add(parrydrain))
 			if(W)
 				playsound(get_turf(src), pick(W.parrysound), 100, FALSE)
@@ -324,9 +303,6 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		//Tempo bonus
-		parrydrain -= H.get_tempo_bonus(TEMPO_TAG_STAMLOSS_PARRY)
-
 		if(H.stamina_add(parrydrain))
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			src.visible_message(span_warning("<b>[src]</b> parries [user]!"))

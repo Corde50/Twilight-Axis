@@ -60,7 +60,6 @@
 	desc = "A comfortable warm hat lined with fur."
 	icon_state = "hatfur"
 	sewrepair = TRUE
-	cold_protection = 5
 
 /obj/item/clothing/head/roguetown/papakha
 	name = "papakha"
@@ -71,14 +70,12 @@
 	blocksound = SOFTHIT
 	salvage_result = /obj/item/natural/fur
 	salvage_amount = 1
-	cold_protection = 10
 
 /obj/item/clothing/head/roguetown/hatblu
 	name = "fur hat"
 	desc = "A blue hat lined with fur."
 	icon_state = "hatblu"
 	sewrepair = TRUE
-	cold_protection = 5
 
 /obj/item/clothing/head/roguetown/fisherhat
 	name = "straw hat"
@@ -422,7 +419,7 @@
 
 /obj/item/clothing/head/roguetown/witchhat
 	name = "witch hat"
-	desc = "Fair is foul, and foul is fair; Hover through the fog and filthy air."
+	desc = ""
 	icon_state = "witch"
 	item_state = "witch"
 	icon = 'icons/roguetown/clothing/head.dmi'
@@ -442,8 +439,7 @@
 /obj/item/clothing/head/roguetown/helmet/tricorn
 	slot_flags = ITEM_SLOT_HEAD
 	name = "tricorn"
-	desc = "A triangular hat with its brim turned in on itself. Quite a new-fangled design, but one gaining popularity \
-	among sailors in particular."
+	desc = ""
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "tricorn"
 	armor = ARMOR_CLOTHING
@@ -469,8 +465,7 @@
 /obj/item/clothing/head/roguetown/helmet/bandana
 	slot_flags = ITEM_SLOT_HEAD
 	name = "bandana"
-	desc = "A simple triangular length of fabric, typically worn tied around the head as decoration, or to constrict \
-	long hair during intensive work."
+	desc = ""
 	body_parts_covered = HEAD|HAIR|EARS|NOSE
 	icon_state = "bandana"
 	armor = ARMOR_CLOTHING

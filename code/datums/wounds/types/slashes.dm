@@ -195,12 +195,6 @@
 	mob_overlay = "cut"
 	can_sew = TRUE
 	can_cauterize = FALSE	//Ouch owie oof
-	severity_names = list(
-		"light" = 5,
-		"deep" = 10,
-		"gnarly" = 15,
-		"lethal" = 20,
-	)
 
 //Lashing (Whip) Omniwounds
 //Vaguely: Painful, huge bleeds, but nearly nothing at all through any armor.
@@ -241,12 +235,6 @@
 	mob_overlay = "cut"
 	can_sew = TRUE
 	can_cauterize = FALSE	//Ouch owie oof
-	severity_names = list(
-		"light" = 5,
-		"deep" = 10,
-		"gnarly" = 15,
-		"lethal" = 20,
-	)
 
 //Special Punish omniwounds for whip (or anything else if desired) intent.
 //Vaguely: Really very giga painful. Not very bleedy. Can still be sewn!

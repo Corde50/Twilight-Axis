@@ -7,9 +7,8 @@
 
 /datum/statpack/wildcard/fated
 	name = "Fated"
-	desc = "The first or the last - let destiny's fickle loom decree what your fate shall be. Allows for a second virtue."
+	desc = "The first or the last - let destiny's fickle loom decree what your fate shall be."
 	stat_array = list(STAT_STRENGTH = list(-2, 2), STAT_PERCEPTION = list(-2, 2), STAT_INTELLIGENCE = list(-2, 2), STAT_CONSTITUTION = list(-2, 2), STAT_WILLPOWER = list(-2, 2), STAT_SPEED = list(-2, 2), STAT_FORTUNE = list(-2, 2))
-	virtuous = TRUE
 
 /datum/statpack/wildcard/frail
 	name = "Frail"
@@ -23,5 +22,4 @@
 /datum/statpack/wildcard/virtuous
 	name = "Virtuous"
 	desc = "The breadth of my being is one of many, distinguished talents. \n (Allows access to 'virtues', special traits/quirks that replace the bonus normally given by a statpack.)"
-	virtuous = TRUE
 

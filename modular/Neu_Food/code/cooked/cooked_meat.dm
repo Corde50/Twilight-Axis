@@ -45,7 +45,7 @@
 			add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
 			qdel(I)
 			qdel(src)
-
+	
 	if(istype(I, /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked))
 		playsound(get_turf(user), 'sound/foley/dropsound/food_drop.ogg', 40, TRUE, -1)
 		to_chat(user, "<span class='notice'>Adding carrots...</span>")
@@ -60,7 +60,6 @@
 
 /* .............   Roast Pork   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/fatty/roast
-	eat_effect = null
 	name = "roast pork"
 	desc = "A hunk of pigflesh, roasted to a perfect crispy texture"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat.dmi'
@@ -135,7 +134,7 @@
 	cooked_type = null
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = MEAL_MEAGRE)
 	rotprocess = SHELFLIFE_DECENT
-
+	
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/attackby(obj/item/I, mob/user, params)
 	var/obj/item/reagent_containers/peppermill/mill = I
@@ -177,7 +176,7 @@
 	portable = FALSE
 	color = "#ffc0c0"
 	tastes = list("spicy birdmeat" = 1)
-	eat_effect = /datum/status_effect/buff/mealbuff
+	eat_effect = /datum/status_effect/buff/foodbuff
 
 /*	.............   Frybird   ................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet/fried

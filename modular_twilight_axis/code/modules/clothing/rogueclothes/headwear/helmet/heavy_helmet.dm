@@ -20,10 +20,10 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/raneshi_hmamluk/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/cloth) && !detail_tag)
-		var/choice = input(user, "Choose a color.", "Orle") as anything in COLOR_MAP
+		var/choice = input(user, "Choose a color.", "Orle") as anything in colorlist
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
-		detail_color = COLOR_MAP[choice]
+		detail_color = colorlist[choice]
 		detail_tag = "_detail"
 		update_icon()
 		if(loc == user && ishuman(user))
@@ -79,6 +79,18 @@
 	desc = "A helmet with a great, black plume. Order shall guide your hand. Strike sure. Strike true. For none may question your intent."
 	icon_state = "astratahelm_plume"
 	item_state = "astratahelm_plume"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'
+	adjustable = CAN_CADJUST
+
+/obj/item/clothing/head/roguetown/helmet/heavy/astratan/oldrw/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
+
+/obj/item/clothing/head/roguetown/helmet/heavy/eoran/resprite
+	name = "eoran helmet"
+	desc = "A visage of beauty, this helm made in soft pink and beige reminds one of the grace of Eora."
+	icon_state = "helmet_eora"
+	item_state = "helmet_eora"
 	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'
 	adjustable = CAN_CADJUST

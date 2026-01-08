@@ -102,8 +102,7 @@
 
 /obj/structure/fluff/walldeco/sparrowflag
 	name = "sparrow flag"
-	desc = "A flag of coarse fabric bearing the symbol of a blood-red sparrow, its wings unfurled. A symbol of mercenaries \
-	cut-throats, and all those willing to spill blood for gold. "
+	desc = ""
 	icon_state = "sparrow"
 
 /obj/structure/fluff/walldeco/xavo
@@ -118,8 +117,7 @@
 
 /obj/structure/fluff/walldeco/artificerflag
 	name = "Artificer's Guild"
-	desc = "Fine fabric bears the symbol of a square and compass, heraldry of the Guild of Craft. Artisans of beautiful \
-	works, and jealous protectors of the monopoly of their business."
+	desc = ""
 	icon_state = "artificer"
 
 /obj/structure/fluff/walldeco/maidendrape
@@ -130,9 +128,8 @@
 	pixel_y = 32
 
 /obj/structure/fluff/walldeco/wallshield
-	name = "decorative shield"
-	desc = "This is a large, broad shield attached to a wall as decoration. Often used to denote structures operated by \
-	a city's garrison."
+	name = ""
+	desc = ""
 	icon_state = "wallshield"
 
 /obj/structure/fluff/walldeco/sign/merchantsign

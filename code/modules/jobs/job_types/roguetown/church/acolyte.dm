@@ -37,7 +37,6 @@
 		STATKEY_WIL = 2,
 		STATKEY_SPD = 1
 	)
-	age_mod = /datum/class_age_mod/acolyte
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
@@ -147,7 +146,7 @@
 			cloak = /obj/item/clothing/cloak/templar/xylixian
 			wrists = /obj/item/clothing/wrists/roguetown/wrappings
 			shoes = /obj/item/clothing/shoes/roguetown/sandals
-			armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
+			armor = /obj/item/clothing/suit/roguetown/shirt/robe/black	
 			neck = /obj/item/clothing/neck/roguetown/psicross/xylix
 			mask = /obj/item/clothing/mask/rogue/facemask/xylixmask //TA edit
 			H.cmode_music = 'sound/music/combat_jester.ogg'
@@ -169,6 +168,8 @@
 
 /datum/outfit/job/roguetown/monk/basic/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
 	// -- Start of section for god specific bonuses --
 	if(H.patron?.type == /datum/patron/divine/undivided)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
@@ -201,6 +202,9 @@
 		ADD_TRAIT(H, TRAIT_BEAUTIFUL, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_EMPATH, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/cmode/church/combat_eora.ogg'
+		H.mind.special_items["Pink Robe"] = /obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite/pink
+		H.mind.special_items["Blue Robe"] = /obj/item/clothing/suit/roguetown/shirt/robe/eora/resprite
+		H.mind.special_items["Alt Tabard"] = /obj/item/clothing/cloak/templar/eoran/alt
 	if(H.patron?.type == /datum/patron/divine/malum) // Craft and Creativity - they can make stuff.
 		ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
 		H.adjust_skillrank(/datum/skill/craft/blacksmithing, 2, TRUE)
@@ -211,6 +215,7 @@
 		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		H.adjust_skillrank_up_to(/datum/skill/combat/staves, 3, TRUE) //On par with an Adventuring Monk. Seems quite fitting.
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_BATTLEMASTER, TRAIT_GENERIC)
 	if(H.patron?.type == /datum/patron/divine/xylix)  // Trickery and Inspiration - muxic and rogueish skills
 		H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)

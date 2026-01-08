@@ -3,7 +3,7 @@
 	icon = 'icons/roguetown/misc/bookshelf.dmi'
 	icon_state = "bookcase"
 	var/based = "a"
-	desc = "Refuge for few, an irrelevance to most."
+	desc = ""
 	anchored = FALSE
 	density = TRUE
 	opacity = 1

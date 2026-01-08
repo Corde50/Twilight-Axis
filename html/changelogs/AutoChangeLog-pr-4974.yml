@@ -1,0 +1,5 @@
+author: "BurpleBineapple"
+delete-after: True
+changes:
+  - bugfix: "Fixes hardened leather bracers having the lower durability than its regular counterpart."
+  - bugfix: "Fixes a broken side-state icon for hardened bracers on female sprites."

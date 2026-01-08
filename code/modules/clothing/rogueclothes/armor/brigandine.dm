@@ -26,13 +26,13 @@
 	if(detail_tag)
 		return
 	var/the_time = world.time
-	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in COLOR_MAP
+	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in CLOTHING_COLOR_NAMES
 	if(!pickedcolor)
 		return
 	if(world.time > (the_time + 30 SECONDS))
 		return
 	detail_tag = "_det"
-	detail_color = COLOR_MAP[pickedcolor]
+	detail_color = clothing_color2hex(pickedcolor)
 	update_icon()
 	if(ismob(loc))
 		var/mob/L = loc
@@ -102,13 +102,13 @@
 	if(detail_tag)
 		return
 	var/the_time = world.time
-	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in COLOR_MAP
+	var/pickedcolor = input(user, "Select a color.","Brigandine Color") as null|anything in CLOTHING_COLOR_NAMES
 	if(!pickedcolor)
 		return
 	if(world.time > (the_time + 30 SECONDS))
 		return
 	detail_tag = "_detail"
-	detail_color = COLOR_MAP[pickedcolor]
+	detail_color = clothing_color2hex(pickedcolor)
 	update_icon()
 	if(ismob(loc))
 		var/mob/L = loc
@@ -172,8 +172,8 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine/haraate/attack_right(mob/user)
 	..()
 	if(!picked)
-		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in COLOR_MAP
-		var/playerchoice = COLOR_MAP[choice]
+		var/choice = input(user, "Choose a color.", "Uniform colors") as anything in colorlist
+		var/playerchoice = colorlist[choice]
 		picked = TRUE
 		detail_color = playerchoice
 		detail_tag = "_detail"

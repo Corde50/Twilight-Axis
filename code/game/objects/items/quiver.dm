@@ -81,7 +81,6 @@
 						var/mob/M = loc
 						if(HAS_TRAIT(M, TRAIT_COMBAT_AWARE))
 							M.balloon_alert(M, "[length(arrows)] left...")
-					update_icon()
 					break
 		return
 	..()

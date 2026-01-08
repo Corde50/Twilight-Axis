@@ -76,16 +76,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			usr.visible_message("<span class='warning'>[usr] starts unbandaging [usr.p_their()] [L.name].</span>","<span class='warning'>I start unbandaging [L.name]...</span>")
 		else
 			usr.visible_message("<span class='warning'>[usr] starts unbandaging [src]'s [L.name].</span>","<span class='warning'>I start unbandaging [src]'s [L.name]...</span>")
-
-		var/used_time = 5 SECONDS
-		var/medskill = 0
-
-		if(ishuman(usr))
-			var/mob/living/carbon/human/human_user = usr
-			medskill = human_user.get_skill_level(/datum/skill/misc/medicine)
-			used_time -= ((medskill * 10) + (human_user.STASPD / 2)) //With 20 SPD you can insta unbandage at max medicine.
-
-		if(do_after(usr, used_time, needhand = TRUE, target = src))
+		if(do_after(usr, 50, needhand = TRUE, target = src))
 			if(QDELETED(I) || QDELETED(L) || (L.bandage != I))
 				return
 			L.remove_bandage()
@@ -175,14 +166,14 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		if(!ishuman(src))
 			return
 		var/success = FALSE
-		var/obscured_name = FALSE
+		var/obscured_name = FALSE 
 
 		var/static/list/unknown_names = list(
 		"Unknown",
 		"Unknown Man",
 		"Unknown Woman",
 		)
-
+		
 		var/mob/living/carbon/human/H = src
 		var/mob/living/carbon/human/user = usr
 		var/intellectual = HAS_TRAIT(user, TRAIT_INTELLECTUAL)
@@ -196,7 +187,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			to_chat(user, span_info("They've moved too far away!"))
 			return
 		user.visible_message("[user] begins assessing [src].")
-
+		
 		if(do_mob(user, src, ((intellectual ? 20 : 40)) - (user.STAINT - 10) - (user.STAPER - 10) - user.get_skill_level(/datum/skill/misc/reading), uninterruptible = intellectual, double_progress = (intellectual ? FALSE : TRUE)))
 			var/is_guarded = HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS)	//Will scramble Stats and prevent skills from being shown
 			var/is_smart = FALSE	//Maximum info (all skills, gear and stats) either Intellectual virtue or having high enough PER / INT / Reading
@@ -204,7 +195,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			var/is_normal = FALSE	//High amount of info -- most gear slots, combat skills. No stats.
 			//If you don't get any of these, you'll still get to see 3 gear slots and shown weapon skills in Assess.
 			if(intellectual || ((user.STAINT - 10) + (user.STAPER - 10) + user.get_skill_level(/datum/skill/misc/reading)) >= 10)
-				is_smart = TRUE
+				is_smart = TRUE	
 			if(user.STAINT < 10 && !is_smart)
 				is_stupid = TRUE
 			if(!is_smart && !is_stupid && ((user.STAINT - 10) + (user.STAPER - 10) + user?.get_skill_level(/datum/skill/misc/reading)) >= 5)
@@ -243,7 +234,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 			var/list/coverage_exposed = list(READABLE_ZONE_HEAD, READABLE_ZONE_CHEST, READABLE_ZONE_ARMS, READABLE_ZONE_L_ARM, READABLE_ZONE_R_ARM, READABLE_ZONE_LEGS, READABLE_ZONE_L_LEG, READABLE_ZONE_R_LEG, READABLE_ZONE_NOSE, READABLE_ZONE_MOUTH, READABLE_ZONE_EYES, READABLE_ZONE_NECK, READABLE_ZONE_VITALS, READABLE_ZONE_GROIN, READABLE_ZONE_HANDS, READABLE_ZONE_L_HAND, READABLE_ZONE_R_HAND, READABLE_ZONE_FEET, READABLE_ZONE_L_FOOT, READABLE_ZONE_R_FOOT)
 			var/list/coverage = list()	//All of the covered areas
 			var/list/blunt_max = list()	//Highest armor prot values
-			var/list/slash_max = list()
+			var/list/slash_max = list()	
 			var/list/stab_max = list()
 			var/list/piercing_max = list()
 			for(var/part in body_parts)
@@ -284,7 +275,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 								coverage_exposed.Remove(READABLE_ZONE_ARMS, READABLE_ZONE_R_ARM)	//Since individual limbs can be exposed, this is needed for the accuracy / granularity of the printout.
 							if(READABLE_ZONE_L_LEG)
 								coverage_exposed.Remove(READABLE_ZONE_LEGS, READABLE_ZONE_L_LEG)	//However it do be ugly.
-							if(READABLE_ZONE_R_LEG)
+							if(READABLE_ZONE_R_LEG)	
 								coverage_exposed.Remove(READABLE_ZONE_LEGS, READABLE_ZONE_R_LEG)
 							if(READABLE_ZONE_L_HAND)
 								coverage_exposed.Remove(READABLE_ZONE_HANDS, READABLE_ZONE_L_HAND)
@@ -329,7 +320,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 							else
 								coverage.Remove(READABLE_ZONE_FEET)
 						else
-							coverage.Remove(READABLE_ZONE_FEET)
+							coverage.Remove(READABLE_ZONE_FEET)		
 			for(var/exposedzone in coverage_exposed)	//We also filter out redundancies from the exposed remainder. Mostly L / Rs if there's a combined flag that slipped through.
 				switch(exposedzone)
 					if(READABLE_ZONE_HANDS)
@@ -409,7 +400,7 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 									dat += "-----------------------<br>"
 								else
 									continue
-
+					
 			dat += "</td>"
 			dat += "</tr>"
 			var/datum/browser/popup = new(user, "assess", ntitle = "[src] Assesment", nwidth = 1000, nheight = 600)
@@ -418,29 +409,6 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		else
 			user.visible_message("[user] fails to assess [src]!")
 		return
-
-	if(href_list["task"] == "view_rumours_gossip")
-		if(!ismob(usr))
-			return
-		var/msg = ""
-		if(rumour && length(rumour))
-			var/rumour_display = rumour
-			rumour_display = html_encode(rumour_display)
-			rumour_display = parsemarkdown_basic(rumour_display, hyperlink = TRUE)
-			msg += "<b>You recall what you heard around Town about [src]...</b><br>[rumour_display]"
-		if(((HAS_TRAIT(usr, TRAIT_NOBLE)) || observer_privilege) && length(noble_gossip))
-			if(msg)
-				msg += "<br><br>"
-			var/gossip_display = noble_gossip
-			gossip_display = html_encode(gossip_display)
-			gossip_display = parsemarkdown_basic(gossip_display, hyperlink = TRUE)
-			msg += "<b>You recall what the other Blue-bloods hushed about [src]...</b><br>[gossip_display]"
-		if(msg)
-			to_chat(usr, "<span class='info'>[msg]</span>")
-		else	//Edge-case of there being ONLY noble gossip, but we aren't a noble.
-			to_chat(usr, "<span class='info'>Any tales of intrigue of this one are reserved to the nobility...</span>")
-		return
-
 	return ..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that. - I made it worse sorry guys.
 
 //Sorry colorblind folks...

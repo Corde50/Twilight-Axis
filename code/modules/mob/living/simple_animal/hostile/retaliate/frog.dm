@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/frog
 	name = "frog"
-	desc = "Ribbit! Ribbit! Croak!"
+	desc = ""
 	icon_state = "frog"
 	icon_living = "frog"
 	icon_dead = "frog_dead"

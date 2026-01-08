@@ -45,7 +45,6 @@
 
 /obj/item/paper
 	name = "parchment"
-	desc = "Animal skin dried under tension to create a robust medium for writing."
 	gender = NEUTER
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "paper"

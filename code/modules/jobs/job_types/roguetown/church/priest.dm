@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 /datum/job/roguetown/priest
 	title = "Bishop"
-	flag = BISHOP
+	flag = PRIEST
 	department_flag = CHURCHMEN
 	faction = "Station"
 	total_positions = 1
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	spells = list(/obj/effect/proc_holder/spell/invoked/cure_rot, /obj/effect/proc_holder/spell/self/convertrole/templar, /obj/effect/proc_holder/spell/self/convertrole/monk, /obj/effect/proc_holder/spell/invoked/projectile/divineblast, /obj/effect/proc_holder/spell/invoked/wound_heal, /obj/effect/proc_holder/spell/invoked/takeapprentice)
 	outfit = /datum/outfit/job/roguetown/priest
-	display_order = JDO_BISHOP
+	display_order = JDO_PRIEST
 	give_bank_account = TRUE
 	min_pq = 12 // You should know the basics of things if you're going to lead the town's entire religious sector
 	max_pq = null
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	same_job_respawn_delay = 30 MINUTES
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
 	virtue_restrictions = list(/datum/virtue/utility/noble)
-	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_HOMESTEAD_EXPERT, TRAIT_MEDICINE_EXPERT, TRAIT_CLERGY)
+	job_traits = list(TRAIT_CHOSEN, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_HOMESTEAD_EXPERT, TRAIT_MEDICINE_EXPERT)
 	advclass_cat_rolls = list(CTAG_BISHOP = 2)
 	job_subclasses = list(
 		/datum/advclass/bishop
@@ -101,6 +101,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/obj/item/clothing/neck/roguetown/psicross/undivided = 1
 	)
 	H.AddComponent(/datum/component/wise_tree_alert)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank_up_to(/datum/skill/magic/holy, 6, TRUE)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 
@@ -113,6 +115,10 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_heretic_priest)
 	H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/revive)
+	H.mind.special_items["Bishop Cape"] = /obj/item/clothing/cloak/bishop
+	H.mind.special_items["Bishop Hood"] = /obj/item/clothing/head/roguetown/roguehood/bishop
+	H.mind.special_items["Bishop Mask"] = /obj/item/clothing/mask/rogue/ragmask/bishop
+	H.mind.special_items["Bishop Robe"] = /obj/item/clothing/suit/roguetown/shirt/robe/bishop
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Church Funding.")
 	switch(H.patron?.type)
@@ -275,11 +281,12 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		ADD_TRAIT(H, TRAIT_SMITHING_EXPERT, TRAIT_GENERIC)
 	if(H.patron?.type == /datum/patron/divine/ravox)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_BATTLEMASTER, TRAIT_GENERIC)
 
 /datum/job/priest/vice //just used to change the priest title
 	title = "Vice Priest"
 	f_title = "Vice Priestess"
-	flag = BISHOP
+	flag = PRIEST
 	department_flag = CHURCHMEN
 	total_positions = 0
 	spawn_positions = 0
@@ -676,10 +683,6 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	var/mob/living/carbon/human/target = targets[1]
 
 	if(!ishuman(target))
-		revert_cast()
-		return FALSE
-
-	if(target.cmode)
 		revert_cast()
 		return FALSE
 

@@ -17,9 +17,6 @@
 	salvage_result = /obj/item/natural/hide/cured
 	chunkcolor = "#7e5d17"
 
-/obj/item/clothing/suit/roguetown/armor/leather/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/positive, TRAIT_FENCERDEXTERITY)
-
 /obj/item/clothing/suit/roguetown/armor/leather/vest/winterjacket
 	name = "winter jacket"
 	desc = "The most elegant of furs and vivid of royal dyes combined together into a most classy jacket."
@@ -99,10 +96,7 @@
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
-
-/obj/item/clothing/suit/roguetown/armor/leather/studded/ComponentInitialize()
-	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
-
+	
 /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
 	name = "cuir-bouilli armor"
 	desc = "Treated, water-boiled and composite-layered leather armor of fine Otavan make."
@@ -163,13 +157,6 @@
 	armor = ARMOR_LEATHER_GOOD
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	sellprice = 25
-
-/obj/item/clothing/suit/roguetown/armor/leather/heavy/shadowvest
-	name = "drowcraft vest"
-	desc = "Traditional Drow armour, made from the hide of one of the Underdark's many beasts. Durable yet still flexible, perfect for skirmishers."
-	icon_state = "shadowvest"
-	item_state = "shadowvest"
-	allowed_race = NON_DWARVEN_RACE_TYPES
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter
 	name = "fencing jacket"

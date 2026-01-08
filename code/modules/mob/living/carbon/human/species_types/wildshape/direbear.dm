@@ -16,14 +16,13 @@
 		adjust_skillrank(/datum/skill/misc/athletics, SKILL_LEVEL_JOURNEYMAN, TRUE)
 
 		STASTR = 14
-		STACON = 14
-		STAWIL = 13
-		STAPER = 8
+		STACON = 12
+		STAWIL = 12
+		STAPER = 10
 		STASPD = 6
-		STAINT = 8
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/bearclaws)
-		real_name = "direbear"
+		real_name = "Direbear"
 		faction += "bears"
 
 /mob/living/carbon/human/species/wildshape/bear/buckle_mob(mob/living/target, force = TRUE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0)
@@ -43,8 +42,6 @@
 		TRAIT_HARDDISMEMBER,
 		TRAIT_PIERCEIMMUNE,
 		TRAIT_LONGSTRIDER,
-		TRAIT_CRITICAL_RESISTANCE,
-		TRAIT_NOPAINSTUN,
 	)
 	inherent_biotypes = MOB_HUMANOID
 	armor = 5
@@ -110,7 +107,7 @@
 	attack_verb = list("claws", "mauls", "eviscerates")
 	animname = "cut"
 	hitsound = "genslash"
-	penfactor = 40
+	penfactor = 10
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "slashes the air!"
@@ -126,9 +123,9 @@
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	max_blade_int = 600
 	max_integrity = 600
-	force = 25
+	force = 20
 	block_chance = 0
-	wdefense = 6
+	wdefense = 2
 	blade_dulling = DULLING_SHAFT_WOOD
 	associated_skill = /datum/skill/combat/unarmed
 	wlength = WLENGTH_NORMAL

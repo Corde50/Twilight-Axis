@@ -1,6 +1,5 @@
 /obj/structure/fluff/walldeco/mageguild
 	name = "Mage's Guild"
-	desc = "A white flame upon a blue backdrop. Widely used across many regions by institutions of magical learning."
 	icon_state = "mageguild"
 
 /obj/structure/fluff/walldeco/mageguild2

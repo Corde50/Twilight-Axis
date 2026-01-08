@@ -52,6 +52,8 @@
 
 
 /obj/item/listenstone/proc/repeat_message(message, atom/A, tcolor, message_language)
+	if(A == src)
+		return
 	if(tcolor)
 		voicecolor_override = tcolor
 	if(speaking && message)

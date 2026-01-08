@@ -254,7 +254,7 @@
 	bitesize = 3
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	w_class = WEIGHT_CLASS_TINY
-	faretype = FARE_POOR
+	faretype = FARE_FINE
 	tastes = list("cheese" = 1)
 	eat_effect = null
 	rotprocess = SHELFLIFE_LONG
@@ -281,7 +281,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	tastes = list("cheese" = 1)
 	eat_effect = null
-	faretype = FARE_POOR
+	faretype = FARE_FINE
 	rotprocess = SHELFLIFE_SHORT
 	slices_num = null
 	slice_path = null
@@ -327,4 +327,3 @@
 	tastes = list("sugary frosting"=1)
 	faretype = FARE_NEUTRAL
 	foodtype = DAIRY | SUGAR
-	eat_effect = /datum/status_effect/buff/sweet

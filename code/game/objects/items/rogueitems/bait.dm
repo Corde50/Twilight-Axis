@@ -17,7 +17,6 @@
 	var/attraction_chance = 100
 	var/deployed = 0
 	var/deploy_speed = 2 SECONDS
-	var/refund_bag = TRUE
 	resistance_flags = FLAMMABLE
 	grid_height = 32
 	grid_width = 32
@@ -93,11 +92,10 @@
 									if(prob(75))
 										M = GLOB.animal_to_undead[M]
 							new M(T)
-							if(refund_bag)
-								if(prob(66))
-									new /obj/item/storage/roguebag/crafted(T)
-								else
-									new /obj/item/natural/cloth(T)
+							if(prob(66))
+								new /obj/item/storage/roguebag/crafted(T)
+							else
+								new /obj/item/natural/cloth(T)
 							qdel(src)
 					else
 						qdel(src)
@@ -138,7 +136,6 @@
 	name = "bag of leechbait"
 	desc = "Bait that might attract a little pestran friend."
 	icon_state = "baitb"
-	refund_bag = FALSE
 	attracted_types = list(/obj/item/leechtick = 43,
 							/mob/living/simple_animal/hostile/retaliate/rogue/direbear = 5,
 							/mob/living/simple_animal/hostile/retaliate/rogue/troll/bog = 2)

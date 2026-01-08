@@ -1829,7 +1829,8 @@
 /obj/structure/table/church{
 	icon_state = "churchtable_end"
 	},
-/obj/item/reagent_containers/glass/cup/silver/pewter{
+/obj/item/reagent_containers/glass/cup/silver{
+	name = "pewter goblet";
 	pixel_x = -11
 	},
 /turf/open/floor/rogue/blocks,

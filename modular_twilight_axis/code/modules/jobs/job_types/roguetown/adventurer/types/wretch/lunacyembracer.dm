@@ -11,7 +11,6 @@
 	outfit = /datum/outfit/job/roguetown/wretch/lunacyembracer
 	category_tags = list(CTAG_WRETCH)
 	extra_context = "Minimum PQ Required: 30"
-	subclass_languages = list(/datum/language/beast)
 
 	traits_applied = list(
 		TRAIT_NUDIST,
@@ -23,7 +22,8 @@
 		TRAIT_LONGSTRIDER,
 		TRAIT_WOODWALKER,
 		TRAIT_NASTY_EATER,
-		TRAIT_OUTDOORSMAN
+		TRAIT_OUTDOORSMAN,
+		TRAIT_HERESIARCH
 	)
 
 	subclass_skills = list(

@@ -1,7 +1,7 @@
 /datum/job/roguetown/migrant
 	title = "Migrant"
 	flag = MIGRANT
-	department_flag = WANDERERS
+	department_flag = PEASANTS
 	faction = "Station"
 	job_greet_text = FALSE // Migration gives them their own greetings
 
