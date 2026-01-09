@@ -867,6 +867,13 @@
 							src_skill = I.associated_skill
 					var/skilldiff = user.get_skill_level(user_skill) - get_skill_level(src_skill)
 					. += "<font size = 3><i>[skilldiff_report(skilldiff)] in my wielded skill than they are in theirs.</i></font>"
+
+	var/showassess = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(get_dist(src, H) <= ((2 + clamp(floor(((H.STAPER - 10))),-1, 4)) + HAS_TRAIT(user, TRAIT_INTELLECTUAL)))
+			showassess = TRUE
+
 	var/displayed_headshot
 	var/datum/antagonist/vampire/vampireplayer = src.mind?.has_antag_datum(/datum/antagonist/vampire)
 	var/datum/antagonist/lich/lichplayer = src.mind?.has_antag_datum(/datum/antagonist/lich)
@@ -882,6 +889,8 @@
 			. += "<span class='info'><img src=[displayed_headshot] width=100 height=100/></span>"
 		if(flavortext || displayed_headshot || ooc_notes)
 			. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
+		if (showassess)
+			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
 
 	/// Rumours & Gossip
 	if(length(rumour) || length(noble_gossip))
