@@ -466,13 +466,13 @@
 	allowed_races = RACES_NO_CONSTRUCT
 	allowed_patrons = list(/datum/patron/divine/undivided)
 	outfit = /datum/outfit/job/roguetown/martyr
-	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
+	min_pq = 15 //Cus it's a Martyr of the Ten. Get it.
 	max_pq = null
 	round_contrib_points = 4
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JDO_MARTYR
-
+	same_job_respawn_delay = 30 MINUTES
 	give_bank_account = TRUE
 
 	cmode_music = 'sound/music/combat_martyrsafe.ogg'

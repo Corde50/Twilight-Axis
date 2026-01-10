@@ -1,5 +1,5 @@
 /datum/sex_action/sex/other/footjob
-	name = "Jerk them off with feet"
+	name = "Вздрочнуть ножками"
 	check_same_tile = FALSE
 
 /datum/sex_action/sex/other/footjob/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -28,11 +28,11 @@
 	return TRUE
 
 /datum/sex_action/sex/other/footjob/get_start_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] puts [user.p_their()] feet on [target]'s cock...")
+	return span_warning("[user] обхватывает ножками член [target]...")
 
 /datum/sex_action/sex/other/footjob/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
-	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] jerks [target]'s cock with [user.p_their()] feet..."))
+	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective()] вздрачивает ствол [target] своими ступнями..."))
 	playsound(user, 'sound/misc/mat/fingering.ogg', 30, TRUE, -2, ignore_walls = FALSE)
 	// and i had never had c hance to interact with the jesters...
 	if(istype(user.shoes, /obj/item/clothing/shoes/roguetown/jester))
@@ -43,4 +43,4 @@
 	sex_session.handle_passive_ejaculation(target)
 
 /datum/sex_action/sex/other/footjob/get_finish_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	return span_warning("[user] pulls [user.p_their()] feet off [target]'s cock...")
+	return span_warning("[user] перестает надрачивать ствол [target] своими ножками.")

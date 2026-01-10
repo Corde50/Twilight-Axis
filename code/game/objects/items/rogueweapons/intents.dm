@@ -83,6 +83,8 @@
 	/// Extra sharpness drain per successful & parried hit.
 	var/sharpness_penalty = 0
 
+	var/charge_pointer = null // Simple unique charge icon
+	var/charged_pointer = null // Simple unique charged icon
 
 	var/list/static/bonk_animation_types = list(
 		BCLASS_BLUNT,
