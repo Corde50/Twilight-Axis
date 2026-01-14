@@ -58,10 +58,10 @@
 
 // ----------------- combo_core overrides -----------------
 /datum/component/combo_core/soundbreaker/DefineRules()
-	RegisterRule("overture",     list(2,3,1,1,4),	120, PROC_REF(_cb_overture))
+	RegisterRule("overture",     list(2,3,1,4,1),	120, PROC_REF(_cb_overture))
 	RegisterRule("crescendo",    list(2,4,1,4,2),	110, PROC_REF(_cb_crescendo))
 	RegisterRule("blade",        list(5,2,1,4,6),	105, PROC_REF(_cb_blade))
-	RegisterRule("crossfade",    list(3,1,1,4,6),	100, PROC_REF(_cb_crossfade))
+	RegisterRule("crossfade",    list(3,1,6,1,4),	100, PROC_REF(_cb_crossfade))
 	RegisterRule("bass_drop",    list(4,5,3,2),		90,  PROC_REF(_cb_bass_drop))
 	RegisterRule("reverb_cut",   list(5,4,2,3),		80,  PROC_REF(_cb_reverb_cut))
 	RegisterRule("syncopation",  list(1,2,1,6),		70,  PROC_REF(_cb_syncopation))
