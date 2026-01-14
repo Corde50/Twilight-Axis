@@ -27,6 +27,9 @@
 	///bandit stuff
 	var/bandit_goal = 1
 	var/bandit_contribute = 0
+//TA 
+	var/list/cultists = list()
+	var/cult_ascended = FALSE
 
 /proc/vampire_werewolf()
 	var/vampyr = 0
