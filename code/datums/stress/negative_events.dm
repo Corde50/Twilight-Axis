@@ -465,3 +465,8 @@
 	timer = 2 MINUTES
 	stressadd = 3
 	desc = span_boldred("The undermaiden is watching me with disgust!")
+// TA
+/datum/stress_event/hatezizo
+	timer = 99999 MINUTES
+	stress_change = 666 // :)
+	desc = "<span class='red'>ZIZOZIZOZIZO</span>"
