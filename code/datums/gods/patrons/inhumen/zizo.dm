@@ -3,7 +3,9 @@
 	domain = "Progress, Undeath, Hubris, Left Hand Magicks"
 	desc = "A once-mortal snow elf turned god. Her hubris in thinking she could harvest lux from the planet itself led to the elimination of her entire race. Her works are still used to this dae in some cases."
 	worshippers = "Necromancers, Researchers, Warlocks, and the Undead"
-	mob_traits = list(TRAIT_CABAL, TRAIT_ZIZOSIGHT)
+	mob_traits = list(TRAIT_CABAL)
+	traits_tier = list(TRAIT_ZIZOSIGHT = CLERIC_T1)
+	mob_traits = list(TRAIT_CABAL)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison					= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/self/zizo_snuff						= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 					= CLERIC_T1,
@@ -20,6 +22,10 @@
 		"ZIZO IS QUEEN!",
 	)
 	storyteller = /datum/storyteller/zizo
+	added_verbs = list(
+		/mob/living/carbon/human/proc/draw_sigil,
+		/mob/living/carbon/human/proc/praise,
+	)
 
 /datum/patron/inhumen/zizo/post_equip(mob/living/pious)
 	. = ..()
