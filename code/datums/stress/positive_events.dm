@@ -392,7 +392,7 @@
 	desc = list(span_boldred("I SOAKED IN THE BLOOD OF THE THOUSANDS DEAD! GRAGGAR GRAGGAR GRAGGAR!"))
 
 // TA
-/datum/stress_event/lovezizo
-	timer = 99999 MINUTES
-	stress_change = -666 // :)
-	desc = span_green("ZIZOZIZOZIZO")
+/datum/stressevent/lovezizo
+	timer = 666 MINUTES
+	stressadd = -666 // :)
+	desc = list(span_green("ZIZOZIZOZIZO"))
