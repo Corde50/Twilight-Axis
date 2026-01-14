@@ -224,7 +224,7 @@
 	name = "sigils"
 	desc = "Strange runics. They hurt your eyes."
 	icon_state = "center"
-	icon = 'icons/obj/sigils.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/sigils.dmi'
 	clean_type = CLEAN_TYPE_LIGHT_DECAL //the sigils are made out of blood, they should be cleanable with a rag, they are also very easily spammed
 	var/sigil_type
 

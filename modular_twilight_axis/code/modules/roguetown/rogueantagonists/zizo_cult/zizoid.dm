@@ -2,7 +2,7 @@
 	name = "FLESH HOMUNCULUS"
 	desc = null
 	hud_type = /datum/hud/human
-	icon = 'icons/mob/mob.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/zizoid.dmi'
 	icon_state = "FLESH"
 	icon_living = "FLESH"
 
@@ -55,7 +55,7 @@
 	hud_type = /datum/hud/human
 	icon_state = "ascend"
 	icon_living = "ascend"
-	icon = 'icons/mob/32x64.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/zizoid.dmi'
 	move_to_delay = 0
 	base_intents = list(/datum/intent/unarmed/ascendedclaw)
 	melee_damage_lower = 250

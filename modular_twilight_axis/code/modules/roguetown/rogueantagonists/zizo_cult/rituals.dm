@@ -706,8 +706,8 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 		return
 	if(!victim.mind)
 		return
-	//var/mob/living/trl = new /mob/living/simple_animal/hostile/retaliate/blood(place)
-	//victim.mind.transfer_to(trl)
+	var/mob/living/trl = new /mob/living/simple_animal/hostile/retaliate/blood(place)
+	victim.mind.transfer_to(trl)
 	victim.gib()
 
 /datum/ritual/fleshcrafting/gutted
@@ -772,13 +772,13 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	SSmapping.retainer.cult_ascended = TRUE
 	addomen(OMEN_ASCEND)
 	to_chat(cultist, span_userdanger("I HAVE DONE IT! I HAVE REACHED A HIGHER FORM! ZIZO SMILES UPON ME WITH MALICE IN HER EYES TOWARD THE ONES WHO LACK KNOWLEDGE AND UNDERSTANDING!"))
-	//var/mob/living/trl = new /mob/living/simple_animal/hostile/retaliate/blood/ascended(center)
-	//cultist.mind?.transfer_to(trl)
+	/var/mob/living/trl = new /mob/living/simple_animal/hostile/retaliate/blood/ascended(center)
+	cultist.mind?.transfer_to(trl)
 	cultist.gib()
-	//priority_announce("The sky blackens, a dark day for Psydonia.", "Ascension", 'sound/misc/gods/astrata_scream.ogg')
+	priority_announce("The sky blackens, a dark day for Psydonia.", "Ascension", 'sound/misc/gods/astrata_scream.ogg')
 	for(var/mob/living/carbon/human/V in GLOB.human_list)
 		if(V.mind in SSmapping.retainer.cultists)
-			//V.add_stress(/datum/stress_event/lovezizo)
+			V.add_stress(/datum/stress_event/lovezizo)
 		else
-			//V.add_stress(/datum/stress_event/hatezizo)
+			V.add_stress(/datum/stress_event/hatezizo)
 	SSgamemode.roundvoteend = TRUE

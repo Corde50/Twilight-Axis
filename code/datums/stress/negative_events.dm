@@ -447,3 +447,9 @@
 	timer = 5 MINUTES
 	stressadd = 1
 	desc = span_red("Xylix took pity upon me and saved me from the consequences of bad luck. I must do better!")
+
+// TA
+/datum/stress_event/hatezizo
+	timer = 99999 MINUTES
+	stress_change = 666 // :)
+	desc = "<span class='red'>ZIZOZIZOZIZO</span>"

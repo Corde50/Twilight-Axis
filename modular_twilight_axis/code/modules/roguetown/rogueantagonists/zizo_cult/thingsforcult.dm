@@ -44,46 +44,50 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 /obj/item/scrying/eye
 	name = "accursed eye"
 	desc = "It is pulsating."
-	icon = 'icons/roguetown/items/misc.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/scryeye.dmi'
 	icon_state ="scryeye"
 	cooldown = 5 MINUTES
-
+//шадоу плащ но без уникального спрайта, бяка
 /obj/item/clothing/cloak/half/shadowcloak/cult
 	name = "ominous cloak"
 	desc = "Those who wear, thy should beware, for those who do; never come back as who they once were again."
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	body_parts_covered = ARMS|CHEST|VITALS
 	armor = ARMOR_PADDED_GOOD
-
+//котелок, но культа
 /obj/item/clothing/head/roguetown/helmet/skullcap/cult
 	name = "ominous hood"
 	desc = "It echoes with ominous laughter. Worn over a skullcap"
-	icon_state = "warlockhoodd"
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/warlock.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/warlock.dmi'
+	icon_state = "warlockhood"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 	body_parts_covered = NECK|HAIR|EARS|HEAD
-
+//коса культа.. дайте две
 /obj/item/rogueweapon/zizo/neant
 	name = "neant"
 	desc = "A dark scythe with a long chain, used to cut the life essence from people, or whip them into shape. The blade is an ominous purple."
 	icon_state = "neant"
-	icon = 'icons/roguetown/weapons/64.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant.dmi'
 	drop_sound = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/blade_drop.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.75
 	max_blade_int = 200
 	max_integrity = 720
-	possible_item_intents = list(/datum/intent/spear/cut/scythe)
+	possible_item_intents = list(/datum/intent/spear/cut/bardiche)
 	gripped_intents = list(/datum/intent/axe/chop/scythe, /datum/intent/whip, /datum/intent/shoot/neant)
 	thrown_bclass = BCLASS_CUT
 	blade_dulling = DULLING_BASHCHOP
 	wdefense = 8
-	force = 20
+	force = 25
 	force_wielded = 25
 	throwforce = 25
 	minstr = 10
 	sellprice = 550
+	wbalance = WBALANCE_HEAVY
+	associated_skill = /datum/skill/combat/polearms
 
 	COOLDOWN_DECLARE(fire_projectile)
 
