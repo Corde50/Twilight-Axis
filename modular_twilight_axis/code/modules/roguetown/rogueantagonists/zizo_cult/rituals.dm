@@ -369,7 +369,7 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
 	. = ..()
-	new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy(center)
+	new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult(center)
 	to_chat(user, span_notice("The psycross is transmuted into an amulet of Zizo."))
 
 /datum/ritual/transmutation/criminalstool
