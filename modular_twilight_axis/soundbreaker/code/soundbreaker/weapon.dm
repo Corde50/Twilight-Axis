@@ -137,12 +137,7 @@
 							span_boldwarning("I'm disarmed by [user]!"))
 			return
 
-	var/selzone
-	if(sb_zone)
-		selzone = sb_zone
-	else
-		selzone = accuracy_check(user.zone_selected, user, M, /datum/skill/combat/unarmed, user.used_intent)
-
+	var/selzone = accuracy_check(sb_zone, user, M, /datum/skill/combat/unarmed, user.used_intent)
 	if(!isliving(M))
 		return FALSE
 

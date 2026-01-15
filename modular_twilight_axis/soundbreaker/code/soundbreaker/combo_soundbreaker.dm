@@ -15,7 +15,6 @@
 
 	// cached lists for overhead (remove mob vars)
 	var/list/note_history
-	var/list/note_overlays
 
 	// proxy weapon (remove mob var)
 	var/obj/item/soundbreaker_proxy/proxy
@@ -31,7 +30,6 @@
 		return .
 
 	note_history = list()
-	note_overlays = list()
 	RegisterSignal(owner, COMSIG_SOUNDBREAKER_PRIME_NOTE, PROC_REF(_sig_prime_note))
 	RegisterSignal(owner, COMSIG_SOUNDBREAKER_TRY_CONSUME_PREPARED, PROC_REF(_sig_try_consume_prepared))
 	RegisterSignal(owner, COMSIG_SOUNDBREAKER_RIFF_DEFENSE_SUCCESS, PROC_REF(_sig_riff_defense_success))
@@ -53,7 +51,6 @@
 	proxy = null
 
 	note_history = null
-	note_overlays = null
 	return ..()
 
 // ----------------- combo_core overrides -----------------
@@ -168,6 +165,9 @@
 	for(var/path in paths)
 		var/obj/effect/proc_holder/spell/S = new path
 		L.mind.AddSpell(S)
+		granted_spells += S
+
+	spells_granted = TRUE
 
 /datum/component/combo_core/soundbreaker/proc/RevokeSpells()
 	if(!owner)
@@ -391,7 +391,7 @@
 	if(dmg <= 0)
 		return FALSE
 
-	zone = TryGetZone(zone)
+	zone = GetEffectiveHitZone(mob/living/target, zone)
 	var/ap = CalcAP(bclass)
 	return AttackViaPipeline(target, dmg, bclass, damage_type, zone, ap)
 
@@ -698,7 +698,6 @@
 	ClearHistory("rhythm_reset")
 
 // ----------------- small helpers -----------------
-
 /datum/component/combo_core/soundbreaker/proc/TryGetZone(zone)
 	if(zone)
 		return zone
@@ -735,6 +734,16 @@
 	var/turf/dest = get_ranged_target_turf(start, dir, tiles)
 	if(dest)
 		target.safe_throw_at(dest, tiles, 1, owner, force = MOVE_FORCE_NORMAL)
+
+/datum/component/combo_core/soundbreaker/proc/GetEffectiveHitZone(mob/living/target, desired_zone)
+	if(!desired_zone || !owner || !target)
+		return BODY_ZONE_CHEST
+
+	var/obj/item/I = owner.get_active_held_item()
+	var/datum/intent/used_intent = owner.used_intent
+
+	var/eff = accuracy_check(desired_zone, owner, target, /datum/skill/combat/unarmed, used_intent, I)
+	return eff || BODY_ZONE_CHEST
 
 // ----------------- Note visuals (overhead) -----------------
 /datum/component/combo_core/soundbreaker/proc/GetNoteIconState(note_id)
