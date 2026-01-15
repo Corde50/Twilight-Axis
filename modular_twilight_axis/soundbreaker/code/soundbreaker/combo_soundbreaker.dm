@@ -209,7 +209,7 @@
 	else
 		last_input_dir = owner.dir
 
-	RegisterInput(note_id, target, zone, null)
+	RegisterInput(note_id, target, zone)
 	ShowNoteIcon(note_id)
 	AddComboStack()
 
