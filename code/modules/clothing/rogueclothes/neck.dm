@@ -430,6 +430,28 @@
 	color = "#bb9696"
 	chunkcolor = "#532e25"
 	resistance_flags = FIRE_PROOF
+// TA
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
+	name = "zizo dark cult amulet"
+	desc = "This cursed zcross will give something good por followers of Zizo.."
+	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
+	icon_state = "zcross"
+	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
+	sellprice = 0
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CROSS")
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_RING || slot == SLOT_NECK || SLOT_WRISTS)
+		ADD_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/dropped(mob/living/carbon/human/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 	name = "inverted psycross"
