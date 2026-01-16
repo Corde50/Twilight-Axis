@@ -1,4 +1,5 @@
 GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
+GLOBAL_LIST_INIT(ritual_counters, list())
 
 /proc/build_zizo_rituals()
 	. = list()
@@ -21,9 +22,22 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	var/w_req
 	/// If zizo followers can't perform this
 	var/is_cultist_ritual = FALSE
+	var/cultist_number = 0 // Минимальное количество культистов в игре для выполнения ритуала.
+	var/ritual_limit = 0 // Сколько раз можно исполнить ритуал. Если 0, то бесконечное число раз.
 
 /datum/ritual/proc/invoke(mob/living/user, turf/center)
 	return
+
+// Счетчик количества ритуалов
+/proc/get_ritual_count(ritual_name)
+	if(!GLOB.ritual_counters[ritual_name])
+		GLOB.ritual_counters[ritual_name] = 0
+	return GLOB.ritual_counters[ritual_name]
+
+/proc/increment_ritual_count(ritual_name)
+	if(!GLOB.ritual_counters[ritual_name])
+		GLOB.ritual_counters[ritual_name] = 0
+	GLOB.ritual_counters[ritual_name]++
 
 /obj/effect/decal/cleanable/sigil/proc/show_ritual_tgui(mob/living/user)
 	if(!user.client)
@@ -42,6 +56,8 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	
 	if(!length(ritual_categories))
 		return
+	
+	var/current_cultists = length(SSmapping.retainer.cultists)
 	
 	for(var/datum/ritual/ritual_type as anything in ritual_categories)
 		if(is_abstract(ritual_type))
@@ -69,6 +85,19 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	if(!pickritual)
 		pickritual = new ritual_type()
 		GLOB.ritualslist[chosen_ritual_name] = pickritual
+	
+	var/required_cultists = pickritual.cultist_number
+	if(required_cultists > 0)
+		if(current_cultists < required_cultists)
+			to_chat(user, span_danger("This ritual requires at least [required_cultists] cultists, but there are only [current_cultists]. You need [required_cultists - current_cultists] more cultists."))
+			return
+	
+	var/ritual_limit = pickritual.ritual_limit
+	if(ritual_limit > 0)
+		var/current_count = get_ritual_count(chosen_ritual_name)
+		if(current_count >= ritual_limit)
+			to_chat(user, span_danger("This ritual can only be performed [ritual_limit] times, and it has already been performed [current_count] times."))
+			return
 	
 	var/cardinal_success = FALSE
 	var/center_success = FALSE
@@ -142,6 +171,9 @@ GLOBAL_LIST_INIT(ritualslist, build_zizo_rituals())
 	consume_ingredients(pickritual)
 	user.playsound_local(user, 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/tesa.ogg', 25)
 	user.whisper("O'vena tesa...")
+
+	increment_ritual_count(chosen_ritual_name)
+	
 	var/datum/ritual/ritual_instance = new ritual_type()
 	ritual_instance.invoke(user, loc)
 

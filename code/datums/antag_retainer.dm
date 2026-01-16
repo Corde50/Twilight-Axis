@@ -30,6 +30,7 @@
 //TA 
 	var/list/cultists = list()
 	var/cult_ascended = FALSE
+	var/cultist_number = 0
 
 /proc/vampire_werewolf()
 	var/vampyr = 0
