@@ -52,11 +52,12 @@
 	var/mob/living/carbon/human/H = owner.current
 	SSmapping.retainer.cultists |= owner
 	H.set_patron(/datum/patron/inhumen/zizo)
+	SSmapping.retainer.cultist_number += 1
 
 	owner.special_role = "Zizoid Lackey"
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	H.playsound_local(get_turf(H), 'sound/music/maniac.ogg', 80, FALSE, pressure_affected = FALSE)
-	H.verbs |= /mob/living/carbon/human/proc/communicate
+	H.verbs |= list(/mob/living/carbon/human/proc/communicate, /mob/living/carbon/human/proc/cultist_number)
 	add_antag_hud(antag_hud_type, antag_hud_name, owner.current)
 
 	if(change_stats)
@@ -220,6 +221,17 @@
 
 	log_telepathy("[key_name(src)] used cultist telepathy to say: [speak]")
 
+/mob/living/carbon/human/proc/cultist_number()
+	set name = "Number of Cultists"
+	set category = "ZIZO"
+
+	if(stat >= UNCONSCIOUS || !can_speak_vocal())
+		return
+	
+	var/mob/living/carbon/human/H = src
+
+	to_chat(H, "Number of cultists: [SSmapping.retainer.cultist_number]")
+
 /obj/effect/decal/cleanable/sigil
 	name = "sigils"
 	desc = "Strange runics. They hurt your eyes."
@@ -363,12 +375,13 @@
 		if(V.special_role == "Zizoid Lackey")
 			possible |= V.current
 
-	var/mob/living/carbon/human/choice = input(src, "Whom do you no longer have use for?", "VANDERLIN") as null|anything in possible
+	var/mob/living/carbon/human/choice = input(src, "Whom do you no longer have use for?", "TWILIGHT AXIS") as null|anything in possible
 	if(choice)
-		var/alert = alert(src, "Are you sure?", "VANDERLIN", "Yes", "Cancel")
+		var/alert = alert(src, "Are you sure?", "TWILIGHT AXIS", "Yes", "Cancel")
 		if(alert == "Yes")
 			visible_message(span_danger("[src] reaches out, ripping up [choice]'s soul!</span>"))
 			to_chat(choice, span_danger("I HAVE FAILED MY LEADER! I HAVE FAILED ZIZO! NOTHING ELSE BUT DEATH REMAINS FOR ME NOW!"))
 			sleep(20)
 			choice.gib() // Cooler than dusting.
 			SSmapping.retainer.cultists -= choice.mind
+			SSmapping.retainer.cultist_number -= 1
