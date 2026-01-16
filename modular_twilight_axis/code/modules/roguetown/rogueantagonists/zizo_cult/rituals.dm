@@ -24,6 +24,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/is_cultist_ritual = FALSE
 	var/cultist_number = 0 // Минимальное количество культистов в игре для выполнения ритуала.
 	var/ritual_limit = 0 // Сколько раз можно исполнить ритуал. Если 0, то бесконечное число раз.
+	var/number_cultist_for_add_limit = 0 // Сколько необходимо культистов для того, чтобы добавить к лимиту ритуала еще единицу сверху. Если 0, то лимит нельзя повысить.
 
 /datum/ritual/proc/invoke(mob/living/user, turf/center)
 	return
@@ -38,6 +39,21 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	if(!GLOB.ritual_counters[ritual_name])
 		GLOB.ritual_counters[ritual_name] = 0
 	GLOB.ritual_counters[ritual_name]++
+
+// Динамичные лимиты
+/proc/get_dynamic_ritual_limit(datum/ritual/ritual, current_cultists)
+	var/base_limit = ritual.ritual_limit
+	var/cultists_per_additional_limit = ritual.number_cultist_for_add_limit
+	
+	if(cultists_per_additional_limit <= 0)
+		return base_limit
+	
+	var/additional_limit = 0
+	if(current_cultists > ritual.cultist_number)
+		var/extra_cultists = current_cultists - ritual.cultist_number
+		additional_limit = round(extra_cultists / cultists_per_additional_limit)
+	
+	return base_limit + additional_limit
 
 /obj/effect/decal/cleanable/sigil/proc/show_ritual_tgui(mob/living/user)
 	if(!user.client)
@@ -92,11 +108,19 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 			to_chat(user, span_danger("This ritual requires at least [required_cultists] cultists, but there are only [current_cultists]. You need [required_cultists - current_cultists] more cultists."))
 			return
 	
-	var/ritual_limit = pickritual.ritual_limit
-	if(ritual_limit > 0)
+	var/dynamic_limit = get_dynamic_ritual_limit(pickritual, current_cultists)
+	
+	if(dynamic_limit > 0)
 		var/current_count = get_ritual_count(chosen_ritual_name)
-		if(current_count >= ritual_limit)
-			to_chat(user, span_danger("This ritual can only be performed [ritual_limit] times, and it has already been performed [current_count] times."))
+		if(current_count >= dynamic_limit)
+			if(pickritual.number_cultist_for_add_limit > 0)
+				var/needed_cultists_for_more = pickritual.number_cultist_for_add_limit
+				var/current_extra_cultists = max(0, current_cultists - required_cultists)
+				var/needed_for_next = needed_cultists_for_more - (current_extra_cultists % needed_cultists_for_more)
+				
+				to_chat(user, span_danger("This ritual can only be performed [dynamic_limit] times, and it has already been performed [current_count] times. You need [needed_for_next] more cultists to perform it again."))
+			else:
+				to_chat(user, span_danger("This ritual can only be performed [dynamic_limit] times, and it has already been performed [current_count] times."))
 			return
 	
 	var/cardinal_success = FALSE
