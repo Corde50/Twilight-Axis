@@ -339,8 +339,10 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item/rumaclanshoes
 	name = "Raised Sandals"
+	path = /obj/item/clothing/shoes/roguetown/armor/rumaclan/shitty
 	category = "Обувь"
-	path = /obj/item/clothing/shoes/roguetown/armor/rumaclan
+
+
 
 //SHIRTS
 /datum/loadout_item/longcoat
@@ -985,6 +987,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Разное", "Донат")
 	donatitem = TRUE
  
+
 /datum/loadout_item/donator_ryan
 	name = "Donator Item - Western Estates Caparison"
 	path = /obj/item/caparison/ryan
@@ -1317,6 +1320,13 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/loveamulet
 	donatitem = TRUE
+
+/datum/loadout_item/donat/matthios_moneta
+	name = "Амулет из проколотой монеты"
+	category = list("Аксессуары", "Донат")
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/moneta
+	donatitem = TRUE
+	ckeywhitelist = list("imony", "uedhighcommand")
 
 // Маски
 

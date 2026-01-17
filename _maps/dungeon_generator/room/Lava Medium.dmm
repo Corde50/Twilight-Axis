@@ -29,7 +29,7 @@
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
 "t" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
 "A" = (
@@ -42,7 +42,7 @@
 /area/rogue/under/tomb/cave/lava)
 "I" = (
 /mob/living/carbon/human/species/goblin/npc/ambush/cave,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "M" = (
@@ -75,7 +75,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/cave/lava)
 "X" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "Y" = (

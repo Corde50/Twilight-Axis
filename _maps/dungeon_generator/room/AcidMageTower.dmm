@@ -102,7 +102,7 @@
 /turf/open/floor/rogue/tile/masonic/spiral,
 /area/rogue/under/tomb/indoors/magic)
 "eY" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave/wet)
 "fm" = (
@@ -236,7 +236,7 @@
 /turf/open/floor/rogue/tile/checker,
 /area/rogue/under/tomb/indoors/magic)
 "ku" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/wet)
 "kS" = (
@@ -421,8 +421,8 @@
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/tomb/indoors/magic)
 "rz" = (
-/obj/item/natural/rock/random_ore/dungeon,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb/cave/wet)
 "rD" = (
@@ -777,8 +777,8 @@
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/under/tomb/indoors/magic)
 "Di" = (
-/obj/item/natural/rock/random_ore/dungeon,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/tomb/cave/wet)
 "Dj" = (
@@ -1344,11 +1344,11 @@
 /area/rogue/under/tomb/indoors/magic)
 "YL" = (
 /obj/item/roguegem/green,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/wet)
 "YS" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/wet)
 "YY" = (

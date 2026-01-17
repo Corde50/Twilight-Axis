@@ -497,6 +497,11 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	desc = "Wait, this shouldn't be here?"
 	icon_state = "stonerandom"
 
+/obj/item/natural/rock/dungeon
+	name = "rock?"
+	desc = "Wait, this shouldn't be here? Tell Mumblemancer he's a shit coder!"
+	icon_state = "stonerandom"
+
 // actually random
 /obj/item/natural/rock/random_ore/Initialize()
 	. = ..()
@@ -513,15 +518,11 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	new theboi(get_turf(src))
 	return INITIALIZE_HINT_QDEL
 
-// Weighted random rock for use in dungeons.
-/obj/item/natural/rock/random_ore/dungeon
-
 /*
 BECAUSE this is a dungeon reward, and you're SUPPOSED to get SOMETHING, they've got a pretty high chance for good stuff.
 - MUMBLEMANCER
 */
-
-/obj/item/natural/rock/random_ore/dungeon/Initialize()
+/obj/item/natural/rock/dungeon/Initialize()
 	. = ..()
 	// The amounts are going to be weird BC I wanted a % out of 100 and it's a 7 layer list.
 	// I am considering gems to be less problematic than gold BC gold can be melted into way more
@@ -538,22 +539,6 @@ BECAUSE this is a dungeon reward, and you're SUPPOSED to get SOMETHING, they've 
 	))
 	new theboi(get_turf(src))
 	return INITIALIZE_HINT_QDEL
-
-/obj/item/natural/rock/random_ore/Initialize()
-	. = ..()
-	var/obj/item/natural/rock/theboi = pick(list(
-		/obj/item/natural/rock/gold,
-		/obj/item/natural/rock/iron,
-		/obj/item/natural/rock/coal,
-		/obj/item/natural/rock/salt,
-		/obj/item/natural/rock/silver,
-		/obj/item/natural/rock/copper,
-		/obj/item/natural/rock/tin,
-		/obj/item/natural/rock/gem
-	))
-	new theboi(get_turf(src))
-	return INITIALIZE_HINT_QDEL
-
 //................	Stone blocks	............... //
 /obj/item/natural/stoneblock
 	name = "stone block"

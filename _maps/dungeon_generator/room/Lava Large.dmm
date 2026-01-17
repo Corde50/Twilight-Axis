@@ -35,8 +35,8 @@
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
 "i" = (
-/obj/item/natural/rock/random_ore/dungeon,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "j" = (
@@ -68,7 +68,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "r" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /mob/living/carbon/human/species/goblin/npc/ambush/cave,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
@@ -91,7 +91,7 @@
 /turf/open/transparent/openspace,
 /area/rogue/under/tomb/cave/lava)
 "y" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /mob/living/carbon/human/species/goblin/npc/ambush/cave,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
@@ -120,7 +120,7 @@
 /turf/open/floor/rogue/woodturned,
 /area/rogue/under/tomb/cave/lava)
 "G" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "H" = (
@@ -163,7 +163,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "Q" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /obj/structure/fluff/nest,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
@@ -192,7 +192,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave/lava)
 "W" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/volcanic,
 /area/rogue/under/tomb/cave/lava)
 "X" = (
