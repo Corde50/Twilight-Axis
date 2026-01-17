@@ -217,6 +217,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/convert
 	name = "Convert"
+	desk = "Обращает жертву в нового лакея!"
 	center_requirement = /mob/living/carbon/human
 
 	is_cultist_ritual = TRUE
@@ -249,6 +250,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
+	desk = "Призывает сильного особого скелета Зизо!"
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /obj/item/organ/heart
@@ -275,6 +277,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/thecall
 	name = "The Call"
+	desk = "Дает возможность призвать кого-либо на руну, но есть некоторые НО.."
 	center_requirement = /obj/item/bedsheet
 
 	w_req = /obj/item/bodypart/l_leg
@@ -323,6 +326,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/falseappearance
 	name = "Falsified Appearance"
+	desk = "Меняет внешность на случайную."
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /obj/item/bodypart/head
@@ -343,6 +347,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/heartache
 	name = "Heartaches"
+	desk = "Призывает проклятое сердце, кое может помочь в захвате жертв."
 	center_requirement = /obj/item/organ/heart
 
 	n_req = /obj/item/natural/worms/leech
@@ -378,14 +383,15 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/darksunmark
 	name = "Dark Sun's Mark"
-	center_requirement = /obj/item/weapon/knife/dagger // Requires a combat dagger. Can be iron, steel or silver.
+	desk = "Помечает человека, имя которое было написанное на бумажке, как цель культа. Также ассассины получают о нем информацию.."
+	center_requirement = /obj/item/rogueweapon/huntingknife/idagger // Requires a combat dagger. Can be iron, steel or silver.
 
 /datum/ritual/servantry/darksunmark/invoke(mob/living/user, turf/center)
 	var/obj/item/paper/P = locate() in center.contents
 	if(!P)
 		to_chat(user, span_warning("The ritual requires a parchment with a name."))
 		return
-	var/obj/item/weapon/knife/dagger/D = locate() in center.contents
+	var/obj/item/rogueweapon/huntingknife/idagger/D = locate() in center.contents
 	if(!D)
 		to_chat(user, span_warning("A dagger is required as a sacrifice."))
 		return
@@ -422,6 +428,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/allseeingeye
 	name = "All-seeing Eye"
+	desk = "Призывает всевидящее око."
 	center_requirement = /obj/item/organ/eyes
 
 /datum/ritual/transmutation/allseeingeye/invoke(mob/living/user, turf/center)
@@ -431,6 +438,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/cross
 	name = "Summon Amulet of Zizo"
+	desk = "Призывает особый крест Зизо."
 	center_requirement = /obj/item/clothing/neck/roguetown/psicross
 
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
@@ -440,6 +448,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/criminalstool
 	name = "Criminal's Tool"
+	desk = "Призывает мыло Зизо."
 	center_requirement = /obj/item/natural/cloth
 
 /datum/ritual/transmutation/criminalstool/invoke(mob/living/user, turf/center)
@@ -454,6 +463,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/propaganda
 	name = "Propaganda"
+	desk = "А это будем менять потом"
 	center_requirement = /obj/item/natural/worms/leech
 	n_req = /obj/item/paper
 	s_req = /obj/item/natural/feather
@@ -464,6 +474,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/invademind
 	name = "Invade Mind"
+	desk = "Отправляет сообщение, которое было написано на бумажке. Не забудьте положить её к перу!"
 	center_requirement = /obj/item/natural/feather
 
 /datum/ritual/transmutation/invademind/invoke(mob/living/user, turf/center)
@@ -481,6 +492,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonoutfit
 	name = "Summon Cult Outfit"
+	desk = "Призывает снаряжение культа."
 	center_requirement = /obj/item/natural/cloth
 
 /datum/ritual/transmutation/summonoutfit/invoke(mob/living/user, turf/center)
@@ -498,6 +510,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonneant
 	name = "Summon Neant"
+	desk = "Призывает Особую косу культа."
 	center_requirement = /obj/item/reagent_containers/lux
 	n_req = /mob/living/carbon/human
 	s_req = /obj/item/ingot/steel
@@ -519,6 +532,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonarmor
 	name = "Summon Darksteel Armor"
+	desk = "Призывает доспехи Зизо."
 	center_requirement = /mob/living/carbon/human
 	n_req = /obj/item/ingot/steel
 	s_req = /obj/item/ingot/steel
@@ -555,6 +569,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonweapon
 	name = "Summon Weapons"
+	desk = "Призывает набор оружия, включая меч Зизо."
 	center_requirement = /obj/item/ingot/steel
 
 	is_cultist_ritual = TRUE
@@ -578,6 +593,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/bunnylegs
 	name = "Saliendo Pedes"
+	desk = "Даёт возможность прыгать довольно-таки высоко.."
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/bodypart/l_leg
@@ -595,6 +611,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/fleshmend
 	name = "Fleshmend"
+	desk = "Одаривает цель исцелением."
 	center_requirement = /mob/living/carbon/human
 	n_req =  /obj/item/reagent_containers/food/snacks/rogue/meat/steak
 
@@ -608,6 +625,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/darkeyes
 	name = "Darkened Eyes"
+	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/eyes
@@ -623,6 +641,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/undead
 	name = "Dominate Undead"
+	desk = "Дает возможность призывать самую нисшую нежить."
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/brain
@@ -643,6 +662,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/arcane
 	name = "Siphon Arcane"
+	desk = "Принеся в жертву мага, одаривает культиста очками на изучение заклинаний и повышает его навык владения арканой. Нужно изначально быть магом..."
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /mob/living/carbon/human
@@ -653,12 +673,13 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/mob/living/carbon/human/cultist = locate() in center.contents
 	var/mob/living/carbon/human/mage = locate() in get_step(center, NORTH)
 	mage.gib()
-	cultist.adjust_skillrank(/datum/skill/magic/arcane, 4, TRUE)
-	cultist.mind.adjust_spellpoints(18)
+	cultist.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+	cultist.mind.adjust_spellpoints(6)
 	to_chat(cultist, span_notice("Stolen Arcane prowess floods my mind, ZIZO empowers me."))
 
 /datum/ritual/fleshcrafting/curse
 	name = "Hollow Curse"
+	desk = "Поменяем потом его или удалим"
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/alch/sinew
@@ -695,6 +716,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/nopain
 	name = "Painless Battle"
+	desk = "Вы перестанете чувствовать боль... Нр какой ценой?"
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/heart
@@ -708,10 +730,11 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	ADD_TRAIT(user, TRAIT_NOPAIN, TRAIT_GENERIC)
 	to_chat(target, span_notice("I no longer feel pain, but it has come at a terrible cost."))
 	target.change_stat(STATKEY_STR, -2)
-	target.change_stat(STATKEY_CON, -3)
-
+	target.change_stat(STATKEY_CON, -1)
+	target.change_stat(STATKEY_WIL, -2)
 /datum/ritual/fleshcrafting/immortality
 	name = "Flawed Immortality"
+	desk = "Привнеся в жертву аасимара, вы получите множество сил.."
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /mob/living/carbon/human
@@ -744,6 +767,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/fleshform
 	name = "Stronger Form"
+	desk = "Превращает жертву в глупую живую плоть."
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/heart
@@ -778,6 +802,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/gutted
 	name = "Gutted Fish"
+	desk = "Потрошит труп, вынимая все органы и отрубая все конечности."
 	center_requirement = /mob/living/carbon/human // One to be gutted.human
 
 /datum/ritual/fleshcrafting/gutted/invoke(mob/living/user, turf/center)
@@ -814,6 +839,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/ascend
 	name = "ASCEND!"
+	desk = "ЗАКОНЧИ ЭТО. ДАВАЙ!! РАДИ ЗИЗО!!!"
 	center_requirement = /mob/living/carbon/human // cult leader
 	n_req = /mob/living/carbon/human // the ruler
 
