@@ -9,6 +9,7 @@
 	allowed_races = ACCEPTED_RACES
 	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	advclass_cat_rolls = list(CTAG_WAPPRENTICE = 20)
+	same_job_respawn_delay = 30 MINUTES
 
 	tutorial = "Your master once saw potential in you, although you are uncertain if they still do, given how rigorous and difficult your studies have been. The path to using magic is a treacherous and untamed one, and you are still decades away from calling yourself even a journeyman in the field. Listen and serve, and someday you will earn your hat."
 
@@ -31,13 +32,13 @@
 	)
 
 /datum/outfit/job/roguetown/wapprentice
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	pants = /obj/item/clothing/under/roguetown/tights/random
+
+	
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/magebag/associate
-	beltr = /obj/item/storage/keyring/apprentice
+
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backr = /obj/item/rogueweapon/woodstaff
+
 	shoes = /obj/item/clothing/shoes/roguetown/gladiator // FANCY SANDALS
 
 /datum/advclass/wapprentice/associate
@@ -73,12 +74,16 @@
 /datum/outfit/job/roguetown/wapprentice/associate/pre_equip(mob/living/carbon/human/H)
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/mage
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
+	backr = /obj/item/rogueweapon/woodstaff
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	pants = /obj/item/clothing/under/roguetown/tights/random
 	backpack_contents = list(
 		/obj/item/roguegem/amethyst = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/chalk = 1,
+		/obj/item/storage/keyring/mageapprentice,
 		)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -119,6 +124,9 @@
 	)
 
 /datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
+	backr = /obj/item/rogueweapon/woodstaff
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	pants = /obj/item/clothing/under/roguetown/tights/random
 	backpack_contents = list(
 		/obj/item/roguegem/amethyst = 1,
 		/obj/item/seeds/swampweed = 1,
@@ -126,7 +134,8 @@
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/chalk = 1,
-		/obj/item/spellbook_unfinished/pre_arcyne = 1
+		/obj/item/spellbook_unfinished/pre_arcyne = 1,
+		/obj/item/storage/keyring/mageapprentice,
 		)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -158,12 +167,16 @@
 	)
 
 /datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
+	backr = /obj/item/rogueweapon/woodstaff
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	pants = /obj/item/clothing/under/roguetown/tights/random
 	backpack_contents = list(
 		/obj/item/roguegem/amethyst = 1,
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/chalk = 1,
+		/obj/item/storage/keyring/mageapprentice,
 		)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
