@@ -3026,6 +3026,7 @@
 #include "modular_twilight_axis\lore\code\objects\ritualcircles.dm"
 #include "modular_twilight_axis\lore\code\tips\time.dm"
 #include "modular_twilight_axis\code\modules\roguetown\rogueantagonists\zizo_cult\rituals.dm"
+#include "modular_twilight_axis\code\modules\roguetown\rogueantagonists\zizo_cult\zizobook.dm"
 #include "modular_twilight_axis\code\modules\roguetown\rogueantagonists\zizo_cult\zizocult.dm"
 #include "modular_twilight_axis\code\modules\roguetown\rogueantagonists\zizo_cult\regeneration.dm"
 #include "modular_twilight_axis\code\modules\roguetown\rogueantagonists\zizo_cult\skeleton.dm"

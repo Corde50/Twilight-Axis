@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual
 	abstract_type = /datum/ritual
 	var/name = "DVRK AND EVIL RITVAL"
+	var/desk = "" // Описание ритуала, что будет в книжке. Добавляя новый ритуал опишите его, пожалуйста.
 	var/center_requirement
 	// This is absolutely fucking terrible. I tried to do it with lists but it just didn't work and
 	//kept runtiming. Something something, can't access list inside a datum.
