@@ -288,7 +288,7 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_ASSASSIN		"CAT_ASSASSIN"		// Assassin classes - Tied to the assassin antag for specialization
 #define CTAG_CHALLENGE 		"CAT_CHALLENGE"  	// Challenge class - Meant to be free for everyone
 #define CTAG_VAGABOND		"CAT_VAGABOND"		// Vagabond class - start with nothing and work your way up
-#define CTAG_INQUISITION	"CAT_INQUISITION"	// For Orthodoxist subclasses
+#define CTAG_ORTHODOXIST	"CAT_ORTHODOXIST"	// For Orthodoxist subclasses
 #define CTAG_INQUSITOR		"CAT_INQUISITOR"	// For Inquisitor subclasses
 #define CTAG_ABSOLVER		"CAT_ABSOLVER"		// For Absolver (sub)class
 #define CTAG_COURTAGENT		"CAT_COURTAGENT"	// Court agent classes
@@ -297,6 +297,8 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_LSKELETON		"CAT_LSKELETON"		// Lich Fortified Skeleton classes
 #define CTAG_NSKELETON		"CAT_NSKELETON"		// Necromancer Greater Skeleton classes
 #define CTAG_LICKER_WRETCH  "CAT_LICKER_WRETCH" // Licker wretch. Nuff said.
+#define CTAG_GNOLL			"CAT_GNOLL"			// Wretch-esque gnolls, graggar's chosen.
+#define CTAG_GNOLL_IMPURE	"CAT_GNOLL_IMPURE"	// Reward for beating enough gnolls.
 
 #define CTAG_WARDEN			"CAT_WARDEN"		// Warden class - Handles warden class selector.
 #define CTAG_WATCH			"CAT_WATCH"			// Watch class - Handles Town Watch class selector
