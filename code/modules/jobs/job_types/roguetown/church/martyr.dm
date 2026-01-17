@@ -581,6 +581,7 @@
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
 	bigboy = 1
 	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_GIGANTIC
 	gripsprite = TRUE
 	pixel_y = -16
 	pixel_x = -16
@@ -698,6 +699,7 @@
 	max_integrity = 9999
 	bigboy = 1
 	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_GIGANTIC
 	associated_skill = /datum/skill/combat/axes
 	smeltresult = null
 	is_silver = TRUE
@@ -804,6 +806,7 @@
 	max_integrity = 9999
 	bigboy = 1
 	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_GIGANTIC
 	associated_skill = /datum/skill/combat/maces
 	smeltresult = null
 	is_silver = TRUE
@@ -906,6 +909,7 @@
 	max_integrity = 9999
 	bigboy = 1
 	wlength = WLENGTH_LONG
+	w_class = WEIGHT_CLASS_GIGANTIC
 	associated_skill = /datum/skill/combat/polearms
 	smeltresult = null
 	is_silver = TRUE
@@ -1019,6 +1023,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	armor = ARMOR_PLATE
 	smeltresult = null
+	w_class = WEIGHT_CLASS_GIGANTIC
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/holysee/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
@@ -1158,6 +1163,7 @@
 	item_state = "silverlegs"
 	armor = ARMOR_PLATE
 	smeltresult = null
+	w_class = WEIGHT_CLASS_GIGANTIC
 
 /obj/item/clothing/under/roguetown/platelegs/holysee/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	. = ..()
