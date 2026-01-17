@@ -3378,7 +3378,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/under/tomb/indoors)
 "Pe" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/tomb)
 "Ph" = (

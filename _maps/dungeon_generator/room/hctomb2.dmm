@@ -69,7 +69,7 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave)
 "fm" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb/cave)
 "fy" = (
@@ -447,7 +447,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/tomb)
 "IB" = (
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/tomb/cave)
 "IP" = (
@@ -509,7 +509,7 @@
 "Qk" = (
 /obj/structure/closet/dirthole/closed,
 /obj/effect/landmark/chest_or_mimic,
-/obj/item/natural/rock/random_ore/dungeon,
+/obj/item/natural/rock/dungeon,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/tomb)
 "QX" = (
