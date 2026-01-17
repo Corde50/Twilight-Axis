@@ -195,7 +195,7 @@
 			var/ok = FALSE
 
 			if(R.callback)
-				ok = call(src, R.callback)(R.rule_id, last_target, last_zone, null)
+				ok = call(src, R.callback)(R.rule_id, last_target, last_zone)
 
 			if(ok)
 				ConsumeOnCombo(R.rule_id)

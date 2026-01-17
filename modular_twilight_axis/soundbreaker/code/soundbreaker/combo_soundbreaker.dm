@@ -138,7 +138,6 @@
 	if(!owner || !target)
 		return
 	ApplyDamage(target, damage_mult, BCLASS_PUNCH, zone, damage_type)
-	SmallBleed(target, 3)
 	OnHit(target, SOUNDBREAKER_NOTE_BARE, zone)
 
 /datum/component/combo_core/soundbreaker/proc/_sig_combo_cleared(datum/source)
@@ -212,6 +211,10 @@
 	RegisterInput(note_id, target, zone)
 	ShowNoteIcon(note_id)
 	AddComboStack()
+	var/new_stacks = GetComboStacks()
+
+	if(new_stacks >= 5)
+		owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_breaker_window)
 
 /datum/component/combo_core/soundbreaker/proc/AddComboStack()
 	if(!owner)
@@ -229,7 +232,11 @@
 /datum/component/combo_core/soundbreaker/proc/HasMusic()
 	if(!owner)
 		return FALSE
-	return !!owner.has_status_effect(/datum/status_effect/buff/playing_music)
+
+	var/obj/item/L = owner.get_item_for_held_index(1)
+	var/obj/item/R = owner.get_item_for_held_index(2)
+
+	return (istype(L, /obj/item/rogue/instrument) || istype(R, /obj/item/rogue/instrument))
 
 /datum/component/combo_core/soundbreaker/proc/GetTargetTurf(atom/target_atom)
 	if(!target_atom)
@@ -383,11 +390,11 @@
 	return "blunt"
 
 /// Public: apply damage multiplier to a target
-/datum/component/combo_core/soundbreaker/proc/ApplyDamage(mob/living/target, damage_mult = 1, bclass = BCLASS_PUNCH, zone = BODY_ZONE_CHEST, damage_type = BRUTE)
+/datum/component/combo_core/soundbreaker/proc/ApplyDamage(mob/living/target, damage_mult = 1, bclass = BCLASS_PUNCH, zone = BODY_ZONE_CHEST, damage_type = BRUTE, is_combo = FALSE)
 	if(!owner || !target)
 		return FALSE
 
-	var/dmg = ScaleDamage(damage_mult)
+	var/dmg = ScaleDamage(damage_mult, is_combo = is_combo)
 	if(dmg <= 0)
 		return FALSE
 
@@ -636,7 +643,7 @@
 
 	return P.last_attack_success
 
-/datum/component/combo_core/soundbreaker/proc/ScaleDamage(damage_mult, hand_index = null)
+/datum/component/combo_core/soundbreaker/proc/ScaleDamage(damage_mult = 1, hand_index = null, is_combo = FALSE)
 	if(!owner || damage_mult <= 0)
 		return 0
 
@@ -665,12 +672,29 @@
 	damage *= skill_bonus
 
 	var/stacks = GetComboStacks()
-	damage += stacks * 0.1
+	var/mult = is_combo ? 0 : 0.4
+	damage += stacks * mult
 
 	return max(1, round(damage))
 
 #undef SB_MIN_DAMAGE_MULT
 #undef SB_MAX_DAMAGE_MULT
+
+/datum/component/combo_core/soundbreaker/proc/_pick_combo_victim_on_turf(turf/T, mob/living/primary)
+	if(!T)
+		return null
+
+	if(primary && get_turf(primary) == T && primary.stat != DEAD)
+		return primary
+
+	for(var/mob/living/L in T)
+		if(L == owner)
+			continue
+		if(L.stat == DEAD)
+			continue
+		return L
+
+	return null
 
 /datum/component/combo_core/soundbreaker/proc/CalcAP(bclass)
 	if(!owner)
@@ -719,12 +743,6 @@
 	if(!L)
 		return
 	L.Slowdown(amount)
-
-/datum/component/combo_core/soundbreaker/proc/SmallBleed(mob/living/L, times)
-	if(!L)
-		return
-	for(var/i in 1 to times)
-		L.apply_damage(5, BRUTE)
 
 /datum/component/combo_core/soundbreaker/proc/Knockback(mob/living/target, tiles)
 	if(!owner || !target)
@@ -1042,7 +1060,7 @@
 // ----------------- Combos (moved from globals, unchanged behavior) -----------------
 
 /datum/component/combo_core/soundbreaker/proc/ComboEchoBeat(mob/living/target)
-	ApplyDamage(target, 1.5, BCLASS_PUNCH)
+	ApplyDamage(target, 1.5, BCLASS_PUNCH, is_combo = TRUE)
 	SafeSlow(target, 2)
 
 	owner.visible_message(
@@ -1058,7 +1076,7 @@
 	if(d)
 		owner.setDir(d)
 
-	sb_fire_sound_note(owner, target, 0.5, BRUTE, BODY_ZONE_CHEST, d)
+	sb_fire_sound_note(owner, target, 1.25, BRUTE, BODY_ZONE_CHEST, d)
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboBassDrop(mob/living/target)
@@ -1088,14 +1106,8 @@
 	SwingFX(front1)
 	sb_fx_ring(front1)
 
-	var/mob/living/hit = null
-	if(primary && get_turf(primary) == front1)
-		if(HitSpecific(primary, dmg, BRUTE, BCLASS_PUNCH, zone))
-			hit = primary
-	else
-		hit = HitOneOnTurf(front1, dmg, BRUTE, BCLASS_PUNCH, zone)
-
-	if(hit)
+	var/mob/living/hit = _pick_combo_victim_on_turf(front1, primary)
+	if(hit && ApplyDamage(hit, dmg, BCLASS_PUNCH, zone, BRUTE, is_combo = TRUE))
 		hit.Immobilize(2 SECONDS)
 
 /datum/component/combo_core/soundbreaker/proc/_combo_4112_stage2(mob/living/primary, list/wave2, zone, dmg)
@@ -1103,18 +1115,12 @@
 		return
 
 	for(var/turf/T in wave2)
-		if(!T) 
+		if(!T)
 			continue
 		SwingFX(T)
 
-		var/mob/living/hit = null
-		if(primary && get_turf(primary) == T)
-			if(HitSpecific(primary, dmg, BRUTE, BCLASS_PUNCH, zone))
-				hit = primary
-		else
-			hit = HitOneOnTurf(T, dmg, BRUTE, BCLASS_PUNCH, zone)
-
-		if(hit)
+		var/mob/living/hit = _pick_combo_victim_on_turf(T, primary)
+		if(hit && ApplyDamage(hit, dmg, BCLASS_PUNCH, zone, BRUTE, is_combo = TRUE))
 			hit.Immobilize(1 SECONDS)
 
 /datum/component/combo_core/soundbreaker/proc/ComboReverbCut(mob/living/target)
@@ -1126,15 +1132,18 @@
 		return
 
 	sb_fx_ring(origin)
-	var/mob/living/any = null
+	var/any = FALSE
+
 	for(var/turf/T in turfs)
-		if(!T) continue
+		if(!T)
+			continue
 
 		SwingFX(T)
-		var/mob/living/hit = HitOneOnTurf(T, 0.75, BRUTE, BCLASS_PUNCH, zone)
-		if(hit)
-			any = hit
-			Knockback(hit, 1)
+
+		var/mob/living/hit = _pick_combo_victim_on_turf(T, target)
+		if(hit && ApplyDamage(hit, 0.75, BCLASS_PUNCH, zone, BRUTE, is_combo = TRUE))
+			any = TRUE
+			Knockback(hit, 2)
 
 	if(any)
 		owner.visible_message(
@@ -1148,7 +1157,7 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboSyncopation(mob/living/target)
-	ApplyDamage(target, 0.4, BCLASS_PUNCH)
+	ApplyDamage(target, 0.4, BCLASS_PUNCH, is_combo = TRUE)
 
 	var/zone = TryGetZone(owner.zone_selected)
 
@@ -1204,9 +1213,8 @@
 		owner.forceMove(t1)
 
 		var/mob/living/M1 = _first_living_on_turf(t1)
-		if(M1)
-			if(HitSpecific(M1, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
-				hit_mob = M1
+		if(M1 && ApplyDamage(M1, dmg_mult, BCLASS_PUNCH, zone, dmg_type, is_combo = TRUE))
+			hit_mob = M1
 
 		if(hit_mob)
 			owner.face_atom(hit_mob)
@@ -1220,14 +1228,12 @@
 		return
 
 	var/mob/living/M1 = _first_living_on_turf(t1)
-	if(M1)
-		if(HitSpecific(M1, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
-			hit_mob = M1
+	if(M1 && ApplyDamage(M1, dmg_mult, BCLASS_PUNCH, zone, dmg_type, is_combo = TRUE))
+		hit_mob = M1
 
 	var/mob/living/M2 = _first_living_on_turf(t2)
-	if(M2)
-		if(HitSpecific(M2, dmg_mult, dmg_type, BCLASS_PUNCH, zone))
-			hit_mob = M2
+	if(M2 && ApplyDamage(M2, dmg_mult, BCLASS_PUNCH, zone, dmg_type, is_combo = TRUE))
+		hit_mob = M2
 
 	if(M2)
 		var/turf/behind2 = get_step(t2, dash_dir)
@@ -1251,7 +1257,7 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboCrescendo(mob/living/target)
-	ApplyDamage(target, 2.0, BCLASS_PUNCH)
+	ApplyDamage(target, 2.0, BCLASS_PUNCH, is_combo = TRUE)
 	SafeOffbalance(target, 2.5 SECONDS)
 
 	owner.visible_message(
@@ -1263,7 +1269,7 @@
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboOverture(mob/living/target)
-	ApplyDamage(target, 1.5, BCLASS_PUNCH)
+	ApplyDamage(target, 1.5, BCLASS_PUNCH, is_combo = TRUE)
 	target.Stun(1.5 SECONDS)
 
 	owner.visible_message(

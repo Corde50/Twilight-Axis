@@ -23,6 +23,12 @@
 	last_attack_success = FALSE
 	last_attack_target = null
 
+	var/breaker = FALSE
+	var/datum/status_effect/buff/soundbreaker_breaker_window/buff = user.has_status_effect(/datum/status_effect/buff/soundbreaker_breaker_window)
+	if(buff)
+		breaker = prob(buff.success_chance)
+		user.remove_status_effect(/datum/status_effect/buff/soundbreaker_breaker_window)
+
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
 		return FALSE
 
@@ -81,7 +87,7 @@
 		return
 
 	if((M.mobility_flags & MOBILITY_STAND))
-		if(M.checkmiss(user))
+		if(!breaker && M.checkmiss(user))
 			if(!swingdelay)
 				if(get_dist(get_turf(user), get_turf(M)) <= user.used_intent.reach)
 					user.do_attack_animation(M, user.used_intent.animname, used_item = src, used_intent = user.used_intent, simplified = TRUE)
@@ -104,7 +110,7 @@
 	else if(_attacker_signal & COMPONENT_ITEM_NO_DEFENSE)
 		override_status = ATTACK_OVERRIDE_NODEFENSE
 
-	if(override_status != ATTACK_OVERRIDE_NODEFENSE)
+	if(!breaker && override_status != ATTACK_OVERRIDE_NODEFENSE)
 		if(M.checkdefense(user.used_intent, user))
 			return
 
