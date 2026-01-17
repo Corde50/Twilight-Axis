@@ -102,8 +102,17 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		pickritual = new ritual_type()
 		GLOB.ritualslist[chosen_ritual_name] = pickritual
 	
+	// Специальная проверка для ритуала ASCEND
 	var/required_cultists = pickritual.cultist_number
-	if(required_cultists > 0)
+	if(istype(pickritual, /datum/ritual/fleshcrafting/ascend))
+		var/player_count = length(GLOB.joined_player_list)
+		required_cultists = max(1, round(player_count / 6))
+		
+		if(current_cultists < required_cultists)
+			to_chat(user, span_danger("This ritual requires at least [required_cultists] cultists, but there are only [current_cultists]. You need [required_cultists - current_cultists] more cultists."))
+			return
+	// Обычная проверка для других ритуалов
+	else if(required_cultists > 0)
 		if(current_cultists < required_cultists)
 			to_chat(user, span_danger("This ritual requires at least [required_cultists] cultists, but there are only [current_cultists]. You need [required_cultists - current_cultists] more cultists."))
 			return
@@ -119,7 +128,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 				var/needed_for_next = needed_cultists_for_more - (current_extra_cultists % needed_cultists_for_more)
 				
 				to_chat(user, span_danger("This ritual can only be performed [dynamic_limit] times, and it has already been performed [current_count] times. You need [needed_for_next] more cultists to perform it again."))
-			else:
+			else
 				to_chat(user, span_danger("This ritual can only be performed [dynamic_limit] times, and it has already been performed [current_count] times."))
 			return
 	
@@ -805,36 +814,217 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/ascend
 	name = "ASCEND!"
 	center_requirement = /mob/living/carbon/human // cult leader
-
 	n_req = /mob/living/carbon/human // the ruler
-	s_req = /mob/living/carbon/human // virgin
 
 	is_cultist_ritual = TRUE
 
 /datum/ritual/fleshcrafting/ascend/invoke(mob/living/user, turf/center)
+	// Динамический расчет требуемых культистов. Формулу можно поменять как угодно. Пока затычка на 1/6
+	var/player_count = length(GLOB.joined_player_list)
+	var/required_cultists = max(1, round(player_count / 6))
+	// Меняя формулу и требование меняйте это все и в /mob/living/carbon/human/proc/ascension_check() чтобы оно совпадало и не псиопило культистов
+	var/current_cultists = length(SSmapping.retainer.cultists)
+	
+	if(current_cultists < required_cultists)
+		to_chat(user, span_danger("This ritual requires at least [required_cultists] cultists, but there are only [current_cultists]. You need [required_cultists - current_cultists] more cultists."))
+		return
+	
 	var/mob/living/carbon/human/cultist = locate() in center.contents
 	if(!cultist || cultist != user)
 		return
 	if(!is_zizocultist(cultist.mind))
 		return
-	var/mob/living/carbon/human/RULER = locate() in get_step(center, NORTH)
-	if(RULER != SSticker.rulermob && RULER.stat != DEAD)
+	
+	// Поиск жертвы по приоритету
+	var/mob/living/carbon/human/sacrifice_target = null
+	var/target_role = null
+	var/obj/item/clothing/head/roguetown/crown/crown_target = null
+	
+	// Приоритет 1: Герцог (SSticker.rulermob)
+	if(SSticker.rulermob && istype(SSticker.rulermob, /mob/living/carbon/human))
+		var/mob/living/carbon/human/ruler = SSticker.rulermob
+		if(ruler.stat != DEAD)
+			sacrifice_target = ruler
+			target_role = "Ruler"
+	
+	// Приоритет 2: Епископ
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Bishop")
+				sacrifice_target = H
+				target_role = "Bishop"
+				break
+	
+	// Приоритет 3: Десница
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Hand")
+				sacrifice_target = H
+				target_role = "Hand"
+				break
+	
+	// Приоритет 4: Принц или Принцесса
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Prince" || role_title == "Princess")
+				sacrifice_target = H
+				target_role = role_title
+				break
+	
+	// Приоритет 5: Маршал
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Marshal")
+				sacrifice_target = H
+				target_role = "Marshal"
+				break
+	
+	// Приоритет 6: Придворный маг
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Court Magician")
+				sacrifice_target = H
+				target_role = "Court Magician"
+				break
+	
+	// Приоритет 7: Рыцарь-капитан
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Knight Captain")
+				sacrifice_target = H
+				target_role = "Knight Captain"
+				break
+	
+	// Приоритет 8: Казначей
+	if(!sacrifice_target)
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			var/role_title
+			if(H.mind && H.mind.assigned_role)
+				if(istext(H.mind.assigned_role))
+					role_title = H.mind.assigned_role
+				else if(istype(H.mind.assigned_role))
+					role_title = H.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Steward")
+				sacrifice_target = H
+				target_role = "Steward"
+				break
+	
+	// Приоритет 9: Корона
+	if(!sacrifice_target)
+		for(var/obj/item/clothing/head/roguetown/crown/C in get_step(center, NORTH))
+			crown_target = C
+			target_role = "Crown"
+			break
+	
+	if(!sacrifice_target && !crown_target)
+		to_chat(user, span_danger("No suitable sacrifice found. Check ascension requirements."))
 		return
-	var/mob/living/carbon/human/VIRGIN = locate() in get_step(center, SOUTH)
-	if(!VIRGIN.virginity && VIRGIN.stat != DEAD)
-		return
-	VIRGIN.gib()
-	RULER.gib()
+	
+	if(sacrifice_target)
+		var/mob/living/carbon/human/RULER = locate() in get_step(center, NORTH)
+		if(RULER != sacrifice_target)
+			to_chat(user, span_danger("[sacrifice_target.real_name] ([target_role]) must stand on the northern cell of the sigil."))
+			return
+		
+		if(sacrifice_target.stat == DEAD)
+			to_chat(user, span_danger("[sacrifice_target.real_name] ([target_role]) must be alive for this ritual."))
+			return
+		
+		sacrifice_target.gib()
+		to_chat(user, span_notice("You have sacrificed [sacrifice_target.real_name], the [target_role]!"))
+	else if(crown_target)
+		qdel(crown_target)
+		to_chat(user, span_notice("You have sacrificed the Crown!"))
+	
 	SSmapping.retainer.cult_ascended = TRUE
 	addomen(OMEN_ASCEND)
 	to_chat(cultist, span_userdanger("I HAVE DONE IT! I HAVE REACHED A HIGHER FORM! ZIZO SMILES UPON ME WITH MALICE IN HER EYES TOWARD THE ONES WHO LACK KNOWLEDGE AND UNDERSTANDING!"))
 	var/mob/living/trl = new /mob/living/simple_animal/hostile/retaliate/blood/ascended(center)
 	cultist.mind?.transfer_to(trl)
 	cultist.gib()
-	priority_announce("The sky blackens, a dark day for Psydonia.", "Ascension", 'sound/misc/astratascream.ogg')
+	priority_announce("The sky blackens, a dark day for Psydonia.", "Ascension", 'sound/misc/zizo.ogg')
 	for(var/mob/living/carbon/human/V in GLOB.human_list)
 		if(V.mind in SSmapping.retainer.cultists)
 			V.add_stress(/datum/stressevent/lovezizo)
 		else
 			V.add_stress(/datum/stressevent/hatezizo)
-	SSgamemode.roundvoteend = TRUE
+	SSvote.started_time = world.time - CONFIG_GET(number/vote_delay) - 10
+	SSvote.initiate_vote("endround", "AHAHAHAHAHAHAHAHAHHA")

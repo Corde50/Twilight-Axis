@@ -57,7 +57,7 @@
 	owner.special_role = "Zizoid Lackey"
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	H.playsound_local(get_turf(H), 'sound/music/maniac.ogg', 80, FALSE, pressure_affected = FALSE)
-	H.verbs |= list(/mob/living/carbon/human/proc/communicate, /mob/living/carbon/human/proc/cultist_number)
+	H.verbs |= list(/mob/living/carbon/human/proc/communicate, /mob/living/carbon/human/proc/cultist_number, /mob/living/carbon/human/proc/ascension_check)
 	add_antag_hud(antag_hud_type, antag_hud_name, owner.current)
 
 	if(change_stats)
@@ -231,6 +231,174 @@
 	var/mob/living/carbon/human/H = src
 
 	to_chat(H, "Number of cultists: [SSmapping.retainer.cultist_number]")
+
+/mob/living/carbon/human/proc/ascension_check()
+	set name = "Ascension Check"
+	set category = "ZIZO"
+
+	if(stat >= UNCONSCIOUS || !can_speak_vocal())
+		return
+
+	var/mob/living/carbon/human/H = src
+
+	var/player_count = length(GLOB.joined_player_list)
+	var/required_cultists = max(1, round(player_count / 6))
+
+	var/sacrifice_info = "the Crown"
+	var/target_role = "Crown"
+
+	// Приоритет 1: Герцог (SSticker.rulermob)
+	if(SSticker.rulermob && istype(SSticker.rulermob, /mob/living/carbon/human))
+		var/mob/living/carbon/human/ruler = SSticker.rulermob
+		if(ruler.stat != DEAD)
+			if(ruler.gender == "male")
+				sacrifice_info = "[ruler.real_name] (Grand Duke)"
+				target_role = "Grand Duke"
+			else
+				sacrifice_info = "[ruler.real_name] (Grand Duchess)"
+				target_role = "Grand Duchess"
+
+	// Приоритет 2: Епископ
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Bishop")
+				sacrifice_info = "[HL.real_name] (Bishop)"
+				target_role = "Bishop"
+				break
+
+	// Приоритет 3: Десница
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Hand")
+				sacrifice_info = "[HL.real_name] (Hand)"
+				target_role = "Hand"
+				break
+
+	// Приоритет 4: Принц или Принцесса
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Prince" || role_title == "Princess")
+				sacrifice_info = "[HL.real_name] ([role_title])"
+				target_role = role_title
+				break
+
+	// Приоритет 5: Маршал
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Marshal")
+				sacrifice_info = "[HL.real_name] (Marshal)"
+				target_role = "Marshal"
+				break
+
+	// Приоритет 6: Придворный маг
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Court Magician")
+				sacrifice_info = "[HL.real_name] (Court Magician)"
+				target_role = "Court Magician"
+				break
+
+	// Приоритет 7: Рыцарь-капитан
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Knight Captain")
+				sacrifice_info = "[HL.real_name] (Knight Captain)"
+				target_role = "Knight Captain"
+				break
+
+	// Приоритет 8: Казначей
+	if(target_role == "Crown")
+		for(var/mob/living/carbon/human/HL in GLOB.human_list)
+			if(HL.stat == DEAD)
+				continue
+			var/role_title
+			if(HL.mind && HL.mind.assigned_role)
+				if(istext(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role
+				else if(istype(HL.mind.assigned_role))
+					role_title = HL.mind.assigned_role.title
+				else
+					role_title = null
+			else
+				role_title = null
+			if(role_title == "Steward")
+				sacrifice_info = "[HL.real_name] (Steward)"
+				target_role = "Steward"
+				break
+
+	to_chat(H, "To ascend, you need to sacrifice [sacrifice_info] and have at least [required_cultists] cultists.")
 
 /obj/effect/decal/cleanable/sigil
 	name = "sigils"
