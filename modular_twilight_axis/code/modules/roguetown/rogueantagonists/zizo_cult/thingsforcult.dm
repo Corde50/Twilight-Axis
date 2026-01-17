@@ -93,7 +93,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 /obj/item/rogueweapon/zizo/neant/Initialize(mapload, ...)
 	. = ..()
-	AddElement(/datum/patron/inhumen/zizo, /datum/component/cursed_item, TRAIT_CABAL)
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "NEANT")
 
 /obj/item/rogueweapon/zizo/neant/attack(mob/living/M, mob/living/user)
 	if(user.used_intent.tranged)
