@@ -254,7 +254,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /obj/item/organ/heart
-
+	s_req = /obj/item/natural/bundle/bone/full
+	e_req = /obj/item/ingot/steel
+	w_req = /obj/item/ingot/steel
 	is_cultist_ritual = TRUE
 
 /datum/ritual/servantry/skeletaljaunt/invoke(mob/living/user, turf/center)
@@ -277,11 +279,16 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/thecall
 	name = "The Call"
-	desk = "Дает возможность призвать кого-либо на руну, но есть некоторые НО.."
+	desk = "Дает возможность призвать кого-либо на руну, кто не под покровительством святости."
+	cultist_number = 2
+	ritual_limit = 2
+	number_cultist_for_add_limit = 1
 	center_requirement = /obj/item/bedsheet
 
 	w_req = /obj/item/bodypart/l_leg
 	e_req = /obj/item/bodypart/r_leg
+	n_req = /obj/item/alch/matricaria
+	s_req = /obj/item/reagent_containers/food/snacks/grown/manabloom
 
 /datum/ritual/servantry/thecall/invoke(mob/living/user, turf/center)
 	var/obj/item/paper/P = locate() in center
@@ -330,9 +337,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /obj/item/bodypart/head
-	s_req = /obj/item/natural/glass_shard
-	e_req = /obj/item/natural/glass_shard
-	w_req = /obj/item/natural/glass_shard
+	s_req = /obj/item/rogueweapon/huntingknife/stoneknife
+	e_req = /obj/item/rogueweapon/huntingknife/stoneknife
+	w_req = /obj/item/rogueweapon/huntingknife/stoneknife
 
 /datum/ritual/servantry/falseappearance/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
@@ -351,6 +358,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_requirement = /obj/item/organ/heart
 
 	n_req = /obj/item/natural/worms/leech
+	s_req = /obj/item/alch/sinew
+	w_req = /obj/item/alch/viscera
+	e_req = /obj/item/alch/taraxacum
 
 /datum/ritual/servantry/heartache/invoke(mob/user, turf/center)
 	new /obj/item/corruptedheart(center)
@@ -495,6 +505,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Призывает снаряжение культа."
 	center_requirement = /obj/item/natural/cloth
 
+	n_req = /obj/item/ingot/iron
+
 /datum/ritual/transmutation/summonoutfit/invoke(mob/living/user, turf/center)
 	var/datum/effect_system/spark_spread/S = new(center)
 	S.set_up(1, 1, center)
@@ -533,6 +545,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/transmutation/summonarmor
 	name = "Summon Darksteel Armor"
 	desk = "Призывает доспехи Зизо."
+	cultist_number = 3
+	number_cultist_for_add_limit = 1
+	ritual_limit = 1
+	
 	center_requirement = /mob/living/carbon/human
 	n_req = /obj/item/ingot/steel
 	s_req = /obj/item/ingot/steel
@@ -566,10 +582,15 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	new /obj/item/clothing/neck/roguetown/bevor/zizo(center)
 
 	playsound(get_turf(center), pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
+	ADD_TRAIT(target,TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
 
 /datum/ritual/transmutation/summonweapon
 	name = "Summon Weapons"
 	desk = "Призывает набор оружия, включая меч Зизо."
+	cultist_number = 2
+	number_cultist_for_add_limit = 1
+	ritual_limit = 1
 	center_requirement = /obj/item/ingot/steel
 
 	is_cultist_ritual = TRUE
@@ -580,8 +601,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	S.start()
 
 	new /obj/item/rogueweapon/sword/long/zizo(center)
-
-	new /obj/item/rogueweapon/sword(center)
 
 	new /obj/item/rogueweapon/mace/steel(center)
 
@@ -594,11 +613,15 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/bunnylegs
 	name = "Saliendo Pedes"
 	desk = "Даёт возможность прыгать довольно-таки высоко.."
+	cultist_number = 2
+	number_cultist_for_add_limit = 1
+	ritual_limit = 1
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/bodypart/l_leg
 	e_req = /obj/item/bodypart/r_leg
-	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	n_req = /obj/item/alch/horn
+	s_req = /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius
 
 	is_cultist_ritual = TRUE
 
@@ -614,6 +637,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Одаривает цель исцелением."
 	center_requirement = /mob/living/carbon/human
 	n_req =  /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	w_req = /obj/item/alch/calendula
+	e_req = /obj/item/alch/symphitum
+	s_req = /obj/item/alch/valeriana
 
 /datum/ritual/fleshcrafting/fleshmend/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
@@ -621,23 +647,24 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		return
 	target.playsound_local(target, 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
 	target.fully_heal()
+	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
-/datum/ritual/fleshcrafting/darkeyes
-	name = "Darkened Eyes"
-	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
-	center_requirement = /mob/living/carbon/human
+///datum/ritual/fleshcrafting/darkeyes До переработки
+//	name = "Darkened Eyes"
+//	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
+//	center_requirement = /mob/living/carbon/human
+//
+//	w_req = /obj/item/organ/eyes
+//	e_req = /obj/item/organ/eyes
+//	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
 
-	w_req = /obj/item/organ/eyes
-	e_req = /obj/item/organ/eyes
-	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
-
-/datum/ritual/fleshcrafting/darkeyes/invoke(mob/living/user, turf/center)
-	var/mob/living/carbon/human/target = locate() in center.contents
-	if(!target)
-		return
-	ADD_TRAIT(target, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
-	to_chat(target, span_notice("I no longer fear the dark."))
+///datum/ritual/fleshcrafting/darkeyes/invoke(mob/living/user, turf/center)
+//	var/mob/living/carbon/human/target = locate() in center.contents
+//	if(!target)
+//		return
+//	ADD_TRAIT(target, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
+//	to_chat(target, span_notice("I no longer fear the dark."))
 
 /datum/ritual/fleshcrafting/undead
 	name = "Dominate Undead"
@@ -646,7 +673,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 	w_req = /obj/item/organ/brain
 	e_req = /obj/item/organ/brain
-	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	n_req = /obj/item/alch/bone
+	s_req = /obj/item/natural/bundle/bone/full
 
 	is_cultist_ritual = TRUE
 
@@ -663,6 +691,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/arcane
 	name = "Siphon Arcane"
 	desk = "Принеся в жертву мага, одаривает культиста очками на изучение заклинаний и повышает его навык владения арканой. Нужно изначально быть магом..."
+	cultist_number = 1
+	number_cultist_for_add_limit = 3
+	ritual_limit = 1
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /mob/living/carbon/human
@@ -674,54 +705,55 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/mob/living/carbon/human/mage = locate() in get_step(center, NORTH)
 	mage.gib()
 	cultist.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-	cultist.mind.adjust_spellpoints(6)
+	cultist.mind.adjust_spellpoints(16)
 	to_chat(cultist, span_notice("Stolen Arcane prowess floods my mind, ZIZO empowers me."))
 
-/datum/ritual/fleshcrafting/curse
-	name = "Hollow Curse"
-	desk = "Поменяем потом его или удалим"
-	center_requirement = /mob/living/carbon/human
+///datum/ritual/fleshcrafting/curse
+//	name = "Hollow Curse"
+//	desk = "Поменяем потом его или удалим"
+//	center_requirement = /mob/living/carbon/human
 
-	w_req = /obj/item/alch/sinew
-	e_req = /obj/item/alch/sinew
-	n_req = /obj/item/natural/fur/wolf
-	s_req = /obj/item/natural/fur/wolf
+//	w_req = /obj/item/alch/sinew
+//	e_req = /obj/item/alch/sinew
+//	n_req = /obj/item/natural/fur/wolf
+//	s_req = /obj/item/natural/fur/wolf
 
-/datum/ritual/fleshcrafting/curse/invoke(mob/living/user, turf/center)
-	var/mob/living/carbon/human/target = locate() in center.contents
-	if(!target)
-		return
-	if(!target.mind)
-		to_chat(target, span_warning("A mindless servant is useless to me!"))
-		return
-	if(target.mob_biotypes & MOB_UNDEAD)
-		to_chat(target, span_warning("The curse doesn't take hold!"))
-		return
-	if(target.mind.has_antag_datum(/datum/antagonist/werewolf))
-		to_chat(target, span_warning("The curse doesn't take hold!"))
-		return
-	to_chat(target, span_warning("My very being, body, soul, and mind is contorted and twisted violently into a ball of flesh and fur, until I am reshaped anew as an abomination!"))
-	addtimer(CALLBACK(src, PROC_REF(get_hollowed), target, center), 5 SECONDS)
+///datum/ritual/fleshcrafting/curse/invoke(mob/living/user, turf/center)
+//	var/mob/living/carbon/human/target = locate() in center.contents
+//	if(!target)
+//		return
+//	if(!target.mind)
+//		to_chat(target, span_warning("A mindless servant is useless to me!"))
+//		return
+//	if(target.mob_biotypes & MOB_UNDEAD)
+//		to_chat(target, span_warning("The curse doesn't take hold!"))
+//		return
+//	if(target.mind.has_antag_datum(/datum/antagonist/werewolf))
+//		to_chat(target, span_warning("The curse doesn't take hold!"))
+//		return
+//	to_chat(target, span_warning("My very being, body, soul, and mind is contorted and twisted violently into a ball of flesh and fur, until I am reshaped anew as an abomination!"))
+//	addtimer(CALLBACK(src, PROC_REF(get_hollowed), target, center), 5 SECONDS)
 
-/datum/ritual/fleshcrafting/curse/proc/get_hollowed(mob/living/victim, turf/place)
-	if(QDELETED(victim))
-		return
-	if(place != get_turf(victim))
-		return
-	if(!victim.mind)
-		return
-	var/mob/living/wll = new /mob/living/carbon/human/species/demihuman(place)
-	victim.mind.transfer_to(wll)
-	victim.gib()
+///datum/ritual/fleshcrafting/curse/proc/get_hollowed(mob/living/victim, turf/place)
+//	if(QDELETED(victim))
+//		return
+//	if(place != get_turf(victim))
+//		return
+//	if(!victim.mind)
+//		return
+//	var/mob/living/wll = new /mob/living/carbon/human/species/demihuman(place)
+//	victim.mind.transfer_to(wll)
+//	victim.gib()
 
 /datum/ritual/fleshcrafting/nopain
 	name = "Painless Battle"
-	desk = "Вы перестанете чувствовать боль... Нр какой ценой?"
+	desk = "Вы перестанете чувствовать боль... Но какой ценой?"
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/heart
 	e_req = /obj/item/organ/brain
 	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	s_req = /obj/item/alch/horn
 
 /datum/ritual/fleshcrafting/nopain/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
@@ -732,6 +764,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.change_stat(STATKEY_STR, -2)
 	target.change_stat(STATKEY_CON, -1)
 	target.change_stat(STATKEY_WIL, -2)
+
 /datum/ritual/fleshcrafting/immortality
 	name = "Flawed Immortality"
 	desk = "Привнеся в жертву аасимара, вы получите множество сил.."
@@ -754,13 +787,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	ADD_TRAIT(user, TRAIT_BLOODLOSS_IMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_WOUNDREGEN, TRAIT_GENERIC)
-	ADD_TRAIT(user, TRAIT_PACIFISM, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_SPELLCOCKBLOCK, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_NOSOFTCRIT, TRAIT_GENERIC)
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!! SOMETHING HAS GONE WRONG, THE RITUAL FAILED BUT WHAT IT LEFT ME WITH IS STILL POWER!!"))
 	target.change_stat(STATKEY_STR, -3)
-	target.change_stat(STATKEY_SPD, -4)
-	target.change_stat(STATKEY_WIL, -4)
+	target.change_stat(STATKEY_SPD, -3)
+	target.change_stat(STATKEY_WIL, -3)
 	target.Knockdown(5 SECONDS)
 	target.emote("agony", forced = TRUE)
 	target.mind.AddSpell(new /obj/effect/proc_holder/spell/self/zizo_regenerate)
@@ -768,6 +800,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/fleshform
 	name = "Stronger Form"
 	desk = "Превращает жертву в глупую живую плоть."
+	cultist_number = 4
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/heart
@@ -824,7 +857,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	for(var/obj/item/bodypart/part as anything in target.bodyparts)
 		part.drop_limb()
 
-/datum/ritual/fleshcrafting/badomen
+/* /datum/ritual/fleshcrafting/badomen
 	name = "Bad Omen"
 	center_requirement = /mob/living/carbon/human
 	is_cultist_ritual = TRUE
@@ -835,7 +868,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		return
 	if(target.stat == DEAD)
 		target.gib(FALSE, FALSE, FALSE)
-		addomen(OMEN_ROUNDSTART)
+		addomen(OMEN_ROUNDSTART) */
 
 /datum/ritual/fleshcrafting/ascend
 	name = "ASCEND!"

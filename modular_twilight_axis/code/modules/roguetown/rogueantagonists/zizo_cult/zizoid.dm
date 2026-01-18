@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/retaliate/blood
 	name = "FLESH HOMUNCULUS"
-	desc = null
+	desc = "WHAT THE-... KILL IT WITH FIRE!!!!"
 	hud_type = /datum/hud/human
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/zizoid.dmi'
 	icon_state = "FLESH"
@@ -14,22 +14,22 @@
 	retreat_distance = 0
 	minimum_distance = 0
 
-	health = 900
-	maxHealth = 900
+	health = 1200
+	maxHealth = 1200
 	food_type = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
 					/obj/item/bodypart,
 					/obj/item/organ)
 
 	base_intents = list(/datum/intent/unarmed/claw)
 	attack_sound = list('sound/combat/wooshes/blunt/wooshhuge (1).ogg','sound/combat/wooshes/blunt/wooshhuge (2).ogg','sound/combat/wooshes/blunt/wooshhuge (3).ogg')
-	melee_damage_lower = 40
-	melee_damage_upper = 60
+	melee_damage_lower = 80
+	melee_damage_upper = 100
 	STASTR = 14
 	STAPER = 8
 	STAINT = 1
 	STACON = 15
 	STAWIL = 16
-	STASPD = 2
+	STASPD = 4
 	STALUC = 15
 	defprob = 20
 	del_on_deaggro = 99 SECONDS
@@ -51,7 +51,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/blood/ascended
 	name = "???"
-	desc = ""
+	desc = "AH, ITS OUR END!!! PRAISE THE QUEEN!!!"
 	hud_type = /datum/hud/human
 	icon_state = "ascend"
 	icon_living = "ascend"

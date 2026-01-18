@@ -8,7 +8,7 @@
 	min_pq = null //no pq
 	max_pq = null
 	announce_latejoin = FALSE
-
+	
 	advclass_cat_rolls = list(CTAG_NSKELETON = 20)
 
 	tutorial = "You are a resurrected skeleton, summoned by the cult of Zizo itself. Obey the cultists and Her believers without question."
@@ -53,11 +53,12 @@ NECRO SKELETONS
 
 
 /datum/outfit/job/roguetown/cult/skeleton/zizoid
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
-	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
-	head = /obj/item/clothing/head/roguetown/helmet/leather
-	shoes = /obj/item/clothing/shoes/roguetown/boots
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/zizo
+	armor =  /obj/item/clothing/suit/roguetown/armor/plate/full/zizo
+	pants = /obj/item/clothing/under/roguetown/platelegs/zizo
+	head = /obj/item/clothing/head/roguetown/helmet/skullcap/cult
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/zizo
+	neck = /obj/item/clothing/neck/roguetown/bevor/zizo
 
 /datum/advclass/cult/skeleton/zizoid/raider
 	name = "Cult skeleton raider"
@@ -76,7 +77,7 @@ NECRO SKELETONS
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/shields = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
@@ -89,10 +90,12 @@ NECRO SKELETONS
 	H.STAWIL = rand(7, 12)
 	H.STACON = rand(8, 13)
 	H.STAINT = rand(1, 3)
-	H.STAPER = rand(7, 1)
+	H.STAPER = rand(7, 12)
 	H.STALUC = rand(5, 12)
 
-	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant : /obj/item/clothing/suit/roguetown/shirt/undershirt/vagrant/l
-	r_hand = prob(50) ? /obj/item/rogueweapon/sword : /obj/item/rogueweapon/stoneaxe/woodcut
+	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy : /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	r_hand = /obj/item/rogueweapon/sword/long/zizo
 
 	H.energy = H.max_energy
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
