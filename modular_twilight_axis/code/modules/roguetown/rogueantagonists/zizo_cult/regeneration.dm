@@ -22,6 +22,9 @@
 		revert_cast()
 		return FALSE
 	var/mob/living/carbon/human/H = user
+	H.adjustBruteLoss(-100)
+	H.adjustFireLoss(-100)
+	H.adjustToxLoss(-100)
 	if(H.resting)
 		H.set_resting(FALSE, FALSE)
 	H.emote("warcry")

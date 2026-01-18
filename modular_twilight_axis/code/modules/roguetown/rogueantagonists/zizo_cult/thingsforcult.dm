@@ -71,6 +71,8 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	icon_state = "neant"
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant.dmi'
 	drop_sound = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/blade_drop.ogg'
+	lefthand_file = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant_h.dmi'
+	righthand_file = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant_h.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.75
@@ -173,7 +175,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 /obj/projectile/bullet/neant
 	name = "Profane Evisceration"
-	icon = 'icons/effects/effects.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/special.dmi'
 	icon_state = "neantprojectile"
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	range = 8
@@ -186,7 +188,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	accuracy = 80
 
 /obj/effect/temp_visual/dir_setting/firing_effect/neant
-	icon = 'icons/effects/effects.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/special.dmi'
 	icon_state = "neantspecial"
 	duration = 4
 
