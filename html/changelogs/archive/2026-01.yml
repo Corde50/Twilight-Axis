@@ -540,3 +540,62 @@
       a fan. Detonates Arcane Mark.
   zydras:
   - qol: The Silky Dress can now be worn in the Cloak slot
+2026-01-18:
+  BurpleBineapple:
+  - bugfix: Fixes DasFox donor armor.
+  - balance: The Grand Duke/Duchess has TRAIT_DNR.
+  - balance: Coronating a new Grand Duke/Duchess gives them TRAIT_DNR.
+  FreeStylaLT:
+  - refactor: Returned the old Endround music without the radio voiceover.
+  - rscadd: Added Clamorous Vice.
+  - rscadd: Added Thrillseeker Vice.
+  - rscadd: Added Voyeur Vice.
+  - rscadd: Added Indebted Vice.
+  - rscadd: Added Averse vice.
+  - balance: Sleepless Vice now has a 25% chance to give a Triumph for every night
+      survived.
+  - refactor: Paranoid Vice now cares only about people looked at and heard languages.
+      Blood and people around them no longer causes stress events.
+  - rscdel: Removed Clingy Vice.
+  - rscdel: Removed Isolationist Vice.
+  - bugfix: Fixed Averse Vice not working correctly.
+  Geevies:
+  - rscadd: Added a Standard Bearer subclass to MAA, there can only be one. They spawn
+      with the Ducal Standard, a special spear which buffs them, and allows them to
+      rally the garrison's forces.
+  - bugfix: Checking the force of a wielded weapon will now show you the actual force,
+      and not the unwielded force.
+  - rscadd: Servants and Seneschals now get a Treasury-Line for the Vomitorium, meaning
+      it'll draw directly from the treasury if no mammon has been inserted.
+  - rscadd: You can now lower a rope to help someone below you climb. This works similarly
+      to a rope ladder. Click on an open turf from above to lay down the rope. Drag
+      the rope onto yourself to retrieve it. (+5 climbing skill)
+  - rscadd: Standing atop a tamed animal now gives you the same climbing bonus as
+      standing on a table or a chair. (+1 climbing skill)
+  - rscadd: Having another human in your turf, with combat mode disabled, will also
+      give you a climbing boost. (+1 climbing skill)
+  Ketrai:
+  - rscadd: A new antag, gnolls!
+  - rscadd: Necrans have a new T3 miracle, bless cross.
+  - rscdel: Abrogation miracle has been disabled.
+  Lamasmaster:
+  - balance: Keyrings / keys
+  - refactor: Keyrings / keys
+  - spellcheck: EXCIDIUM and CASTIFICO descriptions and text
+  - balance: Duke starting armour
+  LiquidFirefly:
+  - balance: Reworked maneater chew behavior.
+  - bugfix: Maneaters no longer teleport limbs randomly without checking for objects
+      in the space they spit it into.
+  PatapoIIIa:
+  - bugfix: Fixed vampire conversion prompt being spammed or triggered multiple times
+  - bugfix: Fixed vampire siring completing after sire death or disconnect
+  - bugfix: Fixed dead victims converting into zombies or invalid states
+  - bugfix: Fixed victims abusing conversion prompt to avoid damage or combat
+  - bugfix: Fixed vitae gain and stun values being exploitable due to hardcoded behavior
+  - balance: Rebalanced post-conversion stun duration and blood gain
+  - code_imp: 'Cleaned up conversion flow and guard logic
+
+      :cl:'
+  SpartanBobby:
+  - rscadd: Elven Barbutes to silverface
