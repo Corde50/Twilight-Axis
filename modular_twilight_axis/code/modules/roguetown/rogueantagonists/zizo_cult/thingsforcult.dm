@@ -69,10 +69,8 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	name = "neant"
 	desc = "A dark scythe with a long chain, used to cut the life essence from people, or whip them into shape. The blade is an ominous purple."
 	icon_state = "neant"
-	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant.dmi'
+	icon = 'modular_twilight_axis/icons/roguetown/weapons/64.dmi'
 	drop_sound = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/blade_drop.ogg'
-	lefthand_file = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant_h.dmi'
-	righthand_file = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/neant_h.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
 	dropshrink = 0.75
@@ -92,6 +90,17 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	associated_skill = /datum/skill/combat/polearms
 
 	COOLDOWN_DECLARE(fire_projectile)
+
+/obj/item/rogueweapon/zizo/neant/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -7,"sy" = 2,"nx" = 7,"ny" = 3,"wx" = -2,"wy" = 1,"ex" = 1,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 30,"eturn" = -30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/zizo/neant/Initialize(mapload, ...)
 	. = ..()
