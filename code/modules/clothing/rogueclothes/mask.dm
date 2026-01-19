@@ -16,6 +16,8 @@
 	experimental_inhand = FALSE
 	experimental_onhip = FALSE
 	var/overarmor = TRUE
+	equip_delay_self = 2.5 SECONDS
+	unequip_delay_self = 2.5 SECONDS
 
 /obj/item/clothing/mask/rogue/attack_right(mob/user)
 	. = ..()
