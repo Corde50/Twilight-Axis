@@ -1,4 +1,0 @@
-author: "Kokserva"
-delete-after: True
-changes:
-  - balance: "5 sec to get out of the net, instead of 2 as before and net falls off after 30 sec"

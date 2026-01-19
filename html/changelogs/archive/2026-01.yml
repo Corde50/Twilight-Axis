@@ -599,3 +599,19 @@
       :cl:'
   SpartanBobby:
   - rscadd: Elven Barbutes to silverface
+2026-01-19:
+  BurpleBineapple:
+  - balance: Duke can no longer be nuked by Churn Wealthy by default.
+  JustSomeGalSS13:
+  - bugfix: Fixed some bugs I've noticed since my previous rework of orgasm code
+  Kokserva:
+  - balance: 5 sec to get out of the net, instead of 2 as before and net falls off
+      after 30 sec
+  Kolibri-B:
+  - rscadd: Hair for the Metal Construct species
+  - rscadd: 'Three additional skin tones for Metal Construct: Gold, Wood, Porcelain'
+  Randall:
+  - bugfix: You can no longer use bandages to craft bandages
+  the real lockpicking lawyer:
+  - balance: '"high security" doors (check their descriptions for "reinforced locks")
+      are slightly easier to pick than before'
