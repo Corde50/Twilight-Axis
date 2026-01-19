@@ -564,11 +564,13 @@ GLOBAL_LIST_INIT(averse_factions, list(
 /datum/charflaw/averse/proc/check_for_candidates(mob/user)
 	if(user.mind)
 		var/averse_found = FALSE
-		for(var/mob/living/L in GLOB.joined_player_list)
-			var/datum/job/J = SSjob.GetJob(L.job)
-			if(chosen_group & J.department_flag)
-				averse_found = TRUE
-				break
+		for(var/player in GLOB.player_list)
+			if(ishuman(player))
+				var/mob/living/L = player
+				var/datum/job/J = SSjob.GetJob(L.job)
+				if(chosen_group & J.department_flag)
+					averse_found = TRUE
+					break
 		if(!averse_found)
 			var/list/options = list("Pick a Random Aversion", "Keep Current (-3 TRI)")
 			var/choice = input(user, "There are no viable candidates for your Aversion. What do you do?", "AVERSION ALERT") as anything in options

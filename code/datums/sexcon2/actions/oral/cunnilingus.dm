@@ -2,6 +2,7 @@
 	name = "Отлизать"
 	target_priority = 100
 	intensity = 4
+	flipped = TRUE
 
 /datum/sex_action/cunnilingus/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
