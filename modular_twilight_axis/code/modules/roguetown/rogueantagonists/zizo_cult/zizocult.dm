@@ -115,7 +115,13 @@
 			return FALSE
 
 /datum/antagonist/zizocultist/proc/add_cultist(datum/mind/cult_mind)
-	cult_mind.add_antag_datum(/datum/antagonist/zizocultist)
+	if(is_zizocultist(cult_mind) || is_zizolackey(cult_mind))
+		return FALSE
+	var/datum/antagonist/zizocultist/new_lackey = new /datum/antagonist/zizocultist(cult_mind)
+
+	cult_mind.add_antag_datum(new_lackey)
+
+	new_lackey.on_gain()
 	return TRUE
 
 /datum/objective/zizo
