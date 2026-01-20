@@ -320,35 +320,35 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	s_req = /obj/item/reagent_containers/food/snacks/grown/manabloom
 
 /datum/ritual/servantry/thecall/invoke(mob/living/user, turf/center)
-	var/obj/item/paper/P = locate() in center
-	if(!P)
-		to_chat(user, span_warning("The ritual requires a parchment with a name."))
+	var/mob/living/carbon/human/human = tgui_input_list(user, "CHOOSE TARGET", "TELEPORT", GLOB.human_list)
+
+	if(!human)
 		return
-	var/paper_name = STRIP_HTML_FULL(P.info, MAX_NAME_LEN)
-	if(!user.mind?.do_i_know(name = paper_name))
-		to_chat(user, span_warning("I don't know anyone by that name."))
+
+	if(!user.mind?.do_i_know(name = human.real_name))
+		to_chat(user, span_warning("I didn't saw his face."))
 		return
-	for(var/mob/living/carbon/human/HL as anything in GLOB.human_list)
-		if(HL.real_name != paper_name)
-			continue
-		if(HL == SSticker.rulermob)
-			break
-		if(HL.mind?.assigned_role.title in GLOB.church_positions)
-			to_chat(HL, span_warning("I sense an unholy presence loom near my soul."))
-			to_chat(user, span_danger("They are protected..."))
-			break
-		if(istype(HL.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(HL.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
-			to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
-			break
-		if(!HAS_TRAIT(HL, TRAIT_NOSLEEP))
-			to_chat(HL, span_userdanger("I'm so sleepy..."))
-			HL.SetSleeping(5 SECONDS)
-		else
-			to_chat(HL, span_userdanger("My eyes close on their own!"))
-			HL.set_eyes_closed(TRUE)
-		addtimer(CALLBACK(src, PROC_REF(kidnap), HL, center), 3 SECONDS)
-		qdel(P)
-		break
+
+	if(human == SSticker.rulermob)
+		return
+
+	if(human.mind?.assigned_role.title in GLOB.church_positions)
+		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+		to_chat(user, span_danger("They are protected..."))
+		return
+
+	if(istype(human.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(human.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
+		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
+		return
+
+	if(!HAS_TRAIT(human, TRAIT_NOSLEEP))
+		to_chat(human, span_userdanger("I'm so sleepy..."))
+		human.SetSleeping(5 SECONDS)
+	else
+		to_chat(human, span_userdanger("My eyes close on their own!"))
+		human.set_eyes_closed(TRUE)
+
+	addtimer(CALLBACK(src, PROC_REF(kidnap), human, center), 3 SECONDS)
 
 /datum/ritual/servantry/thecall/proc/kidnap(mob/living/victim, turf/to_go)
 	if(QDELETED(victim))
@@ -422,30 +422,27 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/darksunmark
 	name = "Dark Sun's Mark"
-	desk = "Помечает человека, имя которое было написанное на бумажке, как цель культа. Также ассассины получают о нем информацию.."
+	desk = "Помечает выбранное существо как цель культа. Также ассассины получают о нем информацию.."
 	center_requirement = /obj/item/rogueweapon/huntingknife/idagger // Requires a combat dagger. Can be iron, steel or silver.
 
 /datum/ritual/servantry/darksunmark/invoke(mob/living/user, turf/center)
-	var/obj/item/paper/P = locate() in center.contents
-	if(!P)
-		to_chat(user, span_warning("The ritual requires a parchment with a name."))
-		return
 	var/obj/item/rogueweapon/huntingknife/idagger/D = locate() in center.contents
 	if(!D)
 		to_chat(user, span_warning("A dagger is required as a sacrifice."))
 		return
-	var/paper_name = STRIP_HTML_FULL(P.info, MAX_NAME_LEN)
-	if(!user.mind || !user.mind.do_i_know(name = paper_name))
-		to_chat(user, span_warning("I don't know anyone by that name."))
+
+	var/mob/living/carbon/human/target = tgui_input_list(user, "CHOOSE TARGET", "TELEPORT", GLOB.human_list)
+
+	if(!target)
 		return
-	var/mob/living/carbon/human/target
+
+	if(!user.mind?.do_i_know(name = target.real_name))
+		to_chat(user, span_warning("I didn't saw his face."))
+		return
+	
 	var/assassin_found = FALSE
 	for(var/mob/living/carbon/human/HL in GLOB.human_list)
-		if(HL.stat != DEAD)
-			continue
-		if(HL.real_name == paper_name)
-			target = HL
-		else if(HAS_TRAIT(HL, TRAIT_ASSASSIN))
+		if(HAS_TRAIT(HL, TRAIT_ASSASSIN))
 			assassin_found = TRUE
 			var/obj/item/rogueweapon/huntingknife/idagger/steel/profane/dagger = locate() in HL.get_all_gear()
 			if(dagger)
@@ -458,7 +455,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	to_chat(target, span_danger("My hair stands on end. Has someone just said my name? I should watch my back."))
 	to_chat(user, span_warning("Your target has been marked, your profane call answered by the Dark Sun. [target.real_name] will surely perish!"))
 	qdel(D)
-	qdel(P)
 	target.playsound_local(target, 'sound/magic/marked.ogg', 100)
 
 // TRANSMUTATION
@@ -513,21 +509,21 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/invademind
 	name = "Invade Mind"
-	desk = "Отправляет сообщение, которое было написано на бумажке. Не забудьте положить её к перу!"
+	desk = "Отправляет сообщение существу."
 	center_requirement = /obj/item/natural/feather
 
 /datum/ritual/transmutation/invademind/invoke(mob/living/user, turf/center)
-	var/obj/item/paper/P = locate() in center.contents
-	if(!P)
+	var/text = tgui_input_text(user, "ENTER MESSAGE", "MESSAGE")
+
+	if(!text)
 		return
-	var/info = STRIP_HTML_FULL(P.info, MAX_NAME_LEN)
+
 	var/input = input(user, "To whom do we send this message?", "ZIZO")
 	if(!input)
 		return
 	for(var/mob/living/carbon/human/HL in GLOB.human_list)
 		if(HL.real_name == input)
-			to_chat(HL, "<i>You hear a voice in your head... <b>[info]</i></b>")
-		qdel(P)
+			to_chat(HL, "<i>You hear a voice in your head... <b>[text]</i></b>")
 
 /datum/ritual/transmutation/summonoutfit
 	name = "Summon Cult Outfit"
