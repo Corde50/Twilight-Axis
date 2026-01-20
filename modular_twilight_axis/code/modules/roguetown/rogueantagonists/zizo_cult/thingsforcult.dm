@@ -46,17 +46,25 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	desc = "It is pulsating."
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/scryeye.dmi'
 	icon_state ="scryeye"
-	cooldown = 5 MINUTES
+	cooldown = 10 MINUTES
+/obj/item/scrying/eye/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "EYE")
+
 //шадоу плащ но без уникального спрайта, бяка
 /obj/item/clothing/cloak/half/shadowcloak/cult
-	name = "ominous cloak"
+	name = "Zizo cultistic's cloak"
 	desc = "Those who wear, thy should beware, for those who do; never come back as who they once were again."
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	body_parts_covered = ARMS|CHEST|VITALS
 	armor = ARMOR_PADDED_GOOD
+
+/obj/item/clothing/cloak/half/shadowcloak/cult/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CLOAK")
 //котелок, но культа
 /obj/item/clothing/head/roguetown/helmet/skullcap/cult
-	name = "ominous hood"
+	name = "Zizo cultistic's hood"
 	desc = "It echoes with ominous laughter. Worn over a skullcap"
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/warlock.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/warlock.dmi'
@@ -64,6 +72,10 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 
 	body_parts_covered = NECK|HAIR|EARS|HEAD
+
+/obj/item/clothing/head/roguetown/helmet/skullcap/cult/Initialize(mapload, ...)
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "HOOD")
 //коса культа.. дайте две
 /obj/item/rogueweapon/zizo/neant
 	name = "neant"
