@@ -11,12 +11,13 @@
 	selection_color = JCOLOR_INQUISITION
 	outfit = /datum/outfit/job/roguetown/absolver
 	display_order = JDO_ABSOLVER
-	min_pq = 3
+	min_pq = 13
 	max_pq = null
 	round_contrib_points = 2
 	wanderer_examine = FALSE
 	advjob_examine = FALSE
 	give_bank_account = 15
+	same_job_respawn_delay = 30 MINUTES
 
 	job_traits = list(
 		TRAIT_NOPAINSTUN,

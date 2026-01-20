@@ -771,8 +771,8 @@
 	created_item = /obj/item/clothing/wrists/roguetown/bracers
 	createditem_num = 1
 
-/datum/anvil_recipe/armor/steel/chainglove
-	name = "Gauntlets, Chain, Steel"
+/datum/anvil_recipe/armor/steel/frogmouth
+	name = "Froggemund Helmet, Steel (+2 Steel)"
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
 	created_item = /obj/item/clothing/gloves/roguetown/chain
