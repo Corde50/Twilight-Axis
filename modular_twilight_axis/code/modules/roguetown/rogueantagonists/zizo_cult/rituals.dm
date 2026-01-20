@@ -219,7 +219,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	name = "Convert"
 	desk = "Обращает жертву в нового лакея!"
 	center_requirement = /mob/living/carbon/human
-
 	is_cultist_ritual = TRUE
 
 /datum/ritual/servantry/convert/invoke(mob/living/user, turf/center)
@@ -232,21 +231,51 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		return
 	if(!target.client)
 		return
-	if(istype(target.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver) )
+	if(istype(target.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
 		return
+
 	var/datum/antagonist/zizocultist/PR = user.mind.has_antag_datum(/datum/antagonist/zizocultist)
-	var/alert = alert(target, "YOU WILL BE SHOWN THE TRUTH. DO YOU RESIST?", "???", list("Yield", "Resist"))
+	if(!PR)
+		return
+
+	to_chat(user, "[target.real_name] is being offered conversion...")
+	to_chat(target, span_notice("You are being offered the path of Zizo. Choose wisely."))
+
+	var/list/options = list(
+		"Yield",
+		"Resist"
+	)
+
+	var/chosen = tgui_input_list(target, "Do you yield to the darkness?", "You are shown the path of Zizo.", options)
+
+	if(!chosen)
+		convert_resist(target)
+		return
+
+	if(chosen == "Yield")
+		convert_yield(target, PR)
+	else if(chosen == "Resist")
+		convert_resist(target)
+
+
+/datum/ritual/servantry/convert/proc/convert_yield(mob/living/carbon/human/target, datum/antagonist/zizocultist/PR)
 	target.Immobilize(3 SECONDS)
-	if(alert == "Yield")
-		to_chat(target, span_notice("I see the truth now! It all makes so much sense! They aren't HERETICS! They want the BEST FOR US!"))
-		PR.add_cultist(target.mind)
-		target.praise()
-	else
-		target.visible_message(span_danger("[target] thrashes around, unyielding!"))
-		to_chat(target, span_danger("Yield."))
-		if(target.electrocute_act(10))
-			target.emote("painscream")
+	to_chat(target, span_notice("I see the truth now! It all makes so much sense! They aren't HERETICS! They want the BEST FOR US!"))
+	PR.add_cultist(target.mind)
+	target.praise()
+	target.playsound_local(target, 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/tesa.ogg', 25)
+	target.whisper("O'vena tesa...")
+	log_game("[key_name(target)] was converted to Zizoid Lackey by [key_name(PR.owner.current)]")
+	message_admins("[key_name(target)] was converted to Zizoid Lackey by [key_name(PR.owner.current)]")
+
+/datum/ritual/servantry/convert/proc/convert_resist(mob/living/carbon/human/target)
+	target.Immobilize(3 SECONDS)
+	target.visible_message(span_danger("[target] thrashes around, unyielding!"))
+	to_chat(target, span_reallybigredtext("MORTAL, I OFFER YOU SALVATION! ACCEPT IT! NOW."))
+	if(target.electrocute_act(10))
+		target.emote("painscream")
+	log_game("[key_name(target)] was resist to convert by cultist")
 
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
