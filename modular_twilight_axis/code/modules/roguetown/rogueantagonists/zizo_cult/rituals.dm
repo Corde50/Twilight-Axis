@@ -524,7 +524,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	for(var/mob/living/carbon/human/HL in GLOB.human_list)
 		if(HL.real_name == input)
 			to_chat(HL, "<i>You hear a voice in your head... <b>[text]</i></b>")
-		qdel(P)
 
 /datum/ritual/transmutation/summonoutfit
 	name = "Summon Cult Outfit"
