@@ -545,6 +545,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 	new /obj/item/clothing/cloak/half/shadowcloak/cult(center)
 
+	new /obj/item/clothing/suit/roguetown/armor/brigandine/light/cult(center)
+
 	new /obj/item/rope/chain(center)
 
 	playsound(get_turf(center), pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
