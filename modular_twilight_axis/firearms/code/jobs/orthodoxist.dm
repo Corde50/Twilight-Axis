@@ -127,8 +127,10 @@
 						/obj/item/twilight_powderflask/holyfyre = 1,
 						/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
 						/obj/item/inqarticles/garrote = 1)
-				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, SKILL_LEVEL_NOVICE, TRUE)
+				H.adjust_skillrank_up_to(/datum/skill/magic/arcane, SKILL_LEVEL_APPRENTICE, TRUE)
 				H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/shadowstep)
+				H.mind?.adjust_spellpoints(-3)
+				H.mind?.RemoveSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 				var/arcane = list("Fetch", "Invisibility", "Repulse", "Leap")
 				var/arcane_choice = input("TAKE YOUR RUNE", "PSYDON'S RUNE") as anything in arcane
 				switch(arcane_choice)
