@@ -208,13 +208,13 @@
 	else
 		last_input_dir = owner.dir
 
-	RegisterInput(note_id, target, zone)
 	ShowNoteIcon(note_id)
+	RegisterInput(note_id, target, zone)
 	AddComboStack()
 	var/new_stacks = GetComboStacks()
 
-	if(new_stacks >= 5)
-		owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_breaker_window)
+	if(new_stacks >= 1)
+		owner.apply_status_effect(/datum/status_effect/buff/soundbreaker_breaker_window, new_stacks)
 
 /datum/component/combo_core/soundbreaker/proc/AddComboStack()
 	if(!owner)
@@ -399,6 +399,9 @@
 		return FALSE
 
 	zone = GetEffectiveHitZone(target, zone)
+	if(GetComboStacks() >= 5)
+		bclass = BCLASS_PIERCE
+		
 	var/ap = CalcAP(bclass)
 	return AttackViaPipeline(target, dmg, bclass, damage_type, zone, ap)
 
@@ -716,7 +719,7 @@
 	var/unarmed = owner.get_skill_level(/datum/skill/combat/unarmed)
 	ap += (unarmed * 5)
 
-	if(bclass == BCLASS_STAB)
+	if(bclass == BCLASS_PIERCE)
 		ap += 10
 
 	return clamp(ap, 0, 100)

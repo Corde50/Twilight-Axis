@@ -148,3 +148,20 @@
 	name = "Riff Guard"
 	desc = "A defensive riff is active. A successful defense may grant combo."
 	icon_state = "buff"
+
+#define SB_BREAKER_PER_STACK 15
+#define SB_BREAKER_MAX_CHANCE 90
+
+/datum/status_effect/buff/soundbreaker_breaker_window
+	id = "soundbreaker_breaker_window"
+	duration = 1.5 SECONDS
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	var/success_chance = SB_BREAKER_PER_STACK
+	
+/datum/status_effect/buff/soundbreaker_breaker_window/on_apply(stacks = 1)
+	. = ..()
+	success_chance = clamp(stacks * SB_BREAKER_PER_STACK, 0, SB_BREAKER_MAX_CHANCE)
+
+#undef SB_BREAKER_MAX_CHANCE
+#undef SB_BREAKER_PER_STACK

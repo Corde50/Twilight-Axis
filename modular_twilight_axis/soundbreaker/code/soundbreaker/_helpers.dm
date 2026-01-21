@@ -43,11 +43,3 @@
 	if(!isliving(defender))
 		return
 	SEND_SIGNAL(defender, COMSIG_SOUNDBREAKER_RIFF_DEFENSE_SUCCESS)
-
-/datum/status_effect/buff/soundbreaker_breaker_window
-	id = "soundbreaker_breaker_window"
-	duration = 1.5 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
-	alert_type = null
-	var/success_chance = 90
-	
