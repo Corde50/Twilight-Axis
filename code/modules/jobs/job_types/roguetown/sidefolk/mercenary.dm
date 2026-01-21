@@ -19,7 +19,7 @@
 	job_traits = list(TRAIT_STEELHEARTED)
 	always_show_on_latechoices = TRUE
 	class_categories = TRUE
-  same_job_respawn_delay = 30 MINUTES
+	same_job_respawn_delay = 30 MINUTES
 	job_subclasses = list(
 		/datum/advclass/mercenary/anthrax,
 		/datum/advclass/mercenary/anthrax/assasin,
