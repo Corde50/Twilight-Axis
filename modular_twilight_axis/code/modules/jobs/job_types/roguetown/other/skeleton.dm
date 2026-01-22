@@ -1,22 +1,23 @@
 /datum/job/roguetown/skeleton
-	title = "Skeleton"
-	tutorial = null
-	total_positions = 0
-	spawn_positions = 0
-	antag_job = TRUE
-	outfit = /datum/outfit/skeleton
-	give_bank_account = FALSE
+    title = "Skeleton"
+    faction = "Station"
+    tutorial = null
+    total_positions = 0
+    spawn_positions = 0
+    antag_job = TRUE
+    outfit = /datum/outfit/skeleton
+    give_bank_account = FALSE
 
-	job_traits = list(
-		TRAIT_NOMOOD,
-		TRAIT_NOLIMBDISABLE,
-		TRAIT_NOHUNGER,
-		TRAIT_NOBREATH,
-		TRAIT_NOPAIN,
-		TRAIT_TOXIMMUNE,
-		TRAIT_NOSLEEP,
-		TRAIT_SHOCKIMMUNE
-	)
+    job_traits = list(
+        TRAIT_NOMOOD,
+        TRAIT_NOLIMBDISABLE,
+        TRAIT_NOHUNGER,
+        TRAIT_NOBREATH,
+        TRAIT_NOPAIN,
+        TRAIT_TOXIMMUNE,
+        TRAIT_NOSLEEP,
+        TRAIT_SHOCKIMMUNE
+    )
 
 /datum/job/roguetown/skeleton/after_spawn(mob/living/carbon/human/spawned, client/player_client)
     . = ..()
