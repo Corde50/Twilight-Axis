@@ -1,3 +1,31 @@
+#define ZIZO_CULT_BLACKLISTED_ROLES list(\
+		"Grand Duke",\
+		"Marshal",\
+		"Merchant",\
+		"Bishop",\
+		"Martyr",\
+		"Hand",\
+		"Steward",\
+		"Knight Captain",\
+		"Knight",\
+		"Templar",\
+		"Sergeant",\
+		"Inquisitor",\
+		"Absolver",\
+		"Veteran",\
+		"Bathmaster",\
+		"Bandit",\
+		"Guildmaster",\
+		"Court Magician",\
+		"Keeper",\
+		"Orthodoxist",\
+		"Druid",\
+		"Acolyte",\
+		"Man at Arms",\
+		"Squire",\
+		"Prince",\
+	)
+
 /datum/round_event_control/antagonist/solo/zizo_cult
 	name = "Zizo cult"
 	tags = list(
@@ -20,7 +48,7 @@
 	typepath = /datum/round_event/antagonist/solo/zizo_cult
 	antag_datum = /datum/antagonist/zizocultist/leader
 
-	restricted_roles = DEFAULT_ANTAG_BLACKLISTED_ROLES
+	restricted_roles = ZIZO_CULT_BLACKLISTED_ROLES
 
 /datum/round_event_control/antagonist/solo/zizo_cult/trim_candidates(list/candidates)
     . = ..()
@@ -40,3 +68,5 @@
     . = ..()
 
     SSgamemode.current_roundstart_event = new /datum/round_event_control/antagonist/solo/zizo_cult
+
+#undef ZIZO_CULT_BLACKLISTED_ROLES
