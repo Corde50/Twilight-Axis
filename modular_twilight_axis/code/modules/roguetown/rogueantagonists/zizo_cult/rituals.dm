@@ -279,13 +279,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
-	desk = "Призывает сильного особого скелета Зизо!"
+	desk = "Превращает жертву в сильного и особого скелета Зизо!"
 	center_requirement = /mob/living/carbon/human
 
-	n_req = /obj/item/organ/heart
-	s_req = /obj/item/natural/bundle/bone/full
-	e_req = /obj/item/ingot/steel
-	w_req = /obj/item/ingot/steel
+	n_req = /obj/item/natural/bundle/bone/full
 	is_cultist_ritual = TRUE
 
 /datum/ritual/servantry/skeletaljaunt/invoke(mob/living/user, turf/center)
@@ -471,6 +468,16 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	. = ..()
 	new /obj/item/scrying/eye(center)
 	to_chat(user, span_notice("The All-seeing Eye. To see beyond sight."))
+
+/datum/ritual/transmutation/book
+	name = "Summon guide book"
+	desk = "Заменяет обычную книгу на книгу, в которой говорится о ритуалах."
+	center_requirement = /obj/item/book/rogue
+
+/datum/ritual/transmutation/book/invoke(mob/living/user, turf/center)
+	. = ..()
+	new /obj/item/recipe_book/zizo
+	to_chat(user, span_notice("Now you know how to make another ritual..."))
 
 /datum/ritual/transmutation/cross
 	name = "Summon Amulet of Zizo"
