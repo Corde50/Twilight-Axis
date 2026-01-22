@@ -2912,6 +2912,8 @@
 #include "code\modules\spells\pantheon\inhumen\matthios.dm"
 #include "code\modules\spells\pantheon\inhumen\zizo.dm"
 #include "modular_twilight_axis\code\datums\flaws\lawless.dm"
+#include "modular_twilight_axis\code\modules\events\antagonists\zizocult.dm"
+#include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\other\skeleton.dm"
 #include "statpacks\agile.dm"
 #include "statpacks\mental.dm"
 #include "statpacks\physical.dm"

@@ -105,9 +105,9 @@
 	if(.)
 		if(new_owner.current == SSticker.rulermob)
 			return FALSE
-		if(new_owner.assigned_role.title in GLOB.church_positions)
+		if(new_owner.current.job in GLOB.church_positions)
 			return FALSE
-		if(new_owner.assigned_role.title in GLOB.inquisition_positions)
+		if(new_owner.current.job in GLOB.inquisition_positions)
 			return FALSE
 		if(new_owner.unconvertable)
 			return FALSE

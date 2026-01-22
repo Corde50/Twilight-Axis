@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		to_chat(target, span_danger("I will not let my followers become mindless brutes."))
 		return
 
-	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/cult/skeleton)
+	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/skeleton/zizoid)
 	target.mind?.set_assigned_role(summon_job)
 	summon_job.after_spawn(target, target.client)
 	ADD_TRAIT(target, TRAIT_CABAL, TRAIT_GENERIC)
