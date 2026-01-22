@@ -349,4 +349,4 @@
 				"I will defile Necra's dead, a thousand times!", \
 				"I will butcher the Ten like Necra butchered Psydon!", \
 				"Snuff out the beating hearts of Eora!"))
-		//V.add_stress(/datum/stress_event/leechcult)
+		V.add_stress(/datum/stressevent/leechcult)
