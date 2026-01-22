@@ -30,7 +30,7 @@
 
 /obj/effect/temp_visual/soundbreaker_fx
 	name = "soundbreaker fx"
-	icon = SOUNDBREAKER_FX_ICON
+	icon = 'modular_twilight_axis/icons/roguetown/misc/soundanims.dmi'
 	randomdir = FALSE
 	anchored = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -41,40 +41,40 @@
 	fade_time = 2
 
 /obj/effect/temp_visual/soundbreaker_fx/eq_pillars
-	icon_state = SB_FX_EQS
+	icon_state = "spell_bend" 
 	duration = 4
 	fade_time = 2
 
 /obj/effect/temp_visual/soundbreaker_fx/wave_forward
-	icon_state = SB_FX_WAVE_FORWARD
+	icon_state = "spell_bare"
 	duration = 4
 	fade_time = 2
 
 /obj/effect/temp_visual/soundbreaker_fx/ring
-	icon_state = SB_FX_RING
-	icon = SOUNDBREAKER_FX96_ICON
+	icon_state = "spell_wave" 
+	icon = 'modular_twilight_axis/icons/roguetown/misc/soundanims96.dmi'
 	duration = 4
 	fade_time = 2
 
 /obj/effect/temp_visual/soundbreaker_fx/note_shatter
-	icon_state = SB_FX_NOTE_SHATTER
+	icon_state = "spell_note"
 	duration = 3
 	fade_time = 2
 
 /obj/effect/temp_visual/soundbreaker_fx/riff_single
-	icon_state = SB_FX_RIFF_SINGLE
+	icon_state = "riff_strike"
 	duration = 3
 	fade_time = 2
 	layer = ABOVE_MOB_LAYER + 0.1
 
 /obj/effect/temp_visual/soundbreaker_fx/riff_cluster
-	icon_state = SB_FX_RIFF_CLUSTER
+	icon_state = "riff_aura"
 	duration = 3
 	fade_time = 2
 	layer = ABOVE_MOB_LAYER + 0.1
 
 /obj/effect/temp_visual/soundbreaker_fx/big_note_maw
-	icon_state = SB_FX_PROJ_NOTE
+	icon_state = "note_projectile"
 	duration = 9
 	fade_time = 3
 

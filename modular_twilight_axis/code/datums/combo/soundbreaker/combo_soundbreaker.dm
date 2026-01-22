@@ -9,6 +9,42 @@
 //
 // Inside component: direct procs.
 
+/proc/soundbreaker_get_component(mob/living/user)
+	if(!isliving(user))
+		return null
+
+	var/datum/component/combo_core/soundbreaker/C = user.GetComponent(/datum/component/combo_core/soundbreaker)
+	if(!C)
+		C = user.AddComponent(/datum/component/combo_core/soundbreaker)
+	return C
+
+/proc/soundbreaker_prime_note(mob/living/user, note_id, damage_mult, damage_type, note_name)
+	var/datum/component/combo_core/soundbreaker/C = soundbreaker_get_component(user)
+	return C ? C.PrimeNote(note_id, damage_mult, damage_type, note_name) : FALSE
+
+/proc/soundbreaker_get_damage_flag(bclass, damage_type)
+	switch(bclass)
+		if(BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST, BCLASS_PUNCH)
+			return "blunt"
+		if(BCLASS_CHOP, BCLASS_CUT, BCLASS_LASHING, BCLASS_PUNISH)
+			return "slash"
+		if(BCLASS_PICK, BCLASS_STAB, BCLASS_PIERCE)
+			return "stab"
+
+	return "blunt"
+
+/proc/soundbreaker_try_consume_prepared_attack(mob/living/user, atom/target_atom, zone)
+	if(!isliving(user))
+		return FALSE
+	if(SEND_SIGNAL(user, COMSIG_SOUNDBREAKER_TRY_CONSUME_PREPARED, target_atom, zone) & COMPONENT_SOUNDBREAKER_CONSUMED)
+		return TRUE
+	return FALSE
+
+/proc/soundbreaker_riff_defense_success(mob/living/defender)
+	if(!isliving(defender))
+		return
+	SEND_SIGNAL(defender, COMSIG_SOUNDBREAKER_RIFF_DEFENSE_SUCCESS)
+
 /datum/component/combo_core/soundbreaker
 	// Inherit engine
 	parent_type = /datum/component/combo_core
@@ -822,7 +858,7 @@
 		if(!state)
 			continue
 
-		var/mutable_appearance/ma = mutable_appearance(SOUNDBREAKER_NOTES_ICON, state)
+		var/mutable_appearance/ma = mutable_appearance('modular_twilight_axis/icons/roguetown/misc/soundspells.dmi', state)
 		ma.layer = ABOVE_MOB_LAYER + 0.2
 		ma.plane = GAME_PLANE_UPPER
 		ma.pixel_y = base_y
@@ -855,7 +891,7 @@
 	if(!target || !icon_state)
 		return
 	var/duration = 0.7 SECONDS
-	target.play_overhead_indicator_flick(SOUNDBREAKER_NOTES_ICON, icon_state, duration, ABOVE_MOB_LAYER + 0.3, null, 16, 0)
+	target.play_overhead_indicator_flick('modular_twilight_axis/icons/roguetown/misc/soundspells.dmi', icon_state, duration, ABOVE_MOB_LAYER + 0.3, null, 16, 0)
 
 // ----------------- FX helpers (use your existing FX objects) -----------------
 /datum/component/combo_core/soundbreaker/proc/sb_fx_ring(turf/T)

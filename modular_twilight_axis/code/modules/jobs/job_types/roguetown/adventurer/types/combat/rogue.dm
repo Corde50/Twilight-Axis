@@ -62,10 +62,3 @@
 				backr = /obj/item/rogue/instrument/hurdygurdy
 
 		to_chat(H, span_notice("You feel a fighting rhythm pulsing in your veins. Your music belongs in a brawl."))
-
-/datum/intent/proc/is_attack_swing()
-	if(no_attack)
-		return FALSE
-	if(unarmed && istype(src, /datum/intent/unarmed/help))
-		return FALSE
-	return TRUE

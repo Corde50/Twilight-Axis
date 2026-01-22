@@ -27,7 +27,7 @@
 	var/note_id = 0
 	var/damage_mult = 1
 	var/damage_type = BRUTE
-	action_icon = 'modular_twilight_axis/soundbreaker/icons/soundspells.dmi'
+	action_icon = 'modular_twilight_axis/icons/roguetown/misc/soundspells.dmi'
 
 /obj/effect/proc_holder/spell/self/soundbreaker/cast(list/targets, mob/living/user)
 	. = ..()
