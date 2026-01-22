@@ -52,7 +52,7 @@
 
 /datum/job/roguetown/skeleton/zizoid
 	title = "Cult Summon"
-	outfit = /datum/outfit/skeleton/zizoid
+	outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid
 
 /datum/job/roguetown/skeleton/zizoid/after_spawn(mob/living/carbon/human/spawned, client/player_client)
     . = ..()
@@ -75,7 +75,3 @@
 /datum/outfit/skeleton/pre_equip(mob/living/carbon/human/equipped_human)
 	. = ..()
 	equipped_human.underwear = "Nude"
-
-/* ZIZOID CULT SUMMON OUTFIT */
-/datum/outfit/skeleton/zizoid
-	name = "Cult Summon"
