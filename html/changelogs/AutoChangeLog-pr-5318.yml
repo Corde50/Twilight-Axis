@@ -1,0 +1,5 @@
+author: "Klein3"
+delete-after: True
+changes:
+  - bugfix: "Old acolytes have their legendary miracle skill back"
+  - bugfix: "Shoes take 5 seconds to stip instead of 10"

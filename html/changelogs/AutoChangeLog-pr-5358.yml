@@ -1,0 +1,4 @@
+author: "Burrito-Justice"
+delete-after: True
+changes:
+  - bugfix: "Purging laws no longer explodes your eardrums"
