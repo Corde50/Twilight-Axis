@@ -280,9 +280,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
 	desk = "Превращает жертву в сильного и особого скелета Зизо!"
+	ritual_limit = 1
+	number_cultist_for_add_limit = 2
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /obj/item/natural/bundle/bone/full
+
 	is_cultist_ritual = TRUE
 
 /datum/ritual/servantry/skeletaljaunt/invoke(mob/living/user, turf/center)
@@ -296,7 +299,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		return
 
 	target.unequip_everything()
-	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/skeleton/zizoid)
+	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/skeleton)
 	target.mind?.set_assigned_role(summon_job)
 	summon_job.after_spawn(target, target.client)
 	ADD_TRAIT(target, TRAIT_CABAL, TRAIT_GENERIC)
@@ -334,7 +337,22 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
-
+	if(human.mind?.assigned_role.title in GLOB.noble_positions)
+		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+		to_chat(user, span_danger("They are protected..."))
+		return
+	if(human.mind?.assigned_role.title in GLOB.retinue_positions)
+		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+		to_chat(user, span_danger("They are protected..."))
+		return
+	if(human.mind?.assigned_role.title in GLOB.regency_positions)
+		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+		to_chat(user, span_danger("They are protected..."))
+		return
+	if(human.mind?.assigned_role.title in GLOB.courtier_positions)
+		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+		to_chat(user, span_danger("They are protected..."))
+		return
 	if(istype(human.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(human.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
 		return
@@ -476,7 +494,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/book/invoke(mob/living/user, turf/center)
 	. = ..()
-	new /obj/item/recipe_book/zizo
+
+	new /obj/item/recipe_book/zizo(center)
+
 	to_chat(user, span_notice("Now you know how to make another ritual..."))
 
 /datum/ritual/transmutation/cross

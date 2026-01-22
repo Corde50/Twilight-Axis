@@ -5,7 +5,7 @@
     total_positions = 0
     spawn_positions = 0
     antag_job = TRUE
-    outfit = /datum/outfit/skeleton
+    outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider
     give_bank_account = FALSE
 
     job_traits = list(
