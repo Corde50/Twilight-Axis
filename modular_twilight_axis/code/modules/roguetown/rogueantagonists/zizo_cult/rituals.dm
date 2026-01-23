@@ -336,26 +336,31 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	if(human == SSticker.rulermob)
 		return
 
-	if(human.mind?.assigned_role.title in GLOB.church_positions)
+	if(human.mind?.assigned_role in GLOB.church_positions)
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
-	if(human.mind?.assigned_role.title in GLOB.noble_positions)
+	
+	if(human.mind?.assigned_role in GLOB.noble_positions)
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
-	if(human.mind?.assigned_role.title in GLOB.retinue_positions)
+	
+	if(human.mind?.assigned_role in GLOB.retinue_positions)
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
-	if(human.mind?.assigned_role.title in GLOB.regency_positions)
+	
+	if(human.mind?.assigned_role in GLOB.regency_positions)
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
-	if(human.mind?.assigned_role.title in GLOB.courtier_positions)
+	
+	if(human.mind?.assigned_role in GLOB.courtier_positions)
 		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
 		to_chat(user, span_danger("They are protected..."))
 		return
+
 	if(istype(human.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(human.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
 		return
