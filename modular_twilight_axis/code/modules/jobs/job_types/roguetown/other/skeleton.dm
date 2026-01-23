@@ -52,7 +52,7 @@
 
 /datum/job/roguetown/skeleton/zizoid
 	title = "Cult Summon"
-	outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid
+	outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider
 
 /datum/job/roguetown/skeleton/zizoid/after_spawn(mob/living/carbon/human/spawned, client/player_client)
     . = ..()
