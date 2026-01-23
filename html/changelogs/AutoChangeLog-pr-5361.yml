@@ -1,5 +1,0 @@
-author: "SirSwagmeyer"
-delete-after: True
-changes:
-  - rscadd: "Added armor blacklist and whitelist to ruma clan"
-  - balance: "rebalanced tattoo armor and swords"

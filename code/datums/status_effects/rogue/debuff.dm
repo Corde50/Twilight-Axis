@@ -749,6 +749,95 @@
 		var/mob/living/carbon/C = owner
 		C.remove_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN)
 
+
+/datum/status_effect/debuff/necrandeathdoorwilloss
+	id = "Necran Deathly calm!"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/necranwilloss
+	effectedstats = list(STATKEY_WIL = -4)
+	var/blimmune = FALSE
+	var/nobreath = FALSE
+
+/datum/status_effect/debuff/necrandeathdoorwilloss/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.add_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
+		if(HAS_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE))
+			blimmune = TRUE
+		else
+			ADD_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		if(HAS_TRAIT(H, TRAIT_NOBREATH))
+			nobreath = TRUE
+		else
+			ADD_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/debuff/necrandeathdoorwilloss/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
+		if(!blimmune)
+			REMOVE_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		if(!nobreath)
+			REMOVE_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/debuff/necrandeathdoorwilloss/process()
+	.=..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.energy_add(-1)	//being in death's edge drains energy from people
+		var/area/rogue/our_area = get_area(H)
+		if(!(our_area.necra_area))
+			owner.remove_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)
+
+/atom/movable/screen/alert/status_effect/debuff/necranwilloss
+	name = "Necran Deathly calm!"
+	desc = "I am on the edge of my lady's realm. My motivation slackens with such deathly tranquility."
+	icon_state = "debuff"
+	color ="#af9f9f"
+
+/datum/status_effect/debuff/deathdoorwilloss
+	id = "Deathly calm!"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/deathdoorwilloss
+	effectedstats = list(STATKEY_WIL = -8)
+	var/blimmune = FALSE
+	var/nobreath = FALSE
+
+/datum/status_effect/debuff/deathdoorwilloss/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.add_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING, multiplicative_slowdown = PULL_PRONE_SLOWDOWN)
+	if(HAS_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE))
+		blimmune = TRUE
+	else
+		ADD_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+	if(HAS_TRAIT(H, TRAIT_NOBREATH))
+		nobreath = TRUE
+	else
+		ADD_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/debuff/deathdoorwilloss/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)
+		if(!blimmune)
+			REMOVE_TRAIT(H, TRAIT_BLOODLOSS_IMMUNE, STATUS_EFFECT_TRAIT)
+		if(!nobreath)
+			REMOVE_TRAIT(H, TRAIT_NOBREATH, STATUS_EFFECT_TRAIT)
+
+/datum/status_effect/debuff/deathdoorwilloss/process()
+	.=..()
+	owner.energy_add(-1)	//being in death's edge drains energy from people
+	var/area/rogue/our_area = get_area(owner)
+	if(!(our_area.necra_area))
+		owner.remove_status_effect(/datum/status_effect/debuff/deathdoorwilloss)
+
+/atom/movable/screen/alert/status_effect/debuff/deathdoorwilloss
+	name = "Deathly calm!"
+	desc = "I am on the edge of Death's realm. It is hard to feel motivated with such deathly tranquility."
+	icon_state = "debuff"
+	color ="#af9f9f"
 /datum/status_effect/debuff/no_coom_cheating //Gets triggered when someone sets their arousal, prevents orgasms from sating vice/giving mood boosts
 	id = "nocoomcheating"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/no_coom_cheating

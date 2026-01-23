@@ -708,3 +708,42 @@
   zydras:
   - rscadd: Added donator items (3x) for zydras
   - rscdel: Removed an unused (1x) donator item
+2026-01-23:
+  Burrito-Justice:
+  - bugfix: Purging laws no longer explodes your eardrums
+  FreeStylaLT:
+  - bugfix: Fixed Dagger Special having infinite duration.
+  Ketrai:
+  - rscadd: Town blacksmiths and guild smiths, as well as the merchant now spawns
+      with an artefact blueprint.
+  Klein3:
+  - bugfix: Old acolytes have their legendary miracle skill back
+  - bugfix: Shoes take 5 seconds to stip instead of 10
+  - bugfix: 'Abyssal language should have an icon and be available to Acolytes and
+      Bishops.
+
+      :cl:'
+  - rscadd: Abyssal language added, and available Dreamwalkers, Abyssorite clergy,
+      heretical wretches and mad worshippers of Abyssor.
+  - bugfix: Fixed a bug where old Bishops did not recieve legendary miracle skill.
+  - spellcheck: 'Clarified the descriptions of the new miracles added in #5124.'
+  Kokserva:
+  - rscadd: nipple piercing for everyone, yippe
+  - bugfix: socks and now gnomes have socks too
+  Onutsio:
+  - rscadd: Death's Door - T4 Necran miracle
+  - qol: Necra's Sight has nameable crosses now.
+  Quinalion:
+  - rscadd: Lich Voicepack & Intro
+  SirSwagmeyer:
+  - rscadd: Added armor blacklist and whitelist to ruma clan
+  - balance: rebalanced tattoo armor and swords
+  kittysmooch:
+  - rscadd: thrown items now apply their demolition modifier
+  - rscadd: 'overhauled ricochet code and added ricochet mechanics to sling bullets
+      and arcyne bolt.
+
+      :cl:'
+  - bugfix: 'fresh character slots default to no underwear selection
+
+      :cl:'

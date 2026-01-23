@@ -1,4 +1,0 @@
-author: "Ketrai"
-delete-after: True
-changes:
-  - rscadd: "Town blacksmiths and guild smiths, as well as the merchant now spawns with an artefact blueprint."

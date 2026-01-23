@@ -1,5 +1,0 @@
-author: "Klein3"
-delete-after: True
-changes:
-  - bugfix: "Fixed a bug where old Bishops did not recieve legendary miracle skill."
-  - spellcheck: "Clarified the descriptions of the new miracles added in #5124."
