@@ -5,5 +5,5 @@
 	color = CLOTHING_RED
 	icon_state = "soundbreaker"
 	icon = 'modular_twilight_axis/icons/roguetown/clothing/armor.dmi'
-	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/armor.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/armor.dmi'
 	body_parts_covered = CHEST | GROIN | LEGS | ARMS 
