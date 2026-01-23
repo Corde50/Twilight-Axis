@@ -1,6 +1,6 @@
 /datum/advclass/naledimage
 	name = "Naledian Psydon Mage"
-	tutorial = "Psydonite mage, Unrivaled in knowledge of fate and secret."
+	tutorial = "Неледийский маг, с ранних лет изучая аркану, так же изучал учение церкви. После долгих и упорных тренировок, ему открылись тайные занания стихий, секрет которых он должен унести с собой в могилу."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/naledimage
@@ -15,7 +15,7 @@
 		TRAIT_ALCHEMY_EXPERT,
 	)
 	subclass_stats = list(
-		STATKEY_INT = 3,
+		STATKEY_INT = 4,
 		STATKEY_WIL = 2,
 		STATKEY_SPD = 1,
 		STATKEY_PER = 1,
@@ -42,7 +42,7 @@
 		"Psydon Gift" = /obj/item/hourglass/temporal
 	)
 
-	extra_context = "By drawing knowledge from ancient libraries we gain his will"
+	extra_context = "Как одиному из лучших магов, тебе удалось прихватить в с собой свои любимые часы."
 
 /datum/outfit/job/roguetown/naledimage
 	job_bitflag = BITFLAG_HOLY_WARRIOR
@@ -70,6 +70,7 @@
 		/obj/item/roguekey/inquisitionmanor,
 		/obj/item/rogueweapon/huntingknife,
 		/obj/item/rogueweapon/scabbard/sheath,
+		/obj/item/paper/inqslip/arrival/ortho,
 		/obj/item/book/spellbook
 	)
 	if(H.age == AGE_OLD)
