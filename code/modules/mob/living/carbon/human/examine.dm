@@ -228,6 +228,12 @@
 
 			if(has_flaw(/datum/charflaw/addiction/thrillseeker) && user.has_flaw(/datum/charflaw/addiction/thrillseeker))
 				. += span_rose("[m1] twitching for a thrilling fight. So am I.")
+			
+			if(user.has_flaw(/datum/charflaw/averse))
+				var/datum/charflaw/averse/averseflaw = user.get_flaw(/datum/charflaw/averse)
+				if(averseflaw.check_aversion(user, src))
+					user.add_stress(/datum/stressevent/averse)
+					. += span_secradio("One of <b>them...</b>")
 
 			if(HAS_TRAIT(user, TRAIT_EMPATH) && HAS_TRAIT(src, TRAIT_PERMAMUTE))
 				. += span_notice("[m1] lacks a voice. [m1] is a mute!")
@@ -780,10 +786,10 @@
 		. += span_warning("[msg.Join("\n")]")
 
 	// Show especially large embedded objects at a glance
-	for(var/obj/item/bodypart/part in bodyparts)
-		if (LAZYLEN(part.embedded_objects))
-			for(var/obj/item/stuck_thing in part.embedded_objects)
-				if (stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		if(LAZYLEN(part.embedded_objects))
+			for(var/obj/item/stuck_thing as anything in part.embedded_objects)
+				if(stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
 					. += span_bloody("<b>[m3] \a [stuck_thing] stuck in [m2] [part.name]!</b>")
 
 	if((user != src) && isliving(user))
