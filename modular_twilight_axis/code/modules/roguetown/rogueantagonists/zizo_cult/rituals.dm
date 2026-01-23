@@ -277,6 +277,49 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		target.emote("painscream")
 	log_game("[key_name(target)] was resist to convert by cultist")
 
+/datum/ritual/servantry/zizofication
+	name = "Convert to zizoid"
+	desk = "Ритуал для простых последователей зизо, что не являются культистами. Позволяет обратить кого-либо в веру Зизо."
+	center_requirement = /mob/living/carbon/human
+
+/datum/ritual/servantry/zizofication/invoke(mob/living/user, turf/center)
+	var/mob/living/carbon/human/target = locate() in center.contents
+
+	var/list/options = list(
+		"Yield",
+		"Resist"
+	)
+
+	var/chosen = tgui_input_list(target, "Do you yield to the darkness?", "You are shown the path of Zizo.", options)
+
+	if(!chosen)
+		convert_resist(target)
+		return
+
+	if(chosen == "Yield")
+		convert_yield(target)
+	else if(chosen == "Resist")
+		convert_resist(target)
+
+/datum/ritual/servantry/zizofication/proc/convert_yield(mob/living/carbon/human/target)
+	target.Immobilize(3 SECONDS)
+	target.set_patron(/datum/patron/inhumen/zizo)
+	to_chat(target, span_notice("You are being offered the path of Zizo. Choose wisely."))
+	to_chat(target, span_notice("I see the truth now! It all makes so much sense! Zizo is my queen!"))
+	target.praise()
+	target.playsound_local(target, 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/tesa.ogg', 25)
+	target.whisper("O'vena tesa...")
+	log_game("[key_name(target)] was converted to Zizoid by zizoid!")
+	message_admins("[key_name(target)] was converted to Zizoid by zizoid!]")
+
+/datum/ritual/servantry/zizofication/proc/convert_resist(mob/living/carbon/human/target)
+	target.Immobilize(3 SECONDS)
+	target.visible_message(span_danger("[target] thrashes around, unyielding!"))
+	to_chat(target, span_reallybigredtext("MORTAL, I OFFER YOU SALVATION! ACCEPT IT! NOW."))
+	if(target.electrocute_act(10))
+		target.emote("painscream")
+	log_game("[key_name(target)] was resist to convert by zizoid")
+
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
 	desk = "Превращает жертву в сильного и особого скелета Зизо!"
