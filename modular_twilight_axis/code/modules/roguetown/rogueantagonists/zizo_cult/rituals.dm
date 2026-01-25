@@ -359,6 +359,21 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 		target.key = mob.key
 
+	if(target.skills)
+		target.skills.known_skills = list()
+		target.skills.skill_experience = list()
+		target.status_traits = list()
+
+	while(target.mind.spell_list.len)
+		var/obj/effect/proc_holder/spell/S = target.mind.spell_list[1]
+		target.mind.spell_list -= S
+		qdel(S)
+
+	while(target.mob_spell_list.len)
+		var/obj/effect/proc_holder/spell/S2 = target.mob_spell_list[1]
+		target.mob_spell_list -= S2
+		qdel(S2)
+
 	target.unequip_everything()
 	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/skeleton/zizoid)
 	target.mind?.set_assigned_role(summon_job)
