@@ -10,9 +10,8 @@
 # More can be found in code\__DEFINES\maps.dm
 
 # Metastation Cryo
-# [templates.metastation_cryo]
-# map_files = ["metastation_cryo.dmm"]
-# directory = "_maps/twilight_axis/templates/"
-# required_map = "MetaStation.dmm"
-# coordinates = [133, 182, 1]
-# trait_name = "Station"
+[templates.test_map]
+map_files = ["orcboss.dmm"]
+directory = "_maps/twilight_axis/templates/test/"
+required_map = "dun_world.dmm"
+coordinates = [10, 10, 1]

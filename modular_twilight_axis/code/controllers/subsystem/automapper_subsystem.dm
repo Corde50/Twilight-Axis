@@ -11,21 +11,41 @@
  *
  * LIMITED SUPPORT FOR NON-STATION LEVELS(until someone adds a better Z level handling system for this)
  */
+#define INIT_ORDER_AUTOMAPPER 51
 
 SUBSYSTEM_DEF(automapper)
 	name = "Automapper"
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_AUTOMAPPER
 	/// The path to our TOML file
-	var/config_file = "_maps/bandastation/automapper/automapper_config.toml"
+	var/config_file = "_maps/twilight_axis/automapper.toml"
 	/// Our loaded TOML file
 	var/loaded_config
 	/// Our preloaded map templates
 	var/list/preloaded_map_templates = list()
 
 /datum/controller/subsystem/automapper/Initialize()
-	loaded_config = rustg_read_toml_file(config_file)
-	return SS_INIT_SUCCESS
+	var/raw = rustg_read_toml_file(config_file)
+
+	if(!raw)
+		CRASH("Automapper: TOML returned null for [config_file]")
+
+	if(islist(raw) && raw["templates"])
+		loaded_config = raw
+		return SS_INIT_SUCCESS
+
+	if(islist(raw) && raw["success"])
+		if(!raw["success"])
+			CRASH("Automapper TOML error: [raw["content"]]")
+
+		var/list/decoded = json_decode(raw["content"])
+		if(!islist(decoded))
+			CRASH("Automapper: Failed to decode TOML content from [config_file]")
+
+		loaded_config = decoded
+		return SS_INIT_SUCCESS
+
+	CRASH("Automapper: Unknown TOML format for [config_file]")
 
 /**
  * This will preload our templates into a cache ready to be loaded later.
@@ -50,9 +70,7 @@ SUBSYSTEM_DEF(automapper)
 		if(LAZYLEN(coordinates) != 3)
 			CRASH("Invalid coordinates for automap template [template]!")
 
-		var/desired_z = SSmapping.levels_by_trait(selected_template["trait_name"])[coordinates[3]]
-
-		var/turf/load_turf = locate(coordinates[1], coordinates[2], desired_z)
+		var/turf/load_turf = locate(coordinates[1], coordinates[2], coordinates[3])
 
 		if(!LAZYLEN(selected_template["map_files"]))
 			CRASH("Could not find any valid map files for automap template [template]!")
@@ -93,7 +111,6 @@ SUBSYSTEM_DEF(automapper)
 	var/static/list/mapload_args = list(TRUE)
 	// Don't even initialize things in this list. Very specific edge cases.
 	var/static/list/type_blacklist = typecacheof(list(
-		/obj/docking_port/stationary,
 		/obj/structure/bookcase,
 		/obj/structure/closet,
 		/obj/item/storage,

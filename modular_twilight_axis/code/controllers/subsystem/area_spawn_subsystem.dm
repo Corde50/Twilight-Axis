@@ -6,36 +6,23 @@ SUBSYSTEM_DEF(area_spawn)
 	// Usually things where it's important to be sure the players can walk up to them, but aren't dense.
 	// See restricted_half_height_objects_list for things that you can also reach over.
 	var/list/restricted_objects = list(
-		/obj/machinery/recharge_station,
-		/obj/machinery/door,
 		/obj/structure/closet,
-		/obj/machinery/disposal/bin,
 		/obj/structure/table,
 		/obj/structure/stairs,
 	)
 
 	// Only Blacklist if on same tile because looks bad, etc, but doesn't need to be reached.
-	var/list/restricted_overlap_objects = list(
-		/obj/item/kirbyplants,
-	)
+	var/list/restricted_overlap_objects = list()
 
 	// Things here in some way act as walls. This is the result of extensive tweaking.
-	var/list/allowed_diagonal_objects = list(
-		/obj/structure/grille,
-		/obj/structure/window,
-		/obj/machinery/door,
-	)
+	var/list/allowed_diagonal_objects = list()
 
 	// Wall mounts ironically are better off being on top of squares with dense things since you can click past them,
 	// And dense things aren't on walls. These objects should have normal density logic flipped.
 	var/list/flip_density_wall_mount_objects = list(
 		/obj/machinery,
 		/obj/structure/table,
-		/obj/structure/rack,
-		/obj/item/radio/intercom,
-		/obj/structure/noticeboard,
-		/obj/structure/sign,
-		/obj/structure/extinguisher_cabinet,
+		/obj/structure/rack
 	)
 
 	/// Cache of area turf info.
@@ -375,20 +362,25 @@ SUBSYSTEM_DEF(area_spawn)
 
 GLOBAL_LIST_EMPTY(turf_test_effects)
 
-/obj/effect/turf_test
-    name = "PASS"
-    icon = 'modular_bandastation/automapper/icons/area_test.dmi'
-    icon_state = "area_test"
-    color = COLOR_BLUE
-    anchored = TRUE
-    layer = LOW_OBJ_LAYER
+// /obj/effect/turf_test
+// 	name = "PASS"
+// 	icon = 'modular_bandastation/automapper/icons/area_test.dmi'
+// 	icon_state = "area_test"
+// 	color = COLOR_BLUE
+// 	anchored = TRUE
+// 	layer = LOW_OBJ_LAYER
 
-/obj/effect/turf_test/Initialize(mapload, priority, mode)
-	. = ..()
-	GLOB.turf_test_effects += src
-	maptext = MAPTEXT(priority)
-	maptext_y = mode * 10
+// /obj/effect/turf_test/Initialize(mapload, priority, mode)
+// 	. = ..()
+// 	GLOB.turf_test_effects += src
+// 	maptext = MAPTEXT(priority)
+// 	maptext_y = mode * 10
 
-/obj/effect/turf_test/Destroy(force)
-	GLOB.turf_test_effects -= src
-	. = ..()
+// /obj/effect/turf_test/Destroy(force)
+// 	GLOB.turf_test_effects -= src
+// 	. = ..()
+
+/proc/peek(list/target_list)
+	var/list_length = length(target_list)
+	if(list_length != 0)
+		return target_list[list_length]
