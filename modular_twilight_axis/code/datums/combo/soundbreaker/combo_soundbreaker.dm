@@ -968,6 +968,32 @@
 
 	return res
 
+/datum/component/combo_core/soundbreaker/proc/GetWaveLineTurfs(distance = 1, dir_override = null)
+	var/list/res = list()
+	if(!owner)
+		return res
+
+	var/d = dir_override || owner.dir
+	if(!d)
+		d = owner.dir
+
+	var/turf/center = GetFrontTurf(distance, d)
+	if(!center)
+		return res
+
+	res += center
+
+	var/dir_left  = turn(d, 90)
+	var/dir_right = turn(d, -90)
+
+	var/turf/L = get_step(center, dir_left)
+	if(L) res += L
+
+	var/turf/R = get_step(center, dir_right)
+	if(R) res += R
+
+	return res
+
 /datum/component/combo_core/soundbreaker/proc/StepBehind(mob/living/target)
 	if(!owner || !target)
 		return
@@ -1153,7 +1179,7 @@
 	if(!d) d = owner.dir
 
 	var/turf/front1 = GetFrontTurf(1, d)
-	var/list/wave2 = GetArcTurfs(2, d)
+	var/list/wave2 = GetWaveLineTurfs(2, d)
 	if(islist(wave2))
 		wave2 = wave2.Copy()
 
@@ -1218,7 +1244,15 @@
 		var/mob/living/hit = _pick_combo_victim_on_turf(T, target)
 		if(hit && ApplyDamage(hit, 0.75, BCLASS_PUNCH, zone, BRUTE, is_combo = TRUE))
 			any = TRUE
-			Knockback(hit, 2)
+
+			var/turf/throw_target = hit.loc
+			for(var/i = 1 to 2)
+				var/turf/next = get_step(throw_target, d)
+				if(!next)
+					break
+				throw_target = next
+
+			hit.safe_throw_at(throw_target, 2, 1, owner, spin = TRUE)
 
 	if(any)
 		owner.visible_message(
