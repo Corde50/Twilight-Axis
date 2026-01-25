@@ -1,6 +1,6 @@
 /datum/advclass/naledimage
 	name = "Naledian Psydon Mage"
-	tutorial = "Неледийский маг, с ранних лет изучая аркану, так же изучал учение церкви. После долгих и упорных тренировок, ему открылись тайные занания стихий, секрет которых он должен унести с собой в могилу."
+	tutorial = "The Neledian mage, who had studied the arcana from a young age, also studied the teachings of the church. After long and meticulous preparation, the secrets of the elements were revealed to him — secrets he was destined to take with him to the grave."
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/naledimage
@@ -42,7 +42,7 @@
 		"Psydon Gift" = /obj/item/hourglass/temporal
 	)
 
-	extra_context = "Как одному из лучших магов, тебе удалось прихватить в с собой свои любимые часы."
+	extra_context = "As one of the best magicians, you managed to take your favorite watch with you."
 
 /datum/outfit/job/roguetown/naledimage
 	job_bitflag = BITFLAG_HOLY_WARRIOR

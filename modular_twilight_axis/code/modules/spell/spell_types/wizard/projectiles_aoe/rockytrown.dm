@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/projectile/gientrock
 	name = "Giant Rock"
-	desc = "Огромный кусок скалы, запускаемый в полет лишь одной верой в псайдона и немного магией. "
+	desc = "Flying piece of stone. "
 	clothes_req = FALSE
 	projectile_type = /obj/projectile/gientrock
 	overlay_state = "meteor_storm"
