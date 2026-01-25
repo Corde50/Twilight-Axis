@@ -335,19 +335,40 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/mob/living/carbon/human/target = locate() in center.contents
 	if(!target)
 		return
+	
 	if(target == user)
 		return
-	if(is_zizocultist(target.mind))
+	
+	if(target.mind && is_zizocultist(target.mind))
 		to_chat(target, span_danger("I will not let my followers become mindless brutes."))
 		return
+	
+	if(!target.ckey || !target.mind)
+		var/list/candidates = pollGhostCandidates("Do you want to play as skeleton?", ROLE_LICH_SKELETON, null, null, 10 SECONDS, POLL_IGNORE_LICH_SKELETON)
+		if(!LAZYLEN(candidates))
+			to_chat(user, span_warning("The depths are hollow."))
+			return
+
+		var/mob/dead/mob = pick(candidates)
+		if(!istype(mob))
+			return
+
+		if(istype(mob, /mob/dead/new_player))
+			var/mob/dead/new_player/new_player = mob
+			new_player.close_spawn_windows()
+
+		target.key = mob.key
 
 	target.unequip_everything()
 	var/datum/job/summon_job = SSjob.GetJobType(/datum/job/roguetown/skeleton/zizoid)
 	target.mind?.set_assigned_role(summon_job)
 	summon_job.after_spawn(target, target.client)
+
 	var/datum/advclass/cult/skeleton/zizoid/raider/class = new
 	class.equipme(target)
 	qdel(class)
+
+	target.choose_name_popup("SKELETON")
 	ADD_TRAIT(target, TRAIT_CABAL, TRAIT_GENERIC)
 
 	to_chat(target, span_userdanger("I am returned to serve. I will obey, so that I may return to rest."))
