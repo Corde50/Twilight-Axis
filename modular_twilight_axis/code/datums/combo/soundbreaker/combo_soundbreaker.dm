@@ -1168,7 +1168,7 @@
 	if(d)
 		owner.setDir(d)
 
-	sb_fire_sound_note(owner, target, 1.25, BRUTE, BODY_ZONE_CHEST, d)
+	sb_fire_sound_note(owner, target, 1.5, BRUTE, BODY_ZONE_CHEST, d)
 	ResetRhythm()
 
 /datum/component/combo_core/soundbreaker/proc/ComboBassDrop(mob/living/target)
