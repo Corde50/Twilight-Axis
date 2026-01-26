@@ -304,8 +304,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/zizofication/proc/convert_yield(mob/living/carbon/human/target)
 	target.Immobilize(3 SECONDS)
 	target.set_patron(/datum/patron/inhumen/zizo)
-	to_chat(target, span_notice("You are being offered the path of Zizo. Choose wisely."))
-	to_chat(target, span_notice("I see the truth now! It all makes so much sense! Zizo is my queen!"))
+	to_chat(target, span_notice("Zizo... Now she can show me the true way..."))
 	target.praise()
 	target.playsound_local(target, 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/tesa.ogg', 25)
 	target.whisper("O'vena tesa...")
@@ -315,7 +314,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/zizofication/proc/convert_resist(mob/living/carbon/human/target)
 	target.Immobilize(3 SECONDS)
 	target.visible_message(span_danger("[target] thrashes around, unyielding!"))
-	to_chat(target, span_reallybigredtext("MORTAL, I OFFER YOU SALVATION! ACCEPT IT! NOW."))
+	to_chat(target, span_reallybigredtext("Accept the HER path! NOW!."))
 	if(target.electrocute_act(10))
 		target.emote("painscream")
 	log_game("[key_name(target)] was resist to convert by zizoid")
@@ -323,7 +322,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/skeletaljaunt
 	name = "Skeletal Jaunt"
 	desk = "Превращает жертву в сильного и особого скелета Зизо!"
-	ritual_limit = 1
+	ritual_limit = 2
 	number_cultist_for_add_limit = 2
 	center_requirement = /mob/living/carbon/human
 
@@ -523,7 +522,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		carbon_target.silent += 30
 	qdel(src)
 
-/datum/ritual/servantry/darksunmark
+/*/datum/ritual/servantry/darksunmark //Надо будет переделать мб, или хуй забить
 	name = "Dark Sun's Mark"
 	desk = "Помечает выбранное существо как цель культа. Также ассассины получают о нем информацию.."
 	center_requirement = /obj/item/rogueweapon/huntingknife/idagger // Requires a combat dagger. Can be iron, steel or silver.
@@ -558,7 +557,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	to_chat(target, span_danger("My hair stands on end. Has someone just said my name? I should watch my back."))
 	to_chat(user, span_warning("Your target has been marked, your profane call answered by the Dark Sun. [target.real_name] will surely perish!"))
 	qdel(D)
-	target.playsound_local(target, 'sound/magic/marked.ogg', 100)
+	target.playsound_local(target, 'sound/magic/marked.ogg', 100) */
 
 // TRANSMUTATION
 /datum/ritual/transmutation
@@ -591,6 +590,11 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Призывает особый крест Зизо."
 	center_requirement = /obj/item/clothing/neck/roguetown/psicross
 
+	n_req = /obj/item/magic/manacrystal
+	s_req = /obj/item/natural/bundle/bone/full
+	w_req = /obj/item/magic/manacrystal
+	e_req = /obj/item/magic/manacrystal
+
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
 	. = ..()
 	new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult(center)
@@ -609,9 +613,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	name = "accursed soap"
 	desc = "It is pulsating."
 	color = LIGHT_COLOR_BLOOD_MAGIC
-	uses = 200
+	uses = 1000
 
-/datum/ritual/transmutation/propaganda
+/*/datum/ritual/transmutation/propaganda
 	name = "Propaganda"
 	desk = "А это будем менять потом"
 	center_requirement = /obj/item/natural/worms/leech
@@ -620,7 +624,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/propaganda/invoke(mob/living/user, turf/center)
 	new /obj/item/natural/worms/leech/propaganda(center)
-	to_chat(user, span_notice("A leech to make their minds wrangled. They'll be in bad spirits."))
+	to_chat(user, span_notice("A leech to make their minds wrangled. They'll be in bad spirits.")) */
 
 /datum/ritual/transmutation/invademind
 	name = "Invade Mind"
@@ -664,7 +668,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonneant
 	name = "Summon Neant"
-	desk = "Призывает Особую косу культа."
+	desk = "Призывает Особую косу Зизо. В центре должен быть Знатный."
 	center_requirement = /obj/item/reagent_containers/lux
 	n_req = /mob/living/carbon/human
 	s_req = /obj/item/ingot/steel
@@ -779,16 +783,14 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Одаривает цель исцелением."
 	center_requirement = /mob/living/carbon/human
 	n_req =  /obj/item/reagent_containers/food/snacks/rogue/meat/steak
-	w_req = /obj/item/alch/calendula
-	e_req = /obj/item/alch/symphitum
-	s_req = /obj/item/alch/valeriana
+	s_req = /obj/item/alch/calendula
 
 /datum/ritual/fleshcrafting/fleshmend/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
 	if(!target)
 		return
 	target.playsound_local(target, 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
-	target.fully_heal()
+	target.fully_heal(admin_revive = TRUE, break_restraints = TRUE)
 	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
@@ -805,12 +807,14 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 //	var/mob/living/carbon/human/target = locate() in center.contents
 //	if(!target)
 //		return
-//	ADD_TRAIT(target, TRAIT_NIGHT_VISION, TRAIT_GENERIC)
+//	ADD_TRAIT(target,  TRAIT_GENERIC)
 //	to_chat(target, span_notice("I no longer fear the dark."))
 
 /datum/ritual/fleshcrafting/undead
 	name = "Dominate Undead"
 	desk = "Дает возможность призывать самую нисшую нежить."
+	ritual_limit = 2
+	number_cultist_for_add_limit = 2
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/organ/brain
@@ -832,7 +836,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/arcane
 	name = "Siphon Arcane"
-	desk = "Принеся в жертву мага, одаривает культиста очками на изучение заклинаний и повышает его навык владения арканой. Нужно изначально быть магом..."
+	desk = "Принеся в жертву мага, одаривает культиста очками на изучение заклинаний и повышает его навык владения арканой. Нужно изначально быть магом... По центру должны стоять вы, а севернее - маг."
 	cultist_number = 1
 	number_cultist_for_add_limit = 3
 	ritual_limit = 1

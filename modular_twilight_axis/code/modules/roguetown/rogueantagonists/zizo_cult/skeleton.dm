@@ -59,6 +59,7 @@ NECRO SKELETONS
 	head = /obj/item/clothing/head/roguetown/helmet/skullcap/cult
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/zizo
 	neck = /obj/item/clothing/neck/roguetown/bevor/zizo
+	gloves = /obj/item/clothing/gloves/roguetown/plate/zizo
 
 /datum/advclass/cult/skeleton/zizoid/raider
 	name = "Cult skeleton raider"
@@ -91,7 +92,7 @@ NECRO SKELETONS
 	H.STACON = rand(8, 13)
 	H.STAINT = rand(1, 3)
 	H.STAPER = rand(7, 12)
-	H.STALUC = rand(5, 12)
+	H.STALUC = rand(8, 12)
 
 	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy : /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
 	r_hand = /obj/item/rogueweapon/sword/long/zizo
