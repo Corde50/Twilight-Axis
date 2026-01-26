@@ -152,4 +152,5 @@
 		/obj/item/rope/chain = 1, 
 		/obj/item/rogueweapon/scabbard/sheath = 1
 	)
+	H.grant_language(/datum/language/common)
 #undef CTAG_VAMPIRE_SPAWN

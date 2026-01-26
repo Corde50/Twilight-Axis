@@ -48,7 +48,7 @@
 	boobed = FALSE
 	flags_inv = HIDECROTCH|HIDEBOOB
 	slot_flags = ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK|ITEM_SLOT_ARMOR
-	icon = 'icons/clothing/donor_clothes.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/donor_clothes.dmi'
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
 	sleeved = null
 	nodismemsleeves = TRUE
@@ -82,6 +82,7 @@
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
 
 /obj/item/clothing/head/roguetown/helmet/heavy/knight/gilded/attackby(obj/item/W, mob/living/user, params)
+	..()
 	if(istype(W, /obj/item/natural/feather) && !detail_tag)
 		user.visible_message(span_warning("[user] adds [W] to [src]."))
 		user.transferItemToLoc(W, src, FALSE, FALSE)
