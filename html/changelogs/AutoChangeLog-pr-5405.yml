@@ -1,0 +1,5 @@
+author: "UEDCommander"
+delete-after: True
+changes:
+  - rscadd: "Black Venom and Anthrax mercenaries can now take Drider Spider as their mount if they have Saddleborn virtue"
+  - balance: "Black Venom can now choose to have Saddleborn as free virtue"

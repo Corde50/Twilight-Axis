@@ -1,0 +1,6 @@
+author: "Onutsio"
+delete-after: True
+changes:
+  - rscadd: "New hat for the psyaltrist"
+  - balance: "Psyaltrist skills + Loadout"
+  - bugfix: "PSY Rapier now golgatha blessable"
