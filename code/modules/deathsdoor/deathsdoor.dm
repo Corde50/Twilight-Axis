@@ -207,55 +207,26 @@ GLOBAL_VAR_INIT(underworld_strands, 0)
 	if(spawn_timer)
 		deltimer(spawn_timer)
 
-	var/delay = rand(15 MINUTES, 30 MINUTES)
 	spawn_timer = addtimer(
 		CALLBACK(src, PROC_REF(try_spawn)),
-		delay,
+		40 MINUTES,
 		TIMER_STOPPABLE
 	)
+
 /obj/effect/landmark/underworldstrands/proc/try_spawn()
 	spawn_timer = null
-	if(GLOB.underworld_strands >= 4)
-		start_timer()
-		return
 	var/turf/T = get_turf(src)
 	if(!T)
 		start_timer()
 		return
 
-	// If lux already present, reset timer
-	for(var/obj/item/soulthread/deathsdoor/L in T)
-		start_timer()
-		return
-
-	// Otherwise spawn new lux
 	new /obj/item/soulthread/deathsdoor(T)
-
 	start_timer()
+
 /obj/item/soulthread/deathsdoor
 	name = "shimmering lux-thread"
 	desc = "Eerie glowing thread, cometh from the grave"
-	var/should_track = TRUE
 
-/obj/item/soulthread/deathsdoor/Initialize()
-	. = ..()
-	if(should_track)
-		GLOB.underworld_strands += 1
-
-/obj/item/soulthread/deathsdoor/Destroy()
-	if(should_track)
-		GLOB.underworld_strands -= 1
-	return ..()
-
-/obj/item/soulthread/deathsdoor/pickup(mob/user)
-	..()
-	if(should_track)
-		GLOB.underworld_strands -= 1
-
-/obj/item/soulthread/deathsdoor/dropped(mob/user)
-	..()
-	if(should_track)
-		GLOB.underworld_strands += 1
 
 /mob/living/proc/extract_from_deaths_edge()//for total exhaustion in death's precipice
 	// Already unconscious? Don't loop
