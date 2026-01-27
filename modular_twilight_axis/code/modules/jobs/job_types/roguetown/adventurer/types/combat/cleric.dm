@@ -204,7 +204,7 @@
 			beltl = /obj/item/quiver/bolts
 			H.change_stat(STATKEY_PER, 3)
 			H.change_stat(STATKEY_SPD, 1)
-			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, 3, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 2, TRUE)
 	// -- Start of section for god specific bonuses --
 	if(H.patron?.type == /datum/patron/divine/astrata)
