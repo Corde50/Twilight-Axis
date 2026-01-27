@@ -1,6 +1,9 @@
+#define INIT_ORDER_AREA_SPAWN 52
+
 SUBSYSTEM_DEF(area_spawn)
 	name = "Area Spawn"
 	flags = SS_NO_FIRE
+	init_order = INIT_ORDER_AREA_SPAWN
 
 	// Can't be on tile or a neighbor.
 	// Usually things where it's important to be sure the players can walk up to them, but aren't dense.
@@ -262,6 +265,11 @@ SUBSYSTEM_DEF(area_spawn)
 		var/area/found_area = GLOB.areas_by_type[area_type]
 		if(isnull(found_area))
 			continue
+		log_world("AREA_SPAWN: checking [area_type]")
+		log_world("areas_by_type hit? [!!GLOB.areas_by_type[area_type]]")
+		var/area/A = GLOB.areas_by_type[area_type]
+		if(A)
+			log_world("area contents turfs=[length(A.contents)] turfs_by_zlevel=[length(A.turfs_by_zlevel)]")
 		available_turfs = SSarea_spawn.get_turf_candidates(found_area, mode)
 		if(LAZYLEN(available_turfs))
 			break

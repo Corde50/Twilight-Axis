@@ -9,9 +9,9 @@
 # Traits - Station (for station relatied edits), CentCom (for edits on the CC map), Mining (for edits on Lavaland)
 # More can be found in code\__DEFINES\maps.dm
 
-# Metastation Cryo
+# roguetest test lavafort
 [templates.test_map]
-map_files = ["orcboss.dmm"]
+map_files = ["lavafort.dmm"]
 directory = "_maps/twilight_axis/templates/test/"
-required_map = "dun_world.dmm"
-coordinates = [10, 10, 1]
+required_map = "roguetest.dmm"
+coordinates = [20, 20, 3]

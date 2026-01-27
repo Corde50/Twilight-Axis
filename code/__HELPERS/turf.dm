@@ -28,7 +28,6 @@
 	var/found_type = locate(type_to_find) in location
 	return found_type
 
-
 ///Returns the src and all recursive contents as a list.
 /atom/proc/get_all_contents(ignore_flag_1)
 	. = list(src)
