@@ -49,7 +49,7 @@
 		for(var/mob/living/carbon/human/H in view(7, src))
 			if(HAS_TRAIT(H, TRAIT_CLERGY_TA) && !H.has_status_effect(/datum/status_effect/buff/clergybuff))
 				H.apply_status_effect(/datum/status_effect/buff/clergybuff)
-	if(istype(src.get_inactive_held_item(), /obj/item/rogueweapon/spear/matthios_standard) || istype(src.get_active_held_item(), /obj/item/rogueweapon/spear/matthios_standard) && !(world.time < matthios_banner_timer_check + 5 SECONDS))
+	if((istype(src.get_inactive_held_item(), /obj/item/rogueweapon/spear/matthios_standard) || istype(src.get_active_held_item(), /obj/item/rogueweapon/spear/matthios_standard)) && !(world.time < matthios_banner_timer_check + 5 SECONDS))
 		matthios_banner_timer_check = world.time
 		for(var/mob/living/carbon/human/H in view(7, src))
 			if(istype(H.patron, /datum/patron/inhumen/matthios))
