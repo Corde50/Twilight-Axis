@@ -1,0 +1,5 @@
+author: "WrongEndoftheRainbow"
+delete-after: True
+changes:
+  - rscadd: "Added two new subclasses for Barbarian and Beserker that grant muscled skin."
+  - code_imp: "Added a form of armor that heals via doing pushups, called muscled skin."

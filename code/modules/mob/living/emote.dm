@@ -265,31 +265,12 @@
 		else
 			L.Knockdown(10)
 
-/datum/emote/living/flap
-	key = "flap"
-	key_third_person = "flaps"
-	message = "flaps their wings."
-	restraint_check = TRUE
-	var/wing_time = 20
-
-/datum/emote/living/carbon/human/flap/can_run_emote(mob/user, status_check = TRUE , intentional)
-	return FALSE
-
-/datum/emote/living/flap/aflap
-	key = "aflap"
-	key_third_person = "aflaps"
-	message = "flaps their wings ANGRILY!"
-	restraint_check = TRUE
-	wing_time = 10
-
-/datum/emote/living/carbon/human/aflap/can_run_emote(mob/user, status_check = TRUE , intentional)
-	return FALSE
-
 /datum/emote/living/frown
 	key = "frown"
 	key_third_person = "frowns"
 	message = "frowns."
 	emote_type = EMOTE_VISIBLE
+
 /mob/living/carbon/human/verb/emote_frown()
 	set name = "Frown"
 	set category = "Emotes"
@@ -1120,6 +1101,14 @@
 	message_muffled = "makes a muffled sneeze."
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
+
+/datum/emote/living/hmph
+	key = "hmph"
+	key_third_person = "hmphs"
+	message = "hmphs."
+	message_muffled = "makes a muffled sneeze."
+	emote_type = EMOTE_AUDIBLE
+	show_runechat = TRUE
 
 /datum/emote/living/shh
 	key = "shh"
@@ -1965,21 +1954,6 @@
 	set category = "Emotes"
 
 	emote("ffsalute", intentional =  TRUE)
-
-/datum/emote/living/yip
-	key = "yip"
-	key_third_person = "yips"
-	message = "yips!"
-	emote_type = EMOTE_AUDIBLE
-	message_muffled = "makes a muffled yip!"
-	is_animal = TRUE
-	show_runechat = FALSE
-
-/mob/living/carbon/human/verb/yip()
-	set name = "Yip"
-	set category = "Noises"
-
-	emote("yip", intentional = TRUE)
 
 /datum/emote/living/stat_roll
 	var/delay = 2.5 SECONDS

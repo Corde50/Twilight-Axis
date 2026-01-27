@@ -1,0 +1,5 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - balance: "NPCs now juke more often, but can no longer do physics breaking multistep juke"
+  - balance: "NPC's BReady trait is halved in effectiveness to make it slightly easier to exhaust them in battle."
