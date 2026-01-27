@@ -47,7 +47,7 @@
 /obj/item/clothing/suit/roguetown/armor/plate/fluted
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET | NECK
 
-/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar // As specified in PR neck coverage buff is only for HEAVY, therefore i exclude graggar halfplate.
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/graggar // As specified in PR neck coverage buff is only for HEAVY, therefore i exclude graggar halfplate
 	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
 
 /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate
@@ -63,13 +63,13 @@
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK
 
 /obj/item/clothing/suit/roguetown/armor/plate/vampire
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK // No idea if it's necessary, BUT
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS|NECK
 
 /obj/item/clothing/suit/roguetown/armor/heartfelt/lord // In fact - is plate armour
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK 
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK
 
 /obj/item/clothing/suit/roguetown/armor/heartfelt/hand
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK 
+	body_parts_covered = COVERAGE_ALL_BUT_LEGS | NECK
