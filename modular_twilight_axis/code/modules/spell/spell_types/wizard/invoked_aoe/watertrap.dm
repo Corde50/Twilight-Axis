@@ -70,7 +70,7 @@
 	var/list/affected = range(radius, origin)
 
 	for(var/turf/T in affected)
-		if(istype(T, /turf/closed) || istype(T, /turf/open/transparent/openspace)) 
+		if(istype(T, /turf/closed) || istype(T, /turf/open/transparent/openspace) || istype(T, /turf/open/water)) 
 			continue
 		
 		turf_data[T] = T.type

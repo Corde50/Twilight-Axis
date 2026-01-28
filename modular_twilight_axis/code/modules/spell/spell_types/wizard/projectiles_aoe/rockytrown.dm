@@ -14,7 +14,7 @@
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE
-	spell_tier = 4
+	spell_tier = 3
 	invocations = list("ROCK!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE

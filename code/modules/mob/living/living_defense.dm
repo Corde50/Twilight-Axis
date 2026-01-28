@@ -47,6 +47,21 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
+	if(HAS_TRAIT(src, TRAIT_MAGIC_SHIELD) && P.firer && P.firer != src) //TA EDIT START
+		visible_message("<span class='danger'>[src.name]'s shield clangs as it reflects [P.name] back at [P.firer]!</span>")
+		playsound(src.loc, 'sound/combat/parry/shield/magicshield (1).ogg', 50, TRUE)
+
+		var/new_angle = Get_Angle(src, P.firer)
+		P.setAngle(new_angle)
+
+		P.decayedRange = max(0, P.decayedRange - P.reflect_range_decrease)
+		P.range = P.decayedRange
+
+		P.permutated = list() 
+		P.firer = src
+
+		return BULLET_ACT_FORCE_PIERCE //TA EDIT END
+	
 	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_ATOM_BLOCK_BULLET)
 		return
 	def_zone = bullet_hit_accuracy_check(P.accuracy + P.bonus_accuracy, def_zone)

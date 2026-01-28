@@ -27,8 +27,6 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/projectile/arcynebolt,
 		/obj/effect/proc_holder/spell/invoked/gravity,
 		/obj/effect/proc_holder/spell/invoked/projectile/repel,
-		/obj/effect/proc_holder/spell/invoked/projectile/gientrock,
-		/obj/effect/proc_holder/spell/invoked/watertrap,
 		/obj/effect/proc_holder/spell/invoked/aerosolize,
 		/obj/effect/proc_holder/spell/targeted/touch/lesserknock,
 		/obj/effect/proc_holder/spell/invoked/counterspell,
@@ -48,6 +46,10 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/self/conjure_armor/dragonhide,
 		/obj/effect/proc_holder/spell/self/magicians_brick,
 		/obj/effect/proc_holder/spell/invoked/fire_cascade,
+		/obj/effect/proc_holder/spell/invoked/ShroudTrap, //TA EDIT START
+		/obj/effect/proc_holder/spell/invoked/projectile/gientrock,
+		/obj/effect/proc_holder/spell/self/magic_shield,
+		/obj/effect/proc_holder/spell/invoked/watertrap, //TA EDIT END
 		/obj/effect/proc_holder/spell/invoked/firewalker,
 		/obj/effect/proc_holder/spell/invoked/thunderstrike,
 		/obj/effect/proc_holder/spell/invoked/sundering_lightning,
