@@ -2990,7 +2990,7 @@
 #include "modular_twilight_axis\code\modules\clothing\rogueclothes\storage\storage.dm"
 #include "modular_twilight_axis\code\modules\hairstyles\module.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\wretch\lunacyembracer.dm"
-#include "code\modules\jobs\job_types\roguetown\church\acolyte.dm"
+#include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\acolyte.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\modular_clergy.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\martyr.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\monk.dm"
