@@ -47,7 +47,7 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/self/magicians_brick,
 		/obj/effect/proc_holder/spell/invoked/fire_cascade,
 		/obj/effect/proc_holder/spell/invoked/ShroudTrap, //TA EDIT START
-		/obj/effect/proc_holder/spell/invoked/projectile/gientrock,
+		/obj/effect/proc_holder/spell/invoked/projectile/giantrock,
 		/obj/effect/proc_holder/spell/self/magic_shield,
 		/obj/effect/proc_holder/spell/invoked/watertrap, //TA EDIT END
 		/obj/effect/proc_holder/spell/invoked/firewalker,

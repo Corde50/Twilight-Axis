@@ -1,5 +1,5 @@
 /obj/effect/proc_holder/spell/self/magic_shield
-	name = "Acran Shield"
+	name = "Acrane Shield"
 	desc = "Creates a temporary magical barrier that reflects projectiles flying at you back at the shooter."
 	cost = 6
 	xp_gain = TRUE
@@ -38,7 +38,7 @@
 		to_chat(target, "<span class='notice'>The mirror shield around you disappears</span>")
 
 /obj/effect/proc_holder/spell/self/magic_shield/cast(mob/living/user = usr)
-	var/duration = 300 
+	var/duration = 30 SECONDS 
 
 	if(HAS_TRAIT(user, TRAIT_MAGIC_SHIELD))
 		to_chat(user, "<span class='warning'>You are already experiencing a similar effect!</span>")
