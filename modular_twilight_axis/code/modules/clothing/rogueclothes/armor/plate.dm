@@ -16,7 +16,7 @@
 	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/helpers/32х48/sleeves_armor.dmi'
 	icon_state = "medium_armour"
 	item_state = "medium_armour"
-	body_parts_covered = COVERAGE_FULL
+	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
 	allowed_sex = list(MALE, FEMALE)
 	max_integrity = ARMOR_INT_CHEST_MEDIUM_STEEL
 	anvilrepair = /datum/skill/craft/armorsmithing
@@ -33,7 +33,7 @@
 	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/onmob/helpers/32х48/sleeves_armor.dmi'
 	icon_state = "heavy_armour"
 	item_state = "heavy_armour"
-	body_parts_covered = COVERAGE_FULL | NECK
+	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET | NECK
 	equip_delay_self = 12 SECONDS
 	unequip_delay_self = 12 SECONDS
 	equip_delay_other = 3 SECONDS
