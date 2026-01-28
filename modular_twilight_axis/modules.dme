@@ -11,5 +11,6 @@
 #include "code/modules/clothing/rogueclothes/armor/unique.dm"
 #include "code/modules/jobs/job_types/roguetown/adventurer/types/combat/rogue.dm"
 #include "code/modules/projectiles/soundbreaker_note.dm"
+#include "code/modules/roguetown/roguecrafting/sewing.dm"
 #include "code/modules/spells/soundbreaker.dm"
 
