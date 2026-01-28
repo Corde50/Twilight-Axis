@@ -2949,6 +2949,7 @@
 #include "modular_twilight_axis\code\datums\status_effects\rogue\debuff.dm"
 #include "modular_twilight_axis\code\datums\status_effects\rogue\roguebaff.dm"
 #include "modular_twilight_axis\code\datums\stress\negative_events.dm"
+#include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\combat\cleric.dm"
 #include "modular_twilight_axis\code\game\objects\items.dm"
 #include "modular_twilight_axis\code\game\objects\items\donator_fluff_items.dm"
 #include "modular_twilight_axis\code\game\objects\items\donator_modkit.dm"
@@ -3061,5 +3062,4 @@
 #include "modular_twilight_axis\lore\code\species_types\roguetown_species.dm"
 #include "modular_twilight_axis\modules.dme"
 #include "modular_twilight_axis\lore\code\tips\time.dm"
-#include "modular_twilight_axiscode\modules\jobs\job_types\roguetown\adventurer\types\combat\cleric.dm"
 // END_INCLUDE
