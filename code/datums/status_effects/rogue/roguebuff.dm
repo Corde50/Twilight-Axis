@@ -1909,6 +1909,17 @@
 	effectedstats[STATKEY_SPD] = arguments[2]
 	. = ..()
 
+/datum/status_effect/buff/auspex
+	id = "auspex"
+	alert_type = /atom/movable/screen/alert/status_effect/buff
+	effectedstats = list(STATKEY_PER = 1)
+	status_type = STATUS_EFFECT_REPLACE
+
+/datum/status_effect/buff/auspex/New(list/arguments)
+	effectedstats[STATKEY_PER] = arguments[2]
+	. = ..()
+
+
 /datum/status_effect/buff/fotv
 	id = "fotv"
 	alert_type = /atom/movable/screen/alert/status_effect/buff
