@@ -1,0 +1,7 @@
+author: "PatapoIIIa"
+delete-after: True
+changes:
+  - bugfix: "Prevented dirt clod stacking from causing runtime errors and server lag"
+  - refactor: "Refactored dirt clod merge logic to be event-driven and safer"
+  - code_imp: "Added safeguards against repeated deletion and null element access"
+  - server: "Improved server stability during high player activity involving dirt"
