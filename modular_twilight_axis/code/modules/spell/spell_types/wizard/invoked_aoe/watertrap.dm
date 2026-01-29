@@ -1,12 +1,12 @@
 /obj/effect/proc_holder/spell/invoked/watertrap
 	name = "Water Trap"
 	desc = "Causes a whirlpool with a strong current."
-	cost = 6
+	cost = 3
 	range = 7
 	xp_gain = TRUE
 	releasedrain = 30
 	chargedrain = 1
-	chargetime = 30
+	chargetime = 15
 	recharge_time = 30 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
@@ -22,6 +22,8 @@
 	glow_intensity = GLOW_INTENSITY_HIGH
 	gesture_required = TRUE
 	ignore_los = FALSE
+	var/delay = 1 SECONDS
+	var/area_of_effect = 1
 
 
 /obj/effect/watertrap
@@ -31,7 +33,7 @@
 	anchored = TRUE
 	density = FALSE
 	var/list/turf_data = list()
-	var/duration = 7 SECONDS
+	var/duration = 10 SECONDS
 	var/radius = 1
 	var/atom/movable/spawned_maneater
 
@@ -40,13 +42,22 @@
 
 	if(!targets.len)
 		return
-
+	var/turf/source_turf = get_turf(user)
 	var/turf/T = get_turf(targets[1])
 
-	if(T)
-		new /obj/effect/watertrap(T)
-	else
-		return FALSE 
+	if(!T)
+		return FALSE
+
+	if(get_dist(T, source_turf) > range)
+		to_chat(user, "<span class='warning'>Too far!</span>")
+		return FALSE
+
+	for(var/turf/affected_turf in get_hear(area_of_effect, T))
+		new /obj/effect/temp_visual/trap(affected_turf)
+		playsound(T, 'sound/magic/blade_burst.ogg', 80, TRUE, soundping = TRUE)
+
+	sleep(delay)
+	new /obj/effect/watertrap(T)
 
 /obj/effect/watertrap/Destroy()
 
@@ -66,36 +77,48 @@
 	if(!origin)
 		return
 
-	src.forceMove(null) 
+	src.forceMove(null)
 	var/list/affected = range(radius, origin)
 
 	for(var/turf/T in affected)
-		if(istype(T, /turf/closed) || istype(T, /turf/open/transparent/openspace) || istype(T, /turf/open/water)) 
+		if(istype(T, /turf/closed) || istype(T, /turf/open/transparent/openspace) || istype(T, /turf/open/water))
 			continue
-		
+
 		turf_data[T] = T.type
 		var/dx = T.x - origin.x
 		var/dy = T.y - origin.y
 		var/new_type
 
-		if(dx == 0 && dy == 0)
+		
+		if(!dx && !dy)
 			new_type = /turf/open/water/ocean/deep
-			spawned_maneater = new /obj/structure/flora/roguegrass/maneater/real(T) 
+			spawned_maneater = new /obj/structure/flora/roguegrass/maneater/real(T)
+			T.ChangeTurf(new_type, flags = CHANGETURF_IGNORE_AIR)
+			continue
 
-		else if(dx == 0) 
-			new_type = (dy > 0) ? /turf/open/water/river/flow : /turf/open/water/river/flow/north
+		
+		switch("[SIGN(dx)]:[SIGN(dy)]")
 
-		else if(dy == 0) 
-			new_type = (dx > 0) ? /turf/open/water/river/flow/west : /turf/open/water/river/flow/east
+			if("0:1")
+				new_type = /turf/open/water/river/flow
+			if("0:-1")
+				new_type = /turf/open/water/river/flow/north
+			if("1:0")
+				new_type = /turf/open/water/river/flow/west
+			if("-1:0")
+				new_type = /turf/open/water/river/flow/east
 
-		else 
-			if(dx < 0)
-				new_type = (dy < 0) ? /turf/open/water/river/flow/east : /turf/open/water/river/flow
-			else
-				new_type = (dy < 0) ? /turf/open/water/river/flow/north : /turf/open/water/river/flow/west
+			
+			if("1:1")
+				new_type = /turf/open/water/river/flow/west
+			if("-1:1")
+				new_type = /turf/open/water/river/flow
+			if("1:-1")
+				new_type = /turf/open/water/river/flow/north
+			if("-1:-1")
+				new_type = /turf/open/water/river/flow/east
 
-		T.ChangeTurf(new_type, flags = CHANGETURF_IGNORE_AIR)
+		if(new_type)
+			T.ChangeTurf(new_type, flags = CHANGETURF_IGNORE_AIR)
 
 	QDEL_IN(src, duration)
-
-/obj/structure/flora/roguegrass/maneater/real

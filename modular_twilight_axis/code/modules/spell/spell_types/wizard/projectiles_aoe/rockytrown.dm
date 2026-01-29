@@ -15,14 +15,14 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	spell_tier = 3
-	invocations = list("ROCK!")
+	invocations = list("SAXUM!")
 	invocation_type = "shout"
 	glow_color = GLOW_COLOR_ARCANE
 	glow_intensity = GLOW_INTENSITY_LOW
 	charging_slowdown = 3
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
-	cost = 9
+	cost = 6
 
 /obj/projectile/giantrock
 	name = "elemental rock"
