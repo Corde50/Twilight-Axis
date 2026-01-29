@@ -22,7 +22,8 @@
 #define ROLE_WRETCH				"Wretch"
 #define ROLE_UNBOUND_DEATHKNIGHT "Unbound Death Knight"
 #define ROLE_DARK_ITINERANT "Dark Itinerant"
-#define ROLE_CULT "Zizoid Cult"
+#define ROLE_CULT "Zizoid Cult Leader"
+#define ROLE_LACKEY "Zizoid Cult Lackey"
 
 #define ROLE_SYNDICATE			"Syndicate"
 #define ROLE_TRAITOR			"Traitor"
@@ -70,6 +71,7 @@ GLOBAL_LIST_INIT(special_roles_rogue, list(
 	ROLE_GNOLL = /datum/antagonist/gnoll,
 	ROLE_ASSASSIN = /datum/antagonist/assassin,
 	ROLE_CULT = /datum/antagonist/zizocultist,
+	ROLE_LACKEY = /datum/antagonist/zizocultist,
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

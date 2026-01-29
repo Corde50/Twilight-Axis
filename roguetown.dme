@@ -2919,6 +2919,7 @@
 #include "code\modules\spells\pantheon\inhumen\zizo.dm"
 #include "modular_twilight_axis\code\datums\flaws\lawless.dm"
 #include "modular_twilight_axis\code\modules\events\antagonists\zizocult.dm"
+#include "modular_twilight_axis\code\modules\events\antagonists\zizocult_lackey.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\other\skeleton.dm"
 #include "modular\piercing\carbon_defines.dm"
 #include "modular\piercing\features.dm"
