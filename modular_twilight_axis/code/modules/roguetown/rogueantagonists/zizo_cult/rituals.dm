@@ -407,7 +407,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		return
 	for(var/mob/living/carbon/human/human in GLOB.human_list)
 		if(human.real_name == input)
-
+			if(!user.mind?.do_i_know(name = human.real_name))
+				to_chat(user, span_warning("I didn't saw his face."))
+				return
 			if(!human)
 				return
 
