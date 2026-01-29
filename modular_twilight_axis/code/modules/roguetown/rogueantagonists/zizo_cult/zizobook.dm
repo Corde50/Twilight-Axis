@@ -1,11 +1,49 @@
 /obj/item/recipe_book/zizo
 	name = "The Tome: ???"
-	icon_state = "book8_0" // Нужен свой уникальный спрайт.
-	base_icon_state = "book8"
+	icon = 'modular_twilight_axis/lore/icons/books.dmi'
+	icon_state = "zizo_guide_0" // Нужен свой уникальный спрайт. 
+	base_icon_state = "zizo_guide"
 
 	types = list(
 	/datum/ritual,	
 	)
+/obj/item/recipe_book/zizo/proc/read(mob/user)
+	user << browse_rsc('html/book.png')
+	if(!user.client || !user.hud_used)
+		return
+	if(!user.hud_used.reads)
+		return
+
+/obj/item/recipe_book/zizo/attack_self(mob/user)
+	if(!open)
+		attack_right(user)
+		return
+	..()
+	user.update_inv_hands()
+
+/obj/item/recipe_book/zizo/rmb_self(mob/user)
+	attack_right(user)
+	return
+
+/obj/item/recipe_book/zizo/read(mob/user)
+	if(!open)
+		to_chat(user, span_info("Open me first."))
+		return FALSE
+
+/obj/item/recipe_book/zizo/attack_right(mob/user)
+	if(!open)
+		slot_flags &= ~ITEM_SLOT_HIP
+		open = TRUE
+		playsound(loc, 'sound/items/book_open.ogg', 100, FALSE, -1)
+	else
+		slot_flags |= ITEM_SLOT_HIP
+		open = FALSE
+		playsound(loc, 'sound/items/book_close.ogg', 100, FALSE, -1)
+	update_icon()
+	user.update_inv_hands()
+
+/obj/item/recipe_book/zizo/update_icon()
+	icon_state = "[base_icon_state]_[open]"
 
 /datum/ritual/proc/generate_html(mob/user)
 	var/html = ""
