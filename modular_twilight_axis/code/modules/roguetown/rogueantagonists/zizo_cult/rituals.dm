@@ -391,66 +391,66 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/thecall
 	name = "The Call"
 	desk = "Дает возможность призвать кого-либо на руну, кто не под покровительством святости."
-	cultist_number = 2
 	ritual_limit = 2
-	number_cultist_for_add_limit = 1
+	number_cultist_for_add_limit = 2
 	center_requirement = /obj/item/bedsheet
 
 	w_req = /obj/item/bodypart/l_leg
 	e_req = /obj/item/bodypart/r_leg
 	n_req = /obj/item/alch/matricaria
-	s_req = /obj/item/reagent_containers/food/snacks/grown/manabloom
+	s_req = /obj/item/reagent_containers/food/snacks/grown/manabloom 
 
 /datum/ritual/servantry/thecall/invoke(mob/living/user, turf/center)
-	var/mob/living/carbon/human/human = tgui_input_list(user, "CHOOSE TARGET", "TELEPORT", GLOB.human_list)
 
-	if(!human)
+	var/input = input(user, "Who we need to kidnap?", "TELEPORT")
+	if(!input)
 		return
+	for(var/mob/living/carbon/human/human in GLOB.human_list)
+		if(human.real_name == input)
 
-	if(!user.mind?.do_i_know(name = human.real_name))
-		to_chat(user, span_warning("I didn't saw his face."))
-		return
+			if(!human)
+				return
 
-	if(human == SSticker.rulermob)
-		return
+			if(human == SSticker.rulermob)
+				return
 
-	if(human.mind?.assigned_role in GLOB.church_positions)
-		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
-		to_chat(user, span_danger("They are protected..."))
-		return
-	
-	if(human.mind?.assigned_role in GLOB.noble_positions)
-		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
-		to_chat(user, span_danger("They are protected..."))
-		return
-	
-	if(human.mind?.assigned_role in GLOB.retinue_positions)
-		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
-		to_chat(user, span_danger("They are protected..."))
-		return
-	
-	if(human.mind?.assigned_role in GLOB.regency_positions)
-		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
-		to_chat(user, span_danger("They are protected..."))
-		return
-	
-	if(human.mind?.assigned_role in GLOB.courtier_positions)
-		to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
-		to_chat(user, span_danger("They are protected..."))
-		return
+			if(human.mind?.assigned_role in GLOB.church_positions)
+				to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+				to_chat(user, span_danger("They are protected..."))
+				return
+			
+			if(human.mind?.assigned_role in GLOB.noble_positions)
+				to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+				to_chat(user, span_danger("They are protected..."))
+				return
+			
+			if(human.mind?.assigned_role in GLOB.retinue_positions)
+				to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+				to_chat(user, span_danger("They are protected..."))
+				return
+			
+			if(human.mind?.assigned_role in GLOB.regency_positions)
+				to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+				to_chat(user, span_danger("They are protected..."))
+				return
+			
+			if(human.mind?.assigned_role in GLOB.courtier_positions)
+				to_chat(human, span_warning("I sense an unholy presence loom near my soul."))
+				to_chat(user, span_danger("They are protected..."))
+				return
 
-	if(istype(human.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(human.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
-		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
-		return
+			if(istype(human.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(human.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
+				to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
+				return
 
-	if(!HAS_TRAIT(human, TRAIT_NOSLEEP))
-		to_chat(human, span_userdanger("I'm so sleepy..."))
-		human.SetSleeping(5 SECONDS)
-	else
-		to_chat(human, span_userdanger("My eyes close on their own!"))
-		human.set_eyes_closed(TRUE)
+			if(!HAS_TRAIT(human, TRAIT_NOSLEEP))
+				to_chat(human, span_userdanger("I'm so sleepy..."))
+				human.SetSleeping(5 SECONDS)
+			else
+				to_chat(human, span_userdanger("My eyes close on their own!"))
+				human.set_eyes_closed(TRUE)
 
-	addtimer(CALLBACK(src, PROC_REF(kidnap), human, center), 3 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(kidnap), human, center), 3 SECONDS)
 
 /datum/ritual/servantry/thecall/proc/kidnap(mob/living/victim, turf/to_go)
 	if(QDELETED(victim))
@@ -734,12 +734,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/transmutation/summonweapon
 	name = "Summon Weapons"
 	desk = "Призывает набор оружия, включая меч Зизо."
-	cultist_number = 2
-	number_cultist_for_add_limit = 1
-	ritual_limit = 1
 	center_requirement = /obj/item/ingot/steel
-
-	is_cultist_ritual = TRUE
 
 /datum/ritual/transmutation/summonweapon/invoke(mob/living/user, turf/center)
 	var/datum/effect_system/spark_spread/S = new(center)
