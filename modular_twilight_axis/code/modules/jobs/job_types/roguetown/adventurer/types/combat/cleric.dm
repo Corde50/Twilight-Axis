@@ -153,11 +153,11 @@
 							head = /obj/item/clothing/head/roguetown/roguehood
 							cloak = /obj/item/clothing/cloak/tabard/psydontabard
 							wrists = /obj/item/clothing/neck/roguetown/psicross
-			if(/datum/patron/inhumen/graggar)
+			if(H.patron?.type == /datum/patron/inhumen/graggar)
 				backpack_contents+= list(/obj/item/clothing/neck/roguetown/psicross/inhumen/graggar)
-			if(/datum/patron/inhumen/matthios)
+			if(H.patron?.type == /datum/patron/inhumen/matthios)
 				backpack_contents+= list(/obj/item/clothing/neck/roguetown/psicross/inhumen/matthios)
-			if(/datum/patron/inhumen/zizo)
+			if(H.patron?.type == /datum/patron/inhumen/zizo)
 				backpack_contents+= list(/obj/item/clothing/neck/roguetown/psicross/inhumen/iron)
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
