@@ -1,0 +1,5 @@
+author: "PatapoIIIa"
+delete-after: True
+changes:
+  - bugfix: "Prevented runtime error when firing one-handed crossbows with an empty off-hand"
+  - code_imp: "Hardened dual-wield crossbow logic with safe type checks and early exits"

@@ -1,0 +1,4 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - bugfix: "NPC damage multiplier on projectiles no longer apply to complex mob. Again."

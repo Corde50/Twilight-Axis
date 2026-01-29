@@ -165,11 +165,21 @@
 			to_chat(user, span_warning("I need to cock the bow first."))
 
 
-/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
+/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/process_fire(
+	atom/target,
+	mob/living/user,
+	message = TRUE,
+	params = null,
+	zone_override = "",
+	bonus_spread = 0
+)
+	// Two-handed restriction
 	if(user.get_num_arms(FALSE) < 2 && !onehanded)
 		return FALSE
 	if(user.get_inactive_held_item() && !onehanded)
 		return FALSE
+
+	// Spread calculation
 	if(user.client)
 		if(user.client.chargedprog >= 100)
 			spread = 0
@@ -177,34 +187,45 @@
 			spread = 150 - (150 * (user.client.chargedprog / 100))
 	else
 		spread = 0
+
+	// Projectile stat modification
 	for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 		var/obj/projectile/BB = CB.BB
+		if(!BB)
+			continue
 
 		BB.accuracy += accfactor * (user.STAPER - 8) * 3 // 8+ PER gives +3 per level. Exponential.
 		BB.bonus_accuracy += (user.STAPER - 8) // 8+ PER gives +1 per level. Does not decrease over range.
 		BB.bonus_accuracy += (user.get_skill_level(/datum/skill/combat/crossbows) * 5) // +5 per XBow level.'
 		BB.armor_penetration *= penfactor
 		BB.damage *= damfactor
+
 	cocked = FALSE
 
-	..()
-
+	. = ..()
+	if(!.)
+		return
 	if(!onehanded)
 		return
+
+	// Safe dual-wield handling
 	var/obj/item/other_hand = user.get_inactive_held_item()
-	var/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/alt_cbow
-	if(other_hand.type != type)
+	if(!istype(other_hand, /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow))
 		return
-	alt_cbow = other_hand
-	if(!alt_cbow)
+
+	var/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/alt_cbow = other_hand
+	if(!alt_cbow.onehanded)
 		return
 	if(!alt_cbow.chambered)
 		return
-	if(HAS_TRAIT(user, TRAIT_DUALWIELDER) && alt_cbow.onehanded)
-		alt_cbow.accfactor /= 2
-		alt_cbow.process_fire(target, user, FALSE)
-		alt_cbow.accfactor = initial(alt_cbow.accfactor)
+	if(!HAS_TRAIT(user, TRAIT_DUALWIELDER))
 		return
+
+	// Fire off-hand crossbow at reduced accuracy
+	alt_cbow.accfactor /= 2
+	alt_cbow.process_fire(target, user, FALSE)
+	alt_cbow.accfactor = initial(alt_cbow.accfactor)
+
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/update_icon()
 	. = ..()
@@ -216,7 +237,7 @@
 		add_overlay(ammo)
 	if(chambered && hasloadedsprite)
 		icon_state = "[item_state][2]"
-	
+
 	if(!ismob(loc))
 		return
 	var/mob/M = loc
