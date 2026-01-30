@@ -210,7 +210,7 @@
 	if(!owner)
 		return
 
-	if(!granted_spells || !granted_spells.len)
+	if(!length(granted_spells))
 		spells_granted = FALSE
 		return
 
@@ -461,7 +461,7 @@
 			continue
 		candidates += L
 
-	if(!candidates.len)
+	if(!length(candidates))
 		return null
 
 	var/mob/living/target = pick(candidates)
@@ -829,10 +829,10 @@
 	return FALSE
 
 /datum/component/combo_core/proc/IsPrefix(list/seq, list/pattern)
-	if(seq.len > pattern.len)
+	if(length(seq) > length(pattern))
 		return FALSE
 
-	for(var/i in 1 to seq.len)
+	for(var/i in 1 to length(seq))
 		if(seq[i] != pattern[i])
 			return FALSE
 
@@ -855,7 +855,7 @@
 		note_history = list()
 	note_history += note_id
 
-	while(note_history.len > SB_MAX_VISIBLE_NOTES)
+	while(length(note_history) > SB_MAX_VISIBLE_NOTES)
 		note_history.Cut(1, 2)
 
 	UpdateNoteOverlays()
@@ -864,14 +864,14 @@
 	if(!owner)
 		return
 
-	if(islist(note_mas) && note_mas.len)
+	if(islist(note_mas) && length(note_mas))
 		for(var/mutable_appearance/ma in note_mas)
 			owner.overlays -= ma
 		note_mas.Cut()
 	else
 		note_mas = list()
 
-	if(!islist(note_history) || !note_history.len)
+	if(!length(note_history))
 		return
 
 	var/base_y = 18
@@ -879,7 +879,7 @@
 	var/start_x = 8
 	var/idx = 0
 
-	for(var/i = note_history.len, i >= 1, i--)
+	for(var/i = length(note_history), i >= 1, i--)
 		var/note_id = note_history[i]
 		var/state = GetNoteIconState(note_id)
 		if(!state)
@@ -903,7 +903,7 @@
 	if(!owner)
 		return
 
-	if(islist(note_mas) && note_mas.len)
+	if(length(note_mas))
 		for(var/mutable_appearance/ma in note_mas)
 			owner.overlays -= ma
 		note_mas.Cut()
