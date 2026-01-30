@@ -2970,7 +2970,6 @@
 #include "code\modules\spells\pantheon\inhumen\graggar.dm"
 #include "code\modules\spells\pantheon\inhumen\matthios.dm"
 #include "code\modules\spells\pantheon\inhumen\zizo.dm"
-#include "modular_twilight_axis\code\datums\flaws\lawless.dm"
 #include "modular\piercing\carbon_defines.dm"
 #include "modular\piercing\features.dm"
 #include "modular\piercing\misc.dm"
