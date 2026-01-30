@@ -2958,6 +2958,7 @@
 #include "modular_twilight_axis\awful_artillery\code\merchant.dm"
 #include "modular_twilight_axis\awful_artillery\code\craft.dm"
 #include "modular_twilight_axis\awful_artillery\code\mortar.dm"
+#include "modular_twilight_axis\code\modules\spell\spell_types\wizard\newspell.dm"
 #include "modular_twilight_axis\code\datums\mob_descriptors\descriptors\other.dm"
 #include "modular_twilight_axis\code\datums\sexcon\sexcon.dm"
 #include "modular_twilight_axis\code\datums\sexcon\sexcon_helpers.dm"
