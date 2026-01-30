@@ -107,9 +107,9 @@
 			if(ispath(path, /datum/ritual/servantry))
 				category = "Служение"
 			else if(ispath(path, /datum/ritual/transmutation))
-				category = "Трансмутация"
+				category = "Преобразование"
 			else if(ispath(path, /datum/ritual/fleshcrafting))
-				category = "Плотелепие"
+				category = "Плотоплетение"
 			else
 				category = "Ритуалы"
 		// Clean up our temporary instance

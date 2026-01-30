@@ -530,47 +530,6 @@
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
 	resistance_flags = FIRE_PROOF
-// TA
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
-	name = "zizo dark cult amulet"
-	desc = "This cursed zcross will give something good por followers of Zizo.."
-	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
-	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
-	icon_state = "zcross"
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_HIP|ITEM_SLOT_WRISTS
-	sellprice = 0
-	max_integrity = 75
-	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
-	armor = ARMOR_FATEWEAVER //even protection against most damage types
-	blade_dulling = DULLING_BASHCHOP
-	blocksound = PLATEHIT
-	break_sound = 'sound/foley/breaksound.ogg'
-	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
-	armor_class = ARMOR_CLASS_LIGHT
-	unenchantable = TRUE
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/proc/dispel()
-	if(!QDELETED(src))
-		src.visible_message(span_warning("The [src]'s borders begin to shimmer in dark energy and fade, before it vanishes entirely!"))
-		qdel(src)
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/obj_break()
-	. = ..()
-	if(!QDELETED(src))
-		dispel()
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/Initialize()
-	. = ..()
-	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CROSS")
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_RING || slot == SLOT_NECK || SLOT_WRISTS)
-		ADD_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/dropped(mob/living/carbon/human/user)
-	. = ..()
-	REMOVE_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 	name = "inverted psycross"
