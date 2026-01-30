@@ -173,6 +173,7 @@
 				A.forceMove(src)
 			arrows += A
 			var/obj/item/ammo_casing/caseless/twilight_lead/runelock/R = A
+			linked_ammo += R
 			R.linked_bag = src
 			update_icon()
 			return TRUE
