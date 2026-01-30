@@ -84,6 +84,8 @@
 #include "code\modules\roguetown\roguejobs\alchemist\reagents.dm"
 #include "code\modules\roguetown\roguejobs\blacksmith\anvil_recipes\armor.dm"
 #include "code\modules\roguetown\roguemachine\hoardmaster.dm"
+#include "code\modules\spell\spell_types\wizard\invoked_aoe\shroudtrap.dm"
+#include "code\modules\spell\spell_types\wizard\invoked_aoe\magicshield.dm"
 #include "code\modules\spell\spell_types\wizard\invoked_aoe\watertrap.dm"
 #include "code\modules\spell\spell_types\wizard\projectiles_aoe\rockytrown.dm"
 #include "code\modules\spell\spell_types\wizard\newspell.dm"	
