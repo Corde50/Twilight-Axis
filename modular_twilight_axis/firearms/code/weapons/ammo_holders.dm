@@ -148,7 +148,7 @@
 /obj/item/quiver/twilight_bullet/runicbag/attack_self(mob/living/user)
 	var/list/ammo_to_recall = list()
 	for(var/obj/item/ammo_casing/caseless/twilight_lead/runelock/A in linked_ammo)
-		if(A.linked_bag == src)
+		if(!QDELETED(A) && A.linked_bag == src)
 			ammo_to_recall += A
 	if(ammo_to_recall)
 		to_chat(user, span_notice("I begin recalling my ammunition..."))
@@ -166,7 +166,11 @@
 /obj/item/quiver/twilight_bullet/runicbag/eatarrow(obj/A, loc)
 	if(istype(A, /obj/item/ammo_casing/caseless/twilight_lead/runelock))
 		if(arrows.len < max_storage)
-			A.forceMove(src)
+			if(ismob(loc))
+				var/mob/M = loc
+				M.doUnEquip(A, TRUE, src, TRUE, silent = TRUE)
+			else
+				A.forceMove(src)
 			arrows += A
 			var/obj/item/ammo_casing/caseless/twilight_lead/runelock/R = A
 			R.linked_bag = src
