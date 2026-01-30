@@ -36,6 +36,8 @@
 #include "code\modules\client\customizer\customizers\organ\horns.dm"
 #include "code\modules\client\customizer\customizers\organ\tail.dm"
 #include "code\modules\client\customizer\customizers\organ\wings.dm"
+#include "code\modules\clothing\rogueclothes\armor\blacksteel.dm"
+#include "code\modules\clothing\rogueclothes\armor\brigandine.dm"
 #include "code\modules\clothing\rogueclothes\armor\chainmail.dm"
 #include "code\modules\clothing\rogueclothes\armor\gambeson.dm"
 #include "code\modules\clothing\rogueclothes\armor\leather.dm"
