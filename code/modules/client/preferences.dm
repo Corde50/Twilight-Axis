@@ -243,6 +243,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/averse_chosen_faction = "Inquisition"
 
+
+	var/datum/voicepack/temp_vp
+
 	var/datum/loadout_panel/loadoutpanel
 
 /datum/preferences/New(client/C)
@@ -432,7 +435,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			// LETHALSTONE EDIT BEGIN: add voice type prefs
 			dat += "<b>Voice Identity</b>: <a href='?_src_=prefs;preference=voicetype;task=input'>[voice_type]</a><BR>"
 			// LETHALSTONE EDIT END
-			dat += "<b>Voice Pack</b>: <a href='?_src_=prefs;preference=voicepack;task=input'>[voice_pack]</a><BR>"
+			dat += "<b>Voice Pack</b>: <a href='?_src_=prefs;preference=voicepack;task=input'>[voice_pack]</a>[(voice_pack != "Default") ? "|<a href='?_src_=prefs;preference=voicepack_preview;task=input'>(Sample)</a>" : ""]<BR>"
 
 			dat += "<BR>"
 			dat += "<b>Race:</b> <a href='?_src_=prefs;preference=species;task=input'>[pref_species.name]</a>[spec_check(user) ? "" : " (!)"]<BR>"
@@ -1716,6 +1719,13 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							to_chat(user, span_red("<font color='red'>Your character will now audibly emote with a [lowertext(voicepack_input)] affect.") + span_notice("<br>This will override your Voice Identity and Class-specific voice packs.</font>"))
 						else
 							to_chat(user, "<font color='red'>Your character will now audibly emote in accordance to their Voice Identity and any Racial / Class-specific voice packs.</font>")
+				if("voicepack_preview")
+					if(voice_pack != "Default")
+						var/datum/voicepack/VP = GLOB.voice_packs_list[voice_pack]
+						if(!istype(temp_vp, VP))
+							temp_vp = new VP()
+						var/voiceline = temp_vp.get_sound(pick(temp_vp.preview))
+						user.playsound_local(user, voiceline, 100)
 
 				if("taur_type")
 					var/list/species_taur_list = pref_species.get_taur_list()
