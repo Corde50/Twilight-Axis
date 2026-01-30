@@ -629,6 +629,17 @@
 	limb_appearance_cache_key = null
 	cached_base_appearances = null
 
+/obj/item/bodypart/proc/get_visible_organs()
+	if(!owner)
+		return FALSE
+
+	var/list/bodypart_organs
+	for(var/obj/item/organ/organ_check as anything in owner.visible_organs) //internal organs inside the dismembered limb are dropped.
+		if(check_zone(organ_check.zone) == body_zone)
+			LAZYADD(bodypart_organs, organ_check) // this way if we don't have any, it'll just return null
+
+	return bodypart_organs
+
 //Gives you a proper icon appearance for the dismembered limb
 /obj/item/bodypart/proc/get_limb_icon(dropped, hideaux = FALSE)
 	icon_state = ""
@@ -730,6 +741,12 @@
 				if(organ_appearance)
 					. += organ_appearance
 
+		for(var/obj/item/organ/organ as anything in get_visible_organs())
+			var/mutable_appearance/organ_appearance = organ.get_bodypart_overlay(src)
+			if(organ_appearance)
+				. += organ_appearance
+	
+	// Feature overlays
 	if(!skeletonized && draw_bodypart_features)
 		for(var/datum/bodypart_feature/feature as anything in bodypart_features)
 			var/overlays = feature.get_bodypart_overlay(src)
