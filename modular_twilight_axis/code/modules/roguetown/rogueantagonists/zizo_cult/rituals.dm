@@ -21,6 +21,16 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/e_req
 	var/s_req
 	var/w_req
+
+	// Насильно присваивает в книгу что нужно положить на руну. 
+	// Полезно если ритуал требует, например, аасимара на севере, а культиста по центру. Можно адекватно это вписать.
+	// Картинок при этом не будет. В теории, могу улучшить метод, чтоб можно было еще и особые картинки пихать, если потребуется.
+	var/north_book
+	var/east_book
+	var/south_book
+	var/west_book
+	var/center_book
+
 	/// If zizo followers can't perform this
 	var/is_cultist_ritual = FALSE
 	var/cultist_number = 0 // Минимальное количество культистов в игре для выполнения ритуала.
@@ -910,11 +920,13 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/fleshcrafting/immortality
 	name = "Flawed Immortality"
-	desk = "Привнеся в жертву аасимара, вы получите множество сил.."
+	desk = "Принеся в жертву аасимара, вы получите множество сил."
+	center_book = "Культист"
+	north_book = "Живой аасимар"
 	center_requirement = /mob/living/carbon/human
 
 	n_req = /mob/living/carbon/human
-
+	
 /datum/ritual/fleshcrafting/immortality/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
 	var/mob/living/carbon/human/victim = locate() in get_step(center, NORTH)
