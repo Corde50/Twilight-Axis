@@ -298,6 +298,13 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	shortname = "Kazengite"
 	musicpath = list('sound/music/combat_kazengite.ogg')
 
+/datum/combat_music/swordhunter //TA yohei cmode music
+	name = "Yohei"
+	desc = "Violence and greed, feeding into one another. Perpetuate the cycle."
+	shortname = "Yohei"
+	credits = "Metal Gear Rising Revengeance - The Only Thing I Know For Real (Acoustic + Demo)"
+	musicpath = list('modular_twilight_axis/sound/music/combat_yohei.ogg')
+
 /datum/combat_music/knight
 	name = "Knight (Noble)"
 	desc = ""

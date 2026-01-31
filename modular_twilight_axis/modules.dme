@@ -72,6 +72,7 @@
 #include "code\modules\jobs\job_types\roguetown\nobility\lord.dm"
 #include "code\modules\jobs\job_types\roguetown\nobility\prince.dm"
 #include "code\modules\jobs\job_types\roguetown\retinue\marshal.dm"
+#include "code\modules\jobs\job_types\roguetown\sidefolk\mercenary\yohei.dm"
 #include "code\modules\mob\dead\new_player\body_markings\body_marking_aura.dm"
 #include "code\modules\mob\dead\new_player\body_markings\body_marking_sets.dm"
 #include "code\modules\mob\dead\new_player\living\carbon\human\species_types\furry\aura.dm"

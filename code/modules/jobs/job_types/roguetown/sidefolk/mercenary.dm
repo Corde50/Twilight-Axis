@@ -55,9 +55,10 @@
 		/datum/advclass/mercenary/grudgebearer/soldier,
 		/datum/advclass/mercenary/trollslayer,
     /datum/advclass/mercenary/twilight_gunslinger,
-    /datum/advclass/mercenary/twilight_grenzelhoft_jager
+    /datum/advclass/mercenary/twilight_grenzelhoft_jager,
+	/datum/advclass/mercenary/twilight_yohei
 	)
- 
+
 
 /datum/job/roguetown/mercenary/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
 	..()
