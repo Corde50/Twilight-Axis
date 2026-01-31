@@ -4,7 +4,7 @@
 	icon_state = "dragonhorn"
 
 
-/datum/sprite_accessory/horns/dragonhorn
+/datum/sprite_accessory/horns/dragonfaceguard
 	name = "Dragon Faceguard"
 	icon = 'modular_twilight_axis/icons/mob/sprite_accessory/horns/aura.dmi'
 	icon_state = "dragonfaceguard"
