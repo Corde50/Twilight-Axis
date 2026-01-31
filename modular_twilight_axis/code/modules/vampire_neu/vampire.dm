@@ -20,8 +20,6 @@
 
 	max_thralls = cap
 
-
-
 #undef THRALLS_METHUSELAH
 #undef THRALLS_ANCILLAE
 #undef THRALLS_NEONATE
