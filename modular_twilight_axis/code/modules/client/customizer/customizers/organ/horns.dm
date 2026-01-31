@@ -8,4 +8,5 @@
 	generic_random_pick = TRUE
 	sprite_accessories = list(
 		/datum/sprite_accessory/horns/dragonhorn,
+		/datum/sprite_accessory/horns/dragonfaceguard
 		)
