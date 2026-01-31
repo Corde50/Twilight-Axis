@@ -76,7 +76,7 @@
 		if("Half-Mask")
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei, SLOT_WEAR_MASK, TRUE)
 		if("Oni")
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei/ogre, SLOT_WEAR_MASK, TRUE)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei/oni, SLOT_WEAR_MASK, TRUE)
 		if("Kitsune")
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei/kitsune, SLOT_WEAR_MASK, TRUE)
 
@@ -106,7 +106,7 @@
 	icon_state = "steelmempo"
 	body_parts_covered = NECK|MOUTH|NOSE
 
-/obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei/ogre
+/obj/item/clothing/mask/rogue/facemask/steel/kazengun/yohei/oni
 	name = "steel oni mempo"
 	desc = "\"The second article: Endure in silence, speak only through steel.\""
 	icon_state = "steelonimempo"
