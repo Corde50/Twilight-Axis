@@ -1166,11 +1166,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Броня", "Донат")
 	donatitem = TRUE
 	
-  /datum/loadout_item/donator_eiren4
+/datum/loadout_item/donator_eiren4
 	name = "Donator Kit - Darkwood's Embrace"
 	path = /obj/item/clothing/suit/roguetown/armor/longcoat/eiren
-	ckeywhitelist = list("eirenxiv")
-  
+	category = list("Одежда", "Донат")
+	donatitem = TRUE
+
 /datum/loadout_item/donator_zydrasiconosash
 	name = "Donator Kit - Iconoclast Sash - Required: Hauberk(Only men, no small races)"
 	path = /obj/item/enchantingkit/zydrasiconosash
