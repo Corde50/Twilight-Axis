@@ -1,7 +1,0 @@
-author: "ADONAI"
-delete-after: True
-changes:
-  - rscdel: "wretches no longer get access to templar helmets"
-  - rscadd: "wretches now get helmet selection"
-  - code_imp: "psydonic helm selection is now a list which gets added to the original list"
-  - rscadd: "astratan, necran, and eoran paladins/wretches now have access to their old helms!"

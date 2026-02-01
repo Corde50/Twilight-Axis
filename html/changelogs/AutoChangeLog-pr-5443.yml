@@ -1,8 +1,0 @@
-author: "Lamasmaster"
-delete-after: True
-changes:
-  - rscadd: "New knife"
-  - rscadd: "Studded hood"
-  - balance: "Skirmisher Armor Loadouts"
-  - balance: "Seax cost"
-  - image: "Leather Armor sprite"

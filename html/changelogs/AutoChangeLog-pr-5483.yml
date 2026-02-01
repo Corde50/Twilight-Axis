@@ -1,4 +1,0 @@
-author: "Ollanius"
-delete-after: True
-changes:
-  - bugfix: "Hunting knife’s intents work as intended, once again. Chop away!"

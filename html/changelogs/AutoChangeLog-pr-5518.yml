@@ -1,7 +1,0 @@
-author: "ZIZO, MATTHIOS, BAOTHA, GRAGGAR THE GREY, GANDALF THE WHITE, AND MONTY PYTHON AND THE"
-delete-after: True
-changes:
-  - bugfix: "unholy blast now actually hurts clergy"
-  - bugfix: "unholy blast actually functions. enjoy your patron based buffs!"
-  - bugfix: "divine blast now SAYS when it sunders something"
-  - bugfix: "divine blast no longer hurts druids or sextons"
