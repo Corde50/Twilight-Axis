@@ -1901,6 +1901,12 @@
 	sheathe_icon = "ssangsudo"
 	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend, /datum/intent/sword/strike) // better rend by .05
 
+/obj/item/rogueweapon/sword/long/kriegmesser/pestran
+	name = "Cleansing Edge"
+	desc = "A cut in time saves a life."
+	icon_state = "pestranmesser"
+	sheathe_icon = "pestranmesser"
+
 /obj/item/rogueweapon/sword/long/dec
 	name = "decorated longsword"
 	desc = "A valuable ornate longsword made for the purpose of ceremonial fashion, with a fine leather grip and a carefully engraved golden crossguard. \
@@ -2274,3 +2280,22 @@
 
 	grid_width = 32
 	grid_height = 96
+
+//Elven weapons sprited and added by Jam
+/obj/item/rogueweapon/sword/short/elvish
+	name = "elvish shortsword"
+	desc = "A finely crafted Elvish shortsword, light and swift, ideal for precise strikes."
+	icon_state = "elfsword"
+	sellprice = 40
+	sheathe_icon = "elfsword"
+	wbalance = WBALANCE_SWIFT //Elven designs tend to be light and swift
+	max_blade_int = 220
+
+/obj/item/rogueweapon/sword/long/elvish
+	name = "elvish longsword"
+	desc = "A mighty Elvish longsword, well-balanced and efficient, favored for both offense and defense."
+	icon = 'icons/roguetown/weapons/64.dmi'
+	icon_state = "elflongsword"
+	sellprice = 50
+	sheathe_icon = "elfsword"
+	max_blade_int = 300
