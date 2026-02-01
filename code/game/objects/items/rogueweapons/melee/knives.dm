@@ -102,12 +102,7 @@
 
 /obj/item/rogueweapon/huntingknife
 	force = 12
-	possible_item_intents = list(
-		/datum/intent/dagger/thrust,
-		/datum/intent/dagger/cut,
-		/datum/intent/dagger/thrust/pick,
-		/datum/intent/dagger/sucker_punch,
-		)
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust, /datum/intent/dagger/chop)
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
 	name = "hunting knife"
 	desc = "A hunter's prized possession. Keep it sharp, and it might last you through the wild."
@@ -418,6 +413,16 @@
 	icon_state = "warden_machete"
 	sheathe_icon = "warden_machete"
 
+/obj/item/rogueweapon/huntingknife/combat/messser //Just as Grenzelhoft intended
+	name = "kampfmesser"
+	desc = "An undersized steel messer that barely fits into a conventional dagger sheath, the saving grace of any hunter. It lacks a tip for stabbing - yet the edge alone is sharp enough to hack most issues right away. \
+	While it was brought over by Grenzelhoftian migrants it is considered Azurean staple these daes - The right tool for the right job."
+	possible_item_intents = list(/datum/intent/dagger/cut/heavy, /datum/intent/dagger/cut/combat, /datum/intent/dagger/chop/cleaver, /datum/intent/dagger/sucker_punch)
+	icon_state = "minimesser"
+	sheathe_icon = "minimesser"
+	max_blade_int = 200
+	max_integrity = 150
+
 /obj/item/rogueweapon/huntingknife/idagger/virtue
 	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/thrust/pick, /datum/intent/dagger/sucker_punch)
 	force = 12
@@ -579,6 +584,13 @@
 	wrapping of twisted cordage provides a secure grip."
 	icon_state = "eastdagger"
 	sheathe_icon = "tanto"
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/bone
+	name = "bone dagger"
+	desc = "This is a tool that can be used to make more of itself."
+	icon_state = "bonedagger"
+	sheathe_icon = "bonedagger"
+	smeltresult = null
 
 /obj/item/rogueweapon/huntingknife/idagger/silver
 	name = "silver dagger"
