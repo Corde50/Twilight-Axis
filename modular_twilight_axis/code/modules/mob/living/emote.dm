@@ -24,7 +24,7 @@
 /datum/emote/living/burp
 	key_third_person = "рыгает"
 	message = "рыгает."
-	message_muffled = "makes a muffled noise." //Потом
+	message_muffled = "издает приглушенный звук." //Потом
 
 /datum/emote/living/choke
 	key_third_person = "задыхается"
@@ -51,7 +51,7 @@
 	key = "clearthroat"
 	key_third_person = "прочищает горло"
 	message = "прочищает горло."
-	message_muffled = "makes a muffled noise." //Потом
+	message_muffled = "издает приглушенный звук." //Потом
 
 /datum/emote/living/dance
 	key_third_person = "танцует"
@@ -77,7 +77,7 @@
 /datum/emote/living/gasp
 	key_third_person = "удивленно вздыхает"
 	message = "удивленно вздыхает!"
-	message_muffled = "makes a muffled noise." //потом
+	message_muffled = "издает приглушенный звук." //потом
 
 /datum/emote/living/breathgasp
 	key_third_person = "ловит ртом воздух"
@@ -167,7 +167,7 @@
 					if(!L.cmode)
 						to_chat(target, span_love("Это немного возбуждает..."))
 			else
-				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]." //Локализация частей тела WIP
+				message_param = "целует %t в \the [parse_zone(H.zone_selected)]." //Локализация частей тела WIP
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
 		record_round_statistic(STATS_KISSES_MADE)
@@ -205,7 +205,7 @@
 			else if(J.zone_selected == BODY_ZONE_HEAD)
 				message_param = "облизывает щеку %t."
 			else
-				message_param = "лижет %t [parse_zone(J.zone_selected)]." //Локализация частей тела WIP
+				message_param = "лижет %t по [parse_zone(J.zone_selected)]." //Локализация частей тела WIP
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
@@ -270,7 +270,7 @@
 	key_third_person = "смеется"
 	message = "смеется."
 	message_mime = "бесшумно смеется."
-	message_muffled = "makes a muffled laugh." //Потом
+	message_muffled = "приглушенно смеется."
 
 /datum/emote/living/look
 	key_third_person = "смотрит"
@@ -328,7 +328,7 @@
 
 /datum/emote/living/attnwhistle
 	message = "привлекает внимание свистом"
-	message_muffled = "makes a muffled noise." //потом
+	message_muffled = "издает приглушенный звук." //потом
 
 /datum/emote/living/scowl
 	key_third_person = "смотрит исподлобья"
@@ -358,7 +358,7 @@
 /datum/emote/living/whistle
 	key_third_person = "насвистывает"
 	message = "насвистывает."
-	message_muffled = "makes a muffled noise." //потом
+	message_muffled = "издает приглушенный звук." //потом
 
 /datum/emote/living/hmm
 	key_third_person = "хмыкает"
@@ -367,7 +367,7 @@
 
 /datum/emote/living/huh
 	key_third_person = "хмыкает?"
-	message_muffled = "makes a muffled noise." //потом
+	message_muffled = "издает приглушенный звук." //потом
 
 /datum/emote/living/hum
 	key_third_person = "напевает"
