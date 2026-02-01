@@ -90,7 +90,7 @@
 #include "code\modules\roguetown\roguemachine\hoardmaster.dm"
 #include "code\modules\spell\spell_types\wizard\invoked_aoe\watertrap.dm"
 #include "code\modules\spell\spell_types\wizard\projectiles_aoe\rockytrown.dm"
-#include "code\modules\spell\spell_types\wizard\newspell.dm"	
+#include "code\modules\spell\spell_types\wizard\newspell.dm"
 #include "code\modules\spell\spell_types\runes.dm"
 #include "code\modules\surgery\organs\feature_organs\tails.dm"
 #include "code\modules\surgery\organs\feature_organs\wings.dm"
@@ -99,8 +99,8 @@
 #include "code\modules\projectiles\soundbreaker_note.dm"
 #include "code\modules\spells\soundbreaker.dm"
 #include "code\modules\spells\pantheon\inhumen\matthios.dm"
+#include "code\modules\vampire_neu\vampire.dm"
 #include "code\onclick\click.dm"
-
 #include "awful_artillery\awful_artillery.dme"
 #include "firearms\firearms.dme"
 #include "lore\lore.dme"
