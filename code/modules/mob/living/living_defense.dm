@@ -47,7 +47,11 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone = BODY_ZONE_CHEST)
-	if(HAS_TRAIT(src, TRAIT_MAGIC_SHIELD) && P.firer && P.firer != src) //TA EDIT START
+
+	if(HAS_TRAIT(src, "ethereal"))//TA EDIT START
+		return BULLET_ACT_FORCE_PIERCE
+
+	if(HAS_TRAIT(src, TRAIT_MAGIC_SHIELD) && P.firer && P.firer != src)
 		visible_message("<span class='danger'>[src.name]'s shield clangs as it reflects [P.name] back at [P.firer]!</span>")
 		playsound(src.loc, 'sound/combat/parry/shield/magicshield (1).ogg', 50, TRUE)
 
@@ -146,6 +150,10 @@
 		return 0
 
 /mob/living/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum, damage_flag = "blunt")
+	
+	if(HAS_TRAIT(src, "ethereal")) //TA EDIT
+		return FALSE 
+	
 	if(istype(AM, /obj/item))
 		var/obj/item/I = AM
 		// Hit the selected zone, or else a random zone centered on the chest
