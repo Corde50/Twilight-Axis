@@ -1,3 +1,25 @@
+var/list/zone_translations = list(
+		BODY_ZONE_HEAD = "голову",
+		BODY_ZONE_CHEST = "туловище",
+		BODY_ZONE_R_ARM = "правую руку",
+		BODY_ZONE_L_ARM = "левую руку",
+		BODY_ZONE_R_LEG = "правую ногу",
+		BODY_ZONE_L_LEG = "левую ногу",
+		BODY_ZONE_PRECISE_R_INHAND = "правую ладонь",
+		BODY_ZONE_PRECISE_L_INHAND = "левую ладонь",
+		BODY_ZONE_PRECISE_R_FOOT = "правую ступню",
+		BODY_ZONE_PRECISE_L_FOOT = "левую ступню",
+		BODY_ZONE_PRECISE_SKULL = "череп",
+		BODY_ZONE_PRECISE_EARS = "уши",
+		BODY_ZONE_PRECISE_R_EYE = "правый глаз",
+		BODY_ZONE_PRECISE_L_EYE = "левый глаз",
+		BODY_ZONE_PRECISE_NOSE = "нос",
+		BODY_ZONE_PRECISE_MOUTH = "рот",
+		BODY_ZONE_PRECISE_NECK = "шею",
+		BODY_ZONE_PRECISE_STOMACH = "живот",
+		BODY_ZONE_PRECISE_GROIN = "пах"
+	)
+
 /datum/emote/living/blush
 	key_third_person = "краснеет"
 	message = "краснеет."
@@ -24,7 +46,7 @@
 /datum/emote/living/burp
 	key_third_person = "рыгает"
 	message = "рыгает."
-	message_muffled = "издает приглушенный звук." //Потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/choke
 	key_third_person = "задыхается"
@@ -51,7 +73,7 @@
 	key = "clearthroat"
 	key_third_person = "прочищает горло"
 	message = "прочищает горло."
-	message_muffled = "издает приглушенный звук." //Потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/dance
 	key_third_person = "танцует"
@@ -77,7 +99,7 @@
 /datum/emote/living/gasp
 	key_third_person = "удивленно вздыхает"
 	message = "удивленно вздыхает!"
-	message_muffled = "издает приглушенный звук." //потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/breathgasp
 	key_third_person = "ловит ртом воздух"
@@ -104,7 +126,7 @@
 /datum/emote/living/groan
 	key_third_person = "тяжело вздыхает"
 	message = "тяжело вздыхает."
-	message_muffled = "makes a muffled groan." //потом
+	message_muffled = "издает приглушенный вздох" 
 
 /datum/emote/living/grimace
 	key_third_person = "морщится"
@@ -167,7 +189,8 @@
 					if(!L.cmode)
 						to_chat(target, span_love("Это немного возбуждает..."))
 			else
-				message_param = "целует %t в \the [parse_zone(H.zone_selected)]." //Локализация частей тела WIP
+				var/ru_zone_selected = zone_translations[user.zone_selected]
+				message_param = "целует [ru_zone_selected] %t."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
 		record_round_statistic(STATS_KISSES_MADE)
@@ -205,7 +228,8 @@
 			else if(J.zone_selected == BODY_ZONE_HEAD)
 				message_param = "облизывает щеку %t."
 			else
-				message_param = "лижет %t по [parse_zone(J.zone_selected)]." //Локализация частей тела WIP
+				var/ru_zone_selected = zone_translations[user.zone_selected]
+				message_param = "лижет [ru_zone_selected] %t."
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
@@ -259,11 +283,12 @@
 		if(H.zone_selected == BODY_ZONE_HEAD)
 			message_param = "щипает %t за шеку"
 		else if(H.zone_selected == BODY_ZONE_PRECISE_L_HAND || H.zone_selected == BODY_ZONE_PRECISE_R_HAND)
-			message_param = "щипаеи %t за руку"
+			message_param = "щипает %t за руку"
 		else if(H.zone_selected == BODY_ZONE_CHEST)
 			message_param = "шлепает грудь %t'"
 		else
-			message_param = "pinches %t on \the [parse_zone(H.zone_selected)]."
+			var/ru_zone_selected = zone_translations[user.zone_selected]
+			message_param = "щипает %t за [ru_zone_selected]."
 	..()
 
 /datum/emote/living/laugh
@@ -328,7 +353,7 @@
 
 /datum/emote/living/attnwhistle
 	message = "привлекает внимание свистом"
-	message_muffled = "издает приглушенный звук." //потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/scowl
 	key_third_person = "смотрит исподлобья"
@@ -353,26 +378,26 @@
 /datum/emote/living/sigh
 	key_third_person = "вздыхает"
 	message = "вздыхает."
-	message_muffled = "делает приглушенный вздох." //потом
+	message_muffled = "делает приглушенный вздох." 
 
 /datum/emote/living/whistle
 	key_third_person = "насвистывает"
 	message = "насвистывает."
-	message_muffled = "издает приглушенный звук." //потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/hmm
 	key_third_person = "хмыкает"
 	message = "хмыкает."
-	message_muffled = "приглушенно хмыкает." //потом
+	message_muffled = "приглушенно хмыкает." 
 
 /datum/emote/living/huh
 	key_third_person = "хмыкает?"
-	message_muffled = "издает приглушенный звук." //потом
+	message_muffled = "издает приглушенный звук." 
 
 /datum/emote/living/hum
 	key_third_person = "напевает"
 	message = "напевает."
-	message_muffled = "приглушенно напевает." //потом
+	message_muffled = "приглушенно напевает." 
 
 /datum/emote/living/smile
 	key_third_person = "улыбается"
@@ -561,7 +586,7 @@
 	message_muffled = "приглушенно бухтит."
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/carbon/human/handshake //потом (таргеты)
+/datum/emote/living/carbon/human/handshake
 	message = "пожимает свою руку"
 	message_param = "пожимает руку %t."
 
