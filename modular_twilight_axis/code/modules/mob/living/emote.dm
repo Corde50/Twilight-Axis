@@ -205,7 +205,7 @@
 			else if(J.zone_selected == BODY_ZONE_HEAD)
 				message_param = "облизывает щеку %t."
 			else
-				message_param = "licks %t [parse_zone(J.zone_selected)]." //Локализация частей тела WIP
+				message_param = "лижет %t [parse_zone(J.zone_selected)]." //Локализация частей тела WIP
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
