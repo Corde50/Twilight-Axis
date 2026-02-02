@@ -427,6 +427,11 @@
 	desc = span_boldred("The hood! My faith wavers without it. I feel ashamed.")
 	timer = 999 MINUTES
 
+/datum/stressevent/dungeoneerhoodlost
+	stressadd = 3
+	desc = span_boldred("The hood! It's not right. I feel ashamed.")
+	timer = 999 MINUTES
+
 /datum/stressevent/headless
 	stressadd = 3
 	desc = span_red("Where is their head? What is that flame?!")
