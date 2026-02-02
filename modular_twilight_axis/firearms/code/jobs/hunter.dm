@@ -5,13 +5,13 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/twilight_hunter
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_blackpowderhunter.ogg'
-	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
+	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	class_select_category = CLASS_CAT_RANGER
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
+	traits_applied = list(TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_PER = 2,
 		STATKEY_CON = 1,
-		STATKEY_SPD = 1
+		STATKEY_WILL = 2
 	)
 	subclass_skills = list(
 		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_JOURNEYMAN,
@@ -23,7 +23,11 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
-		/datum/skill/craft/alchemy = SKILL_LEVEL_NOVICE
+		/datum/skill/craft/alchemy = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/tanning = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
+		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
 	)
 
 /datum/outfit/job/roguetown/twilight_hunter/pre_equip(mob/living/carbon/human/H)
@@ -41,7 +45,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots
-	head = /obj/item/clothing/head/roguetown/headband/red
+	head = /obj/item/clothing/head/roguetown/armingcap/padded
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/recipe_book/survival = 1, 
