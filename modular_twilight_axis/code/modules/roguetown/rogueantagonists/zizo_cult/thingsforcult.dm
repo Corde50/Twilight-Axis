@@ -133,7 +133,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	name = "neant"
 	desc = "A dark scythe with a long chain, used to cut the life essence from people, or whip them into shape. The blade is an ominous purple."
 	icon_state = "neant"
-	icon = 'modular_twilight_axis/icons/roguetown/weapons/64.dmi'
+	icon = 'modular_twilight_axis/icons/roguetown/weapons/polearms64.dmi'
 	drop_sound = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/blade_drop.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
