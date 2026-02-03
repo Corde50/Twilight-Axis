@@ -25,7 +25,7 @@ var/list/zone_translations = list(
 	message = "краснеет."
 	emote_type = EMOTE_VISIBLE
 /mob/living/carbon/human/verb/emote_blush()
-	set name = "Blush"
+	set name = "Краснеть"
 	set category = "Emotes"
 
 	emote("blush", intentional = TRUE)
@@ -33,6 +33,8 @@ var/list/zone_translations = list(
 /datum/emote/living/pray
 	key_third_person = "молится"
 	message = "прозносит молитву."
+/mob/living/carbon/human/emote_pray()
+	name = "Молиться"
 
 /datum/emote/living/meditate
 	key_third_person = "медитирует"
@@ -302,7 +304,7 @@ var/list/zone_translations = list(
 	message = "смотрит"
 	message_param = "разглядывает %t."
 /mob/living/carbon/human/verb/emote_look()
-	set name = "Look"
+	set name = "Смотреть"
 	set category = "Emotes"
 
 	emote("look", intentional = TRUE)
@@ -323,7 +325,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
 /mob/living/carbon/human/verb/emote_pout()
-	set name = "Pout"
+	set name = "Дуться"
 	set category = "Emotes"
 
 	emote("pout", intentional = TRUE)
@@ -361,7 +363,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
 /mob/living/carbon/human/verb/emote_scowl()
-	set name = "Scowl"
+	set name = "Смотреть исподлобья"
 	set category = "Emotes"
 
 	emote("scowl", intentional = TRUE)
@@ -418,7 +420,7 @@ var/list/zone_translations = list(
 	message = "хмыкает!"
 	message_muffled = "приглушенно хмыкает."
 /mob/living/carbon/human/verb/emote_hmph()
-	set name = "Hmph"
+	set name = "хмыкать!"
 	set category = "Noises"
 
 	emote("hmph", intentional = TRUE)
@@ -432,7 +434,7 @@ var/list/zone_translations = list(
 	key_third_person = "самодовольно ухмыляется"
 	message = "самодовольно ухмыляется."
 /mob/living/carbon/human/verb/emote_smug()
-	set name = "Smug"
+	set name = "Самодовольно ухмыляться"
 	set category = "Emotes"
 
 	emote("smug", intentional = TRUE)
@@ -441,7 +443,7 @@ var/list/zone_translations = list(
 	key_third_person = "нюхает"
 	message = "нюхает."
 /mob/living/carbon/human/verb/emote_sniff()
-	set name = "Sniff"
+	set name = "Нюхать"
 	set category = "Emotes"
 
 	emote("sniff", intentional = TRUE)
@@ -456,7 +458,7 @@ var/list/zone_translations = list(
 	message = "пристально смотрит."
 	message_param = "пристально смотрит на %t."
 /mob/living/carbon/human/verb/emote_stare()
-	set name = "Stare"
+	set name = "Пристально смотреть"
 	set category = "Emotes"
 
 	emote("stare", intentional = TRUE)
@@ -465,7 +467,7 @@ var/list/zone_translations = list(
 	key_third_person = "потягивается"
 	message = "потягивается."
 /mob/living/carbon/human/verb/emote_strech()
-	set name = "Strech"
+	set name = "Потягиваться"
 	set category = "Emotes"
 
 	emote("stretch", intentional = TRUE)
@@ -475,7 +477,7 @@ var/list/zone_translations = list(
 	key_third_person = "шатается"
 	message = "шатается."
 /mob/living/carbon/human/verb/emote_sway()
-	set name = "Sway"
+	set name = "Шататься"
 	set category = "Emotes"
 
 	emote("sway", intentional = TRUE)
@@ -484,7 +486,7 @@ var/list/zone_translations = list(
 	key_third_person = "дрожит"
 	message = "дрожит от страха!"
 /mob/living/carbon/human/verb/emote_tremble()
-	set name = "Tremble"
+	set name = "Дрожать от страха"
 	set category = "Emotes"
 
 	emote("tremble", intentional = TRUE)
@@ -515,7 +517,7 @@ var/list/zone_translations = list(
 	key_third_person = "слабо улыбается"
 	message = "слабо улыбается."
 /mob/living/carbon/human/verb/emote_wsmile()
-	set name = "Wsmile"
+	set name = "Слабо улыбнуться"
 	set category = "Emotes"
 
 	emote("wsmile", intentional = TRUE)
@@ -593,7 +595,7 @@ var/list/zone_translations = list(
 /datum/emote/living/carbon/human/pale
 	message = "бледнеет на мгновенье."
 /mob/living/carbon/human/verb/emote_pale()
-	set name = "Pale"
+	set name = "Побледнеть"
 	set category = "Emotes"
 
 	emote("pale", intentional = TRUE)
@@ -602,7 +604,7 @@ var/list/zone_translations = list(
 	key_third_person = "вскидывает руку"
 	message = "вскидывает руку."
 /mob/living/carbon/human/verb/emote_raise()
-	set name = "Hand Raise"
+	set name = "Вскинуть руку"
 	set category = "Emotes"
 
 	emote("raise", intentional = TRUE)
@@ -613,7 +615,7 @@ var/list/zone_translations = list(
 	message_param = "салютует %t."
 	restraint_check = TRUE
 /mob/living/carbon/human/verb/emote_salute()
-	set name = "Salute"
+	set name = "Салютовать"
 	set category = "Emotes"
 
 	emote("salute", intentional = TRUE)
@@ -622,7 +624,7 @@ var/list/zone_translations = list(
 	key_third_person = "пожимает плечами"
 	message = "пожимает плечами."
 /mob/living/carbon/human/verb/emote_shrug()
-	set name = "Shrug"
+	set name = "Пожать плечами"
 	set category = "Emotes"
 
 	emote("shrug", intentional = TRUE)
@@ -636,100 +638,6 @@ var/list/zone_translations = list(
 	message = "хлопает своими крыльями."
 
 /*
-/datum/emote/living/stat_roll/run_emote(mob/user, params, type_override, intentional = FALSE)
-	. = ..()
-	if(.)
-		sleep(delay)
-
-		var/mob/living/living = user
-		var/chance_per_point = 5
-		var/success = FALSE
-		var/chance = 0
-
-		var/modifier_sum
-		if(length(modifiers_list))
-			for(var/key in modifiers_list)
-				if(HAS_TRAIT(living, key))
-					modifier_sum += modifiers_list[key]
-
-		switch(key)
-			if("strength")
-				success = living.stat_roll(STAT_STRENGTH, chance_per_point, modifier_sum) 
-				chance = living.get_stat(STAT_STRENGTH)
-			if("perception")
-				success = living.stat_roll(STAT_PERCEPTION, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_PERCEPTION)
-			if("intelligence")
-				success = living.stat_roll(STAT_INTELLIGENCE, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_INTELLIGENCE)
-			if("constitution")
-				success = living.stat_roll(STAT_CONSTITUTION, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_CONSTITUTION)
-			if("willpower")
-				success = living.stat_roll(STAT_WILLPOWER, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_WILLPOWER)
-			if("speed")
-				success = living.stat_roll(STAT_SPEED, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_SPEED)
-			if("fortune")
-				success = living.stat_roll(STAT_FORTUNE, chance_per_point, modifier_sum)
-				chance = living.get_stat(STAT_FORTUNE)
-			if("charisma")
-				// We compare willpower and fortune and use the highest. Not the best way to handle charisma actions, may be a subject to change in future
-				var/will = living.get_stat(STAT_WILLPOWER)
-				var/fort = living.get_stat(STAT_FORTUNE)
-				var/chosen_stat = (will > fort) ? STAT_WILLPOWER : STAT_FORTUNE
-
-				success = living.stat_roll(chosen_stat, chance_per_point, modifier_sum)
-				chance = living.get_stat(chosen_stat)
-
-		// modifier_sum is a difficulty class modifier, negative values make a roll more likely to succeed
-		chance -= modifier_sum
-		chance *= chance_per_point
-
-		var/msg = success ? span_green("УСПЕШНО [pick(success_message_list)]") : span_danger("ПРОВАЛ: [pick(failure_message_list)] [chance]%")
-
-		msg = replace_pronoun(user, msg)
-
-		if(!msg)
-			return
-
-		// A COMSIG here would be nice, in my attempts it sadly didn't work out well for the relay.
-		var/atom/movable/emotelocation = user
-		var/mob/living/carbon/human/human
-		if(ishuman(user))
-			human = user
-
-		var/obj/item/organ/dullahan_vision/vision
-		var/datum/species/dullahan/dullahan
-		if(isdullahan(user))
-			dullahan = human.dna.species
-			vision = human.getorganslot(ORGAN_SLOT_HUD)
-			if(dullahan.headless && vision.viewing_head)
-				emotelocation = dullahan.my_head
-
-		user.log_message(msg, LOG_EMOTE)
-		var/pre_color_msg = msg
-		if (use_params_for_runechat) // apply puncutation stripping here where appropriate
-			var/static/regex/regex = regex(@"[,.!?]", "g")
-			pre_color_msg = regex.Replace(pre_color_msg, "")
-			pre_color_msg = trim(pre_color_msg, MAX_MESSAGE_LEN)
-		// Checks to see if we're emoting on the body while we have a head, or if we're emoting on the head.
-		if(human && human.voice_color)
-			msg = "<span style='color:#[human.voice_color];text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'><b>[emotelocation]</b></span> " + msg
-		else
-			msg = "<b>[emotelocation]</b> " + msg
-		for(var/mob/M in GLOB.dead_mob_list)
-			if(!M.client || isnewplayer(M))
-				continue
-			var/T = get_turf(emotelocation)
-			if(M.stat == DEAD && M.client && (M.client.prefs?.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
-				M.show_message(msg)
-		var/runechat_msg_to_use = null
-		if(show_runechat)
-			runechat_msg_to_use = runechat_msg ? runechat_msg : pre_color_msg
-		emotelocation.visible_message(msg, runechat_message = runechat_msg_to_use, log_seen = SEEN_LOG_EMOTE)
-
 /datum/emote/living/stat_roll/strength
 	attempt_message_list = list(
 		"испытывает свою силу...",
