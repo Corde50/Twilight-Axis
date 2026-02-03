@@ -61,6 +61,14 @@
 	item_state = "barker_rontz"
 	cast_time_reduction = RUBY_CAST_TIME_REDUCTION
 
+/obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/amethyst
+	name = "amythortz focused barker"
+	desc = "An amber focus-gem hewn by pressure immense sits nestled in metal of this weapon."
+	icon = 'modular_twilight_axis/firearms/icons/magic/barker_amethyst.dmi'
+	icon_state = "barker_amethyst"
+	item_state = "barker_amethyst"
+	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
+
 /datum/crafting_recipe/gemsbarker/rontz
 	name = "rontz focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/rontz
@@ -95,6 +103,15 @@
 				/obj/item/magic/manacrystal = 1,
 				/obj/item/candle = 3,
 				/obj/item/roguegem/yellow = 1)
+	craftdiff = 0
+
+/datum/crafting_recipe/gemsbarker/amethyst
+	name = "amythortz focused barker"
+	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/toper
+	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
+				/obj/item/magic/manacrystal = 1,
+				/obj/item/candle = 3,
+				/obj/item/roguegem/amethyst = 1)
 	craftdiff = 0
 
 #undef TOPER_CAST_TIME_REDUCTION
