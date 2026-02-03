@@ -612,6 +612,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 	n_req = /obj/item/natural/bundle/bone
 	s_req = /obj/item/natural/bundle/bone
+	w_req = /obj/item/natural/bundle/bone
+	e_req = /obj/item/natural/bundle/bone
 
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
 	. = ..()
