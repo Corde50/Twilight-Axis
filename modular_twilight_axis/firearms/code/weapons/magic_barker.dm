@@ -153,7 +153,7 @@
 
 /datum/crafting_recipe/dendor_barker/dendor1
 	name = "boned barker"
-	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2
+	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor1
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker/barker_light = 1,
 				/obj/item/alch/bone = 3,
 				/obj/item/natural/fibers = 2,
