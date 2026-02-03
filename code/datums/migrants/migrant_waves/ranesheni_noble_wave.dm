@@ -110,7 +110,6 @@
 	name = "Ranesheni Emir"
 	shared_wave_type = /datum/migrant_wave/ranesheni_noble
 	can_roll = FALSE
-	downgrade_wave = /datum/migrant_wave/ranesheni_noble_down_nine
 	roles = list(
 		/datum/migrant_role/ranesheni/emir = 1,
 	)
