@@ -339,7 +339,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_book = "Жертва"
 	center_requirement = /mob/living/carbon/human
 
-	n_req = /obj/item/natural/bundle/bone/full
+	n_req = /obj/item/natural/bundle/bone
+	s_req = /obj/item/natural/bundle/bone
+	w_req = /obj/item/natural/bundle/bone
+	e_req = /obj/item/natural/bundle/bone
 
 	is_cultist_ritual = TRUE
 
@@ -607,10 +610,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Призывает особый крест Зизо, который и защитит, и одарит Её милостинью."
 	center_requirement = /obj/item/clothing/neck/roguetown/psicross
 
-	n_req = /obj/item/magic/manacrystal
-	s_req = /obj/item/natural/bundle/bone/full
-	w_req = /obj/item/magic/manacrystal
-	e_req = /obj/item/magic/manacrystal
+	n_req = /obj/item/natural/bundle/bone
+	s_req = /obj/item/natural/bundle/bone
 
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
 	. = ..()
@@ -646,7 +647,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/transmutation/invademind
 	name = "Сообщение"
 	desk = "Отправляет сообщение существу."
-	center_requirement = /obj/item/natural/feather
+	center_requirement = /obj/item/paper
 
 /datum/ritual/transmutation/invademind/invoke(mob/living/user, turf/center)
 	var/text = tgui_input_text(user, "ENTER MESSAGE", "MESSAGE")
@@ -753,7 +754,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/transmutation/summonweapon
 	name = "Призыв Оружия"
 	desk = "Призывает набор оружия, включая меч Зизо."
-	center_requirement = /obj/item/ingot/steel
+	center_requirement = /obj/item/rogueweapon/sword
+
+	n_req = /obj/item/natural/bundle/bone
+	e_req = /obj/item/natural/bundle/bone
+	s_req = /obj/item/natural/bundle/bone
+	w_req = /obj/item/natural/bundle/bone
 
 /datum/ritual/transmutation/summonweapon/invoke(mob/living/user, turf/center)
 	var/datum/effect_system/spark_spread/S = new(center)
@@ -761,8 +767,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	S.start()
 
 	new /obj/item/rogueweapon/sword/long/zizo(center)
-
-	new /obj/item/rogueweapon/mace/steel(center)
 
 	playsound(get_turf(center), pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
 

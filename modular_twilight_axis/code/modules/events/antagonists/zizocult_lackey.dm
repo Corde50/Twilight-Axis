@@ -24,6 +24,7 @@
 		"Man at Arms",\
 		"Squire",\
 		"Prince",\
+		"Wretch",\
 	)
 
 /datum/round_event_control/antagonist/solo/zizo_cult/lackey
