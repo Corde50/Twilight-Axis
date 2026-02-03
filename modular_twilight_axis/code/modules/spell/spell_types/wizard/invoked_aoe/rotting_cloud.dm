@@ -28,6 +28,7 @@
 	var/pollution_amount = 200 
 	var/pollution_cap = 300 
 	glow_color = "#3a6600"
+	zizo_spell = TRUE
 
 /obj/effect/proc_holder/spell/invoked/rotting_cloud/cast(list/targets, mob/user = usr)
 	var/turf/target_turf = get_turf(targets[1])

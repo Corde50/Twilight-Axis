@@ -18,13 +18,13 @@
 	glow_intensity = GLOW_INTENSITY_HIGH
 	gesture_required = TRUE
 	ignore_los = FALSE
+	zizo_spell = TRUE
 
-	var/drain_duration = 10 SECONDS 
-	var/tick_delay = 5 
-	var/damage_per_tick = 6 
-	var/heal_multiplier = 1.5 
-	var/wound_heal_potency = 1.2
-	var/blood_drain_per_tick = 10
+	var/drain_duration = 12 SECONDS 
+	var/tick_delay = 10 
+	var/base_damage = 2 
+	var/ramp_multiplier = 2.5 
+	var/heal_ratio = 1.5 
 
 /obj/effect/proc_holder/spell/invoked/vampiric_drain/cast(list/targets, mob/living/user = usr)
 	if(!isliving(targets[1]))
@@ -32,69 +32,71 @@
 		return FALSE
 
 	var/mob/living/target = targets[1]
+	
+	if(HAS_TRAIT(target, TRAIT_PSYDONITE))
+		user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
+		return FALSE
 
 	if(target == user)
 		revert_cast()
 		return FALSE
 
+	user.apply_status_effect(/datum/status_effect/debuff/vampiric_slowdown, drain_duration)
+
 
 	var/datum/beam/vamp_beam = user.Beam(target, icon_state="blood", time=drain_duration)
 
-	user.visible_message(span_danger("[user] begins to siphon life from [target]!"), \
-						 span_notice("You establish a dark link with [target]..."))
+	user.visible_message(span_danger("[user] pierces [target] with a dark link, siphoning their life!"))
 
-	
 	var/skill_mod = user.get_skill_level(associated_skill)
-	var/final_damage = damage_per_tick + (skill_mod * 1)
-	var/final_heal = (final_damage * heal_multiplier) + (skill_mod * 0.5)
-	var/final_wound_heal = wound_heal_potency + (skill_mod * 0.5)
-	var/final_blood_drain = blood_drain_per_tick + (skill_mod * 2) 
-
-
 	var/end_time = world.time + drain_duration
-	
+	var/tick_count = 0
+
+
 	while(world.time < end_time)
-		
 		if(QDELETED(user) || QDELETED(target) || user.stat || target.stat)
 			break
 		
 		if(get_dist(user, target) > range + 1)
-			to_chat(user, span_warning("The link has been broken!"))
+			to_chat(user, span_warning("The distance is too great! The link snaps!"))
 			break
 
+		tick_count++
 		
-		playsound(target, 'sound/magic/bloodheal.ogg', 40, TRUE)
+		
+		var/current_damage = (base_damage + (tick_count * ramp_multiplier)) + (skill_mod * 2)
+		var/current_heal = current_damage * heal_ratio
 
 		
-		target.apply_damage(final_damage, BRUTE)
+		playsound(target, 'sound/magic/bloodheal.ogg', 40 + (tick_count * 5), TRUE)
+		if(tick_count > 6)
+			do_sparks(2, FALSE, target)
+
+		target.apply_damage(current_damage, BRUTE)
 		
-	
-		user.adjustBruteLoss(-(final_heal / 2))
-		user.adjustFireLoss(-(final_heal / 2))
-		user.heal_wounds(final_wound_heal)
+		
+		user.adjustBruteLoss(-(current_heal / 2))
+		user.adjustFireLoss(-(current_heal / 2))
 		
 		
-		if(iscarbon(target))
+		user.heal_wounds(1.5 + (skill_mod * 0.5))
+
+		
+		if(iscarbon(target) && iscarbon(user))
 			var/mob/living/carbon/C_target = target
-			
+			var/mob/living/carbon/C_user = user
 			if(!(NOBLOOD in C_target.dna?.species?.species_traits))
-				
-				var/actually_drained = min(C_target.blood_volume, final_blood_drain)
-				C_target.blood_volume -= actually_drained
-				
-				
-				if(iscarbon(user))
-					var/mob/living/carbon/C_user = user
-					C_user.blood_volume = min(C_user.blood_volume + actually_drained, BLOOD_VOLUME_NORMAL)
-				
-				if(prob(20))
-					to_chat(target, span_danger("You feel your lifeblood being pulled out of your veins!"))
+				var/drain = 5 + (tick_count * 2)
+				C_target.blood_volume -= drain
+				C_user.blood_volume = min(C_user.blood_volume + drain, BLOOD_VOLUME_NORMAL)
 
-		
 		stoplag(tick_delay)
 
-
+	
 	if(vamp_beam)
 		vamp_beam.End()
+	
+	
+	user.remove_status_effect(/datum/status_effect/debuff/vampiric_slowdown)
 
 	return TRUE

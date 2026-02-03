@@ -25,3 +25,19 @@
 
 /atom/movable/screen/alert/status_effect/debuff/nekoldun
 	name = "Psydon's Music"
+
+/datum/status_effect/debuff/vampiric_slowdown 
+	id = "vampiric_slowdown"
+	duration = 120 
+	alert_type = null 
+	effectedstats = list(STATKEY_SPD = -4) 
+
+/datum/status_effect/debuff/vampiric_slowdown/on_apply()
+	. = ..()
+	if(owner)
+		to_chat(owner, span_warning("The dark link weighs heavily on my soul, slowing my movements!"))
+
+/datum/status_effect/debuff/vampiric_slowdown/on_remove()
+	if(owner)
+		to_chat(owner, span_notice("The burden lifts, and I regain my speed."))
+	. = ..()
