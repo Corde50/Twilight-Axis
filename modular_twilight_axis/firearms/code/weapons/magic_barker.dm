@@ -118,3 +118,52 @@
 #undef EMERALD_CAST_TIME_REDUCTION
 #undef SAPPHIRE_CAST_TIME_REDUCTION
 #undef RUBY_CAST_TIME_REDUCTION
+
+// T1 and T2 dendor barkers
+
+/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor1
+	name = "hermit's barker"
+	desc = "Один из первых образцов огнестрельного оружия, созданный отавийскими мастерами в начале позапрошлого века. Этот оброс костями и кожей словно друидский посох, что дало ему чуть больше прочности"
+	icon = 'modular_twilight_axis/firearms/icons/magic/dendor1.dmi'
+	icon_state = "dendor1"
+	item_state = "dendor1"
+	wdefense = 4
+	max_integrity = 200
+
+/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2
+	name = "guiding light"
+	desc = "Потрёпанное оружие, что явно повидало достаточно за свою жизнь, после всего став вместилищем частички безумного бога, чьё сияние теперь направляет владельца."
+	icon = 'modular_twilight_axis/firearms/icons/magic/dendor2.dmi'
+	icon_state = "dendor2"
+	item_state = "dendor2"
+	light_color = "#57c179"
+	light_outer_range = 5
+	wdefense = 6
+	max_integrity = 230
+
+/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	ADD_TRAIT(user,TRAIT_WOODSMAN, TRAIT_GENERIC)
+	user.apply_status_effect(/datum/status_effect/buff/wardenbuff)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2/dropped(mob/living/carbon/human/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_WOODSMAN, TRAIT_GENERIC)
+	user.remove_status_effect(/datum/status_effect/buff/wardenbuff)
+
+/datum/crafting_recipe/dendor_barker/dendor1
+	name = "boned barker"
+	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2
+	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker/barker_light = 1,
+				/obj/item/alch/bone = 3,
+				/obj/item/natural/fibers = 2,
+				/obj/item/natural/hide/cured = 1)
+	craftdiff = 0
+
+/datum/crafting_recipe/dendor_barker/dendor2
+	name = "empowered barker(guiding light)"
+	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2
+	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor1 = 1,
+				/obj/item/natural/cured/essence = 2,
+				/obj/item/grown/log/tree/stick = 2)
+	craftdiff = 0
