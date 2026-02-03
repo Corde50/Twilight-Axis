@@ -35,7 +35,7 @@
 		return FALSE
 
 	
-	var/used_title = "The Grand Magos"
+	var/used_title = "Court Magician"
 
 	
 	priority_announce(html_decode(user.treat_message(message)), "[used_title] Speak", 'sound/misc/bellold.ogg', sender = user)
