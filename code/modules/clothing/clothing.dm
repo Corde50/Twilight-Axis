@@ -500,7 +500,7 @@ BLIND     // can't see anything
 			return 1
 	return 0
 
-/obj/item/clothing/proc/step_action() //this was made to rewrite clown shoes squeaking
+/obj/item/proc/step_action() //this was made to rewrite clown shoes squeaking
 	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
 
 /obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
