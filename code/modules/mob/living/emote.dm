@@ -1627,7 +1627,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_strength_roll()
-	set name = "Проверка силы"
+	set name = "%Проверка силы"
 	set category = "Emotes"
 
 	emote("strength", intentional = TRUE)
@@ -1658,7 +1658,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_perception_roll()
-	set name = "Проверка восприятия"
+	set name = "%Проверка восприятия"
 	set category = "Emotes"
 
 	emote("perception", intentional = TRUE)
@@ -1690,7 +1690,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_intelligence_roll()
-	set name = "Проверка интеллекта"
+	set name = "%Проверка интеллекта"
 	set category = "Emotes"
 
 	emote("intelligence", intentional = TRUE)
@@ -1721,7 +1721,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_constitution_roll()
-	set name = "Проверка телосложения"
+	set name = "%Проверка телосложения"
 	set category = "Emotes"
 
 	emote("constitution", intentional = TRUE)
@@ -1752,7 +1752,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_willpower_roll()
-	set name = "Проверка силы воли"
+	set name = "%Проверка силы воли"
 	set category = "Emotes"
 
 	emote("willpower", intentional = TRUE)
@@ -1785,7 +1785,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_speed_roll()
-	set name = "Проверка скорости"
+	set name = "%Проверка скорости"
 	set category = "Emotes"
 
 	emote("speed", intentional = TRUE)
@@ -1812,7 +1812,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_fortune_roll()
-	set name = "Проверка удачи"
+	set name = "%Проверка удачи"
 	set category = "Emotes"
 
 	emote("fortune", intentional = TRUE)
@@ -1846,7 +1846,7 @@
 	)
 
 /mob/living/carbon/human/verb/emote_charisma_roll()
-	set name = "Проверка харизмы"
+	set name = "%Проверка харизмы"
 	set category = "Emotes"
 
 	emote("charisma", intentional = TRUE)
