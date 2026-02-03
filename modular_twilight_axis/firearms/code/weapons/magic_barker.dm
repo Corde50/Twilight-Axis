@@ -96,3 +96,8 @@
 				/obj/item/candle = 3,
 				/obj/item/roguegem/yellow = 1)
 	craftdiff = 0
+
+#undef TOPER_CAST_TIME_REDUCTION
+#undef EMERALD_CAST_TIME_REDUCTION
+#undef SAPPHIRE_CAST_TIME_REDUCTION
+#undef RUBY_CAST_TIME_REDUCTION
