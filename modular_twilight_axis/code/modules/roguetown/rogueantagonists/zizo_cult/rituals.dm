@@ -843,7 +843,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	w_req = /obj/item/organ/brain
 	e_req = /obj/item/organ/brain
 	n_req = /obj/item/alch/bone
-	s_req = /obj/item/natural/bundle/bone/full
+	s_req = /obj/item/natural/bundle/bone
 
 	is_cultist_ritual = TRUE
 
