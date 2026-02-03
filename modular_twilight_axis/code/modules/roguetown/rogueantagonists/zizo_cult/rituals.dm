@@ -475,7 +475,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	victim.SetSleeping(0)
 	to_chat(victim, span_warning("This isn't my bed... Where am I?!"))
 	victim.playsound_local(victim, pick('sound/misc/jumphumans (1).ogg','sound/misc/jumphumans (2).ogg','sound/misc/jumphumans (3).ogg'), 100)
-	victim.forceMove(to_go)
+	if (!istype(victim, /mob/living/carbon/human/dummy))
+		victim.forceMove(to_go)
 
 /datum/ritual/servantry/falseappearance
 	name = "Ложный облик"
