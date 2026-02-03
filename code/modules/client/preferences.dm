@@ -253,7 +253,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/mood_messages_in_chat
 
+
+	var/attack_blip_frequency = ATTACK_BLIP_PREF_DEFAULT
+
 	var/datum/loadout_panel/loadoutpanel
+
 
 
 /datum/preferences/New(client/C)

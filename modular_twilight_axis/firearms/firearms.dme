@@ -18,6 +18,7 @@
 #include "code\jobs\orthodoxist.dm"
 #include "code\jobs\prince.dm"
 #include "code\jobs\inquisitor.dm"
+#include "code\jobs\hunter.dm"
 #include "code\weapons\ammo.dm"
 #include "code\weapons\ammo_holders.dm"
 #include "code\weapons\firearm.dm"
