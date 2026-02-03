@@ -397,3 +397,47 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 		return
 
 	to_chat(src, span_hypnophrase(span_big("Your form morphs into that of a [what_to_randomize]!")))
+
+/obj/item/natural/worms/leech/propaganda
+	name = "accursed leech"
+	desc = "A leech like none other."
+	icon_state = "leech"
+	drainage = 0
+	blood_sucking = 0
+	embedding = list(
+		"embed_chance" = 100,
+		"embedded_unsafe_removal_time" = 0,
+		"embedded_pain_chance" = 0,
+		"embedded_fall_chance" = 0,
+		"embedded_bloodloss"= 0,
+	)
+
+/obj/item/natural/worms/leech/propaganda/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
+	. = ..()
+	if(!user)
+		return
+	if(iscarbon(user))
+		var/mob/living/carbon/V = user
+		if(prob(5))
+			record_round_statistic(STATS_ZIZO_PRAISED)
+			V.say(pick( \
+				"СЛАВА ЗИЗО!", \
+				"СМЕРТЬ ДЕСЯТИ...", \
+				"АСТРАТА ПАДЕТ!", \
+				"ДЕСЯТЬ МЕНЯ НЕ ОСТАНОВЯТ!!!", \
+				"ЗИЗО УКАЖЕТ НАМ ПУТЬ!", \
+				"Темная Госпожа указала мне путь!", \
+				"Моя жизнь принадлежит Зизо...", \
+				"Да пусть будет проклят Бог Зверей!", \
+				"Магия и знания Нок ни что, по сравнению с тем, что дарует Зизо!", \
+				"Абиссор - всего лишь зерно соли!", \
+				"Ни от чего так не воняет сильно, как от Пестры!", \
+				"Справедливость Равокса извращена и порочна!", \
+				"Сорвите Тирана Солнца с небес!", \
+				"КСАЙЛИКС НЕ БОЛЕЕ ЧЕМ ЖАЛКИЙ ПРЕДАТЕЛЬ И ШУТ!", \
+				"Бросьте Малума в огонь Тартара!!", \
+				"Лишь Темным Эльфам Зизо доверяет свои самые темные тайны!", \
+				"Я оскверню мертвых Некры тысячу и тысячи раз!", \
+				"Я убью Десять также, как и убила Псайдона!", \
+				"Загасите бьющиеся сердце Эоры!"))
+		V.add_stress(/datum/stressevent/leechcult)
