@@ -39,7 +39,6 @@
 	shared_occurence_type = SHARED_HIGH_THREAT
 
 	base_antags = 1
-	maximum_antags = 1
 
 	weight = 2
 	max_occurrences = 1

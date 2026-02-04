@@ -269,7 +269,30 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 /datum/intent/shoot/neant/prewarning()
 	if(mastermob)
 		mastermob.visible_message(span_warning("[mastermob] draws [masteritem]!"))
+//статус эффекты
 
+/datum/status_effect/debuff/ritualdefiled/cult
+	id = "ritualdefiled"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	effectedstats = list(STATKEY_STR = -2, STATKEY_WIL = -3, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -3)
+	duration = 30 MINUTES // Punishing AS FUCK, but not as punishing as being dead.
+
+/datum/status_effect/debuff/arcynestolen
+	id = "arcynestolen"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/arcynestolen
+	duration = 30 MINUTES
+
+/datum/status_effect/debuff/arcynestolen/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
+
+/datum/status_effect/debuff/arcynestolen/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
+
+/atom/movable/screen/alert/status_effect/debuff/arcynestolen
+	name = "Stolen arcyne"
+	desc = "This cultists is stolen my magic.. Maybe it will come back later.."
 /// Fully randomizes everything in the character.
 // Reflect changes in [datum/preferences/proc/randomise_appearance_prefs]
 /mob/living/carbon/human/proc/randomize_human_appearance(randomise_flags = ALL, include_donator = TRUE)

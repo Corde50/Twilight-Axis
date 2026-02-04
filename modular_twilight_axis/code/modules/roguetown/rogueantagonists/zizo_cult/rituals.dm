@@ -239,9 +239,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	if(target == user)
 		return
 	if(is_zizocultist(target.mind) || is_zizolackey(target.mind))
+		to_chat(user, span_danger("He is already my lackey!"))
 		return
-	if(!target.client)
-		return
+	if(target.mind.assigned_role == "Gnoll")
+		to_chat(user, span_danger("This is terrible gnoll... He cant be my lackey."))
+	if(HAS_TRAIT(target, TRAIT_SILVER_WEAK))
+		to_chat(user, span_danger("I can't make deadite my lackey"))
 	if(istype(target.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("They are wearing silver, it resists the dark magick!"))
 		return
@@ -333,7 +336,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/servantry/skeletaljaunt
 	name = "Скелетонизация"
-	desk = "Превращает жертву в сильного и особого скелета Зизо! Не принимает культистов."
+	desk = "Превращает жертву в сильного и особого скелета Зизо! А ежели души в теле нет - его тело займет иная душа. Не принимает культистов."
 	ritual_limit = 2
 	number_cultist_for_add_limit = 2
 	center_book = "Жертва"
@@ -689,19 +692,18 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 /datum/ritual/transmutation/summonneant
 	name = "Призыв Косы"
-	desk = "Призывает Особую косу Зизо. Нужна знать..."
-	north_book = "Знать"
+	desk = "Призывает Особую косу Зизо."
 	center_requirement = /obj/item/reagent_containers/lux
-	n_req = /mob/living/carbon/human
+
+	n_req = /obj/item/ingot/steel
 	s_req = /obj/item/ingot/steel
+	w_req = /obj/item/ingot/steel
+	e_req = /obj/item/ingot/steel
 
 	is_cultist_ritual = TRUE
 
 /datum/ritual/transmutation/summonneant/invoke(mob/living/user, turf/center)
-	var/mob/living/carbon/human/noble = locate() in get_step(center, NORTH)
-	if(!(noble.is_noble()))
-		return
-	noble.gib()
+
 	var/datum/effect_system/spark_spread/S = new(center)
 	S.set_up(1, 1, center)
 	S.start()
@@ -861,7 +863,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/arcane
 	name = "Поглощение Арканы"
 	desk = "Принеся в жертву мага, одаривает культиста очками на изучение заклинаний и повышает его навык владения арканой. Нужно изначально быть магом..."
-	cultist_number = 1
+	cultist_number = 2
 	number_cultist_for_add_limit = 3
 	ritual_limit = 1
 	center_book = "Культист"
@@ -875,7 +877,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/fleshcrafting/arcane/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/cultist = locate() in center.contents
 	var/mob/living/carbon/human/mage = locate() in get_step(center, NORTH)
-	mage.gib()
+	if(mage.has_status_effect(/datum/status_effect/debuff/arcynestolen))
+		to_chat(cultist, span_notice("This mage is already was arcane drained..."))
+		return
+	mage.apply_status_effect(/datum/status_effect/debuff/arcynestolen)
+	mage.Stun(30)
+	mage.Knockdown(30)
 	cultist.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 	cultist.mind.adjust_spellpoints(16)
 	to_chat(cultist, span_notice("Stolen Arcane prowess floods my mind, ZIZO empowers me."))
@@ -952,7 +959,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	var/mob/living/carbon/human/victim = locate() in get_step(center, NORTH)
 	if(!(is_species(victim, /datum/species/aasimar)))
 		return
-	victim.gib()
+	if(victim.has_status_effect(/datum/status_effect/debuff/ritualdefiled/cult))
+		to_chat(target, span_notice("This aasimar is already used in ritual..."))
+		return
+	victim.apply_status_effect(/datum/status_effect/debuff/ritualdefiled/cult)
+	victim.Stun(30)
+	victim.Knockdown(30)
 	ADD_TRAIT(user, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_NOLIMBDISABLE, TRAIT_GENERIC)
 	ADD_TRAIT(user, TRAIT_NODISMEMBER, TRAIT_GENERIC)
