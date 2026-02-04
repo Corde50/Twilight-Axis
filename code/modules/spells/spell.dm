@@ -557,7 +557,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(mob_charge_effect)
 		QDEL_NULL(mob_charge_effect)
 
-	deactivate(user)
 	start_recharge()
 	switch(charge_type)
 		if("recharge")
