@@ -7,11 +7,11 @@
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_blackpowderhunter.ogg'
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	class_select_category = CLASS_CAT_RANGER
-	traits_applied = list(TRAIT_STEELHEARTED)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR, TRAIT_FIREARMS_MARKSMAN)
 	subclass_stats = list(
 		STATKEY_PER = 2,
 		STATKEY_CON = 1,
-		STATKEY_WILL = 2,
+		STATKEY_WIL = 2,
 		STATKEY_SPD = 1
 	)
 	subclass_skills = list(
