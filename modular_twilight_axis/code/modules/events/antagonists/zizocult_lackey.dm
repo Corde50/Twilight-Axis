@@ -35,11 +35,10 @@
 		TAG_VILLIAN,
 	)
 	roundstart = TRUE
-	antag_flag = ROLE_CULT
+	antag_flag = ROLE_LACKEY
 	shared_occurence_type = SHARED_HIGH_THREAT
 
-	base_antags = 1
-	maximum_antags = 2
+	base_antags = 2
 
 	weight = 2
 	max_occurrences = 1
@@ -62,7 +61,7 @@
 
 /datum/round_event/antagonist/solo/zizo_cult/lackey
 
-/datum/storyteller/zizo/on_set()
+/datum/storyteller/zizo/lackey/on_set()
     . = ..()
 
     SSgamemode.current_roundstart_event = new /datum/round_event_control/antagonist/solo/zizo_cult/lackey
