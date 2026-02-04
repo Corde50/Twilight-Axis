@@ -69,7 +69,7 @@
 	item_state = "barker_amethyst"
 	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
 
-/datum/crafting_recipe/gemsbarker/rontz
+/datum/crafting_recipe/roguetown/survival/gemsbarker/rontz
 	name = "rontz focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/rontz
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
@@ -78,7 +78,7 @@
 				/obj/item/roguegem/ruby = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/gemsbarker/gemerald
+/datum/crafting_recipe/roguetown/survival/gemsbarker/gemerald
 	name = "gemerald focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/gemerald
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
@@ -87,7 +87,7 @@
 				/obj/item/roguegem/green = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/gemsbarker/sapphire
+/datum/crafting_recipe/roguetown/survival/gemsbarker/sapphire
 	name = "sapphire focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/sapphire
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
@@ -96,7 +96,7 @@
 				/obj/item/roguegem/violet = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/gemsbarker/toper
+/datum/crafting_recipe/roguetown/survival/gemsbarker/toper
 	name = "toper focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/toper
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
@@ -105,7 +105,7 @@
 				/obj/item/roguegem/yellow = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/gemsbarker/amethyst
+/datum/crafting_recipe/roguetown/survival/gemsbarker/amethyst
 	name = "amythortz focused barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/toper
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
@@ -151,7 +151,7 @@
 	REMOVE_TRAIT(user, TRAIT_WOODSMAN, TRAIT_GENERIC)
 	user.remove_status_effect(/datum/status_effect/buff/wardenbuff)
 
-/datum/crafting_recipe/dendor_barker/dendor1
+/datum/crafting_recipe/roguetown/survival/dendor_barker/dendor1
 	name = "boned barker"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor1
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker/barker_light = 1,
@@ -160,7 +160,7 @@
 				/obj/item/natural/hide/cured = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/dendor_barker/dendor2
+/datum/crafting_recipe/roguetown/survival/dendor_barker/dendor2
 	name = "empowered barker(guiding light)"
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor1 = 1,
