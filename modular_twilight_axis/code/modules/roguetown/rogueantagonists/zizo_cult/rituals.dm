@@ -410,6 +410,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	ritual_limit = 2
 	number_cultist_for_add_limit = 2
 	center_requirement = /obj/item/bedsheet
+	is_cultist_ritual = TRUE
 
 	w_req = /obj/item/bodypart/l_leg
 	e_req = /obj/item/bodypart/r_leg
