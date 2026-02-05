@@ -371,6 +371,10 @@ var/list/zone_translations = list(
 	key_third_person = "качает головой"
 	message = "качает головой."
 
+/datum/emote/living/shake
+	key_third_person = "мотает головой"
+	message = "мотает головой."
+
 /datum/emote/living/shiver
 	key_third_person = "дрожит"
 	message = "дрожит."
