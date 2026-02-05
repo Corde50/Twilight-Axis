@@ -807,7 +807,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Одаривает цель полным исцелением."
 	center_book = "Пострадавший"
 	center_requirement = /mob/living/carbon/human
-	n_req =  /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	n_req =  /obj/item/alch/viscera
 	s_req = /obj/item/alch/calendula
 
 /datum/ritual/fleshcrafting/fleshmend/invoke(mob/living/user, turf/center)
