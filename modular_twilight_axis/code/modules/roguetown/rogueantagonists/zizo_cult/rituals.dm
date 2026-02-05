@@ -342,10 +342,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_book = "Жертва"
 	center_requirement = /mob/living/carbon/human
 
-	n_req = /obj/item/natural/bundle/bone
-	s_req = /obj/item/natural/bundle/bone
-	w_req = /obj/item/natural/bundle/bone
-	e_req = /obj/item/natural/bundle/bone
+	n_req = /obj/item/natural/bone
+	s_req = /obj/item/natural/bone
+	w_req = /obj/item/natural/bone
+	e_req = /obj/item/natural/bone
 
 	is_cultist_ritual = TRUE
 
@@ -614,10 +614,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Призывает особый крест Зизо, который и защитит, и одарит Её милостинью."
 	center_requirement = /obj/item/clothing/neck/roguetown/psicross
 
-	n_req = /obj/item/natural/bundle/bone
-	s_req = /obj/item/natural/bundle/bone
-	w_req = /obj/item/natural/bundle/bone
-	e_req = /obj/item/natural/bundle/bone
+	n_req = /obj/item/natural/bone
+	s_req = /obj/item/natural/bone
+	w_req = /obj/item/natural/bone
+	e_req = /obj/item/natural/bone
 
 /datum/ritual/transmutation/cross/invoke(mob/living/user, turf/center)
 	. = ..()
