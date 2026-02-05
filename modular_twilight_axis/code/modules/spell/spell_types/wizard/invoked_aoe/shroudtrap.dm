@@ -12,6 +12,7 @@
 	no_early_release = TRUE
 	movement_interrupt = FALSE
 	charging_slowdown = 2
+	action_icon = 'modular_twilight_axis/icons/mob/actions/roguespells.dmi'
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	overlay_state = "ShroudTrap"

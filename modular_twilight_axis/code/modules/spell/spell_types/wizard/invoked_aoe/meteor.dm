@@ -6,8 +6,8 @@
 	spell_tier = 3
 	chargedrain = 2
 	releasedrain = 80
-	chargetime = 50
-	recharge_time = 120 SECONDS               
+	chargetime = 25
+	recharge_time = 60 SECONDS               
 	selection_type = "range"
 	invocations = list("Anborno!")
 	invocation_type = "shout"
@@ -64,7 +64,7 @@
 	exp_heavy = -1 
 	exp_light = 2  
 	exp_flash = 3  
-	exp_fire = 2  
+	exp_fire = 3  
 
 /obj/effect/temp_visual/target/massive/Initialize(mapload)
 	. = ..()
@@ -105,7 +105,7 @@
 		var/dist = get_dist(T, nearby)
 		for(var/mob/living/L in nearby.contents)
 			if(dist <= 0)
-				L.adjustBruteLoss(250)
+				L.adjustBruteLoss(100)
 				L.adjustFireLoss(100)
 				L.Knockdown(60)
 			else if(dist <= 3)

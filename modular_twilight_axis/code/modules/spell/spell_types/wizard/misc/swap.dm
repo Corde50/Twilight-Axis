@@ -11,7 +11,7 @@
 	chargedrain = 1
 	invocations = list("Pachisto!")
 	invocation_type = "shout"
-	recharge_time = 60 SECONDS
+	recharge_time = 40 SECONDS
 	warnie = "spellwarning"
 	no_early_release = TRUE
 	movement_interrupt = FALSE

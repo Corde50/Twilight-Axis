@@ -2,7 +2,7 @@
 	name = "Arcane Proclamation"
 	desc = "Project your voice across the entire realm using arcane power. Your message will be heard by all."
 	overlay_state = "paper"
-
+	action_icon = 'modular_twilight_axis/icons/mob/actions/roguespells.dmi'
 	sound = list('sound/magic/whiteflame.ogg')
 	releasedrain = 40
 	chargetime = 3 SECONDS
