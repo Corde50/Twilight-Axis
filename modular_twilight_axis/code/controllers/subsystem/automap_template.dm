@@ -49,10 +49,45 @@
 /datum/map_template/proc/nuke_placement_area(turf/T, centered = FALSE, turf/empty_type = /turf/open/transparent/openspace)
 	var/list/turfs = get_affected_turfs(T, centered)
 	for(var/turf/iter as anything in turfs)
-		// удаляем вообще всё, включая мобов/объекты/декали
 		for(var/atom/movable/A as anything in iter.contents)
 			qdel(A, force = TRUE)
 
-		// ставим пустой openspace как "абсолютная пустота"
-		if(iter.type != empty_type)
-			iter.ChangeTurf(empty_type, list(empty_type), CHANGETURF_FORCEOP | CHANGETURF_DEFER_CHANGE)
+		if(iter.type == empty_type)
+			continue
+
+		var/bt = initial(empty_type.baseturfs)
+		if(islist(bt))
+			bt = bt[1]
+
+		iter.ChangeTurf(empty_type, bt, CHANGETURF_FORCEOP)
+
+/datum/map_template/proc/get_footprint_turfs(turf/load_turf, centered = FALSE)
+	// Требует cache = TRUE при new(...) чтобы cached_map был
+	if(!cached_map)
+		return list()
+
+	var/turf/placement = load_turf
+	if(centered)
+		var/turf/corner = locate(placement.x - round(width/2), placement.y - round(height/2), placement.z)
+		if(corner)
+			placement = corner
+
+	var/list/out = list()
+
+	// base в world-координатах
+	var/base_x = placement.x
+	var/base_y = placement.y
+	var/base_z = placement.z
+
+	// x/y внутри шаблона: 0..width-1, 0..height-1
+	for(var/x = 0 to width - 1)
+		for(var/y = 0 to height - 1)
+			// пропускаем noop-клетки (не трогаем то, что под ними)
+			if(SSautomapper.has_turf_noop(src, x, y)) // если proc у SS
+				continue
+
+			var/turf/T = locate(base_x + x, base_y + y, base_z)
+			if(T)
+				out += T
+
+	return out
