@@ -14,4 +14,4 @@
 map_files = ["lavafort.dmm"]
 directory = "_maps/twilight_axis/templates/test/"
 required_map = "roguetest.dmm"
-coordinates = [20, 20, 3]
+coordinates = [1, 1, 1]

@@ -11,7 +11,8 @@
  *
  * LIMITED SUPPORT FOR NON-STATION LEVELS(until someone adds a better Z level handling system for this)
  */
-#define INIT_ORDER_AUTOMAPPER 51
+#define INIT_ORDER_AUTOMAPPER 88
+GLOBAL_LIST_EMPTY(automapper_blacklisted_turfs)
 
 SUBSYSTEM_DEF(automapper)
 	name = "Automapper"
@@ -90,6 +91,13 @@ SUBSYSTEM_DEF(automapper)
 /datum/controller/subsystem/automapper/proc/load_templates_from_cache(map_names)
 	if(!islist(map_names))
 		map_names = list(map_names)
+
+	// 1) заранее считаем blacklist турфов шаблонов (multi-z уже учтён)
+	// чтобы area_spawn НЕ лез потом в эти клетки
+	var/list/bl = get_turf_blacklists(map_names)
+	if(LAZYLEN(bl))
+		LAZYOR(GLOB.automapper_blacklisted_turfs, bl)
+
 	for(var/datum/map_template/automap_template/iterating_template as anything in preloaded_map_templates)
 		if(iterating_template.affects_builtin_map && ((SSmapping.config.map_file in map_names) || SSmapping.config.map_file == map_names))
 			// CentCom already started loading objects, place them in the netherzone
@@ -97,6 +105,10 @@ SUBSYSTEM_DEF(automapper)
 				init_contents(old_turf)
 		else if(!(iterating_template.required_map in map_names))
 			continue
+
+		// 2) ВОТ ТУТ — гарантированный NUKE зоны ДО вставки
+		iterating_template.nuke_placement_area(iterating_template.load_turf, FALSE, /turf/open/transparent/openspace)
+
 		if(iterating_template.load(iterating_template.load_turf, FALSE))
 			INIT_ANNOUNCE("Loaded [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
 			log_world("AUTOMAPPER: Successfully loaded map template [iterating_template.name] at [iterating_template.load_turf.x], [iterating_template.load_turf.y], [iterating_template.load_turf.z]!")
@@ -110,12 +122,7 @@ SUBSYSTEM_DEF(automapper)
 /datum/controller/subsystem/automapper/proc/init_contents(atom/parent)
 	var/static/list/mapload_args = list(TRUE)
 	// Don't even initialize things in this list. Very specific edge cases.
-	var/static/list/type_blacklist = typecacheof(list(
-		/obj/structure/bookcase,
-		/obj/structure/closet,
-		/obj/item/storage,
-		/obj/item/reagent_containers,
-	))
+	var/static/list/type_blacklist = typecacheof(list())
 
 	var/previous_initialized_value = SSatoms.initialized
 	SSatoms.initialized = INITIALIZATION_INNEW_MAPLOAD
