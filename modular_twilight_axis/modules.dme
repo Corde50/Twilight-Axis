@@ -10,7 +10,6 @@
 #include "code/game/objects/items/rogueweapons/melee/soundbreaker_proxy.dm"
 #include "code/modules/clothing/rogueclothes/armor/unique.dm"
 #include "code/modules/events/antagonists/zizocult.dm"
-//#include "code/modules/events/antagonists/zizocult_lackey.dm"
 #include "code/modules/jobs/job_types/roguetown/adventurer/types/combat/rogue.dm"
 #include "code/modules/jobs/job_types/roguetown/other/skeleton.dm"
 #include "code/modules/projectiles/soundbreaker_note.dm"
