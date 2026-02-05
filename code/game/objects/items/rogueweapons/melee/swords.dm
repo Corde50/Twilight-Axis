@@ -2210,6 +2210,17 @@
 	sellprice = 100 // lets not make it too profitable
 	smeltresult = /obj/item/ingot/blacksteel
 
+/obj/item/rogueweapon/sword/sabre/bane
+	name = "Bane's Edge"
+	desc = "A stained sabre made of blacksteel, its edge is coated in long-dried blood as well as poison."
+	icon_state = "poisonsaber"
+	force = 25
+	max_integrity = 200 
+	parrysound = list('sound/combat/parry/bladed/bladedthin (1).ogg', 'sound/combat/parry/bladed/bladedthin (2).ogg', 'sound/combat/parry/bladed/bladedthin (3).ogg')
+	sellprice = 50
+	smeltresult = null
+	special = /datum/special_intent/coat_blade
+
 /obj/item/rogueweapon/sword/gold
 	name = "golden arming sword"
 	desc = "A heavenly arming sword, who's golden blade and besilked handle lays separated by a duocruciformic crossguard. This particular weapon seems to have innovatively combined the lethal cutting prowess of Psydonia's oldest weapon with the psychological damage of knowing that its wielder could likely bribe the Carriageman himself, and still chose to personally kill you."
