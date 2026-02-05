@@ -376,10 +376,7 @@ GLOBAL_LIST_INIT(averse_factions, list(
 	var/mob/living/carbon/human/H = user
 	if(!H.wear_mask)
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/blindfold(H), SLOT_WEAR_MASK)
-	var/obj/item/bodypart/head/head = H.get_bodypart(BODY_ZONE_HEAD)
-	head?.add_wound(/datum/wound/facial/eyes/left/permanent)
-	head?.add_wound(/datum/wound/facial/eyes/right/permanent)
-	H.update_fov_angles()
+	H.overlay_fullscreen("blind_flaw", /atom/movable/screen/fullscreen/impaired, 2)
 
 /datum/charflaw/colorblind
 	name = "Colorblind"
