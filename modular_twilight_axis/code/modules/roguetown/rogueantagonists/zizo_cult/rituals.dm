@@ -819,7 +819,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
-/datum/ritual/fleshcrafting/darkeyes До переработки
+/datum/ritual/fleshcrafting/darkeyes
 	name = "Глаза ночи"
 	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
 	center_requirement = /mob/living/carbon/human
