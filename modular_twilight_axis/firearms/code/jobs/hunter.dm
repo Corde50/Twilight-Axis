@@ -7,7 +7,7 @@
 	cmode_music = 'modular_twilight_axis/firearms/sound/music/combat_blackpowderhunter.ogg'
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT, CTAG_LICKER_WRETCH)
 	class_select_category = CLASS_CAT_RANGER
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_MEDIUMARMOR, TRAIT_FIREARMS_MARKSMAN)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_SURVIVAL_EXPERT, TRAIT_MEDIUMARMOR, TRAIT_FIREARMS_MARKSMAN)
 	subclass_stats = list(
 		STATKEY_PER = 2,
 		STATKEY_CON = 1,
@@ -26,6 +26,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/alchemy = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/tanning = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/labor/butchering = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
