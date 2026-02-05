@@ -1,7 +1,7 @@
-#define TOPER_CAST_TIME_REDUCTION 0.05
-#define EMERALD_CAST_TIME_REDUCTION 0.10
-#define SAPPHIRE_CAST_TIME_REDUCTION 0.15
-#define RUBY_CAST_TIME_REDUCTION 0.25
+#define BARKER_TOPER_CAST_TIME_REDUCTION 0.05
+#define BARKER_EMERALD_CAST_TIME_REDUCTION 0.10
+#define BARKER_SAPPHIRE_CAST_TIME_REDUCTION 0.15
+#define BARKER_RUBY_CAST_TIME_REDUCTION 0.25
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff
 	var/cast_time_reduction = null
@@ -35,7 +35,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/magic/barker_toper.dmi'
 	icon_state = "barker_toper"
 	item_state = "barker_toper"
-	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
+	cast_time_reduction = BARKER_TOPER_CAST_TIME_REDUCTION
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/gemerald
 	name = "gemerald focused barker"
@@ -43,7 +43,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/magic/barker_gemerald.dmi'
 	icon_state = "barker_gemerald"
 	item_state = "barker_gemerald"
-	cast_time_reduction = EMERALD_CAST_TIME_REDUCTION
+	cast_time_reduction = BARKER_EMERALD_CAST_TIME_REDUCTION
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/sapphire
 	name = "sapphire focused barker"
@@ -51,7 +51,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/magic/barker_sapphire.dmi'
 	icon_state = "barker_sapphire"
 	item_state = "barker_sapphire"
-	cast_time_reduction = SAPPHIRE_CAST_TIME_REDUCTION
+	cast_time_reduction = BARKER_SAPPHIRE_CAST_TIME_REDUCTION
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/rontz
 	name = "rontz focused barker"
@@ -59,7 +59,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/magic/barker_rontz.dmi'
 	icon_state = "barker_rontz"
 	item_state = "barker_rontz"
-	cast_time_reduction = RUBY_CAST_TIME_REDUCTION
+	cast_time_reduction = BARKER_RUBY_CAST_TIME_REDUCTION
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/amethyst
 	name = "amythortz focused barker"
@@ -67,7 +67,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/magic/barker_amethyst.dmi'
 	icon_state = "barker_amethyst"
 	item_state = "barker_amethyst"
-	cast_time_reduction = TOPER_CAST_TIME_REDUCTION
+	cast_time_reduction = BARKER_TOPER_CAST_TIME_REDUCTION
 
 /datum/crafting_recipe/roguetown/survival/gemsbarker/rontz
 	name = "rontz focused barker"
@@ -114,10 +114,10 @@
 				/obj/item/roguegem/amethyst = 1)
 	craftdiff = 0
 
-#undef TOPER_CAST_TIME_REDUCTION
-#undef EMERALD_CAST_TIME_REDUCTION
-#undef SAPPHIRE_CAST_TIME_REDUCTION
-#undef RUBY_CAST_TIME_REDUCTION
+#undef BARKER_TOPER_CAST_TIME_REDUCTION
+#undef BARKER_EMERALD_CAST_TIME_REDUCTION
+#undef BARKER_SAPPHIRE_CAST_TIME_REDUCTION
+#undef BARKER_RUBY_CAST_TIME_REDUCTION
 
 // T1 and T2 dendor barkers
 
