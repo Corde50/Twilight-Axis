@@ -819,21 +819,22 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
-///datum/ritual/fleshcrafting/darkeyes До переработки
-//	name = "Darkened Eyes"
-//	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
-//	center_requirement = /mob/living/carbon/human
-//
-//	w_req = /obj/item/organ/eyes
-//	e_req = /obj/item/organ/eyes
-//	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+/datum/ritual/fleshcrafting/darkeyes До переработки
+	name = "Глаза ночи"
+	desk = "Заменяет глаза на особые, которые крайне хорошо видят в темноте, но имеют одно НО.."
+	center_requirement = /mob/living/carbon/human
 
-///datum/ritual/fleshcrafting/darkeyes/invoke(mob/living/user, turf/center)
-//	var/mob/living/carbon/human/target = locate() in center.contents
-//	if(!target)
-//		return
-//	ADD_TRAIT(target,  TRAIT_GENERIC)
-//	to_chat(target, span_notice("I no longer fear the dark."))
+	w_req = /obj/item/alch/viscera
+	e_req = /obj/item/book
+	n_req = /obj/item/organ/eyes
+	s_req = /obj/item/natural/bundle/bone
+
+/datum/ritual/fleshcrafting/darkeyes/invoke(mob/living/user, turf/center)
+	var/mob/living/carbon/human/target = locate() in center.contents
+	if(!target)
+		return
+	ADD_TRAIT(target, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
+	to_chat(target, span_notice("Я больше не боюсь темноты."))
 
 /datum/ritual/fleshcrafting/undead
 	name = "Доминация над мертвыми"
