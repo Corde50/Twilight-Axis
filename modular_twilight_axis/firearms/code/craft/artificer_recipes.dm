@@ -179,6 +179,13 @@
 	created_item = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol/mortar
 	craftdiff = 4
 
+/datum/anvil_recipe/engineering/twilight_guns/arti_barker1
+	name = "handle for barker (+1 Ignited Stone) (+1 Barker)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1, /obj/item/sharpener/ignited = 1)
+	created_item = /obj/item/gun/ballistic/twilight_firearm/barker/arti_barker1
+	craftdiff = 3
+
 /datum/anvil_recipe/engineering/twilight_guns/flintgonne
 	name = "Hakenbüchse (+1 Simple Stock) (+1 Lock) (+1 Iron Barrel)"
 	req_bar = /obj/item/ingot/iron

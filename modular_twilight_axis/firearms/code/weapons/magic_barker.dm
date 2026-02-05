@@ -3,6 +3,8 @@
 #define BARKER_SAPPHIRE_CAST_TIME_REDUCTION 0.15
 #define BARKER_RUBY_CAST_TIME_REDUCTION 0.25
 
+//magic boys
+
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff
 	var/cast_time_reduction = null
 	light_system = MOVABLE_LIGHT
@@ -167,3 +169,25 @@
 				/obj/item/natural/cured/essence = 2,
 				/obj/item/grown/log/tree/stick = 2)
 	craftdiff = 0
+
+// artificer's upgrades
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker1
+	name = "ignited barker"
+	desc = "Один из первых образцов огнестрельного оружия, созданный отавийскими мастерами в начале позапрошлого века. Данный образец оснащён поворотной ручкой с тлеющим углём, что за вас подожжёт фитиль."
+	icon = 'modular_twilight_axis/firearms/icons/magic/barti.dmi'
+	icon_state = "barti"
+	item_state = "barti"
+	match_delay = 1
+
+/obj/item/sharpener/ignited
+	name = "ignited stone"
+	desc = "simple whetstone with sparks from fire essentia"
+	icon = 'modular_twilight_axis/firearms/icons/magic/bstuff.dmi'
+	icon_state = "istone"  //16 century iphone
+
+/datum/crafting_recipe/roguetown/alchemy/ignited
+	name = "ignited stone"
+	result = list(/obj/item/sharpener/ignited)
+	reqs = list(/obj/item/natural/whetstone = 1, /obj/item/alch/firedust = 1)
+	craftdiff = 2
