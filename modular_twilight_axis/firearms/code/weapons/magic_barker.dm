@@ -74,7 +74,7 @@
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/rontz
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
 				/obj/item/magic/manacrystal = 1,
-				/obj/item/candle = 3,
+				/obj/item/candle/yellow = 3,
 				/obj/item/roguegem/ruby = 1)
 	craftdiff = 0
 
@@ -83,7 +83,7 @@
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/gemerald
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
 				/obj/item/magic/manacrystal = 1,
-				/obj/item/candle = 3,
+				/obj/item/candle/yellow = 3,
 				/obj/item/roguegem/green = 1)
 	craftdiff = 0
 
@@ -92,7 +92,7 @@
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/sapphire
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
 				/obj/item/magic/manacrystal = 1,
-				/obj/item/candle = 3,
+				/obj/item/candle/yellow = 3,
 				/obj/item/roguegem/violet = 1)
 	craftdiff = 0
 
@@ -101,7 +101,7 @@
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/toper
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
 				/obj/item/magic/manacrystal = 1,
-				/obj/item/candle = 3,
+				/obj/item/candle/yellow = 3,
 				/obj/item/roguegem/yellow = 1)
 	craftdiff = 0
 
@@ -110,7 +110,7 @@
 	result = /obj/item/gun/ballistic/twilight_firearm/barker/barker_staff/toper
 	reqs = list(/obj/item/gun/ballistic/twilight_firearm/barker = 1,
 				/obj/item/magic/manacrystal = 1,
-				/obj/item/candle = 3,
+				/obj/item/candle/yellow = 3,
 				/obj/item/roguegem/amethyst = 1)
 	craftdiff = 0
 
