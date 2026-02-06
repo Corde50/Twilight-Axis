@@ -293,6 +293,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		TRAIT_NOPAINSTUN,
 		TRAIT_VILLAIN,
 		TRAIT_WOUNDREGEN,
+		TRAIT_ZIZOEYES,
 	),
 	/obj/item/bodypart = list(
 		"TRAIT_PARALYSIS" = TRAIT_PARALYSIS
