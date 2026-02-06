@@ -202,7 +202,7 @@
 	record_round_statistic(STATS_ZIZO_PRAISED)
 	audible_message("\The [src] praises <span class='bold'>Zizo</span>!")
 	playsound(src.loc, pick('modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo1.ogg', 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo2.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo3.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo4.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo5.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo6.ogg'), 100)
-	log_say("[src] has praised zizo! (zizo cultist verb)")
+	log_say("[key_name(src)] has praised zizo! (zizo cultist verb) [loc_name(src)]")
 
 /mob/living/carbon/human/proc/communicate()
 	set name = "Communicate with Cult"
