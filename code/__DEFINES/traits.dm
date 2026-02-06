@@ -285,6 +285,7 @@
 #define TRAIT_VILLAIN "Villain"
 #define TRAIT_ZIZOID_HUNTED "zizoidhunted" // Used to signal character has been marked by death by the Zizoid cult
 #define TRAIT_WOUNDREGEN "Wound Regeneration"
+#define TRAIT_ZIZOEYES "Zizo eyes"
 // If you want description to show up you gotta have the trait name defined BEFORE this lol
 
 GLOBAL_LIST_INIT(roguetraits, list(
@@ -523,6 +524,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_ARTILLERY_EXPERT = span_greentext("Я ранее обращался с артиллерией и разбираюсь в тонкостях её наводки."),
 	TRAIT_VILLAIN = span_warning("I am a devious, conniving villain!"),
 	TRAIT_WOUNDREGEN = span_info("My wounds and bones mend on their own, my bleeding clots quickly..")
+	TRAIT_ZIZOEYES = span_notice("Теперь мои глаза не боятся темноты, но и они теперь такие заметные...")
 ))
 
 // trait accessor defines

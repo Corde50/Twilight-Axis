@@ -624,6 +624,25 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult(center)
 	to_chat(user, span_notice("The psycross is transmuted into an amulet of Zizo."))
 
+/datum/ritual/transmutation/repaircross
+	name = "Восполнить амулет"
+	desk = "Восполняет амулет зизо, возвращая его защиту."
+	center_requirement = /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
+
+	w_req = /obj/item/natural/bone
+	e_req = /obj/item/natural/bone
+
+/datum/ritual/transmutation/repaircross/invoke(mob/living/user, turf/center)
+	. = ..()
+	var/datum/effect_system/spark_spread/S = new(center)
+	S.set_up(1, 1, center)
+	S.start()
+
+	playsound(get_turf(center), pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
+
+	new /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult(center)
+	to_chat(user, span_notice("Крест вновь может защитить вас.."))
+
 /datum/ritual/transmutation/criminalstool
 	name = "Призыв мыла Зизо"
 	desk = "Призывает мыло Зизо."
@@ -695,8 +714,6 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	desk = "Призывает Особую косу Зизо."
 	center_requirement = /obj/item/reagent_containers/lux
 
-	n_req = /obj/item/ingot/steel
-	s_req = /obj/item/ingot/steel
 	w_req = /obj/item/ingot/steel
 	e_req = /obj/item/ingot/steel
 
@@ -815,7 +832,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	if(!target)
 		return
 	target.playsound_local(target, 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
-	target.fully_heal(admin_revive = TRUE, break_restraints = TRUE)
+	target.fully_heal()
+	target.revive()
+	target.regenerate_limbs()
 	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
@@ -825,24 +844,22 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	center_requirement = /mob/living/carbon/human
 
 	w_req = /obj/item/alch/viscera
-	e_req = /obj/item/book
+	e_req = /obj/item/natural/bundle/bone
 	n_req = /obj/item/organ/eyes
-	s_req = /obj/item/natural/bundle/bone
 
 /datum/ritual/fleshcrafting/darkeyes/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
 	if(!target)
 		return
-	ADD_TRAIT(target, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
-	to_chat(target, span_notice("Я больше не боюсь темноты."))
+	ADD_TRAIT(target, TRAIT_ZIZOEYES, TRAIT_GENERIC)
+	to_chat(target, span_notice("Я больше не боюсь темноты. Но теперь мне стоит скрывать мои глаза.."))
 
 /datum/ritual/fleshcrafting/undead
-	name = "Доминация над мертвыми"
-	desk = "Дает возможность призывать самую нисшую нежить."
+	name = "Реликвия некроманта"
+	desk = "Принеся дары Ей, можно будет получить особый кристалл."
 	ritual_limit = 2
 	number_cultist_for_add_limit = 2
-	center_requirement = /mob/living/carbon/human
-	center_book = "Культист"
+	center_requirement = /obj/item/natural/glass_shard
 
 	w_req = /obj/item/organ/brain
 	e_req = /obj/item/organ/brain
@@ -852,14 +869,12 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	is_cultist_ritual = TRUE
 
 /datum/ritual/fleshcrafting/undead/invoke(mob/living/user, turf/center)
-	var/mob/living/carbon/human/target = locate() in center.contents
-	if(!target)
-		return
-	target.faction = list("undead")
-	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)
-	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead_formation)
-	target.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
-	to_chat(target, span_notice("The undead bow down to my will."))
+
+	var/datum/effect_system/spark_spread/S = new(center)
+	S.set_up(1, 1, center)
+	S.start()
+	new /obj/item/necro_relics/necro_crystal(center)
+	playsound(get_turf(center), pick('sound/items/bsmith1.ogg','sound/items/bsmith2.ogg','sound/items/bsmith3.ogg','sound/items/bsmith4.ogg'), 100, FALSE)
 
 /datum/ritual/fleshcrafting/arcane
 	name = "Поглощение Арканы"
@@ -994,8 +1009,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 
 	w_req = /obj/item/organ/heart
 	e_req = /obj/item/organ/heart
-	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
-	s_req = /obj/item/reagent_containers/food/snacks/rogue/meat/steak
+	n_req = /obj/item/reagent_containers/food/snacks/rogue/meat
+	s_req = /obj/item/reagent_containers/food/snacks/rogue/meat
 	is_cultist_ritual = TRUE
 
 /datum/ritual/fleshcrafting/fleshform/invoke(mob/living/user, turf/center)
