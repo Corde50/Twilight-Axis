@@ -20,8 +20,8 @@
 	ignore_los = FALSE
 	zizo_spell = TRUE
 
-	var/drain_duration = 12 SECONDS 
-	var/tick_delay = 5 
+	var/drain_duration = 18 SECONDS 
+	var/tick_delay = 10 
 	var/base_damage = 2 
 	var/ramp_multiplier = 2.5 
 	var/heal_ratio = 1.5 
