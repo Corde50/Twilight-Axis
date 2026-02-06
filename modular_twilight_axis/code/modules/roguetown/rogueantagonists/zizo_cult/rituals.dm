@@ -245,6 +245,8 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		to_chat(user, span_danger("Это граггарское отродье, оно не заслуживает быть моим лакеем..."))
 	if(HAS_TRAIT(target, TRAIT_SILVER_WEAK))
 		to_chat(user, span_danger("Мне нужны лишь живые..."))
+	if(target.mob_biotypes & MOB_UNDEAD)
+		to_chat(user, span_danger("Мне нужны лишь живые..."))
 	if(istype(target.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("Он носит серебрянный крест! Он мешает мне обратить его..."))
 		return
