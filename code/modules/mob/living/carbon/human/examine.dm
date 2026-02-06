@@ -1082,7 +1082,7 @@
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
 	if(HAS_TRAIT(src, TRAIT_ZIZOEYES))
-		villain_text += span_userdanger("Его глаза светятся странным, неествественным светом..")
+		villain_text += span_userdanger("Their eyes send chills down your spine...")
 	return villain_text
 
 /proc/get_blade_dulling_text(obj/item/rogueweapon/I, verbose = FALSE)
