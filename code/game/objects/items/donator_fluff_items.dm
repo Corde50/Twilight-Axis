@@ -12,7 +12,7 @@
 	name = "Wortträger"
 	desc = "An imported Grenzelhoftian panzerstecher, a superbly crafted implement devoid of armory marks- merely bearing a maker's mark and the Zenitstadt seal. This one has a grip of walnut wood, and a pale saffira set within the crossguard. The ricasso is engraved with Ravoxian scripture."
 	icon_state = "mansa"
-	icon = 'icons/obj/items/donor_weapons_64.dmi'
+	icon = 'modular_twilight_axis/icons/obj/items/donor_weapons_64.dmi'
 
 //Srusu's donator item - dress
 /obj/item/clothing/suit/roguetown/shirt/dress/emerald
