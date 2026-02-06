@@ -7,6 +7,7 @@
     antag_job = TRUE
     outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider
     give_bank_account = FALSE
+    hidden_job = TRUE
 
     job_traits = list(
         TRAIT_NOMOOD,
