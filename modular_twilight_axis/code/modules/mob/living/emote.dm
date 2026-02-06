@@ -498,7 +498,7 @@ var/list/zone_translations = list(
 	message = "судорожно подёргивается."
 
 /datum/emote/living/twitch_s
-	message = "дергается в судорогах."
+	message = "дергается."
 
 /datum/emote/living/warcry
 	key_third_person = "издает боевой клич!"
