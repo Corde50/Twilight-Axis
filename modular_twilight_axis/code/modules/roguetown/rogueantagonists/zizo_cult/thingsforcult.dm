@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 //шадоу плащ но без уникального спрайта, бяка
 /obj/item/clothing/cloak/half/shadowcloak/cult
-	name = "Zizo cultistic's cloak"
+	name = "Ascension's cloak"
 	desc = "Those who wear, thy should beware, for those who do; never come back as who they once were again."
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	body_parts_covered = ARMS|CHEST|VITALS
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CLOAK")
 //котелок, но культа
 /obj/item/clothing/head/roguetown/helmet/skullcap/cult
-	name = "Zizo cultistic's hood"
+	name = "Ascension's hood"
 	desc = "It echoes with ominous laughter. Worn over a skullcap"
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/warlock.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/warlock.dmi'
@@ -78,7 +78,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "HOOD")
 //легкая роба культа
 /obj/item/clothing/suit/roguetown/armor/brigandine/light/cult
-	name = "Cultistic's robe"
+	name = "Ascension's robe"
 	icon_state = "warlock"
 	body_parts_covered = COVERAGE_ALL_BUT_LEGS
 
@@ -88,7 +88,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 // Крестик
 /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
-	name = "zizo cult amulet"
+	name = "Reverted psycross of ascension's"
 	desc = "This cursed zcross will give something good por followers of Zizo.."
 	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
