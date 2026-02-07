@@ -94,6 +94,31 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/antlers
 
+/datum/loadout_item/tengai
+	name = "tengai"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tengai
+
+/datum/loadout_item/burgerhood
+	name = "Noble Hood"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/roguehood/burgerhood
+
+/datum/loadout_item/gasa
+	name = "gasa"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/gasa
+
+/datum/loadout_item/torioigasa
+	name = "torioigasa"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/torioigasa
+
+/datum/loadout_item/roningasa
+	name = "roningasa"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/roningasa
+
 /datum/loadout_item/witchhat
 	name = "Witch Hat"
 	category = "Головные уборы"
@@ -423,6 +448,31 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Desert Bra"
 	category = "Одежда"
 	path = /obj/item/clothing/suit/roguetown/shirt/desertbra
+
+/datum/loadout_item/kimono2
+	name = "Long Sleeved Kimono"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/kimono2
+
+/datum/loadout_item/haori
+	name = "Haori"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/haori
+
+/datum/loadout_item/yoroihitatare
+	name = "Yoroihitatare"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/yoroihitatare
+
+/datum/loadout_item/kamishimo
+	name = "Kamishimo"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/kamishimo
+
+/datum/loadout_item/kazengun_jacket
+	name = "Kazengun Jacket"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/kazengun_jacket
 
 /datum/loadout_item/deserthood
 	name = "Desert Hood"
