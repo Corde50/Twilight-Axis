@@ -1,5 +1,5 @@
 /datum/element/infinite_reagents
-	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY
+	element_flags = ELEMENT_DETACH_ON_HOST_DESTROY | ELEMENT_BESPOKE
 	var/list/whitelist = list()
 
 /datum/element/infinite_reagents/Attach(datum/target, list/whitelist)
