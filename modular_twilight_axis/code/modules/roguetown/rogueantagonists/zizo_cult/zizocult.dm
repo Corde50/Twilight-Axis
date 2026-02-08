@@ -68,9 +68,9 @@
 		add_objective(/datum/objective/zizoserve)
 		if(!change_stats)
 			return
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, 2, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/polearms, 1, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/swords, 1, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/polearms, 1, 1, TRUE)
 		H.change_stat(STATKEY_INT, -2)
 		H.grant_language(/datum/language/undead)
 		return
@@ -80,10 +80,10 @@
 	H.verbs |= /mob/living/carbon/human/proc/release_minion
 	if(!change_stats)
 		return
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 1, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 1, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/knives, 1, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 1, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, 1, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/athletics, 1, 1, TRUE)
 	H.change_stat(STATKEY_STR, 2)
 	H.change_stat(STATKEY_PER, 2)
 	H.change_stat(STATKEY_WIL, 1)
