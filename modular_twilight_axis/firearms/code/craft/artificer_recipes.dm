@@ -186,6 +186,20 @@
 	created_item = /obj/item/gun/ballistic/twilight_firearm/barker/arti_barker1
 	craftdiff = 3
 
+/datum/anvil_recipe/engineering/twilight_guns/arti_barker2
+	name = "hunter's barker (+1 Ignited Barker) (+2 Small Logs) (+1 Iron)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker1 = 1, /obj/item/ingot/iron = 1, /obj/item/grown/log/tree/small = 2)
+	created_item = /obj/item/gun/ballistic/twilight_firearm/barker/arti_barker2
+	craftdiff = 4
+
+/datum/anvil_recipe/engineering/twilight_guns/arti_barker3
+	name = "shepherd's barker (+1 hunter's barker) (+1 steel) (+2 Cured Leather)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list( /obj/item/gun/ballistic/twilight_firearm/barker/arti_barker2 = 1, /obj/item/ingot/steel = 1, /obj/item/natural/hide/cured = 2)
+	created_item = /obj/item/gun/ballistic/twilight_firearm/barker/arti_barker3
+	craftdiff = 4
+
 /datum/anvil_recipe/engineering/twilight_guns/flintgonne
 	name = "Hakenbüchse (+1 Simple Stock) (+1 Lock) (+1 Iron Barrel)"
 	req_bar = /obj/item/ingot/iron

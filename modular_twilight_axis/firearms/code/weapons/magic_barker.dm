@@ -145,7 +145,7 @@
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	ADD_TRAIT(user,TRAIT_WOODSMAN, TRAIT_GENERIC)
+	ADD_TRAIT(user, TRAIT_WOODSMAN, TRAIT_GENERIC)
 	user.apply_status_effect(/datum/status_effect/buff/wardenbuff)
 
 /obj/item/gun/ballistic/twilight_firearm/barker/barker_light/dendor2/dropped(mob/living/carbon/human/user)
@@ -179,6 +179,46 @@
 	icon_state = "barti"
 	item_state = "barti"
 	match_delay = 1
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker2
+	name = "hunter's barker"
+	desc = "Извращённый вариант одного из первых образцов огнестрельного оружия, предназначенный для охотников, что прыгают по высоким склонам."
+	icon = 'modular_twilight_axis/firearms/icons/magic/barti1.dmi'
+	icon_state = "barti2"
+	item_state = "barti2"
+	slot_flags = NONE
+	match_delay = 1
+	gripped_intents = list(/datum/intent/shoot/twilight_firearm/flintgonne, /datum/intent/arc/twilight_firearm/flintgonne, /datum/intent/mace/smash, INTENT_GENERIC)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker2/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	ADD_TRAIT(user, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker2/dropped(mob/living/carbon/human/user, slot)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker3
+	name = "shepherd's barker"
+	desc = "Старая палка, что может плеваться огнём в дичь и служить хорошим шестом дабы спускаться и подыматься на целые горы."
+	icon = 'modular_twilight_axis/firearms/icons/magic/barti2.dmi'
+	icon_state = "barti3"
+	item_state = "barti3"
+	slot_flags = NONE
+	match_delay = 1
+	force = 15
+	force_wielded = 20
+	gripped_intents = list(/datum/intent/shoot/twilight_firearm/flintgonne, /datum/intent/arc/twilight_firearm/flintgonne, /datum/intent/sword/thrust/zwei)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker3/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	ADD_TRAIT(user, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+	ADD_TRAIT(user, TRAIT_ZJUMP, TRAIT_GENERIC)
+
+/obj/item/gun/ballistic/twilight_firearm/barker/arti_barker3/dropped(mob/living/carbon/human/user, slot)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_NOFALLDAMAGE1, TRAIT_GENERIC)
+	REMOVE_TRAIT(user, TRAIT_ZJUMP, TRAIT_GENERIC)
 
 /obj/item/sharpener/ignited
 	name = "ignited stone"
