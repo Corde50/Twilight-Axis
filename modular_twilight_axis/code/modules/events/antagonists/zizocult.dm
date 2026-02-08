@@ -39,11 +39,11 @@
 	shared_occurence_type = SHARED_HIGH_THREAT
 
 	base_antags = 1
-	maximum_antags = 2
+	maximum_antags = 3
 
 	denominator = 40
 
-	weight = 2
+	weight = 5
 	max_occurrences = 1
 
 	earliest_start = 0 SECONDS
@@ -71,13 +71,5 @@
 			var/datum/antagonist/zizocultist/servante = new /datum/antagonist/zizocultist
 			antag_mind.add_antag_datum(servante)
 			return
-
-/datum/storyteller/proc/on_set()
-    return
-
-/datum/storyteller/zizo/on_set()
-    . = ..()
-
-    SSgamemode.current_roundstart_event = new /datum/round_event_control/antagonist/solo/zizo_cult
 
 #undef ZIZO_CULT_BLACKLISTED_ROLES
