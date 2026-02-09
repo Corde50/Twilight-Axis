@@ -105,3 +105,4 @@
 #include "awful_artillery\awful_artillery.dme"
 #include "firearms\firearms.dme"
 #include "lore\lore.dme"
+#include "code\modules\clothing\rogueclothes\rings\event_rings.dm"
