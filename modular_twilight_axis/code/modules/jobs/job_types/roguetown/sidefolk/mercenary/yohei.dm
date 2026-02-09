@@ -38,7 +38,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 	)
-	extra_context = "This subclass is race-limited to: Au Ra only."
+	extra_context = "This subclass is race-limited to: Au Ra Only."
 
 /datum/outfit/job/roguetown/mercenary/twilight_heishi/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -133,7 +133,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE
 	)
-	extra_context = "This subclass is race-limited to: Au Ra only."
+	extra_context = "This subclass is race-limited to: Au Ra Only."
 
 /datum/outfit/job/roguetown/mercenary/twilight_yohei/pre_equip(mob/living/carbon/human/H)
 	..()
