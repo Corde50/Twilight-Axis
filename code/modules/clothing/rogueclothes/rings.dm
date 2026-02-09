@@ -551,6 +551,8 @@
 	)
 	// Example default traits: admins can edit/remove these via VV
 	var/list/traits = list(TRAIT_NOBLE)
+	// Customizable message shown when ring is equipped; editable via VV
+	var/equip_message = "You feel the ring's power settle upon you."
 	var/active_item = FALSE
 
 // Procs are defined as top-level paths so they run in the correct scope
@@ -568,7 +570,8 @@
 		if(traits && traits.len)
 			for(var/t in traits)
 				ADD_TRAIT(user, t, TRAIT_GENERIC)
-		to_chat(user, span_green("You feel the ring's power settle upon you."))
+		if(equip_message)
+			to_chat(user, span_green(equip_message))
 	return
 
 
