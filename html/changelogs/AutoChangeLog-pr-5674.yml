@@ -1,0 +1,4 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - balance: "Adventurer & Pilgrimage wave weight reverted back to 100 with approximately 20% chance of rolling each wave."

@@ -323,3 +323,60 @@
   dopamiin0:
   - bugfix: The Kabuto and Jingasa now properly hide the user's hair. The latter also
       now properly hides the user's ears.
+2026-02-09:
+  Aisu9:
+  - rscadd: 'New adventurer class: The Mystic, a Holy/Arcyne Hybrid caster with 4
+      specialisations'
+  Antoonij:
+  - bugfix: cdr on /self spells
+  FreeStylaLT:
+  - balance: Specials no longer use progress bars, they immobilize and apply a clickcd
+      instead.
+  - refactor: Changed the integrity damage noises.
+  - bugfix: Fixed pickpocketing not respecting adjacency.
+  - bugfix: Fixed cuffing not respecting adjacency.
+  Lamasmaster:
+  - balance: Coat of Plates
+  - refactor: Pathing on Brigandine and Splinted arm/leg pieces
+  Pink-MB:
+  - rscadd: Astratan Light sword T0
+  - rscdel: Ignition
+  Randall:
+  - rscadd: Selecting something in the loadout now prints the description along with
+      the name.
+  Ryan180602:
+  - code_imp: Butler -> Footman.
+  - code_imp: Chief Butler -> Butler.
+  - code_imp: Wandering Maid -> Wandering Servant (with Maid/Butler choices).
+  - bugfix: AddSpell no longer adds in duplicates.
+  - balance: Rebalanced/Restatted/Rekitted a lot of Heartfelt roles to be lesser.
+  - code_imp: Made Heartfelt be a 'state in disaster' with 'potentially unfaithful
+      actors' already in play. Use it to make ascendant retinue members or something.
+  - bugfix: Prevents assassins from getting meisters.
+  - bugfix: mob_lighting not cleaning up after halfcasts.
+  - bugfix: potentially fix MMBspam casts.
+  SirSwagmeyer:
+  - rscadd: Injected extra thuggishness into Towner Thug
+  WeNeedMorePhoron:
+  - bugfix: Removed a parent loadout datum thing in the loadout
+  - rscadd: TGUI Interface added for HERMES, accessible on right click. It can load
+      multiple coins, and you can conveniently send letters without an existing piece
+      of paper again now.
+  - rscadd: Ported Castifico Collar from SR to replace the facemask when you get chaired
+      in the CASTIFICO. Also added mechanics examination text to LIBERTAS, EXICIDIUM,
+      CASTIFICO and the collar itself.
+  - rscadd: The statpanel now display a canonical date based on a 336 days, 12 months
+      year that repeats every 4 years, with canonical date calculated from rounds
+      elapsed since server start. Each round is a week.
+  bearrrrrrrr:
+  - balance: stygian higher CD, less simplemob dmg, less stam cost
+  nauticall:
+  - rscadd: Added taxation to the Grand Contract Ledger and HEADEATER.
+  - balance: Upped reward amounts of the above to prevent people from simply being
+      paid less.
+  - rscadd: Added interest, payable to people with MEISTER accounts at the start of
+      each day.
+  - qol: Added extra logging to the nerve master for things like interest and new
+      taxation methods.
+  saltprjak:
+  - balance: Giant Virtue now grants 1 CON, charging doors deals less damage.

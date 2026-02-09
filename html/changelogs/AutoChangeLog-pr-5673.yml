@@ -1,0 +1,6 @@
+author: "Baneuus"
+delete-after: True
+changes:
+  - rscadd: "You're no longer able to summon creatures while at Ravox's arena."
+  - rscadd: "Dendorites no longer able to transform while at Ravox's arena."
+  - rscadd: "Necrites no longer able to leave through the Door while at Ravox's arena."
