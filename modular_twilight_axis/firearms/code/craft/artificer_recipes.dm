@@ -162,6 +162,16 @@
 	created_item = /obj/item/gun/ballistic/twilight_firearm/arquebus
 	craftdiff = 4
 
+/datum/anvil_recipe/engineering/twilight_guns/hunt_arquebus
+	name = "Hunter's Arquebus (+2 Small Logs) (+1 Lock) (+1 Barrel) (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/twilight_gunlock = 1,
+							/obj/item/grown/log/tree/small = 2,
+							/obj/item/twilight_gunbarrel = 1,
+							/obj/item/ingot/steel = 1)
+	created_item = /obj/item/gun/ballistic/twilight_firearm/hunt_arquebus
+	craftdiff = 4
+
 /datum/anvil_recipe/engineering/twilight_guns/handgonne
 	name = "Culverin (+1 Stock) (+1 Barrel)"
 	req_bar = /obj/item/ingot/steel
