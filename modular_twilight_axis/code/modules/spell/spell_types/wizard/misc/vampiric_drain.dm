@@ -37,6 +37,12 @@
 		user.playsound_local(user, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
 
+	if(istype(target, /mob/living/simple_animal/hostile/rogue/skeleton))
+		to_chat(user, span_warning("There is no life essence to absorb!"))
+		user.playsound_local(user, 'sound/gore/flesh_eat_02.ogg', 50, FALSE)
+		revert_cast()
+		return FALSE
+	
 	if(target == user)
 		revert_cast()
 		return FALSE

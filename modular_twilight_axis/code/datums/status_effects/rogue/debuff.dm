@@ -30,7 +30,7 @@
 	id = "vampiric_slowdown"
 	duration = 120 
 	alert_type = null 
-	effectedstats = list(STATKEY_SPD = -4) 
+	effectedstats = list(STATKEY_SPD = -10) 
 
 /datum/status_effect/debuff/vampiric_slowdown/on_apply()
 	. = ..()
