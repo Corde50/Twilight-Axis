@@ -442,17 +442,9 @@
 /datum/config_entry/string/channel_announce_new_game_message
 	default = null
 
-/datum/config_entry/string/chat_announce_whitelist
-	config_entry_value = null
-
-/datum/config_entry/string/chat_announce_verify
-	config_entry_value = null
-
-/datum/config_entry/string/chat_announce_donator
-	config_entry_value = null
-
-/datum/config_entry/string/chat_command_whitelist
-	config_entry_value = null
+/// ID роли дискорда для пингов о запуске сервера
+/datum/config_entry/string/game_alert_role_id
+	default = null
 
 /datum/config_entry/flag/debug_admin_hrefs
 
