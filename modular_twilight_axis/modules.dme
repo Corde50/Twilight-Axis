@@ -54,6 +54,7 @@
 #include "code\modules\clothing\rogueclothes\neck\neck.dm"
 #include "code\modules\clothing\rogueclothes\pants\chain.dm"
 #include "code\modules\clothing\rogueclothes\pants\plate.dm"
+#include "code\modules\clothing\rogueclothes\rings\event_rings.dm"
 #include "code\modules\clothing\rogueclothes\shirts\shirts.dm"
 #include "code\modules\clothing\rogueclothes\storage\storage.dm"
 #include "code\modules\clothing\rogueclothes\wrists\wrists.dm"
@@ -105,4 +106,4 @@
 #include "awful_artillery\awful_artillery.dme"
 #include "firearms\firearms.dme"
 #include "lore\lore.dme"
-#include "code\modules\clothing\rogueclothes\rings\event_rings.dm"
+
