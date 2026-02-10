@@ -52,7 +52,7 @@
 	if(. && iscarbon(user))
 		var/mob/living/carbon/C = user
 		if(C.silent || !C.can_speak())
-			message = "makes a noise."
+				message = "makes a noise."
 
 /datum/emote/living/carbon/human/eyebrow
 	key = "eyebrow"

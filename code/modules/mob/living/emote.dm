@@ -558,7 +558,7 @@ var/list/zone_translations = list(
 				message_param = "лижет щеку %t"
 			else
 				var/ru_zone_selected = zone_translations[user.zone_selected]
-				message_param = "лижет [parse_zone(J.zone_selected)] %t."
+				message_param = "лижет [ru_zone_selected] %t."
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
