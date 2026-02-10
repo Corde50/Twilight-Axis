@@ -1,3 +1,26 @@
+/* Twilight Axis Localisation */
+var/list/zone_translations = list(
+		BODY_ZONE_HEAD = "голову",
+		BODY_ZONE_CHEST = "туловище",
+		BODY_ZONE_R_ARM = "правую руку",
+		BODY_ZONE_L_ARM = "левую руку",
+		BODY_ZONE_R_LEG = "правую ногу",
+		BODY_ZONE_L_LEG = "левую ногу",
+		BODY_ZONE_PRECISE_R_INHAND = "правую ладонь",
+		BODY_ZONE_PRECISE_L_INHAND = "левую ладонь",
+		BODY_ZONE_PRECISE_R_FOOT = "правую ступню",
+		BODY_ZONE_PRECISE_L_FOOT = "левую ступню",
+		BODY_ZONE_PRECISE_SKULL = "череп",
+		BODY_ZONE_PRECISE_EARS = "уши",
+		BODY_ZONE_PRECISE_R_EYE = "правый глаз",
+		BODY_ZONE_PRECISE_L_EYE = "левый глаз",
+		BODY_ZONE_PRECISE_NOSE = "нос",
+		BODY_ZONE_PRECISE_MOUTH = "рот",
+		BODY_ZONE_PRECISE_NECK = "шею",
+		BODY_ZONE_PRECISE_STOMACH = "живот",
+		BODY_ZONE_PRECISE_GROIN = "пах"
+	)
+
 /* EMOTE DATUMS */
 /datum/emote/living
 	mob_type_allowed_typecache = /mob/living
@@ -467,27 +490,28 @@
 				do_change = TRUE
 		if(do_change)
 			if(H.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "kisses %t deeply."
+				message_param = "страстно целует %t."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "kisses %t on the ear."
+				message_param = "целует %t в ухо."
 				var/mob/living/carbon/human/E = target
 				if(iself(E) || ishalfelf(E) || isdarkelf(E))
 					if(!E.cmode)
-						to_chat(target, span_love("It tickles..."))
+						to_chat(target, span_love("Это щекотно..."))
 			else if(H.zone_selected == BODY_ZONE_PRECISE_R_EYE || H.zone_selected == BODY_ZONE_PRECISE_L_EYE)
-				message_param = "kisses %t on the brow."
+				message_param = "целует %t в бровь."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
-				message_param = "kisses %t on the forehead."
+				message_param = "целует %t в лоб."
 			else if(H.zone_selected == BODY_ZONE_HEAD)
-				message_param = "kisses %t on the cheek."
+				message_param = "целует %t в щеку."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "kisses %t between the legs."
+				message_param = "целует %t между ног."
 				var/mob/living/carbon/human/L = target
 				if(isliving(L))
 					if(!L.cmode)
-						to_chat(target, span_love("It somewhat stimulating..."))
+						to_chat(target, span_love("Это приятно..."))
 			else
-				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
+				var/ru_zone_selected = zone_translations[user.zone_selected]
+				message_param = "целует %t в [ru_zone_selected]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
 		record_round_statistic(STATS_KISSES_MADE)
@@ -520,20 +544,21 @@
 				do_change = TRUE
 		if(do_change)
 			if(J.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "licks %t lips."
+				message_param = "лижет губы %t."
 			else if(J.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "licks the ear of %t."
+				message_param = "лижет ухо %t."
 				var/mob/living/carbon/human/O = target
 				if(iself(O) || ishalfelf(O) || isdarkelf(O))
 					if(!O.cmode)
-						to_chat(target, span_love("It tickles..."))
+						to_chat(target, span_love("Это щекотно..."))
 			else if(J.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "licks %t between the legs."
-				to_chat(target, span_love("That feels nice..."))
+				message_param = "лижет %t между ног."
+				to_chat(target, span_love("Это очень приятно..."))
 			else if(J.zone_selected == BODY_ZONE_HEAD)
-				message_param = "licks %t cheek"
+				message_param = "лижет щеку %t"
 			else
-				message_param = "licks %t [parse_zone(J.zone_selected)]."
+				var/ru_zone_selected = zone_translations[user.zone_selected]
+				message_param = "лижет [parse_zone(J.zone_selected)] %t."
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit

@@ -1,25 +1,3 @@
-var/list/zone_translations = list(
-		BODY_ZONE_HEAD = "голову",
-		BODY_ZONE_CHEST = "туловище",
-		BODY_ZONE_R_ARM = "правую руку",
-		BODY_ZONE_L_ARM = "левую руку",
-		BODY_ZONE_R_LEG = "правую ногу",
-		BODY_ZONE_L_LEG = "левую ногу",
-		BODY_ZONE_PRECISE_R_INHAND = "правую ладонь",
-		BODY_ZONE_PRECISE_L_INHAND = "левую ладонь",
-		BODY_ZONE_PRECISE_R_FOOT = "правую ступню",
-		BODY_ZONE_PRECISE_L_FOOT = "левую ступню",
-		BODY_ZONE_PRECISE_SKULL = "череп",
-		BODY_ZONE_PRECISE_EARS = "уши",
-		BODY_ZONE_PRECISE_R_EYE = "правый глаз",
-		BODY_ZONE_PRECISE_L_EYE = "левый глаз",
-		BODY_ZONE_PRECISE_NOSE = "нос",
-		BODY_ZONE_PRECISE_MOUTH = "рот",
-		BODY_ZONE_PRECISE_NECK = "шею",
-		BODY_ZONE_PRECISE_STOMACH = "живот",
-		BODY_ZONE_PRECISE_GROIN = "пах"
-	)
-
 /datum/emote/living/blush
 	key_third_person = "краснеет"
 	message = "краснеет."
@@ -148,89 +126,10 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 	use_params_for_runechat = TRUE
 
-/datum/emote/living/kiss/adjacentaction(mob/user, mob/target)
-	. = ..()
-	message_param = initial(message_param) // re
-	if(!user || !target)
-		return
-	if(ishuman(user) && ishuman(target))
-		var/mob/living/carbon/human/H = user
-		var/do_change
-		if(target.loc == user.loc)
-			do_change = TRUE
-		if(!do_change)
-			if(H.pulling == target)
-				do_change = TRUE
-		if(do_change)
-			if(H.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "страстно целует %t."
-			else if(H.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "целует %t в ухо."
-				var/mob/living/carbon/human/E = target
-				if(iself(E) || ishalfelf(E) || isdarkelf(E))
-					if(!E.cmode)
-						to_chat(target, span_love("Это щекотно..."))
-			else if(H.zone_selected == BODY_ZONE_PRECISE_R_EYE || H.zone_selected == BODY_ZONE_PRECISE_L_EYE)
-				message_param = "целует %t в бровь."
-			else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
-				message_param = "целует %t в лоб."
-			else if(H.zone_selected == BODY_ZONE_PRECISE_L_HAND || H.zone_selected == BODY_ZONE_PRECISE_R_HAND)
-				message_param = "целует ладонь %t"
-			else if(H.zone_selected == BODY_ZONE_PRECISE_STOMACH)
-				message_param = "целует %t в живот."
-			else if(H.zone_selected == BODY_ZONE_PRECISE_NECK)
-				message_param = "целует %t в шею."
-			else if(H.zone_selected == BODY_ZONE_HEAD)
-				message_param = "целует %t в щеку."
-			else if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "целует %t между ног."
-				var/mob/living/carbon/human/L = target
-				if(isliving(L))
-					if(!L.cmode)
-						to_chat(target, span_love("Это немного возбуждает..."))
-			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
-				message_param = "целует [ru_zone_selected] %t."
-	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
-	if(user.mind)
-		record_round_statistic(STATS_KISSES_MADE)
-
 /datum/emote/living/lick
 	key_third_person = "облизывает"
 	message = "облизывает."
 	message_param = "облизывает %t."
-
-/datum/emote/living/lick/adjacentaction(mob/user, mob/target)
-	. = ..()
-	message_param = initial(message_param)
-	if(!user || !target)
-		return
-	if(ishuman(user) && ishuman(target))
-		var/mob/living/carbon/human/J = user
-		var/do_change
-		if(target.loc == user.loc)
-			do_change = TRUE
-		if(!do_change)
-			if(J.pulling == target)
-				do_change = TRUE
-		if(do_change)
-			if(J.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "облизывает губы %t."
-			else if(J.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "облизывает ухо %t."
-				var/mob/living/carbon/human/O = target
-				if(iself(O) || ishalfelf(O) || isdarkelf(O))
-					if(!O.cmode)
-						to_chat(target, span_love("Это щекотно..."))
-			else if(J.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "лижет %t между ног."
-				to_chat(target, span_love("Это приятно..."))
-			else if(J.zone_selected == BODY_ZONE_HEAD)
-				message_param = "облизывает щеку %t."
-			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
-				message_param = "лижет [ru_zone_selected] %t."
-	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
 	key_third_person = "плюет"
@@ -422,7 +321,7 @@ var/list/zone_translations = list(
 	message = "хмыкает!"
 	message_muffled = "приглушенно хмыкает."
 /mob/living/carbon/human/verb/emote_hmph()
-	set name = "хмыкать!"
+	set name = "Хмыкать!"
 	set category = "Noises"
 
 	emote("hmph", intentional = TRUE)
@@ -603,10 +502,10 @@ var/list/zone_translations = list(
 	emote("pale", intentional = TRUE)
 
 /datum/emote/living/carbon/human/raise
-	key_third_person = "вскидывает руку"
-	message = "вскидывает руку."
+	key_third_person = "поднимает руку"
+	message = "поднимает руку."
 /mob/living/carbon/human/verb/emote_raise()
-	set name = "Вскинуть руку"
+	set name = "Поднять руку"
 	set category = "Emotes"
 
 	emote("raise", intentional = TRUE)
