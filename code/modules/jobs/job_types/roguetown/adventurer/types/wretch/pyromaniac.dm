@@ -33,14 +33,14 @@
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff //wear protection :) 
 	mask = /obj/item/clothing/mask/rogue/facemask/
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/full //Protect your head!
-	pants = /obj/item/clothing/under/roguetown/splintlegs
+	pants = /obj/item/clothing/under/roguetown/brigandinelegs
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
 	backl = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	wrists = /obj/item/clothing/wrists/roguetown/splintarms
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/brigandine
 	r_hand = /obj/item/bomb
 	l_hand = /obj/item/bomb
 	backpack_contents = list(

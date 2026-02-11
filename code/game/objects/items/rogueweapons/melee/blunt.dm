@@ -532,7 +532,7 @@
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
 	wdefense_wbonus = 5
-	special = null
+//	special = null // TA EDIT
 	max_integrity = 300
 
 /obj/item/rogueweapon/mace/goden/steel/paalloy

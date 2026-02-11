@@ -119,6 +119,7 @@
 	icon_state = "ancientbracers"
 	color = "#bb9696"
 	chunkcolor = "#532e25"
+	material_category = ARMOR_MAT_PLATE
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
 	prevent_crits = PREVENT_CRITS_NONE
@@ -264,7 +265,7 @@
 	GLOB.lordcolor -= src
 	return ..()
 
-/obj/item/clothing/wrists/roguetown/splintarms
+/obj/item/clothing/wrists/roguetown/bracers/brigandine
 	name = "brigandine rerebraces"
 	desc = "Brigandine bracers, pauldrons and a set of metal couters, designed to protect the arms while still providing almost complete free range of movement."
 	body_parts_covered = ARMS
@@ -279,11 +280,11 @@
 	resistance_flags = FIRE_PROOF
 	sewrepair = FALSE
 
-/obj/item/clothing/wrists/roguetown/splintarms/ComponentInitialize()
+/obj/item/clothing/wrists/roguetown/bracers/brigandine/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_HONORBOUND)
 
-/obj/item/clothing/wrists/roguetown/splintarms/iron
+/obj/item/clothing/wrists/roguetown/bracers/splint
 	name = "splint bracers"
 	desc = "A pair of leather sleeves backed with iron splints, couters, and shoulderpieces that protect your arms and remain decently light."
 	body_parts_covered = ARMS
@@ -341,6 +342,7 @@
 	desc = "Clasped, yet unburdening. The pursuit of knowledge has led you to this very moment; there is no going back."
 	color = "#c1b18d"
 	chunkcolor = "#363030"
+	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/wrists/roguetown/bracers/zizo/Initialize()
 	. = ..()

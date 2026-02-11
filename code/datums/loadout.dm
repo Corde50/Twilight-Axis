@@ -17,6 +17,8 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	if(isnull(donoritem))
 		if(ckeywhitelist)
 			donoritem = TRUE
+	var/obj/targetitem = path
+	desc = targetitem.desc
 	if (triumph_cost)
 		desc += "<b>Стоит [triumph_cost] ТРИУМФОВ.</b>"
 	if(donat_tier > 0)
@@ -864,6 +866,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Eoran Caparison"
 	path = /obj/item/caparison/eora
 
+
 //////////////////
 //  TRIUMPHS !  //
 //////////////////
@@ -1139,6 +1142,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/astratanhelm_oldrw
 	donatitem = TRUE
 
+/datum/loadout_item/donator_dakken
+	name = "Donator Kit - Armoured Avantyne Barbute"
+	path = /obj/item/enchantingkit/dakken_zizhelm
+  category = list("Броня", "Донат")
+	donatitem = TRUE
+ 
 /datum/loadout_item/donator_bigfoot_axe
 	name = "Donator Kit - Gilded GreatAxe - Required: Steel Greataxe"
 	category = list("Оружие", "Донат")
