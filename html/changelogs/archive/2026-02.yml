@@ -395,3 +395,26 @@
   WeNeedMorePhoron:
   - balance: Adventurer & Pilgrimage wave weight reverted back to 100 with approximately
       20% chance of rolling each wave.
+2026-02-11:
+  Clem-The-Duck:
+  - bugfix: Fixes forlorn getting splinted leggings instead of brig chausses
+  Lamasmaster:
+  - balance: Antag Blacklist now includes Knight and Veteran
+  - balance: Sling stamina drain
+  Ollanius:
+  - bugfix: Restores missing scabbard and sheath sprites.
+  - rscadd: Adds new scabbard and sheath sprites for preexisting weapons.
+  - rscadd: Adds the sword-specific scabbard sprites from the Freifechter update,
+      in order to reduce the chance of a severe merge conflict.
+  - code_imp: Reorganized the scabbard.dmi file. It should be a little more streamlined,
+      now. Supplemental instructions should help streamline the process of making
+      new scabbard-and-sheath sprites.
+  Ryan180602:
+  - rscadd: donor item for dakken12.
+  - bugfix: Fix pronouns being fucked.
+  - bugfix: Removes diagnosis' cooldown.
+  - code_imp: small holes are filled instantly.
+  WeNeedMorePhoron:
+  - rscadd: Template hammer is now named hammer to reduce confusion when it is referred
+      to by name in recipes
+  - bugfix: Probably fixed the daylight cycle breaking

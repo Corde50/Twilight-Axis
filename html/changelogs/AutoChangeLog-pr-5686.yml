@@ -1,4 +1,0 @@
-author: "WeNeedMorePhoron"
-delete-after: True
-changes:
-  - rscadd: "Template hammer is now named hammer to reduce confusion when it is referred to by name in recipes"
