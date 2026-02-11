@@ -1145,7 +1145,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donator_dakken
 	name = "Donator Kit - Armoured Avantyne Barbute"
 	path = /obj/item/enchantingkit/dakken_zizhelm
-  category = list("Броня", "Донат")
+	category = list("Броня", "Донат")
 	donatitem = TRUE
  
 /datum/loadout_item/donator_bigfoot_axe
