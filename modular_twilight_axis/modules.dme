@@ -11,6 +11,7 @@
 #include "code\datums\status_effects\rogue\debuff.dm"
 #include "code\datums\status_effects\rogue\roguebaff.dm"
 #include "code\datums\status_effects\rogue\soundbreaker.dm"
+#include "code\datums\status_effects\gas.dm"
 #include "code\datums\stress\negative_events.dm"
 #include "code\game\objects\effects\temporary_visuals\soundbreaker.dm"
 #include "code\game\objects\items.dm"
