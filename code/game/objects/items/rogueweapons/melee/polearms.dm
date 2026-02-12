@@ -190,7 +190,7 @@
 /datum/intent/spear/thrust/lance
 	damfactor = 1.5 // Turns its base damage into 30 on the 2hand thrust. It keeps the spear thrust one handed.
 
-/datum/intent/lance/
+/datum/intent/lance
 	name = "lance"
 	icon_state = "inlance"
 	attack_verb = list("lances", "runs through", "skewers")
@@ -1284,13 +1284,13 @@
 	force = 12
 	force_wielded = 25
 	possible_item_intents = list(
-		/datum/intent/sword/chop,
+		/datum/intent/sword/cut,
 		/datum/intent/sword/strike,
 	)
 	gripped_intents = list(
 		/datum/intent/sword/thrust/estoc,
 		/datum/intent/sword/lunge,
-		/datum/intent/sword/chop,
+		/datum/intent/sword/cut,
 		/datum/intent/sword/strike,
 	)
 	bigboy = TRUE

@@ -191,7 +191,7 @@
 	target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
 	return TRUE
 
-/obj/effect/proc_holder/spell/invoked/revive/cast_check(skipcharge = 0,mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/revive/cast_check(skipcharge, mob/user = usr)
 	if(!..())
 		return FALSE
 	var/found = null
@@ -907,7 +907,7 @@
 		S.AOE_flash(user, range = 8)
 	new /obj/effect/temp_visual/firewave/sunstrike/primary(target)
 
-/obj/effect/proc_holder/spell/invoked/sunstrike/cast_check(skipcharge = 0,mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/sunstrike/cast_check(skipcharge, mob/user = usr)
 	if(!..())
 		return FALSE
 	var/found = null
@@ -1009,3 +1009,62 @@
 		aoemining.take_damage(1100,BRUTE,"blunt",1)
 	sleep(10)
 	animate(mark, alpha = 5, time = 10, flags = ANIMATION_PARALLEL)
+
+/obj/effect/proc_holder/spell/self/astrata_sword
+	name = "Solar Blade"
+	desc = "Call for a blade to preserve light and order in Psydonia. Its strength is middling, but it glows fiercly and can be used to cauterize wounds."
+	overlay_state = "sacredflame"
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
+	associated_skill = /datum/skill/magic/holy
+	recharge_time = 5 MINUTES
+	miracle = TRUE
+	devotion_cost = 100
+
+	invocations = list("raises their hand skyward, sacred light materializing into brilliant blade!")
+	invocation_emote_self = "<span class='notice'>I hold my hand skyward, a glimmering blade forms from light itself.</span>"
+	invocation_type = "emote"
+
+	sound = list('sound/combat/clash_charge.ogg')
+
+	var/obj/item/rogueweapon/conjured_sword = null
+
+/obj/effect/proc_holder/spell/self/astrata_sword/cast(list/targets, mob/living/user = usr)
+	if(src.conjured_sword)
+		qdel(conjured_sword)
+	var/obj/item/rogueweapon/astrata_blade = new /obj/item/rogueweapon/sword/astrata_sword(user.drop_location())
+
+	user.put_in_hands(astrata_blade)
+	src.conjured_sword = astrata_blade
+	return TRUE
+
+/obj/item/rogueweapon/sword/astrata_sword
+	name = "Solar Sabre"
+	desc = "More a holy tool of ceremony than a weapon of her fury.\
+	  It harshly radiates sacred light, rebuking rot and darkness alike; \
+	  it is a ruler's blade, knight your soldiers and cleanse their wounds."
+	force = 15			//more comparable to a dagger than a sword, for it is ultimately a tool
+	force_wielded = 20
+	max_blade_int = 400 //Astrata made this out of light not dull, duh.
+	max_integrity = 200
+	minstr = 6
+	wdefense = 5
+	wdefense_wbonus = 3 //8 total. 1 better than a basic arming sword
+	tool_behaviour = TOOL_CAUTERY //The Main Gimmick here
+	smeltresult = null
+
+	icon = 'icons/roguetown/weapons/special/astratablade.dmi'
+	icon_state = "solar_blade"
+
+	//These sounds were chosen bc they sound Light-ey and Wooshey, remove if this fucks with sound-queues.
+	parrysound = list(
+		'sound/combat/clash_disarm_us.ogg'
+	)
+	pickup_sound = 'sound/combat/clash_charge.ogg'
+
+/obj/item/rogueweapon/sword/astrata_sword/Initialize()
+	. = ..()
+	set_light(5, 4, l_color = LIGHT_COLOR_WHITE)
+
+/obj/item/rogueweapon/sword/astrata_sword/dropped(mob/user, silent)
+	. = ..()
+	qdel(src)

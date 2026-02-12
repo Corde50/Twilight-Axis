@@ -94,13 +94,13 @@
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron
 				neck = /obj/item/clothing/neck/roguetown/coif/heavypadding
 				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
-				pants = /obj/item/clothing/under/roguetown/splintlegs/iron
+				pants = /obj/item/clothing/under/roguetown/splintlegs
 				gloves = /obj/item/clothing/gloves/roguetown/angle
 			if("Gambeson & Helmet")
 				armor = /obj/item/clothing/suit/roguetown/armor/gambeson
 				neck = /obj/item/clothing/neck/roguetown/coif/padded//neck cover
 				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random
-				wrists = /obj/item/clothing/wrists/roguetown/splintarms/iron//adding it since this set feels far too weak compared to the other two, gets one helmet and arm cover at least
+				wrists = /obj/item/clothing/wrists/roguetown/bracers/splint//adding it since this set feels far too weak compared to the other two, gets one helmet and arm cover at least
 				pants = /obj/item/clothing/under/roguetown/trou/leather
 				head = /obj/item/clothing/head/roguetown/helmet/kettle
 				gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -548,7 +548,7 @@
 				l_hand = /obj/item/rogueweapon/shield/tower/metal
 				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_JOURNEYMAN, TRUE)
 
-		var/discipline = list("Traditionalist - Bewitched Alchemics + Hauberk", "Reformist - Dodge Expert + Haubergeon", "Orthodoxist - Plate Training + Cuirass")
+		var/discipline = list("Traditionalist - Bewitched Alchemics + Hauberk", "Reformist - Dodge Expert + Light Haubergeon", "Orthodoxist - Plate Training + Cuirass")
 		var/discipline_choice = input(H, "Choose your DISCIPLINE.", "FACE YOUR NIGHTMARE.") as anything in discipline
 		switch(discipline_choice)
 			if("Traditionalist - Bewitched Alchemics + Hauberk")
