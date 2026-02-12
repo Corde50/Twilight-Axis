@@ -59,7 +59,6 @@
 		if(isliving(target))
 			var/mob/living/L = target
 			var/datum/status_effect/debuff/arcanemark/mark = L.has_status_effect(/datum/status_effect/debuff/arcanemark)
-			L.apply_status_effect(/datum/status_effect/stacking/hypothermia, 1) //TA EDIT
 
 			if(mark && mark.stacks == mark.max_stacks)
 				L.Immobilize(freeze_duration)
@@ -77,4 +76,5 @@
 				else
 					L.apply_status_effect(/datum/status_effect/buff/frost)
 			new /obj/effect/temp_visual/snap_freeze(get_turf(L))
+			L.apply_status_effect(/datum/status_effect/stacking/hypothermia, 1) //TA EDIT
 	qdel(src)
