@@ -228,7 +228,7 @@
 	flags_inv = HIDEEARS
 	icon_state = "tengai"
 	item_state = "tengai"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -238,7 +238,7 @@
 	flags_inv = HIDEEARS
 	icon_state = "gasa"
 	item_state = "gasa"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -248,7 +248,7 @@
 	flags_inv = HIDEEARS
 	icon_state = "torioigasa"
 	item_state = "torioigasa"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -258,7 +258,7 @@
 	flags_inv = HIDEEARS
 	icon_state = "roningasa"
 	item_state = "roningasa"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -268,7 +268,7 @@
 	flags_inv = HIDEEARS
 	icon_state = "sandogasa"
 	item_state = "sandogasa"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -279,8 +279,8 @@
 	color = null
 	icon_state = "burgerhood"
 	item_state = "burgerhood"
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
-	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'
+	icon = 'modular_twilight_axis/icons/clothing/kazengun_n_burger.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/kazengun_n_burger.dmi'
 	body_parts_covered = NECK
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	dynamic_hair_suffix = ""
