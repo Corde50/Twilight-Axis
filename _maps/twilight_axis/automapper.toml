@@ -10,8 +10,8 @@
 # More can be found in code\__DEFINES\maps.dm
 
 # roguetest test lavafort
-[templates.test_map]
-map_files = ["lavafort.dmm"]
-directory = "_maps/twilight_axis/templates/test/"
-required_map = "roguetest.dmm"
-coordinates = [1, 1, 1]
+#[templates.test_map]
+#map_files = ["lavafort.dmm"]
+#directory = "_maps/twilight_axis/templates/test/"
+#required_map = "roguetest.dmm"
+#coordinates = [1, 1, 1]
