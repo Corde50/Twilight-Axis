@@ -260,6 +260,7 @@ SUBSYSTEM_DEF(migrants)
 	GLOB.joined_player_list += character.ckey
 	update_wretch_slots()
 	update_mercenary_slots()
+	update_bandits_slots()
 	if(character.client)
 		character.client.update_ooc_verb_visibility()
 

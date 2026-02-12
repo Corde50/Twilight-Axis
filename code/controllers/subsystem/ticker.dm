@@ -479,6 +479,7 @@ SUBSYSTEM_DEF(ticker)
 			GLOB.joined_player_list += player.ckey
 			update_wretch_slots()
 			update_mercenary_slots()
+			update_bandits_slots()
 			player.create_character(FALSE)
 		else
 			player.new_player_panel()
