@@ -269,14 +269,12 @@
 						to_chat(T, span_danger("Silver rebukes my presence! These fires are lashing at my very soul!"))
 					T.adjust_fire_stacks(3, /datum/status_effect/fire_handler/fire_stacks/sunder)
 				T.ignite_mob()
-
-/obj/projectile/bullet/twilight_lead/twilight_runelock/on_hit(atom/target, blocked = FALSE)
-	. = ..()
-	if(isliving(firer) && istype(fired_from, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock))
+	if(istype(src, /obj/projectile/bullet/twilight_lead/twilight_runelock))
 		var/turf/T = get_turf(src)
 		var/obj/item/ammo_casing/caseless/twilight_lead/runelock/new_boolet = new ammo_type(T)
-		if(istype(linked_bag, /obj/item/quiver/twilight_bullet/runicbag))
-			var/obj/item/quiver/twilight_bullet/runicbag/bag = linked_bag
+		var/obj/projectile/bullet/twilight_lead/twilight_runelock/R = src
+		if(istype(R.linked_bag, /obj/item/quiver/twilight_bullet/runicbag))
+			var/obj/item/quiver/twilight_bullet/runicbag/bag = R.linked_bag
 			new_boolet.linked_bag = bag
 			bag.linked_ammo += new_boolet
 
