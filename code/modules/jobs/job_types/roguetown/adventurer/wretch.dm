@@ -134,7 +134,8 @@
 	var/slots = 5
 	
 	//Add 1 slot for every 10 players over 30. Less than 40 players, 5 slots. 40 or more players, 6 slots. 50 or more players, 7 slots - etc.
-	if((SSticker.current_state == GAME_STATE_PREGAME && ready_player_count > 40) || (player_count > 40))
+	var/current_players = (SSticker.current_state == GAME_STATE_PREGAME) ? ready_player_count : player_count
+	if(current_players > 40)
 		var/extra = floor((player_count - 40) / 10)
 		slots += extra
 	//5 slots minimum, 10 maximum.
