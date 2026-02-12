@@ -36,6 +36,7 @@
 	var/duration = 10 SECONDS
 	var/radius = 1
 	var/atom/movable/spawned_maneater
+	var/is_cleaning_up = FALSE 
 
 /obj/effect/proc_holder/spell/invoked/watertrap/cast(list/targets, mob/user)
 	. = ..()
@@ -60,13 +61,17 @@
 	new /obj/effect/watertrap(T)
 
 /obj/effect/watertrap/Destroy()
+	if(is_cleaning_up)
+		return ..()
+	is_cleaning_up = TRUE
 
 	if(spawned_maneater && !QDELETED(spawned_maneater))
 		qdel(spawned_maneater)
 
 	for(var/turf/T in turf_data)
-		if(T)
+		if(T && istype(T, /turf/open/water))
 			T.ChangeTurf(turf_data[T], flags = CHANGETURF_IGNORE_AIR)
+	
 	turf_data.Cut()
 	return ..()
 
@@ -75,50 +80,48 @@
 	. = ..()
 	var/turf/origin = center || get_turf(src)
 	if(!origin)
-		return
+		return INITIALIZE_HINT_QDEL
 
-	src.forceMove(null)
+	
+	for(var/obj/effect/watertrap/existing in origin)
+		if(existing != src)
+			return INITIALIZE_HINT_QDEL
+
+	
+	src.invisibility = INVISIBILITY_ABSTRACT 
+	
 	var/list/affected = range(radius, origin)
 
 	for(var/turf/T in affected)
+		
 		if(istype(T, /turf/closed) || istype(T, /turf/open/transparent/openspace) || istype(T, /turf/open/water))
 			continue
 
+		
 		turf_data[T] = T.type
+		
 		var/dx = T.x - origin.x
 		var/dy = T.y - origin.y
 		var/new_type
 
-		
 		if(!dx && !dy)
 			new_type = /turf/open/water/ocean/deep
 			spawned_maneater = new /obj/structure/flora/roguegrass/maneater/real(T)
 			T.ChangeTurf(new_type, flags = CHANGETURF_IGNORE_AIR)
 			continue
 
-		
 		switch("[SIGN(dx)]:[SIGN(dy)]")
-
-			if("0:1")
-				new_type = /turf/open/water/river/flow
-			if("0:-1")
-				new_type = /turf/open/water/river/flow/north
-			if("1:0")
-				new_type = /turf/open/water/river/flow/west
-			if("-1:0")
-				new_type = /turf/open/water/river/flow/east
-
-			
-			if("1:1")
-				new_type = /turf/open/water/river/flow/west
-			if("-1:1")
-				new_type = /turf/open/water/river/flow
-			if("1:-1")
-				new_type = /turf/open/water/river/flow/north
-			if("-1:-1")
-				new_type = /turf/open/water/river/flow/east
+			if("0:1")  new_type = /turf/open/water/river/flow
+			if("0:-1") new_type = /turf/open/water/river/flow/north
+			if("1:0")  new_type = /turf/open/water/river/flow/west
+			if("-1:0") new_type = /turf/open/water/river/flow/east
+			if("1:1")  new_type = /turf/open/water/river/flow/west
+			if("-1:1") new_type = /turf/open/water/river/flow
+			if("1:-1") new_type = /turf/open/water/river/flow/north
+			if("-1:-1") new_type = /turf/open/water/river/flow/east
 
 		if(new_type)
 			T.ChangeTurf(new_type, flags = CHANGETURF_IGNORE_AIR)
 
+	
 	QDEL_IN(src, duration)
