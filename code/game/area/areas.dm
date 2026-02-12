@@ -126,6 +126,8 @@
 	/// There is a risk of this and contained_turfs leaking, so a subsystem will run it down to 0 incrementally if it gets too large
 	/// This uses the same nested list format as turfs_by_zlevel
 	var/list/list/turf/turfs_to_uncontain_by_zlevel = list()
+	/// Whether or not an area protects against Necra's vengeful fog
+	var/fog_protected = FALSE
 
 /**
   * A list of teleport locations
@@ -406,6 +408,8 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 
 	if(first_time_text)
 		L.intro_area(src)
+	if(SSevent_scheduler.fog_active)
+		SSevent_scheduler.update_mob_fog_status(M, fog_protected)
 
 	var/mob/living/living_arrived = M
 
