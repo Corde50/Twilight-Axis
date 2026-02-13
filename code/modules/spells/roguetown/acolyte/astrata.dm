@@ -1068,7 +1068,3 @@
 /obj/item/rogueweapon/sword/astrata_sword/Initialize()
 	. = ..()
 	set_light(5, 4, l_color = LIGHT_COLOR_WHITE)
-
-/obj/item/rogueweapon/sword/astrata_sword/dropped(mob/user, silent)
-	. = ..()
-	qdel(src)

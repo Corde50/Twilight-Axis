@@ -69,7 +69,10 @@
 
 /obj/item/clothing/suit/roguetown/armor/manual/sewable
 	var/list/repair_items[] = list(
-		/obj/item/needle = 'sound/foley/sewflesh.ogg'
+		/obj/item/needle = 'sound/foley/sewflesh.ogg',
+		/obj/item/needle/thorn = 'sound/foley/sewflesh.ogg',
+		/obj/item/needle/bronze = 'sound/foley/sewflesh.ogg',
+		/obj/item/needle/pestra = 'sound/foley/sewflesh.ogg'
 	)
 
 /obj/item/clothing/suit/roguetown/armor/manual/sewable/get_mechanics_examine(mob/user)
@@ -81,6 +84,9 @@
 
 /obj/item/clothing/suit/roguetown/armor/manual/sewable/attackby(obj/item/I, mob/user, params)
 	if(user != loc)
+		return FALSE
+	if(obj_integrity == max_integrity)
+		to_chat(user, span_warning("My skin isn't wounded."))
 		return FALSE
 	if(!repair_check(user, I))
 		return FALSE
@@ -114,7 +120,10 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	repair_items = list(
 		/obj/item/needle = 'sound/foley/sewflesh.ogg',
-		/obj/item/rogueweapon/surgery/cautery = 'sound/surgery/cautery1.ogg',
+		/obj/item/needle/thorn = 'sound/foley/sewflesh.ogg',
+		/obj/item/needle/bronze = 'sound/foley/sewflesh.ogg',
+		/obj/item/needle/pestra = 'sound/foley/sewflesh.ogg',
+		/obj/item/rogueweapon/surgery/cautery = 'sound/surgery/cautery1.ogg'
 	)
 
 /obj/item/clothing/suit/roguetown/armor/manual/sewable/repair_check(mob/user, obj/item/I)
