@@ -138,8 +138,8 @@
 	if(current_players > 40)
 		var/extra = floor((current_players - 40) / 10)
 		slots += extra
-	//5 slots minimum, 10 maximum.
-	slots = min(slots, 10)
+	//5 slots minimum, 8 maximum.
+	slots = min(slots, 8)
 
 	wretch_job.total_positions = slots
 	wretch_job.spawn_positions = slots

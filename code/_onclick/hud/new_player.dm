@@ -217,6 +217,7 @@
 	update_bandits_slots()
 	update_wretch_slots()
 	update_mercenary_slots()
+	update_adventurer_slots()
 	vand_update_appearance(UPDATE_ICON)
 	SEND_SIGNAL(hud, COMSIG_HUD_PLAYER_READY_TOGGLE)
 
