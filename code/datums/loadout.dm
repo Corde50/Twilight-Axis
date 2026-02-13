@@ -1363,7 +1363,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie4
-	name = "Donator Kit - Aristocratic Coat - Required: Hardened Leather Coat(No Small Races)"
+	name = "Donator Kit - Aristocratic Coat - Required: Hardened Leather Coat or Lightweight Brigandine(No Small Races)"
 	category = list("Броня", "Донат")
 	path = /obj/item/enchantingkit/kumie_coat
 	donatitem = TRUE
