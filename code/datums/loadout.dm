@@ -610,6 +610,11 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Одежда"
 	path = /obj/item/clothing/under/roguetown/trou/leathertights
 
+/datum/loadout_item/hakama
+	name = "Hakama Pants"
+	category = "Одежда"
+	path = /obj/item/clothing/under/roguetown/trou/leather/hakama
+
 /datum/loadout_item/trou
 	name = "Work Trousers"
 	category = "Одежда"
