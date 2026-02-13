@@ -1,0 +1,14 @@
+{
+    "map_name": "Rockhill_TA",
+    "map_path": "map_files/rockhill_ta",
+    "map_file": "rockhill_ta.dmm",
+	"traits": [{"Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}],
+	"space_empty_levels": 0,
+	"space_ruin_levels": 0,
+	"shuttles": {
+	    "cargo": "cargo_rogue",
+	    "ferry": "ferry_base",
+	    "whiteship": "whiteship_box",
+	    "emergency": "emergency_rogue"
+    }
+}
