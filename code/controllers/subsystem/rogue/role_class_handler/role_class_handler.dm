@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(role_class_handler)
 	We setup the class handler here, aka the menu
 	We will cache it per server session via an assc list with a ckey leading to the datum.
 */
-/datum/controller/subsystem/role_class_handler/proc/setup_class_handler(mob/living/carbon/human/H, advclass_rolls_override = null, register_id = null)
+/datum/controller/subsystem/role_class_handler/proc/setup_class_handler(mob/living/carbon/human/H, advclass_rolls_override = null, register_id = null, bypass_reqs = FALSE, skip_slot_accounting = FALSE)
 	if(!register_id)
 		if(H.job == "Towner")
 			register_id = "towner"
@@ -86,11 +86,17 @@ SUBSYSTEM_DEF(role_class_handler)
 	if(GOT_IT)
 		if(!GOT_IT.linked_client) // this ref will disappear if they disconnect neways probably, as its a client
 			GOT_IT.linked_client = H.client // Thus we just give it back to them
+		GOT_IT.class_cat_alloc_bypass_reqs = bypass_reqs
+		GOT_IT.forced_class_bypass_reqs = bypass_reqs
+		GOT_IT.skip_slot_accounting = skip_slot_accounting
 		GOT_IT.second_step() // And give them a second dose of something they already dosed on
 		return
 
 	var/datum/class_select_handler/XTRA_MEATY = new()
 	XTRA_MEATY.linked_client = H.client
+	XTRA_MEATY.skip_slot_accounting = skip_slot_accounting
+	XTRA_MEATY.class_cat_alloc_bypass_reqs = bypass_reqs
+	XTRA_MEATY.forced_class_bypass_reqs = bypass_reqs
 
 		// Hack for Migrants
 	if(advclass_rolls_override)
@@ -124,10 +130,11 @@ SUBSYSTEM_DEF(role_class_handler)
 /datum/controller/subsystem/role_class_handler/proc/finish_class_handler(mob/living/carbon/human/H, datum/advclass/picked_class, datum/class_select_handler/related_handler, plus_factor, special_session_queue)
 	if(!picked_class || !related_handler || !H) // ????????? This is realistically only going to happen when someones doubling up or trying to href exploit
 		return FALSE
-	if(!(picked_class.maximum_possible_slots == -1)) // Is the class not set to infinite?
-		if(picked_class.total_slots_occupied >= picked_class.maximum_possible_slots) // are the occupied slots greater than or equal to the current maximum possible slots on the datum?
-			related_handler.rolled_class_is_full(picked_class) //If so we inform the datum in the off-chance some desyncing is occurring so we don't have a deadslot in their options.
-			return FALSE // Along with stop here as they didn't get it.
+	if(!related_handler.skip_slot_accounting)
+		if(!(picked_class.maximum_possible_slots == -1)) // Is the class not set to infinite?
+			if(picked_class.total_slots_occupied >= picked_class.maximum_possible_slots) // are the occupied slots greater than or equal to the current maximum possible slots on the datum?
+				related_handler.rolled_class_is_full(picked_class) //If so we inform the datum in the off-chance some desyncing is occurring so we don't have a deadslot in their options.
+				return FALSE // Along with stop here as they didn't get it.
 
 
 	H.advsetup = FALSE // This is actually on a lot of shit, so its a ghetto selector protector if u need one
@@ -154,7 +161,8 @@ SUBSYSTEM_DEF(role_class_handler)
 	// Call qdel on it
 	qdel(related_handler)
 
-	adjust_class_amount(picked_class, 1) // adjust the amount here, we are handling one guy right now.
+	if(!related_handler.skip_slot_accounting)
+		adjust_class_amount(picked_class, 1) // adjust the amount here, we are handling one guy right now.
 
 // A dum helper to adjust the class amount, we could do it elsewhere but this will also inform any relevant class handlers open.
 /datum/controller/subsystem/role_class_handler/proc/adjust_class_amount(datum/advclass/target_datum, amount)

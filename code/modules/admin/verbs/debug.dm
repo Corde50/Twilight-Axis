@@ -283,7 +283,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!H.client)
 				alert("Target mob has no client attached; cannot show subclass selection.")
 			else
-				SSrole_class_handler.setup_class_handler(H)
+				SSrole_class_handler.setup_class_handler(H, null, null, TRUE, TRUE)
 			// don't equip here; the class handler will call equipme when finished
 			display_name = result
 		else if(istype(result, /datum/advclass))
