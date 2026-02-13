@@ -126,6 +126,7 @@
 		target_turf = get_ranged_target_turf(origin, azimuth, distance)
 
 	var/obj/item/artillery_shell/magic_fireball/S = new(target_turf)
+	S.safe_z = origin.z
 	var/air_time = 10 + round(distance * 0.6)
 	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/item/artillery_shell/magic_fireball, start_impact_sequence)), air_time)
 
@@ -135,7 +136,8 @@
 	name = "arcane fireball"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "fireball"
-	invisibility = 101 
+	invisibility = 101
+	var/safe_z
 
 /obj/item/artillery_shell/magic_fireball/proc/start_impact_sequence()
 	var/turf/T = get_turf(src)
@@ -167,11 +169,17 @@
 		explosion(final_T, 0, 1, 2, 3) 
 	else 
 		explosion(final_T, 0, 1, 2, 3, flame_range = 2, smoke = TRUE)
-		if(isopenturf(final_T) && final_T.max_integrity > 0)
-			final_T.ChangeTurf(/turf/open/transparent/openspace)
-		var/turf/t_below = get_step_multiz(final_T, DOWN)
-		if(t_below)
-			explosion(t_below, 0, 0, 1, 2, flame_range = 1)
+		if(final_T.z != safe_z) 
+			if(isopenturf(final_T) && final_T.max_integrity > 0)
+				final_T.ChangeTurf(/turf/open/transparent/openspace)
+			
+			var/turf/t_below = get_step_multiz(final_T, DOWN)
+			if(t_below)
+				explosion(t_below, 0, 0, 1, 2, flame_range = 1)
+		else
+			for(var/turf/open/OT in range(1, final_T))
+				if(prob(50) && isopenturf(OT))
+					new /obj/effect/hotspot(OT)
 	qdel(src)
 
 /obj/effect/temp_visual/fireball_anim

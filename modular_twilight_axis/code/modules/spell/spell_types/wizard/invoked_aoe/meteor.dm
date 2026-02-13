@@ -24,6 +24,10 @@
 /obj/effect/proc_holder/spell/invoked/grand_meteor/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])
 	if(!T) return
+
+	if(!(T in view(user)))
+		to_chat(user, span_warning("I aimed incorrectly and my concentration was knocked down!"))
+		return
 	
 	T.visible_message(span_boldwarning("A massive shadow covers the area..."))
 	new /obj/effect/temp_visual/target/massive(T)
