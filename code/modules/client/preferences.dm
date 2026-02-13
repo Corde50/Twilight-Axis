@@ -253,7 +253,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/mood_messages_in_chat
 
+
+	var/attack_blip_frequency = ATTACK_BLIP_PREF_DEFAULT
+
 	var/datum/loadout_panel/loadoutpanel
+
 
 
 /datum/preferences/New(client/C)
@@ -272,7 +276,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			load_path(C.ckey)
 			unlock_content = check_patreon_lvl(C.ckey)
 			if(unlock_content)
-				max_save_slots *= 2
+				var/plevel = check_patreon_lvl(C.ckey)
+				max_save_slots = get_max_save_slots(plevel)
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if(load_character())
@@ -571,7 +576,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				selected_lang = extra_language
 				lang_output = initial(selected_lang.name)
 			dat += "<b>Extra Language: </b><a href='?_src_=prefs;preference=extra_language;task=input'>[lang_output]</a>"
-			//dat += "<br><b>Accent:</b> <a href='?_src_=prefs;preference=char_accent;task=input'>[char_accent]</a>"
+			dat += "<br><b>Accent:</b> <a href='?_src_=prefs;preference=char_accent;task=input'>[char_accent]</a>"
 			dat += "<br><b>Features:</b> <a href='?_src_=prefs;preference=customizers;task=menu'>Change</a>"
 			dat += "<br><b>Sprite Scale:</b><a href='?_src_=prefs;preference=body_size;task=input'>[(features["body_size"] * 100)]%</a>"
 			dat += "<br><b>Markings:</b> <a href='?_src_=prefs;preference=markings;task=menu'>Change</a>"

@@ -63,7 +63,7 @@
 	force_wielded = 20
 	possible_item_intents = list(/datum/intent/axe/chop/stone)
 	name = "stone axe"
-	desc = "A rough stone axe. Badly balanced."
+	desc = "A rough stone axe, fashioned from a wooden staff and a sharpened hunk of flint. It feels poorly balanced in your hands."
 	icon_state = "stoneaxe"
 	icon = 'icons/roguetown/weapons/axes32.dmi'
 	item_state = "axe"
@@ -103,7 +103,7 @@
 	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/chop/battle, /datum/intent/axe/bash, /datum/intent/sword/peel)
 	wlength = WLENGTH_LONG		//It's a big battle-axe.
 	name = "battle axe"
-	desc = "A steel battleaxe of war. Has a wicked edge."
+	desc = "A steel cleaver with a studded handle and twin-spiked axhead, purpose-made to part limbs from laymen. Its wicked edge glimmers with a razor-sharp twang, yearning for war."
 	icon_state = "battleaxe"
 	max_blade_int = 300
 	smeltresult = /obj/item/ingot/steel
@@ -150,12 +150,19 @@
 	force = 20
 	force_wielded = 26
 	possible_item_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
-	desc = "A regular iron woodcutting axe."
+	desc = "It carves, it chops, and it cleaves without compromise; what more could you truly ask for?"
 	icon_state = "axe"
 	max_blade_int = 400
 	smeltresult = /obj/item/ingot/iron
 	gripped_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop, /datum/intent/sword/peel)
 	wdefense = 2
+
+/obj/item/rogueweapon/stoneaxe/woodcut/woodcutter
+	name = "woodcutter's handaxe"
+	icon_state = "axelegacy"
+	desc = "A short-handled axe with a carved grip, made of high quality wood. Perfect for the discerning carpenter."
+	max_integrity = 300
+	demolition_mod = 2.5
 
 /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 	name = "decrepit axe"
@@ -279,7 +286,7 @@
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
 
 /obj/item/rogueweapon/stoneaxe/woodcut/bronzebattleaxe
-	name = "bronze waraxe"
+	name = "bronze war axe"
 	icon_state = "bronzebattleaxe"
 	desc = "An antiquital handstaff, fitted with a thrice-wedged bronze axhead. The unique design of its edge, similar to the khopesh, ensures that each swing properly ferries all of its wielder's strength into its destination."
 	force = 23 // Similar presentation to a battle axe, albeit without the durability or full damage.
@@ -425,6 +432,39 @@
 	icon_state = "valaska"
 	demolition_mod = 2.5
 	walking_stick = TRUE
+
+/obj/item/rogueweapon/stoneaxe/battle/steppesman/chupa
+	name = "aavnic ćiupaga"
+	desc = "A steel axe of Aavnic make that combines a deadly weapon with a walking stick - hence its pointed end. It has a flat head that fits the hand comfortably, and it's usable for chopping and smashing. It can hook an opponent's weapon in a pinch. It carries the colours of Szöréndnížina."
+	possible_item_intents = list(/datum/intent/axe/cut/battle, /datum/intent/axe/cut/battle/lunge, /datum/intent/sword/disarm)
+	gripped_intents = list(/datum/intent/axe/cut/battle ,/datum/intent/axe/chop/battle, /datum/intent/mace/smash)
+	force = 22
+	force_wielded = 25
+	icon = 'icons/roguetown/weapons/special/freifechter.dmi'
+	icon_state = "ciupaga"
+	pixel_y = -10
+	pixel_x = 0
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	demolition_mod = 2
+
+/datum/intent/axe/cut/battle/lunge
+	name = "ćiupaga lunge"
+	desc = "Grip your ćiupaga by the tail-end of the handle and swing in a circular motion to reach further ahead. It will deal extra damage if perfectly positioned, otherwise you'll just hit them with the handle."
+	damfactor = 1.75
+	penfactor = 42
+	effective_range = 2
+	effective_range_type = EFF_RANGE_EXACT
+	sharpness_penalty = 2
+	blade_class = BCLASS_CHOP
+	reach = 2
+	swingdelay = 2
+	icon_state = "inchop"
+	attack_verb = list("lunges and chops", "lunges and hacks")
+	animname = "chop"
+	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
+	clickcd = 14
+	item_d_type = "slash"
 
 /datum/intent/axe/cut/battle/greataxe
 	reach = 2
@@ -577,7 +617,7 @@
 
 /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 	name = "vicious greataxe"
-	desc = "A greataxe who's edge thrums with the motive force, violence, oh, sweet violence!"
+	desc = "Crystalline violence, jagged and cruel - fit for only those of anointed strength. Though the edge thrums with unspeakable power, it is only your hands that can determine whether it will defy fate.. ..or fufill it."
 	icon_state = "graggargaxe"
 	force = 20
 	force_wielded = 40
@@ -608,3 +648,21 @@
 	max_blade_int = 300
 	minstr = 13							//Heavy, but still good.
 	wdefense = 3						//Slightly better than norm, has 6 defense 2 handing it.
+
+/datum/intent/axe/cut/battle/frost
+	intent_effect = /datum/status_effect/buff/frostbite
+
+/datum/intent/axe/chop/battle/frost
+	intent_effect = /datum/status_effect/buff/frostbite
+
+/obj/item/rogueweapon/stoneaxe/battle/ice
+	name = "deathfrost axe"
+	desc = "This axe's blade is as sharp as it is cold."
+	icon = 'icons/roguetown/weapons/axes64.dmi'
+	icon_state = "iceaxe"
+	smeltresult = null
+	special = /datum/special_intent/permafrost
+	var/active_intents =  list(/datum/intent/axe/cut/battle/frost, /datum/intent/axe/chop/battle/frost, /datum/intent/axe/bash, /datum/intent/sword/peel)
+	var/active_gripped_intents = list(/datum/intent/axe/cut/battle/frost, /datum/intent/axe/chop/battle/frost, /datum/intent/axe/bash, /datum/intent/sword/peel)
+	var/inactive_intents = list()
+	var/inactive_gripped_intents = list()
