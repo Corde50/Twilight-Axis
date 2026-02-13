@@ -4,7 +4,6 @@
 /datum/class_select_handler
 	var/client/linked_client //the ss will link it!
 	//Well, we basically need to fill out our options
-	var/skip_slot_accounting = FALSE
 
 /*
 	This list is organized like so
