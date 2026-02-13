@@ -28,9 +28,11 @@
 //Kumie donator item - Aristocratic coat
 /obj/item/enchantingkit/kumie_coat
 	name = "'Aristocratic Coat' morphing elixer'"
-	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Hardened Leather Coat"
-	target_items = list(/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat)
-	result_item = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/aristocratic
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Hardened Leather Coat or Lightweight Brigandine"
+	target_items = list(/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/aristocratic,
+	/obj/item/clothing/suit/roguetown/armor/brigandine/light = /obj/item/clothing/suit/roguetown/armor/brigandine/light/aristocratic,
+	/obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue = /obj/item/clothing/suit/roguetown/armor/brigandine/light/aristocratic)
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/aristocratic
 
 /obj/item/enchantingkit/ravoxhelm_oldrw
 	name = "'Plumed Ravox Helmet' morphing elixer'"

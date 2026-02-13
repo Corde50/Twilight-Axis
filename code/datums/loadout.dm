@@ -734,6 +734,10 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Аксессуары"
 	path = /obj/item/clothing/neck/roguetown/psicross
 
+/datum/loadout_item/psicross/reform
+	name = "Reformist Psydonian Cross"
+	path = /obj/item/clothing/neck/roguetown/psicross/reform
+
 /datum/loadout_item/psicross/astrata
 	name = "Amulet of Astrata"
 	category = "Аксессуары"
@@ -865,7 +869,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/caparison/eora
 	name = "Eoran Caparison"
 	path = /obj/item/caparison/eora
-
 
 //////////////////
 //  TRIUMPHS !  //
@@ -1360,7 +1363,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 
 /datum/loadout_item/donator_kumie4
-	name = "Donator Kit - Aristocratic Coat - Required: Hardened Leather Coat(No Small Races)"
+	name = "Donator Kit - Aristocratic Coat - Required: Hardened Leather Coat or Lightweight Brigandine(No Small Races)"
 	category = list("Броня", "Донат")
 	path = /obj/item/enchantingkit/kumie_coat
 	donatitem = TRUE

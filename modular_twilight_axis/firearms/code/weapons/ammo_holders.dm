@@ -165,6 +165,8 @@
 
 /obj/item/quiver/twilight_bullet/runicbag/eatarrow(obj/A, loc)
 	if(istype(A, /obj/item/ammo_casing/caseless/twilight_lead/runelock))
+		if(istype(loc, /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock))
+			return TRUE
 		if(arrows.len < max_storage)
 			if(ismob(loc))
 				var/mob/M = loc
