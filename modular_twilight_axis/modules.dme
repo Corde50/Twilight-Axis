@@ -54,6 +54,7 @@
 #include "code\modules\clothing\rogueclothes\shirts\shirts.dm"
 #include "code\modules\clothing\rogueclothes\storage\storage.dm"
 #include "code\modules\clothing\rogueclothes\wrists\wrists.dm"
+
 #include "code\modules\hairstyles\hairstyles.dm"
 #include "code\modules\jobs\job_types\roguetown\adventurer\types\wretch\lunacyembracer.dm"
 #include "code\modules\jobs\job_types\roguetown\burghers\mage_apprentice.dm"
@@ -98,3 +99,4 @@
 #include "awful_artillery\awful_artillery.dme"
 #include "firearms\firearms.dme"
 #include "lore\lore.dme"
+#include "code\modules\erp_system\erp_system.dme"
