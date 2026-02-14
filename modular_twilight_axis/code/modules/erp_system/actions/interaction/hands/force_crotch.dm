@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/force_crotch
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Прижать к паху"
 	required_target_organ = SEX_ORGAN_MOUTH
 	armor_slot_target = BODY_ZONE_HEAD

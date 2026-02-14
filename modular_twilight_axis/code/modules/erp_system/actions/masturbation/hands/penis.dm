@@ -1,5 +1,5 @@
 /datum/erp_action/self/hands/masturbate_penis
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Мастурбация члена"
 	required_target_organ = SEX_ORGAN_PENIS

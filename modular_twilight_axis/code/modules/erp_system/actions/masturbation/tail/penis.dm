@@ -1,5 +1,5 @@
 /datum/erp_action/self/tail/penis_tail
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Мастурбация пениса хвостом"
 	required_target_organ = SEX_ORGAN_PENIS

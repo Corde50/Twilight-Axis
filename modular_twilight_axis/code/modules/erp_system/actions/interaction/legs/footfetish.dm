@@ -1,5 +1,5 @@
 /datum/erp_action/other/legs/footfetish
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Заставить вылизать ножки"
 	required_target_organ = SEX_ORGAN_MOUTH
 	require_grab = TRUE

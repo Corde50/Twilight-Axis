@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/hemi/dp_vag_anal
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Двойное проникновение"
 	required_target_organ = SEX_ORGAN_VAGINA

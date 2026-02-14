@@ -1,5 +1,5 @@
 /datum/erp_action/other/anus/butt
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Работать попкой"
 
 	required_target_organ = SEX_ORGAN_PENIS

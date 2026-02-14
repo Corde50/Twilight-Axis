@@ -44,13 +44,18 @@
 	if(!istype(H) || !length(L))
 		return null
 
+	var/datum/erp_controller/C = SSerp.get_controller_for(H)
+	var/datum/erp_actor/me = C ? C.get_actor_by_mob(H) : null
+	if(!me)
+		return null
+
 	var/datum/erp_sex_link/best = null
 	var/best_score = -1
 
 	for(var/datum/erp_sex_link/link in L)
 		if(!link || QDELETED(link) || !link.is_valid() || link.state != LINK_STATE_ACTIVE)
 			continue
-		var/sc = link.get_climax_score(H)
+		var/sc = link.get_climax_score(me)
 		if(sc > best_score)
 			best_score = sc
 			best = link
@@ -377,7 +382,16 @@
 		accumulated_pain_for_vice += pain_amt
 	try_do_maso_vice_moan()
 
-/* --------------------------- EJACULATION PATH ------------------------------ */
+/datum/component/arousal/damage_from_pain(pain_amt)
+	if(!pain_amt)
+		return
+	var/mob/living/carbon/user = parent
+	if(!user)
+		return
+	var/obj/item/bodypart/part = user.get_bodypart(BODY_ZONE_CHEST)
+	if(!part)
+		return
+	user.apply_damage(pain_amt, BRUTE, part)
 
 /datum/component/arousal/try_ejaculate()
 	if(arousal < PASSIVE_EJAC_THRESHOLD)
@@ -444,8 +458,7 @@
 
 /datum/component/arousal/ejaculate()
 	if(world.time <= (last_ejaculation_world_time + 2 SECONDS))
-		return
-	last_ejaculation_world_time = world.time
+		return	last_ejaculation_world_time = world.time
 
 	var/list/L = get_erp_links()
 	var/datum/erp_sex_link/best = pick_best_erp_link(L)
@@ -458,7 +471,9 @@
 		if(best.action && best.action.inject_timing == INJECT_ON_FINISH)
 			best.action.handle_inject(best, H)
 
-		var/list/info = best.handle_climax(H)
+		var/datum/erp_controller/C = SSerp.get_controller_for(H)
+		var/datum/erp_actor/me = C ? C.get_actor_by_mob(H) : null
+		var/list/info = me ? best.handle_climax(me) : null
 		var/climax_type = info?["type"] || "self"
 		var/mob/living/carbon/human/partner = info?["partner"]
 
@@ -471,7 +486,24 @@
 		after_ejaculation(null, H, partner)
 		return
 
-	. = ..()
+/datum/component/arousal/handle_climax(climax_type, mob/living/carbon/human/climaxer, mob/living/carbon/human/partner, action)
+	switch(climax_type)
+		if("outside")
+			log_combat(climaxer, partner, "Came onto [partner]")
+			playsound(partner, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
+			if(partner)
+				var/datum/status_effect/facial/facial = partner.has_status_effect(/datum/status_effect/facial)
+				if(!facial)
+					partner.apply_status_effect(/datum/status_effect/facial)
+				else
+					facial.refresh_cum()
+		if("inside")
+			log_combat(climaxer, partner, "Came inside [partner]")
+			playsound(partner, 'sound/misc/mat/endin.ogg', 50, TRUE, ignore_walls = FALSE)
+		if("self")
+			log_combat(climaxer, climaxer, "Ejaculated")
+			climaxer.visible_message(span_love("[climaxer] makes a mess!"))
+			playsound(climaxer, 'sound/misc/mat/endout.ogg', 50, TRUE, ignore_walls = FALSE)
 
 /datum/component/arousal/handle_charge(dt)
 	var/regen_mult = get_age_charge_regen_mult()
@@ -555,8 +587,6 @@
 	var/datum/erp_controller/controller_object = SSerp.get_controller_for(parent)
 	if(!controller_object?.allow_user_moan)
 		return
-	if(arousal_amt < 1.5)
-		return
 	if(user.stat != CONSCIOUS)
 		return
 	if(last_moan + MOAN_COOLDOWN >= world.time)
@@ -565,10 +595,10 @@
 		return
 	var/chosen_emote
 	switch(arousal_amt)
-		if(0 to 5)
+		if(0 to 2.5)
 			chosen_emote = "sexmoanlight"
-		if(5 to INFINITY)
-			chosen_emote = "sexamoanhvy"
+		if(2.5 to INFINITY)
+			chosen_emote = "sexmoanhvy"
 
 	if(pain_amt >= PAIN_MILD_EFFECT)
 		if(giving)

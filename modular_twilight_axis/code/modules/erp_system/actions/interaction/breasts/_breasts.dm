@@ -1,5 +1,5 @@
 /datum/erp_action/other/breasts
-	abstract_type = TRUE
+	abstract = TRUE
 	name = "Корневое действие грудью"
 	required_init_organ = SEX_ORGAN_BREASTS
 	require_same_tile = TRUE

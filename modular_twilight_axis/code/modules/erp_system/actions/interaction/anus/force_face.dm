@@ -1,5 +1,5 @@
 /datum/erp_action/other/anus/force_face
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Сесть на лицо"
 	required_target_organ = SEX_ORGAN_MOUTH
 	message_start = "{actor} {pose} прижимает {dullahan?отделенную :}голову {partner} к своей заднице.."

@@ -1,5 +1,5 @@
 /datum/erp_action/other/tail/squeeze_breasts
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Сжать хвостом грудь"
 	required_target_organ = SEX_ORGAN_BREASTS
 	message_start = "{actor} {pose} обвивает хвостом грудь {partner}."

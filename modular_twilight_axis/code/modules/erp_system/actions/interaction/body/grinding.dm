@@ -1,5 +1,5 @@
 /datum/erp_action/other/body/grinding
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Уткнуться лицом"
 	required_target_organ = SEX_ORGAN_BODY
 	message_start = "{actor} {pose} прижимается лицом к {partner}."

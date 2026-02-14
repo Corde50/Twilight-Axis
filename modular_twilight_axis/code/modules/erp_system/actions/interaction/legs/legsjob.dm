@@ -1,5 +1,5 @@
 /datum/erp_action/other/legs/legsjob
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Работа бедрами"
 	required_target_organ = SEX_ORGAN_PENIS
 	require_grab = TRUE

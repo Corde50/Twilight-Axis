@@ -1,6 +1,6 @@
 
 /datum/erp_action/other/penis/sword_fight
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Фехтование"
 	required_target_organ = SEX_ORGAN_PENIS

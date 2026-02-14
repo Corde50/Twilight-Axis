@@ -39,6 +39,7 @@ var/static/regex/ERP_REGEX_CONDITIONAL = regex(@"\{(\w+)\?([^:}]*):([^}]*)\}")
 	var/message_finish = null
 	var/message_climax_active = null
 	var/message_climax_passive = null
+	var/action_scope = ERP_SCOPE_OTHER
 
 /datum/erp_action/proc/calc_effect(datum/erp_sex_link/L)
 	if(!L || !L.init_organ || !L.target_organ)
@@ -172,6 +173,12 @@ var/static/regex/ERP_REGEX_CONDITIONAL = regex(@"\{(\w+)\?([^:}]*):([^}]*)\}")
 		if("message_finish") { message_finish = _coerce_text_or_null(value); return TRUE }
 		if("message_climax_active") { message_climax_active = _coerce_text_or_null(value); return TRUE }
 		if("message_climax_passive") { message_climax_passive = _coerce_text_or_null(value); return TRUE }
+		if("action_scope")
+			var/n = isnum(value) ? value : text2num("[value]")
+			if(n != ERP_SCOPE_SELF && n != ERP_SCOPE_OTHER)
+				return FALSE
+			action_scope = n
+			return TRUE
 
 	return FALSE
 
@@ -235,6 +242,7 @@ var/static/regex/ERP_REGEX_CONDITIONAL = regex(@"\{(\w+)\?([^:}]*):([^}]*)\}")
 
 /datum/erp_action/proc/export_editor_fields()
 	. = list()
+	. += list(_make_field("action_scope", "Направление действия", "enum", action_scope, "ОСНОВНОЕ", null, null, null, _scope_options(),"Self — действие с собой. Other — действие с партнёром. Это влияет на список доступных действий и фильтрацию.", null))
 	. += list(_make_field("required_init_organ", "Орган актёра (init)", "enum", required_init_organ, "ОРГАНЫ", null, null, null, _organ_options()))
 	. += list(_make_field("required_target_organ", "Орган цели (target)", "enum", required_target_organ, "ОРГАНЫ", null, null, null, _organ_options()))
 	. += list(_make_field("reserve_target_organ", "Резервировать орган цели", "bool", reserve_target_organ, "ОРГАНЫ"))
@@ -319,3 +327,8 @@ var/static/regex/ERP_REGEX_CONDITIONAL = regex(@"\{(\w+)\?([^:}]*):([^}]*)\}")
 	. += list(_opt(INJECT_ORGAN, "В выбранный орган"))
 	. += list(_opt(INJECT_CONTAINER, "В контейнер"))
 	. += list(_opt(INJECT_GROUND, "на пол"))
+
+/datum/erp_action/proc/_scope_options()
+	. = list()
+	. += list(_opt(ERP_SCOPE_OTHER, "Партнёр"))
+	. += list(_opt(ERP_SCOPE_SELF,  "Соло"))

@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/tea_bag
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Чайный пакетик"
 	required_target_organ = SEX_ORGAN_MOUTH

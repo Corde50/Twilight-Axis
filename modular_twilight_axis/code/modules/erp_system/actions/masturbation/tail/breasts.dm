@@ -1,5 +1,5 @@
 /datum/erp_action/self/tail/squeeze_breasts
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Сжать грудь хвостом"
 	required_target_organ = SEX_ORGAN_BREASTS	

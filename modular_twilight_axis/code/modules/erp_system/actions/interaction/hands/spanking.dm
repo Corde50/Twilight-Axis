@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/spanking
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Шлепать ягодицы"
 	required_target_organ = SEX_ORGAN_ANUS
 	action_tags = list("spanking")

@@ -1,5 +1,5 @@
 /datum/erp_action/self/hands/penis_milking
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Доение члена"
 	required_target_organ = SEX_ORGAN_PENIS

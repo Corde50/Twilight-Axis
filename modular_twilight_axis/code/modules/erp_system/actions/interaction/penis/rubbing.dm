@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/rubbing
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Тереться членом"
 	required_target_organ = SEX_ORGAN_ANUS

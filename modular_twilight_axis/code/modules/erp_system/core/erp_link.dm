@@ -30,11 +30,18 @@
 	init_organ   = organs?["init"]
 	target_organ = organs?["target"]
 
+	if(!init_organ || !target_organ || QDELETED(init_organ) || QDELETED(target_organ))
+		qdel(src)
+		return
+
+	if(!islist(init_organ.links))
+		init_organ.links = list()
+	if(!islist(target_organ.links))
+		target_organ.links = list()
+
 	tick_interval = action?.tick_time || tick_interval
-	if(init_organ)
-		init_organ.links += src
-	if(target_organ)
-		target_organ.links += src
+	init_organ.links += src
+	target_organ.links += src
 
 	last_tick = world.time
 	. = ..()
@@ -65,9 +72,9 @@
 
 	state = LINK_STATE_FINISHED
 
-	if(init_organ)
+	if(init_organ && !QDELETED(init_organ) && islist(init_organ.links))
 		init_organ.links -= src
-	if(target_organ)
+	if(target_organ && !QDELETED(target_organ) && islist(target_organ.links))
 		target_organ.links -= src
 
 /datum/erp_sex_link/proc/request_inject(datum/erp_sex_organ/source, target_mode, datum/erp_actor/who = null)
@@ -192,10 +199,10 @@
 	if(!actor_active.physical || !actor_passive.physical) 
 		return FALSE
 
-	if(!init_organ || !target_organ) 
+	if(!init_organ.host || QDELETED(init_organ.host)) 
 		return FALSE
-
-	if(QDELETED(init_organ) || QDELETED(target_organ)) 
+	
+	if(!target_organ.host || QDELETED(target_organ.host)) 
 		return FALSE
 
 	if(!init_organ.host || !target_organ.host) 

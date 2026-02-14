@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth/cunnilingus
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Куннилингус"
 	required_target_organ = SEX_ORGAN_VAGINA
 	message_start = "{actor} припадет к лону {partner}."

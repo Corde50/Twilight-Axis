@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth
-	abstract_type = TRUE
+	abstract = TRUE
 	name = "Корневое действие ртом"
 	required_init_organ = SEX_ORGAN_MOUTH
 	require_same_tile = TRUE

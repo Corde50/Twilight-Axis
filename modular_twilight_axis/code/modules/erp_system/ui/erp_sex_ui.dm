@@ -19,24 +19,32 @@
 /datum/erp_sex_ui/proc/build_payload(mob/living/current_actor)
 	actor = current_actor
 	var/datum/erp_actor/P = controller?.active_partner
+
+	var/list/tabs = list(
+		"active" = active_tab,
+		"status"  = null,
+		"actions" = null,
+		"editor"  = null,
+		"kinks"   = null
+	)
+
+	switch(active_tab)
+		if("status")  tabs["status"]  = status_tab.build()
+		if("actions") tabs["actions"] = actions_tab.build()
+		if("editor")  tabs["editor"]  = editor_tab.build()
+		if("kinks")   tabs["kinks"]   = kinks_tab.build()
+
 	return list(
 		"actor_name" = "[actor]",
-
 		"active_tab" = active_tab,
 		"hidden_mode" = controller.hidden_mode,
 		"do_until_finished" = controller.do_until_finished,
 		"yield_to_partner" = controller.yield_to_partner,
 		"allow_user_moan" = controller.allow_user_moan,
 		"frozen" = controller.arousal_frozen,
-		"current_partner_ref" = P ? "[P.physical]" : null,
-
-		"tabs" = list(
-			"status"  = status_tab.build(),
-			"actions" = actions_tab.build(),
-			"editor"  = editor_tab.build(),
-			"kinks"   = kinks_tab.build()
-		),
-
+		"current_partner_ref" = P ? P.get_ref() : null,
+		"current_partner_name" = P ? P.get_display_name() : null,
+		"tabs" = tabs,
 		"partners" = controller ? controller.get_partners_ui() : list(),
 		"actor_arousal" = controller ? controller.get_actor_arousal_ui(actor) : 0,
 		"partner_arousal" = controller ? controller.get_partner_arousal_ui(actor) : null,
@@ -131,4 +139,6 @@
 	return handle_ui_intent(action, params)
 
 /datum/erp_sex_ui/proc/request_update()
-	SStgui.update_uis(src)
+	if(!controller)
+		return
+	controller.request_ui_update()

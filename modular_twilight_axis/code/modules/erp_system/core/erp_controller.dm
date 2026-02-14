@@ -17,6 +17,8 @@
 	var/scene_active = FALSE
 	var/scene_started_at = 0
 	var/last_scene_message_link_ref = null
+	var/next_ui_update = 0
+	var/ui_update_scheduled = FALSE
 
 /datum/erp_controller/New(atom/initial_owner, client/C = null, mob/living/effect_mob = null)
 	. = ..()
@@ -134,17 +136,48 @@
 	ui.ui_interact(M)
 
 /datum/erp_controller/proc/build_ui_payload()
-	return ui.build_payload()
+	if(!ui)
+		return null
+
+	var/list/p = ui.build_payload()
+	if(!islist(p))
+		p = list()
+
+	// список целей всегда актуальный
+	p["partners"] = get_partners_ui()
+
+	// активный партнёр для хедера/текущего состояния
+	if(active_partner)
+		p["active_partner_ref"] = active_partner.get_ref()
+		p["active_partner_name"] = active_partner.get_display_name()
+		p["active_partner_is_self"] = (active_partner == owner) ? TRUE : FALSE
+	else
+		p["active_partner_ref"] = null
+		p["active_partner_name"] = null
+		p["active_partner_is_self"] = FALSE
+
+	return p
+
 
 /datum/erp_controller/proc/get_partners_ui()
 	var/list/L = list()
+
+	if(owner)
+		L += list(list(
+			"ref" = owner.get_ref(),
+			"name" = owner.get_display_name(),
+			"is_self" = TRUE
+		))
+
 	for(var/datum/erp_actor/A in actors)
 		if(!A || A == owner)
 			continue
 		L += list(list(
 			"ref" = A.get_ref(),
-			"name" = A.get_display_name()
+			"name" = A.get_display_name(),
+			"is_self" = FALSE
 		))
+
 	return L
 
 /datum/erp_controller/proc/add_partner_atom(atom/target_atom, set_active = TRUE)
@@ -155,6 +188,7 @@
 		if(A && (A.physical == target_atom || A.active_actor == target_atom))
 			if(set_active)
 				active_partner = A
+				ui?.request_update()
 			return
 
 	var/datum/erp_actor/NA = SSerp.create_actor(target_atom)
@@ -172,6 +206,7 @@
 
 	if(set_active)
 		active_partner = NA
+		ui?.request_update()
 
 /datum/erp_controller/proc/add_partner(atom/target)
 	if(!istype(target))
@@ -215,18 +250,28 @@
 /datum/erp_controller/proc/get_active_links_ui(mob/living/carbon/human/H)
 	var/list/L = list()
 	for(var/datum/erp_sex_link/S in links)
+		if(!S || QDELETED(S))
+			continue
+
+		var/init_t = S.init_organ?.erp_organ_type
+		var/tgt_t  = S.target_organ?.erp_organ_type
+
 		L += list(list(
 			"id" = "\ref[S]",
 			"name" = S.action?.name,
-			"actor_org" = "[S.init_organ?.erp_organ_type]",
-			"target_org" = "[S.target_organ?.erp_organ_type]",
+
+			"actor_org" = init_t ? get_organ_type_ui_name(init_t) : null,
+			"target_org" = tgt_t ? get_organ_type_ui_name(tgt_t) : null,
+
 			"speed" = S.speed,
 			"force" = S.force,
+
 			"climax_target" = S.climax_target,
 			"finish_mode" = S.finish_mode
 		))
 
 	return L
+
 
 /datum/erp_controller/proc/stop_link(mob/user, link_id)
 	if(!_is_owner_requester(user))
@@ -240,15 +285,20 @@
 	return TRUE
 
 /datum/erp_controller/proc/stop_link_runtime(datum/erp_sex_link/L)
-	if(!L || QDELETED(L))
-		links -= L
-		return
-	if(!(L in links))
+	if(!L)
 		return
 
-	_send_link_finish_message(L)
+	if(QDELETED(L))
+		return
+	
+	if(L.is_valid())
+		_send_link_finish_message(L)
+
+	if(L in links)
+		links -= L
+		
 	L.finish()
-	links -= L
+
 	qdel(L)
 
 /datum/erp_controller/proc/find_link(link_id)
@@ -657,28 +707,29 @@
 
 	for(var/k in SSerp.actions)
 		var/datum/erp_action/A = SSerp.actions[k]
-		if(!A)
-			continue
-
-		if(A.abstract || A.abstract_type)
+		if(!A || A.abstract)
 			continue
 
 		if(is_self)
-			if(!ispath(A.type, /datum/erp_action/self))
+			if(A.action_scope != ERP_SCOPE_SELF)
 				continue
 		else
-			if(!ispath(A.type, /datum/erp_action/other))
+			if(A.action_scope != ERP_SCOPE_OTHER)
 				continue
 
 		out += A
 
-	if(!is_self)
-		for(var/datum/erp_action/A2 in owner.custom_actions)
-			if(!A2)
+	for(var/datum/erp_action/A2 in owner.custom_actions)
+		if(!A2 || A2.abstract)
+			continue
+			
+		if(is_self)
+			if(A2.action_scope != ERP_SCOPE_SELF)
 				continue
-			if(A2.abstract || A2.abstract_type)
+		else
+			if(A2.action_scope != ERP_SCOPE_OTHER)
 				continue
-			out += A2
+		out += A2
 
 	return out
 
@@ -695,8 +746,8 @@
 	var/grabstate = owner.get_highest_grab_state_on(active_partner) || 0
 	var/has_passive_grab = (grabstate >= GRAB_PASSIVE)
 	var/has_aggr_grab = (grabstate >= GRAB_AGGRESSIVE)
-	var/list/p1 = _pick_first_free_by_type(owner)
-	var/list/p2 = _pick_first_free_by_type(active_partner)
+	var/list/p1 = _pick_first_by_type(owner, TRUE)
+	var/list/p2 = _pick_first_by_type(active_partner, FALSE)
 	var/datum/erp_sex_organ/any_init = p1["any"]
 	var/list/init_by = p1["by"]
 	var/datum/erp_sex_organ/any_tgt = p2["any"]
@@ -712,7 +763,7 @@
 	var/list/self_access = list()
 	var/list/other_access = list()
 	for(var/datum/erp_action/Act in get_all_actions_for_ui(owner, active_partner))
-		if(!Act || Act.abstract || Act.abstract_type)
+		if(!Act || Act.abstract)
 			continue
 
 		if(actor_type && Act.required_init_organ && Act.required_init_organ != actor_type)
@@ -727,10 +778,10 @@
 			is_self = TRUE
 
 		if(is_self)
-			if(!ispath(Act.type, /datum/erp_action/self))
+			if(Act.action_scope != ERP_SCOPE_SELF)
 				continue
 		else
-			if(!ispath(Act.type, /datum/erp_action/other))
+			if(Act.action_scope != ERP_SCOPE_OTHER)
 				continue
 
 		var/datum/erp_sex_organ/init = forced_init
@@ -751,7 +802,10 @@
 			continue
 
 		var/reason = null
-		if(Act.require_same_tile && !(same_tile || has_passive_grab))
+		if(get_dist(actor_mob, partner_mob) > 1)
+			reason = "Слишком далеко."
+
+		else if(Act.require_same_tile && !(same_tile || has_passive_grab))
 			reason = "Нужно быть на одном тайле или держать партнёра."
 
 		else if(Act.require_grab && !has_aggr_grab)
@@ -858,6 +912,9 @@
 	var/grabstate = owner.get_highest_grab_state_on(active_partner) || 0
 	var/has_passive_grab = (grabstate >= GRAB_PASSIVE)
 	var/has_agressive_grab = (grabstate >= GRAB_AGGRESSIVE)
+
+	if(get_dist(tA, tB) > 1)
+		return "Слишком далеко."
 
 	if(A.require_same_tile && !(same_tile || has_passive_grab))
 		return "Нужно быть на одном тайле или держать партнёра."
@@ -1009,11 +1066,17 @@
 	if(!ref)
 		return FALSE
 
+	if(owner && owner.get_ref() == ref)
+		active_partner = owner
+		ui?.request_update()
+		return TRUE
+
 	for(var/datum/erp_actor/A in actors)
 		if(!A || A == owner)
 			continue
 		if(A.get_ref() == ref)
 			active_partner = A
+			ui?.request_update()
 			return TRUE
 
 	return FALSE
@@ -1021,9 +1084,12 @@
 /datum/erp_controller/proc/is_partner_arousal_hidden(actor)
 	if(!active_partner)
 		return TRUE
-	if(actor != active_partner)
+	if(owner == active_partner)
 		return TRUE
-	return FALSE
+	var/mob/living/owner_object = owner.get_mob()
+	if(!owner_object)
+		return TRUE
+	return !HAS_TRAIT(owner_object, TRAIT_EMPATH)
 
 /datum/erp_controller/proc/set_actor_arousal(actor, value = 0)
 	var/mob/living/carbon/human/owner_mob = owner?.physical
@@ -1240,8 +1306,11 @@
 	if(!actor_object || !partner_object)
 		return FALSE
 
-	var/list/p1 = _pick_first_free_by_type(owner)
-	var/list/p2 = _pick_first_free_by_type(active_partner)
+	if(get_dist(actor_object, partner_object) > 1)
+		return FALSE
+
+	var/list/p1 = _pick_first_by_type(owner, TRUE)
+	var/list/p2 = _pick_first_by_type(active_partner, FALSE)
 	var/list/init_by = p1["by"]
 	var/list/tgt_by  = p2["by"]
 	var/datum/erp_sex_organ/any_init = p1["any"]
@@ -1359,18 +1428,7 @@
 		stop_link_runtime(L2)
 
 /datum/erp_controller/proc/_pick_first_free_by_type(datum/erp_actor/A)
-	var/list/by = list()
-	var/datum/erp_sex_organ/any = null
-
-	for(var/datum/erp_sex_organ/O in A.get_organs_ref())
-		if(!O || O.get_free_slots() <= 0)
-			continue
-		if(!any) 
-			any = O
-		if(!by[O.erp_organ_type])
-			by[O.erp_organ_type] = O
-
-	return list("any" = any, "by" = by)
+	return _pick_first_by_type(A, TRUE)
 
 /datum/erp_controller/proc/_normalize_organ_type(v)
 	if(isnull(v))
@@ -1474,70 +1532,87 @@
 	return best
 
 /datum/erp_controller/proc/apply_scene_effects(list/active_links, datum/erp_sex_link/best, dt)
-	var/n = active_links?.len || 0
-	if(n <= 0)
+	if(!islist(active_links) || !active_links.len)
 		return
 
-	var/a_arousal = 0
-	var/a_pain    = 0
-	var/p_arousal = 0
-	var/p_pain    = 0
+	var/n = 0
+	var/sum_force = 0
+	var/sum_speed = 0
 
-	var/avg_force = 0
-	var/avg_speed = 0
+	var/a_arousal_sum = 0
+	var/p_arousal_sum = 0
+	var/a_pain_sum = 0
+	var/p_pain_sum = 0
 
 	for(var/datum/erp_sex_link/L in active_links)
 		if(!L || QDELETED(L) || !L.is_valid())
 			continue
 
+		n++
 		_note_knot_activity_from_link(L)
-		avg_force += (L.force || 0)
-		avg_speed += (L.speed || 0)
+
+		var/f = clamp(round(L.force || SEX_FORCE_MID), SEX_FORCE_LOW, SEX_FORCE_EXTREME)
+		var/s = clamp(round(L.speed || SEX_SPEED_MID), SEX_SPEED_LOW, SEX_SPEED_EXTREME)
+
+		sum_force += f
+		sum_speed += s
 
 		var/list/r = L.action?.calc_effect(L)
-		if(!r)
-			continue
+		if(r)
+			var/arA = r["active_arousal"]
+			var/arP = r["passive_arousal"]
+			var/paA = r["active_pain"]
+			var/paP = r["passive_pain"]
 
+			if(!isnum(arA)) arA = r["arousal"] || 0
+			if(!isnum(arP)) arP = r["arousal"] || 0
+			if(!isnum(paA)) paA = r["pain"]   || 0
+			if(!isnum(paP)) paP = r["pain"]   || 0
 
-		var/arA = r["active_arousal"]
-		var/paA = r["active_pain"]
-		var/arP = r["passive_arousal"]
-		var/paP = r["passive_pain"]
+			a_arousal_sum += arA
+			p_arousal_sum += arP
 
-		if(!isnum(arA)) arA = r["arousal"] || 0
-		if(!isnum(arP)) arP = r["arousal"] || 0
-		if(!isnum(paA)) paA = r["pain"]   || 0
-		if(!isnum(paP)) paP = r["pain"]   || 0
+			if(f > SEX_FORCE_MID)
+				if(isnum(paA) && paA != 0)
+					var/datum/erp_sex_organ/Oa = L.init_organ
+					if(Oa && !QDELETED(Oa))
+						Oa.add_pain(paA)
+						paA *= Oa.pain
 
-		a_arousal += arA
-		a_pain    += paA
-		p_arousal += arP
-		p_pain    += paP
+				if(isnum(paP) && paP != 0)
+					var/datum/erp_sex_organ/Op = L.target_organ
+					if(Op && !QDELETED(Op))
+						Op.add_pain(paP)
+						paP *= Op.pain
+
+				a_pain_sum += paA
+				p_pain_sum += paP
 
 		if(L.action && L.action.inject_timing == INJECT_CONTINUOUS)
 			L.action.handle_inject(L, null)
 
-	avg_force = clamp(round(avg_force / n), SEX_FORCE_LOW, SEX_FORCE_EXTREME)
-	avg_speed = clamp(round(avg_speed / n), SEX_SPEED_LOW, SEX_SPEED_EXTREME)
+	if(n <= 0)
+		return
 
-	a_arousal /= n
-	a_pain    /= n
-	p_arousal /= n
-	p_pain    /= n
+	var/avg_force = clamp(round(sum_force / n), SEX_FORCE_LOW, SEX_FORCE_EXTREME)
+	var/avg_speed = clamp(round(sum_speed / n), SEX_SPEED_LOW, SEX_SPEED_EXTREME)
 
-	var/init_id = best?.init_organ?.erp_organ_type
-	var/tgt_id  = best?.target_organ?.erp_organ_type
+	var/a_arousal = a_arousal_sum / n
+	var/p_arousal = p_arousal_sum / n
+
+	var/a_pain = a_pain_sum / n
+	var/p_pain = p_pain_sum / n
 
 	var/mob/living/ma = best?.actor_active?.get_effect_mob()
 	var/mob/living/mp = best?.actor_passive?.get_effect_mob()
 
 	if(best?.actor_active)
 		var/multA = _rel_mult_for(ma, mp)
-		best.actor_active.apply_erp_effect(a_arousal * multA, a_pain, TRUE, avg_force, avg_speed, init_id)
+		best.actor_active.apply_erp_effect(a_arousal * multA, a_pain, TRUE, avg_force, avg_speed, null)
 
-	if(best?.actor_passive)
+	if(best?.actor_passive && best?.actor_active != best?.actor_passive)
 		var/multP = _rel_mult_for(mp, ma)
-		best.actor_passive.apply_erp_effect(p_arousal * multP, p_pain, FALSE, avg_force, avg_speed, tgt_id)
+		best.actor_passive.apply_erp_effect(p_arousal * multP, p_pain, FALSE, avg_force, avg_speed, null)
 
 /datum/erp_controller/proc/spanify_scene_text(text, force, speed, intensity = null)
 	if(!text)
@@ -1561,7 +1636,6 @@
 		text = "<b>[text]</b>"
 
 	return "<span class='[span_class]'>[text]</span>"
-
 
 /datum/erp_controller/proc/get_scene_force_speed_avg(list/active_links)
 	var/n = 0
@@ -1587,25 +1661,9 @@
 	scene_active = TRUE
 	scene_started_at = world.time
 
-	var/text = null
-	if(best?.action)
-		text = best.action.build_start(best)
-	if(!text)
-		text = "Сцена начинается."
-
-	send_message(spanify_scene_start_end(text))
-
 /datum/erp_controller/proc/on_scene_ended(datum/erp_sex_link/last_best)
 	scene_active = FALSE
 	scene_started_at = 0
-
-	var/text = null
-	if(last_best?.action)
-		text = last_best.action.build_finish(last_best)
-	if(!text)
-		text = "Сцена заканчивается."
-
-	send_message(spanify_scene_start_end(text))
 
 /datum/erp_controller/proc/on_arousal_changed(datum/source)
 	SIGNAL_HANDLER
@@ -1628,20 +1686,18 @@
 		return
 
 	var/datum/erp_sex_link/best = pick_best_climax_link(who, active)
-	if(!best || !best.action)
-		return
+	if(best && best.action)
+		var/datum/erp_actor/as_actor = null
+		if(best.actor_active?.physical == who)
+			as_actor = best.actor_active
+		else if(best.actor_passive?.physical == who)
+			as_actor = best.actor_passive
 
-	var/datum/erp_actor/as_actor = null
-	if(best.actor_active?.physical == who)
-		as_actor = best.actor_active
-	else if(best.actor_passive?.physical == who)
-		as_actor = best.actor_passive
+		var/text = best.action.build_climax(best, as_actor)
+		if(text)
+			send_message(spanify_scene_climax(text))
 
-	var/text = best.action.build_climax(best, as_actor)
-	if(text)
-		send_message(spanify_scene_climax(text))
-
-	INVOKE_ASYNC(src, PROC_REF(_handle_arousal_climax_effects), who, best)
+	INVOKE_ASYNC(src, PROC_REF(_handle_arousal_climax_effects), who, active)
 
 	if(links && links.len)
 		for(var/i = links.len; i >= 1; i--)
@@ -1652,14 +1708,19 @@
 				continue
 			if(Lx.actor_active?.physical != who)
 				continue
-
 			stop_link_runtime(Lx)
 
-/datum/erp_controller/proc/_handle_arousal_climax_effects(mob/living/carbon/human/who, datum/erp_sex_link/best)
-	if(!istype(who) || !best || QDELETED(best) || !best.is_valid())
+/datum/erp_controller/proc/_handle_arousal_climax_effects(mob/living/carbon/human/who, list/active_links)
+	if(!istype(who) || !islist(active_links) || !active_links.len)
 		return
 
-	do_climax_effects(who, best)
+	for(var/datum/erp_sex_link/L in active_links)
+		if(!L || QDELETED(L) || !L.is_valid())
+			continue
+		if(L.actor_active?.physical != who && L.actor_passive?.physical != who)
+			continue
+		do_climax_effects(who, L)
+
 	ui?.request_update()
 
 /datum/erp_controller/proc/spanify_scene_start_end(text)
@@ -2203,7 +2264,7 @@
 
 	if(E["do_thrust"])
 		erp_do_thrust_bump(best)
-		erp_do_onomatopoeia(active_mob)
+		erp_do_onomatopoeia(active_mob, best)
 		erp_play_thrust_sound(active_mob, best)
 
 	if(E["do_hearts"])
@@ -2245,10 +2306,30 @@
 
 	return B
 
-/datum/erp_controller/proc/erp_do_onomatopoeia(mob/living/carbon/human/user)
+/datum/erp_controller/proc/erp_do_onomatopoeia(mob/living/carbon/human/user, datum/erp_sex_link/best)
 	if(!istype(user))
 		return
-	user.balloon_alert_to_viewers("Plap!", x_offset = rand(-15, 15), y_offset = rand(0, 25))
+
+	var/t_init = best?.init_organ?.erp_organ_type
+	var/t_tgt  = best?.target_organ?.erp_organ_type
+
+	var/msg = "Plap!"
+
+	if(t_init == SEX_ORGAN_MOUTH && t_tgt == SEX_ORGAN_MOUTH)
+		msg = pick("Mwah!", "Kiss!")
+	else
+		if(t_init == SEX_ORGAN_MOUTH)
+			if(t_tgt == SEX_ORGAN_PENIS)
+				msg = pick("Slurp!", "Suck!")
+			else if(t_tgt == SEX_ORGAN_VAGINA || t_tgt == SEX_ORGAN_ANUS)
+				msg = pick("Lick!", "Slurp!")
+			else if(t_tgt == SEX_ORGAN_BREASTS)
+				msg = pick("Suck!", "Mmm!")
+			else
+				msg = pick("Mwah!", "Smack!")
+
+	user.balloon_alert_to_viewers(msg, x_offset = rand(-15, 15), y_offset = rand(0, 25))
+
 
 /datum/erp_controller/proc/erp_play_slap(mob/living/carbon/human/user)
 	if(!istype(user))
@@ -2401,6 +2482,9 @@
 		return user
 
 	var/mob/cm = owner?.get_control_mob(owner_client)
+	if(!owner_client)
+		return cm
+		
 	if(cm && cm.client == owner_client)
 		return cm
 
@@ -2451,3 +2535,42 @@
 			return TRUE
 
 	return FALSE
+
+/datum/erp_controller/proc/request_ui_update()
+	if(ui_update_scheduled)
+		if(world.time >= next_ui_update)
+			_do_ui_update()
+		return
+
+	if(world.time < next_ui_update)
+		ui_update_scheduled = TRUE
+		return
+
+	_do_ui_update()
+
+/datum/erp_controller/proc/_do_ui_update()
+	var/min_delay = 2
+	if(world.time < next_ui_update)
+		ui_update_scheduled = TRUE
+		return
+
+	ui_update_scheduled = FALSE
+	next_ui_update = world.time + min_delay
+	SStgui.update_uis(ui)
+
+/datum/erp_controller/proc/_pick_first_by_type(datum/erp_actor/A, require_free = TRUE)
+	var/list/by = list()
+	var/datum/erp_sex_organ/any = null
+
+	for(var/datum/erp_sex_organ/O in A.get_organs_ref())
+		if(!O)
+			continue
+		if(require_free && O.get_free_slots() <= 0)
+			continue
+
+		if(!any)
+			any = O
+		if(!by[O.erp_organ_type])
+			by[O.erp_organ_type] = O
+
+	return list("any" = any, "by" = by)

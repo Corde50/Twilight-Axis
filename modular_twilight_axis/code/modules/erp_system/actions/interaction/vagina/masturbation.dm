@@ -1,5 +1,5 @@
 /datum/erp_action/other/vagina/masturbation
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Мастурбировать на партнера"
 	required_target_organ = SEX_ORGAN_BODY

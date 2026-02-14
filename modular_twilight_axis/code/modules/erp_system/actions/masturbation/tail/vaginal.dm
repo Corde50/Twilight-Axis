@@ -1,5 +1,5 @@
 /datum/erp_action/self/tail/vag_tail
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Вагинальные игры хвостом"
 	required_target_organ = SEX_ORGAN_VAGINA

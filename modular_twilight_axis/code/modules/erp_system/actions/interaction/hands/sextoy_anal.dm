@@ -1,6 +1,6 @@
 
 /datum/erp_action/other/hands/toy_anal
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Секс-игрушка анальная"
 	required_target_organ = SEX_ORGAN_ANUS
 	message_start = "{actor} {pose} примеряет игрушку у анального кольца {partner}."

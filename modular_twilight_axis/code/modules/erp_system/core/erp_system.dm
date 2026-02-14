@@ -58,14 +58,12 @@ SUBSYSTEM_DEF(erp)
 
 	return actions[path]
 
-/datum/controller/subsystem/erp/proc/get_controller_for(client/C, atom/initiator_atom)
-	if(!C || !initiator_atom)
+/datum/controller/subsystem/erp/proc/get_controller_for(atom/initiator_atom)
+	if(!initiator_atom)
 		return null
 
 	for(var/datum/erp_controller/EC in controllers)
 		if(!EC || QDELETED(EC))
-			continue
-		if(EC.owner_client != C)
 			continue
 		if(EC.owner?.active_actor == initiator_atom)
 			return EC
@@ -80,7 +78,7 @@ SUBSYSTEM_DEF(erp)
 	return EC
 
 /datum/controller/subsystem/erp/proc/get_or_create_controller(atom/initiator_atom, client/C, mob/living/effect_mob = null)
-	var/datum/erp_controller/EC = get_controller_for(C, initiator_atom)
+	var/datum/erp_controller/EC = get_controller_for(initiator_atom)
 	if(!EC)
 		EC = create_controller(initiator_atom, C, effect_mob)
 	return EC

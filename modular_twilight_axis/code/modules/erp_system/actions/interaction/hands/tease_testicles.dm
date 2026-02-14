@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/tease_testicles
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Ласкать тестикулы рукой"
 	required_target_organ = SEX_ORGAN_PENIS
 	action_tags = list("testicles")

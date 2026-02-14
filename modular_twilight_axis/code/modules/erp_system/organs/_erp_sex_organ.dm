@@ -14,7 +14,7 @@
 	var/drain_interval = 5 MINUTES
 	var/count_to_action = 1
 	var/last_overflow_spill_time = 0
-	var/overflow_spill_interval = 30 SECONDS
+	var/overflow_spill_interval = 150 SECONDS
 	var/active_arousal = 1.0
 	var/passive_arousal = 1.0
 	var/active_pain = 0.0
@@ -318,3 +318,7 @@
 		return TRUE
 
 	return get_location_accessible(H, zone)
+
+/datum/erp_sex_organ/proc/add_pain(pain_amt)
+	pain += pain_amt / 10
+	pain = clamp(pain, 0, pain_max)

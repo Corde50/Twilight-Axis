@@ -1,5 +1,5 @@
 /datum/erp_action/other/vagina/tail
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Использовать хвост"
 	required_target_organ = SEX_ORGAN_TAIL
 	message_start = "{actor} {pose}, {force} и {speed} хватает хвост {partner}, прижимая его к своему лону."

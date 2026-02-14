@@ -1,5 +1,5 @@
 /datum/erp_action/other/tail/rubbing
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Тереться хвостом"
 	required_target_organ = SEX_ORGAN_BODY
 	message_start = "{actor} {pose} прижимается хвостом к {partner}."

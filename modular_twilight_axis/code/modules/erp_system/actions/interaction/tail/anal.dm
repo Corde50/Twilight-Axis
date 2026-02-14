@@ -1,5 +1,5 @@
 /datum/erp_action/other/tail/anal
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Трахнуть зад хвостом"
 	required_target_organ = SEX_ORGAN_ANUS
 	message_start = "{actor} {pose} вводит хвост в попку {partner}."

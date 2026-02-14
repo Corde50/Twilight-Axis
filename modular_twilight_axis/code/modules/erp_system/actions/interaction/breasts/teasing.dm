@@ -1,5 +1,5 @@
 /datum/erp_action/other/breasts/teasing
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Тереться грудью"
 	required_target_organ = SEX_ORGAN_BODY
 	require_same_tile = FALSE

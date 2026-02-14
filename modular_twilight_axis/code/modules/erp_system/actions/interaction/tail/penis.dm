@@ -1,6 +1,6 @@
 
 /datum/erp_action/other/tail/penis
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Мастурбация хвостом"
 	required_target_organ = SEX_ORGAN_PENIS
 	message_start = "{actor} {pose} обвивает хвостом член {partner}."

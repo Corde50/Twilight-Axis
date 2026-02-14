@@ -1,5 +1,5 @@
 /datum/erp_action/self/tail/suck_tail
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Обсосать хвост"
 	required_target_organ = SEX_ORGAN_MOUTH

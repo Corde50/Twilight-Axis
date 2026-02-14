@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/force_blowjob
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Заставить отсосать"
 	required_target_organ = SEX_ORGAN_MOUTH

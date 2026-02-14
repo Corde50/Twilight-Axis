@@ -9,9 +9,6 @@
 	active_pain = 0.3
 	passive_pain = 0.15
 
-/datum/erp_sex_organ/penis/hemi
-	count_to_action = 2
-
 /datum/erp_sex_organ/penis/New(obj/item/organ/penis/P)
 	. = ..()
 	source_organ = P
@@ -89,6 +86,11 @@
 		PENIS_TYPE_TAPERED
 	))
 
+	var/double_count = (penis_type in list(
+		PENIS_TYPE_TAPERED_DOUBLE,
+		PENIS_TYPE_TAPERED_DOUBLE_KNOTTED
+	))
+
 	var/datum/component/erp_knotting/knoting_object = human_object.GetComponent(/datum/component/erp_knotting)
 
 	if(needs_knot)
@@ -97,6 +99,9 @@
 	else
 		if(knoting_object)
 			qdel(knoting_object)
+
+	if(double_count)
+		sex_organ.count_to_action = 2
 
 /obj/item/organ/penis/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()

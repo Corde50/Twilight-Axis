@@ -1,5 +1,5 @@
 /datum/erp_action/other/vagina/face
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Присесть вагиной"
 	required_target_organ = SEX_ORGAN_MOUTH
 	message_start = "{actor} {pose}, {force} и {speed} прижимается вагиной к лицу {dullahan?отделенной головы :}{partner}, раздвигая ноги."

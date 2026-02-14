@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/toy_vaginal
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Секс-игрушка вагинальная"
 	required_target_organ = SEX_ORGAN_VAGINA

@@ -1,5 +1,5 @@
 /datum/erp_action/self/hands/teasing_clitoris
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Ласкать клитор"
 	required_target_organ = SEX_ORGAN_VAGINA

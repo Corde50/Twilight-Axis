@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth/rimming
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Римминг"
 	required_target_organ = SEX_ORGAN_ANUS
 	message_start = "{actor} {pose} припадает к крупу {partner}."

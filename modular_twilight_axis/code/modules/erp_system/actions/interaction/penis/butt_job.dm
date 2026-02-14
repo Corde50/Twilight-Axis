@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/butt_job
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Использовать ягодицы"
 	required_target_organ = SEX_ORGAN_ANUS

@@ -127,12 +127,22 @@ type EditorField = {
 type EditorTemplateEntry = {
   type: string;
   name: string;
+  // fields здесь больше не обязательны и UI их не читает
   fields?: EditorField[] | any;
 };
 
 type EditorCustomAction = {
   id: string;
   name: string;
+  // fields здесь больше не обязательны и UI их не читает
+  fields?: EditorField[] | any;
+};
+
+// ВАЖНО: выбранное действие, которое backend возвращает полностью
+type EditorSelectedPayload = {
+  mode: 'template' | 'custom';
+  key: string; // template.type или custom.id
+  name?: string;
   fields?: EditorField[] | any;
 };
 
@@ -153,7 +163,11 @@ export type SexSessionData = {
     actions?: ActionsTabPayload;
     kinks?: { entries?: KinkEntry[] };
     status?: { entries?: StatusEntry[]; arousal?: number; arousal_data?: ArousalPayload | null };
-    editor?: { templates?: EditorTemplateEntry[]; custom_actions?: EditorCustomAction[] };
+    editor?: {
+      templates?: EditorTemplateEntry[];
+      custom_actions?: EditorCustomAction[];
+      selected?: EditorSelectedPayload | null;
+    };
   };
 };
 
@@ -540,8 +554,8 @@ const ActionsListOldLike: React.FC<{
   );
 };
 
-const speedNames = ['Медленно', 'Норм', 'Быстро', 'Жестко'];
-const forceNames = ['Нежно', 'Уверенно', 'Сильно', 'Больно'];
+const speedNames = ['Медленно', 'Средне', 'Быстро', 'Неистово'];
+const forceNames = ['Нежно', 'Уверенно', 'Сильно', 'Жестко'];
 const speedColors = ['#a798a2ff', '#e67ec0ff', '#f05ee1', '#f54689ff'];
 const forceColors = ['#a798a2ff', '#e67ec0ff', '#f05ee1', '#f54689ff'];
 
@@ -553,11 +567,13 @@ const ActiveLinksPanel: React.FC<{
   onStop: (linkId: string) => void;
 }> = ({ links, onSetSpeed, onSetForce, onToggleFinish, onStop }) => {
   if (!links.length) return null;
+
   const clamp14 = (v: any) => {
     const n = Number(v);
     if (!Number.isFinite(n)) return 1;
     return Math.max(1, Math.min(4, Math.round(n)));
   };
+
   return (
     <Section title="Активные связки">
       <Stack vertical>
@@ -569,6 +585,10 @@ const ActiveLinksPanel: React.FC<{
 
           const finishMode = String(l.finish_mode || 'until_stop');
           const doUntilClimax = finishMode === 'until_climax';
+
+          const initOrg = l.actor_org || '—';
+          const tgtOrg = l.target_org || '—';
+
           return (
             <Box
               key={l.id}
@@ -580,33 +600,50 @@ const ActiveLinksPanel: React.FC<{
                 marginBottom: 6,
               }}
             >
+              {/* TOP ROW: speed | name (stop) | force */}
               <Stack align="center" justify="space-between">
-                <Stack.Item shrink>
-                  <Box bold style={{ fontSize: 11 }}>
-                    {l.actor_org || '—'}
-                  </Box>
+                {/* SPEED */}
+                <Stack.Item basis="34%" style={{ textAlign: 'left' }}>
+                  <Stack align="center">
+                    <Stack.Item>
+                      <Button
+                        inline
+                        compact
+                        onClick={() => onSetSpeed(l.id, sp - 1)}
+                        style={{ padding: '1px 6px' }}
+                      >
+                        {'<'}
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Box
+                        as="span"
+                        bold
+                        style={{
+                          color: speedColors[spIdx],
+                          display: 'inline-block',
+                          minWidth: 92,
+                          textAlign: 'center',
+                          fontSize: 11,
+                        }}
+                      >
+                        {speedNames[spIdx]}
+                      </Box>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        inline
+                        compact
+                        onClick={() => onSetSpeed(l.id, sp + 1)}
+                        style={{ padding: '1px 6px' }}
+                      >
+                        {'>'}
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
-                <Stack.Item>
-                  <Button inline compact onClick={() => onSetSpeed(l.id, sp - 1)} style={{ padding: '1px 6px' }}>
-                    {'<'}
-                  </Button>{' '}
-                  <Box
-                    as="span"
-                    bold
-                    style={{
-                      color: speedColors[spIdx],
-                      display: 'inline-block',
-                      minWidth: 92,
-                      textAlign: 'center',
-                      fontSize: 11,
-                    }}
-                  >
-                    {speedNames[spIdx]}
-                  </Box>{' '}
-                  <Button inline compact onClick={() => onSetSpeed(l.id, sp + 1)} style={{ padding: '1px 6px' }}>
-                    {'>'}
-                  </Button>
-                </Stack.Item>
+
+                {/* NAME (click = stop) */}
                 <Stack.Item grow>
                   <Box textAlign="center">
                     <Button
@@ -615,62 +652,79 @@ const ActiveLinksPanel: React.FC<{
                       color="transparent"
                       selected
                       onClick={() => onStop(l.id)}
-                      style={{ padding: '1px 8px', lineHeight: 1.1 }}
+                      tooltip="Остановить связку"
+                      style={{ padding: '1px 10px', lineHeight: 1.1 }}
                     >
                       {l.name || 'ДЕЙСТВИЕ'}
                     </Button>
                   </Box>
                 </Stack.Item>
-                <Stack.Item>
-                  <Button inline compact onClick={() => onSetForce(l.id, fo - 1)} style={{ padding: '1px 6px' }}>
-                    {'<'}
-                  </Button>{' '}
-                  <Box
-                    as="span"
-                    bold
-                    style={{
-                      color: forceColors[foIdx],
-                      display: 'inline-block',
-                      minWidth: 82,
-                      textAlign: 'center',
-                      fontSize: 11,
-                    }}
-                  >
-                    {forceNames[foIdx]}
-                  </Box>{' '}
-                  <Button inline compact onClick={() => onSetForce(l.id, fo + 1)} style={{ padding: '1px 6px' }}>
-                    {'>'}
-                  </Button>
-                </Stack.Item>
-                <Stack.Item shrink>
-                  <Box bold style={{ fontSize: 11 }}>
-                    {l.target_org || '—'}
-                  </Box>
+
+                <Stack.Item basis="34%" style={{ textAlign: 'right' }}>
+                  <Stack align="center" justify="end">
+                    <Stack.Item>
+                      <Button
+                        inline
+                        compact
+                        onClick={() => onSetForce(l.id, fo - 1)}
+                        style={{ padding: '1px 6px' }}
+                      >
+                        {'<'}
+                      </Button>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Box
+                        as="span"
+                        bold
+                        style={{
+                          color: forceColors[foIdx],
+                          display: 'inline-block',
+                          minWidth: 82,
+                          textAlign: 'center',
+                          fontSize: 11,
+                        }}
+                      >
+                        {forceNames[foIdx]}
+                      </Box>
+                    </Stack.Item>
+                    <Stack.Item>
+                      <Button
+                        inline
+                        compact
+                        onClick={() => onSetForce(l.id, fo + 1)}
+                        style={{ padding: '1px 6px' }}
+                      >
+                        {'>'}
+                      </Button>
+                    </Stack.Item>
+                  </Stack>
                 </Stack.Item>
               </Stack>
-              <Box mt={0.5} textAlign="center">
-                <Stack justify="center" wrap>
-                  <Stack.Item style={{ margin: 1 }}>
-                    <Button
-                      inline
-                      compact
-                      color="transparent"
-                      onClick={() => onToggleFinish(l.id, !doUntilClimax)}
-                      style={{ padding: '1px 8px', lineHeight: 1.1 }}
-                    >
-                      {doUntilClimax ? 'ДО ЗАВЕРШЕНИЯ' : 'ПОКА НЕ ОСТАНОВЛЮСЬ'}
-                    </Button>
+
+              {/* BOTTOM ROW: init organ | finish status | target organ */}
+              <Box mt={0.5}>
+                <Stack align="center" justify="space-between">
+                  <Stack.Item basis="34%">
+                    <Box bold style={{ fontSize: 11 }}>
+                      {initOrg}
+                    </Box>
                   </Stack.Item>
-                  <Stack.Item style={{ margin: 1 }}>
-                    <Button
-                      inline
-                      compact
-                      color="transparent"
-                      onClick={() => onStop(l.id)}
-                      style={{ padding: '1px 8px', lineHeight: 1.1 }}
-                    >
-                      ОСТАНОВИТЬСЯ
-                    </Button>
+
+                  <Stack.Item grow>
+                    <Box textAlign="center">
+                      <Pill
+                        onClick={() => onToggleFinish(l.id, !doUntilClimax)}
+                        tooltip="Переключить режим завершения"
+                      >
+                        {doUntilClimax ? 'ДО КЛИМАКСА' : 'ПОКА НЕ ОСТАНОВЛЮСЬ'}
+                      </Pill>
+                    </Box>
+                  </Stack.Item>
+
+                  <Stack.Item basis="34%" style={{ textAlign: 'right' }}>
+                    <Box bold style={{ fontSize: 11 }}>
+                      {tgtOrg}
+                    </Box>
                   </Stack.Item>
                 </Stack>
               </Box>
@@ -1433,49 +1487,60 @@ const FieldControl: React.FC<{
 const EditorTab: React.FC<{
   templates: EditorTemplateEntry[];
   customActions: EditorCustomAction[];
+  selected?: EditorSelectedPayload | null;
+
+  act: (verb: string, args?: any) => void;
+
   onCreate: (params: any) => void;
   onUpdate: (params: any) => void;
   onDelete: (id: string) => void;
-}> = ({ templates, customActions, onCreate, onUpdate, onDelete }) => {
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(templates[0]?.type ?? null);
-  const [selectedCustom, setSelectedCustom] = useState<string | null>(null);
+}> = ({ templates, customActions, selected, act, onCreate, onUpdate, onDelete }) => {
   const [isDirty, setIsDirty] = useState(false);
   const [rawMode, setRawMode] = useState(false);
   const [rawText, setRawText] = useState('');
-  useEffect(() => {
-    if (!selectedTemplate && templates.length) setSelectedTemplate(templates[0].type);
-  }, [templates, selectedTemplate]);
-  useEffect(() => {
-    if (selectedCustom) {
-      const exists = customActions.some((c) => c.id === selectedCustom);
-      if (!exists) setSelectedCustom(null);
-    }
-  }, [customActions, selectedCustom]);
-  const source = useMemo(() => {
-    if (selectedCustom) return customActions.find((c) => c.id === selectedCustom) || null;
-    if (selectedTemplate) return templates.find((t) => t.type === selectedTemplate) || null;
-    return null;
-  }, [selectedTemplate, selectedCustom, templates, customActions]);
-  const selectionKey = selectedCustom ? `custom:${selectedCustom}` : selectedTemplate ? `tpl:${selectedTemplate}` : 'none';
-  const lastSelectionKey = useRef<string>('none');
+
+  // Локальная форма — всегда гидрится из backend.selected,
+  // но только если пользователь не "грязный" (не редактит сейчас)
   const [formFields, setFormFields] = useState<EditorField[]>([]);
+
+  const selectedMode = selected?.mode ?? null;
+  const selectedKey = selected?.key ?? null;
+
+  // "источник" формы — строго selected (полный), не списки
+  const source = useMemo(() => {
+    if (!selectedMode || !selectedKey) return null;
+    return {
+      name: safeString(selected?.name ?? ''),
+      fields: (selected as any)?.fields,
+      mode: selectedMode,
+      key: selectedKey,
+    };
+  }, [selectedMode, selectedKey, selected?.name, (selected as any)?.fields]);
+
+  const selectionKey = selectedMode && selectedKey ? `${selectedMode}:${selectedKey}` : 'none';
+  const lastSelectionKey = useRef<string>('none');
+
   const getFieldValue = (id: string) => {
     const f = formFields.find((x) => x.id === id);
     return f?.value;
   };
+
   const setFieldValue = (id: string, value: any) => {
     setIsDirty(true);
     setFormFields((prev) => prev.map((f) => (f.id === id ? { ...f, value } : f)));
   };
-  const hydrateFromSource = () => {
+
+  const hydrateFromSelected = () => {
     if (!source) {
       setFormFields([]);
       setRawMode(false);
       setRawText('');
       return;
     }
-    const nf = normalizeFields((source as any).fields);
-    const nameFromSource = safeString((source as any).name ?? '');
+
+    const nf = normalizeFields(source.fields);
+    const nameFromSource = safeString(source.name);
+
     const hasName = nf.some((f) => f.id === 'name');
     const fieldsWithName = hasName
       ? nf
@@ -1489,38 +1554,38 @@ const EditorTab: React.FC<{
           } as EditorField,
           ...nf,
         ];
+
     for (const f of fieldsWithName) {
       if (f.id === 'name') {
         const cur = safeString(f.value);
         if (!cur && nameFromSource) f.value = nameFromSource;
       }
     }
+
     setFormFields(fieldsWithName.map((f) => ({ ...f })));
     setRawMode(false);
     setRawText('');
   };
+
+  // При смене выбранного в backend — гидрим форму, но НЕ перетираем локальные правки.
   useEffect(() => {
     if (selectionKey === lastSelectionKey.current) return;
-
     lastSelectionKey.current = selectionKey;
+
     setIsDirty(false);
-    hydrateFromSource();
+    hydrateFromSelected();
   }, [selectionKey]);
-  useEffect(() => {
-    if (selectionKey === 'none') {
-      lastSelectionKey.current = 'none';
-      setIsDirty(false);
-      hydrateFromSource();
-    }
-  }, [selectionKey]);
-  const [rehydrateNonce, setRehydrateNonce] = useState(0);
+
+  // Если backend прислал апдейт выбранного, а мы не dirty — тоже гидрим
   useEffect(() => {
     if (!source) return;
     if (isDirty) return;
-    if (!rehydrateNonce) return;
-    hydrateFromSource();
-  }, [rehydrateNonce, source, isDirty]);
+    // если не менялся selectionKey — но поля обновились, мы всё равно можем перезалить.
+    hydrateFromSelected();
+  }, [source?.name, (source as any)?.fields]);
+
   const payloadFields = () => formFields.map((f) => ({ id: f.id, value: f.value }));
+
   const exportRaw = () => {
     try {
       return JSON.stringify(payloadFields(), null, 2);
@@ -1528,10 +1593,14 @@ const EditorTab: React.FC<{
       return '[]';
     }
   };
-  const canCreate = !!selectedTemplate;
-  const canSave = !!selectedCustom;
+
+  const nameValue = safeString(getFieldValue('name'));
+  const canCreate = selectedMode === 'template';
+  const canSave = selectedMode === 'custom';
+  const canDelete = selectedMode === 'custom';
+
   const commitCreate = () => {
-    if (!selectedTemplate) return;
+    if (selectedMode !== 'template' || !selectedKey) return;
 
     let fields: any = payloadFields();
     if (rawMode) {
@@ -1541,20 +1610,22 @@ const EditorTab: React.FC<{
         // ignore
       }
     }
+
     const nameVal = safeString(getFieldValue('name'));
     if (!Array.isArray(fields) || !fields.some((x) => x?.id === 'name')) {
       fields = [{ id: 'name', value: nameVal || 'Custom action' }, ...(Array.isArray(fields) ? fields : [])];
     }
+
     setIsDirty(false);
     onCreate({
-      type: selectedTemplate,
+      type: selectedKey, // template.type
       name: nameVal,
       fields,
     });
-    setRehydrateNonce((n) => n + 1);
   };
+
   const commitSave = () => {
-    if (!selectedCustom) return;
+    if (selectedMode !== 'custom' || !selectedKey) return;
 
     let fields: any = payloadFields();
     if (rawMode) {
@@ -1564,16 +1635,16 @@ const EditorTab: React.FC<{
         // ignore
       }
     }
+
     const nameVal = safeString(getFieldValue('name'));
     setIsDirty(false);
     onUpdate({
-      id: selectedCustom,
+      id: selectedKey, // custom.id
       name: nameVal,
       fields,
     });
-    setRehydrateNonce((n) => n + 1);
   };
-  const nameValue = safeString(getFieldValue('name'));
+
   return (
     <Section title="Редактор действий" fill>
       <Stack fill>
@@ -1583,49 +1654,58 @@ const EditorTab: React.FC<{
               <Box color="label">Нет доступных шаблонов.</Box>
             ) : (
               <Stack vertical>
-                {templates.map((t) => (
-                  <Stack.Item key={t.type}>
-                    <Button
-                      fluid
-                      compact
-                      selected={selectedTemplate === t.type && !selectedCustom}
-                      onClick={() => {
-                        setIsDirty(false);
-                        setSelectedTemplate(t.type);
-                        setSelectedCustom(null);
-                      }}
-                    >
-                      {t.name}
-                    </Button>
-                  </Stack.Item>
-                ))}
+                {templates.map((t) => {
+                  const isSelected = selectedMode === 'template' && selectedKey === t.type;
+                  return (
+                    <Stack.Item key={t.type}>
+                      <Button
+                        fluid
+                        compact
+                        selected={isSelected}
+                        onClick={() => {
+                          setIsDirty(false);
+                          // ✅ просим backend выбрать и вернуть полный payload в selected
+                          act('editor_select_action', { mode: 'template', key: t.type });
+                        }}
+                      >
+                        {t.name}
+                      </Button>
+                    </Stack.Item>
+                  );
+                })}
               </Stack>
             )}
           </Section>
+
           <Section title={`Мои кастомные (${customActions.length})`}>
             {!customActions.length ? (
               <Box color="label">Пока пусто.</Box>
             ) : (
               <Stack vertical>
-                {customActions.map((c) => (
-                  <Stack.Item key={c.id}>
-                    <Button
-                      fluid
-                      compact
-                      selected={selectedCustom === c.id}
-                      onClick={() => {
-                        setIsDirty(false);
-                        setSelectedCustom(c.id);
-                      }}
-                    >
-                      {c.name}
-                    </Button>
-                  </Stack.Item>
-                ))}
+                {customActions.map((c) => {
+                  const isSelected = selectedMode === 'custom' && selectedKey === c.id;
+                  return (
+                    <Stack.Item key={c.id}>
+                      <Button
+                        fluid
+                        compact
+                        selected={isSelected}
+                        onClick={() => {
+                          setIsDirty(false);
+                          // ✅ просим backend выбрать и вернуть полный payload в selected
+                          act('editor_select_action', { mode: 'custom', key: c.id });
+                        }}
+                      >
+                        {c.name}
+                      </Button>
+                    </Stack.Item>
+                  );
+                })}
               </Stack>
             )}
           </Section>
         </Stack.Item>
+
         <Stack.Item grow basis="68%">
           <Section title="Параметры" fill scrollable>
             {!source ? (
@@ -1641,6 +1721,7 @@ const EditorTab: React.FC<{
                   </Box>
                   <Input fluid value={nameValue} onChange={(v) => setFieldValue('name', v)} />
                 </Box>
+
                 <Box mb={1}>
                   <Stack justify="space-between" align="center">
                     <Stack.Item>
@@ -1660,6 +1741,7 @@ const EditorTab: React.FC<{
                       </Pill>
                     </Stack.Item>
                   </Stack>
+
                   {!rawMode ? (
                     formFields.length ? (
                       <Box mt={0.5}>
@@ -1676,7 +1758,7 @@ const EditorTab: React.FC<{
                       </Box>
                     ) : (
                       <Box mt={0.5} color="label">
-                        Поля не пришли (или backend пока их не отдаёт). Можно сохранить — backend применит дефолты.
+                        Поля не пришли (или backend ещё не отдал выбранное действие полностью).
                       </Box>
                     )
                   ) : (
@@ -1695,26 +1777,27 @@ const EditorTab: React.FC<{
                     </Box>
                   )}
                 </Box>
+
                 <Box mt={1} textAlign="right">
                   <Button disabled={!canCreate} onClick={commitCreate}>
                     СОЗДАТЬ КАСТОМ
                   </Button>{' '}
-                  <Button disabled={!canSave || !selectedCustom} onClick={commitSave}>
+                  <Button disabled={!canSave} onClick={commitSave}>
                     СОХРАНИТЬ
                   </Button>{' '}
                   <Button
-                    disabled={!canSave || !selectedCustom}
+                    disabled={!canDelete || !selectedKey}
                     color="bad"
                     onClick={() => {
-                      if (!selectedCustom) return;
+                      if (!selectedKey) return;
                       setIsDirty(false);
-                      onDelete(selectedCustom);
-                      setRehydrateNonce((n) => n + 1);
+                      onDelete(selectedKey);
                     }}
                   >
                     УДАЛИТЬ
                   </Button>
                 </Box>
+
                 {isDirty && (
                   <Box mt={0.5} color="label" style={{ fontSize: 10 }}>
                     Локальные правки не будут перезатираться обновлениями UI до сохранения или смены выбора.
@@ -1944,6 +2027,8 @@ export const EroticRolePlayPanel: React.FC = () => {
               <EditorTab
                 templates={editorTemplates}
                 customActions={editorCustomActions}
+                selected={data.tabs?.editor?.selected ?? null}
+                act={act}
                 onCreate={(params) => act('create_action', params)}
                 onUpdate={(params) => act('update_action', params)}
                 onDelete={(id) => act('delete_action', { id })}

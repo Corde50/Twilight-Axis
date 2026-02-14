@@ -1,5 +1,5 @@
 /datum/erp_action/self/hands/fingering_vaginal
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Фингеринг вагинальный"
 	required_target_organ = SEX_ORGAN_VAGINA

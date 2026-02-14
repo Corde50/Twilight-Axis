@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth/blowjob
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Минет"
 	required_target_organ = SEX_ORGAN_PENIS
 	message_start = "{actor} {pose} касается губами члена {partner} и помещает его себе в рот."

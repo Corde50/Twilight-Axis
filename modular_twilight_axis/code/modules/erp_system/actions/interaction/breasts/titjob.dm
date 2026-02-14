@@ -1,5 +1,5 @@
 /datum/erp_action/other/breasts/titjob
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Работа грудью"
 	required_target_organ = SEX_ORGAN_PENIS
 	require_grab = TRUE

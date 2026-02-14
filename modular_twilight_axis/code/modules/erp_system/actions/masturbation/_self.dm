@@ -1,5 +1,6 @@
 /datum/erp_action/self
-	abstract_type = TRUE
+	abstract = TRUE
+	action_scope = ERP_SCOPE_SELF
 	name = "Корневое действие на себя"
 	tick_time = 2 SECONDS
 	require_same_tile = FALSE

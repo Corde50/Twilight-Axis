@@ -1,5 +1,5 @@
 /datum/erp_action/self/hands/tail_pet
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Ласкать хвост"
 	required_target_organ = SEX_ORGAN_TAIL

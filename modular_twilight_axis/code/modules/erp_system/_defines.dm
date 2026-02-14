@@ -18,6 +18,9 @@
 #define SEX_SENSITIVITY_MAX 2
 #define SEX_PAIN_MAX 2
 
+#define ERP_SCOPE_SELF  1
+#define ERP_SCOPE_OTHER 2
+
 var/global/list/ERP_ACTION_PREF_FIELDS = list(
 	"name",
 	"required_init_organ",
@@ -42,11 +45,13 @@ var/global/list/ERP_ACTION_PREF_FIELDS = list(
 	"message_tick",
 	"message_finish",
 	"message_climax_active",
-	"message_climax_passive"
+	"message_climax_passive",
+	"action_scope"
 )
 
 var/global/list/ERP_ACTION_EDITOR_FIELDS = list(
 	list("id"="name", "label"="Название", "type"="text", "section"="Основное"),
+	list("id"="action_scope", "label"="Цель действия", "type"="enum", "section"="Основное"),
 	list("id"="required_init_organ",   "label"="Орган инициатора", "type"="enum", "section"="Ограничения", "options"="organs"),
 	list("id"="required_target_organ", "label"="Орган цели",       "type"="enum", "section"="Ограничения", "options"="organs"),
 	list("id"="require_same_tile", "label"="Только с одного тайла", "type"="bool", "section"="Ограничения"),

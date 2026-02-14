@@ -1,5 +1,5 @@
 /datum/erp_action/other/tail/oral
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Трахнуть рот хвостом"
 	required_target_organ = SEX_ORGAN_MOUTH
 	message_start = "{actor} {pose}, {force} и {speed} проникает хвостом в рот {dullahan?отделенной головы :}{partner}."

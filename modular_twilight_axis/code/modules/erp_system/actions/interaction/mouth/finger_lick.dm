@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth/finger_lick
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Облизать пальцы"
 	required_target_organ = SEX_ORGAN_HANDS
 	require_same_tile = FALSE

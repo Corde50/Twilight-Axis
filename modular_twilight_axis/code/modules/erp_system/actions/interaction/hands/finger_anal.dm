@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/finger_anal
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Фингеринг ануса"
 	required_target_organ = SEX_ORGAN_ANUS
 	message_start = "{actor} {pose} касается пальцами анального кольца {partner}."

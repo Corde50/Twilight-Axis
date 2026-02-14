@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/tease_vagina
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Ласкать клитор рукой"
 	required_target_organ = SEX_ORGAN_VAGINA
 	message_start = "{actor} {pose} касается рукой киски {partner}."

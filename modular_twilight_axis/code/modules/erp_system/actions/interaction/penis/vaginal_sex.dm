@@ -1,5 +1,5 @@
 /datum/erp_action/other/penis/vaginal_sex
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Вагинальный секс"
 	required_target_organ = SEX_ORGAN_VAGINA

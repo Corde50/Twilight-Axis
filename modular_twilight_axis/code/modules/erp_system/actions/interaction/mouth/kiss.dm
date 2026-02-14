@@ -1,5 +1,5 @@
 /datum/erp_action/other/mouth/kiss
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Поцеловать"
 	required_target_organ = SEX_ORGAN_MOUTH
 	require_same_tile = FALSE

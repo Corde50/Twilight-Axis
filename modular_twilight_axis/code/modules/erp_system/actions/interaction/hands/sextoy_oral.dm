@@ -1,5 +1,5 @@
 /datum/erp_action/other/hands/toy_oral
-	abstract_type = FALSE
+	abstract = FALSE
 
 	name = "Секс-игрушка оральная"
 	required_target_organ = SEX_ORGAN_MOUTH

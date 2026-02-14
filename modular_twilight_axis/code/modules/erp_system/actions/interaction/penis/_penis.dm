@@ -1,6 +1,5 @@
 /datum/erp_action/other/penis
-	abstract_type = TRUE
-
+	abstract = TRUE
 	name = "Корневое действие членом"
 	required_init_organ = SEX_ORGAN_PENIS
 	require_same_tile = TRUE

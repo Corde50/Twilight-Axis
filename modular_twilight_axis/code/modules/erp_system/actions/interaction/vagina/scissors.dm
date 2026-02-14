@@ -1,5 +1,5 @@
 /datum/erp_action/other/vagina/scissors
-	abstract_type = FALSE
+	abstract = FALSE
 	name = "Ножницы"
 	required_target_organ = SEX_ORGAN_VAGINA
 	message_start = "{actor} {pose} прижимается вагиной к киске {partner}."
