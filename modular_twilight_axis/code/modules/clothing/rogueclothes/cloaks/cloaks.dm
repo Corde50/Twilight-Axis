@@ -282,3 +282,4 @@
 		icon_state = eora_final_icon
 		item_state = eora_final_icon
 		update_icon()
+
