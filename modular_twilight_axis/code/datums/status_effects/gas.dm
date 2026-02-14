@@ -1,104 +1,139 @@
+
+/obj/item/rope/chain/fake/ice
+	name = "ice chains"
+	desc = "Magical ice freezing your wrists together."
+	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "chain"
+	item_flags = ABSTRACT | DROPDEL 
+	breakouttime = 600 SECONDS 
+
+
+
 /datum/status_effect/freon/freeze
-	id = "frost"
-	duration = -1 
-	can_melt = FALSE 
+	id = "frozen"
+	duration = 120 SECONDS 
 	status_type = STATUS_EFFECT_UNIQUE
-	
 	mob_effect_icon_state = null 
 	mob_effect_icon = null
 	
-	var/mutable_appearance/ice_overlay_ref
-	var/ice_integrity = 20 
-	var/melt_timer = 0      
+	var/mutable_appearance/ice_overlay
+	var/ice_integrity = 50 
+	var/melt_timer = 0
+	
+	
+	var/obj/item/rope/chain/fake/ice/magic_chains
 
 /datum/status_effect/freon/freeze/on_apply()
 	. = ..()
 	if(!owner) return
 	
-	
-	owner.apply_status_effect(STATUS_EFFECT_PARALYZED, 100)
-	owner.apply_status_effect(STATUS_EFFECT_SLEEPING, 100)
+	owner.apply_status_effect(STATUS_EFFECT_PARALYZED, duration)
 	
 	
-	UnregisterSignal(owner, COMSIG_LIVING_RESIST)
-	
-	
+	if(iscarbon(owner))
+		var/mob/living/carbon/C = owner
+		if(!C.handcuffed)
+			
+			var/obj/item/rope/chain/fake/ice/I = new /obj/item/rope/chain/fake/ice(C)
+			magic_chains = I
+			C.handcuffed = magic_chains
+			C.update_inv_handcuffed() 
+			C.update_inv_hands()
+
+	RegisterSignal(owner, COMSIG_ATOM_ATTACK_HAND, PROC_REF(block_interaction))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(handle_ice_shatter))
 
 	
-	var/mutable_appearance/ice_visual = mutable_appearance('modular_twilight_axis/icons/effects/freeze.dmi', "spike")
-	ice_visual.alpha = 140 
-	ice_visual.color = "#b0f0ff" 
-	ice_visual.appearance_flags = RESET_ALPHA | RESET_COLOR | TILE_BOUND
-	ice_overlay_ref = ice_visual
-	owner.add_overlay(ice_overlay_ref)
+	ice_overlay = mutable_appearance('modular_twilight_axis/icons/effects/freeze.dmi', "spike")
+	ice_overlay.alpha = 150 
+	ice_overlay.color = "#b0f0ff"
+	ice_overlay.appearance_flags = RESET_COLOR | RESET_ALPHA | TILE_BOUND
 	
-	owner.add_filter("frozen_inner", 5, list("type" = "color_matrix", "matrix" = list(
-		0.5, 0.5, 0.5, 0,
-		0.1, 0.1, 0.1, 0,
-		0.4, 0.4, 1.2, 0,
-		0, 0, 0, 1
-	)))
+	owner.add_overlay(ice_overlay)
+	owner.add_atom_colour(rgb(50, 150, 255), ADMIN_COLOUR_PRIORITY)
 	
-	to_chat(owner, span_userdanger("I am walled up in centuries-old ice..."))
+	
+	owner.lying = 0
+	if(hasvar(owner, "lying_prev"))
+		owner:lying_prev = 0
+	owner.transform = matrix() 
+	owner.update_transform()
 
 /datum/status_effect/freon/freeze/tick()
 	if(!owner) return
+	if(owner.stat == DEAD)
+		qdel(src) 
+		return
 
-	
-	if(!owner.IsSleeping())
-		owner.apply_status_effect(STATUS_EFFECT_SLEEPING, 100)
-	
-	if(!owner.has_status_effect(STATUS_EFFECT_PARALYZED))
-		owner.apply_status_effect(STATUS_EFFECT_PARALYZED, 100)
+	owner.adjustOxyLoss(0.8) 
 
-	
+
+	if(owner.lying != 0)
+		owner.lying = 0
+		owner.transform = matrix()
+
 	if(owner.on_fire || (locate(/obj/effect/hotspot) in owner.loc))
 		melt_timer++
-		if(melt_timer >= 2) 
-			owner.visible_message(span_notice("The ice around [owner] is melting from the heat!"))
+		if(melt_timer >= 3)
 			qdel(src)
-			return
 	else
 		melt_timer = max(0, melt_timer - 1)
 
-	owner.update_mobility()
-
-/datum/status_effect/freon/freeze/proc/handle_ice_shatter(datum/source, damage, damagetype)
-	if(damage <= 0) return
-	
-	ice_integrity -= damage
-	
-	if(ice_integrity > 0)
-		
-		owner.balloon_alert_to_viewers("The ice is cracking! ([ice_integrity])")
-		new /obj/effect/temp_visual/snap_freeze(get_turf(owner))
-	else
-		owner.visible_message(span_danger(" Ice shell [owner] shatters into thousands of pieces!!"))
-		playsound(owner, 'sound/combat/hits/onglass/glassbreak (4).ogg', 100, TRUE)
-		qdel(src) 
-
 /datum/status_effect/freon/freeze/on_remove()
 	if(owner)
-		if(ice_overlay_ref)
-			owner.cut_overlay(ice_overlay_ref)
-			ice_overlay_ref = null
-		
-		owner.remove_filter("frozen_inner")
+	
+		owner.cut_overlay(ice_overlay)
 		owner.remove_atom_colour(ADMIN_COLOUR_PRIORITY)
 		
 		
-		owner.remove_status_effect(STATUS_EFFECT_SLEEPING)
+		if(iscarbon(owner))
+			var/mob/living/carbon/C = owner
+			if(C.handcuffed == magic_chains)
+				C.handcuffed = null
+				qdel(magic_chains)
+				magic_chains = null
+				C.update_inv_handcuffed()
+				C.update_inv_hands()
+
+	
 		owner.remove_status_effect(STATUS_EFFECT_PARALYZED)
 		
-		UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
-		owner.visible_message(span_notice("[owner] finally free of ice!"))
-		
-		
+		if(owner.stat != DEAD)
+			owner.setOxyLoss(0)
+			owner.lying = 0
+			if(hasvar(owner, "lying_prev"))
+				owner:lying_prev = 0 
+			owner.transform = matrix() 
+			owner.update_transform()
+			owner.emote("gasp")
+		else
+			
+			owner.transform = matrix()
+			if(hasvar(owner, "lying_prev"))
+				owner:lying_prev = 0
+			owner.update_transform()
+
+		UnregisterSignal(owner, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_MOB_APPLY_DAMGE))
 		owner.bodytemperature = BODYTEMP_NORMAL
-		
+		owner.update_mobility()
 	..()
 
+/datum/status_effect/freon/freeze/proc/handle_ice_shatter(datum/source, damage, damagetype)
+	if(damage <= 0 || damagetype == OXY || damagetype == TOX) return
+	ice_integrity -= damage
+	if(ice_integrity > 0)
+		owner.balloon_alert_to_viewers("Ice cracks! ([ice_integrity])")
+		new /obj/effect/temp_visual/snap_freeze(get_turf(owner))
+	else
+		playsound(owner, 'sound/combat/hits/onglass/glassbreak (4).ogg', 100, TRUE)
+		qdel(src) 
+
+/datum/status_effect/freon/freeze/proc/block_interaction(datum/source, mob/user)
+	SIGNAL_HANDLER
+	if(user == owner) return
+	if(user.a_intent != INTENT_HARM)
+		to_chat(user, span_warning("The ice is too thick!"))
+		return COMPONENT_NO_ATTACK_HAND
 /datum/pollutant/cold_mist
 	name = "cold mist"
 	pollutant_flags = POLLUTANT_APPEARANCE | POLLUTANT_TOUCH_ACT | POLLUTANT_BREATHE_ACT

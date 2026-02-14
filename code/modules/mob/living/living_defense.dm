@@ -52,34 +52,38 @@
 		return BULLET_ACT_FORCE_PIERCE
 
 	if(HAS_TRAIT(src, TRAIT_MAGIC_SHIELD) && P.firer && P.firer != src)
-		visible_message("<span class='danger'>[src.name]'s shield clangs as it reflects [P.name] back at [P.firer]!</span>")
-		playsound(src.loc, 'sound/combat/parry/shield/magicshield (1).ogg', 50, TRUE)
-
 		var/obj/effect/proc_holder/spell/self/magic_shield/S
 		if(src.status_traits && src.status_traits[TRAIT_MAGIC_SHIELD])
 			for(var/source in src.status_traits[TRAIT_MAGIC_SHIELD])
 				if(istype(source, /obj/effect/proc_holder/spell/self/magic_shield))
 					S = source
 					break
+	
+		if(S && S.active)
 		
-		if(S)
-			var/damage_to_shield = P.damage + (P.armor_penetration * 5)
-			S.shield_hp -= damage_to_shield
-
-			if(S.shield_hp <= 0)
-				S.end_reflection_effect(src)
+			var/damage_cost = P.damage * S.stamina_damage_ratio
 		
-		var/new_angle = Get_Angle(src, P.firer)
-		new_angle += rand(-90, 90)
-		P.setAngle(new_angle)
+		
+			if(!src.stamina_add(damage_cost))
+				S.deactivate_shield(src, shattered = TRUE)
+			
+				return ..() 
+		
+		
+			src.visible_message(span_danger("[src.name]'s shield flares, reflecting [P.name] back at [P.firer]!"))
+			playsound(src.loc, 'sound/combat/parry/shield/magicshield (1).ogg', 50, TRUE)
+		
+		
+			var/new_angle = Get_Angle(src, P.firer)
+			new_angle += rand(-10, 10) 
+			P.setAngle(new_angle)
 
-		P.decayedRange = max(0, P.decayedRange - P.reflect_range_decrease)
-		P.range = P.decayedRange
+			P.decayedRange = max(0, P.decayedRange - P.reflect_range_decrease)
+			P.range = P.decayedRange
+			P.permutated = list()
+			P.firer = src 
 
-		P.permutated = list()
-		P.firer = src
-
-		return BULLET_ACT_FORCE_PIERCE //TA EDIT END
+			return BULLET_ACT_FORCE_PIERCE //TA EDIT END
 	
 	if(SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) & COMPONENT_ATOM_BLOCK_BULLET)
 		return
