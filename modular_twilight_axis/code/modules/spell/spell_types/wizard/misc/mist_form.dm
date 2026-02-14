@@ -8,7 +8,7 @@
 	range = 2
 	cost = 6
 	spell_tier = 3
-	recharge_time = 30 SECONDS
+	recharge_time = 50 SECONDS
 	warnie = "spellwarning"
 	invocations = list("NUNELOS!")
 	chargedloop = /datum/looping_sound/invokegen
