@@ -290,3 +290,13 @@
 	max_integrity = 180
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
+
+/datum/crafting_recipe/roguetown/survival/burgerhood //i dunno where to place it helpppp
+	name = "noble hood"
+	category = "Hoods"
+	result = list(/obj/item/clothing/head/roguetown/roguehood/burgerhood)
+	reqs = list(/obj/item/natural/cloth = 2,
+	            /obj/item/natural/fibers = 1)
+	tools = list(/obj/item/needle)
+	craftdiff = 2
+	sellprice = 15
