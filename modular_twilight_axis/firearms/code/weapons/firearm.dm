@@ -313,16 +313,27 @@
 			return
 		if((loc == user) && (user.get_inactive_held_item() != src))
 			return
-		playsound(src, "modular_twilight_axis/firearms/sound/insert.ogg",  100, FALSE)
-		user.visible_message("<span class='notice'>[user] forces a [V.name] down the barrel of [src].</span>")
-		if(advanced_icon)
-			if(!myrod && advanced_icon_norod)
-				icon = advanced_icon_norod
-			else
-				icon = advanced_icon
-		..()
-
-	if(istype(A, /obj/item/twilight_powderflask))
+		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
+			if (chambered && !chambered.BB)
+				chambered.forceMove(drop_location())
+				chambered = null
+			var/num_loaded = magazine.attackby(A, user, params, TRUE)
+			if (num_loaded)
+				playsound(src, "modular_twilight_axis/firearms/sound/insert.ogg",  100, FALSE)
+				user.visible_message("<span class='notice'>[user] forces a [V.name] down the barrel of [src].</span>")
+				if(advanced_icon)
+					if(!myrod && advanced_icon_norod)
+						icon = advanced_icon_norod
+					else
+						icon = advanced_icon
+				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
+					chamber_round()
+				A.update_icon()
+				update_icon()
+			return
+		user.update_inv_hands()
+		return
+	else if(istype(A, /obj/item/twilight_powderflask))
 		var/obj/item/twilight_powderflask/W = A
 		if(gunpowder)
 			user.visible_message("<span class='notice'>The [name] is already filled with gunpowder!</span>")
@@ -353,7 +364,7 @@
 					var/obj/item/twilight_powderflask_empty/E = new /obj/item/twilight_powderflask_empty(get_turf(user))
 					user.put_in_hands(E)
 			return
-	if(istype(A, /obj/item/twilight_ramrod))
+	else if(istype(A, /obj/item/twilight_ramrod))
 		if(locktype == "Matchlock" || locktype == "Wheellock")
 			var/obj/item/twilight_ramrod/R=A
 			if(!reloaded)
@@ -389,7 +400,7 @@
 			if(!myrod == null)
 				to_chat(user, span_warning("There's already a [R.name] inside of the [name]."))
 				return
-	if(istype(A, /obj/item/natural/bundle/fibers))
+	else if(istype(A, /obj/item/natural/bundle/fibers))
 		var/obj/item/natural/bundle/fibers/W = A
 		if(locktype == "Fuse")
 			if(!reloaded)
@@ -406,7 +417,7 @@
 						if(advanced_icon_r)
 							icon = advanced_icon_r
 					return
-	if(istype(A, /obj/item/natural/fibers))
+	else if(istype(A, /obj/item/natural/fibers))
 		if(locktype == "Fuse")
 			if(!reloaded)
 				if(chambered)
@@ -419,7 +430,7 @@
 						if(advanced_icon_r)
 							icon = advanced_icon_r
 					return
-	if(istype(A, /obj/item/rogueweapon/hammer))
+	else if(istype(A, /obj/item/rogueweapon/hammer))
 		var/repair_percent = 0.025 // 2.5% Repairing per hammer smack
 		if(locate(/obj/machinery/anvil) in src.loc)
 			repair_percent *= 2 // Double the repair amount if we're using an anvil
@@ -464,6 +475,8 @@
 			if(do_after(user, CLICK_CD_MELEE, target = src))
 				attack_obj(src, user)
 			return
+	else
+		. = ..()
 
 /obj/item/gun/ballistic/twilight_firearm/examine(mob/user)
 	. = ..()
