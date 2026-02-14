@@ -703,6 +703,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.playsound_local(target, 'sound/misc/vampirespell.ogg', 100, FALSE, pressure_affected = FALSE)
 	target.fully_heal()
 	target.heal_wounds()
+	target.apply_status_effect(/datum/status_effect/debuff/fleshmend_exhaustion)
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
 ///datum/ritual/fleshcrafting/darkeyes До переработки
