@@ -105,7 +105,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/Initialize()
 	set_invisibility(GLOB.observer_default_invisibility)
-	set_glide_size(6) // 6 is atom/movable animation speed TA EDIT
+	set_glide_size(12) // 6 is atom/movable animation speed TA EDIT
 
 	verbs += list(
 		/mob/dead/observer/proc/dead_tele,
