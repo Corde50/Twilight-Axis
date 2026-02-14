@@ -1368,6 +1368,18 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/kumie_coat
 	donatitem = TRUE
 
+/datum/loadout_item/donator_hammerhold_robe
+	name = "Donator Kit - Hammerhold Robe - Required: Gambeson or Padded Gambeson(No Small Races)"
+	category = list("Броня", "Донат")
+	path = /obj/item/enchantingkit/hammerhold_robe
+	donatitem = TRUE
+
+/datum/loadout_item/donator_hammerhold_coat
+	name = "Donator Kit - Hammerhold Mage Coat - Required: Hardened Leather Coat(No Small Races)"
+	category = list("Броня", "Донат")
+	path = /obj/item/enchantingkit/hammerhold_coat
+	donatitem = TRUE
+
 /datum/loadout_item/donator_jagerrifle
 	name = "Donator Kit - Jägerbüchse - Required: Arquebus"
 	category = list("Оружие", "Донат")
