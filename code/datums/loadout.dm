@@ -812,6 +812,30 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Аксессуары"
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar
 
+/datum/loadout_item/psicross/gronnzizo
+	name = "Wolf Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
+
+/datum/loadout_item/psicross/gronnbaotha
+	name = "Leopard Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/baothagronn
+
+/datum/loadout_item/psicross/gronnmatthios
+	name = "Bear Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gronn
+
+/datum/loadout_item/psicross/gronngraggar
+	name = "Moose Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/gronn
+
+/datum/loadout_item/psicross/gronndendor
+	name = "Volfskinned Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/dendor/gronn
+
+/datum/loadout_item/psicross/gronnabyssor
+	name = "Hadal Talisman"
+	path = /obj/item/clothing/neck/roguetown/psicross/abyssor/gronn
+
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
 	category = "Аксессуары"
@@ -916,6 +940,11 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/head/roguetown/circlet/triumph
 	category = list("Триумфы")
 	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkitaxe
+	name = "Morphing Elixir, 'Valorian Axe' (-3 TRI)"
+	path = /obj/item/enchantingkit/triumph_weaponkit_axe
+	triumph_cost = 3
 
 // -5 TRI Minisection.
 
@@ -1366,6 +1395,18 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Donator Kit - Aristocratic Coat - Required: Hardened Leather Coat or Lightweight Brigandine(No Small Races)"
 	category = list("Броня", "Донат")
 	path = /obj/item/enchantingkit/kumie_coat
+	donatitem = TRUE
+
+/datum/loadout_item/donator_hammerhold_robe
+	name = "Donator Kit - Hammerhold Robe - Required: Gambeson or Padded Gambeson(No Small Races)"
+	category = list("Броня", "Донат")
+	path = /obj/item/enchantingkit/hammerhold_robe
+	donatitem = TRUE
+
+/datum/loadout_item/donator_hammerhold_coat
+	name = "Donator Kit - Hammerhold Mage Coat - Required: Hardened Leather Coat(No Small Races)"
+	category = list("Броня", "Донат")
+	path = /obj/item/enchantingkit/hammerhold_coat
 	donatitem = TRUE
 
 /datum/loadout_item/donator_jagerrifle
