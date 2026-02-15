@@ -150,6 +150,7 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pr_arm"
 	item_state = "pr_arm"
+	limb_material = "wood"
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC	//allows removals
@@ -159,7 +160,7 @@
 	max_damage = 20
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
-	sellprice = 30
+	sellprice = 7 //TA EDIT
 	fingers = FALSE //can't swing weapons but can pick stuff up and punch
 	anvilrepair = /datum/skill/craft/carpentry
 	dismember_wound = /datum/wound/bruise/large
@@ -208,6 +209,7 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bp_arm"
 	prosthetic_prefix = "prs"
+	limb_material = "bronze"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -249,6 +251,7 @@
 	desc = "A right arm of wood."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "pr_arm"
+	limb_material = "wood"
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -258,7 +261,7 @@
 	max_damage = 40
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
-	sellprice = 30
+	sellprice = 7 //TA EDIT
 	fingers = FALSE //can't swing weapons but can pick stuff up and punch
 	anvilrepair = /datum/skill/craft/carpentry
 	dismember_wound = /datum/wound/bruise/large
@@ -307,6 +310,7 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bp_arm"
 	prosthetic_prefix = "prs"
+	limb_material = "bronze" // still need a different onmob sprite for bronze limbs brah
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -349,7 +353,7 @@
 	name = "wooden left leg"
 	desc = "A left leg made of wood."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "pr_leg"
+	icon_state = "prleg"
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -361,7 +365,7 @@
 	max_damage = 40
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
-	sellprice = 30
+	sellprice = 7 //TA EDIT
 	anvilrepair = /datum/skill/craft/carpentry
 	dismember_wound = /datum/wound/bruise/large
 
@@ -409,6 +413,7 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bp_leg"
 	prosthetic_prefix = "prs"
+	limb_material = "bronze"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -445,7 +450,7 @@
 	name = "wooden right leg"
 	desc = "A right leg made of wood."
 	icon = 'icons/roguetown/items/misc.dmi'
-	icon_state = "pr_leg"
+	icon_state = "prleg"
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC
@@ -455,7 +460,7 @@
 	max_damage = 40
 	w_class = WEIGHT_CLASS_NORMAL
 	max_integrity = 300
-	sellprice = 30
+	sellprice = 7 //TA EDIT
 	anvilrepair = /datum/skill/craft/carpentry
 	dismember_wound = /datum/wound/bruise/large
 
@@ -505,6 +510,7 @@
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "bp_leg"
 	prosthetic_prefix = "prs"
+	limb_material = "bronze"
 	resistance_flags = FIRE_PROOF
 	obj_flags = CAN_BE_HIT
 	status = BODYPART_ROBOTIC

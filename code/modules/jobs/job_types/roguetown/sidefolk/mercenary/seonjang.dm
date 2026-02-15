@@ -7,7 +7,7 @@
 	subclass_languages = list(/datum/language/kazengunese)
 	class_select_category = CLASS_CAT_KAZENGUN
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_HARDDISMEMBER, TRAIT_NOPAINSTUN)
+	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_HARDDISMEMBER, TRAIT_NOPAINSTUN, TRAIT_HONORBOUND)
 	cmode_music = 'sound/music/combat_kazengite.ogg'
 	maximum_possible_slots = 1
 	subclass_stats = list(
@@ -32,7 +32,8 @@
 
 /datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)
 	..()
-	belt = /obj/item/storage/belt/rogue/leather/black
+	shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
+	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
 	beltl = /obj/item/rogueweapon/scabbard/sword/kazengun/gold
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -50,7 +51,6 @@
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/eastpants1
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves2
 		armor = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt1
-		shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
 		H.change_stat(STATKEY_WIL, 1)
 		H.change_stat(STATKEY_CON, 1) //to compensate for the permanent lack of armor
 		H.dna.species.soundpack_m = new /datum/voicepack/male/evil()
@@ -60,4 +60,4 @@
 		shirt = /obj/item/clothing/suit/roguetown/armor/regenerating/easttats
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves2
 		cloak = /obj/item/clothing/cloak/eastcloak1
-		shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
+	H.merctype = 9

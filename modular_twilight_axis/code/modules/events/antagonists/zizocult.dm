@@ -24,6 +24,7 @@
 		"Man at Arms",\
 		"Squire",\
 		"Prince",\
+		"Wretch",\
 	)
 
 /datum/round_event_control/antagonist/solo/zizo_cult
@@ -38,35 +39,37 @@
 	shared_occurence_type = SHARED_HIGH_THREAT
 
 	base_antags = 1
-	maximum_antags = 2
+	maximum_antags = 3
 
-	weight = 2
+	denominator = 40
+
+	weight = 5
 	max_occurrences = 1
 
 	earliest_start = 0 SECONDS
 
 	typepath = /datum/round_event/antagonist/solo/zizo_cult
-	antag_datum = /datum/antagonist/zizocultist/leader
+	antag_datum = /datum/antagonist/zizocultist
 
 	restricted_roles = ZIZO_CULT_BLACKLISTED_ROLES
 
-/datum/round_event_control/antagonist/solo/zizo_cult/trim_candidates(list/candidates)
-    . = ..()
-
-    for(var/mob/living/candidate as anything in .)
-        if(istype(candidate.patron, /datum/patron/inhumen/zizo))
-            continue
-
-        . -= candidate
-
 /datum/round_event/antagonist/solo/zizo_cult
+	var/leader = FALSE
 
-/datum/storyteller/proc/on_set()
-    return
-
-/datum/storyteller/zizo/on_set()
-    . = ..()
-
-    SSgamemode.current_roundstart_event = new /datum/round_event_control/antagonist/solo/zizo_cult
+/datum/round_event/antagonist/solo/zizo_cult/add_datum_to_mind(datum/mind/antag_mind)
+	if(!leader)
+		var/datum/job/J = SSjob.GetJob(antag_mind.current?.job)
+		J?.current_positions = max(J?.current_positions-1, 0)
+		var/datum/antagonist/zizocultist/leader/lorde = new /datum/antagonist/zizocultist/leader()
+		antag_mind.add_antag_datum(lorde)
+		leader = TRUE
+		return
+	else
+		if(!antag_mind.has_antag_datum(antag_datum))
+			var/datum/job/J = SSjob.GetJob(antag_mind.current?.job)
+			J?.current_positions = max(J?.current_positions-1, 0)
+			var/datum/antagonist/zizocultist/servante = new /datum/antagonist/zizocultist
+			antag_mind.add_antag_datum(servante)
+			return
 
 #undef ZIZO_CULT_BLACKLISTED_ROLES

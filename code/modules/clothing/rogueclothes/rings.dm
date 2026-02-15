@@ -14,6 +14,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	experimental_inhand = FALSE
 	drop_sound = 'sound/foley/coinphy (1).ogg'
+	salvage_result = null
 
 /obj/item/clothing/ring/aalloy
 	name = "decrepit ring"
@@ -21,12 +22,18 @@
 	icon_state = "ring_a"
 	sellprice = 11
 
+/obj/item/clothing/ring/bronze
+	name = "bronze ring"
+	desc = "A ring of bronzen resiliance."
+	icon_state = "ring_b"
+	sellprice = 22
+
 /obj/item/clothing/ring/silver
 	name = "silver ring"
 	desc = "A ring of silvered glimmerance."
 	icon_state = "ring_s"
 	sellprice = 33
-	is_silver = TRUE
+	is_silver = FALSE //Temporary measure to prevent people from easily metachecking vampyres. Replace with a more sophisticated alternative if-or-when available.
 
 /obj/item/clothing/ring/gold
 	name = "gold ring"
@@ -38,6 +45,46 @@
 	name = "blacksteel ring"
 	icon_state = "ring_bs"
 	sellprice = 70
+
+/obj/item/clothing/ring/jade
+	name = "jade ring"
+	icon_state = "ring_jade"
+	sellprice = 60
+
+/obj/item/clothing/ring/coral
+	name = "heartstone ring"
+	icon_state = "ring_coral"
+	sellprice = 70
+
+/obj/item/clothing/ring/onyxa
+	name = "onyxa ring"
+	icon_state = "ring_onyxa"
+	sellprice = 40
+
+/obj/item/clothing/ring/shell
+	name = "shell ring"
+	icon_state = "ring_shell"
+	sellprice = 20
+
+/obj/item/clothing/ring/amber
+	name = "amber ring"
+	icon_state = "ring_amber"
+	sellprice = 20
+
+/obj/item/clothing/ring/turq
+	name = "cerulite ring"
+	icon_state = "ring_turq"
+	sellprice = 85
+
+/obj/item/clothing/ring/rose
+	name = "rosestone ring"
+	icon_state = "ring_rose"
+	sellprice = 25
+
+/obj/item/clothing/ring/opal
+	name = "opal ring"
+	icon_state = "ring_opal"
+	sellprice = 90
 
 /obj/item/clothing/ring/active
 	var/active = FALSE
@@ -147,7 +194,7 @@
 /obj/item/clothing/ring/signet
 	name = "signet ring"
 	icon_state = "signet"
-	desc = "A ring of opulent gold, bearing the symbol of Psydon. By dipping it in melted redtallow, it can seal writs of religious importance - a matter better known to the Inquisition, rather than the Church or Crown."
+	desc = "A ring of opulent gold, bearing the Lord's symbol. By dipping it in melted redtallow, it can seal writs of religious importance - a matter better known to the Inquisition, rather than the Church or Crown."
 	sellprice = 135
 	var/tallowed = FALSE
 
@@ -156,7 +203,7 @@
 	icon_state = "signet_silver"
 	desc = "A ring of blessed silver, bearing the Archbishop's symbol. By dipping it in melted redtallow, it can seal writs of religious importance."
 	sellprice = 90
-	is_silver = TRUE
+	is_silver = FALSE //Temporary measure to prevent people from easily metachecking vampyres. Replace with a more sophisticated alternative if-or-when available.
 
 /obj/item/clothing/ring/signet/attack_right(mob/user)
 	. = ..()
@@ -179,7 +226,7 @@
 	icon_state = "s_ring_emerald"
 	smeltresult = /obj/item/roguegem/green
 	sellprice = 155
-	is_silver = TRUE
+	is_silver = FALSE //Temporary measure to prevent people from easily metachecking vampyres. Replace with a more sophisticated alternative if-or-when available.
 
 /obj/item/clothing/ring/rubys
 	name = "silver rontz ring"
@@ -187,7 +234,7 @@
 	icon_state = "s_ring_ruby"
 	smeltresult = /obj/item/roguegem/ruby
 	sellprice = 215
-	is_silver = TRUE
+	is_silver = FALSE //Ditto.
 
 /obj/item/clothing/ring/topazs
 	name = "toper ring"
@@ -195,7 +242,7 @@
 	icon_state = "s_ring_topaz"
 	smeltresult = /obj/item/roguegem/yellow
 	sellprice = 140
-	is_silver = TRUE
+	is_silver = FALSE
 
 /obj/item/clothing/ring/quartzs
 	name = "silver blortz ring"
@@ -203,7 +250,7 @@
 	icon_state = "s_ring_quartz"
 	smeltresult = /obj/item/roguegem/blue
 	sellprice = 205
-	is_silver = TRUE
+	is_silver = FALSE
 
 /obj/item/clothing/ring/sapphires
 	name = "silver saffira ring"
@@ -211,7 +258,7 @@
 	icon_state = "s_ring_sapphire"
 	smeltresult = /obj/item/roguegem/violet
 	sellprice = 160
-	is_silver = TRUE
+	is_silver = FALSE
 
 /obj/item/clothing/ring/diamonds
 	name = "silver dorpel ring"
@@ -219,7 +266,7 @@
 	icon_state = "s_ring_diamond"
 	smeltresult = /obj/item/roguegem/diamond
 	sellprice = 230
-	is_silver = TRUE
+	is_silver = FALSE
 
 /obj/item/clothing/ring/duelist
 	name = "duelist's ring"
@@ -232,7 +279,7 @@
 	desc = "An arcyne creation first theorized by malcontents with the resolution of Xylix's plays. It protects it's wearer by tugging things gently toward less fatal potentials."
 	icon_state = "ring_s"
 	max_integrity = 50
-	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
+	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET //field covers the whole body
 	armor = ARMOR_FATEWEAVER //even protection against most damage types
 	blade_dulling = DULLING_BASHCHOP
 	blocksound = PLATEHIT
@@ -274,7 +321,7 @@
 	sellprice = 3	//You don't get to smelt this down or sell it. No free mams for a loadout item.
 	var/choicename = FALSE
 	var/choicedesc = FALSE
-	is_silver = TRUE
+	is_silver = FALSE //Love wins.
 
 /obj/item/clothing/ring/band/attack_right(mob/user)
 	if(choicename)
@@ -296,8 +343,9 @@
 		return
 
 /////////////////////////
-// Blacksteel Rings //
+// Blacksteel Rings    //
 /////////////////////////
+
 /obj/item/clothing/ring/emeraldbs
 	name = "gemerald ring"
 	icon_state = "bs_ring_emerald"
@@ -334,6 +382,27 @@
 	desc = "A beautiful golden ring with a polished Dorpel set into it."
 	sellprice = 370
 
+////////////////////////
+// Triumph Exclusive! //
+////////////////////////
+
+//Purchasable via Triumphs. Blacklisted from the Stockpile and fitted with a reduced saleprice.
+/obj/item/clothing/ring/diamond/triumph
+	name = "ornate dorpel ring"
+	icon_state = "g_newring_diamond"
+	desc = "A ring of royal splendor, crested with a magnificently-cut dorpel. Its prismesque reflections remind you of a dream, from long ago; a ship, sailing across a sea of rainbowed phlogiston, to a castle far beyond the clouds.."
+	sellprice = 99
+	smeltresult = /obj/item/clothing/ring/signet/triumph
+
+/obj/item/clothing/ring/signet/triumph
+	name = "ornate signet ring"
+	desc = "A ring of opulent gold, bearing the symbol of an aristocratic household. By dipping it in melted redtallow, it can seal writs of religious importance - a matter better known to the Inquisition, rather than the Church or Crown."
+	sellprice = 77 
+
+/obj/item/clothing/ring/gold/triumph
+	name = "ornate gold ring"
+	desc = "A ring of golden beauty, who's story could only be retold by a lonesome tongue."
+	sellprice = 33
 
 /////////////////////////
 // Stat-Boosting Rings //
@@ -346,8 +415,7 @@
 /obj/item/clothing/ring/statgemerald
 	name = "ring of swiftness"
 	desc = "A gemerald ring, glimmering with verdant brilliance. The closer your hand drifts to it, the stronger that the wind howls."
-	icon_state = "ring_emerald"
-	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "g_newring_emerald"
 	sellprice = 222
 	var/active_item
 
@@ -374,8 +442,7 @@
 /obj/item/clothing/ring/statonyx
 	name = "ring of vitality"
 	desc = "An onyx ring, shining with violet determination. The closer your hand drifts to it, the faster your heart pounds."
-	icon_state = "ring_onyx"
-	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "g_newring_quartz"
 	sellprice = 222
 	var/active_item
 
@@ -401,9 +468,8 @@
 
 /obj/item/clothing/ring/statamythortz
 	name = "ring of wisdom"
-	desc = "An amythortz ring, crackling with azuric fascination. The closer your hand drifts to it, the clearer your mind becomes."
-	icon_state = "ring_spinel"
-	icon = 'icons/roguetown/items/misc.dmi'
+	desc = "A saffira ring, crackling with azuric fascination. The closer your hand drifts to it, the clearer your mind becomes."
+	icon_state = "g_newring_sapphire"
 	sellprice = 222
 	var/active_item
 
@@ -430,8 +496,7 @@
 /obj/item/clothing/ring/statrontz
 	name = "ring of courage"
 	desc = "A rontz ring, radiating with crimson authority. The closer your hand drifts to it, the tighter your knuckles curl."
-	icon_state = "ring_ruby"
-	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "g_newring_ruby"
 	sellprice = 222
 	var/active_item
 
@@ -460,8 +525,7 @@
 /obj/item/clothing/ring/statdorpel
 	name = "ring of omnipotence"
 	desc = "A dorpel ring, glowing with resplendent beauty. The closer your hand drifts to it, the more that your fears melt away."
-	icon_state = "ring_sapphire"
-	icon = 'icons/roguetown/items/misc.dmi'
+	icon_state = "newmulticolor"
 	smeltresult = /obj/item/riddleofsteel
 	is_silver = TRUE
 	sellprice = 777

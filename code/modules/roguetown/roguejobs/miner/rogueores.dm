@@ -216,7 +216,7 @@
 
 /obj/item/ingot/bronze
 	name = "bronze bar"
-	desc = "An alloy of tin and copper, humming with yet-untapped potential. The fondest friend of tinkerers, engineers, and primitives alike."
+	desc = "An alloy of tin and copper, humming with yet-untapped potential. The fondest friend of legionnaires, tinkerers, and homesteaders alike."
 	icon_state = "ingotbronze"
 	smeltresult = /obj/item/ingot/bronze
 	sellprice = 25
@@ -227,7 +227,7 @@
 	icon_state = "ingotsilv"
 	smeltresult = /obj/item/ingot/silver
 	sellprice = 80
-	is_silver = TRUE
+	is_silver = FALSE //temporary measure to prevent people from easily metachecking vampyres. Replace with a more sophisticated alternative if-or-when available.
 
 /obj/item/ingot/steel
 	name = "steel bar"
@@ -257,7 +257,7 @@
 	icon_state = "ingotsilvblessed"
 	smeltresult = /obj/item/ingot/silver //Smelting it removes the blessing
 	sellprice = 100
-	is_silver = TRUE
+	is_silver = FALSE //Ditto.
 
 /obj/item/ingot/silverblessed/bullion
 	name = "blessed silver bullion"
@@ -265,7 +265,7 @@
 	icon_state = "ingotsilvblessed_psy"
 	smeltresult = /obj/item/ingot/silverblessed //Minor failsafe to ensure bullion can always be used for blessed silver recipes, in case of a filepath conflict.
 	sellprice = 100
-	is_silver = TRUE
+	is_silver = FALSE
 
 /obj/item/ingot/aalloy
 	name = "decrepit ingot"
@@ -316,6 +316,13 @@
 	icon_state = "ingotlithmyc"
 	smeltresult = /obj/item/ingot/lithmyc
 	sellprice = 444
+
+/obj/item/ingot/ketryl
+	name = "ketryl ingot"
+	desc = "Named after its mythical status, this ingot is forged as per the dwarven standards etched in a small imprint on the ingot's surface. Ketryl is often folded in thin layers, stronger than steel, yet unusually light at the same time."
+	icon_state = "ingotketryl"
+	smeltresult = null
+	sellprice = 555
 
 /obj/item/ingot/drow
 	name = "skikudic ingot"

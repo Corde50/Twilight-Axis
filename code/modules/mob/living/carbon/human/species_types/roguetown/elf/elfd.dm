@@ -95,6 +95,7 @@
 		/datum/customizer/bodypart_feature/face_detail,
 		/datum/customizer/bodypart_feature/underwear,
 		/datum/customizer/bodypart_feature/legwear,
+		/datum/customizer/bodypart_feature/piercing,
 		/datum/customizer/organ/ears/elf,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
@@ -123,8 +124,6 @@
 	stress_examine = TRUE
 	stress_desc = span_red("A loathesome dark elf.")
 
-/datum/species/elf/dark/after_creation(mob/living/carbon/C)
-	C.faction += "spider_lowers"
 
 /datum/species/elf/dark/get_span_language(datum/language/message_language)
 	if(!message_language)
