@@ -105,13 +105,13 @@
 			category = r.category
 		else if(ispath(path, /datum/ritual))
 			if(ispath(path, /datum/ritual/servantry))
-				category = "Служение"
+				category = "Servantry"
 			else if(ispath(path, /datum/ritual/transmutation))
-				category = "Преобразование"
+				category = "Transmutation"
 			else if(ispath(path, /datum/ritual/fleshcrafting))
-				category = "Плотоплетение"
+				category = "Fleshcrafting"
 			else
-				category = "Ритуалы"
+				category = "Rituals"
 		// Clean up our temporary instance
 		if(temp_recipe)
 			qdel(temp_recipe)

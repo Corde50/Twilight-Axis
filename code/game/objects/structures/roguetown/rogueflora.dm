@@ -2,9 +2,8 @@
 //newtree
 
 /obj/structure/flora/roguetree
-	name = "bedraggled tree"
-	desc = "A stunted tree upon which structures loosely resembling faces have formed. Thought to result \
-	from the possession of the tree by wayward spirits. Increasingly common in all parts of the world."
+	name = "old tree"
+	desc = "An old wicked tree that not even elves could love."
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
 	icon_state = "t1"
 	opacity = 1
@@ -109,9 +108,7 @@
 
 /obj/structure/flora/roguetree/wise
 	name = "sacred tree"
-	desc = "A blessed primordial tree, ancient beyond years. Said to be an emanation of the \
-	Tree Father himself, whose presence imbues druids with wild energies. It is wildly taboo \
-	among Dendorites to fell a tree through which their God is peering."
+	desc = "A blessed primordial tree, ancient beyond years. Said to be the very embodiment of the Tree Father himself—whose presence alone imbues druids with wild energies."
 	icon_state = "mystical"
 	max_integrity = 400
 	var/activated = FALSE
@@ -158,7 +155,7 @@
 
 /obj/structure/flora/roguetree/burnt
 	name = "burnt tree"
-	desc = "A burned husk of a tree. It cannot be known how it died, only that it did."
+	desc = "Maybe lightning, maybe war, took the life of this once lively tree."
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	icon_state = "t1"
 	stump_type = /obj/structure/flora/roguetree/stump/burnt
@@ -194,7 +191,7 @@
 
 /obj/structure/flora/roguetree/underworld
 	name = "screaming tree"
-	desc = "Something resembling a tree. It sways in the breeze like so much fabric."
+	desc = "Human faces everywhere."
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
 	icon_state = "screaming1"
 	opacity = 1

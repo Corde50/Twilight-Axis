@@ -18,19 +18,11 @@
 	if(has_flaw(/datum/charflaw/addiction/thrillseeker))
 		var/datum/component/arousal/CAR = GetComponent(/datum/component/arousal)
 		if(CAR)
-			CAR.adjust_arousal_special(src, 2)
-
-	// TA Edit start - SOUNDBREAKER
-	var/success = FALSE
+			CAR.adjust_arousal(src, 2)
 
 	switch(d_intent)
 		if(INTENT_PARRY)
-			success = attempt_parry(intenty, user)
+			return attempt_parry(intenty, user)
 		if(INTENT_DODGE)
-			success = attempt_dodge(intenty, user)
-
-	if(success)
-		soundbreaker_riff_defense_success(src)
-
-	return success
-	// TA Edit end - SOUNDBREAKER
+			return attempt_dodge(intenty, user)
+			

@@ -9,11 +9,6 @@
 /mob/var/next_move_adjust = 0 //Amount to adjust action/click delays by, + or -
 /mob/var/next_move_modifier = 1 //Value to multiply action/click delays by
 
-// CanReach caching
-/mob/var/atom/last_reach_target
-/mob/var/last_reach_result
-/mob/var/last_reach_time
-/mob/var/obj/item/last_reach_tool
 
 //Delays the mob's next click/action by num deciseconds
 // eg: 10-3 = 7 deciseconds of delay
@@ -133,7 +128,7 @@
 				var/adf = used_intent.clickcd
 				if(istype(rmb_intent, /datum/rmb_intent/aimed))
 					adf = round(adf * CLICK_CD_MOD_AIMED)
-				else if(istype(rmb_intent, /datum/rmb_intent/swift))
+				if(istype(rmb_intent, /datum/rmb_intent/swift))
 					adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 				changeNext_move(adf,used_hand)
 				return
@@ -226,8 +221,6 @@
 		update_inv_hands()
 		return
 
-	var/turf/my_turf = get_turf(src) // For canreach caching purposes
-
 	// operate three levels deep here (item in backpack in src; item in box in backpack in src, not any deeper)
 	if(!isturf(A) && A == loc || (A in contents) || (A.loc in contents) || (A.loc && (A.loc.loc in contents)))
 		// the above ensures adjacency
@@ -243,10 +236,9 @@
 	if(W)
 		if(ismob(A))
 			if(CanReach(A,W))
-				var/turf/target_turf = get_turf(A)
-				if(get_dist(my_turf, target_turf) <= used_intent.reach)
+				if(get_dist(get_turf(src), get_turf(A)) <= used_intent.reach)
 					if(!used_intent.noaa)
-						do_attack_animation(target_turf, used_intent.animname, W, used_intent = src.used_intent)
+						do_attack_animation(get_turf(A), used_intent.animname, W, used_intent = src.used_intent)
 				resolveAdjacentClick(A,W,params)
 				return
 
@@ -296,24 +288,26 @@
 					resolveAdjacentClick(A,W,params,used_hand)
 					return
 				if(T)
-					var/mob/target
+
+					var/list/mobs_here = list()
 					for(var/mob/M in T)
 						if(M.invisibility || M == src)
 							continue
-						target = M
-						break
-					if(target)
-						if(target.Adjacent(src) || (CanReach(target, W) && used_intent.effective_range_type))
-							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
-							resolveAdjacentClick(target,W,params,used_hand)
-							atkswinging = null
-							//update_warning()
-							return
+						mobs_here += M
+					if(mobs_here.len)
+						var/mob/target = pick(mobs_here)
+						if(target)
+							if(target.Adjacent(src) || (CanReach(target, W) && used_intent.effective_range_type))
+								do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
+								resolveAdjacentClick(target,W,params,used_hand)
+								atkswinging = null
+								//update_warning()
+								return
 					if(cmode)
 						resolveAdjacentClick(T,W,params,used_hand) //hit the turf
 					if(!used_intent.noaa)
 						changeNext_move(CLICK_CD_RAPID)
-						if(get_dist(my_turf, T) <= used_intent.reach)
+						if(get_dist(get_turf(src), T) <= used_intent.reach)
 							do_attack_animation(T, used_intent.animname, used_intent.masteritem, used_intent = src.used_intent)
 						var/adf = used_intent.clickcd
 						if(istype(rmb_intent, /datum/rmb_intent/aimed))
@@ -322,13 +316,12 @@
 							adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 						changeNext_move(adf)
 						if(W)
-							playsound(my_turf, pick(W.swingsound), 100, FALSE)
+							playsound(get_turf(src), pick(W.swingsound), 100, FALSE)
 						else
-							playsound(my_turf, used_intent.miss_sound, 100, FALSE)
+							playsound(get_turf(src), used_intent.miss_sound, 100, FALSE)
 							if(used_intent.miss_text)
 								visible_message(span_warning("[src] [used_intent.miss_text]!"), \
 												span_warning("I [used_intent.miss_text]!"))
-					try_consume_attack_effects(src, T, zone_selected) // TA Add - SOUNDBREAKER
 					aftermiss()
 					atkswinging = null
 					//update_warning()
@@ -352,44 +345,27 @@
 /mob/proc/resolveAdjacentClick(atom/A,obj/item/W,params,used_hand)
 	if(!A)
 		return
-	// TA Add start - SOUNDBREAKER
-	if(used_intent.is_attack_swing())
-		if(try_consume_attack_effects(src, A, zone_selected))
-			atkswinging = null
-			return
-	// TA Add end - SOUNDBREAKER
 	if(W)
 		W.melee_attack_chain(src, A, params)
 		if(isliving(src))
 			var/mob/living/L = src
-
-
-			if(HAS_TRAIT(L, TRAIT_DUALWIELDER) && L.last_used_double_attack <= world.time)
-				var/obj/item/offh = L.get_inactive_held_item()
-				var/dual_wielding = offh && (istype(W, offh) || istype(offh, W)) && W != offh && !L.check_arm_grabbed(L.get_inactive_hand_index())
-				if(dual_wielding)
-					var/forceoffhand = L.dualwieldpitystacks >= L.dualwieldpitythreshhold
-					if(forceoffhand)
-						L.dualwieldpitystacks = 0
-						if(L.stamina_add(2))
-							L.last_used_double_attack = world.time + 2.5 SECONDS
-							to_chat(L, span_warning("An opening! I strike with my off-hand."))
-							offh.melee_attack_chain(src, A, params)
-					else
-						L.dualwieldpitystacks++
-
+			var/obj/item/offh = L.get_inactive_held_item()
+			if(offh && HAS_TRAIT(L, TRAIT_DUALWIELDER))
+				if((istype(W, offh) || istype(offh, W)) && W != offh && !(L.check_arm_grabbed(L.get_inactive_hand_index())) && (L.last_used_double_attack <= world.time))
+					if(L.stamina_add(2))
+						L.last_used_double_attack = world.time + 3 SECONDS
+						L.visible_message(span_warning("[L] seizes an opening and strikes with [L.p_their()] off-hand weapon!"), span_green("There's an opening! I strike with my off-hand weapon!"))
+						offh.melee_attack_chain(src, A, params)
 	else
 		if(ismob(A))
 			var/adf = used_intent.clickcd
 			if(istype(rmb_intent, /datum/rmb_intent/aimed))
 				adf = round(adf * CLICK_CD_MOD_AIMED)
-			else if(istype(rmb_intent, /datum/rmb_intent/swift))
+			if(istype(rmb_intent, /datum/rmb_intent/swift))
 				adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 			changeNext_move(adf)
 		UnarmedAttack(A,1,params)
-
-	var/invis_timer = mob_timers[MT_INVISIBILITY]
-	if(invis_timer > world.time)
+	if(mob_timers[MT_INVISIBILITY] > world.time)
 		mob_timers[MT_INVISIBILITY] = world.time
 		update_sneak_invis(reset = TRUE)
 
@@ -435,13 +411,9 @@
 	return FALSE
 
 /atom/movable/proc/CanReach(atom/ultimate_target, obj/item/tool, view_only = FALSE)
-	if(ismob(src))
-		var/mob/M = src
-		if(M.last_reach_target == ultimate_target && M.last_reach_time == world.time && M.last_reach_tool == tool)
-			return M.last_reach_result
-
 	// A backwards depth-limited breadth-first-search to see if the target is
 	// logically "in" anything adjacent to us.
+	var/list/direct_access = DirectAccess()
 	var/depth = 1 + (view_only ? STORAGE_VIEW_DEPTH : INVENTORY_DEPTH)
 
 	var/list/closed = list()
@@ -461,14 +433,8 @@
 				var/mob/user = src
 				if(user.used_intent)
 					usedreach = user.used_intent.reach
-			if(isturf(target) || isturf(target.loc) || IsDirectlyAccessible(target)) //Directly accessible atoms
+			if(isturf(target) || isturf(target.loc) || (target in direct_access)) //Directly accessible atoms
 				if(Adjacent(target) || ( (tool || (!iscarbon(src) && usedreach >= 2)) && CheckToolReach(src, target, usedreach))) //Adjacent or reaching attacks
-					if(ismob(src))
-						var/mob/M = src
-						M.last_reach_target = ultimate_target
-						M.last_reach_result = TRUE
-						M.last_reach_time = world.time
-						M.last_reach_tool = tool
 					return TRUE
 
 			if (!target.loc)
@@ -478,36 +444,16 @@
 				next += target.loc
 
 		checking = next
-
-	if(ismob(src))
-		var/mob/M = src
-		M.last_reach_target = ultimate_target
-		M.last_reach_result = FALSE
-		M.last_reach_time = world.time
-		M.last_reach_tool = tool
 	return FALSE
 
-/atom/movable/proc/IsDirectlyAccessible(atom/target)
-	return target == src || target == loc
+/atom/movable/proc/DirectAccess()
+	return list(src, loc)
 
-/mob/IsDirectlyAccessible(atom/target)
-	if(target == src || target == loc)
-		return TRUE
-	if(target.loc == src)
-		return TRUE
-	return FALSE
+/mob/DirectAccess(atom/target)
+	return ..() + contents
 
-/mob/living/IsDirectlyAccessible(atom/target)
-	if(target == loc)
-		return TRUE
-	var/atom/curr = target
-	while(curr)
-		if(curr == src)
-			return TRUE
-		if(isarea(curr))
-			break
-		curr = curr.loc
-	return FALSE
+/mob/living/DirectAccess(atom/target)
+	return ..() + GetAllContents()
 
 /atom/proc/AllowClick()
 	return FALSE
@@ -515,37 +461,27 @@
 /turf/AllowClick()
 	return TRUE
 
-GLOBAL_LIST_EMPTY(reach_dummy_pool)
-
 /proc/CheckToolReach(atom/movable/here, atom/movable/there, reach)
 	if(!here || !there)
-		return FALSE
-
-	var/turf/start = get_turf(here)
-	if(!start)
-		return FALSE
-
+		return
 	switch(reach)
 		if(0)
 			return FALSE
 		if(1)
-			return FALSE
+			return FALSE //here.Adjacent(there)
 		if(2 to INFINITY)
-			var/obj/effect/dummy = new(start)
+			var/obj/dummy = new(get_turf(here))
 			dummy.pass_flags |= PASSTABLE
-			dummy.movement_type = FLYING
 			dummy.invisibility = INVISIBILITY_ABSTRACT
-			for(var/i in 1 to reach)
+			for(var/i in 1 to reach) //Limit it to that many tries
+				var/turf/T = get_step(dummy, get_dir(dummy, there))
 				if(dummy.CanReach(there))
 					qdel(dummy)
 					return TRUE
-				var/turf/T = get_step(dummy, get_dir(dummy, there))
-				if(!T || !dummy.Move(T))
+				if(!dummy.Move(T)) //we're blocked!
 					qdel(dummy)
-					return FALSE
+					return
 			qdel(dummy)
-			return FALSE
-
 
 // Default behavior: ignore double clicks (the second click that makes the doubleclick call already calls for a normal click)
 /mob/proc/DblClickOn(atom/A, params)
@@ -742,8 +678,9 @@ GLOBAL_LIST_EMPTY(reach_dummy_pool)
 /atom/proc/face_atom(atom/A, location, control, params)
 	if(!A)
 		return FALSE
-	if(!A.xyoverride && (!x || !y || !A.x || !A.y))
-		return
+	if(!A.xyoverride)
+		if((!A || !x || !y || !A.x || !A.y))
+			return FALSE
 	var/atom/holder = A.face_me(location, control, params)
 	if(!holder)
 		return FALSE
@@ -925,8 +862,8 @@ GLOBAL_LIST_EMPTY(reach_dummy_pool)
 		targeti.pixel_y = I.Height() - world.icon_size - 4
 		targeti.pixel_x = -1
 		src.client.images |= targeti
-		// for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
-		// 	eyet.update_icon(src) //Update eye icon
+		for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
+			eyet.update_icon(src) //Update eye icon
 	else
 		UntargetMob()
 
@@ -944,8 +881,8 @@ GLOBAL_LIST_EMPTY(reach_dummy_pool)
 		nodirchange = FALSE
 	src.client.images -= targeti
 	//clear hud icon
-	// for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
-	// 	eyet.update_icon(src)
+	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
+		eyet.update_icon(src)
 
 /mob/proc/ShiftRightClickOn(atom/A, params)
 //	pointed(A, params)
@@ -987,8 +924,8 @@ GLOBAL_LIST_EMPTY(reach_dummy_pool)
 	if(!fixedeye)
 		nodirchange = TRUE
 	tempfixeye = TRUE
-	// for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
-	// 	eyet.update_icon(src) //Update eye icon
+	for(var/atom/movable/screen/eye_intent/eyet in hud_used.static_inventory)
+		eyet.update_icon(src) //Update eye icon
 
 /// A special proc to fire rmb_intents *before* checking click cooldown, since some intents (guard) should be used regardless of CD.
 /mob/proc/try_special_attack(atom/A, list/modifiers)

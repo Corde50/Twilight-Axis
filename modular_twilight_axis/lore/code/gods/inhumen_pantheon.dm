@@ -80,14 +80,6 @@
 		"ЗИЗО СПАСЕТ НАС ОТ СТРАДАНИЙ!",
 	)
 
-/datum/patron/inhumen/zizo/post_equip(mob/living/pious)
-	. = ..()
-	if(ishuman(pious))
-		var/mob/living/carbon/human/human = pious
-		if(human.mind)
-			human.mind.special_items["Lexicon of Her Truth"] = /obj/item/book/rogue/bibble/zizo
-			human.mind.special_items["Ritual's guide book"] = /obj/item/recipe_book/zizo
-
 /datum/patron/inhumen/graggar
 	name = "Graggar"
 	translated_name = "Граггар"
@@ -143,28 +135,11 @@
 	undead_hater = TRUE
 	crafting_recipes = list()
 	worshippers = "Разбойники, наёмники, революционеры, свободолюбивый люд."
-	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison									= CLERIC_ORI,
-					/obj/effect/proc_holder/spell/invoked/appraise										= CLERIC_ORI,
-					/obj/effect/proc_holder/spell/self/twilight_shacklebreaker							= CLERIC_T0,
-					/obj/effect/proc_holder/spell/invoked/twilight_weightofchains						= CLERIC_T0,
-					/obj/effect/proc_holder/spell/invoked/transact										= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/twilight_equalize								= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/lesser_heal 									= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/blood_heal									= CLERIC_T1,
-					/obj/effect/proc_holder/spell/invoked/twilight_churnwealthy							= CLERIC_T2,
-					/obj/effect/proc_holder/spell/self/twilight_amongus									= CLERIC_T2,
-					/obj/effect/proc_holder/spell/invoked/projectile/twilight_crownfortheking			= CLERIC_T2,
-					/obj/effect/proc_holder/spell/invoked/twilight_commieflag							= CLERIC_T3,
-					/obj/effect/proc_holder/spell/self/wildshape_twilight_wingsoffreedom				= CLERIC_T4,
-	)
 	confess_lines = list(
 		"ВСЕ ТИРАНЫ УМРУТ В ОДИНОЧЕСТВЕ!",
 		"ПУТЬ К ПРОЦВЕТАНИЮ ЛЕЖИТ ЧЕРЕЗ РАЗДОР!",
 		"МЫ СРАВНЯЕМ ЦЕРКВИ И ТЮРЬМЫ С ЗЕМЛЕЙ!",
 	)
-
-/datum/objective/hoard_mammons/update_explanation_text()
-	explanation_text = "Accumulate at least [target_mammons] mammons in your possession to be used for Freedom's unstoppable march."
 
 /datum/patron/inhumen/baotha
 	name = "Baotha"
@@ -240,10 +215,8 @@
 			to_chat(follower, span_danger("That acursed cross interupts my prayers!"))
 			return FALSE
 	for(var/mob/living/carbon/human/comrade in view(4, get_turf(follower)))
-		if(istype(comrade.patron, /datum/patron/inhumen/matthios) && comrade != follower)
+		if(istype(comrade.patron, /datum/patron/inhumen/matthios))
 			return TRUE
-	for(var/obj/structure/ritualcircle/matthios in view(1, get_turf(follower)))
-		return TRUE
 	to_chat(follower, span_danger("Matthios will hear any prayer I offer, so long as I have at least one comrade near me!"))
 	return FALSE
 

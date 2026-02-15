@@ -47,7 +47,7 @@
 			return FALSE
 		if(!M.Adjacent(src))
 			return FALSE
-		if(incapacitated(ignore_restraints = TRUE))
+		if(incapacitated())
 			return FALSE
 		if(M.checkmiss(src))
 			return FALSE

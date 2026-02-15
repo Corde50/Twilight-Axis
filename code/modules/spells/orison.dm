@@ -10,7 +10,6 @@
 	chargetime = 0
 	releasedrain = 5
 	miracle = TRUE
-	skipcharge = TRUE
 	devotion_cost = 5
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/holy
@@ -75,7 +74,6 @@
 	status_type = STATUS_EFFECT_REFRESH
 	examine_text = "SUBJECTPRONOUN is surrounded by an aura of gentle light."
 	var/outline_colour = "#ffffff"
-	var/color_mob_light = "#f5edda"
 	var/list/mobs_affected
 	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
 
@@ -91,7 +89,7 @@
 	var/filter = owner.get_filter(BLESSINGOFLIGHT_FILTER)
 	if (!filter)
 		owner.add_filter(BLESSINGOFLIGHT_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
-	mob_light_obj = owner.mob_light(7, 7, _color = color_mob_light)
+	mob_light_obj = owner.mob_light(7, 7, _color ="#f5edda")
 	return TRUE
 
 /datum/status_effect/light_buff/on_remove()

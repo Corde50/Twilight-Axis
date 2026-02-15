@@ -20,12 +20,10 @@
 	if(!single_target) //We want one spell to use the old method so we'll separate this out
 		if(user.job == "Sergeant")
 			affectedjobs = list("Man at Arms", "Watchman")
-		else if(user.job == "Knight")
+		else if(user.job == "Knight Captain")
 			affectedjobs = list("Knight", "Squire")
 		else if(user.job == "Wretch")
 			affectedjobs = list("Brother")
-		else if(user.job == "Migrant")
-			affectedjobs = list("Heartfelt Retinue", "Migrant")
 		else //failsafe in case someone somehow gets the spells without a role that uses them
 			to_chat(user, span_alert("I don't have authority to order anyone!"))
 			revert_cast()
@@ -147,7 +145,7 @@
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
 				return
-		if(user.job == "Knight")
+		if(user.job == "Knight Captain")
 			if(!(target.job in list("Knight", "Squire")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()

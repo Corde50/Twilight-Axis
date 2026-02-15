@@ -132,9 +132,6 @@
 	revert_cast()
 	return FALSE
 
-/obj/effect/proc_holder/spell/invoked/heal/astrata
-	base_icon_state = "regalyscroll"
-
 /obj/effect/proc_holder/spell/invoked/regression
 	name = "Regression"
 	desc = "Rewinds the target wounds, Healing them over time."

@@ -26,21 +26,11 @@
 
 /// Возвращает размер лодаута для указанного ника игрока
 /datum/preferences/proc/get_loadout_size(mob/user)
+
 	var/loadout_size = 2
 	var/modifiers = 0
-	
-	var/plevel = check_patreon_lvl(user.ckey)
-	
-	if(plevel == 1)
+	if(check_patreon_lvl(user.ckey))
 		modifiers = 4
-	if(plevel == 2)
-		modifiers = 8
-	if(plevel == 3)
-		modifiers = 12
-	if(plevel == 4)
-		modifiers = 14
-	if(plevel == 5)
-		modifiers = 16
 
 	return modifiers ? max(loadout_size + modifiers, 1) : loadout_size
 
@@ -94,7 +84,6 @@
 	var/list/categories = list()
 	var/datum/preferences/user_prefs = user.client.prefs
 	var/list/selected_loadout_items = user_prefs.selected_loadout_items
-	var/donat_level = check_patreon_lvl(user.ckey)
 
 	for(var/cat_name in GLOB.loadout_items_by_category)
 		var/list/items_in_cat = GLOB.loadout_items_by_category[cat_name]
@@ -119,29 +108,17 @@
 				
 				if(item.name in selected_loadout_items)
 					selected = TRUE
-			
-				if(item.donat_tier > 0 && donat_level < item.donat_tier)
-					categories[cat_name][item.name] += list(
-						name = item.name,
-						path = item.path,
-						icon = icon,
-						icon_state = icon_state,
-						isDonatorItem = item.donatitem,
-						isSelected = FALSE,
-						unavailable = TRUE,
-						requiredTier = item.donat_tier
-					)
-				else
-					categories[cat_name][item.name] += list(
-						name = item.name,
-						path = item.path,
-						icon = icon,
-						icon_state = icon_state,
-						isDonatorItem = item.donatitem,
-						isSelected = selected
-					)
+
+				categories[cat_name][item.name] += list(
+					name = item.name,
+					path = item.path,
+					icon = icon,
+					icon_state = icon_state,
+					isDonatorItem = item.donatitem,
+					isSelected = selected
+				)
 	data["categories"] = categories
-	data["isDonator"] = donat_level
+	data["isDonator"] = check_patreon_lvl(user.ckey)
 	data["curLoadoutSlots"] = selected_loadout_items.len
 	data["maxLoadoutSlots"] = user_prefs.get_loadout_size(user)
 
@@ -179,21 +156,3 @@
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/loadout_icons)
 	)
-
-/datum/preferences/proc/get_max_save_slots(plevel)
-	var/base_slots = 20
-	var/modifiers = 0
-
-	switch(plevel)
-		if(1)
-			modifiers = 2
-		if(2)
-			modifiers = 3
-		if(3)
-			modifiers = 4
-		if(4)
-			modifiers = 5
-		if(5)
-			modifiers = 6
-
-	return modifiers ? max(base_slots * modifiers, base_slots) : base_slots

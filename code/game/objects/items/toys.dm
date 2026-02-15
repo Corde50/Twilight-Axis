@@ -84,7 +84,6 @@
 	qdel(src)
 
 /obj/item/toy/cards
-	desc = "A source of moral decay, says the church."
 	resistance_flags = FLAMMABLE
 	max_integrity = 50
 	no_use_cd = TRUE
@@ -108,8 +107,7 @@
 
 /obj/item/toy/cards/deck
 	name = "deck of cards"
-	desc = "A deck of simple printing cards, belted out in immense quantities from a \
-	printing press somewhere. An esteemed method to kill time."
+	desc = ""
 	icon = 'icons/obj/toy.dmi'
 	deckstyle = "syndicate"
 	icon_state = "deck_syndicate_full"

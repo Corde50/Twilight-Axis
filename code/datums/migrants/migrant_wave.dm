@@ -15,7 +15,7 @@
 	/// If defined, this is the maximum amount of times this wave can spawn
 	var/max_spawns = null
 	/// The relative probability this wave will be picked, from all available waves
-	var/weight = 20
+	var/weight = 100
 	/// Name of the latejoin spawn landmark for the wave to decide where to spawn
 	var/spawn_landmark = "Pilgrim"
 	/// Text to greet all players in the wave with
@@ -46,7 +46,6 @@
 /datum/migrant_wave/pilgrim
 	name = "Pilgrimage"
 	downgrade_wave = /datum/migrant_wave/pilgrim_down_one
-	weight = 100 // It is a "default" wave 
 	roles = list(
 		/datum/migrant_role/pilgrim = 4,
 	)
@@ -84,7 +83,6 @@
 	roles = list(
 		/datum/migrant_role/adventurer = 4,
 	)
-	weight = 100 // Adventurers is the default spillover role and instead of just setting adventurers slots up high at roundstart we'll let people join in gradually through the round
 	greet_text = "Together with a party of trusted friends we decided to venture out, seeking thrills, glory and treasure, ending up in the misty and damp bog underneath Twilight Axis, perhaps getting ourselves into more than what we bargained for."
 
 /datum/migrant_wave/adventurer_down_one
@@ -120,7 +118,7 @@
 	weight = 16
 	spawn_landmark = "Bandit"
 	roles = list(
-		/datum/migrant_role/bandit = 3,
+		/datum/migrant_role/bandit = 4,
 	)
 
 /datum/migrant_wave/bandit_down_one
@@ -129,10 +127,19 @@
 	can_roll = FALSE
 	spawn_landmark = "Bandit"
 	roles = list(
-		/datum/migrant_role/bandit = 2,
+		/datum/migrant_role/bandit = 3,
 	)
 
 /datum/migrant_wave/bandit_down_two
+	name = "Bandit Raid"
+	downgrade_wave = /datum/migrant_wave/bandit_down_three
+	can_roll = FALSE
+	spawn_landmark = "Bandit"
+	roles = list(
+		/datum/migrant_role/bandit = 2,
+	)
+
+/datum/migrant_wave/bandit_down_three
 	name = "Bandit Raid"
 	can_roll = FALSE
 	spawn_landmark = "Bandit"

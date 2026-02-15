@@ -378,7 +378,6 @@
 		/obj/item/alch/bonemeal = 1,
 		)
 	craftdiff = 2
-	subtype_reqs = FALSE //so you dont craft bandages from bandages
 
 /datum/crafting_recipe/roguetown/alchemy/glut
 	name = "glut (from gnoll flesh)"

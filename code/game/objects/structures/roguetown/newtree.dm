@@ -203,8 +203,7 @@
 
 /obj/structure/flora/newbranch
 	name = "branch"
-	desc = "A branch of a tree. It looks stable enough to walk on, and could \
-	alternately make for good firewood."
+	desc = "A stable branch, should be safe to walk on."
 	icon = 'icons/roguetown/misc/tree.dmi'
 	icon_state = "branch-end1"
 	attacked_sound = 'sound/misc/woodhit.ogg'

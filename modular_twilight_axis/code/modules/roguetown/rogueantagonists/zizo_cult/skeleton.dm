@@ -59,7 +59,6 @@ NECRO SKELETONS
 	head = /obj/item/clothing/head/roguetown/helmet/skullcap/cult
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/zizo
 	neck = /obj/item/clothing/neck/roguetown/bevor/zizo
-	gloves = /obj/item/clothing/gloves/roguetown/plate/zizo
 
 /datum/advclass/cult/skeleton/zizoid/raider
 	name = "Cult skeleton raider"
@@ -75,7 +74,7 @@ NECRO SKELETONS
 		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
@@ -87,17 +86,16 @@ NECRO SKELETONS
 /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider/pre_equip(mob/living/carbon/human/H)
 	..()
 
-	H.STASTR = rand(9, 13)
-	H.STAWIL = rand(8, 12)
+	H.STASTR = rand(7, 13)
+	H.STAWIL = rand(7, 12)
 	H.STACON = rand(8, 13)
 	H.STAINT = rand(1, 3)
-	H.STAPER = rand(10, 12)
-	H.STALUC = rand(8, 12)
+	H.STAPER = rand(7, 12)
+	H.STALUC = rand(5, 12)
 
 	shirt = prob(50) ? /obj/item/clothing/suit/roguetown/armor/chainmail/aalloy : /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
 	r_hand = /obj/item/rogueweapon/sword/long/zizo
 
 	H.energy = H.max_energy
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fetch)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)

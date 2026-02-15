@@ -7,7 +7,6 @@
     antag_job = TRUE
     outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider
     give_bank_account = FALSE
-    hidden_job = TRUE
 
     job_traits = list(
         TRAIT_NOMOOD,
@@ -53,7 +52,7 @@
 
 /datum/job/roguetown/skeleton/zizoid
 	title = "Cult Summon"
-	outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid/raider
+	outfit = /datum/outfit/job/roguetown/cult/skeleton/zizoid
 
 /datum/job/roguetown/skeleton/zizoid/after_spawn(mob/living/carbon/human/spawned, client/player_client)
     . = ..()

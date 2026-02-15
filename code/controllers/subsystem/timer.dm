@@ -449,20 +449,11 @@ SUBSYSTEM_DEF(timer)
 
 ///Returns a string of the type of the callback for this timer
 /datum/timedevent/proc/getcallingtype()
-	if (!callBack)
-		return "NO_CALLBACK"
-
-	var/datum/obj = callBack.object
-	if (!obj)
-		return "NULL"
-
-	if (obj == GLOBAL_PROC)
-		return "GLOBAL_PROC"
-
-	if (QDELETED(obj))
-		return "QDELETED"
-
-	return "[obj.type]"
+	. = "ERROR"
+	if (callBack.object == GLOBAL_PROC)
+		. = "GLOBAL_PROC"
+	else
+		. = "[callBack.object.type]"
 
 /**
  * Create a new timer and insert it in the queue

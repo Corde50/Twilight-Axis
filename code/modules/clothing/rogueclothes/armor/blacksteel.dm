@@ -15,12 +15,11 @@
 	strip_delay = 6 SECONDS
 	smelt_bar_num = 4
 	chunkcolor = "#303036"
-	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/blacksteel
 	name = "ancient blacksteel plate armor"
 	desc = "An antiquated set of blacksteel plate armor, from before Psydonia's blacksmiths had fully mastered the art of tempering such a coveted alloy. If you knew that todae was to be your last, would you've done anything different? Would you've communed with your friends and family, instead of loitering in a line and bickering about the specifics of steel-and-gold? </br>‎  </br>Cherish lyfe as it happens, or you will forever regret the memories you can no longer recall."
-	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
+	body_parts_covered = COVERAGE_FULL
 	icon = 'icons/roguetown/clothing/special/blkknight.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
 	sleeved = 'icons/roguetown/clothing/special/onmob/blkknight.dmi'
@@ -30,7 +29,6 @@
 	max_integrity = ARMOR_INT_CHEST_PLATE_BLACKSTEEL
 	smeltresult = /obj/item/ingot/blacksteel
 	chunkcolor = "#303036"
-	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/blacksteel
 	name = "blacksteel cuirass"
@@ -44,7 +42,6 @@
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
 	chunkcolor = "#303036"
-	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/suit/roguetown/armor/plate/blacksteel
 	slot_flags = ITEM_SLOT_ARMOR
@@ -60,4 +57,3 @@
 	nodismemsleeves = TRUE
 	smeltresult = /obj/item/ingot/blacksteel
 	chunkcolor = "#303036"
-	material_category = ARMOR_MAT_PLATE

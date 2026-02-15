@@ -90,11 +90,6 @@
 		message_admins("[admin] adjusted [key]'s PQ by [amt] for reason: [reason]")
 		log_admin("[admin] adjusted [key]'s PQ by [amt] for reason: [reason]")
 
-		if(amt == 0)
-			world.TgsAnnounceNote(reason, key, admin)
-		else
-			world.TgsAnnouncePQChanges(amt, key, admin, reason)
-
 /client/proc/check_pq()
 	set category = "-Special Verbs-"
 	set name = "PQ - Check"

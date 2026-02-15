@@ -5,12 +5,11 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
 	icon_state = "welfhand"
 	item_state = "welfhand"
-	armor = ARMOR_BLACKOAK //Resistant to blunt and stab, super weak to slash.
+	armor = list("blunt" = 100, "slash" = 10, "stab" = 110, "piercing" = 20, "fire" = 0, "acid" = 0)//Resistant to blunt and stab, super weak to slash.
 	prevent_crits = PREVENT_CRITS_ALL
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
-	max_integrity = ARMOR_INT_SIDE_IRON
-	smeltresult = /obj/item/rogueore/coal
+	max_integrity = 200
 	anvilrepair = /datum/skill/craft/carpentry
 
 /obj/item/clothing/gloves/roguetown/bandages

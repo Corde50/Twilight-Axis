@@ -41,7 +41,7 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 
 	)
-	extra_context = "This subclass is race-limited to: Dark Elves Only. Chooses either free Saddleborn virtue with access to Drider Spider mount, or +1 to Athlethics level."
+	extra_context = "This subclass is race-limited to: Dark Elves Only."
 
 /datum/outfit/job/roguetown/mercenary/anthrax/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -66,14 +66,12 @@
 	beltr = /obj/item/rogueweapon/whip/spiderwhip	
 	beltl = /obj/item/rope/chain
 
-	H.faction += "spider_lowers"
-
 	if(H.mind)
 		var/riding = list("I'm a spider rider (your pet with you)", "I walk on my legs (+1 for athletics)")
 		var/ridingchoice = input(H, "Choose your faith", "FAITH") as anything in riding
 		switch(ridingchoice)
 			if("I'm a spider rider (your pet with you)")
-				apply_virtue(H, new /datum/virtue/utility/riding)
+				l_hand = /obj/item/bait/spider
 			if("I walk on my legs (+1 for athletics)")
 				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_MASTER, TRUE)		
 
@@ -123,8 +121,6 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	r_hand = /obj/item/rogueweapon/sword/sabre/stalker
-
-	H.faction += "spider_lowers"
 
 	if(H.mind)
 		var/weapon = list("Bow and Arrow", "Dual Sabres")

@@ -287,40 +287,46 @@
 
 	var/list/datum/lighting_corner/corners = list()
 	var/list/turf/turfs                    = list()
+	var/thing
 	var/turf/T
 	var/datum/lighting_corner/C
 	if (source_turf)
 		var/oldlum = source_turf.luminosity
 		source_turf.luminosity = CEILING(light_outer_range, 1)
 		for(T in view(CEILING(light_outer_range, 1), source_turf))
-			for (C as anything in T.get_corners(source_turf))
+			for (thing in T.get_corners(source_turf))
+				C = thing
 				corners[C] = 0
 			turfs += T
 			var/turf/open/transparent/O = T
 			if(istype(O) && light_depth >= 1)
-				var/turf/open/B = GET_TURF_BELOW(T)
+				var/turf/open/B = get_step_multiz(T, DOWN)
 				if(isopenturf(B))
-					for(C as anything in B.get_corners(source_turf))
+					for(thing in B.get_corners(source_turf))
+						C = thing
 						corners[C] = 0
 					turfs += B
 					if(light_depth > 1)
 						if(istype(B, /turf/open/transparent))
-							B = GET_TURF_BELOW(B)
+							B = get_step_multiz(B, DOWN)
 							if(isopenturf(B))
-								for(C as anything in B.get_corners(source_turf))
+								for(thing in B.get_corners(source_turf))
+									C = thing
 									corners[C] = 0
 								turfs += B
 						if(light_depth > 2)
 							if(istype(B, /turf/open/transparent))
-								B = GET_TURF_BELOW(B)
+								B = get_step_multiz(B, DOWN)
 								if(isopenturf(B))
-									for(C as anything in B.get_corners(source_turf))
+									for(thing in B.get_corners(source_turf))
+										C = thing
 										corners[C] = 0
 									turfs += B
 			if(light_height >= 1)
-				var/turf/open/B = GET_TURF_ABOVE(T)
+				var/turf/open/B = get_step_multiz(T, UP)
 				if(istype(B, /turf/open/transparent))
-					for(C as anything in B.get_corners(source_turf))
+					for(thing in B.get_corners(source_turf))
+						C = thing
 						corners[C] = 0
 					turfs += B
 		source_turf.luminosity = oldlum
@@ -328,17 +334,20 @@
 	LAZYINITLIST(affecting_turfs)
 	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
 	affecting_turfs += L
-	for(T as anything in L)
+	for(thing in L)
+		T = thing
 		LAZYADD(T.affecting_lights, src)
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
 	affecting_turfs -= L
-	for (T as anything in L)
+	for (thing in L)
+		T = thing
 		LAZYREMOVE(T.affecting_lights, src)
 
 	LAZYINITLIST(effect_str)
 	if (needs_update == LIGHTING_VIS_UPDATE)
-		for (C as anything in corners - effect_str)
+		for (thing in  corners - effect_str) // New corners
+			C = thing
 			LAZYADD(C.affecting, src)
 			if (!C.active)
 				effect_str[C] = 0
@@ -346,21 +355,24 @@
 			APPLY_CORNER(C)
 	else
 		L = corners - effect_str
-		for (C as anything in L)
+		for (thing in L) // New corners
+			C = thing
 			LAZYADD(C.affecting, src)
 			if (!C.active)
 				effect_str[C] = 0
 				continue
 			APPLY_CORNER(C)
 
-		for (C as anything in corners - L) // Existing corners
+		for (thing in corners - L) // Existing corners
+			C = thing
 			if (!C.active)
 				effect_str[C] = 0
 				continue
 			APPLY_CORNER(C)
 
 	L = effect_str - corners
-	for (C as anything in L)
+	for (thing in L) // Old, now gone, corners.
+		C = thing
 		REMOVE_CORNER(C)
 		LAZYREMOVE(C.affecting, src)
 	effect_str -= L

@@ -11,7 +11,6 @@
 	content_overlays = FALSE
 	bloody_icon_state = "bodyblood"
 	sewrepair = TRUE
-	preload = TRUE
 	component_type = /datum/component/storage/concrete/roguetown/surgery_bag
 	populate_contents = list(
 		/obj/item/rogueweapon/surgery/scalpel,
@@ -27,18 +26,6 @@
 		/obj/item/natural/bundle/cloth/bandage/full,
 		/obj/item/needle
 	)
-
-/obj/item/storage/belt/rogue/surgery_bag/PopulateContents()
-	for(var/path in populate_contents)
-		var/obj/item/new_item = SSwardrobe.provide_type(path, loc)
-		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, new_item, null, TRUE, TRUE))
-			new_item.inventory_flip(null, TRUE)
-			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, new_item, null, TRUE, TRUE))
-
-				SSwardrobe.recycle_object(new_item)
-
-/obj/item/storage/belt/rogue/surgery_bag/get_types_to_preload()
-	return populate_contents
 
 /obj/item/storage/belt/rogue/surgery_bag/full/physician
 	populate_contents = list(
@@ -56,12 +43,6 @@
 	/obj/item/needle/pestra //Gets the special needle!
 	)
 
-/obj/item/storage/belt/rogue/surgery_bag/full/physician/get_types_to_preload()
-	return populate_contents
-
-/obj/item/storage/belt/rogue/surgery_bag/empty
-	preload = FALSE 
-	
 /obj/item/storage/belt/rogue/surgery_bag/empty
 	populate_contents = list(
 	)
@@ -72,6 +53,3 @@
 	/obj/item/natural/bundle/cloth/bandage/full,
 	/obj/item/reagent_containers/glass/bottle/alchemical/healthpot
 	)
-
-/obj/item/storage/belt/rogue/pouch/medicine/get_types_to_preload()
-	return populate_contents

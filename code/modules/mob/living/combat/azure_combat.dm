@@ -106,10 +106,6 @@
 		prob_us = max(prob_us, prob_opp)
 		prob_opp = max(prob_us, prob_opp)
 
-	if(has_vendetta() && HU.has_vendetta())
-		prob_us = max(prob_us, prob_opp)
-		prob_opp = max(prob_us, prob_opp)
-
 	if((!instantloss && !instantwin) || (instantloss && instantwin))	//We are both using normal weapons OR we're both using memes. Either way, proceed as normal.
 		visible_message(span_boldwarning("[src] and [HU] clash!"))
 		flash_fullscreen("whiteflash")
@@ -230,11 +226,6 @@
 	if(wear_ring)
 		if(istype(wear_ring, /obj/item/clothing/ring/duelist))
 			return TRUE
-	return FALSE
-
-/mob/living/carbon/human/proc/has_vendetta()
-	if(HAS_TRAIT(src, TRAIT_VENDETTA))
-		return TRUE
 	return FALSE
 
 /// Returns the highest AC worn, or held in hands.

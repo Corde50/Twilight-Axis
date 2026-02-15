@@ -1,5 +1,6 @@
 /mob/living/proc/update_stamina() //update hud and regen after last_fatigued delay on taking
-	calculate_stamina()
+	max_stamina = max_energy / 10
+
 	var/delay = 20
 	if(HAS_TRAIT(src, TRAIT_APRICITY))
 		switch(GLOB.tod)
@@ -23,27 +24,18 @@
 
 	update_health_hud()
 
-/mob/living/proc/calculate_stamina()
-	max_stamina = max_energy / 10
-
 /mob/living/proc/update_energy()
-	calculate_energy()
+	var/athletics_skill = 0
+	athletics_skill = get_skill_level(/datum/skill/misc/athletics)
+	max_energy = (STAWIL + (athletics_skill/2 ) ) * 100
 	if(cmode)
 		if(!HAS_TRAIT(src, TRAIT_BREADY))
 			energy_add(-2)
 	if(HAS_TRAIT(src, TRAIT_INFINITE_ENERGY))
 		energy = max_energy
 	if(HAS_TRAIT(src, TRAIT_BREADY))
-		if(src.mind)
-			energy_add(4) // Battle Ready now gives you a small amount of regeneration.
-			// This generally cover most reasonable in combat usage.
-		else
-			energy_add(2) // Halve effectiveness for NPCs.
-
-/mob/living/proc/calculate_energy()
-	var/athletics_skill = 0
-	athletics_skill = get_skill_level(/datum/skill/misc/athletics)
-	max_energy = (STAWIL + (athletics_skill/2 ) ) * 100
+		energy_add(4) // Battle Ready now gives you a small amount of regeneration.
+		// This generally cover most reasonable in combat usage.
 
 /mob/proc/energy_add(added as num)
 	return
@@ -183,9 +175,6 @@
 
 		if(energy <= 0)
 			addtimer(CALLBACK(src, PROC_REF(Knockdown), 30), 1 SECONDS)
-			var/area/rogue/our_area = get_area(src)
-			if(our_area.necra_area)
-				src.extract_from_deaths_edge()
 		addtimer(CALLBACK(src, PROC_REF(Immobilize), 30), 1 SECONDS)
 		if(iscarbon(src))
 			var/mob/living/carbon/C = src

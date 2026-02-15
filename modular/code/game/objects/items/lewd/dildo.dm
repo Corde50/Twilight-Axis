@@ -8,7 +8,7 @@
 	righthand_file = 'modular/icons/mob/inhands/lewd/items_righthand.dmi'
 	force = 1
 	throwforce = 10
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_SMALL
 	obj_flags = CAN_BE_HIT
 	sellprice = 1
 	var/dildo_type = "human"
@@ -32,7 +32,7 @@
 	if(!can_custom)
 		return FALSE
 	if(src && !user.incapacitated() && in_range(user,src))
-		var/shape_choice = input(user, "Choose a shape for your dildo.","Dildo Shape") as null|anything in list("human", "knotted", "flared")
+		var/shape_choice = input(user, "Choose a shape for your dildo.","Dildo Shape") as null|anything in list("knotted", "human", "flared")
 		if(src && shape_choice && !user.incapacitated() && in_range(user,src))
 			dildo_type = shape_choice
 	update_appearance()
@@ -42,11 +42,11 @@
 			dildo_size = size_choice
 			switch(dildo_size)
 				if("small")
-					pleasure = 6
+					pleasure = 4
 				if("medium")
-					pleasure = 8
+					pleasure = 6
 				if("big")
-					pleasure = 10
+					pleasure = 8
 	update_appearance()
 	return TRUE
 

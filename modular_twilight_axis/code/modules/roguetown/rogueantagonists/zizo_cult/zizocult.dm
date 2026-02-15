@@ -68,9 +68,9 @@
 		add_objective(/datum/objective/zizoserve)
 		if(!change_stats)
 			return
-		H.adjust_skillrank(/datum/skill/combat/knives, 1, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/swords, 1, 1, TRUE)
-		H.adjust_skillrank(/datum/skill/combat/polearms, 1, 1, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/knives, 1, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/swords, 1, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/polearms, 1, 2, TRUE)
 		H.change_stat(STATKEY_INT, -2)
 		H.grant_language(/datum/language/undead)
 		return
@@ -80,14 +80,14 @@
 	H.verbs |= /mob/living/carbon/human/proc/release_minion
 	if(!change_stats)
 		return
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 1, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 1, 1, TRUE)
-	H.change_stat(STATKEY_STR, 2)
-	H.change_stat(STATKEY_PER, 2)
+	H.adjust_skillrank(/datum/skill/combat/knives, 1, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/swords, 1, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 1, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/athletics, 1, 2, TRUE)
+	H.change_stat(STATKEY_STR, 1)
+	H.change_stat(STATKEY_PER, 1)
 	H.change_stat(STATKEY_WIL, 1)
-	H.change_stat(STATKEY_CON, 2)
+	H.change_stat(STATKEY_CON, 1)
 	H.change_stat(STATKEY_SPD, 1)
 	H.change_stat(STATKEY_INT, 1)
 	H.grant_language(/datum/language/undead)
@@ -202,7 +202,7 @@
 	record_round_statistic(STATS_ZIZO_PRAISED)
 	audible_message("\The [src] praises <span class='bold'>Zizo</span>!")
 	playsound(src.loc, pick('modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo1.ogg', 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo2.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo3.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo4.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo5.ogg','modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/zizo6.ogg'), 100)
-	log_say("[key_name(src)] has praised zizo! (zizo cultist verb) [loc_name(src)]")
+	log_say("[src] has praised zizo! (zizo cultist verb)")
 
 /mob/living/carbon/human/proc/communicate()
 	set name = "Communicate with Cult"

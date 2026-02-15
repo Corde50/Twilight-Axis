@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(SSlighting.initialized)
 		if(SSoutdoor_effects.initialized)
 			outdoor_effect = old_outdoor_effect
-			update_sky_and_weather_states()
+			get_sky_and_weather_states()
 
 		recalc_atom_opacity()
 		lighting_object = old_lighting_object
@@ -158,11 +158,6 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
-
-	// only queue for smoothing if SSatom initialized us, and we'd be changing smoothing state
-	if(flags_1 & INITIALIZED_1)
-		QUEUE_SMOOTH_NEIGHBORS(src)
-		QUEUE_SMOOTH(src)
 
 	return W
 
@@ -355,6 +350,8 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	else
 		CALCULATE_ADJACENT_TURFS(src)
 
+	queue_smooth_neighbors(src)
+
 	HandleTurfChange(src)
 
 /turf/open/AfterChange(flags)
@@ -365,33 +362,20 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 //	new /obj/structure/lattice(locate(x, y, z))
 
 /turf/open/proc/try_respawn_mined_chunks(chance = 150, list/weighted_rocks)
-	if(chance <= 0)
-		return
-
 	if(!prob(chance))
 		return
 
-	if(!weighted_rocks || !length(weighted_rocks))
-		return
-
 	var/turf/closed/mineral/random/rogue/picked = pickweight(weighted_rocks)
-	if(!picked)
-		return
-
-	if(src in GLOB.mined_resource_loc)
-		GLOB.mined_resource_loc.Remove(src)
+	GLOB.mined_resource_loc -= src
 
 	ChangeTurf(picked)
 
 	for(var/direction in GLOB.cardinals)
-		var/turf/open/neighbor = get_step(src, direction)
-		if(!istype(neighbor))
+		var/turf/open/turf = get_step(src, direction)
+		if(!istype(turf))
 			continue
-		if(!(neighbor in GLOB.mined_resource_loc))
+		if(!(turf in GLOB.mined_resource_loc))
 			continue
-
-		neighbor.try_respawn_mined_chunks(chance - 25, list(picked = 10))
-
+		try_respawn_mined_chunks(chance-25, list(picked = 10))
 		if(!prob(chance))
 			return
-

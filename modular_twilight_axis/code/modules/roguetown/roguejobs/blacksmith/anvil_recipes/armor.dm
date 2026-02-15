@@ -46,10 +46,10 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/knight/raneshi_hmamluk/raneshi_vmamluk
 
 /datum/anvil_recipe/armor/steel/raneshi_jarhelmet
-	name = "Raneshene jar helmet, Steel (+1 Bronze +1 Steel)"
+	name = "Raneshene jar helmet, Steel (+1 Bronze)"
 	req_bar = /obj/item/ingot/steel
 	req_blade = /obj/item/blade/steel_plate
-	additional_items = list(/obj/item/ingot/bronze, /obj/item/ingot/steel)
+	additional_items = list(/obj/item/ingot/bronze)
 	created_item = /obj/item/clothing/head/roguetown/helmet/raneshi_jarhelmet
 
 /datum/anvil_recipe/armor/steel/raneshen_plated

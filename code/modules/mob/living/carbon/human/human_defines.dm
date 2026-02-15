@@ -123,12 +123,6 @@
 	var/nsfwflavortext = null
 	var/erpprefs = null
 
-	// Cached version
-	var/flavortext_cached = ""
-	var/nsfwflavortext_cached = ""
-	var/ooc_notes_cached = ""
-	var/erpprefs_cached = ""
-
 	var/list/img_gallery = list()
 	
 

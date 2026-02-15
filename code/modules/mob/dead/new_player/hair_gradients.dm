@@ -56,7 +56,3 @@
 /datum/hair_gradient/wavy_spike
 	name = "Spiked Wavy"
 	icon_state = "wavy_spiked"
-
-/datum/hair_gradient/streaks
-	name = "Streaked"
-	icon_state = "streaks"

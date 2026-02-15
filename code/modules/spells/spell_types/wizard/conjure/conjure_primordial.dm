@@ -23,12 +23,6 @@
 	var/spellsgranted = FALSE
 /obj/effect/proc_holder/spell/invoked/conjure_primordial/cast(list/targets, mob/living/user)
 	. = ..()
-
-	if(istype(get_area(user), /area/rogue/indoors/ravoxarena))
-		to_chat(user, span_userdanger("I reach for outer help, but something rebukes me! This challenge is only for me to overcome!"))
-		revert_cast()
-		return
-
 	if(length(conjured_mobs) >= 2)
 		to_chat(user, span_warning("You can not possibly maintain your focus on any more primordials!"))
 		revert_cast()
@@ -107,7 +101,6 @@
 			else
 				target.mind?.current.faction += faction_tag
 				user.say("Amicus declaratus es.")
-				target.notify_faction_change()
 		else if(istype(target, /mob/living/simple_animal))
 			if (faction_tag in target.faction)
 				target.faction -= faction_tag
@@ -115,7 +108,6 @@
 			else
 				target.faction |= faction_tag
 				user.say("Amicus declaratus es.")
-				target.notify_faction_change()
 		return TRUE
 	else if(isturf(targets[1]))
 		var/turf/T = get_turf(targets[1])

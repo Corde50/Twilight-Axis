@@ -13,8 +13,8 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/ENDVRE.ogg'
-	invocations = list(span_blue("quietly recites an orison, invoking the warmth of a dying light."))
-	invocation_type = "emote"
+	invocations = list("ENDURE!","GET UP!","COME ON!") //Kept intentionally vague as to whether it's genuine magic or just a very inspiring attempt to rally the target, like with 'PRAYER'. Invigorate the wounded; give them the motivation to thug it out.
+	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
 	recharge_time = 30 SECONDS
@@ -70,8 +70,6 @@
 						psicross_bonus = 0.4	
 					if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 						psicross_bonus = 0.5
-					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
-						psicross_bonus = 0.7
 					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 						zcross_trigger = TRUE	
 
@@ -401,7 +399,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
-	invocations = list(span_blue("quietly recites a prayer, steadying their mind."))
+	invocations = list(span_blue("faithfully whispers a hushed promise to steady themselves.."))
 	invocation_type = "emote"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -437,8 +435,6 @@
 					psicross_bonus = -6
 				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 					psicross_bonus = -7
-				if(/obj/item/clothing/neck/roguetown/psicross/weeping)
-					psicross_bonus = -9
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
 	if(brute > 100) //A supplemental healing bonus, scaling off of how much damage's currently inflicted onto you.
@@ -509,7 +505,7 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = null
-	invocations = list(span_blue("quietly recites a lesser psalm, soothing their pains."))
+	invocations = list(span_blue("passionately whispers a hushed prayer to steady themselves.."))
 	invocation_type = "emote"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = FALSE
@@ -545,8 +541,6 @@
 					psicross_bonus = -7
 				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 					psicross_bonus = -9
-				if(/obj/item/clothing/neck/roguetown/psicross/weeping)
-					psicross_bonus = -11
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
 	if(brute > 100)
@@ -616,7 +610,7 @@
 	range = 2
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
-	invocations = list(span_blue("quietly recites a greater psalm, soothing their pains."))
+	invocations = list(span_blue("reverently whispers a hushed psalm to steady themselves.."))
 	invocation_type = "emote"
 	sound = null
 	associated_skill = /datum/skill/magic/holy
@@ -653,8 +647,6 @@
 					psicross_bonus = -7
 				if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 					psicross_bonus = -9
-				if(/obj/item/clothing/neck/roguetown/psicross/weeping)
-					psicross_bonus = -11
 				if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
 					zcross_trigger = TRUE		
 	if(brute > 100)

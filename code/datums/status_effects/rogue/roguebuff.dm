@@ -8,11 +8,6 @@
 	effectedstats = list(STATKEY_INT = -2, STATKEY_WIL = 1)
 	duration = 5 MINUTES
 
-/datum/status_effect/buff/drunk/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
-
 /atom/movable/screen/alert/status_effect/buff/drunk
 	name = "Drunk"
 	desc = ""
@@ -34,32 +29,17 @@
 	effectedstats = list(STATKEY_INT = 5)
 	duration = 2 MINUTES
 
-/datum/status_effect/buff/murkwine/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
-
 /datum/status_effect/buff/nocshine
 	id = "nocshine"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/drunknoc
 	effectedstats = list(STATKEY_STR = 1, STATKEY_WIL = 1)
 	duration = 2 MINUTES
 
-/datum/status_effect/buff/nocshine/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
-
 /datum/status_effect/buff/snackbuff
 	id = "snack"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/snackbuff
 	effectedstats = list(STATKEY_WIL = 1)
 	duration = 8 MINUTES
-
-/datum/status_effect/buff/snackbuff/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/snackbuff
 	name = "Good snack"
@@ -78,11 +58,6 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/greatsnackbuff
 	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1)
 	duration = 10 MINUTES
-
-/datum/status_effect/buff/greatsnackbuff/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/greatsnackbuff
 	name = "Great Snack!"
@@ -106,11 +81,6 @@
 	desc = "A meal a day keeps the barber away, or at least it makes it slighly easier."
 	icon_state = "foodbuff"
 
-/datum/status_effect/buff/mealbuff/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
-
 /datum/status_effect/buff/mealbuff/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/goodmeal)
@@ -128,11 +98,6 @@
 	desc = "That meal was something akin to a noble's feast! It's bound to keep me energized for an entire day."
 	icon_state = "foodbuff"
 
-/datum/status_effect/buff/greatmealbuff/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
-
 /datum/status_effect/buff/greatmealbuff/on_apply()
 	. = ..()
 	owner.add_stress(/datum/stressevent/greatmeal)
@@ -144,11 +109,6 @@
 	alert_type = /atom/movable/screen/alert/status_effect/buff/sweet
 	effectedstats = list(STATKEY_LCK = 1)
 	duration = 8 MINUTES
-
-/datum/status_effect/buff/sweet/on_creation(mob/living/new_owner)
-	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
-		return FALSE
-	. = ..()
 
 /atom/movable/screen/alert/status_effect/buff/sweet
 	name = "Sweet embrace"
@@ -982,12 +942,7 @@
 	var/filter = owner.get_filter(BLESSINGOFSUN_FILTER)
 	if (!filter)
 		owner.add_filter(BLESSINGOFSUN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
-
-	if(!mob_light_obj || QDELETED(mob_light_obj))
-		mob_light_obj = owner.mob_light("#fdfbd3", 10, 10)
-	else
-		mob_light_obj.set_light(10, null, 10, l_color = "#fdfbd3")
-
+	mob_light_obj = owner.mob_light("#fdfbd3", 10, 10)
 	return TRUE
 
 
@@ -1007,7 +962,8 @@
 
 /atom/movable/screen/alert/status_effect/buff/moonlightdance
 	name = "Moonlight Dance"
-	desc = "Noc's stony touch lays upon my mind, bringing me wisdom."
+	desc = "Noc's stony touch lay upon my mind, bringing me wisdom."
+	icon_state = "moonlightdance"
 
 
 /datum/status_effect/buff/moonlightdance/on_apply()
@@ -1018,7 +974,7 @@
 
 /datum/status_effect/buff/moonlightdance/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("Noc's silver leaves my eyes."))
+	to_chat(owner, span_warning("Noc's silver leaves my"))
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
 
@@ -1262,7 +1218,7 @@
 /atom/movable/screen/alert/status_effect/vigorized
 	name = "Vigorized"
 	desc = "I feel a surge of energy inside, quickening my speed and sharpening my focus."
-	icon_state = "vigorized"
+	icon_state = "drunk"
 
 /datum/status_effect/buff/vigorized/on_apply()
 	. = ..()
@@ -1462,16 +1418,10 @@
 	QDEL_NULL(mob_effect)
 
 /datum/status_effect/buff/clash/limbguard/process()
-	if(!owner || QDELETED(owner))
-		qdel(src)
-		return
+	if(owner)	//Avoids a runtime where this is called, apparently, before it has time to assign an owner via initialization (???)
 
-	if(!owner.stamina)
-		remove_self()
-		return
-
-	var/datum/reagents/reag = owner.reagents
-	if(reag)
+		//Anti Sci main measures
+		var/datum/reagents/reag = owner.reagents
 		var/datum/reagent/medicine/stampot/stpot = reag.has_reagent(/datum/reagent/medicine/stampot)
 		var/datum/reagent/medicine/strongstam/stpotstrong = reag.has_reagent(/datum/reagent/medicine/strongstam)
 		if(stpot)
@@ -1479,16 +1429,13 @@
 		if(stpotstrong)
 			stpotstrong.metabolization_rate = 20 * REAGENTS_METABOLISM
 
-	if(!owner.cmode)
-		remove_self()
-		return
-
-	if((owner.get_inactive_held_item() != shield_origin) && (owner.get_active_held_item() != shield_origin))
-		remove_self()
-		return
-
-	if(!owner.stamina_add(0.2))
-		remove_self()
+		if(!owner.cmode)
+			remove_self()
+		//We lost the shield we used this with from our hands.
+		if((owner.get_inactive_held_item() != shield_origin) && (owner.get_active_held_item() != shield_origin))
+			remove_self()
+		if(!owner.stamina_add(0.2))	//It essentially halts green regen. Token price so it can't be maintained forever.
+			remove_self()
 
 /datum/status_effect/buff/clash/limbguard/proc/set_offsets()
 	switch(protected_zone)
@@ -1564,10 +1511,7 @@
 #undef LGUARD_INTEG_LOSS
 
 /datum/status_effect/buff/clash/limbguard/proc/remove_self()
-	if(owner)
-		owner.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
-	else
-		qdel(src)
+	owner.remove_status_effect(/datum/status_effect/buff/clash/limbguard)
 
 //Projectile struck our protected limb. Unlike regular Riposte, this will deflect the projectile at no cost.
 /datum/status_effect/buff/clash/limbguard/guard_struck_by_projectile(mob/living/target, obj/P, hit_zone)
@@ -1659,9 +1603,9 @@
 	REMOVE_TRAIT(owner, TRAIT_HEAVYARMOR, src)
 
 /atom/movable/screen/alert/status_effect/buff/psydonic_endurance
-	name = "Psydonic Vitality"
-	desc = "I feel blessed, underneath this holy armor!"
-	icon_state = "stressvg"
+	name = "Psydonic Endurance"
+	desc = "I am protected by blessed Psydonian plate armor."
+	icon_state = "buff"
 
 #undef BLOODRAGE_FILTER
 
@@ -2108,86 +2052,3 @@
 #undef MIRACLE_BLOODHEAL_FILTER
 #undef PSYDON_HEALING_FILTER
 #undef PSYDON_REVIVED_FILTER
-
-/atom/movable/screen/alert/status_effect/buff/dagger_dash
-	name = "Dagger Dash"
-	desc = "I'm slipping through!"
-	icon_state = "daggerdash"
-
-/atom/movable/screen/alert/status_effect/buff/dagger_boost
-	name = "Dagger Boost"
-	desc = "I'm rushing!"
-	icon_state = "daggerboost"
-
-/datum/status_effect/buff/dagger_dash
-	id = "dagger_dash"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/dagger_dash
-	effectedstats = list(STATKEY_SPD = 1)
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3 SECONDS
-	mob_effect_icon_state = "eff_daggerboost"
-	mob_effect_layer = MOB_EFFECT_LAYER_DBOOST
-
-/datum/status_effect/buff/dagger_dash/on_creation(mob/living/new_owner)
-	if(!ishuman(new_owner))
-		return
-	var/spd_bonus = 1
-	var/highest_ac
-	var/mob/living/carbon/human/H = new_owner
-	highest_ac = H.highest_ac_worn()
-	switch(highest_ac)
-		if(ARMOR_CLASS_NONE)
-			duration = 5 SECONDS
-			spd_bonus = 4
-		if(ARMOR_CLASS_LIGHT)
-			duration = 4 SECONDS
-			spd_bonus = 3
-		if(ARMOR_CLASS_MEDIUM)
-			duration = 3 SECONDS
-			spd_bonus = 2
-		if(ARMOR_CLASS_HEAVY)
-			duration = 2 SECONDS
-			spd_bonus = 1
-	new_owner.apply_status_effect(/datum/status_effect/buff/dagger_boost, spd_bonus)
-	. = ..()
-
-/datum/status_effect/buff/dagger_dash/on_apply()
-	owner.pass_flags |= PASSMOB
-	ADD_TRAIT(owner, TRAIT_GRABIMMUNE, TRAIT_STATUS_EFFECT)
-	. = ..()
-
-/datum/status_effect/buff/dagger_dash/on_remove()
-	owner.pass_flags &= ~PASSMOB
-	REMOVE_TRAIT(owner, TRAIT_GRABIMMUNE, TRAIT_STATUS_EFFECT)
-	. = ..()
-
-/datum/status_effect/buff/dagger_boost
-	id = "dagger_boost"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/dagger_boost
-	effectedstats = list(STATKEY_SPD = 1)
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 30 SECONDS
-	var/obj/item/rogueweapon/held_dagger
-
-/datum/status_effect/buff/dagger_boost/on_creation(mob/living/new_owner, spd_boost)
-	if(spd_boost)
-		effectedstats[STATKEY_SPD] = spd_boost
-	held_dagger = new_owner.get_active_held_item()
-	. = ..()
-
-/datum/status_effect/buff/dagger_boost/process()
-	. = ..()
-	if(!istype(owner.get_active_held_item(), held_dagger))
-		owner.remove_status_effect(/datum/status_effect/buff/dagger_boost)
-
-// special lirvas dragonskin buffs
-/datum/status_effect/buff/lirvan_broken_scales
-	id = "lirvan_broken_scales"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/lirvan_broken_scales
-	effectedstats = list(STATKEY_SPD = 4, STATKEY_STR = -4)
-	duration = -1
-
-/atom/movable/screen/alert/status_effect/buff/lirvan_broken_scales
-	name = "Broken Scales"
-	desc = "My natural defenses are gone! I am lighter, but far weaker."
-	icon_state = "buff"

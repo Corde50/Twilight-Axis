@@ -147,9 +147,6 @@
 	H.update_transform()
 	return TRUE
 
-/mob/living/carbon/human/species/goblin/update_body_parts(redraw)
-	update_body()
-
 /mob/living/carbon/human/species/goblin/update_body()
 	remove_overlay(BODY_LAYER)
 	if(!dna || !dna.species)
@@ -374,12 +371,11 @@
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE) // Trash mob
 	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 2, TRUE)
-
+        
 //////////////////   INVADER ZIM	//////////////////
 
 /obj/structure/gob_portal
-	name = "gob portal"
-	desc = "A bright portal torn through the fabric of the world. This can't be good."
+	name = "Gob Portal"
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "shitportal"
 	max_integrity = 200

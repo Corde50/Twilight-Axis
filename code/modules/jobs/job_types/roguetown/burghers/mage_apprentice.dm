@@ -28,8 +28,7 @@
 	job_subclasses = list(
 		/datum/advclass/wapprentice/associate,
 		/datum/advclass/wapprentice/alchemist,
-		/datum/advclass/wapprentice/apprentice,
-		/datum/advclass/wapprentice/practice
+		/datum/advclass/wapprentice/apprentice
 	)
 
 /datum/outfit/job/roguetown/wapprentice

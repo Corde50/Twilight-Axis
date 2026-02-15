@@ -111,9 +111,3 @@
 	ambush_times = list()
 	ambush_mobs = null
 	threat_region = ""
-
-/area/rogue/outdoors/woods/wretch_lair
-	warden_area = FALSE
-	ambush_times = list()
-	ambush_mobs = null
-	threat_region = ""

@@ -36,7 +36,7 @@
 	vary = TRUE
 
 /mob/living/carbon/human/verb/emote_clap()
-	set name = "Хлопать"
+	set name = "Clap"
 	set category = "Noises"
 
 	emote("clap", intentional = TRUE)

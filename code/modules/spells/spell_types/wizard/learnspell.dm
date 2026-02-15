@@ -7,7 +7,6 @@
 	overlay_state = "book1"
 	chargedrain = 0
 	chargetime = 0
-	skipcharge = TRUE
 
 /obj/effect/proc_holder/spell/self/learnspell/cast(list/targets, mob/user = usr)
 	. = ..()

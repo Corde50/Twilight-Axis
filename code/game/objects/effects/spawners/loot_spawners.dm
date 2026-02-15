@@ -370,6 +370,7 @@
 		/obj/item/rogueweapon/katar = 1,
 		/obj/item/rogueweapon/spear/billhook = 2,
 		/obj/item/rogueweapon/halberd = 2,
+		/obj/item/rogueweapon/halberd/glaive = 2,
 		/obj/item/rogueweapon/eaglebeak = 1,
 		/obj/item/rogueweapon/greatsword = 1,
 		/obj/item/rogueweapon/estoc = 1,

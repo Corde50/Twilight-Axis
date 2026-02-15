@@ -1,5 +1,6 @@
 #define pick_list(FILE, KEY) (pick(strings(FILE, KEY)))
 #define pick_list_replacements(FILE, KEY) (strings_replacement(FILE, KEY))
+#define json_load(FILE) (json_decode(file2text(FILE)))
 
 GLOBAL_LIST(string_cache)
 GLOBAL_VAR(string_filename_current_key)
@@ -35,8 +36,6 @@ GLOBAL_VAR(string_filename_current_key)
 		GLOB.string_cache = new
 
 	if(fexists("[directory]/[filename]"))
-		var/path = "[directory]/[filename]"
-		var/file = rustg_file_read(path)
-		GLOB.string_cache[filename] = json_decode(file)
+		GLOB.string_cache[filename] = json_load("[directory]/[filename]")
 	else
 		CRASH("file not found: [directory]/[filename]")

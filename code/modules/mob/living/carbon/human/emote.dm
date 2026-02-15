@@ -8,7 +8,7 @@
 	emote_type = EMOTE_AUDIBLE
 
 /mob/living/carbon/human/verb/emote_cry()
-	set name = "Плакать"
+	set name = "Cry"
 	set category = "Noises"
 
 	emote("cry", intentional = TRUE)
@@ -20,18 +20,12 @@
 		if(C.silent || !C.can_speak())
 			message = "makes a noise. Tears stream down their face."
 
-/datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional, targetted)
-	. = ..()
-	if(. && user.mind)
-		record_featured_stat(FEATURED_STATS_EMOS, user)
-
 
 /datum/emote/living/carbon/human/sexmoanlight
 	key = "sexmoanlight"
 	emote_type = EMOTE_AUDIBLE
 	nomsg = TRUE
 	only_forced_audio = TRUE
-	is_quiet = TRUE
 
 /datum/emote/living/carbon/human/sexmoanlight/can_run_emote(mob/living/user, status_check = TRUE , intentional)
 	. = ..()
@@ -45,7 +39,6 @@
 	emote_type = EMOTE_AUDIBLE
 	nomsg = TRUE
 	only_forced_audio = TRUE
-	is_quiet = TRUE
 
 /datum/emote/living/carbon/human/sexmoanhvy/can_run_emote(mob/living/user, status_check = TRUE , intentional)
 	. = ..()
@@ -60,7 +53,7 @@
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_eyebrow()
-	set name = "Приподнять бровь"
+	set name = "Raise Eyebrow"
 	set category = "Emotes"
 
 	emote("eyebrow", intentional = TRUE)
@@ -72,7 +65,7 @@
 	nomsg = TRUE
 
 /mob/living/carbon/human/verb/emote_psst()
-	set name = "Псс!"
+	set name = "Psst"
 	set category = "Noises"
 
 	emote("psst", intentional = TRUE)
@@ -85,7 +78,7 @@
 	emote_type = EMOTE_AUDIBLE
 
 /mob/living/carbon/human/verb/emote_grumble()
-	set name = "Бухтеть"
+	set name = "Grumble"
 	set category = "Noises"
 
 	emote("grumble", intentional = TRUE)

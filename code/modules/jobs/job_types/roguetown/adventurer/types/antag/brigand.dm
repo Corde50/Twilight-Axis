@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/bandit/brigand
 	category_tags = list(CTAG_BANDIT)
 	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
-	traits_applied = list(TRAIT_MEDIUMARMOR)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_STR = 4,//have you seen this idiot's starting gear and skill spread??
 		STATKEY_WIL = 2,
@@ -41,7 +41,7 @@
 	..()
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
@@ -51,8 +51,8 @@
 					)
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	neck = /obj/item/clothing/neck/roguetown/coif
-	head = /obj/item/clothing/head/roguetown/helmet/kettle
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron
+	head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	id = /obj/item/mattcoin
 	H.adjust_blindness(-3)
 	var/weapons = list("Battleaxe & Cudgel","Flail & Shield")
@@ -66,3 +66,9 @@
 			if("Flail & Shield") //plate users beware, you're in for a scare!
 				backl= /obj/item/rogueweapon/shield/wood
 				beltr = /obj/item/rogueweapon/flail
+
+	if(!istype(H.patron, /datum/patron/inhumen/matthios))
+		var/inputty = input(H, "Would you like to change your patron to Matthios?", "The Transactor calls", "No") as anything in list("Yes", "No")
+		if(inputty == "Yes")
+			to_chat(H, span_warning("My former deity has abandoned me.. Matthios is my new master."))
+			H.set_patron(/datum/patron/inhumen/matthios)

@@ -1,5 +1,5 @@
 /atom
-	var/list/particle_emitters
+	var/list/particle_emitters = list()
 
 /atom/Destroy()
 	. = ..()
@@ -27,12 +27,11 @@
 	pe = new /obj/particle_emitter(loc, time)
 	pe.host = src
 	pe.AddParticles(type, create_new)
-	LAZYINITLIST(particle_emitters)
 	particle_emitters |= pe
 	return pe
 
 /atom/movable/proc/RemoveEmitter(obj/particle_emitter/emitter)
-	LAZYREMOVE(particle_emitters, emitter)
+	particle_emitters -= emitter
 	qdel(emitter)
 
 /atom/movable/proc/RemoveParticles(delete = FALSE)
@@ -93,7 +92,7 @@
 
 /obj/particle_emitter/Destroy(force)
 	. = ..()
-	LAZYREMOVE(host.particle_emitters, src)
+	host.particle_emitters -= src
 	host = null
 
 /obj/particle_emitter/smoke

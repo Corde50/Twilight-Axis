@@ -14,7 +14,6 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	gesture_required = TRUE // Offensive spell
-	human_req = TRUE // Combat spell
 	spell_tier = 3 // AOE
 	invocations = list("Arescentem!")
 	invocation_type = "shout"

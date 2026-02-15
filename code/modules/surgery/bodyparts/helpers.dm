@@ -84,8 +84,12 @@
 
 /mob/living/carbon/get_num_arms(check_disabled = TRUE)
 	. = 0
-	for(var/obj/item/bodypart/affecting as anything in bodyparts)
-		if(affecting.body_part == ARM_RIGHT || affecting.body_part == ARM_LEFT)
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part == ARM_RIGHT)
+			if(!check_disabled || !affecting.disabled)
+				.++
+		if(affecting.body_part == ARM_LEFT)
 			if(!check_disabled || !affecting.disabled)
 				.++
 
@@ -98,13 +102,14 @@
 
 /mob/living/carbon/get_num_legs(check_disabled = TRUE)
 	. = 0
-	for(var/obj/item/bodypart/affecting as anything in bodyparts)
-		if(affecting.body_part & (LEG_RIGHT | LEG_LEFT))
+	for(var/X in bodyparts)
+		var/obj/item/bodypart/affecting = X
+		if(affecting.body_part & LEG_RIGHT)
 			if(!check_disabled || !affecting.disabled)
-				if((affecting.body_part & LEGS) == LEGS)
-					. += 2
-				else
-					.++
+				.++
+		if(affecting.body_part & LEG_LEFT)
+			if(!check_disabled || !affecting.disabled)
+				.++
 
 //sometimes we want to ignore that we don't have the required amount of legs.
 /mob/proc/get_leg_ignore()
@@ -172,17 +177,17 @@
 	var/obj/item/bodypart/L
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/l_arm)
+			L = new /obj/item/bodypart/l_arm()
 		if(BODY_ZONE_R_ARM)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/r_arm)
+			L = new /obj/item/bodypart/r_arm()
 		if(BODY_ZONE_HEAD)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/head)
+			L = new /obj/item/bodypart/head()
 		if(BODY_ZONE_L_LEG)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/l_leg)
+			L = new /obj/item/bodypart/l_leg()
 		if(BODY_ZONE_R_LEG)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/r_leg)
+			L = new /obj/item/bodypart/r_leg()
 		if(BODY_ZONE_CHEST)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/chest)
+			L = new /obj/item/bodypart/chest()
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)
@@ -193,17 +198,17 @@
 	var/obj/item/bodypart/L
 	switch(zone)
 		if(BODY_ZONE_L_ARM)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/l_arm/monkey)
+			L = new /obj/item/bodypart/l_arm/monkey()
 		if(BODY_ZONE_R_ARM)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/r_arm/monkey)
+			L = new /obj/item/bodypart/r_arm/monkey()
 		if(BODY_ZONE_HEAD)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/head/monkey)
+			L = new /obj/item/bodypart/head/monkey()
 		if(BODY_ZONE_L_LEG)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/l_leg/monkey)
+			L = new /obj/item/bodypart/l_leg/monkey()
 		if(BODY_ZONE_R_LEG)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/r_leg/monkey)
+			L = new /obj/item/bodypart/r_leg/monkey()
 		if(BODY_ZONE_CHEST)
-			L = SSwardrobe.provide_type(/obj/item/bodypart/chest/monkey)
+			L = new /obj/item/bodypart/chest/monkey()
 	if(L)
 		L.update_limb(fixed_icon, src)
 		if(robotic)

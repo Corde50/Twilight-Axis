@@ -75,12 +75,7 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-	
-	var/max_emote_length = MAX_MESSAGE_BIGME
-	if(src.client)
-		if(check_patreon_lvl(src.client.ckey))
-			max_emote_length *= 2
-	message = trim(copytext_char(sanitize(message), 1, max_emote_length))
+	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
 	if(check_subtler(message, FALSE))
 		return
@@ -114,12 +109,7 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
-
-	var/max_emote_length = MAX_MESSAGE_BIGME
-	if(src.client)
-		if(check_patreon_lvl(src.client.ckey))
-			max_emote_length *= 2
-	message = trim(copytext_char(html_encode(message), 1, max_emote_length))
+	message = trim(copytext_char(html_encode(message), 1, MAX_MESSAGE_BIGME))
 	message = parsemarkdown_basic(message, limited = TRUE, barebones = TRUE)
 	if(check_subtler(message, FALSE))
 		return

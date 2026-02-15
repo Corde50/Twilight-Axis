@@ -104,9 +104,6 @@
 		"Set 4" = list(
 			STATS_SKILLS_DREAMED = list("name" = "Skills dreamed:", "points" = 0.325, "capacity" = 100),
 		),
-		"Set 5" = list(
-			STATS_VOYEURS = list("name" = "Voyeurs:", "points" = 5, "capacity" = 50),
-		),
 	)
 
 /datum/storyteller/ravox
@@ -146,9 +143,6 @@
 		"Set 4" = list(
 			STATS_YIELDS = list("name" = "Yields made:", "points" = -4.25, "capacity" = -40),
 		),
-		"Set 5" = list(
-			STATS_THRILLSEEKERS = list("name" = "Thrillseekers:", "points" = 5, "capacity" = 50)
-		)
 	)
 
 /datum/storyteller/abyssor
@@ -356,26 +350,23 @@
 		EVENT_TRACK_PERSONAL = 1.4,
 		EVENT_TRACK_MODERATE = 1,
 		EVENT_TRACK_INTERVENTION = 2,
-		EVENT_TRACK_CHARACTER_INJECTION = 0.3,	//Low-chance antagonist spawn
+		EVENT_TRACK_CHARACTER_INJECTION = 1,	//Gaurenteed antagonist spawn
 		EVENT_TRACK_OMENS = 1,
 		EVENT_TRACK_RAIDS = 0,
 	)
 
 	influence_sets = list(
 		"Set 1" = list(
-			STATS_HUGS_MADE = list("name" = "Hugs made:", "points" = 2.5, "capacity" = 70),
+			STATS_KISSES_MADE = list("points" = 7, "capacity" = 70),
 		),
 		"Set 2" = list(
-			STATS_KISSES_MADE = list("name" = "Kisses made:", "points" = 7, "capacity" = 70),
+			STATS_PLEASURES = list("name" = "Pleasures had:", "points" = 5, "capacity" = 50),
 		),
 		"Set 3" = list(
+			STATS_HUGS_MADE = list("name" = "Hugs made:", "points" = 2.5, "capacity" = 70),
+		),
+		"Set 4" = list(
 			STATS_CLINGY_PEOPLE = list("name" = "Clingy people:", "points" = 6.5, "capacity" = 75),
-		),
-		"Set 4" = list(		
-			STATS_BEAUTIFUL_PEOPLE = list("name" = "Beautiful people:", "points" = 9, "capacity" = 50),
-		),
-		"Set 5" = list(
-			STATS_MARRIAGES_MADE = list("name" = "Marriages made:", "points" = 20, "capacity" = 80), //Rare so worth a ton.
 		)
 	)
 
@@ -406,6 +397,7 @@
 	influence_sets = list(
 		"Set 1" = list(
 			STATS_TREES_CUT = list("name" = "Trees felled:", "points" = -0.35, "capacity" = -45),
+
 		),
 		"Set 2" = list(
 			STATS_PLANTS_HARVESTED = list("name" = "Plants harvested:", "points" = 0.75, "capacity" = 100),
@@ -497,22 +489,16 @@
 
 	influence_sets = list(
 		"Set 1" = list(
-			STATS_JUNKIES = list("name" = "Number of junkies:", "points" = 9, "capacity" = 70),
+			STATS_DRUGS_SNORTED = list("name" = "Drugs snorted:", "points" = 4, "capacity" = 85),
 		),
 		"Set 2" = list(
-			STATS_DRUGS_SNORTED = list("name" = "Drugs snorted:", "points" = 4, "capacity" = 85),
+			STATS_ALCOHOL_CONSUMED = list("name" = "Alcohol consumed:", "points" = 0.042, "capacity" = 90),
 		),
 		"Set 3" = list(
 			STATS_ALCOHOLICS = list("name" = "Number of alcoholics:", "points" = 3.25, "capacity" = 60),
 		),
 		"Set 4" = list(
-			STATS_ALCOHOL_CONSUMED = list("name" = "Alcohol consumed:", "points" = 0.042, "capacity" = 90),
-		),
-		"Set 5" = list(
-			STATS_NYMPHOMANIACS = list("name" = "Number of nymphomaniacs:", "points" = 6, "capacity" = 30),
-		),
-		"Set 6" = list(
-			STATS_PLEASURES = list("name" = "Pleasures had:", "points" = 5, "capacity" = 50),
+			STATS_JUNKIES = list("name" = "Number of junkies:", "points" = 9, "capacity" = 70),
 		),
 		"Set 5" = list(
 			STATS_KNOTTED_NOT_LUPIANS = list("name" = "Non-Lupian knottings:", "points" = 5, "capacity" = 50),
@@ -598,14 +584,10 @@
 		),
 		"Set 3" = list(
 			STATS_GREEDY_PEOPLE = list("name" = "Number of greedy people:", "points" = 6.5, "capacity" = 70),
+			STATS_KLEPTOMANIACS = list("name"= "Number of kleptomaniacs:", "points" = 5, "capacity" = 25)
 		),
-		"Set 4" = list(		
-			STATS_INDEBTED = list("name"= "Number of indebted people:", "points" = 5, "capacity" = 25)
-		),
-		"Set 5" = list(
+		"Set 4" = list(
 			STATS_LOCKS_PICKED = list("name" = "Locks picked:", "points" = 3.75, "capacity" = 80),
-		),
-		"Set 6" = list(
 			STATS_GRAVES_ROBBED = list("name" = "Graves robbed:", "points" = 5.25, "capacity" = 60),
 		)
 	)

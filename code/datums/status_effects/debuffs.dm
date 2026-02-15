@@ -140,7 +140,7 @@
 /atom/movable/screen/alert/status_effect/asleep
 	name = "Asleep"
 	desc = ""
-	icon_state = "sleeping"
+	icon_state = "asleep"
 
 //STASIS
 /datum/status_effect/incapacitating/stasis

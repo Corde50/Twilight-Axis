@@ -1,26 +1,3 @@
-/* Twilight Axis Localisation */
-var/list/zone_translations = list(
-		BODY_ZONE_HEAD = "голову",
-		BODY_ZONE_CHEST = "туловище",
-		BODY_ZONE_R_ARM = "правую руку",
-		BODY_ZONE_L_ARM = "левую руку",
-		BODY_ZONE_R_LEG = "правую ногу",
-		BODY_ZONE_L_LEG = "левую ногу",
-		BODY_ZONE_PRECISE_R_INHAND = "правую ладонь",
-		BODY_ZONE_PRECISE_L_INHAND = "левую ладонь",
-		BODY_ZONE_PRECISE_R_FOOT = "правую ступню",
-		BODY_ZONE_PRECISE_L_FOOT = "левую ступню",
-		BODY_ZONE_PRECISE_SKULL = "череп",
-		BODY_ZONE_PRECISE_EARS = "уши",
-		BODY_ZONE_PRECISE_R_EYE = "правый глаз",
-		BODY_ZONE_PRECISE_L_EYE = "левый глаз",
-		BODY_ZONE_PRECISE_NOSE = "нос",
-		BODY_ZONE_PRECISE_MOUTH = "рот",
-		BODY_ZONE_PRECISE_NECK = "шею",
-		BODY_ZONE_PRECISE_STOMACH = "живот",
-		BODY_ZONE_PRECISE_GROIN = "пах"
-	)
-
 /* EMOTE DATUMS */
 /datum/emote/living
 	mob_type_allowed_typecache = /mob/living
@@ -41,7 +18,7 @@ var/list/zone_translations = list(
 	stat_allowed = list(CONSCIOUS, UNCONSCIOUS)
 
 /mob/living/carbon/human/verb/emote_pray()
-	set name = "Молиться"
+	set name = "Pray"
 	set category = "Emotes"
 
 	emote("pray", intentional = TRUE)
@@ -86,7 +63,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_meditate()
-	set name = "Медитировать"
+	set name = "Meditate"
 	set category = "Emotes"
 
 	emote("meditate", intentional = TRUE)
@@ -117,7 +94,7 @@ var/list/zone_translations = list(
 				H.add_stress(/datum/stressevent/noble_bowed_to)
 
 /mob/living/carbon/human/verb/emote_bow()
-	set name = "Поклониться"
+	set name = "Bow"
 	set category = "Emotes"
 
 	emote("bow", intentional = TRUE)
@@ -131,7 +108,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_burp()
-	set name = "Рыгать"
+	set name = "Burp"
 	set category = "Noises"
 
 	emote("burp", intentional = TRUE)
@@ -145,7 +122,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_choke()
-	set name = "Задыхаться"
+	set name = "Choke"
 	set category = "Noises"
 
 	emote("choke", intentional = TRUE)
@@ -158,7 +135,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_crossarms()
-	set name = "Скрестить руки"
+	set name = "Cross Arms"
 	set category = "Emotes"
 
 	emote("crossarms", intentional = TRUE)
@@ -201,7 +178,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_cough()
-	set name = "Кашлять"
+	set name = "Cough"
 	set category = "Noises"
 
 	emote("cough", intentional = TRUE)
@@ -215,7 +192,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_clearthroat()
-	set name = "Прочистить горло"
+	set name = "Clear Throat"
 	set category = "Noises"
 
 	emote("clearthroat", intentional = TRUE)
@@ -228,7 +205,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_dance()
-	set name = "Танцевать"
+	set name = "Dance"
 	set category = "Emotes"
 
 	emote("dance", intentional = TRUE)
@@ -261,7 +238,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_drool()
-	set name = "Пускать слюни"
+	set name = "Drool"
 	set category = "Emotes"
 
 	emote("drool", intentional = TRUE)
@@ -273,7 +250,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_faint()
-	set name = "Свалиться с ног"
+	set name = "Faint"
 	set category = "Emotes"
 
 	emote("faint", intentional = TRUE)
@@ -288,14 +265,33 @@ var/list/zone_translations = list(
 		else
 			L.Knockdown(10)
 
+/datum/emote/living/flap
+	key = "flap"
+	key_third_person = "flaps"
+	message = "flaps their wings."
+	restraint_check = TRUE
+	var/wing_time = 20
+
+/datum/emote/living/carbon/human/flap/can_run_emote(mob/user, status_check = TRUE , intentional)
+	return FALSE
+
+/datum/emote/living/flap/aflap
+	key = "aflap"
+	key_third_person = "aflaps"
+	message = "flaps their wings ANGRILY!"
+	restraint_check = TRUE
+	wing_time = 10
+
+/datum/emote/living/carbon/human/aflap/can_run_emote(mob/user, status_check = TRUE , intentional)
+	return FALSE
+
 /datum/emote/living/frown
 	key = "frown"
 	key_third_person = "frowns"
 	message = "frowns."
 	emote_type = EMOTE_VISIBLE
-
 /mob/living/carbon/human/verb/emote_frown()
-	set name = "Хмуриться"
+	set name = "Frown"
 	set category = "Emotes"
 
 	emote("frown", intentional = TRUE)
@@ -309,7 +305,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_gag()
-	set name = "Подавиться"
+	set name = "Gag"
 	set category = "Noises"
 
 	emote("gag", intentional = TRUE)
@@ -324,7 +320,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_gasp()
-	set name = "Вздохнуть!"
+	set name = "Gasp"
 	set category = "Noises"
 
 	emote("gasp", intentional = TRUE)
@@ -358,7 +354,7 @@ var/list/zone_translations = list(
 				to_chat(H, span_info("The giggling brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/verb/emote_giggle()
-	set name = "Хихикать"
+	set name = "Giggle"
 	set category = "Noises"
 
 	emote("giggle", intentional = TRUE)
@@ -384,7 +380,7 @@ var/list/zone_translations = list(
 				to_chat(H, span_info("The chuckling brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/verb/emote_chuckle()
-	set name = "Усмехнуться"
+	set name = "Chuckle"
 	set category = "Noises"
 
 	emote("chuckle", intentional = TRUE)
@@ -397,7 +393,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_glare()
-	set name = "Сверлить взглядом"
+	set name = "Glare"
 	set category = "Emotes"
 
 	emote("glare", intentional = TRUE)
@@ -408,7 +404,7 @@ var/list/zone_translations = list(
 	message = "grins."
 	emote_type = EMOTE_VISIBLE
 /mob/living/carbon/human/verb/emote_grin()
-	set name = "Ухмыльнуться"
+	set name = "Grin"
 	set category = "Emotes"
 
 	emote("grin", intentional = TRUE)
@@ -421,18 +417,8 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
 
-// Attack blip played randomly.
-/datum/emote/living/attack
-	key = "attack"
-	key_third_person = "attacks"
-	message = ""
-	nomsg = TRUE
-	message_muffled = "makes a muffled groan."
-	emote_type = EMOTE_AUDIBLE
-	show_runechat = FALSE
-
 /mob/living/carbon/human/verb/emote_groan()
-	set name = "Тяжело вздохнуть"
+	set name = "Groan"
 	set category = "Noises"
 
 	emote("groan", intentional = TRUE)
@@ -443,7 +429,7 @@ var/list/zone_translations = list(
 	message = "grimaces."
 	emote_type = EMOTE_VISIBLE
 /mob/living/carbon/human/verb/emote_grimace()
-	set name = "Сморщиться"
+	set name = "Grimace"
 	set category = "Emotes"
 
 	emote("grimace", intentional = TRUE)
@@ -470,7 +456,7 @@ var/list/zone_translations = list(
 	use_params_for_runechat = TRUE
 
 /mob/living/carbon/human/verb/emote_kiss()
-	set name = "Поцеловать"
+	set name = "Kiss"
 	set category = "Emotes"
 
 	emote("kiss", intentional = TRUE, targetted = TRUE)
@@ -490,28 +476,27 @@ var/list/zone_translations = list(
 				do_change = TRUE
 		if(do_change)
 			if(H.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "страстно целует %t."
+				message_param = "kisses %t deeply."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "целует %t в ухо."
+				message_param = "kisses %t on the ear."
 				var/mob/living/carbon/human/E = target
 				if(iself(E) || ishalfelf(E) || isdarkelf(E))
 					if(!E.cmode)
-						to_chat(target, span_love("Это щекотно..."))
+						to_chat(target, span_love("It tickles..."))
 			else if(H.zone_selected == BODY_ZONE_PRECISE_R_EYE || H.zone_selected == BODY_ZONE_PRECISE_L_EYE)
-				message_param = "целует %t в бровь."
+				message_param = "kisses %t on the brow."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_SKULL)
-				message_param = "целует %t в лоб."
+				message_param = "kisses %t on the forehead."
 			else if(H.zone_selected == BODY_ZONE_HEAD)
-				message_param = "целует %t в щеку."
+				message_param = "kisses %t on the cheek."
 			else if(H.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "целует %t между ног."
+				message_param = "kisses %t between the legs."
 				var/mob/living/carbon/human/L = target
 				if(isliving(L))
 					if(!L.cmode)
-						to_chat(target, span_love("Это приятно..."))
+						to_chat(target, span_love("It somewhat stimulating..."))
 			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
-				message_param = "целует %t в [ru_zone_selected]."
+				message_param = "kisses %t on \the [parse_zone(H.zone_selected)]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
 		record_round_statistic(STATS_KISSES_MADE)
@@ -525,7 +510,7 @@ var/list/zone_translations = list(
 	use_params_for_runechat = TRUE
 
 /mob/living/carbon/human/verb/emote_lick()
-	set name = "Облизать"
+	set name = "Lick"
 	set category = "Emotes"
 	emote("lick", intentional = TRUE, targetted = TRUE)
 
@@ -544,21 +529,20 @@ var/list/zone_translations = list(
 				do_change = TRUE
 		if(do_change)
 			if(J.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-				message_param = "лижет губы %t."
+				message_param = "licks %t lips."
 			else if(J.zone_selected == BODY_ZONE_PRECISE_EARS)
-				message_param = "лижет ухо %t."
+				message_param = "licks the ear of %t."
 				var/mob/living/carbon/human/O = target
 				if(iself(O) || ishalfelf(O) || isdarkelf(O))
 					if(!O.cmode)
-						to_chat(target, span_love("Это щекотно..."))
+						to_chat(target, span_love("It tickles..."))
 			else if(J.zone_selected == BODY_ZONE_PRECISE_GROIN)
-				message_param = "лижет %t между ног."
-				to_chat(target, span_love("Это очень приятно..."))
+				message_param = "licks %t between the legs."
+				to_chat(target, span_love("It somewhat stimulating..."))
 			else if(J.zone_selected == BODY_ZONE_HEAD)
-				message_param = "лижет щеку %t"
+				message_param = "licks %t cheek"
 			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
-				message_param = "лижет [ru_zone_selected] %t."
+				message_param = "licks %t [parse_zone(J.zone_selected)]."
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 
 /datum/emote/living/spit
@@ -569,7 +553,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_spit()
-	set name = "Плюнуть"
+	set name = "Spit"
 	set category = "Emotes"
 
 	emote("spit", intentional = TRUE, targetted = TRUE)
@@ -605,7 +589,7 @@ var/list/zone_translations = list(
 	restraint_check = TRUE
 
 /mob/living/carbon/human/verb/emote_hug()
-	set name = "Обнять"
+	set name = "Hug"
 	set category = "Emotes"
 
 	emote("hug", intentional = TRUE, targetted = TRUE)
@@ -675,7 +659,7 @@ var/list/zone_translations = list(
 	..()
 
 /mob/living/carbon/human/verb/emote_slap()
-	set name = "Шлепнуть"
+	set name = "Slap"
 	set category = "Emotes"
 
 	emote("slap", intentional = TRUE, targetted = TRUE)
@@ -707,7 +691,7 @@ var/list/zone_translations = list(
 		H.flash_fullscreen("redflash1")
 
 /mob/living/carbon/human/verb/emote_pinch()
-	set name = "Ущипнуть"
+	set name = "Pinch"
 	set category = "Emotes"
 
 	emote("pinch", intentional = TRUE, targetted = TRUE)
@@ -745,7 +729,7 @@ var/list/zone_translations = list(
 				to_chat(H, span_info("The laughter brings a smile to my face, and fortune to my steps!"))
 
 /mob/living/carbon/human/verb/emote_laugh()
-	set name = "Смеяться"
+	set name = "Laugh"
 	set category = "Noises"
 
 	emote("laugh", intentional = TRUE)
@@ -763,7 +747,7 @@ var/list/zone_translations = list(
 	message_param = "nods at %t."
 	emote_type = EMOTE_VISIBLE
 /mob/living/carbon/human/verb/emote_nod()
-	set name = "Кивнуть"
+	set name = "Nod"
 	set category = "Emotes"
 
 	emote("nod", intentional = TRUE)
@@ -805,7 +789,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_scream()
-	set name = "Кричать"
+	set name = "Scream"
 	set category = "Noises"
 
 	emote("scream", intentional = TRUE)
@@ -980,7 +964,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_rage()
-	set name = "Ярость"
+	set name = "Rage"
 	set category = "Noises"
 
 	emote("rage", intentional = TRUE)
@@ -998,7 +982,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_attnwhistle()
-	set name = "Привлечь свистом"
+	set name = "Attnwhistle"
 	set category = "Noises"
 
 	emote("attnwhistle", intentional = TRUE)
@@ -1024,7 +1008,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_shakehead()
-	set name = "Качать головой"
+	set name = "Shake Head"
 	set category = "Emotes"
 
 	emote("shakehead", intentional = TRUE)
@@ -1037,7 +1021,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_shiver()
-	set name = "Дрожать"
+	set name = "Shiver"
 	set category = "Emotes"
 
 	emote("shiver", intentional = TRUE)
@@ -1052,15 +1036,10 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_sigh()
-	set name = "Вздохнуть"
+	set name = "Sigh"
 	set category = "Noises"
 
 	emote("sigh", intentional = TRUE)
-
-/datum/emote/living/sigh/run_emote(mob/user, params, type_override, intentional, targetted)
-	. = ..()
-	if(. && user.mind)
-		record_featured_stat(FEATURED_STATS_EMOS, user)
 
 /datum/emote/living/whistle
 	key = "whistle"
@@ -1071,7 +1050,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_whistle()
-	set name = "Свистеть"
+	set name = "Whistle"
 	set category = "Noises"
 
 	emote("whistle", intentional = TRUE)
@@ -1085,7 +1064,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_hmm()
-	set name = "Хмм"
+	set name = "Hmm"
 	set category = "Noises"
 
 	emote("hmm", intentional = TRUE)
@@ -1099,7 +1078,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_huh()
-	set name = "Хах?"
+	set name = "Huh"
 	set category = "Noises"
 
 	emote("huh", intentional = TRUE)
@@ -1113,7 +1092,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_hum()
-	set name = "Напевать"
+	set name = "Hum"
 	set category = "Noises"
 
 	emote("hum", intentional = TRUE)
@@ -1124,7 +1103,7 @@ var/list/zone_translations = list(
 	message = "smiles."
 	emote_type = EMOTE_VISIBLE
 /mob/living/carbon/human/verb/emote_smile()
-	set name = "Улыбнуться"
+	set name = "Smile"
 	set category = "Emotes"
 
 	emote("smile", intentional = TRUE)
@@ -1133,22 +1112,6 @@ var/list/zone_translations = list(
 	key = "sneeze"
 	key_third_person = "sneezes"
 	message = "sneezes."
-	message_muffled = "makes a muffled sneeze."
-	emote_type = EMOTE_AUDIBLE
-	show_runechat = FALSE
-
-/datum/emote/living/hmph
-	key = "hmph"
-	key_third_person = "hmphs"
-	message = "hmphs."
-	message_muffled = "makes a muffled sneeze."
-	emote_type = EMOTE_AUDIBLE
-	show_runechat = TRUE
-
-/datum/emote/living/pleased
-	key = "pleased"
-	key_third_person = "pleased"
-	message = "makes a pleased sound."
 	message_muffled = "makes a muffled sneeze."
 	emote_type = EMOTE_AUDIBLE
 	show_runechat = FALSE
@@ -1162,7 +1125,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_shh()
-	set name = "Шикнуть"
+	set name = "Shh"
 	set category = "Noises"
 
 	emote("shh", intentional = TRUE)
@@ -1205,11 +1168,6 @@ var/list/zone_translations = list(
 	key_third_person = "sulks"
 	message = "sulks down sadly."
 
-/datum/emote/living/sulk/run_emote(mob/user, params, type_override, intentional, targetted)
-	. = ..()
-	if(. && user.mind)
-		record_featured_stat(FEATURED_STATS_EMOS, user)
-
 /datum/emote/living/sway
 	key = "sway"
 	key_third_person = "sways"
@@ -1240,7 +1198,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_warcry()
-	set name = "Боевой клич"
+	set name = "Warcry"
 	set category = "Noises"
 
 	emote("warcry", intentional = TRUE)
@@ -1260,7 +1218,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_whimper()
-	set name = "Хныкать"
+	set name = "Whimper"
 	set category = "Noises"
 
 	emote("whimper", intentional = TRUE)
@@ -1279,7 +1237,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_yawn()
-	set name = "Зевать"
+	set name = "Yawn"
 	set category = "Noises"
 
 	emote("yawn", intentional = TRUE)
@@ -1417,7 +1375,7 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_shake()
-	set name = "Покачать головой"
+	set name = "Shake Head"
 	set category = "Emotes"
 
 	emote("shake", intentional = TRUE)
@@ -1429,10 +1387,321 @@ var/list/zone_translations = list(
 	emote_type = EMOTE_VISIBLE
 
 /mob/living/carbon/human/verb/emote_squint()
-	set name = "Прищуриться"
+	set name = "Squint"
 	set category = "Emotes"
 
 	emote("squint", intentional = TRUE)
+
+/datum/emote/living/meow
+	key = "meow"
+	key_third_person = "meows!"
+	message = "meows!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_meow()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Meow"
+		set category = "Noises"
+		emote("meow", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/mrrp
+	key = "mrrp"
+	key_third_person = "mrrps!"
+	message = "mrrps!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_mrrp()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Mrrp"
+		set category = "Noises"
+		emote("mrrp", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/caw
+	key = "caw"
+	key_third_person = "caws!"
+	message = "caws!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_caw()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Caw"
+		set category = "Noises"
+		emote("caw", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/peep
+	key = "peep"
+	key_third_person = "peeps!"
+	message = "peeps!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_peep()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Peep"
+		set category = "Noises"
+		emote("peep", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/hoot
+	key = "hoot"
+	key_third_person = "hoots!"
+	message = "hoots!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_hoot()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Hoot"
+		set category = "Noises"
+		emote("hoot", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/squeak
+	key = "squeak"
+	key_third_person = "squeaks!"
+	message = "squeaks!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_squeak()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Squeak"
+		set category = "Noises"
+		emote("squeak", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/hiss
+	key = "hiss"
+	key_third_person = "hisses!"
+	message = "hisses!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_hiss()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Hiss"
+		set category = "Noises"
+		emote("hiss", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+		set name = "Hiss"
+		set category = "Noises"
+		emote("hiss", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/phiss
+	key = "phiss"
+	key_third_person = "hisses!"
+	message = "hisses!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_phiss()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "PHiss"
+		set category = "Noises"
+		emote("phiss", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/lizard))
+		set name = "PHiss"
+		set category = "Noises"
+		emote("hiss", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/roar
+	key = "roar"
+	key_third_person = "roars!"
+	message = "roars!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_roar()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Roar"
+		set category = "Noises"
+		emote("roar", intentional = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/howl
+	key = "howl"
+	key_third_person = "howls!"
+	message = "howls!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_howl()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Howl"
+		set category = "Noises"
+		emote("howl", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/cackle
+	key = "cackle"
+	key_third_person = "cackles!"
+	message = "cackles!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_cackle()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Cackle"
+		set category = "Noises"
+		emote("cackle", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/whine
+	key = "whine"
+	key_third_person = "whines."
+	message = "whines."
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_whine()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Whine"
+		set category = "Noises"
+		emote("whine", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/fwhine
+	key = "fwhine"
+	key_third_person = "whines like a Venard."
+	message = "whines like a Venard."
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_fwhine()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Whine (Venard)"
+		set category = "Noises"
+		emote("fwhine", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/psnort
+	key = "psnort"
+	key_third_person = "psnorts"
+	message = "lets out an elongated snort."
+	emote_type = EMOTE_AUDIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_snort()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Snort (Animal)"
+		set category = "Noises"
+		emote("psnort", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/oink
+	key = "oink"
+	key_third_person = "oinks."
+	message = "oinks."
+	emote_type = EMOTE_AUDIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_oink()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Oink"
+		set category = "Noises"
+		emote("oink", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/trill
+	key = "trill"
+	key_third_person = "trills!"
+	message = "trills!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_trill()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Trill"
+		set category = "Noises"
+		emote("trill", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
 
 /datum/emote/living/snap
 	key = "snap"
@@ -1442,7 +1711,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_snap()
-	set name = "Щелкнуть 1"
+	set name = "Snap"
 	set category = "Noises"
 
 	emote("snap", intentional = TRUE)
@@ -1455,7 +1724,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_blink()
-	set name = "Моргнуть"
+	set name = "Blink"
 	set category = "Noises"
 
 	emote("blink", intentional = TRUE)
@@ -1468,7 +1737,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_stomp()
-	set name = "Топнуть"
+	set name = "Stomp"
 	set category = "Noises"
 
 	emote("stomp", intentional = TRUE)
@@ -1481,7 +1750,7 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_snap2()
-	set name = "Щелкнуть 2"
+	set name = "Snap2"
 	set category = "Noises"
 
 	emote("snap2", intentional = TRUE)
@@ -1494,10 +1763,163 @@ var/list/zone_translations = list(
 	show_runechat = FALSE
 
 /mob/living/carbon/human/verb/emote_snap3()
-	set name = "Щелкнуть 3"
+	set name = "Snap3"
 	set category = "Noises"
 
 	emote("snap3", intentional = TRUE)
+
+/datum/emote/living/purr
+	key = "purr"
+	key_third_person = "purrs!"
+	message = "purrs!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_purr()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Purr"
+		set category = "Noises"
+		emote("purr", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/moo
+	key = "moo"
+	key_third_person = "moos!"
+	message = "moos!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_moo()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Moo"
+		set category = "Noises"
+		emote("moo", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/bark
+	key = "bark"
+	key_third_person = "barks!"
+	message = "barks!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_bark()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Bark"
+		set category = "Noises"
+		emote("bark", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/growl
+	key = "growl"
+	key_third_person = "growls!"
+	message = "growls!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_growl()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Growl"
+		set category = "Noises"
+		emote("growl", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/prbt
+	key = "prbt"
+	key_third_person = "prbts!"
+	message = "prbts!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_prbt()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Prbt"
+		set category = "Noises"
+		emote("prbt", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/bleat
+	key = "bleat"
+	key_third_person = "bleats!"
+	message = "bleats!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled sound!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_bleat()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Bleat"
+		set category = "Noises"
+		emote("bleat", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/chitter
+	key = "chitter"
+	key_third_person = "chitters!"
+	message = "chitters!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	message_muffled = "makes a muffled chitter!"
+	vary = TRUE
+	show_runechat = FALSE
+	is_animal = TRUE
+
+/mob/living/carbon/human/verb/emote_chitter()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/moth))
+		set name = "Chitter"
+		set category = "Noises"
+		emote("chitter", intentional = TRUE, animal = TRUE)
+	else if (istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
+		set name = "Chitter"
+		set category = "Noises"
+		emote("chitter", intentional = TRUE, animal = TRUE)
+	else
+		to_chat(usr, span_warning("Your tongue doesn't do that"))
+		return
+
+/datum/emote/living/flutter
+	key = "flutter"
+	key_third_person = "flutters!"
+	message = "flutters!"
+	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/emote_flutter()
+	if(istype(usr.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/moth))
+		set name = "Flutter"
+		set category = "Noises"
+		emote("flutter", intentional = TRUE)
+	else
+		to_chat(usr, span_warning("Your back doesn't do that"))
+		return
 
 /datum/emote/living/fsalute
 	key = "fsalute"
@@ -1512,7 +1934,7 @@ var/list/zone_translations = list(
 		user.play_overhead_indicator('icons/mob/overhead_effects.dmi', "stress", 15, MUTATIONS_LAYER, private = user.patron.type, soundin = 'sound/magic/holyshield.ogg', y_offset = 32)
 
 /mob/living/carbon/human/verb/emote_fsalute()
-	set name = "Знак веры"
+	set name = "Faith Salute"
 	set category = "Emotes"
 
 	emote("fsalute", intentional =  TRUE)
@@ -1529,10 +1951,25 @@ var/list/zone_translations = list(
 		. = ..()
 
 /mob/living/carbon/human/proc/emote_ffsalute()
-	set name = "Ложный знак веры"
+	set name = "Fake Faith Salute"
 	set category = "Emotes"
 
 	emote("ffsalute", intentional =  TRUE)
+
+/datum/emote/living/yip
+	key = "yip"
+	key_third_person = "yips"
+	message = "yips!"
+	emote_type = EMOTE_AUDIBLE
+	message_muffled = "makes a muffled yip!"
+	is_animal = TRUE
+	show_runechat = FALSE
+
+/mob/living/carbon/human/verb/yip()
+	set name = "Yip"
+	set category = "Noises"
+
+	emote("yip", intentional = TRUE)
 
 /datum/emote/living/stat_roll
 	var/delay = 2.5 SECONDS
@@ -1598,7 +2035,7 @@ var/list/zone_translations = list(
 		chance -= modifier_sum
 		chance *= chance_per_point
 
-		var/msg = success ? span_green("УСПЕШНО [pick(success_message_list)]") : span_danger("ПРОВАЛ: [pick(failure_message_list)] [chance]%")
+		var/msg = success ? span_green("SUCCEEDS and [pick(success_message_list)]") : span_danger("FAILS and [pick(failure_message_list)] [chance]%")
 
 		msg = replace_pronoun(user, msg)
 
@@ -1652,25 +2089,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"испытывает свою силу...",
-		"прикладывает усилие...",
-		"напрягает мышцы...",
+		"tests their strength...",
+		"puts their back into it...",
+		"begins to flex...",
 	)
 
 	success_message_list = list(
-		"демонстрирует свою силу!",
-		"оправдывает наличие таких мышц!",
-		"доказывает, что силен!",
+		"is brimming with power!",
+		"is truly beefy!",
+		"shows off their muscle!",
 	)
 
 	failure_message_list = list(
-		"руки похожи на ветки",
-		"не сможет поднять даже стул",
-		"стоило есть больше мяса",
+		"is a little wet noodle...",
+		"would lose in an arm wrestling match against a rous...",
+		"should eat more sausage...",
 	)
 
 /mob/living/carbon/human/verb/emote_strength_roll()
-	set name = "%Проверка силы"
+	set name = "Roll Strength"
 	set category = "Emotes"
 
 	emote("strength", intentional = TRUE)
@@ -1683,25 +2120,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"очень тщательно всматривается...",
-		"фокусирует взгляд...",
-		"прищуривается...",
+		"takes a good, long look...",
+		"focuses in...",
+		"squints...",
 	)
 
 	success_message_list = list(
-		"может похвастаться орлиным зрением!",
-		"видит то, что не видят другие!",
-		"видит мельчайшую деталь!",
+		"has eyes like a hawk!",
+		"sees what others don't!",
+		"has perfect 20/20 vision!",
 	)
 
 	failure_message_list = list(
-		"видимо страдает близорукостью!",
-		"похоже обладает катарактой!",
-		"слеп....",
+		"is totally oblivious...",
+		"has cataracts in their eyes...",
+		"is blind...",
 	)
 
 /mob/living/carbon/human/verb/emote_perception_roll()
-	set name = "%Проверка восприятия"
+	set name = "Roll Perception"
 	set category = "Emotes"
 
 	emote("perception", intentional = TRUE)
@@ -1715,25 +2152,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"задумывается...",
-		"сводит свои брови...",
-		"задумчиво чешет подбородок...",
+		"thinks hard...",
+		"furrows their brows...",
+		"rubs their chin...",
 	)
 
 	success_message_list = list(
-		"доказывает, что в рядах одних из умнейших!",
-		"доказывает остроту своего ума!",
-		"что знает, что делает!",
+		"is a genius!",
+		"has a mind sharp as a whip!",
+		"knows what they're doing!",
 	)
 
 	failure_message_list = list(
-		"вообще не понимает где находиться...",
-		"голова, как кочерыжка",
-		"как сложить два плюс два - осталось загадкой...",
+		"is as dumb as a rock...",
+		"has an empty head...",
+		"couldn't put 2 and 2 together...",
 	)
 
 /mob/living/carbon/human/verb/emote_intelligence_roll()
-	set name = "%Проверка интеллекта"
+	set name = "Roll Intelligence"
 	set category = "Emotes"
 
 	emote("intelligence", intentional = TRUE)
@@ -1746,25 +2183,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"испытывает свою крепость",
-		"готовится к удару...",
-		"готовится терпеть...",
+		"tests their toughness...",
+		"braces for impact...",
+		"prepares to endure...",
 	)
 
 	success_message_list = list(
-		"даже не дрогнул!",
-		"крепок, как дуб!",
-		"даже не повел и бровью!",
+		"doesn't even flinch!",
+		"is solid as an oak!",
+		"is one tough nut to crack!",
 	)
 
 	failure_message_list = list(
-		"одни кожа, да кости...",
-		"покачивается, как травинка на ветру",
-		"кости хруки, как хрусталь",
+		"has paper skin...",
+		"would be torn to shreds by a light breeze...",
+		"has a glass jaw...",
 	)
 
 /mob/living/carbon/human/verb/emote_constitution_roll()
-	set name = "%Проверка телосложения"
+	set name = "Roll Constitution"
 	set category = "Emotes"
 
 	emote("constitution", intentional = TRUE)
@@ -1777,25 +2214,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"испытывает свою силу воли...",
-		"собирается с мыслями...",
-		"готовиться доказать свою решимость...",
+		"tests their willpower...",
+		"gathers their courage...",
+		"prepares to use their determination...",
 	)
 
 	success_message_list = list(
-		"преодолевает это",
-		"никогда не сдается!",
-		"пройдет сквозь огонь и воду",
+		"proves mighty!",
+		"never gives up!",
+		"persists through anything!",
 	)
 
 	failure_message_list = list(
-		"труслив как цыпленок",
-		"руки опускаются...",
-		"испугается, даже, если никто не крикнет",
+		"is a weak willed chicken...",
+		"gives up trying...",
+		"faints when they get a splinter...",
 	)
 
 /mob/living/carbon/human/verb/emote_willpower_roll()
-	set name = "%Проверка силы воли"
+	set name = "Roll Willpower"
 	set category = "Emotes"
 
 	emote("willpower", intentional = TRUE)
@@ -1810,25 +2247,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"готовит свой лучшее движение...",
-		"демонстрирует свою гибкость...",
-		"пытается разогнаться...",
+		"prepares their moves...",
+		"starts to get limber...",
+		"tries to get speedy...",
 	)
 
 	success_message_list = list(
-		"показывает блестящий контроль своего тела",
-		"изгибается, словно кошка",
-		"невероятная гибкость",
+		"is in perfect control!",
+		"is as agile as a cat!",
+		"is very flexible!",
 	)
 
 	failure_message_list = list(
-		"похоже владеет двумя левыми",
-		"переигрывает себя",
-		"медленнее улитки...",
+		"has two left feet...",
+		"trips over themselves...",
+		"is slower than a snail...",
 	)
 
 /mob/living/carbon/human/verb/emote_speed_roll()
-	set name = "%Проверка скорости"
+	set name = "Roll Speed"
 	set category = "Emotes"
 
 	emote("speed", intentional = TRUE)
@@ -1837,25 +2274,25 @@ var/list/zone_translations = list(
 	key = "fortune"
 	key_third_person = "for"
 	attempt_message_list = list(
-		"испытывает свою удачу...",
-		"ловит момент...",
-		"взвешивает ставки...",
+		"tries their fortune...",
+		"takes a chance...",
+		"prepares to gamble...",
 	)
 
 	success_message_list = list(
-		"мог бы найти слиток в луже",
-		"будто бы, кроличья лапка в кармане!",
-		"светиться истинной удачей!",
+		"could make an arrow turn around and climb back into the bow!",
+		"has a rabbit's paw in their pocket!",
+		"persists through pure luck!",
 	)
 
 	failure_message_list = list(
-		"понимает, что игра была проигрышной с самого начала...",
-		"удача явно не на твоей стороне",
-		"все ставки против...",
+		"realizes the game was rigged from the start...",
+		"gets dealt a bad hand...",
+		"has the odds stacked against them...",
 	)
 
 /mob/living/carbon/human/verb/emote_fortune_roll()
-	set name = "%Проверка удачи"
+	set name = "Roll Fortune"
 	set category = "Emotes"
 
 	emote("fortune", intentional = TRUE)
@@ -1871,25 +2308,25 @@ var/list/zone_translations = list(
 	)
 
 	attempt_message_list = list(
-		"пытается сохранить самообладание...",
-		"пробует произвести впечатление...",
-		"обдумывает следующий шаг...",
+		"tries to maintain their composure...",
+		"attempts to appear impressive...",
+		"contemplating their next move...",
 	)
 
 	success_message_list = list(
-		"переполнен непоколебимой уверенностью!",
-		"- лицо, подобно каменной маске",
-		"... лик подобен богу",
+		"is brimming with self-confidence!",
+		"has a true poker face!",
+		"is the first crack in the sheer face of god, from them it will spread!",
 	)
 
 	failure_message_list = list(
-		"кипит от неуверенности...",
-		"не очень-то убедительно...",
-		"собранность висит на честном слове...",
+		"is brimming with self-doubt...",
+		"can't quite sell it...",
+		"is holding it together with string and prayer...",
 	)
 
 /mob/living/carbon/human/verb/emote_charisma_roll()
-	set name = "%Проверка харизмы"
+	set name = "Roll Charisma"
 	set category = "Emotes"
 
 	emote("charisma", intentional = TRUE)

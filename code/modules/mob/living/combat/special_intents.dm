@@ -86,8 +86,6 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 
 	var/datum/skill/custom_skill
 
-	var/active_timer
-
 ///To be called by EXTERNAL SOURCES, preferably. We don't want to bog this datum down with built-in costs, but I won't stop you.
 /datum/special_intent/proc/apply_cost(mob/living/L)
 	if(L.has_status_effect(/datum/status_effect/buff/clash/limbguard))	//TODO: A more standardised way of checking for toggle Specials that should prevent others from being used.
@@ -297,14 +295,11 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 /// If you dynamically tweak the cooldown remember that it will /stay/ that way on this datum without
 /// refreshing it with Initial() somewhere.
 /datum/special_intent/proc/apply_cooldown(cd, override = FALSE)
-	var/cd_to_apply = cooldown
-	if(cd)
-		cd_to_apply = cd
 	if(override)
 		howner.remove_status_effect(/datum/status_effect/debuff/specialcd)
-		howner.apply_status_effect(/datum/status_effect/debuff/specialcd, cd_to_apply)
+		howner.apply_status_effect(/datum/status_effect/debuff/specialcd, cd)
 		return
-	howner.apply_status_effect(/datum/status_effect/debuff/specialcd, cd_to_apply)
+	howner.apply_status_effect(/datum/status_effect/debuff/specialcd, cd)
 
 ///A proc that attempts to deal damage to the target, simple mob or carbon. 
 ///Does /not/ crit. Respects armor, but CAN pen unless "no_pen" is set to TRUE. Each Special can have its own way of scaling damage.
@@ -544,7 +539,7 @@ SPECIALS START HERE
 	post_icon_state = "sweep_fx"
 	pre_icon_state = "trap"
 	sfx_pre_delay = 'sound/combat/flail_sweep.ogg'
-	use_doafter = FALSE
+	use_doafter = TRUE
 	respect_adjacency = FALSE
 	delay = 0.7 SECONDS
 	cooldown = 25 SECONDS
@@ -557,10 +552,8 @@ SPECIALS START HERE
 	var/dam = 20
 
 /datum/special_intent/flail_sweep/on_create()
+	. = ..()
 	victim_count = initial(victim_count)
-	if(howner)
-		howner.Immobilize(delay)
-		howner.apply_status_effect(/datum/status_effect/debuff/clickcd, delay)
 
 /datum/special_intent/flail_sweep/apply_hit(turf/T)
 	for(var/mob/living/L in get_hearers_in_view(0, T))
@@ -613,7 +606,7 @@ SPECIALS START HERE
 	tile_coordinates = AXE_SWING_GRID_DEFAULT
 	post_icon_state = "sweep_fx"
 	pre_icon_state = "trap"
-	use_doafter = FALSE
+	use_doafter = TRUE
 	respect_adjacency = FALSE
 	delay = 0.5 SECONDS
 	cooldown = 25 SECONDS
@@ -637,9 +630,7 @@ SPECIALS START HERE
 
 //We play the pre-sfx here because it otherwise it gets played per tile. Sounds funky.
 /datum/special_intent/axe_swing/on_create()
-	if(howner)
-		howner.Immobilize(0.9 SECONDS)	//total pause for all the hits
-		howner.apply_status_effect(/datum/status_effect/debuff/clickcd, 0.9 SECONDS)
+	..()
 	playsound(howner, 'sound/combat/rend_start.ogg', 100, TRUE)
 
 /datum/special_intent/axe_swing/apply_hit(turf/T)
@@ -1064,6 +1055,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 #undef SPECIAL_AOE_AROUND_ORIGIN
 #undef CUSTOM_TIMER_INDEX
 
+
 /datum/special_intent/upper_cut // 1x1 combo finisher, exposed targets get knocked down and take alot of damage, others take low damage.
 	name = "Upper Cut"
 	desc = "Charge up a devastating strike infront of you, if the target is Exposed they will fall over and be flung back with tremendous damage, if not exposed they will be pushed slightly back.."
@@ -1088,18 +1080,15 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 	
 	howner.OffBalance(self_immob_dur)
 	howner.Immobilize(self_immob_dur)
+	animate(howner, pixel_z = pixel_z - 4, time = 3) // windup
 	dam = initial(dam)
 	playsound(howner, 'sound/combat/ground_smash_start.ogg', 100, TRUE)
-	if(HAS_TRAIT(howner, TRAIT_BIGGUY))
-		return // windup
-	else
-		animate(howner, pixel_z = pixel_z - 4, time = 3)
-	
 
 /datum/special_intent/upper_cut/apply_hit(turf/T)
 
-
-	
+	animate(howner, pixel_z = pixel_z + 12, time = 2) //shoryuken
+	animate(pixel_z = prev_pixel_z, transform = turn(transform, pick(-12, 0, 12)), time=2)
+	animate(transform = prev_transform, time = 0)
 
 	for(var/mob/living/L in get_hearers_in_view(0, T))
 		if(L != howner)
@@ -1119,112 +1108,4 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 			L.safe_throw_at(throwtarget, throwdist, 1, howner, force = MOVE_FORCE_EXTREMELY_STRONG) // small pushback and 50 damage on non exposed
 			
 			playsound(howner, 'sound/combat/hits/punch/punch_hard (2).ogg', 100, TRUE)
-	if(HAS_TRAIT(howner, TRAIT_BIGGUY))
-		return
-	else
-		animate(howner, pixel_z = pixel_z + 12, time = 2) //shoryuken
-		animate(pixel_z = prev_pixel_z, transform = turn(transform, pick(-12, 0, 12)), time=2)
-		animate(transform = prev_transform, time = 0)
-
 	..()
-
-/datum/special_intent/dagger_dash
-	name = "Dagger Dash"
-	desc = "Become quicker on your feet and pass through other beings for a short time. Boost scales with worn armor."
-	cooldown = 90 SECONDS
-	stamcost = 25
-
-/datum/special_intent/dagger_dash/process_attack()
-	SHOULD_CALL_PARENT(FALSE)
-	howner.apply_status_effect(/datum/status_effect/buff/dagger_dash)
-	playsound(howner, 'sound/combat/dagger_boost.ogg', 100, TRUE)
-	apply_cooldown()
-
-/datum/special_intent/ignite_dagger
-	name = "Ignite Dagger"
-	desc = "Channel the power of the magycks within the dagger to heat it to an incredible degree."
-	cooldown = 120 SECONDS
-	stamcost = 25
-
-/datum/special_intent/ignite_dagger/on_create()
-	. = ..()
-	howner.visible_message(span_warning("[iparent]'s blade begins to glow intensely in [howner]'s grasp!"))
-	var/obj/item/rogueweapon/huntingknife/idagger/steel/fire/W = iparent
-	active_timer = addtimer(CALLBACK(src, PROC_REF(effect_expire)), 20 SECONDS, TIMER_STOPPABLE)
-	W.damtype = BURN
-	W.icon_state = "fdagger_active"
-	W.inactive_intents = W.possible_item_intents
-	W.possible_item_intents = W.active_intents
-	howner.update_a_intents()
-	howner.regenerate_icons()
-	playsound(W.loc, 'sound/items/firelight.ogg', 100)
-
-/datum/special_intent/ignite_dagger/proc/effect_expire()
-	howner.visible_message(span_warning("[iparent]'s blade cools down!"))
-	var/obj/item/rogueweapon/huntingknife/idagger/steel/fire/W = iparent
-	W.damtype = BRUTE
-	W.icon_state = "fdagger"
-	W.possible_item_intents = W.inactive_intents
-	howner.update_a_intents()
-	howner.regenerate_icons()
-	playsound(W.loc, 'sound/items/firesnuff.ogg', 100)
-
-/datum/special_intent/coat_blade
-	name = "Coat Blade"
-	desc = "Channel the power of the magycks within this sabre to render it as toxic as it once was."
-	cooldown = 120 SECONDS
-	stamcost = 25
-
-/datum/special_intent/coat_blade/on_create()
-	. = ..()
-	howner.visible_message(span_warning("[iparent]'s blade forms a solid layer of poison in [howner]'s grasp!"))
-	var/obj/item/rogueweapon/sword/sabre/bane/W = iparent
-	active_timer = addtimer(CALLBACK(src, PROC_REF(effect_expire)), 20 SECONDS, TIMER_STOPPABLE)
-	W.damtype = TOX
-	W.force -= 15
-	W.update_force_dynamic()
-	W.icon_state = "poisonsaber_active"
-	howner.regenerate_icons()
-	playsound(W.loc, 'sound/misc/lava_death.ogg', 100)
-
-/datum/special_intent/coat_blade/proc/effect_expire()
-	howner.visible_message(span_warning("[iparent]'s coating of toxins falls to the dirt!"))
-	var/obj/item/rogueweapon/sword/sabre/bane/W = iparent
-	W.damtype = BRUTE
-	W.force += 15
-	W.update_force_dynamic()
-	W.icon_state = "poisonsaber"
-	playsound(W.loc, 'sound/magic/bladescrape.ogg', 100)
-
-/datum/special_intent/permafrost
-	name = "Permafrost"
-	desc = "Channel the deathly cold lingering in the blade's memory to spread it to your enemies."
-	cooldown = 120 SECONDS
-	stamcost = 25
-
-/datum/special_intent/permafrost/on_create()
-	. = ..()
-	howner.visible_message(span_warning("[iparent]'s blade forms a layer of ice in [howner]'s grasp!"))
-	var/obj/item/rogueweapon/stoneaxe/battle/ice/W = iparent
-	active_timer = addtimer(CALLBACK(src, PROC_REF(effect_expire)), 20 SECONDS, TIMER_STOPPABLE)
-	W.icon_state = "iceaxeactive"
-	W.toggle_state = "iceaxeactive"
-	W.inactive_intents = W.possible_item_intents
-	W.inactive_gripped_intents = W.gripped_intents
-	W.possible_item_intents = W.active_intents
-	W.gripped_intents = W.active_gripped_intents
-	howner.update_a_intents()
-	howner.regenerate_icons()
-	playsound(W.loc, 'sound/magic/blade_burst.ogg', 100)
-
-/datum/special_intent/permafrost/proc/effect_expire()
-	howner.visible_message(span_warning("The ice covering [iparent]'s blade thaws out!"))
-	var/obj/item/rogueweapon/stoneaxe/battle/ice/W = iparent
-	W.icon_state = "iceaxe"
-	W.toggle_state = null
-	W.possible_item_intents = W.inactive_intents
-	W.gripped_intents = W.inactive_gripped_intents
-	howner.update_a_intents()
-	howner.regenerate_icons()
-	playsound(W.loc, 'sound/foley/waterenter.ogg', 100)
-

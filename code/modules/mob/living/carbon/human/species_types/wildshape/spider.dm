@@ -199,7 +199,6 @@
 	var/turf/T = get_turf(user)
 	playsound(T, pick('sound/vo/mobs/spider/speak (1).ogg','sound/vo/mobs/spider/speak (2).ogg','sound/vo/mobs/spider/speak (3).ogg','sound/vo/mobs/spider/speak (4).ogg'), 100, TRUE, -1)
 	new /obj/item/reagent_containers/food/snacks/rogue/honey/spider(T)
-	return TRUE
 
 /obj/effect/proc_holder/spell/self/weaveweb
 	name = "Weave Web"
@@ -213,4 +212,3 @@
 	var/turf/T = get_turf(user)
 	playsound(T, pick('sound/vo/mobs/spider/speak (1).ogg','sound/vo/mobs/spider/speak (2).ogg','sound/vo/mobs/spider/speak (3).ogg','sound/vo/mobs/spider/speak (4).ogg'), 100, TRUE, -1)
 	new /obj/structure/spider/stickyweb(T)
-	return TRUE

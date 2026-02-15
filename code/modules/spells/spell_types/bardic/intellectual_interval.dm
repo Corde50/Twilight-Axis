@@ -16,7 +16,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/song/intellectual_interval
 	name = "Intellectual Interval"
-	desc = "This song is soft and clinical. My mind feels clearer, given room to think."
+	desc = "This tune is intellectually stimulating."
 	icon_state = "buff"
 	
 

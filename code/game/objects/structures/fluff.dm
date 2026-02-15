@@ -600,15 +600,15 @@
 		if(1)
 			day = "Moon's dae."
 		if(2)
-			day = "Truce's dae."
+			day = "Tiw's dae."
 		if(3)
 			day = "Wedding's dae."
 		if(4)
-			day = "Thunder's dae."
+			day = "Toll's dae."
 		if(5)
-			day = "Feast's dae."
+			day = "Freyja's dae."
 		if(6)
-			day = "Psydon's dae."
+			day = "Saturn's dae."
 		if(7)
 			day = "Sun's dae."
 	. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
@@ -676,15 +676,15 @@
 		if(1)
 			day = "Moon's dae."
 		if(2)
-			day = "Truce's dae."
+			day = "Tiw's dae."
 		if(3)
 			day = "Wedding's dae."
 		if(4)
-			day = "Thunder's dae."
+			day = "Toll's dae."
 		if(5)
-			day = "Feast's dae."
+			day = "Freyja's dae."
 		if(6)
-			day = "Psydon's dae."
+			day = "Saturn's dae."
 		if(7)
 			day = "Sun's dae."
 	. += "Oh no, it's [station_time_timestamp("hh:mm")] on a [day]"
@@ -1125,21 +1125,7 @@
 		/obj/item/clothing/head/roguetown/crown/serpcrown,
 		/obj/item/clothing/head/roguetown/vampire,
 		/obj/item/scomstone,
-		/obj/item/rogueweapon/greatsword/psygsword,
-		/obj/item/clothing/head/roguetown/circlet,
-		/obj/item/carvedgem,  //Some of these aren't particularly worth much, but it'd be REALLY unintuitive for "valuables" to not actually be offerings
-		/obj/item/rogueweapon/huntingknife/stoneknife/kukri,
-		/obj/item/rogueweapon/huntingknife/stoneknife/opalknife,
-		/obj/item/rogueweapon/mace/cudgel/shellrungu,
-		/obj/item/clothing/mask/rogue/facemask/carved,
-		/obj/item/clothing/neck/roguetown/carved,
-		/obj/item/kitchen/fork/carved,
-		/obj/item/kitchen/spoon/carved,
-		/obj/item/clothing/wrists/roguetown/gem,
-		/obj/item/reagent_containers/glass/bowl/carved,
-		/obj/item/reagent_containers/glass/bucket/pot/carved,
-		/obj/item/clothing/mask/rogue/facemask/carved,
-		/obj/item/cooking/platter/carved
+		/obj/item/reagent_containers/lux
 	)
 
 /obj/structure/fluff/statue/evil/attackby(obj/item/W, mob/user, params)
@@ -1161,7 +1147,6 @@
 					break
 			if(proceed_with_offer)
 				playsound(loc,'sound/items/carvty.ogg', 50, TRUE)
-				log_admin("[user] ([user?.ckey]) submitted [W] ([W.type]) to the Idol, worth [W.get_real_price()]")
 				qdel(W)
 				for(var/mob/player in GLOB.player_list)
 					if(player.mind)
@@ -1369,7 +1354,6 @@
 						thebride.adjust_triumphs(1)
 						//Bite the apple first if you want to be the groom.
 						priority_announce("[thegroom.real_name] has married [bridefirst]!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
-						record_round_statistic(STATS_MARRIAGES_MADE)
 						marriage = TRUE
 						qdel(A)
 

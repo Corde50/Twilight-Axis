@@ -8,6 +8,7 @@
 	RegisterSignal(parent, COMSIG_ATOM_GET_EXAMINE_NAME, PROC_REF(get_examine_name))
 
 /datum/component/decal/blood/generate_appearance(_icon, _icon_state, _dir, _layer, _color)
+
 	var/obj/item/I = parent
 	if(I.bigboy)
 		if(!_icon)
@@ -23,9 +24,7 @@
 	var/icon_state = I.icon_state
 	var/static/list/blood_splatter_appearances = list()
 	//try to find a pre-processed blood-splatter. otherwise, make a new one
-	// Use initial icon to avoid cache collisions from dynamic icon objects
-	var/base_icon = isfile(icon) ? "[icon]" : "[initial(I.icon)]"
-	var/index = "[base_icon]-[icon_state]"
+	var/index = "[REF(icon)]-[icon_state]"
 	pic = blood_splatter_appearances[index]
 
 	if(!pic)

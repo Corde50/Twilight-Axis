@@ -506,18 +506,8 @@
 		if(has_status_effect(/datum/status_effect/debuff/netted))
 			remove_status_effect(/datum/status_effect/debuff/netted)
 
-	if(cuff_break) //TA EDIT
-		if(I == handcuffed)
-			handcuffed = null
-			update_handcuffed()
-			
-		if(I == legcuffed)
-			legcuffed = null
-			update_inv_legcuffed()
-
-			if(has_status_effect(/datum/status_effect/debuff/netted))
-				remove_status_effect(/datum/status_effect/debuff/netted)
-		
+	if(cuff_break)
+		. = !((I == handcuffed) || (I == legcuffed))
 		qdel(I)
 		return TRUE
 
@@ -865,9 +855,6 @@
 	if(HAS_TRAIT(src, TRAIT_ZIZOSIGHT))
 		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_ZIZOVISION)
 		see_in_dark = max(see_in_dark, 14)
-	if(HAS_TRAIT(src, TRAIT_ZIZOEYES))
-		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_ZIZOVISION)
-		see_in_dark = max(see_in_dark, 15)
 
 	if(see_override)
 		see_invisible = see_override
@@ -904,7 +891,7 @@
 
 /mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
 	var/list/tally = list()
-	for(var/obj/item/I as anything in get_equipped_items())
+	for(var/obj/item/I in get_equipped_items())
 		for(var/zone in target_zones)
 			if(I.body_parts_covered & zone)
 				tally["[zone]"] = max(1 - I.permeability_coefficient, target_zones["[zone]"])
@@ -1135,7 +1122,8 @@
 		reagents.clear_reagents()
 		for(var/addi in reagents.addiction_list)
 			reagents.remove_addiction(addi)
-	for(var/obj/item/organ/organ as anything in internal_organs)
+	for(var/O in internal_organs)
+		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
 	var/obj/item/organ/brain/B = getorgan(/obj/item/organ/brain)
 	if(B)
@@ -1175,7 +1163,8 @@
 	if(QDELETED(src))
 		return
 	var/organs_amt = 0
-	for(var/obj/item/organ/O as anything in internal_organs)
+	for(var/X in internal_organs)
+		var/obj/item/organ/O = X
 		if(prob(50))
 			organs_amt++
 			O.Remove(src)
@@ -1185,7 +1174,8 @@
 
 /mob/living/carbon/extinguish_mob(itemz = TRUE)
 	if(itemz)
-		for(var/obj/item/I as anything in get_equipped_items())
+		for(var/X in get_equipped_items())
+			var/obj/item/I = X
 			if(I.extinguishable)
 				I.extinguish() //extinguishes our clothes
 			I.acid_level = 0 //washes off the acid on our clothes
@@ -1229,7 +1219,8 @@
 		I.Insert(src)
 
 /mob/living/carbon/proc/update_disabled_bodyparts()
-	for(var/obj/item/bodypart/BP as anything in bodyparts)
+	for(var/B in bodyparts)
+		var/obj/item/bodypart/BP = B
 		BP.update_disabled()
 
 /mob/living/carbon/vv_get_dropdown()
@@ -1252,13 +1243,13 @@
 			return
 		var/list/limb_list = list()
 		if(edit_action == "remove" || edit_action == "augment")
-			for(var/obj/item/bodypart/B as anything in bodyparts)
+			for(var/obj/item/bodypart/B in bodyparts)
 				limb_list += B.body_zone
 			if(edit_action == "remove")
 				limb_list -= BODY_ZONE_CHEST
 		else
 			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			for(var/obj/item/bodypart/B as anything in bodyparts)
+			for(var/obj/item/bodypart/B in bodyparts)
 				limb_list -= B.body_zone
 		var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in sortList(limb_list)
 		if(result)

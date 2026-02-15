@@ -9,7 +9,8 @@
 	associated_skill = /datum/skill/magic/arcane
 	projectile_type = /obj/projectile/magic/profane
 	chargedloop = /datum/looping_sound/invokeholy
-	invocation_type = "none"
+	invocations = list("Oblino!")
+	invocation_type = "whisper"
 	releasedrain = 30
 	chargedrain = 0
 	chargetime = 15
@@ -47,9 +48,9 @@
 	P.fire()
 
 	if (big_cast)
-		user.visible_message(span_danger("[user] conjures and hurls a vicious lance of bone towards [target]!"), span_notice("I hurl a vicious lance of bone at [target]!")) 						//hehe. vicious lance of bone
+		user.visible_message(span_danger("[user] conjures and hurls a vicious lance of bone towards [target]!"), span_notice("I hurl forth a vicious lance of profaned bone at [target]!"))
 	else
-		user.visible_message(span_danger("[user] swings their arm in a wide arc, hurling a splinter of bone towards [target]!"), span_notice("I fling a shard of profaned bone at [target]!"))
+		user.visible_message(span_danger("[user] directs forth a splinter of bone towards [target]!"), span_notice("I fling forth a shard of profaned bone at [target]!"))
 
 	projectile_type = initial(projectile_type)
 
@@ -93,14 +94,11 @@
 	miracle = TRUE
 	devotion_cost = 75
 	cabal_affine = TRUE
-	to_spawn = 1
+	to_spawn = 2
 
 // T2: carbon spawn
 
 /obj/effect/proc_holder/spell/invoked/raise_undead_guard/miracle
-	name = "Raise Deadite"
-	desc = "Raises a singular, weak deadite."
-	chargetime = 3 SECONDS
 	miracle = TRUE
 	devotion_cost = 75
 
@@ -114,7 +112,7 @@
 
 /obj/effect/proc_holder/spell/invoked/rituos
 	name = "Rituos"
-	desc = "Do a zizoid ritual that skeletonises a part of your body, granting you one spell until your next rest. Once your whole body has become skeletonised, you gain full access to the Arcyne, bolstering your knowledge of spells with each additional ritual."
+	desc = "Do a ritual for she of Z that skeletonises a part of your body and bestows upon you arcyne magycks until you next sleep. Once your whole body has become skeletonised you gain full access to the Arcyne, bolstering your knowledge of spells with each additional ritual."
 	clothes_req = FALSE
 	overlay_state = "rituos"
 	associated_skill = /datum/skill/magic/arcane
@@ -233,8 +231,8 @@
 	chargedrain = 0
 	chargetime = 0
 	chargedloop = /datum/looping_sound/invokeholy
-	invocations = list("exhales a dark grey smog, choking any lights nearby.")
-	invocation_type = "emote"
+	invocations = list("Embrace the darkness!")
+	invocation_type = "shout"
 	sound = 'sound/magic/zizo_snuff.ogg'
 	overlay_state = "rune2"
 	associated_skill = /datum/skill/magic/holy

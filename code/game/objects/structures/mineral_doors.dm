@@ -862,8 +862,7 @@
 	repair_skill = /datum/skill/craft/carpentry
 
 /obj/structure/mineral_door/wood/donjon/stone
-	name = "stone door"
-	desc = "A thick, heavy door built into a carved stone frame. It looks durable."
+	desc = "stone door"
 	icon_state = "stone"
 	base_state = "stone"
 	keylock = TRUE
@@ -934,12 +933,12 @@
 // will break picks like no tomorrow. 
 
 /obj/structure/mineral_door/wood/donjon/highsecurity
-	lockdifficulty = 1.8
+	lockdifficulty = 2
 	desc = "A solid metal door with a slot to peek through. The lock has been reinforced."
 
 /obj/structure/mineral_door/wood/donjon/stone/highsecurity
 	// No special desc for this one BC stone doors dont really have one. For whatever reason.
-	lockdifficulty = 1.8
+	lockdifficulty = 2
 
 
 /obj/structure/mineral_door/bars

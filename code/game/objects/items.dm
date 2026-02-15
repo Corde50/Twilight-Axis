@@ -254,24 +254,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	/// Makes this item impossible to enchant, for temporary item
 	var/unenchantable = FALSE
 
-	/// A lazylist to store inhands data.
-	var/list/onprop
-	var/d_type = "blunt"
-	var/force_reupdate_inhand = TRUE
-	/// Sanity for smelteries to avoid runtimes, if this is a bar smelted through ore for exp gain
-	var/smelted = FALSE
-	/// Determines whether this item is silver or not.
-	var/is_silver = FALSE
-	var/last_used = 0
-	var/toggle_state = null
-	var/icon_x_offset = 0
-	var/icon_y_offset = 0
-	var/always_destroy = FALSE
-	/// If TRUE, this item is not allowed to be minted. May be useful for other things later.
-	var/is_important = FALSE
-	/// does this item/weapon circumvent two-stage death during dismemberment? (do not add this to anything but ultra rare shit)
-	var/vorpal = FALSE
-
 /obj/item/Initialize()
 	. = ..()
 	if(!pixel_x && !pixel_y && !bigboy)
@@ -1706,15 +1688,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return .
 	if(isnull(anvilrepair) && isnull(sewrepair))
 		return .
-
-	var/str = "This object can be repaired using "
-	if(anvilrepair)
-		var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
-		str += "<b>[initial(S.name)]</b> and a hammer."
-	if(sewrepair)
-		str += "<b>Sewing</b> and a needle."
-	str = span_info(str)
-	. += str
+	else
+		var/str = "This object can be repaired using "
+		if(anvilrepair)
+			var/datum/skill/S = anvilrepair		//Should only ever be a skill or null
+			str += "<b>[initial(S.name)]</b> and a hammer."
+		if(sewrepair)
+			str += "<b>Sewing</b> and a needle."
+		str = span_info(str)
+		. += str
 
 /obj/item/proc/update_force_dynamic()
 	force_dynamic = (wielded ? force_wielded : force)

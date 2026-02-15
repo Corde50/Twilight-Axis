@@ -21,7 +21,6 @@
 	glow_color = GLOW_COLOR_DISPLACEMENT
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	overlay_state = "ensnare"
-	human_req = TRUE // Combat spell
 	var/area_of_effect = 1
 	var/duration = 5 SECONDS
 	var/delay = 0.8 SECONDS

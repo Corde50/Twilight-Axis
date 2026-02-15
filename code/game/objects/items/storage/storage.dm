@@ -5,7 +5,6 @@
 	var/component_type = /datum/component/storage/concrete
 	var/list/populate_contents = list()
 	obj_flags = CAN_BE_HIT
-	var/preload = FALSE
 
 /obj/item/storage/get_dumping_location(obj/item/storage/source, mob/user)
 	return src
@@ -59,10 +58,3 @@
 	if(contents.len)
 		return FALSE
 	return ..()
-
-
-/// Returns a list of object types to be preloaded by our code
-/// I'll say it again, be very careful with this. We only need it for a few things
-/// Don't do anything stupid, please
-/obj/item/storage/proc/get_types_to_preload()
-	return

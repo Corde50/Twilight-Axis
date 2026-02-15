@@ -11,14 +11,13 @@
 /obj/effect/particle_effect/expl_particles/LateInitialize()
 	var/direct = pick(GLOB.alldirs)
 	var/steps_amt = pick(1;25,2;50,3,4;200)
-
-	for(var/j in 1 to min(steps_amt, 5))
+	for(var/j in 1 to steps_amt)
 		step(src, direct)
-
-	QDEL_IN(src, 6 SECONDS)
+		stoplag(1)
+	qdel(src, 6)
 
 /datum/effect_system/expl_particles
-	number = 5
+	number = 10
 
 /datum/effect_system/expl_particles/start()
 	for(var/i in 1 to number)

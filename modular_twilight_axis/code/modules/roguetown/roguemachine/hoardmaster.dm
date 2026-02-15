@@ -25,7 +25,7 @@
 			unlocked_cats+="Sawbones"
 		if("Hedge Knight")
 			unlocked_cats+="Knight"
-		if("Hedge Mage")
+		if("Rogue Mage")
 			unlocked_cats+="Mage"
 		if("Knave")
 			unlocked_cats+="Knave"

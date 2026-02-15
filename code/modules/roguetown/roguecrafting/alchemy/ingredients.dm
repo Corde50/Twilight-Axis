@@ -292,8 +292,7 @@
 
 /obj/item/alch/berrypowder
 	name = "berry powder"
-	desc = "Berries ground and dried into a soft, fragrant powder. It'd probably \
-	make you sneeze if you accidentally inhaled any."
+	desc = "Berries ground and dried into a soft fragrant powder."
 	icon_state = "berrypowder"
 
 	major_pot = /datum/alch_cauldron_recipe/berrypoison
