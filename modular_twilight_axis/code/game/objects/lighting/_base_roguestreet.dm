@@ -9,7 +9,7 @@
 	density = FALSE
 
 /obj/machinery/light/roguestreet/orange
-	icon = 'icons/roguetown/misc/tallstructure.dmi'
+	icon = 'modular_twilight_axis/icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "o_slamp1"
 	base_state = "o_slamp"
 	brightness = 10.9
@@ -18,7 +18,7 @@
 	resistance_flags = null // This one is craftable.
 
 /obj/machinery/light/roguestreet/orange/midlamp
-	icon = 'icons/roguetown/misc/64x64.dmi'
+	icon = 'modular_twilight_axis/icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "o_midlamp1"
 	base_state = "o_midlamp"
 	pixel_x = -16

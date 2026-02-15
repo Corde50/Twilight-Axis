@@ -20,6 +20,10 @@ map dun_manor
 endmap
 
 map dun_world
+	votable
+endmap
+
+map rockhill_ta
 	default
 	votable
 endmap

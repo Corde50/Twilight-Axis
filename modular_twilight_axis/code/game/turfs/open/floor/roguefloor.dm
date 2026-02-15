@@ -11,6 +11,7 @@
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	icon = 'modular_twilight_axis/icons/turf/roguefloor.dmi'
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
 	smooth = SMOOTH_TRUE
@@ -38,6 +39,7 @@
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
+	icon = 'modular_twilight_axis/icons/turf/roguefloor.dmi'
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
 	smooth = SMOOTH_TRUE
@@ -55,3 +57,6 @@
 
 /turf/open/floor/rogue/grassgrey/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)
+
+/turf/open/floor/rogue/tile/bath
+	icon = 'modular_twilight_axis/icons/turf/roguefloor.dmi'
