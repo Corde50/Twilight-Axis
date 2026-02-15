@@ -6,10 +6,10 @@
 	invocation_type = "shout"
 	projectile_type = /obj/projectile/magic/icicle_spike
 	cost = 6
-	spell_tier = 3
+	spell_tier = 2
 	releasedrain = 30
-	chargetime = 6 SECONDS
-	recharge_time = 50 SECONDS
+	chargetime =  20
+	recharge_time = 35 SECONDS
 	action_icon = 'modular_twilight_axis/icons/mob/actions/roguespells.dmi'
 	overlay_state = "flight"
 	glow_color = "#e0f7ff"
@@ -148,7 +148,7 @@
 /obj/projectile/magic/icicle_spike
 	name = "Icicle spike"
 	icon_state = "flight"
-	damage = 20
+	damage = 45
 	damage_type = BRUTE 
 	flag = "magic"
 	speed = 1.3

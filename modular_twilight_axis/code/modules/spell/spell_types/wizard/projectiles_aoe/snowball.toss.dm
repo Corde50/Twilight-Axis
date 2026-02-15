@@ -6,7 +6,7 @@
 	invocation_type = "shout"
 	projectile_type = /obj/projectile/magic/frost_sphere
 	cost = 4
-	spell_tier = 3
+	spell_tier = 2
 	releasedrain = 20
 	chargetime = 20
 	recharge_time = 21 SECONDS
@@ -24,7 +24,7 @@
 /obj/projectile/magic/frost_sphere
 	name = "magic snowball"
 	icon_state = "pulse1" 
-	damage = 15
+	damage = 45
 	damage_type = BRUTE
 	nodamage = FALSE
 	flag = "magic"
