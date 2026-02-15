@@ -5,6 +5,13 @@
 	credits = "Helbrede - Helheim"
 	musicpath = list('modular_twilight_axis/sound/music/combat_grenzelhoft_mage.ogg')
 
+/datum/combat_music/watchman
+	name = "Watchman"
+	desc = ""
+	shortname = "Watchman"
+	credits = "Какое то жесткое стучание по батареям, я не помню от куда."
+	musicpath = list('modular_twilight_axis/sound/music/combat/combat_watchman.ogg')
+
 /datum/combat_music/inquis_blackpowder
 	name = "Inquisition - Blackpowder Order"
 	desc = ""

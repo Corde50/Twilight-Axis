@@ -5,13 +5,14 @@
 */
 
 /datum/map_adjustment/template/rockhill
-	map_file_name = "rockhill.dmm"
+	map_file_name = "rockhill_ta.dmm"
 	realm_name = "Rockhill"
-	// blacklist = list()
-	///slot_adjust = list(
-	//)
+	blacklist = list(/datum/job/roguetown/manorguard)
+	slot_adjust = list(
+	)
 	title_adjust = list(
 		/datum/job/roguetown/physician = list(display_title = "Court Physician"),
+		/datum/job/roguetown/manorguard_enigma = list(display_title = "Man At Arms"),
 	)
 	tutorial_adjust = list(
 		/datum/job/roguetown/physician = "You are a master physician, trusted by the Duke themself to administer expert care to the Royal family, the court, \

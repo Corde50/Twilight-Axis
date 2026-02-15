@@ -1,0 +1,295 @@
+/datum/job/roguetown/manorguard_enigma
+	title = "Man at Arms"
+	flag = MANATARMSENIGMA
+	department_flag = GARRISON
+	faction = "Station"
+	total_positions = 4
+	spawn_positions = 4 //Not getting filled either way
+
+	allowed_sexes = list(MALE, FEMALE)
+	allowed_races = ACCEPTED_RACES
+	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
+	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
+	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \
+				Trained regularly in combat and siege warfare, you deal with threats - both within and without. \
+				Obey your Sergeant-at-Arms, the Marshal, and the Crown. Show the nobles and knights your respect, so that you may earn it in turn. Not as a commoner, but as a soldier.."
+	display_order = JDO_MANATARMSENIGMA
+	whitelist_req = TRUE
+
+	outfit = /datum/outfit/job/roguetown/manorguard_enigma
+	advclass_cat_rolls = list(CTAG_MENATARMS_ENIGMA = 20)
+
+	give_bank_account = TRUE
+	min_pq = 5
+	max_pq = null
+	round_contrib_points = 2
+	same_job_respawn_delay = 30 MINUTES
+
+	cmode_music = 'sound/music/combat_ManAtArms.ogg'
+	job_subclasses = list(
+		/datum/advclass/manorguard_enigma/footsman,
+		/datum/advclass/manorguard_enigma/skirmisher,
+
+		/datum/advclass/manorguard_enigma/standard_bearer,
+
+	)
+
+/datum/outfit/job/roguetown/manorguard_enigma
+	job_bitflag = BITFLAG_GARRISON
+
+/datum/job/roguetown/manorguard_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(istype(H.cloak, /obj/item/clothing/cloak/tabard/stabard/guard))
+			var/obj/item/clothing/S = H.cloak
+			var/index = findtext(H.real_name, " ")
+			if(index)
+				index = copytext(H.real_name, 1,index)
+			if(!index)
+				index = H.real_name
+			S.name = "man-at-arms surcoat ([index])"
+
+/datum/outfit/job/roguetown/manorguard_enigma
+	cloak = /obj/item/clothing/cloak/tabard/stabard/guard
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes
+	beltl = /obj/item/rogueweapon/mace/cudgel
+	belt = /obj/item/storage/belt/rogue/leather
+	backr = /obj/item/storage/backpack/rogue/satchel
+	id = /obj/item/scomstone/bad/garrison
+
+// Melee goon
+/datum/advclass/manorguard_enigma/footsman
+	name = "Footman"
+	tutorial = "You are a professional soldier of the realm, specializing in melee warfare. Stalwart and hardy, your body can both withstand and dish out powerful strikes.."
+	outfit = /datum/outfit/job/roguetown/manorguard_enigma/footsman
+
+	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	traits_applied = list(TRAIT_HEAVYARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 2,// seems kinda lame but remember guardsman bonus!!
+		STATKEY_INT = 1,
+		STATKEY_CON = 3, //Like other footman classes their main thing is constitution more so than anything else
+		STATKEY_WIL = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/axes = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/whipsflails = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/slings = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
+	)
+
+/datum/outfit/job/roguetown/manorguard_enigma/footsman/pre_equip(mob/living/carbon/human/H)
+	..()
+
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+
+	H.adjust_blindness(-3)
+	if(H.mind)
+		var/weapons = list("Warhammer & Shield","Axe & Shield","Sword & Shield","Halberd & Sword","Greataxe & Sword")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Warhammer & Shield")
+				beltr = /obj/item/rogueweapon/mace/warhammer/steel
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Axe & Shield")
+				beltr = /obj/item/rogueweapon/stoneaxe/battle
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Sword & Shield")
+				l_hand = /obj/item/rogueweapon/sword/long
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				backl = /obj/item/rogueweapon/shield/iron
+			if("Halberd & Sword")
+				l_hand = /obj/item/rogueweapon/sword
+				r_hand = /obj/item/rogueweapon/halberd
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/scabbard/sword
+			if("Greataxe & Sword")
+				l_hand = /obj/item/rogueweapon/sword
+				r_hand = /obj/item/rogueweapon/greataxe/steel
+				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				beltr = /obj/item/rogueweapon/scabbard/sword
+		var/riding = list("I love saiga (your pet with you)", "I walk on my legs (+1 for athletics)")
+		var/ridingchoice = input(H, "Choose your faith", "FAITH") as anything in riding
+		switch(ridingchoice)
+			if("I love saiga (your pet with you)")
+				apply_virtue(H, new /datum/virtue/utility/riding)
+			if("I walk on my legs (+1 for athletics)")
+				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_EXPERT, TRUE)		
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/manatarms = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		)
+	H.verbs |= /mob/proc/haltyell
+
+	if(H.mind)
+
+		var/helmets = list(
+		"Simple Helmet" 	= /obj/item/clothing/head/roguetown/helmet,
+		"Kettle Helmet" 	= /obj/item/clothing/head/roguetown/helmet/kettle,
+		"Bascinet Helmet"	= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet Helmet"		= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Winged Helmet" 	= /obj/item/clothing/head/roguetown/helmet/winged,
+		"Skull Cap"			= /obj/item/clothing/head/roguetown/helmet/skullcap,
+		"None"
+		)
+		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+
+/datum/advclass/manorguard_enigma/skirmisher
+	name = "Skirmisher"
+	tutorial = "You are a professional soldier of the realm, specializing in ranged implements. You sport a keen eye, looking for your enemies weaknesses."
+	outfit = /datum/outfit/job/roguetown/manorguard_enigma/skirmisher
+
+	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	subclass_stats = list(
+		STATKEY_STR = 1,
+		STATKEY_SPD = 2,
+		STATKEY_PER = 2,
+		STATKEY_WIL = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/bows = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/slings = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
+	)
+	extra_context = "Chooses between Light Armor (Dodge Expert) & Medium Armor."
+
+/datum/outfit/job/roguetown/manorguard_enigma/skirmisher/pre_equip(mob/living/carbon/human/H)
+	..()
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+
+	H.adjust_blindness(-3)
+	if(H.mind)
+		var/weapons = list("Crossbow","Bow","Sling", "Arquebus Pistol", "Arquebus Rifle")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		var/armor_options = list("Maille Set(Medium Armor)", "Brigandine Armor(Expert Dodger)")
+		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMS") as anything in armor_options
+		H.set_blindness(0)
+		switch(weapon_choice)
+			if("Crossbow")
+				beltr = /obj/item/quiver/bolts
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			if("Bow")
+				beltr = /obj/item/quiver/arrows
+				backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			if("Sling")
+				beltr = /obj/item/quiver/sling/iron
+				r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
+			if("Arquebus Pistol")
+				beltr = /obj/item/quiver/twilight_bullet/lead
+				r_hand = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol
+			if("Arquebus Rifle")
+				beltr = /obj/item/quiver/twilight_bullet/lead
+				r_hand = /obj/item/gun/ballistic/twilight_firearm/arquebus/bayonet
+		switch(armor_choice)
+			if("Maille Set(Medium Armor)")
+				armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
+				shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+				wrists = /obj/item/clothing/wrists/roguetown/bracers
+				pants = /obj/item/clothing/under/roguetown/chainlegs
+				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+			if("Brigandine Armor(Expert Dodger)")
+				head = /obj/item/clothing/head/roguetown/helmet/kettle
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue
+				wrists = /obj/item/clothing/wrists/roguetown/bracers/brigandine
+				pants = /obj/item/clothing/under/roguetown/brigandinelegs
+				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+
+		backpack_contents = list(
+			/obj/item/rogueweapon/huntingknife/combat/messser = 1,
+			/obj/item/rope/chain = 1,
+			/obj/item/storage/keyring/manatarms = 1,
+			/obj/item/rogueweapon/scabbard/sheath = 1,
+			/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+			)
+		H.verbs |= /mob/proc/haltyell
+
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+
+/datum/advclass/manorguard_enigma/standard_bearer
+	name = "Standard Bearer"
+	tutorial = "You are one of the Man at Arms entrusted with the keep's standard when you sally out into battle. \
+	Your fellow soldiers know to rally around you, should you keep it safe."
+	outfit = /datum/outfit/job/roguetown/manorguard_enigma/standard_bearer
+	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	traits_applied = list(TRAIT_STANDARD_BEARER, TRAIT_MEDIUMARMOR)
+	subclass_stats = list(
+		STATKEY_STR = 2, // seems kinda lame but remember guardsman bonus!!
+		STATKEY_PER = 1,
+		STATKEY_CON = 2,
+		STATKEY_WIL = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+	)
+	maximum_possible_slots = 1
+
+/datum/outfit/job/roguetown/manorguard_enigma/standard_bearer/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+	head = /obj/item/clothing/head/roguetown/helmet/kettle
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+	wrists =/obj/item/clothing/wrists/roguetown/bracers
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	r_hand = /obj/item/rogueweapon/spear/keep_standard
+	backl = /obj/item/rogueweapon/scabbard/gwstrap
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/manatarms = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+	)
+	H.verbs |= /mob/proc/haltyell

@@ -408,3 +408,13 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define ARMOR_MAT_PLATE 1
 #define ARMOR_MAT_LEATHER 2
 #define ARMOR_MAT_CHAINMAIL 3
+
+/*
+	Formerly bitflags, now we are strings
+	Currently used for classes
+*/
+
+// ENIGMA - ROCKHILL ROLES
+
+#define CTAG_MENATARMS_ENIGMA "CAT_MENATARMS_ENIGMA"
+#define CTAG_SHERIFF "CAT_SHERIFF"			
