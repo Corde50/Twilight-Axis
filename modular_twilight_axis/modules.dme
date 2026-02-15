@@ -31,6 +31,8 @@
 #include "code\modules\admin\adminhelp.dm"
 #include "code\modules\admin\discord.dm"
 #include "code\modules\admin\ticket_ss.dm"
+#include "code\modules\admin\verbs\debug_admin_dress_full.dm"
+#include "code\controllers\subsystem\rogue\role_class_handler\role_class_handler_admin_full_dress.dm"
 #include "code\modules\cargo\packsrogue\adventure_supplies.dm"
 #include "code\modules\cargo\packsrogue\alcohols.dm"
 #include "code\modules\cargo\packsrogue\Brigand.dm"
