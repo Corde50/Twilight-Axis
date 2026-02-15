@@ -464,3 +464,14 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 				"Я убью Десять также, как и убила Псайдона!", \
 				"Загасите бьющиеся сердце Эоры!"))
 		V.add_stress(/datum/stressevent/leechcult)
+
+/datum/status_effect/debuff/fleshmend_exhaustion 
+    id = "fleshmend_tax"
+    duration = 6000
+    alert_type = /atom/movable/screen/alert/status_effect/fleshmend_tax
+    effectedstats = list(STATKEY_STR = -2, STATKEY_SP = -2, STATKEY_CON = -2)
+
+/atom/movable/screen/alert/status_effect/fleshmend_tax
+    name = "Истощение плоти"
+    desc = "Ваше тело было исцелено магией Зизо, но цена была высока. Сила, выносливость и скорость снижены."
+    icon_state = "debuff"

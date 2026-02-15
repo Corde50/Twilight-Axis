@@ -837,6 +837,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.fully_heal()
 	target.revive()
 	target.regenerate_limbs()
+	target.apply_status_effect(/datum/status_effect/debuff/fleshmend_exhaustion)
 	target.heal_wounds()
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
 
