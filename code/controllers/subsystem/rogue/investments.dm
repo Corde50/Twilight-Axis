@@ -23,7 +23,9 @@ SUBSYSTEM_DEF(investments)
 
 /datum/controller/subsystem/investments/proc/regenerate_investments(force_reload = FALSE)
 	if(force_reload)
-		available_investments = list()
+		for(var/datum/investment/I in available_investments)
+			qdel(I)
+		available_investments.Cut()
 
 	if(available_investments.len < max_available_investments)
 		var/list/datum/investment/investments = subtypesof(/datum/investment)
@@ -60,16 +62,16 @@ SUBSYSTEM_DEF(investments)
 				SStreasury.steward_machine.say("Инвестиция '[investment.investment_name]' провалилась! Деньги потеряны.")
 				awaiting_investments -= investment
 				qdel(investment)
-
-			if(investment.regular_payment)
-				active_investments += investment
-				awaiting_investments -= investment
-				SStreasury.steward_machine.say("Инвестиция '[investment.investment_name]' успешна, доход должен расти.")
 			else
-				SStreasury.steward_machine.say("Мы получили одноразовую выплату за инвестицию '[investment.investment_name]'.")
-				money_earned += investment.onetime_payment
-				awaiting_investments -= investment
-				qdel(investment)
+				if(investment.regular_payment)
+					active_investments += investment
+					awaiting_investments -= investment
+					SStreasury.steward_machine.say("Инвестиция '[investment.investment_name]' успешна, доход должен расти.")
+				else
+					SStreasury.steward_machine.say("Мы получили одноразовую выплату за инвестицию '[investment.investment_name]'.")
+					money_earned += investment.onetime_payment
+					awaiting_investments -= investment
+					qdel(investment)
 
 	for(var/datum/investment/investment in active_investments)
 		money_earned += investment.regular_payment
@@ -104,7 +106,7 @@ SUBSYSTEM_DEF(investments)
 	regular_payment = 60
 	fail_chance = 5
 
-/datum/investment/real_estate
+/datum/investment/trade_routes
 	investment_name = "Инвестиция в торговые пути"
 	price = 8000
 	pay_eta = 60 MINUTES
@@ -209,7 +211,7 @@ SUBSYSTEM_DEF(investments)
 	regular_payment = 16
 	fail_chance = 3
 
-/datum/investment/feodal_lands
+/datum/investment/overseas_feodal_lands
 	investment_name = "Инвестиция в заморские феодальные земли"
 	price = 850
 	pay_eta = 10 MINUTES

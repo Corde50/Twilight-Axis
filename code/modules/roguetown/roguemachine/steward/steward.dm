@@ -555,7 +555,7 @@
 			for(var/datum/investment/investment in SSinvestments.awaiting_investments)
 				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
 				contents += "<b>[investment.investment_name]</b><BR>"
-				contents += "Осталось времени: [floor((investment.time_purchased + investment.pay_eta) - world.time)/10/60] минут<BR>"
+				contents += "Осталось времени: [round(((investment.time_purchased + investment.pay_eta) - world.time) / (1 MINUTES))] минут<BR>"
 				contents += "</div>"
 
 			contents += "------ДОСТУПНЫЕ------<BR>"
@@ -568,7 +568,7 @@
 					contents += "Одноразовая выплата: [investment.onetime_payment]m<BR>"
 				contents += "Цена: [investment.price]m "
 				contents += "Шанс провала: [investment.fail_chance]%<BR>"
-				contents += "ETA: [investment.pay_eta/10/60] минут<BR>"
+				contents += "ETA: [round(investment.pay_eta / (1 MINUTES))] минут<BR>"
 				if(SStreasury.treasury_value < investment.price)
 					contents += "<a href='?src=\ref[src];buy_investment=\ref[investment]'>\[НЕДОСТАТОЧНО СРЕДСТВ\]</a>"
 				else 
