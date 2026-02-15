@@ -81,7 +81,7 @@
 	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
 	icon_state = "musketball_runed"
 	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead/runelock
-	range = 20
+	range = 100
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
 	embedchance = 100
 	woundclass = BCLASS_STAB
