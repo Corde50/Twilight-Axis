@@ -7,6 +7,8 @@
 #define TAB_STATISTICS 7
 #define TAB_PAYDAY 8
 
+#define TAB_INVESTMENTS 10
+
 /obj/structure/roguemachine/steward
 	name = "nerve master"
 	desc = "A magitech device connected to the royal treasury. Stewards can manage payroll by interacting with it."
@@ -311,6 +313,14 @@
 			return
 		new_autoexport = round(new_autoexport)
 		SStreasury.autoexport_percentage = new_autoexport * 0.01
+
+	if(href_list["buy_investment"])
+		if(SSinvestments.purchase_investment(locate(href_list["buy_investment"])))
+			say("Инвестиция произведена!")
+			playsound(src, 'sound/misc/machineyes.ogg', 100, FALSE, -1)
+		else 
+			say("Недостаточно денег в казне")
+			playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 	
 	return attack_hand(usr)
 
@@ -359,6 +369,8 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_PAYDAY]'>\[Daily Payments\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_LOG]'>\[Log\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_STATISTICS]'>\[Statistics\]</a><BR>"
+			contents += "<BR>"
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_INVESTMENTS]'>\[Инвестиции\]</a><BR>"
 			contents += "</center>"
 		if(TAB_BANK)
 			var/total_deposit = 0
@@ -527,6 +539,42 @@
 					contents += " <a href='?src=\ref[src];removedailypay=[job_name]'>\[Remove\]</a><BR>"
 			else
 				contents += "<center>No daily payments configured.</center><BR>"
+
+		if(TAB_INVESTMENTS)
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a>"
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_INVESTMENTS]'>\[ОБНОВИТЬ\]</a><BR>"
+			contents += "<center>Инвестиции<BR>"
+			contents += "------АКТИВНЫЕ------<BR>"
+			for(var/datum/investment/investment in SSinvestments.active_investments)
+				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
+				contents += "<b>[investment.investment_name]</b><BR>"
+				contents += "Доход: [investment.regular_payment]m/минута<BR>"
+				contents += "</div>"
+
+			contents += "------ОЖИДАЮЩИЕ------<BR>"
+			for(var/datum/investment/investment in SSinvestments.awaiting_investments)
+				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
+				contents += "<b>[investment.investment_name]</b><BR>"
+				contents += "Осталось времени: [floor((investment.time_purchased + investment.pay_eta) - world.time)/10/60] минут<BR>"
+				contents += "</div>"
+
+			contents += "------ДОСТУПНЫЕ------<BR>"
+			for(var/datum/investment/investment in SSinvestments.available_investments)
+				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
+				contents += "<b>[investment.investment_name]</b><BR>"
+				if(investment.regular_payment != 0)
+					contents += "Доход: [investment.regular_payment]m/минута<BR>"
+				if(investment.onetime_payment != 0)
+					contents += "Одноразовая выплата: [investment.onetime_payment]m<BR>"
+				contents += "Цена: [investment.price]m "
+				contents += "Шанс провала: [investment.fail_chance]%<BR>"
+				contents += "ETA: [investment.pay_eta/10/60] минут<BR>"
+				if(SStreasury.treasury_value < investment.price)
+					contents += "<a href='?src=\ref[src];buy_investment=\ref[investment]'>\[НЕДОСТАТОЧНО СРЕДСТВ\]</a>"
+				else 
+					contents += "<a href='?src=\ref[src];buy_investment=\ref[investment]'>\[КУПИТЬ\]</a>"
+				contents += "</div>"
+			
 
 	if(!canread)
 		contents = stars(contents)
