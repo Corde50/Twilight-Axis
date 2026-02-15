@@ -1,3 +1,6 @@
+/datum/job/roguetown/inquisitor
+	allowed_races = RACES_TOLERATED_UP
+
 /datum/outfit/job/roguetown/inquisitor/inspector/pre_equip(mob/living/carbon/human/H)
 	. = ..()
 	if(isdarkelf(H))
