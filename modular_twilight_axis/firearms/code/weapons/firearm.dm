@@ -752,7 +752,6 @@
 	locktype = "Wheellock"
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/jagerrifle/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(istype(I, /obj/item/rogueweapon/huntingknife))
 		user.visible_message(span_warning("[user] starts attaching a bayonet to [src]."))
 		if(do_after(user, 6 SECONDS))
