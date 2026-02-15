@@ -169,6 +169,12 @@
 			if(ishuman(owner))
 				var/mob/living/carbon/human/human_owner = owner
 				human_owner.hud_used?.stressies?.flick_pain(TRUE)
+				var/suppress_attack_blip = FALSE //At 'Always' we're guaranteed to have already emoted due to a successful attack.
+				if(user.client?.prefs?.attack_blip_frequency == ATTACK_BLIP_PREF_ALWAYS || user.client?.prefs?.attack_blip_frequency == ATTACK_BLIP_PREF_NEVER)
+					suppress_attack_blip = TRUE 
+				if(!suppress_attack_blip)
+					user.emote("attack", forced = TRUE)
+				human_owner.emote("paincrit", forced = TRUE)
 
 			if(user)
 				if(user.has_flaw(/datum/charflaw/addiction/thrillseeker))
@@ -176,14 +182,14 @@
 					if(CAR)
 						user.sate_addiction()
 						user.add_stress(/datum/stressevent/thrill)
-						CAR.ejaculate()
+						CAR.ejaculate_special()
 
 				if(owner.has_flaw(/datum/charflaw/addiction/thrillseeker))
 					var/datum/component/arousal/CAR = owner.GetComponent(/datum/component/arousal)
 					if(CAR)
 						owner.sate_addiction()
 						owner.add_stress(/datum/stressevent/thrill)
-						CAR.ejaculate()
+						CAR.ejaculate_special()
 
 			return crit_attempt
 	if(ishuman(owner))

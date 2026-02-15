@@ -132,6 +132,7 @@ GLOBAL_LIST_INIT(admin_verbs_sounds, list(
 GLOBAL_PROTECT(admin_verbs_sounds)
 GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/cmd_admin_dress,
+	/client/proc/cmd_admin_dress_full,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
 	/client/proc/set_dynex_scale,
@@ -147,6 +148,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 //	/client/proc/admin_change_sec_level,
 //	/client/proc/run_weather,
 	/client/proc/run_particle_weather,
+	/client/proc/manage_fog_schedule,
 	/client/proc/run_custom_particle_weather,
 	/client/proc/show_tip,
 	/client/proc/smite
@@ -215,7 +217,9 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/returntolobby,
 	/client/proc/set_tod_override,
-	/client/proc/stresstest_chat
+	/client/proc/stresstest_chat,
+	/client/proc/performance_stress_test, // Uncomment these if you tick the performance stress test .dm file
+	/client/proc/cleanup_stress_test_mobs
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, GLOBAL_PROC_REF(release)))
 GLOBAL_PROTECT(admin_verbs_possess)

@@ -21,6 +21,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	var/holy_area = FALSE
 	var/cell_area = FALSE
 	var/drow_area = FALSE
+	var/necra_area = FALSE
 	var/ceiling_protected = FALSE //Prevents tunneling into these from above
 
 /area/rogue/Entered(mob/living/carbon/human/guy)
@@ -35,6 +36,11 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 		guy.apply_status_effect(/datum/status_effect/buff/anthraxbuff)
 	if((src.holy_area == TRUE) && HAS_TRAIT(guy, TRAIT_UNDIVIDED)) // get a long-lingering mood buff so long as we visit the church daily as Undivided.
 		guy.add_stress(/datum/stressevent/seeblessed)
+	if((src.necra_area == TRUE) && !(guy.has_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)||(guy.has_status_effect(/datum/status_effect/debuff/deathdoorwilloss)))) //Necra saps at wil
+		if(HAS_TRAIT(guy, TRAIT_SOUL_EXAMINE))
+			guy.apply_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)
+		else
+			guy.apply_status_effect(/datum/status_effect/debuff/deathdoorwilloss)
 
 /area/rogue/indoors
 	name = "indoors rt"
@@ -50,6 +56,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	soundenv = 2
 	plane = INDOOR_PLANE
 	converted_type = /area/rogue/outdoors
+	fog_protected = TRUE
 
 /area/rogue/indoors/banditcamp
 	name = "Bandit Camp"
@@ -181,6 +188,7 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	soundenv = 8
 	plane = INDOOR_PLANE
 	converted_type = /area/rogue/outdoors/exposed
+	fog_protected = TRUE
 
 /area/rogue/outdoors/exposed
 	icon_state = "exposed"
@@ -255,10 +263,11 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	soundenv = 16
 	droning_sound = 'sound/music/area/townstreets.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
-	droning_sound_night = 'sound/music/area/sleeping.ogg'
+	droning_sound_night = 'modular_twilight_axis/sound/music/ambient/bluefire.ogg'
 	converted_type = /area/rogue/indoors/shelter/town
 	first_time_text = "THE CITY OF TWILIGHT AXIS"
 	town_area = TRUE
+	fog_protected = TRUE
 
 /area/rogue/indoors/shelter/town
 	icon_state = "town"
@@ -336,3 +345,14 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(/area/rogue/indoors/town
 	name = "dream realm"
 	icon_state = "dream"
 	first_time_text = "Abyssal Dream"
+
+
+
+/area/rogue/indoors/deathsedge
+	name = "Death's Precipice"
+	deathsight_message = "an place bordering necra's grasp"
+	necra_area = TRUE
+	droning_sound = 'sound/music/area/underworlddrone.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	first_time_text = "DEATHS PRECIPICE"

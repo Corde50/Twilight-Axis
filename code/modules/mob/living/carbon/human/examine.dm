@@ -113,7 +113,7 @@
 			else
 				. += span_notice("A noble!")
 
-		if((HAS_TRAIT(user, TRAIT_RACISMISBAD) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half Elf")))
+		if((HAS_TRAIT(user, TRAIT_BLACKOAK) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half-Elf")))
 			. += span_phobia("An invader...")
 
 		// Knotted effect message
@@ -228,6 +228,16 @@
 
 			if(has_flaw(/datum/charflaw/addiction/thrillseeker) && user.has_flaw(/datum/charflaw/addiction/thrillseeker))
 				. += span_rose("[m1] twitching for a thrilling fight. So am I.")
+			
+			if(user.has_flaw(/datum/charflaw/averse))
+				var/datum/charflaw/averse/averseflaw = user.get_flaw(/datum/charflaw/averse)
+				if(averseflaw.check_aversion(user, src))
+					user.add_stress(/datum/stressevent/averse)
+					. += span_secradio("One of <b>them...</b>")
+
+			if(user.has_flaw(/datum/charflaw/addiction/voyeur) && has_flaw(/datum/charflaw/addiction) && get_dist(src, user) <= 3)
+				var/flawname = charflaw?.voyeur_descriptor ? charflaw?.voyeur_descriptor : charflaw?.name
+				. += span_voyeurvice("[m1] [flawname]...")
 
 			if(HAS_TRAIT(user, TRAIT_EMPATH) && HAS_TRAIT(src, TRAIT_PERMAMUTE))
 				. += span_notice("[m1] lacks a voice. [m1] is a mute!")
@@ -254,7 +264,7 @@
 					. += span_beautiful_masc("[m1] handsome!")
 				if (SHE_HER, HE_HIM_F)
 					. += span_beautiful_fem("[m1] beautiful!")
-				if (THEY_THEM, THEY_THEM_F, IT_ITS)
+				if (THEY_THEM, THEY_THEM_F, IT_ITS, IT_ITS_M)
 					. += span_beautiful_nb("[m1] good-looking!")
 
 		if (HAS_TRAIT(src, TRAIT_UNSEEMLY))
@@ -263,7 +273,7 @@
 					. += span_redtext("[m1] revolting!")
 				if (SHE_HER)
 					. += span_redtext("[m1] repugnant!")
-				if (THEY_THEM, THEY_THEM_F, IT_ITS)
+				if (THEY_THEM, THEY_THEM_F, IT_ITS, IT_ITS_M)
 					. += span_redtext("[m1] repulsive!")
 
 		var/datum/antagonist/vampire/vamp_inspect = src.mind?.has_antag_datum(/datum/antagonist/vampire)
@@ -780,10 +790,10 @@
 		. += span_warning("[msg.Join("\n")]")
 
 	// Show especially large embedded objects at a glance
-	for(var/obj/item/bodypart/part in bodyparts)
-		if (LAZYLEN(part.embedded_objects))
-			for(var/obj/item/stuck_thing in part.embedded_objects)
-				if (stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		if(LAZYLEN(part.embedded_objects))
+			for(var/obj/item/stuck_thing as anything in part.embedded_objects)
+				if(stuck_thing.w_class >= WEIGHT_CLASS_SMALL)
 					. += span_bloody("<b>[m3] \a [stuck_thing] stuck in [m2] [part.name]!</b>")
 
 	if((user != src) && isliving(user))
@@ -1012,12 +1022,12 @@
 	if(HAS_TRAIT(src, TRAIT_COMMIE) && HAS_TRAIT(examiner, TRAIT_COMMIE))
 		heretic_text += "♠"
 	//Defunct as of *fsalute changes, leaving here as a symbol reference.
-	/*else if(HAS_TRAIT(src, TRAIT_CABAL) && HAS_TRAIT(examiner, TRAIT_CABAL))
+	else if(HAS_TRAIT(src, TRAIT_CABAL) && HAS_TRAIT(examiner, TRAIT_CABAL))
 		heretic_text += "♦"
 	else if(HAS_TRAIT(src, TRAIT_HORDE) && HAS_TRAIT(examiner, TRAIT_HORDE))
 		heretic_text += "♠"
 	else if(HAS_TRAIT(src, TRAIT_DEPRAVED) && HAS_TRAIT(examiner, TRAIT_DEPRAVED))
-		heretic_text += "♥"*/
+		heretic_text += "♥"
 
 	return heretic_text
 
@@ -1071,7 +1081,8 @@
 				villain_text += span_userdanger("A MONSTER!")
 		if(mind.assigned_role == "Lunatic")
 			villain_text += span_userdanger("LUNATIC!")
-
+	if(HAS_TRAIT(src, TRAIT_ZIZOEYES))
+		villain_text += span_userdanger("Their eyes send chills down your spine...")
 	return villain_text
 
 /proc/get_blade_dulling_text(obj/item/rogueweapon/I, verbose = FALSE)

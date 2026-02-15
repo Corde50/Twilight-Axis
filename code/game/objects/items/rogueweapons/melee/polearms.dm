@@ -26,11 +26,30 @@
 	effective_range_type = EFF_RANGE_NONE
 	sharpness_penalty = 3
 
-/datum/intent/spear/thrust/ducal_standard
-	penfactor = 30
-
 /datum/intent/spear/thrust/militia
 	penfactor = 40
+
+/datum/intent/spear/thrust/pike		//EXPERIMENTAL
+	name = "pike thrust"
+	desc = "Thrust your pike forward from its furthest end to reach farther ahead than any spear ever could. Only effective at three paces."
+	damfactor = 1.15
+	reach = 3
+	effective_range = 3
+	clickcd = CLICK_CD_CHARGED + 1
+	swingdelay = 1.5
+
+/datum/intent/spear/thrust/pike/skewer		//EXPERIMENTAL
+	name = "pike lance"
+	desc = "Grab your pike from a closer end and charge forward with your whole body for devastating damage."
+	clickcd = CLICK_CD_HEAVY + 4
+	swingdelay = 6
+	damfactor = 1.5
+	penfactor = 35
+	max_intent_damage = 54
+	reach = 2
+	effective_range = 2
+	icon_state = "inlance"
+	attack_verb = list("lances", "runs through", "skewers")
 
 /datum/intent/spear/bash
 	name = "bash"
@@ -193,7 +212,7 @@
 /datum/intent/spear/thrust/lance
 	damfactor = 1.5 // Turns its base damage into 30 on the 2hand thrust. It keeps the spear thrust one handed.
 
-/datum/intent/lance/
+/datum/intent/lance
 	name = "lance"
 	icon_state = "inlance"
 	attack_verb = list("lances", "runs through", "skewers")
@@ -309,6 +328,30 @@
 	resistance_flags = FLAMMABLE
 	special = /datum/special_intent/polearm_backstep
 
+/obj/item/rogueweapon/spear/trainer
+	name = "sparring spear"
+	desc = "An old dulled spear with a shaft worn by the hands of countless trainees before you. The fabric and watting wrap is meant to protect combatants, \
+	but getting hit with this still leaves welts and breaks fingers."
+	icon_state = "spear_trainer"
+	possible_item_intents = list(SPEAR_BASH)
+	gripped_intents = list(SPEAR_BASH,/datum/intent/mace/smash/wood)
+	force = 7
+	force_wielded = 15
+	sharpness = IS_BLUNT
+	thrown_bclass = BCLASS_BLUNT
+	wdefense = 7
+	wdefense_wbonus = 8
+
+/obj/item/rogueweapon/spear/trainer/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+
+
 /obj/item/rogueweapon/spear/trident
 	// Better one handed & throwing weapon, flimsier.
 	name = "bronze trident"
@@ -321,6 +364,7 @@
 	max_integrity = 225
 	throwforce = 30
 	possible_item_intents = list(SPEAR_THRUST, SPEAR_BASH, SPEAR_CAST)
+	smeltresult = /obj/item/ingot/bronze
 	fishingMods=list(
 		"commonFishingMod" = 0.8,
 		"rareFishingMod" = 1.4,
@@ -334,7 +378,7 @@
 /obj/item/rogueweapon/spear/trident/afterattack(obj/target, mob/user, proximity)
 	var/sl = user.get_skill_level(/datum/skill/labor/fishing)
 	var/ft = 150
-	var/fpp =  130 - (40 + (sl * 15))
+	var/fpp =  90 - (sl * 15)
 	if(istype(target, /turf/open/water))
 		if(user.used_intent.type == SPEAR_CAST && !user.doing)
 			if(target in range(user,3))
@@ -352,7 +396,7 @@
 							fishchance -= fpp
 					var/mob/living/fisherman = user
 					if(prob(fishchance))
-						var/A = getfishingloot(user, fishingMods, target)
+						var/A = getfishingloot(user, fishingMods.Copy(), target)
 						if(A)
 							var/ow = 30 + (sl * 10)
 							to_chat(user, "<span class='notice'>You see something!</span>")
@@ -475,7 +519,7 @@
 	force = 18
 	force_wielded = 22
 	name = "bone spear"
-	desc = "A spear made of bones..."
+	desc = "Yesterday's hunt, tomorrow's weapon."
 	icon_state = "bonespear"
 	pixel_y = -16
 	pixel_x = -16
@@ -604,7 +648,7 @@
 /obj/item/rogueweapon/fishspear/afterattack(obj/target, mob/user, proximity)
 	var/sl = user.get_skill_level(/datum/skill/labor/fishing) // User's skill level
 	var/ft = 160 //Time to get a catch, in ticks
-	var/fpp =  130 - (40 + (sl * 15)) // Fishing power penalty based on fishing skill level
+	var/fpp =  90 - (sl * 15) // Fishing power penalty based on fishing skill level
 	if(istype(target, /turf/open/water))
 		if(user.used_intent.type == SPEAR_CAST && !user.doing)
 			if(target in range(user,3))
@@ -622,7 +666,7 @@
 							fishchance -= fpp // Deduct a penalty the lower our fishing level is (-0 at legendary)
 					var/mob/living/fisherman = user
 					if(prob(fishchance)) // Finally, roll the dice to see if we fish.
-						var/A = getfishingloot(user, fishingMods, target)
+						var/A = getfishingloot(user, fishingMods.Copy(), target)
 						if(A)
 							var/ow = 30 + (sl * 10) // Opportunity window, in ticks. Longer means you get more time to cancel your bait
 							to_chat(user, "<span class='notice'>You see something!</span>")
@@ -860,6 +904,17 @@
 	max_blade_int = 200
 	sellprice = 250
 
+/obj/item/rogueweapon/halberd/pestran
+	name = "Lance of Boils"
+	desc = "For when a scalpel is too short, and you still need to perform Pestra's holy work."
+	icon_state = "pestranhalberd"
+
+/obj/item/rogueweapon/halberd/bone
+	name = "bone halberd"
+	desc = "What an elegantly morbid statement."
+	icon_state = "bonehalberd"
+	smeltresult = null
+
 /obj/item/rogueweapon/eaglebeak
 	force = 15
 	force_wielded = 30
@@ -983,9 +1038,31 @@
 			if("onback")
 				return list("shrink" = 0.6,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
+/obj/item/rogueweapon/greatsword/elfgsword
+	name = "elven kriegsmesser"
+	desc = "An elegant greatsword, crested with a glistening blade that - in spite of its intimidating length - is mysteriously light. Unlike most elven masterworks, the grip is dressed in rosaleather; a foreboding symbol, christening it as a weapon of war against those who'd threaten elvekind."
+	icon_state = "elfkriegmesser"
+	item_state = "elfkriegmesser"
+	minstr = 10
+	wdefense = 7
+	sellprice = 120
+
+/obj/item/rogueweapon/greatsword/elfgsword/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 6,"nx" = 6,"ny" = 7,"wx" = 0,"wy" = 5,"ex" = -1,"ey" = 7,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -50,"sturn" = 40,"wturn" = 50,"eturn" = -50,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("altgrip")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 6,"nx" = 6,"ny" = 7,"wx" = 0,"wy" = 5,"ex" = -1,"ey" = 7,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 85,"sturn" = 265,"wturn" = 275,"eturn" = 85,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 9,"sy" = -4,"nx" = -7,"ny" = 1,"wx" = -9,"wy" = 2,"ex" = 10,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 5,"sturn" = -190,"wturn" = -170,"eturn" = -10,"nflip" = 4,"sflip" = 4,"wflip" = 1,"eflip" = 0)
+			if("onback")
+				return list("shrink" = 0.6,"sx" = -1,"sy" = 3,"nx" = -1,"ny" = 2,"wx" = 3,"wy" = 4,"ex" = -1,"ey" = 5,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 20,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
+
 /obj/item/rogueweapon/greatsword/iron
 	name = "iron greatsword"
-	desc = "Wrought in iron. Heftier and less sturdier than its steel equivalent - but it still does the job."
+	desc = "A massive sword of iron, requiring both hands to properly wield. Heftier and less sturdier than its steel equivalent - but it still does the job."
 	icon_state = "igsw"
 	max_blade_int = 200
 	max_integrity = 200
@@ -1041,16 +1118,17 @@
 	max_blade_int = 180
 	max_integrity = 130
 	wdefense = 6
+
 /obj/item/rogueweapon/greatsword/grenz/flamberge/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
 			if("gen")
-				return list("shrink" = 0.6,"sx" = -7,"sy" = 5,"nx" = 7,"ny" = 3,"wx" = -2,"wy" = 4,"ex" = 4,"ey" = 5,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 30,"eturn" = -30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+				return list("shrink" = 0.6,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
 			if("wielded")
-				return list("shrink" = 0.6,"sx" = 7,"sy" = 1,"nx" = -5,"ny" = 2,"wx" = -5,"wy" = -10,"ex" = 10,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-			if("onbelt")
-				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+				return list("shrink" = 0.6,"sx" = 9,"sy" = -4,"nx" = -7,"ny" = 1,"wx" = -9,"wy" = 2,"ex" = 10,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 5,"sturn" = -190,"wturn" = -170,"eturn" = -10,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
+			if("onback")
+				return list("shrink" = 0.6,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
 
 /obj/item/rogueweapon/greatsword/grenz/flamberge/malum
 	name = "forgefiend flamberge"
@@ -1058,6 +1136,16 @@
 	icon_state = "malumflamberge"
 	max_integrity = 200
 	max_blade_int = 200
+
+/obj/item/rogueweapon/greatsword/grenz/flamberge/ravox
+	name = "Censure"
+	desc = "A blade that invites imagery of hope. Of men clad in shattered plate and bearing blackened pauldrons, \
+	standing at His side. To correct Her wrongs, as they sought the censure of divine tyranny. \
+	<small>Even now, it smells of ash.</small>"
+	icon_state = "ravoxflamberge"
+	max_integrity = 240
+	max_blade_int = 240
+	wdefense = 7//You are truly unique, m'lord.
 
 /obj/item/rogueweapon/greatsword/grenz/flamberge/blacksteel
 	name = "blacksteel flamberge"
@@ -1218,13 +1306,13 @@
 	force = 12
 	force_wielded = 25
 	possible_item_intents = list(
-		/datum/intent/sword/chop,
+		/datum/intent/sword/cut,
 		/datum/intent/sword/strike,
 	)
 	gripped_intents = list(
 		/datum/intent/sword/thrust/estoc,
 		/datum/intent/sword/lunge,
-		/datum/intent/sword/chop,
+		/datum/intent/sword/cut,
 		/datum/intent/sword/strike,
 	)
 	bigboy = TRUE
@@ -1390,6 +1478,16 @@
 		added_def = 2,\
 	)
 
+/obj/item/rogueweapon/woodstaff/quarterstaff/gold
+	name = "golden quarterstaff"
+	desc = "The astute may point out that this staff is poorly designed. They would be correct. Gold, even low karat, is a bad material for a weapon. This one additionally manages to be doubly-sinned by having a heavy chunk of gold at the end. It's almost a polehammer. Practical? No. But it makes a statement."
+	icon_state = "quarterstaff_gold"
+	force = 23
+	force_wielded = 30
+	sellprice = 50
+	max_integrity = 175
+
+
 /obj/item/rogueweapon/spear/partizan
 	name = "partizan"
 	desc = "A reinforced spear-like polearm of disputed origin: A studded shaft fitted with a steel spearhead with protrusions to aid in parrying. An extremely recent invention that is seeing increasingly more usage in the Western lands."
@@ -1429,7 +1527,24 @@
 /obj/item/rogueweapon/spear/boar/frei
 	name = "Aavnic lándzsa"
 	desc = "A regional earspoon lance with a carved handle, adorned with the colours of the Freifechters. These are smithed by the legendary armourers of Vyšvou and given to distinguished lancers upon their graduation."
-	icon_state = "praguespear"
+	icon_state = "cityspear"
+	icon = 'icons/roguetown/weapons/special/freifechter.dmi'
+	max_blade_int = 300	//You're gonna parry a lot. You need it.
+	max_integrity = 235
+
+/obj/item/rogueweapon/spear/boar/frei/pike
+	name = "banner of Szöréndnížina"
+	desc = "A steel pike with a white and red banner made to spend the time flowing proudly in the wind. A city founded by the free. A State made from the disciplined. Snowy peaks surround her strong walls, her gates make any attack a suicide. Fight, Szöréndnížina. Fight to lyve in a world that rejects you."
+	icon_state = "citybanner"
+	force = 18
+	force_wielded = 33
+	possible_item_intents = list(/datum/intent/dagger/sucker_punch, /datum/intent/sword/bash)
+	gripped_intents = list(/datum/intent/spear/thrust/pike, /datum/intent/spear/thrust/pike/skewer)
+
+/obj/item/rogueweapon/spear/boar/frei/pike/reformist
+	name = "banner of Psydonic Reformism"
+	desc = "A steel pike with an altered Psydonic cross representing the order of Primo Reformatio, crossed by a black stripe that symbolizes mourning. Mammukhus sum, qui castellum onere fero. Numquam genua flecto aut gradum amitto."
+	icon_state = "reformistbanner"
 
 /obj/item/rogueweapon/spear/lance
 	name = "lance"
@@ -1594,3 +1709,34 @@
 		added_int = 0,\
 		added_def = 0,\
 	)
+
+//Elven weapons sprited and added by Jam
+
+/obj/item/rogueweapon/greatsword/elvish
+	possible_item_intents = list(/datum/intent/sword/chop,/datum/intent/sword/strike) //bash is for nonlethal takedowns, only targets limbs
+	// Design Intent: It is pretty purely a two-handed weapon. In one hand it's a bit clumsy.
+	gripped_intents = list(/datum/intent/sword/cut/zwei, /datum/intent/rend, /datum/intent/sword/thrust/zwei, /datum/intent/sword/strike/bad)
+	alt_intents = list(null)//can't be alt-gripped. Ought to compensate for that.
+	name = "elvish curveblade"
+	desc = "The Elven Curveblade is a traditional weapon, its practice as much a dance as a method of death. Flowing like the water's current, let its path lead to your enemy's throat."
+	icon_state = "elfcurveblade"
+	wlength = WLENGTH_LONG// Less reach than greatsword!
+	minstr = 7// Lighter
+	wdefense = 8// Better defence than greatsword
+	sellprice = 60
+
+/obj/item/rogueweapon/halberd/glaive/elvish
+	name = "elvish glaive"
+	desc = "An elven weapon that combines the elegant sweeping blade typical of Elven design with a lengthy handle. The true guardian of the forest realm."
+	icon_state = "elfglaive"
+	max_blade_int = 180 //Elven design makes it sharper
+	sellprice = 60
+
+/obj/item/rogueweapon/halberd/glaive/elvish/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -6,"sy" = 2,"nx" = 8,"ny" = 2,"wx" = -4,"wy" = 2,"ex" = 1,"ey" = 2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 300,"wturn" = 32,"eturn" = -23,"nflip" = 0,"sflip" = 100,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 4,"sy" = -2,"nx" = -3,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
