@@ -1,6 +1,23 @@
 /mob/living/carbon/human
 	var/datum/weakref/sex_surrender_ref
 
+/mob/living/proc/get_erp_organs()
+	var/list/L = list()
+
+	var/mob/living/carbon/human/H = src
+	if(!istype(H))
+		return L
+
+	for(var/obj/item/organ/O in H.internal_organs)
+		if(O.sex_organ)
+			L += O.sex_organ
+
+	for(var/obj/item/bodypart/B in H.bodyparts)
+		if(B.sex_organ)
+			L += B.sex_organ
+
+	return L
+
 /mob/living/proc/get_erp_organ(type)
 	for(var/datum/erp_sex_organ/O in get_erp_organs())
 		if(O.type == type)

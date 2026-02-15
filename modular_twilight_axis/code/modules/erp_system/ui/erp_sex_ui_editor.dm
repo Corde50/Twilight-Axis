@@ -96,7 +96,7 @@
 		"key" = key,
 		"id" = A.id,
 		"name" = A.name,
-		"fields" = A.export_editor_fields()
+		"fields" = SSerp.action_editor_schema.export_editor_fields(A)
 	)
 
 	dirty_data = TRUE

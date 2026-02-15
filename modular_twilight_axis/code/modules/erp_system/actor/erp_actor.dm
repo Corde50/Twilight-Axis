@@ -20,10 +20,12 @@
 	physical = A
 	client = null
 
+/// Performs initial setup after the actor is created and has its client/effect context wired.
 /datum/erp_actor/proc/post_init()
 	rebuild_organs()
 	load_custom_actions_from_prefs()
 
+/// Rebuilds organ caches and action slot maps for this actor.
 /datum/erp_actor/proc/rebuild_organs()
 	organs.Cut()
 	organs_by_type.Cut()
@@ -36,7 +38,7 @@
 	collect_organs()
 	collect_species_overrides()
 	sort_organs_by_ui_order()
-	
+
 	for(var/datum/erp_sex_organ/O in organs)
 		var/type = O.erp_organ_type
 		if(!type)
@@ -49,23 +51,28 @@
 	build_action_slots()
 	organs_dirty = FALSE
 
+/// Hook: Collects organs from the underlying entity (implemented in subtypes).
 /datum/erp_actor/proc/collect_organs()
 	return
 
+/// Hook: Ensures baseline "species" organs exist (body/hands/legs).
 /datum/erp_actor/proc/collect_species_overrides()
-	if(physical)
-		var/datum/erp_sex_organ/body/B = get_or_create_body_organ()
-		if(!(B in organs))
-			add_organ(B)
+	if(!physical)
+		return
 
-		var/datum/erp_sex_organ/hand/H = get_or_create_hands_organ()
-		if(!(H in organs))
-			add_organ(H)
+	var/datum/erp_sex_organ/body/B = get_or_create_body_organ()
+	if(!(B in organs))
+		add_organ(B)
 
-		var/datum/erp_sex_organ/legs/L = get_or_create_legs_organ()
-		if(!(L in organs))
-			add_organ(L)
+	var/datum/erp_sex_organ/hand/H = get_or_create_hands_organ()
+	if(!(H in organs))
+		add_organ(H)
 
+	var/datum/erp_sex_organ/legs/L = get_or_create_legs_organ()
+	if(!(L in organs))
+		add_organ(L)
+
+/// Returns an existing BODY organ or creates a new one.
 /datum/erp_actor/proc/get_or_create_body_organ()
 	for(var/datum/erp_sex_organ/O in organs)
 		if(O.erp_organ_type == SEX_ORGAN_BODY)
@@ -75,6 +82,7 @@
 	B.erp_organ_type = SEX_ORGAN_BODY
 	return B
 
+/// Returns an existing HANDS organ or creates a new one.
 /datum/erp_actor/proc/get_or_create_hands_organ()
 	for(var/datum/erp_sex_organ/O in organs)
 		if(O.erp_organ_type == SEX_ORGAN_HANDS)
@@ -84,6 +92,7 @@
 	H.erp_organ_type = SEX_ORGAN_HANDS
 	return H
 
+/// Returns an existing LEGS organ or creates a new one.
 /datum/erp_actor/proc/get_or_create_legs_organ()
 	for(var/datum/erp_sex_organ/O in organs)
 		if(O.erp_organ_type == SEX_ORGAN_LEGS)
@@ -93,6 +102,7 @@
 	L.erp_organ_type = SEX_ORGAN_LEGS
 	return L
 
+/// Adds an organ to this actor (applies prefs when possible).
 /datum/erp_actor/proc/add_organ(datum/erp_sex_organ/O)
 	if(!O || QDELETED(O))
 		return
@@ -103,6 +113,7 @@
 	if(client && client.prefs)
 		O.apply_prefs_if_possible()
 
+/// Builds the organ-slot map used to reserve "action slots" per organ type.
 /datum/erp_actor/proc/build_action_slots()
 	for(var/datum/erp_sex_organ/O in organs)
 		var/t = O.erp_organ_type
@@ -115,11 +126,13 @@
 		for(var/i = 1 to count)
 			action_slots[t] += O
 
+/// Returns the raw action slots list for a given organ type (rebuilds if dirty).
 /datum/erp_actor/proc/get_action_slots_ref(erp_organ_type)
 	if(organs_dirty)
 		rebuild_organs()
 	return action_slots[erp_organ_type] || list()
 
+/// Returns unique organs of a type that have at least one free slot.
 /datum/erp_actor/proc/get_free_action_organs(erp_organ_type)
 	var/list/out = list()
 	var/list/slots = get_action_slots_ref(erp_organ_type)
@@ -136,6 +149,7 @@
 
 	return out
 
+/// Returns organs list (all or by type), rebuilding caches if dirty.
 /datum/erp_actor/proc/get_organs_ref(erp_organ_type = null)
 	if(organs_dirty)
 		rebuild_organs()
@@ -144,9 +158,11 @@
 		return organs
 	return organs_by_type[erp_organ_type] || list()
 
+/// Marks organ caches as dirty to be rebuilt on next access.
 /datum/erp_actor/proc/mark_organs_dirty()
 	organs_dirty = TRUE
 
+/// Resolves an organ by UI id (\ref string) or direct reference.
 /datum/erp_actor/proc/get_organ_by_id(id)
 	if(!id)
 		return null
@@ -157,6 +173,7 @@
 
 	return null
 
+/// Checks whether this actor is surrendering to another actor.
 /datum/erp_actor/proc/is_surrendering_to(datum/erp_actor/other)
 	var/datum/erp_actor/A = surrender_ref?.resolve()
 	if(!A || QDELETED(A))
@@ -164,12 +181,15 @@
 		return FALSE
 	return A == other
 
+/// Hook: Returns restraint status (implemented in subtypes).
 /datum/erp_actor/proc/is_restrained(organ_flags = null)
 	return FALSE
 
+/// Hook: Returns whether the actor has a kink tag (implemented in subtypes).
 /datum/erp_actor/proc/has_kink_tag(kink_typepath)
 	return FALSE
 
+/// Sends ERP effect into the world through the effects bridge (headless-safe).
 /datum/erp_actor/proc/apply_erp_effect(arousal_amt, pain_amt, giving, applied_force = SEX_FORCE_MID, applied_speed = SEX_SPEED_MID, organ_id = null)
 	var/mob/living/M = get_effect_mob()
 	if(!M)
@@ -177,186 +197,76 @@
 
 	SEND_SIGNAL(M, COMSIG_SEX_RECEIVE_ACTION, arousal_amt, pain_amt, giving, applied_force, applied_speed, organ_id)
 
+/// Creates a new custom action owned by this actor (prefs-aware, but headless-safe).
 /datum/erp_actor/proc/create_custom_action()
-	var/datum/erp_action/A = new
-	A.id = "custom_[world.time]_[rand(1000,9999)]"
-	A.name = "Новое действие"
-	A.ckey = client?.ckey
-	A.abstract = FALSE
-	custom_actions += A
-	return A
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	return S ? S.create_custom_action(src) : null
 
+/// Returns all available actions for this actor (global + custom).
 /datum/erp_actor/proc/get_all_actions()
-	var/list/out = list()
-	for(var/k in SSerp.actions)
-		var/datum/erp_action/A = SSerp.actions[k]
-		if(!A.abstract_type)
-			out += A
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	return S ? S.get_all_actions(src) : list()
 
-	for(var/datum/erp_action/A in custom_actions)
-		out += A
-
-	return out
-
+/// Returns custom actions list copy.
 /datum/erp_actor/proc/get_custom_actions()
-	var/list/out = list()
-	if(custom_actions && custom_actions.len)
-		out += custom_actions
-	return out
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	return S ? S.get_custom_actions(src) : list()
 
+/// Updates a custom action field by id.
 /datum/erp_actor/proc/update_custom_action(action_id, field, value)
-	for(var/datum/erp_action/A in custom_actions)
-		if(A.id == action_id)
-			return A.set_field(field, value)
-	return FALSE
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	return S ? S.update_custom_action(src, action_id, field, value) : FALSE
 
+/// Deletes a custom action by id.
 /datum/erp_actor/proc/delete_custom_action(action_id)
-	for(var/datum/erp_action/A in custom_actions)
-		if(A.id == action_id)
-			custom_actions -= A
-			qdel(A)
-			return TRUE
-	return FALSE
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	return S ? S.delete_custom_action(src, action_id) : FALSE
 
+/// Loads custom actions from prefs if a client exists.
 /datum/erp_actor/proc/load_custom_actions_from_prefs()
-	custom_actions.Cut()
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	if(S)
+		S.load_custom_actions_from_prefs(src)
 
-	var/client/C = client
-	if(!C || !C.prefs)
-		return
-
-	var/list/data = C.prefs.erp_custom_actions
-	if(!islist(data))
-		return
-
-	for(var/id in data)
-		var/list/action_data = data[id]
-		if(!islist(action_data))
-			continue
-
-		var/datum/erp_action/A = new
-		A.import_from_prefs(action_data)
-		A.id = id
-		A.ckey = C.ckey
-		A.abstract = FALSE
-		custom_actions += A
-
+/// Saves custom actions to prefs if a client exists.
 /datum/erp_actor/proc/save_custom_actions_to_prefs()
-	var/client/C = client
-	if(!C || !C.prefs)
-		return
+	var/datum/erp_actor_custom_actions_service/S = SSerp.actor_custom_actions
+	if(S)
+		S.save_custom_actions_to_prefs(src)
 
-	var/list/out = list()
-	for(var/datum/erp_action/A in custom_actions)
-		out[A.id] = A.export_for_prefs()
-
-	C.prefs.erp_custom_actions = out
-	C.prefs.save_preferences()
-
+/// Builds organ type filters payload for UI (headless-safe if UI layer isn't used).
 /datum/erp_actor/proc/get_organ_type_filters_ui()
-	var/list/out = list()
-	if(organs_dirty)
-		rebuild_organs()
+	var/datum/erp_actor_ui_helpers/U = SSerp.actor_ui_helpers
+	return U ? U.get_organ_type_filters_ui(src) : list()
 
-	for(var/type in action_slots)
-		var/list/slots = action_slots[type]
-		if(!islist(slots) || !slots.len)
-			continue
-
-		var/total = slots.len
-		var/free = 0
-		var/list/seen = list()
-
-		for(var/datum/erp_sex_organ/O in slots)
-			if(seen[O])
-				continue
-			seen[O] = TRUE
-			free += O.get_free_slots()
-
-		free = clamp(free, 0, total)
-
-		out += list(list(
-			"type" = "[type]",
-			"name" = "[type]",
-			"total" = total,
-			"free" = free,
-			"busy" = (free <= 0)
-		))
-
-	return out
-
-/mob/living/proc/get_erp_organs()
-	var/list/L = list()
-
-	var/mob/living/carbon/human/H = src
-	if(!istype(H))
-		return L
-
-	for(var/obj/item/organ/O in H.internal_organs)
-		if(O.sex_organ)
-			L += O.sex_organ
-
-	for(var/obj/item/bodypart/B in H.bodyparts)
-		if(B.sex_organ)
-			L += B.sex_organ
-
-	return L
-
+/// Hook: Returns whether actor has big breasts (implemented in subtypes).
 /datum/erp_actor/proc/has_big_breasts()
 	return FALSE
 
+/// Hook: Returns whether current scene is dullahan-specific (implemented in subtypes).
 /datum/erp_actor/proc/is_dullahan_scene()
 	return FALSE
 
+/// Returns currently selected zone from the underlying mob (UI helper).
 /datum/erp_actor/proc/get_selected_zone()
-	var/atom/A = physical
-	if(!A || !ismob(A))
-		return null
-	var/mob/M = A
-	return M.zone_selected
+	var/datum/erp_actor_ui_helpers/U = SSerp.actor_ui_helpers
+	return U ? U.get_selected_zone(src) : null
 
+/// Returns translated zone text (UI helper).
 /datum/erp_actor/proc/get_zone_text(zone)
-	var/list/zone_translations = list(
-		BODY_ZONE_HEAD              = "голову",
-		BODY_ZONE_CHEST             = "туловище",
-		BODY_ZONE_R_ARM             = "правую руку",
-		BODY_ZONE_L_ARM             = "левую руку",
-		BODY_ZONE_R_LEG             = "правую ногу",
-		BODY_ZONE_L_LEG             = "левую ногу",
-		BODY_ZONE_PRECISE_R_INHAND  = "правую ладонь",
-		BODY_ZONE_PRECISE_L_INHAND  = "левую ладонь",
-		BODY_ZONE_PRECISE_R_FOOT    = "правую ступню",
-		BODY_ZONE_PRECISE_L_FOOT    = "левую ступню",
-		BODY_ZONE_PRECISE_SKULL     = "лоб",
-		BODY_ZONE_PRECISE_EARS      = "уши",
-		BODY_ZONE_PRECISE_R_EYE     = "правый глаз",
-		BODY_ZONE_PRECISE_L_EYE     = "левый глаз",
-		BODY_ZONE_PRECISE_NOSE      = "нос",
-		BODY_ZONE_PRECISE_MOUTH     = "рот",
-		BODY_ZONE_PRECISE_NECK      = "шею",
-		BODY_ZONE_PRECISE_STOMACH   = "живот",
-		BODY_ZONE_PRECISE_GROIN     = "пах",
-	)
-	return zone_translations[zone] || "тело"
+	var/datum/erp_actor_ui_helpers/U = SSerp.actor_ui_helpers
+	return U ? U.get_zone_text(src, zone) : "тело"
 
+/// Hook: Allows target actor to normalize an incoming zone selection.
 /datum/erp_actor/proc/normalize_target_zone(zone, datum/erp_actor/other_actor)
 	return zone
 
+/// Returns translated target-zone text for UI/messages (UI helper).
 /datum/erp_actor/proc/get_target_zone_text_for(datum/erp_actor/target_actor)
-	var/zone = get_selected_zone()
-	if(!zone)
-		return "тело"
-	zone = target_actor?.normalize_target_zone(zone, src) || zone
-	return target_actor?.get_zone_text(zone) || get_zone_text(zone)
+	var/datum/erp_actor_ui_helpers/U = SSerp.actor_ui_helpers
+	return U ? U.get_target_zone_text_for(src, target_actor) : "тело"
 
-/datum/erp_actor/proc/get_climax_score_for_link(datum/erp_sex_link/L)
-	if(!L)
-		return 0
-	var/s = 0
-	s += (L.speed || 0) * 10
-	s += (L.force || 0) * 25
-	return s
-
+/// Builds a climax result payload (UI helper).
 /datum/erp_actor/proc/build_climax_result(datum/erp_sex_link/L)
 	if(!L)
 		return null
@@ -376,68 +286,84 @@
 
 	return list("type" = "self", "partner" = L.actor_active, "intimate" = FALSE)
 
+/// Returns a stable ref id for UI payloads.
 /datum/erp_actor/proc/get_ref()
 	return "\ref[src]"
 
+/// Returns physical as movable if possible.
 /datum/erp_actor/proc/get_movable()
 	return istype(physical, /atom/movable) ? physical : null
 
+/// Returns physical as mob if possible.
 /datum/erp_actor/proc/get_mob()
 	return ismob(physical) ? physical : null
 
+/// Checks whether requester is the owner client for this actor.
 /datum/erp_actor/proc/is_owner_client(mob/requester)
 	if(!requester)
 		return FALSE
 	return requester.client && requester.client == get_client()
 
+/// Returns the turf this actor is currently on.
 /datum/erp_actor/proc/get_actor_turf()
 	var/atom/A = physical
 	return A ? get_turf(A) : null
 
+/// Sends a visible message through the effects bridge.
 /datum/erp_actor/proc/send_visible_message(text)
-	var/mob/M = get_mob()
-	if(M)
+	var/mob/living/M = get_effect_mob()
+	if(!M)
 		M.visible_message(text)
 		return TRUE
 	return FALSE
 
+/// Sends a private message through the effects bridge.
 /datum/erp_actor/proc/send_private_message(text)
-	var/mob/M = get_mob()
-	if(M)
+	var/mob/living/M = get_effect_mob()
+	if(!M)
 		to_chat(M, text)
 		return TRUE
 	return FALSE
 
+/// Hook: Adds stamina (implemented in subtypes).
 /datum/erp_actor/proc/stamina_add(delta)
 	return
 
+/// Hook: Returns highest grab state on another actor (implemented in subtypes).
 /datum/erp_actor/proc/get_highest_grab_state_on(datum/erp_actor/other)
 	return 0
 
+/// Hook: Whether this actor can register signals with mob systems (implemented in subtypes).
 /datum/erp_actor/proc/can_register_signals()
 	return FALSE
 
+/// Hook: Checks if an organ type is accessible to another actor (implemented in subtypes).
 /datum/erp_actor/proc/is_organ_accessible_for(datum/erp_actor/by_actor, organ_type, allow_force = FALSE)
 	return TRUE
 
+/// Hook: Whether actor has testicles (implemented in subtypes).
 /datum/erp_actor/proc/has_testicles()
 	return FALSE
 
+/// Sets an alternate effect mob target for signals/messages.
 /datum/erp_actor/proc/set_effect_mob(mob/living/M)
 	if(M && !QDELETED(M))
 		effect_mob_ref = WEAKREF(M)
 	else
 		effect_mob_ref = null
 
+/// Returns effect mob if present, otherwise physical mob.
 /datum/erp_actor/proc/get_effect_mob()
 	var/mob/living/M = effect_mob_ref?.resolve()
 	if(M && !QDELETED(M))
 		return M
 	return get_mob()
 
+/// Returns mob used for signaling (defaults to effect mob).
 /datum/erp_actor/proc/get_signal_mob()
 	return get_effect_mob()
 
+/// Returns best mob for control context (physical mob, effect mob, or client mob).
 /datum/erp_actor/proc/get_control_mob(client/C = null)
 	var/mob/living/M = get_mob()
 	if(M)
@@ -449,29 +375,35 @@
 
 	return C?.mob
 
+/// Attaches a client to this actor (optional, can be null in headless scenarios).
 /datum/erp_actor/proc/attach_client(client/C)
 	client = C
 
+/// Returns a display name for UI/logging.
 /datum/erp_actor/proc/get_display_name()
 	var/atom/A = physical || active_actor
 	if(A)
 		return "[A]"
 	return "unknown"
 
+/// Returns TRUE if this actor is backed by a mob.
 /datum/erp_actor/proc/is_mob()
 	return ismob(physical)
 
+/// Returns client explicitly attached, otherwise client of physical mob.
 /datum/erp_actor/proc/get_client()
 	if(client)
 		return client
 	return (ismob(physical) ? (physical:client) : null)
 
+/// Sorts organs by UI order, keeping unknown types at the end.
 /datum/erp_actor/proc/sort_organs_by_ui_order()
 	if(!islist(organs) || !organs.len)
 		return
 
 	var/list/ordered = list()
 	var/list/used = list()
+
 	for(var/t in ERP_ORGAN_ORDER)
 		for(var/datum/erp_sex_organ/O in organs)
 			if(!O || QDELETED(O) || used[O])

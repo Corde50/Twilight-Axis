@@ -30,13 +30,17 @@
 /datum/erp_sex_organ/Destroy()
 	for(var/datum/erp_sex_link/L in links)
 		qdel(L)
+
 	SSerp.unregister_organ(src)
+
 	links = null
 	storage = null
 	producing = null
 	host = null
+
 	. = ..()
 
+/// Returns production multiplier for this organ (override in subtypes).
 /datum/erp_sex_organ/proc/get_production_mult()
 	return 0
 
@@ -87,7 +91,6 @@
 	R.clear_reagents()
 	qdel(R)
 
-
 /datum/erp_sex_organ/proc/process_drain()
 	if(!storage)
 		return
@@ -98,6 +101,7 @@
 
 	storage.drain(1)
 
+/// Receives reagents into organ storage, optionally spilling overflow.
 /datum/erp_sex_organ/proc/receive_reagents(datum/reagents/R, amount)
 	if(!storage || !R || amount <= 0)
 		return 0
@@ -112,6 +116,7 @@
 
 	return amount - overflow
 
+/// Extracts reagents from producing first, then storage.
 /datum/erp_sex_organ/proc/extract_reagents(amount)
 	if(amount <= 0)
 		return null
@@ -139,58 +144,29 @@
 
 	return R
 
+/// Routes reagents according to injection mode via inject router service.
 /datum/erp_sex_organ/proc/route_reagents(datum/reagents/R, target_mode, target)
+	var/datum/erp_organ_inject_router/IR = SSerp.organ_inject_router
+	if(IR)
+		return IR.route_reagents(src, R, target_mode, target)
+
 	if(!R || R.total_volume <= 0)
 		return FALSE
-
-	switch(target_mode)
-		if(INJECT_ORGAN)
-			var/datum/erp_sex_organ/target_organ = target
-			if(target_organ)
-				target_organ.receive_reagents(R, R.total_volume)
-				return TRUE
-
-		if(INJECT_CONTAINER)
-			var/obj/item/reagent_containers/C = target
-			if(C && C.reagents)
-				R.trans_to(C, R.total_volume, 1, TRUE, TRUE)
-				return TRUE
-
-		if(INJECT_GROUND)
-			drop_to_ground(R)
-			return TRUE
 
 	drop_to_ground(R)
 	return TRUE
 
+/// Drops reagents to ground via spill policy service.
 /datum/erp_sex_organ/proc/drop_to_ground(datum/reagents/R)
-	if(!R || R.total_volume <= 0)
+	var/datum/erp_organ_spill_policy/SP = SSerp.organ_spill_policy
+	if(SP)
+		SP.drop_to_ground(src, R)
 		return
 
-	if(!can_spill_to_ground())
+	if(R)
 		R.clear_reagents()
-		return
 
-	var/turf/T = get_turf(get_owner() || host)
-	if(!T)
-		R.clear_reagents()
-		return
-
-	var/obj/effect/decal/cleanable/coom/C = null
-	for(var/obj/effect/decal/cleanable/coom/existing in T)
-		C = existing
-		break
-
-	if(!C)
-		C = new /obj/effect/decal/cleanable/coom(T)
-
-	if(!C.reagents)
-		C.reagents = new /datum/reagents(C.reagents_capacity)
-		C.reagents.my_atom = C
-
-	R.trans_to(C, R.total_volume, 1, TRUE, TRUE)
-	R.clear_reagents()
-
+/// Returns owner mob for this organ, if any.
 /datum/erp_sex_organ/proc/get_owner()
 	if(!host)
 		return null
@@ -208,6 +184,7 @@
 
 	return null
 
+/// Counts active links where this organ is the init organ.
 /datum/erp_sex_organ/proc/get_active_link_count()
 	var/c = 0
 	for(var/datum/erp_sex_link/L in get_active_links())
@@ -217,15 +194,19 @@
 			c++
 	return c
 
+/// Returns total action slots for this organ.
 /datum/erp_sex_organ/proc/get_total_slots()
 	return max(1, count_to_action)
 
+/// Returns free action slots based on active links.
 /datum/erp_sex_organ/proc/get_free_slots()
 	return max(0, max(1, count_to_action) - get_active_link_count())
 
+/// Returns TRUE if organ has no free slots.
 /datum/erp_sex_organ/proc/is_busy()
 	return get_free_slots() <= 0
 
+/// Returns links where this organ is init organ.
 /datum/erp_sex_organ/proc/get_active_links()
 	var/list/out = list()
 	for(var/datum/erp_sex_link/L in links)
@@ -233,6 +214,7 @@
 			out += L
 	return out
 
+/// Returns links where this organ is target organ.
 /datum/erp_sex_organ/proc/get_passive_links()
 	var/list/out = list()
 	for(var/datum/erp_sex_link/L in links)
@@ -240,24 +222,7 @@
 			out += L
 	return out
 
-/obj/item/organ
-	var/datum/erp_sex_organ/sex_organ
-
-/obj/item/organ/Destroy()
-	if(sex_organ)
-		qdel(sex_organ)
-		sex_organ = null
-	return ..()
-
-/obj/item/bodypart
-	var/datum/erp_sex_organ/sex_organ
-
-/obj/item/bodypart/Destroy()
-	if(sex_organ)
-		qdel(sex_organ)
-		sex_organ = null
-	return ..()
-
+/// Returns TRUE if organ has any liquid system enabled.
 /datum/erp_sex_organ/proc/has_liquid_system()
 	if(storage && storage.capacity > 0)
 		return TRUE
@@ -265,60 +230,27 @@
 		return TRUE
 	return FALSE
 
+/// Applies client prefs to this organ via prefs service (no-op without client/prefs).
 /datum/erp_sex_organ/proc/apply_prefs_if_possible()
-	var/mob/living/M = null
-	if(ismob(host))
-		M = host
-	if(!M)
-		M = get_owner()
-	if(!M)
-		return
+	var/datum/erp_organ_prefs_service/PS = SSerp.organ_prefs_service
+	if(PS)
+		PS.apply_prefs_if_possible(src)
 
-	var/client/C = M.client
-	if(!C || !C.prefs)
-		return
-
-	var/datum/preferences/P = C.prefs
-	if(!islist(P.erp_organ_prefs))
-		return
-
-	var/list/prefs = P.erp_organ_prefs["[erp_organ_type]"]
-	if(!islist(prefs))
-		return
-
-	if("sensitivity" in prefs)
-		sensitivity = clamp(prefs["sensitivity"], 0, sensitivity_max)
-
-	if("overflow" in prefs)
-		allow_overflow_spill = !!prefs["overflow"]
-
+/// Returns TRUE if spill cooldown allows spilling now.
 /datum/erp_sex_organ/proc/should_spill_now()
 	if(world.time < last_overflow_spill_time + overflow_spill_interval)
 		return FALSE
 	last_overflow_spill_time = world.time
 	return TRUE
 
-/datum/erp_sex_organ/proc/_organ_type_to_zone()
-	switch(erp_organ_type)
-		if(SEX_ORGAN_PENIS, SEX_ORGAN_VAGINA, SEX_ORGAN_ANUS)
-			return BODY_ZONE_PRECISE_GROIN
-		if(SEX_ORGAN_BREASTS)
-			return BODY_ZONE_CHEST
-		if(SEX_ORGAN_MOUTH)
-			return BODY_ZONE_PRECISE_MOUTH
-	return null
-
+/// Returns TRUE if organ may spill to ground (delegated to spill policy).
 /datum/erp_sex_organ/proc/can_spill_to_ground()
-	var/mob/living/carbon/H = get_owner()
-	if(!istype(H))
-		return FALSE
+	var/datum/erp_organ_spill_policy/SP = SSerp.organ_spill_policy
+	if(SP)
+		return SP.can_spill_to_ground(src)
+	return FALSE
 
-	var/zone = _organ_type_to_zone()
-	if(!zone)
-		return TRUE
-
-	return get_location_accessible(H, zone)
-
+/// Adds pain to this organ with clamp.
 /datum/erp_sex_organ/proc/add_pain(pain_amt)
 	pain += pain_amt / 10
 	pain = clamp(pain, 0, pain_max)

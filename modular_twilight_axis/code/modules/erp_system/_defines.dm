@@ -21,6 +21,14 @@
 #define ERP_SCOPE_SELF  1
 #define ERP_SCOPE_OTHER 2
 
+
+#define ERP_ACTION_ACTIVE_AROUSAL	"active_arousal"
+#define ERP_ACTION_ACTIVE_PAIN		"active_pain"
+#define ERP_ACTION_PASSIVE_AROUSAL	"passive_arousal"
+#define ERP_ACTION_PASSIVE_PAIN		"passive_pain"
+#define ERP_ACTION_LEGACY_AROUSAL	"arousal"
+#define ERP_ACTION_LEGACY_PAIN		"pain"
+
 var/global/list/ERP_ACTION_PREF_FIELDS = list(
 	"name",
 	"required_init_organ",
@@ -149,3 +157,29 @@ var/global/list/ERP_ORGAN_ORDER = list(
 
 	return FALSE
 
+#define INJECT_NONE         0
+#define INJECT_CONTINUOUS   1
+#define INJECT_ON_FINISH    2
+
+#define INJECT_ORGAN		"organ"
+#define INJECT_CONTAINER	"container"
+#define INJECT_GROUND		"ground"
+
+#define INJECT_FROM_ACTIVE  "active"
+#define INJECT_FROM_PASSIVE "passive"
+
+#define ERP_KNOT_MOVE_KEEP        0
+#define ERP_KNOT_MOVE_BREAK_SOFT  1
+#define ERP_KNOT_MOVE_BREAK_FORCE 2
+
+#define ERP_KNOT_MAX_STRENGTH 100
+#define ERP_KNOT_PAIN_THRESHOLD 25
+#define ERP_KNOT_DECAY_STEP 1
+#define ERP_KNOT_DECAY_TICK (2 SECONDS)
+#define ERP_KNOT_ACTIVITY_GRACE (3 SECONDS)
+
+#define ERP_KNOT_PULL_OWNER_BASE 55
+#define ERP_KNOT_PULL_BTM_BASE 35
+
+#define LINK_STATE_ACTIVE     1
+#define LINK_STATE_FINISHED   2

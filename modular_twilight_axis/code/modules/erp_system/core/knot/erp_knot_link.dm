@@ -1,12 +1,3 @@
-#define ERP_KNOT_MAX_STRENGTH 100
-#define ERP_KNOT_PAIN_THRESHOLD 25
-#define ERP_KNOT_DECAY_STEP 1
-#define ERP_KNOT_DECAY_TICK (2 SECONDS)
-#define ERP_KNOT_ACTIVITY_GRACE (3 SECONDS)
-
-#define ERP_KNOT_PULL_OWNER_BASE 55
-#define ERP_KNOT_PULL_BTM_BASE 35
-
 /datum/erp_knot_link
 	var/mob/living/top
 	var/mob/living/btm

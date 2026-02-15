@@ -405,7 +405,6 @@
 					else
 						penis.refresh_sex_organ()
 
-					penis.sync_knotting_component()
 					//TA edit end - new ERP SYSTEM
 					H.update_body()
 					should_update = TRUE

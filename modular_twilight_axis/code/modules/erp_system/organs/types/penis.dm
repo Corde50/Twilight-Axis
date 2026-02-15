@@ -43,13 +43,18 @@
 		else
 			have_knot = FALSE
 
-	var/datum/component/knotting/K = H.GetComponent(/datum/component/knotting)
+	var/datum/component/erp_knotting/K = H.GetComponent(/datum/component/erp_knotting)
 	if(have_knot)
 		if(!K)
-			H.AddComponent(/datum/component/knotting)
+			H.AddComponent(/datum/component/erp_knotting)
 	else
 		if(K)
 			qdel(K)
+
+	var/double_count = (P.penis_type in list(PENIS_TYPE_TAPERED_DOUBLE,	PENIS_TYPE_TAPERED_DOUBLE_KNOTTED))
+
+	if(double_count)
+		count_to_action = 2
 
 	var/obj/item/organ/testicles/T = H.getorganslot(ORGAN_SLOT_TESTICLES)
 	if(!T)
@@ -74,39 +79,9 @@
 /obj/item/organ/penis
 	var/manual_erection_override = FALSE
 
-/obj/item/organ/penis/proc/sync_knotting_component()
-	var/mob/living/carbon/human/human_object = owner
-	if(!human_object)
-		return
-
-	var/needs_knot = (penis_type in list(
-		PENIS_TYPE_KNOTTED,
-		PENIS_TYPE_TAPERED_DOUBLE_KNOTTED,
-		PENIS_TYPE_BARBED_KNOTTED,
-		PENIS_TYPE_TAPERED
-	))
-
-	var/double_count = (penis_type in list(
-		PENIS_TYPE_TAPERED_DOUBLE,
-		PENIS_TYPE_TAPERED_DOUBLE_KNOTTED
-	))
-
-	var/datum/component/erp_knotting/knoting_object = human_object.GetComponent(/datum/component/erp_knotting)
-
-	if(needs_knot)
-		if(!knoting_object)
-			human_object.AddComponent(/datum/component/erp_knotting)
-	else
-		if(knoting_object)
-			qdel(knoting_object)
-
-	if(double_count)
-		sex_organ.count_to_action = 2
-
 /obj/item/organ/penis/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
 	RegisterSignal(M, COMSIG_SEX_AROUSAL_CHANGED, PROC_REF(on_arousal_changed), TRUE)
-	sync_knotting_component()
 	refresh_sex_organ()
 
 /obj/item/organ/penis/Remove(mob/living/carbon/M, special, drop_if_replaced)

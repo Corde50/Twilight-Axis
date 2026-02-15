@@ -595,9 +595,9 @@
 		return
 	var/chosen_emote
 	switch(arousal_amt)
-		if(0 to 2.5)
+		if(0 to 2)
 			chosen_emote = "sexmoanlight"
-		if(2.5 to INFINITY)
+		if(2 to INFINITY)
 			chosen_emote = "sexmoanhvy"
 
 	if(pain_amt >= PAIN_MILD_EFFECT)

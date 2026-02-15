@@ -24,20 +24,25 @@
 	if(!owner || !partner || !L)
 		return 1
 
-	var/best_pref = KINK_PREF_NEUTRAL
+	var/total_pref = 0
+
 	for(var/kink_type in GLOB.available_kinks)
 		var/datum/kink/K = GLOB.available_kinks[kink_type]
 		if(!K)
 			continue
 
 		var/pref = get_pref(K.type)
-		if(!pref)
+		if(pref == KINK_PREF_NEUTRAL)
 			continue
 
 		if(!K.is_active_for(owner, partner, L))
 			continue
 
-	return pref_to_mult(best_pref)
+		total_pref += pref
+
+	total_pref = clamp(total_pref, -2, 2)
+	var/mult = 1 + (total_pref * 0.5)
+	return max(mult, 0.25)
 
 /datum/component/kinks/proc/has_pref(kink_typepath)
 	return (kink_typepath in prefs_by_type)
