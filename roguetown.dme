@@ -2977,6 +2977,7 @@
 #include "modular\piercing\piercing.dm"
 #include "modular\piercing\piercings.dm"
 #include "modular\piercing\supply.dm"
+#include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\sidefolk\mercenary\miragefen.dm"
 #include "statpacks\agile.dm"
 #include "statpacks\mental.dm"
 #include "statpacks\physical.dm"
