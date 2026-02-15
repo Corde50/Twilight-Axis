@@ -712,7 +712,6 @@
 	effective_range = 7
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/attackby(obj/item/I, mob/user, params)
-	. = ..()
 	if(istype(I, /obj/item/rogueweapon/huntingknife))
 		user.visible_message(span_warning("[user] starts attaching a bayonet to [src]."))
 		if(do_after(user, 6 SECONDS))
@@ -725,7 +724,8 @@
 			qdel(I)
 		else
 			user.visible_message(span_warning("[user] stops attaching the bayonet to [src]."))
-		return	
+		return TRUE
+	return ..()
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/bayonet
 	name = "arquebus rifle"
@@ -765,7 +765,8 @@
 			qdel(I)
 		else
 			user.visible_message(span_warning("[user] stops attaching the bayonet to [src]."))
-		return	
+		return TRUE
+	return ..()
 
 /obj/item/gun/ballistic/twilight_firearm/arquebus/bayonet/jagerrifle
 	name = "Jägerbüchse"
