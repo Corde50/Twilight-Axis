@@ -16,7 +16,7 @@
 	var/invoker_desc = "a basic rune with no function."
 
 	/// This is said by those when the rune is invoked.
-	var/invocation = "Aiy ele-mayo!"
+	var/invocation = "Invoco!"
 	/// The amount of invokers required around the rune to invoke it.
 	var/req_invokers = 1
 
@@ -327,7 +327,7 @@ GLOBAL_LIST(teleport_runes)
 	name = "Knowledge rune"
 	desc = "arcane symbols pulse upon the ground..."
 	icon_state = "6"
-	invocation = "Thal’ un’vethar!"
+	invocation = "Scientia Patefiat!"
 	color = "#3A0B61"
 	spellbonus = 15
 	scribe_damage = 10
@@ -366,7 +366,7 @@ GLOBAL_LIST(teleport_runes)
 	runesize = 1
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -32
-	invocation = "Thal’miren vek’laris un’vethar!"
+	invocation = "Vires Augeantur!"
 	layer = SIGIL_LAYER
 	can_be_scribed = TRUE
 
@@ -425,7 +425,7 @@ GLOBAL_LIST(teleport_runes)
 	runesize = 1
 	pixel_x = -32 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -32
-	invocation = "Ral’kor vek’varun eyn’torath!"
+	invocation = "Virtutem Infunde!"
 	layer = SIGIL_LAYER
 	can_be_scribed = TRUE
 
@@ -459,7 +459,7 @@ GLOBAL_LIST(teleport_runes)
 	runesize = 2
 	pixel_x = -64 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -64
-	invocation = "Zar’kalthra ul’norak ven’thelis!"
+	invocation = "Magnam Virtutem Infunde!"
 
 /obj/effect/decal/cleanable/roguerune/arcyne/enchantment/greater/New()
 	. = ..()
@@ -470,7 +470,7 @@ GLOBAL_LIST(teleport_runes)
 	desc = "arcane symbols litter the ground- is that a wall of some sort?"
 	icon_state = "wall"
 	tier = 2
-	invocation = "Fren’aleth ar’quor!"
+	invocation = "Murus Surgat!"
 	can_be_scribed = TRUE
 	color = "#184075"
 	var/list/barriers = list()
@@ -582,7 +582,7 @@ GLOBAL_LIST(teleport_runes)
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "wall"
 	tier = 3
-	invocation = "Thar’morak dul’vorr keth’alor!"
+	invocation = "Arx Firma Surgat!"
 	runesize = 2
 	pixel_x = -64 //So the big ol' 96x96 sprite shows up right
 	pixel_y = -64
@@ -639,7 +639,7 @@ GLOBAL_LIST(teleport_runes)
 	icon_state = "portal"
 	tier = 2
 	req_invokers = 2
-	invocation = "Xel’tharr un’korel!"
+	invocation = "Plana Convergant!"
 	req_keyword = TRUE
 	runesize = 2
 	pixel_x = -64 //So the big ol' 96x96 sprite shows up right
@@ -742,7 +742,7 @@ GLOBAL_LIST(teleport_runes)
 	name = "confinement matrix"
 	desc = "A relatively basic confinement matrix used to hold small things when summoned."
 	icon_state = "summon"
-	invocation = "Rhegal vex'ultraa!"
+	invocation = "Evoca et Constringe!"
 	max_integrity = 0
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	tier = 1
@@ -836,7 +836,8 @@ GLOBAL_LIST(teleport_runes)
 
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning/adv	//160x160 rune t2(5x5 tile)
 	name = "warded sealate confinement matrix"
-	desc = "An thoroughly warded confinement matrix improved with the addition of a sealate matrix; used to hold larger, dangerous things when summoned."
+	desc = "A thoroughly warded confinement matrix improved with the addition of a sealate matrix; \
+	used to hold larger, dangerous things when summoned."
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "warded"
 	runesize = 2
@@ -852,7 +853,8 @@ GLOBAL_LIST(teleport_runes)
 
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning/max	//224x224 rune t3(7x7 tile)
 	name = "noc's eye warded sealate confinement matrix"
-	desc = "An thoroughly warded confinement matrix improved with a Noc's eye sealing measure and the addition of a sealate matrix; used to hold the largest, most dangerous things summonable."
+	desc = "A thoroughly warded confinement matrix improved with a Noc's eye sealing measure \
+	and the addition of a sealate matrix; used to hold the largest, most dangerous things summonable."
 	icon = 'icons/effects/224x224.dmi'
 	icon_state = "huge_runeblued"
 	runesize = 3

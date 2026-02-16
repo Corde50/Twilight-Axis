@@ -23,8 +23,8 @@
 	experimental_onhip = TRUE
 	experimental_inhand = TRUE
 	chunkcolor = "#8c9599"
-	equip_delay_self = 2.5 SECONDS
-	unequip_delay_self = 2.5 SECONDS
+	equip_delay_self = 1.5 SECONDS
+	unequip_delay_self = 1.5 SECONDS
 
 /obj/item/clothing/head/roguetown/helmet/MiddleClick(mob/user)
 	if(!ishuman(user))
@@ -45,6 +45,12 @@
 
 /obj/item/clothing/suit/roguetown/head/helmet/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_HONORBOUND)
+
+/obj/item/clothing/head/roguetown/helmet/get_mechanics_examine(mob/user)
+	. = ..()
+	. += span_info("Shift-click to open up the helmet's inventory. This can be used to wear additional cosmetics over the helmet, or to store smaller items.")
+	. += span_info("Visored helmets can be articulated by right-clicking them. Lifted visors offer a wider field of view, but expose your face to precise strikes.")
+	. += span_info("Certain helmets can be further decorated by left-clicking them with a feather, cloth, or both.")
 
 /obj/item/clothing/head/roguetown/helmet/skullcap
 	name = "skull cap"
@@ -95,6 +101,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	color = "#bb9696"
 	chunkcolor = "#532e25"
+	material_category = ARMOR_MAT_PLATE
 	smeltresult = /obj/item/ingot/aaslag
 	anvilrepair = null
 	prevent_crits = PREVENT_CRITS_NONE
@@ -248,12 +255,6 @@
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_IRON
 
-/obj/item/clothing/head/roguetown/helmet/sallet/elven
-	desc = "A steel helmet with a thin gold plating designed for Elven woodland guardians."
-	icon_state = "bascinet_novisor"
-	item_state = "bascinet_novisor"
-	color = COLOR_ASSEMBLY_GOLD
-
 /obj/item/clothing/head/roguetown/helmet/sallet/raneshen
 	name = "kulah khud"
 	desc = "A sturdy, conical helm that has served the Empire well throughout its many campaigns. It's a sight to see, thousands of these bobbing as an army marches. The only greater humiliation than losing it is losing one's medallion."
@@ -333,6 +334,14 @@
 	desc = "A winged version of the elven barbute. They have always been known for their vanity."
 	icon_state = "elven_barbute_winged"
 	item_state = "elven_barbute_winged"
+
+/obj/item/clothing/head/roguetown/helmet/elvenbarbute/blackoak
+	desc = "An elven barbute with a thin gold plating designed for Elven Woodland guardians."
+	color = COLOR_ASSEMBLY_GOLD
+
+/obj/item/clothing/head/roguetown/helmet/elvenbarbute/winged/blackoak
+	desc = "A winged version of the elven barbute with a thin gold plating designed for Elven Woodland guardians."
+	color = COLOR_ASSEMBLY_GOLD
 
 /obj/item/clothing/head/roguetown/helmet/bascinet
 	name = "bascinet"
@@ -433,7 +442,6 @@
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/ComponentInitialize()
 	AddComponent(/datum/component/adjustable_clothing, (HEAD|EARS|HAIR), (HIDEEARS|HIDEHAIR), null, 'sound/items/visor.ogg', null, UPD_HEAD)	//Standard helmet
 
-
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/attackby(obj/item/W, mob/living/user, params)
 	..()
 	if(istype(W, /obj/item/natural/feather) && !detail_tag)
@@ -458,7 +466,6 @@
 		if(loc == user && ishuman(user))
 			var/mob/living/carbon/H = user
 			H.update_inv_head()
-
 
 /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull/update_icon()
 	cut_overlays()
@@ -523,6 +530,7 @@
 	item_state = "kazengunmedhelm"
 	detail_tag = "_detail"
 	detail_color = "#FFFFFF"
+	flags_inv = HIDEEARS|HIDEHAIR
 
 /obj/item/clothing/head/roguetown/helmet/kettle/jingasa/update_icon()
 	cut_overlays()

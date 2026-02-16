@@ -23,7 +23,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
@@ -34,6 +34,9 @@
 	subclass_virtues = list(
 		/datum/virtue/utility/riding
 	)
+	subclass_stashed_items = list(
+        "Armor Plates" =  /obj/item/repair_kit/metal,
+    )
 
 /datum/outfit/job/roguetown/wretch/deserter/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -116,7 +119,7 @@
 
 		var/armors = list(
 			"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
-			"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/brigandine/coatplates,
+			"Coat of Plates"	= /obj/item/clothing/suit/roguetown/armor/plate/scale/knight,
 			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/cuirass,
 			"Fluted Cuirass"	= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted,
 			"Lamellar Scalemail"		= /obj/item/clothing/suit/roguetown/armor/plate/scale/steppe,
@@ -166,7 +169,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT, // Better at climbing away than your average MaA. Only slightly.
 		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN, // Worse at swimming than the above class.

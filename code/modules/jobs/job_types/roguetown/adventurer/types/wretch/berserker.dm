@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/wretch/berserker
 	cmode_music = 'sound/music/cmode/antag/combat_darkstar.ogg'
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STRONGBITE, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOPAINSTUN, TRAIT_BLOOD_RESISTANCE)
+	traits_applied = list(TRAIT_STRONGBITE, TRAIT_CRITICAL_RESISTANCE, TRAIT_NOPAINSTUN)
 	// Literally same stat spread as Atgervi Shaman
 	subclass_stats = list(
 		STATKEY_STR = 3,
@@ -32,6 +32,9 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 		/datum/skill/labor/butchering = SKILL_LEVEL_NOVICE,
 	)
+	subclass_stashed_items = list(
+        "Sewing Kit" =  /obj/item/repair_kit,
+    )
 
 /datum/outfit/job/roguetown/wretch/berserker/pre_equip(mob/living/carbon/human/H)
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
