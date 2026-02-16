@@ -462,6 +462,10 @@
 	if(!istype(user.patron, /datum/patron/inhumen/zizo))
 		return
 	
+	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/skeleton))
+		to_chat(user, span_warning("Skelet not allowed."))
+		return
+	
 	show_ritual_tgui(user)
 
 /obj/effect/decal/cleanable/sigil/N
@@ -524,6 +528,9 @@
 	set name = "Draw Sigil"
 	set category = "ZIZO"
 	if(stat >= UNCONSCIOUS)
+		return
+	
+	if(mind && mind.has_antag_datum(/datum/antagonist/skeleton))
 		return
 
 	var/list/runes = list("Servantry", "Transmutation", "Fleshcrafting")
