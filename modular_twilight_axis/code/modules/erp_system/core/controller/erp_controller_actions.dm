@@ -118,7 +118,7 @@
 
 	if(islist(A.required_item_tags) && A.required_item_tags.len)
 		if(!has_required_item_tags(controller.owner, A.required_item_tags))
-			return "Нужна секс-игрушка."
+			return "Нужен определенный предмет."
 
 	if(istype(init, /datum/erp_sex_organ/penis))
 		var/datum/erp_sex_organ/penis/P = init
@@ -238,15 +238,23 @@
 
 	return FALSE
 
-/// Checks if item has any of required tags.
+/// Checks if item or it's namehas any of required tags.
 /datum/erp_controller_actions/proc/item_has_any_tag(obj/item/I, list/required_tags)
 	if(!istype(I) || !islist(required_tags) || !required_tags.len)
 		return FALSE
-	if(!islist(I.erp_item_tags) || !I.erp_item_tags.len)
-		return FALSE
+
+	var/name_lower = lowertext(I.name)
+	if(islist(I.erp_item_tags) && I.erp_item_tags.len)
+		for(var/t in required_tags)
+			if(t in I.erp_item_tags)
+				return TRUE
 
 	for(var/t in required_tags)
-		if(t in I.erp_item_tags)
+		if(!istext(t))
+			continue
+
+		var/tag_lower = lowertext("[t]")
+		if(findtext(name_lower, tag_lower))
 			return TRUE
 
 	return FALSE
