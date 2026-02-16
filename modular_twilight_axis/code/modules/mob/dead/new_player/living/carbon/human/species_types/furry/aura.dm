@@ -15,6 +15,8 @@
 	default_color = "FFFFFF"
 	origin_default = /datum/virtue/origin/kazengun
 	origin = "Kazengun"
+	base_name = "Dragonkin"
+	is_subrace = TRUE
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	inherent_traits = list(TRAIT_NOMOBSWAP)
 	default_features = MANDATORY_FEATURE_LIST
