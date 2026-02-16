@@ -127,6 +127,9 @@
 	GLOB.lordcolor -= src
 	return ..()
 
+/obj/item/clothing/suit/roguetown/armor/brigandine/captain
+	name = "captain's brigandine"
+ 
 /obj/item/clothing/suit/roguetown/armor/brigandine/banneret
 	name = "knight banneret's brigandine"
 /obj/item/clothing/suit/roguetown/armor/brigandine/light/cult

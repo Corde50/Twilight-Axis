@@ -417,7 +417,6 @@
 	desc = span_aiprivradio("The standard calls out to me! It knows we're to see victory!")
 	timer = 3 MINUTES
 
-// TA
 /datum/stressevent/lovezizo
 	timer = 666 MINUTES
 	stressadd = -666 // :)

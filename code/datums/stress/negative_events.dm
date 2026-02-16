@@ -465,7 +465,6 @@
 	timer = 2 MINUTES
 	stressadd = 3
 	desc = span_boldred("The undermaiden is watching me with disgust!")
-// TA
 /datum/stressevent/hatezizo
 	timer = 666 MINUTES
 	stressadd = 666 // :)
