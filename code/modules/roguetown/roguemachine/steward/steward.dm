@@ -560,14 +560,39 @@
 
 			contents += "------ДОСТУПНЫЕ------<BR>"
 			for(var/datum/investment/investment in SSinvestments.available_investments)
+				var/name
+				var/price
+				var/fail_chance
+				var/regular_payment
+				var/onetime_payment
+
+				if(HAS_TRAIT(user, TRAIT_SEEPRICES))
+					name = investment.investment_name
+					price = investment.price
+					fail_chance = investment.fail_chance
+					regular_payment = investment.regular_payment
+					onetime_payment = investment.onetime_payment
+				else if(HAS_TRAIT(user, TRAIT_SEEPRICES_SHITTY))
+					name = "???"
+					price = "примерно [investment.price * (rand(80, 120)/100)]"
+					fail_chance = "???"
+					regular_payment = "примерно [investment.regular_payment * (rand(80, 120)/100)]"
+					onetime_payment = "примерно [investment.onetime_payment * (rand(80, 120)/100)]"
+				else
+					name = "???"
+					price = "???"
+					fail_chance = "???"
+					regular_payment = "???"
+					onetime_payment = "???"
+
 				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
-				contents += "<b>[investment.investment_name]</b><BR>"
+				contents += "<b>[name]</b><BR>"
 				if(investment.regular_payment != 0)
-					contents += "Доход: [investment.regular_payment]m/минута<BR>"
+					contents += "Доход: [regular_payment]m/минута<BR>"
 				if(investment.onetime_payment != 0)
-					contents += "Одноразовая выплата: [investment.onetime_payment]m<BR>"
-				contents += "Цена: [investment.price]m "
-				contents += "Шанс провала: [investment.fail_chance]%<BR>"
+					contents += "Одноразовая выплата: [onetime_payment]m<BR>"
+				contents += "Цена: [price]m "
+				contents += "Шанс провала: [fail_chance]%<BR>"
 				contents += "ETA: [round(investment.pay_eta / (1 MINUTES))] минут<BR>"
 				if(SStreasury.treasury_value < investment.price)
 					contents += "<a href='?src=\ref[src];buy_investment=\ref[investment]'>\[НЕДОСТАТОЧНО СРЕДСТВ\]</a>"
