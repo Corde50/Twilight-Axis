@@ -382,12 +382,13 @@
 			return null
 
 		if(!consent.client)
+			to_chat(actor, span_warning("You can't do this."))
 			return null //Ранний возврат до ввода хедлесс-клиентов для мобов и объектов
 
 		if(consent.client && consent.client.prefs && !consent.client.prefs.sexable)
 			if(!silent)
-				to_chat(actor, span_warning("[consent] doesn't wish to be touched."))
-				to_chat(consent, span_warning("[actor] failed to touch you."))
+				to_chat(actor, span_warning("[consent] doesn't wish to be touched. (Their ERP preference)"))
+				to_chat(consent, span_warning("[actor] failed to touch you. (Your ERP preference)"))
 			log_combat(actor, consent, "tried unwanted ERP menu against")
 			return null
 
