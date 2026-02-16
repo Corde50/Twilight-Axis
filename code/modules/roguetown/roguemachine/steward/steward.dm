@@ -555,7 +555,13 @@
 			for(var/datum/investment/investment in SSinvestments.awaiting_investments)
 				contents += "<div style='background-color: #1c1c1c; margin-top:4px'>"
 				contents += "<b>[investment.investment_name]</b><BR>"
-				contents += "Осталось времени: [round(((investment.time_purchased + investment.pay_eta) - world.time) / (1 MINUTES))] минут<BR>"
+				var/remaining_ticks = (investment.time_purchased + investment.pay_eta) - world.time
+				var/total_seconds = round(remaining_ticks / (1 SECONDS))
+
+				var/min = round(total_seconds / 60)
+				var/sec = total_seconds % 60
+
+				contents += "Осталось времени: [min] минут [sec < 10 ? "0[sec]" : "[sec]"] секунд<BR>"
 				contents += "</div>"
 
 			contents += "------ДОСТУПНЫЕ------<BR>"
