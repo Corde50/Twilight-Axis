@@ -1,7 +1,7 @@
 /datum/job/roguetown/watchman_enigma
 	title = "Watchman"
 	flag = WATCHMANENIGMA
-	department_flag = GARRISON
+	department_flag = CITYWATCH
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
@@ -71,6 +71,7 @@
 	)
 
 /datum/outfit/job/roguetown/watchman_enigma
+	job_bitflag = BITFLAG_CITYWATCH
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/citywatch
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	pants = /obj/item/clothing/under/roguetown/chainlegs

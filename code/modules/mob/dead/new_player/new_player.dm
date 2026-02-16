@@ -548,6 +548,8 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	omegalist += list(GLOB.courtier_positions)
 	omegalist += list(GLOB.retinue_positions)
 	omegalist += list(GLOB.garrison_positions)
+	omegalist += list(GLOB.citywatch_positions)
+	omegalist += list(GLOB.vanguard_positions)
 	omegalist += list(GLOB.church_positions)
 	omegalist += list(GLOB.burgher_positions)
 	omegalist += list(GLOB.peasant_positions)
@@ -585,6 +587,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 					cat_name = "Retinue"
 				if (GARRISON)
 					cat_name = "Garrison"
+				if (CITYWATCH)
+					cat_name = "City Watch"
+				if (VANGUARD)
+					cat_name = "Vanguard"
 				if (CHURCHMEN)
 					cat_name = "Churchmen"
 				if (BURGHERS)

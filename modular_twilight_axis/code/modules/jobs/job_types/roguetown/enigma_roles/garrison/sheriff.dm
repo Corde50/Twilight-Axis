@@ -1,10 +1,11 @@
 /datum/job/roguetown/sheriff
 	title = "Town Sheriff"
 	flag = SHERIFF
-	department_flag = GARRISON
+	department_flag = CITYWATCH
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
+	selection_color = JCOLOR_CITYWATCH
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 	display_order = JDO_SHERIFF
@@ -71,6 +72,7 @@
 	)
 
 /datum/outfit/job/roguetown/sheriff
+	job_bitflag = BITFLAG_CITYWATCH
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/citywatch/sheriff
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/townguard/sheriff

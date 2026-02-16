@@ -6,6 +6,7 @@
 		"Court Magician",\
 		"Marshal",\
 		"Knight",\
+		"Knight(Enigma)", \
 		"Bishop",\
 		"Martyr",\
 		"Keeper",\
@@ -24,5 +25,9 @@
 		"Druid",\
 		"Acolyte",\
 		"Man at Arms",\
+		"Man at Arms(Enigma)",\
+		"Vanguard", \
+		"Warden(Enigma)",\
+		"Watchman", \
 		"Squire",\
 	)

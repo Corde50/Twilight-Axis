@@ -101,6 +101,7 @@ GLOBAL_LIST_INIT(courtier_positions, list( //Anyone that is officially part of t
 	"Clerk",
 	"Jester",
 	"Court Magician",
+	"Court Physician",
 	"Archivist",
 	"Seneschal",
 	"Suitor",
@@ -109,14 +110,26 @@ GLOBAL_LIST_INIT(courtier_positions, list( //Anyone that is officially part of t
 GLOBAL_LIST_INIT(retinue_positions, list( //Manorites
 	"Marshal",
 	"Knight",
+	"Knight(Enigma)",
 	"Squire",
 ))
 
 GLOBAL_LIST_INIT(garrison_positions, list( //Guards
 	"Sergeant",
 	"Man at Arms",
+	"Man at Arms(Enigma)",
 	"Warden",
 	"Watchman",
+))
+
+GLOBAL_LIST_INIT(citywatch_positions, list( //Guards
+	"Town Sheriff",
+	"Watchman",
+))
+
+GLOBAL_LIST_INIT(vanguard_positions, list( //Guards
+	"Warden(Enigma)",
+	"Vanguard",
 ))
 
 GLOBAL_LIST_INIT(church_positions, list( //Church of the Ten
@@ -191,6 +204,7 @@ GLOBAL_LIST_INIT(rogueoverthrow_positions, list( //Used for Aspirant / Peasant R
 	"Suitor",
 	"Marshal",
 	"Knight",
+	"Knight(Enigma)",
 	"Inquisitor",
 	"Absolver",
 	"Orthodoxist",
@@ -239,6 +253,8 @@ GLOBAL_LIST_INIT(job_assignment_order, get_job_assignment_order())
 	sorting_order += GLOB.courtier_positions
 	sorting_order += GLOB.retinue_positions
 	sorting_order += GLOB.garrison_positions
+	sorting_order += GLOB.citywatch_positions
+	sorting_order += GLOB.vanguard_positions
 	sorting_order += GLOB.church_positions
 	sorting_order += GLOB.burgher_positions
 	sorting_order += GLOB.peasant_positions

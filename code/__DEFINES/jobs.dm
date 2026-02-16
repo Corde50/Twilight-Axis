@@ -50,12 +50,18 @@
 #define WARDEN		(1<<2)
 #define WATCHMAN	(1<<3)
 #define MANATARMSENIGMA	(1<<4)
-#define SHERIFF			(1<<5)
-#define WATCHMANENIGMA			(1<<6)
-#define WARDENENIGMA		(1<<7)
-#define VANGUARD 	(1<<8)
 
-#define CHURCHMEN			(1<<4)
+#define CITYWATCH			(1<<4)
+
+#define SHERIFF			(1<<0)
+#define WATCHMANENIGMA			(1<<1)
+
+#define VANGUARD			(1<<5)
+
+#define WARDENENIGMA		(1<<0)
+#define VANGUARDS 	(1<<1)
+
+#define CHURCHMEN			(1<<6)
 
 #define BISHOP		(1<<0)
 #define MARTYR		(1<<1)
@@ -65,7 +71,7 @@
 #define ACOLYTE		(1<<5)
 #define SEXTON		(1<<6)
 
-#define BURGHERS			(1<<5)
+#define BURGHERS			(1<<7)
 
 #define MERCHANT	(1<<0)
 #define GUILDMASTER (1<<1)
@@ -78,7 +84,7 @@
 #define CRIER		(1<<8)
 #define APPRENTICE	(1<<9) //Readd the mage part if you are going to add any other role that uses this tag or use ASSOCIATE to avoid weird spacing.
 
-#define PEASANTS			(1<<6)
+#define PEASANTS			(1<<8)
 
 #define BATHWORKER	(1<<0)
 #define COOK		(1<<1)
@@ -88,7 +94,7 @@
 #define SOILSON		(1<<5)
 #define VILLAGER	(1<<6)
 
-#define SIDEFOLK			(1<<7)
+#define SIDEFOLK			(1<<9)
 
 #define LUNATIC		(1<<0)
 #define VAGABOND	(1<<1)
@@ -97,19 +103,19 @@
 #define MERCENARY	(1<<4)
 #define VETERAN		(1<<5)
 
-#define WANDERERS			(1<<8)
+#define WANDERERS			(1<<10)
 
 #define ADVENTURER	(1<<0)
 #define COURTAGENT	(1<<1)
 #define TRADER		(1<<2)
 
-#define INQUISITION			(1<<9)
+#define INQUISITION			(1<<11)
 
 #define INQUISITOR	(1<<0)
 #define ABSOLVER	(1<<1)
 #define ORTHODOXIST	(1<<2)
 
-#define ANTAGONIST			(1<<10)
+#define ANTAGONIST			(1<<12)
 
 #define ASSASSIN		(1<<0)
 #define BANDIT			(1<<1)
@@ -122,7 +128,7 @@
 #define VAMPIRE_SPAWN 	(1<<8)
 #define GNOLL			(1<<9)
 
-#define SLOP				(1<<11)
+#define SLOP				(1<<13)
 
 #define TESTER		(1<<0)
 
@@ -130,6 +136,8 @@
 #define JCOLOR_COURTIER "#aa83b9"
 #define JCOLOR_RETINUE "#597fb9"
 #define JCOLOR_GARRISON "#173266"
+#define JCOLOR_CITYWATCH "#263154"
+#define JCOLOR_VANGUARD "#790f73"
 #define JCOLOR_CHURCH "#b0955d"
 #define JCOLOR_BURGHER "#759259"
 #define JCOLOR_PEASANT "#685542"
@@ -230,6 +238,8 @@
 #define BITFLAG_ROYALTY (1<<1)
 #define BITFLAG_CONSTRUCTOR (1<<2)
 #define BITFLAG_GARRISON (1<<3)
+#define BITFLAG_CITYWATCH (1<<4)
+#define BITFLAG_VANGUARD (1<<5)
 
 // START OF THE ECONOMY SECTION 
 #define ECONOMIC_RICH rand(120, 140)

@@ -1,5 +1,5 @@
 /datum/job/roguetown/manorguard_enigma
-	title = "Man at Arms"
+	title = "Man at Arms(Enigma)"
 	flag = MANATARMSENIGMA
 	department_flag = GARRISON
 	faction = "Station"
@@ -10,9 +10,9 @@
 	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
-	tutorial = "Having proven yourself loyal and capable, you are entrusted to defend the town and enforce its laws. \
-				Trained regularly in combat and siege warfare, you deal with threats - both within and without. \
-				Obey your Sergeant-at-Arms, the Marshal, and the Crown. Show the nobles and knights your respect, so that you may earn it in turn. Not as a commoner, but as a soldier.."
+	tutorial = "Доказав свою преданность и способности, вы получили смысл жизни - защищать герцогскую семью и её двор в качестве лейб-гвардейца. \
+				Вы непосредственно подчиняетесь своему сержанту лейб-гвардии. Если вы регулярно проходите обучение боевым и осадным действиям, у вас есть небольшой шанс пережить правление герцога.\
+				Умереть в составе лейб-гвардии Его Высочества - большая честь, маршал напоминает вам об этом каждую ночь."
 	display_order = JDO_MANATARMSENIGMA
 	whitelist_req = TRUE
 
@@ -25,7 +25,7 @@
 	round_contrib_points = 2
 	same_job_respawn_delay = 30 MINUTES
 
-	cmode_music = 'sound/music/combat_ManAtArms.ogg'
+	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_retinue.ogg'
 	job_subclasses = list(
 		/datum/advclass/manorguard_enigma/footsman,
 		/datum/advclass/manorguard_enigma/skirmisher,
@@ -41,6 +41,8 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
+		title = "Man at Arms"
+		display_title = "Man At Arms"
 		if(istype(H.cloak, /obj/item/clothing/cloak/tabard/stabard/guard))
 			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
@@ -61,17 +63,17 @@
 
 // Melee goon
 /datum/advclass/manorguard_enigma/footsman
-	name = "Footman"
-	tutorial = "You are a professional soldier of the realm, specializing in melee warfare. Stalwart and hardy, your body can both withstand and dish out powerful strikes.."
+	name = "Retinue Footman"
+	tutorial = "Вы - член герцогской дружины. Обеспечьте безопасность герцогства и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните герцогство Энигму."
 	outfit = /datum/outfit/job/roguetown/manorguard_enigma/footsman
 
 	category_tags = list(CTAG_MENATARMS_ENIGMA)
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(
-		STATKEY_STR = 2,// seems kinda lame but remember guardsman bonus!!
+		STATKEY_STR = 3,// seems kinda lame but remember guardsman bonus!!
 		STATKEY_INT = 1,
 		STATKEY_CON = 3, //Like other footman classes their main thing is constitution more so than anything else
-		STATKEY_WIL = 1
+		STATKEY_WIL = 2
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
@@ -163,16 +165,16 @@
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/manorguard_enigma/skirmisher
-	name = "Skirmisher"
-	tutorial = "You are a professional soldier of the realm, specializing in ranged implements. You sport a keen eye, looking for your enemies weaknesses."
+	name = "Retinue Skirmisher"
+	tutorial = "Вы - член герцогской дружины. Обеспечьте безопасность герцогства и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните герцогство Энигму."
 	outfit = /datum/outfit/job/roguetown/manorguard_enigma/skirmisher
 
 	category_tags = list(CTAG_MENATARMS_ENIGMA)
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_SPD = 2,
-		STATKEY_PER = 2,
-		STATKEY_WIL = 1
+		STATKEY_PER = 3,
+		STATKEY_WIL = 2
 	)
 	subclass_skills = list(
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
@@ -249,9 +251,9 @@
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /datum/advclass/manorguard_enigma/standard_bearer
-	name = "Standard Bearer"
-	tutorial = "You are one of the Man at Arms entrusted with the keep's standard when you sally out into battle. \
-	Your fellow soldiers know to rally around you, should you keep it safe."
+	name = "Retinue Standard Bearer"
+	tutorial = "Ты тот, кому была удостоена честь нести знамя Герцогства. \
+	Вдохновляй своих товарищей на подвиги во имя Великого Герцога."
 	outfit = /datum/outfit/job/roguetown/manorguard_enigma/standard_bearer
 	category_tags = list(CTAG_MENATARMS_ENIGMA)
 	traits_applied = list(TRAIT_STANDARD_BEARER, TRAIT_MEDIUMARMOR)

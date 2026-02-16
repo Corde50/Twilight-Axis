@@ -1591,6 +1591,8 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 		"Courtiers" = GLOB.courtier_positions,
 		"Retinue" = GLOB.retinue_positions,
 		"Garrison" = GLOB.garrison_positions,
+		"City Watch" = GLOB.citywatch_positions,
+		"Vanguard" = GLOB.vanguard_positions,
 		"Church" = GLOB.church_positions,
 		"Burgher" = GLOB.burgher_positions,
 		"Peasant" = GLOB.peasant_positions,
