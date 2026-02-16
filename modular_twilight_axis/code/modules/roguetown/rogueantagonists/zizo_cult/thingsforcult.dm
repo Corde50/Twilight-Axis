@@ -93,7 +93,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
 	icon_state = "zcross"
-	slot_flags = ITEM_SLOT_NECK|ITEM_SLOT_RING
+	slot_flags = ITEM_SLOT_NECK
 	sellprice = 0
 	max_integrity = 100
 	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET 
@@ -105,6 +105,20 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	armor_class = ARMOR_CLASS_LIGHT
 	unenchantable = TRUE
 	anvilrepair = null
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if(!M.can_equip(src, slot, disable_warning, bypass_equip_delay_self))
+		return FALSE
+
+	
+	if(slot == SLOT_WRISTS || (wrist_display && slot != SLOT_NECK))
+		mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
+		sleeved = 'icons/roguetown/clothing/onmob/wrists.dmi'
+	else
+		mob_overlay_icon = initial(mob_overlay_icon)
+		sleeved = initial(sleeved)
+
+	return TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/Initialize()
 	. = ..()
