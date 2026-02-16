@@ -49,7 +49,7 @@
 	(+1 STR)"
 	max_age = 1900
 	origin_default = /datum/virtue/origin/racial/ancient
-	origin = "Ancient"
+	origin = "Age Long Gone"
 	base_name = "Dragonkin"
 
 /datum/species/human/halfelf
