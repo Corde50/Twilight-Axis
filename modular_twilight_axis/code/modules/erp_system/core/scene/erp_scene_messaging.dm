@@ -10,47 +10,33 @@
 	if(!text)
 		return
 
-	var/mob/living/A = null
-	var/mob/living/B = null
+	var/datum/erp_actor/A = null
+	var/datum/erp_actor/B = null
 
 	if(L)
-		A = L.actor_active?.get_effect_mob()
-		B = L.actor_passive?.get_effect_mob()
+		A = L.actor_active
+		B = L.actor_passive
 	else
-		A = controller._get_owner_effect_mob()
-		B = controller._get_partner_effect_mob()
+		return
 
 	if(controller.hidden_mode)
-		var/atom/center = null
+		// В приватном режиме сообщение получают только участники
 		if(A)
-			center = A
-		else if(L)
-			center = L.actor_active?.physical || L.actor_active?.active_actor
-		else
-			center = controller.owner?.physical || controller.owner?.active_actor
+			A.send_private_message(text)
 
-		if(!center)
-			if(A) to_chat(A, text)
-			if(B) to_chat(B, text)
-			return
-
-		var/turf/CT = get_turf(center)
-		if(!CT)
-			if(A) to_chat(A, text)
-			if(B) to_chat(B, text)
-			return
-
-		for(var/mob/M in viewers(2, CT))
-			if(!M || QDELETED(M))
-				continue
-			to_chat(M, text)
+		if(B && B != A)
+			B.send_private_message(text)
 
 		return
 
+	// Обычный режим — рассылаем через visible каждому актёру
+	// visible_message сам разошлёт тем, кто их видит
+
 	if(A)
-		A.visible_message(text)
-	else if(B)
-		B.visible_message(text)
+		A.send_visible_message(text)
+
+	if(B && B != A)
+		B.send_visible_message(text)
 
 /// Wraps scene tick text with force/speed intensity spans.
 /datum/erp_scene_messaging/proc/spanify_scene_text(text, force, speed, intensity = null)

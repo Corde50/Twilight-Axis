@@ -59,7 +59,7 @@
 		best?.actor_active?.stamina_add(-stam_cost)
 
 		controller.play_tick_effects(active, best, dt)
-		controller.send_message(best.spanify_sex(msg))
+		controller.send_message(best.spanify_sex(msg), best)
 
 /// Calculates average scene interval.
 /datum/erp_scene_runtime/proc/calc_scene_interval(list/active_links)

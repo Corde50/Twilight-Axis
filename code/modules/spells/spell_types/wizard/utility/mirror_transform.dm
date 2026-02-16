@@ -408,11 +408,6 @@
 					//TA edit end - new ERP SYSTEM
 					H.update_body()
 					should_update = TRUE
-					//TA add start - new ERP SYSTEM
-					penis = H.getorganslot(ORGAN_SLOT_PENIS)
-					if(penis)
-						penis.refresh_sex_organ()
-					//TA add end - new ERP SYSTEM
 
 		if("Testicles")
 			var/list/valid_testicle_types = list("none")

@@ -311,19 +311,27 @@
 
 /// Sends a visible message through the effects bridge.
 /datum/erp_actor/proc/send_visible_message(text)
+	if(!text)
+		return FALSE
+
 	var/mob/living/M = get_effect_mob()
-	if(!M)
-		M.visible_message(text)
-		return TRUE
-	return FALSE
+	if(!M || QDELETED(M))
+		return FALSE
+
+	M.visible_message(text)
+	return TRUE
 
 /// Sends a private message through the effects bridge.
 /datum/erp_actor/proc/send_private_message(text)
+	if(!text)
+		return FALSE
+
 	var/mob/living/M = get_effect_mob()
-	if(!M)
-		to_chat(M, text)
-		return TRUE
-	return FALSE
+	if(!M || QDELETED(M))
+		return FALSE
+
+	to_chat(M, text)
+	return TRUE
 
 /// Hook: Adds stamina (implemented in subtypes).
 /datum/erp_actor/proc/stamina_add(delta)

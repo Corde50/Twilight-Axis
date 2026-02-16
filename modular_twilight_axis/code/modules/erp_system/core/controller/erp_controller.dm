@@ -494,8 +494,8 @@
 	return ui_d ? ui_d.set_actor_arousal(actor, value) : FALSE
 
 /// Sends visible/hidden-mode message.
-/datum/erp_controller/proc/send_message(text, datum/erp_sex_link/L = null)
-	scene_msg_d?.send_message(text, L)
+/datum/erp_controller/proc/send_message(msg, datum/erp_sex_link/L = null)
+	scene_msg_d?.send_message(msg, L)
 
 /// Finds nearby container used for inject.
 /datum/erp_controller/proc/_find_nearby_container(mob/living/carbon/human/H, turf/center)
