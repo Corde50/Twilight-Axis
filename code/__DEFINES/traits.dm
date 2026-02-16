@@ -523,7 +523,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 
 	TRAIT_ARTILLERY_EXPERT = span_greentext("Я ранее обращался с артиллерией и разбираюсь в тонкостях её наводки."),
 	TRAIT_VILLAIN = span_warning("I am a devious, conniving villain!"),
-	TRAIT_WOUNDREGEN = span_info("My wounds and bones mend on their own, my bleeding clots quickly..")
+	TRAIT_WOUNDREGEN = span_info("My wounds and bones mend on their own, my bleeding clots quickly.."),
 	TRAIT_ZIZOEYES = span_notice("You no longer fear a veil of the darkness, yet your eyes are glimmering lights in it..")
 ))
 
