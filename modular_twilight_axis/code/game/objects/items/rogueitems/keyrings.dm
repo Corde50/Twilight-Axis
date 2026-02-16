@@ -1,5 +1,5 @@
 /obj/item/storage/keyring/sheriff
-	keys = list(/obj/item/roguekey/sheriff, /obj/item/roguekey/walls, /obj/item/roguekey/armory)
+	keys = list(/obj/item/roguekey/townsheriff, /obj/item/roguekey/walls, /obj/item/roguekey/armory)
 
 /obj/item/storage/keyring/watchman
 	keys = list(/obj/item/roguekey/walls, /obj/item/roguekey/armory)

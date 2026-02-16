@@ -41,13 +41,6 @@
 		desc = "This key opens the walls and gatehouse of the city."
 		lockid = "walls"
 
-/obj/item/roguekey/justiciary/Initialize()
-	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
-		name = "marshal key"
-		desc = "This key opens the marshal office."
-		lockid = "marshall"
-
 /obj/item/roguekey/university/Initialize()
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill_TA")
@@ -65,3 +58,9 @@
 	if(SSmapping.config.map_name == "Rockhill_TA")
 		name = "inquisition ship key"
 		desc = "This key opens doors in inquisition ship."
+
+/obj/item/roguekey/townsheriff
+	name = "Sheriff key"
+	desc = "This key opens the Sheriff office."
+	icon_state = "spikekey"
+	lockid = "townsheriff"
