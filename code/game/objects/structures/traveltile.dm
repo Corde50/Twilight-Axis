@@ -41,6 +41,7 @@
 	var/aportalgoesto = "REPLACETHIS"
 	var/aallmig
 	var/required_trait = null
+	var/grants_access_on_use = TRUE // 16.02.2026 TA edit for Corde50 shitportals. Adds proverku daet li traveltile trait dlya zritelya
 
 /obj/structure/fluff/traveltile/Initialize()
 	GLOB.traveltiles += src
@@ -140,7 +141,7 @@
 	return FALSE
 
 /obj/structure/fluff/traveltile/proc/perform_travel(obj/structure/fluff/traveltile/T, mob/living/L)
-	if(!L.restrained(ignore_grab = TRUE)) // heavy-handedly prevents using prisoners to metagame camp locations. pulledby would stop this but prisoners can also be kicked/thrown into the tile repeatedly
+	if(grants_access_on_use && !L.restrained(ignore_grab = TRUE)) // 16.02.2026 TA Edit for Corde50 shitportals. Heavy-handedly prevents using prisoners to metagame camp locations. pulledby would stop this but prisoners can also be kicked/thrown into the tile repeatedly 
 		for(var/mob/living/carbon/human/H in hearers(6,src))
 			if(!H.IsUnconscious() && H.stat == CONSCIOUS && !HAS_TRAIT(H, TRAIT_PARALYSIS) && !HAS_TRAIT(H, required_trait) && !HAS_TRAIT(H, TRAIT_BLIND))
 				to_chat(H, "<b>I watch [L.name? L : "someone"] go through a well-hidden entrance.</b>")

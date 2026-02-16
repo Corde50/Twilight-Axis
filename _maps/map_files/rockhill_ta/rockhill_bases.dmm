@@ -77,6 +77,13 @@
 "bh" = (
 /turf/open/floor/rogue/blocks/flipped,
 /area/rogue/outdoors/bograt/safe)
+"bl" = (
+/obj/effect/decal/cobble/mossy{
+	dir = 5
+	},
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors)
 "bn" = (
 /obj/machinery/light/rogue/candle/l,
 /turf/open/floor/rogue/herringbone,
@@ -1132,11 +1139,6 @@
 /area/rogue/indoors/vampire_manor)
 "ix" = (
 /obj/structure/flora/roguegrass/thorn_bush,
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
-	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/bograt/safe)
 "iy" = (
@@ -1665,10 +1667,8 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/mountains)
 "lK" = (
-/obj/structure/fluff/railing/wood/west{
-	pixel_x = -12
-	},
-/turf/open/floor/rogue/dirt,
+/obj/structure/flora/roguegrass/bush/westleach,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bograt/safe)
 "lM" = (
 /obj/structure/roguewindow,
@@ -1960,7 +1960,7 @@
 /area/rogue/outdoors/bograt/safe)
 "nn" = (
 /obj/structure/bars/grille,
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/twig/platform,
 /area/rogue/outdoors/bograt/safe)
 "no" = (
 /obj/structure/flora/roguegrass/water/reeds,
@@ -1979,7 +1979,7 @@
 /obj/structure/fluff/railing/wood/west{
 	pixel_x = -12
 	},
-/turf/open/floor/rogue/cobble/mossy,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/bograt/safe)
 "nv" = (
 /turf/open/floor/rogue/naturalstone,
@@ -2288,18 +2288,13 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/vampire_manor)
 "pj" = (
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
-	name = "Wall of Greed"
-	},
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
-	name = "Wall of Greed"
-	},
-/turf/open/floor/rogue/dirt,
-/area/rogue/indoors/banditcamp)
+/obj/machinery/light/rogue/candle/floorcandle/pink,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves{
+	ambush_mobs = null;
+	first_time_text = null;
+	name = "Wretched Caves"
+	})
 "pk" = (
 /obj/structure/stairs{
 	dir = 1
@@ -2425,11 +2420,8 @@
 	name = "Wretched Caves"
 	})
 "qd" = (
-/obj/structure/bars/grille,
-/obj/structure/fluff/railing/wood/east{
-	pixel_x = 8
-	},
-/turf/open/floor/rogue/cobblerock,
+/obj/structure/flora/roguetree/burnt,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bograt/safe)
 "qe" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -2772,7 +2764,7 @@
 /obj/structure/fluff/railing/wood/east{
 	pixel_x = 8
 	},
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/bograt/safe)
 "sr" = (
 /obj/machinery/artificer_table,
@@ -2901,11 +2893,6 @@
 /obj/structure/arcyne_wall{
 	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
 	max_integrity = 9999;
-	name = "Wall of Greed"
-	},
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
 	name = "Wall of Greed"
 	},
 /turf/open/floor/rogue/blocks,
@@ -3158,13 +3145,10 @@
 	name = "Bandit Woods"
 	})
 "vx" = (
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
-	},
 /obj/structure/bars/grille,
-/turf/open/floor/rogue/grass,
+/turf/open/floor/rogue/twig/platform{
+	dir = 8
+	},
 /area/rogue/outdoors/bograt/safe)
 "vB" = (
 /turf/open/water/river{
@@ -3549,13 +3533,8 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/banditcamp)
 "xQ" = (
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
-	},
-/obj/structure/bars/grille,
-/turf/open/floor/rogue/cobblerock,
+/obj/structure/vine,
+/turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/bograt/safe)
 "xS" = (
 /obj/structure/table/finestone,
@@ -3952,11 +3931,6 @@
 /area/rogue/indoors)
 "Aj" = (
 /obj/structure/flora/roguegrass,
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
-	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/bograt/safe)
 "Am" = (
@@ -4015,14 +3989,12 @@
 /turf/open/floor/rogue/snowpatchy,
 /area/rogue/outdoors/banditcamp)
 "AE" = (
-/obj/structure/fluff/railing/wood{
-	dir = 1;
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
+/obj/effect/decal/cobble/mossy{
+	dir = 4
 	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bograt/safe)
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors)
 "AF" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 4
@@ -4131,14 +4103,12 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/bograt/safe)
 "Be" = (
-/obj/structure/fluff/railing/wood/north{
-	layer = 2.7;
-	pixel_x = 2;
-	pixel_y = 7
+/obj/effect/decal/cobble/mossy{
+	dir = 9
 	},
-/obj/structure/flora/roguegrass/water,
-/turf/open/water/swamp,
-/area/rogue/outdoors/bograt/safe)
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors)
 "Bf" = (
 /obj/structure/handcart,
 /turf/open/floor/rogue/snowpatchy,
@@ -4532,7 +4502,7 @@
 /obj/structure/fluff/railing/wood/east{
 	pixel_x = 8
 	},
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/twig/platform,
 /area/rogue/outdoors/bograt/safe)
 "Dv" = (
 /turf/closed/wall/mineral/rogue/wooddark,
@@ -4544,10 +4514,13 @@
 	},
 /area/rogue/indoors)
 "Dz" = (
-/obj/structure/flora/roguegrass,
-/obj/structure/fluff/headstake,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bograt/safe)
+/obj/machinery/light/rogue/candle/floorcandle/pink,
+/turf/open/floor/rogue/grasspurple,
+/area/rogue/under/cavewet/bogcaves{
+	ambush_mobs = null;
+	first_time_text = null;
+	name = "Wretched Caves"
+	})
 "DA" = (
 /obj/structure/flora/roguegrass/water,
 /turf/open/water/river{
@@ -4791,6 +4764,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 5
 	},
+/obj/effect/landmark/start/wretch,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
 "EU" = (
@@ -5425,11 +5399,6 @@
 	max_integrity = 9999;
 	name = "Wall of Greed"
 	},
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
-	name = "Wall of Greed"
-	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/banditcamp)
 "Jy" = (
@@ -5518,6 +5487,7 @@
 "Kf" = (
 /obj/structure/fluff/walldeco/bath/five,
 /obj/structure/mirror/fancy,
+/obj/machinery/light/rogue/candle/floorcandle/alt/pink,
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/cavewet/bogcaves{
 	ambush_mobs = null;
@@ -5902,7 +5872,7 @@
 /obj/structure/fluff/railing/wood/east{
 	pixel_x = 8
 	},
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/twig/platform,
 /area/rogue/outdoors/bograt/safe)
 "Mw" = (
 /obj/structure/mineral_door/wood,
@@ -6113,11 +6083,8 @@
 	name = "Wretched Caves"
 	})
 "NQ" = (
-/obj/structure/fluff/railing/wood/west{
-	pixel_x = -12
-	},
-/obj/structure/bars/grille,
-/turf/open/floor/rogue/cobblerock,
+/obj/structure/well,
+/turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bograt/safe)
 "NR" = (
 /obj/structure/table/church,
@@ -6702,6 +6669,7 @@
 /obj/effect/decal/cobble/mossy{
 	dir = 8
 	},
+/obj/effect/landmark/start/wretch,
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
 "RI" = (
@@ -6961,9 +6929,9 @@
 	},
 /area/rogue/indoors/banditcamp)
 "TP" = (
-/obj/structure/bars/grille,
-/turf/open/floor/rogue/cobblerock,
-/area/rogue/outdoors/bograt/safe)
+/obj/structure/roguetent,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/indoors)
 "TS" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/dirt/road,
@@ -7055,6 +7023,10 @@
 "Ut" = (
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave/inhumen)
+"Uu" = (
+/obj/structure/flora/roguegrass/maneater/real/juvenile,
+/turf/open/floor/rogue/dirt/road,
+/area/rogue/outdoors/bograt/safe)
 "Uz" = (
 /obj/structure/table/wood/poor,
 /obj/item/reagent_containers/glass/bottle/alchemical,
@@ -7122,7 +7094,7 @@
 	pixel_x = -12
 	},
 /obj/structure/bars/grille,
-/turf/open/floor/rogue/dirt,
+/turf/open/floor/rogue/twig/platform,
 /area/rogue/outdoors/bograt/safe)
 "Ve" = (
 /obj/structure/roguewindow,
@@ -7440,16 +7412,6 @@
 /area/rogue/outdoors/banditcamp)
 "Xi" = (
 /obj/structure/fluff/statue/gargoyle,
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
-	name = "Wall of Greed"
-	},
-/obj/structure/arcyne_wall{
-	desc = "A wall of pure arcyne force. Powerful covetous magic protects the dragon's hoard.";
-	max_integrity = 99999;
-	name = "Wall of Greed"
-	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
 "Xk" = (
@@ -7584,9 +7546,13 @@
 	name = "Wretched Caves"
 	})
 "Yf" = (
-/obj/structure/fluff/headstake,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bograt/safe)
+/obj/machinery/light/rogue/candle/floorcandle/alt/pink,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cavewet/bogcaves{
+	ambush_mobs = null;
+	first_time_text = null;
+	name = "Wretched Caves"
+	})
 "Yj" = (
 /obj/structure/roguewindow/stained/zizo{
 	icon_state = "stained-zizobr"
@@ -7805,6 +7771,10 @@
 /obj/effect/decal/cleanable/sigil/SW,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
+"ZB" = (
+/obj/effect/landmark/start/wretch,
+/turf/open/floor/rogue/cobblerock,
+/area/rogue/indoors)
 "ZE" = (
 /obj/structure/table/vtable/v2,
 /turf/open/floor/rogue/herringbone,
@@ -11457,7 +11427,7 @@ zq
 Qh
 Qh
 La
-pj
+Mi
 Jw
 Jw
 Jw
@@ -12107,7 +12077,7 @@ Cu
 Qh
 mJ
 vp
-pj
+Mi
 tp
 Jw
 Jw
@@ -17312,7 +17282,7 @@ XB
 XB
 XB
 re
-iZ
+WQ
 aE
 aE
 ux
@@ -17443,7 +17413,7 @@ FI
 XB
 dK
 iZ
-iZ
+WQ
 aE
 aE
 ux
@@ -17703,7 +17673,7 @@ XB
 Fp
 QR
 aE
-iZ
+DT
 iZ
 fs
 aE
@@ -17833,8 +17803,8 @@ iq
 Ag
 QR
 aE
-iZ
-iZ
+xQ
+DT
 iZ
 aE
 aE
@@ -17964,8 +17934,8 @@ QR
 QR
 aE
 aE
-iZ
-iZ
+xQ
+DT
 iZ
 aE
 ux
@@ -18095,17 +18065,17 @@ aE
 aE
 aE
 aE
-WQ
+xQ
 iZ
 aE
 aE
 aE
 Vh
 eu
-dp
+Yt
 kN
 Gq
-dp
+Yt
 gd
 TT
 aE
@@ -18232,9 +18202,9 @@ xV
 ws
 Vh
 YV
-dp
+Yt
 aY
-dp
+Yt
 aY
 gd
 uz
@@ -18355,7 +18325,7 @@ Do
 TW
 aE
 Zp
-hu
+DT
 iZ
 ng
 ws
@@ -18485,7 +18455,7 @@ Dh
 WB
 Zp
 RY
-hu
+DT
 iZ
 ws
 ws
@@ -18615,16 +18585,16 @@ Dd
 bG
 VC
 ws
-hu
+DT
 iZ
 wj
 ws
 ws
 Aa
 ya
-dp
+Yt
 aY
-dp
+Yt
 Uz
 sx
 kC
@@ -18746,15 +18716,15 @@ bG
 vJ
 hu
 iZ
-hu
+DT
 hu
 aq
 RY
 Vh
 md
-dp
-dp
-dp
+Yt
+Yt
+Yt
 zu
 gd
 uz
@@ -18872,18 +18842,18 @@ yy
 Lq
 Cb
 Cb
-hu
-hu
+DT
+DT
 iZ
 iZ
-hu
+DT
 wj
 Zp
 yo
 RY
 AP
 AP
-cF
+TP
 AH
 AH
 RY
@@ -19004,9 +18974,9 @@ ws
 RY
 iZ
 iZ
-hu
+DT
 iZ
-hu
+DT
 VC
 ws
 YE
@@ -19133,8 +19103,8 @@ TW
 VC
 ws
 VC
-hu
-hu
+DT
+DT
 iZ
 iZ
 hu
@@ -19146,15 +19116,15 @@ Op
 iZ
 Em
 iZ
-hu
+DT
 Vb
-NQ
-NQ
+Vb
+Vb
 hu
 vJ
 YE
-xQ
-Np
+vx
+ws
 bG
 Ql
 yy
@@ -19265,9 +19235,9 @@ VC
 Zp
 iZ
 iZ
-hu
+DT
 iZ
-hu
+DT
 nN
 Rq
 Rq
@@ -19275,16 +19245,16 @@ nu
 Em
 iZ
 jC
-hu
+DT
 iZ
-TP
-TP
+nn
+nn
 nn
 iZ
-hu
-wj
+DT
+TS
 vx
-Be
+YE
 bG
 WB
 Mw
@@ -19394,10 +19364,10 @@ fV
 ws
 iZ
 iZ
-hu
+DT
 iZ
-hu
-hu
+DT
+DT
 mQ
 En
 En
@@ -19407,17 +19377,17 @@ iZ
 iZ
 vJ
 wj
-qd
+Mq
 Dt
 Mq
 iZ
 iZ
-hu
-hu
+DT
+DT
 ws
 YE
 ws
-xQ
+vx
 Aj
 dZ
 pE
@@ -19534,20 +19504,20 @@ Zp
 ws
 Op
 iZ
-hu
+DT
 Np
 aE
 aE
 aE
 hu
-hu
+NQ
 iZ
-hu
+DT
 iZ
 hu
 vJ
 ws
-xQ
+vx
 ix
 pE
 pE
@@ -19675,8 +19645,8 @@ hu
 iZ
 iZ
 iZ
-hu
-lK
+DT
+DT
 Em
 pE
 pE
@@ -19782,7 +19752,7 @@ ws
 ws
 YE
 iZ
-wj
+TS
 wj
 xV
 aE
@@ -19803,10 +19773,10 @@ Ou
 Sj
 wj
 hu
-hu
+DT
 iZ
 iZ
-wj
+TS
 lG
 ag
 pE
@@ -19911,7 +19881,7 @@ bG
 Zp
 YE
 iZ
-Gf
+DT
 yd
 aE
 aE
@@ -19936,7 +19906,7 @@ xV
 iZ
 iZ
 iZ
-hu
+DT
 pE
 pE
 ag
@@ -20039,9 +20009,9 @@ YD
 az
 az
 xV
-hu
-hu
-VC
+DT
+DT
+lK
 VC
 aE
 aE
@@ -20065,8 +20035,8 @@ ws
 VC
 wj
 iZ
-hu
-hu
+DT
+DT
 pE
 lG
 lG
@@ -20170,7 +20140,7 @@ az
 yd
 hu
 iZ
-hu
+DT
 VC
 aE
 aE
@@ -20180,7 +20150,7 @@ RY
 KO
 ws
 wj
-hu
+DT
 Em
 Em
 Em
@@ -20195,8 +20165,8 @@ ws
 dd
 yd
 iZ
-hu
-hu
+DT
+DT
 eo
 ws
 ws
@@ -20309,7 +20279,7 @@ YE
 pm
 YE
 wj
-hu
+DT
 Em
 Em
 Em
@@ -20326,7 +20296,7 @@ ws
 wj
 hu
 iZ
-hu
+DT
 hu
 vJ
 xV
@@ -20426,10 +20396,10 @@ iZ
 RI
 aE
 EB
-hu
-ng
 gu
-wj
+ng
+hu
+TS
 Bn
 Bn
 Bn
@@ -20438,7 +20408,7 @@ oW
 oW
 ws
 hu
-hu
+DT
 Em
 TF
 Jn
@@ -20457,7 +20427,7 @@ Sj
 wj
 ws
 iZ
-hu
+DT
 iZ
 tx
 fV
@@ -20555,11 +20525,11 @@ Li
 iZ
 iZ
 iZ
-hu
+Uu
 DO
 hu
-wj
-hu
+TS
+DT
 VC
 fk
 Bn
@@ -20567,7 +20537,7 @@ ws
 oW
 WE
 ws
-wj
+TS
 Em
 TF
 BT
@@ -20685,11 +20655,11 @@ lS
 aE
 iZ
 iZ
-dd
-hu
-hu
-hu
-Px
+iZ
+TS
+DT
+DT
+qd
 MG
 VC
 VC
@@ -20697,7 +20667,7 @@ ws
 YE
 DH
 ws
-hu
+DT
 Vh
 CO
 Fo
@@ -20813,13 +20783,13 @@ hI
 Cz
 bX
 bX
-hu
+Px
 iZ
-hu
-wj
-Gf
-hu
-hu
+iZ
+RI
+lK
+DT
+DT
 wj
 RI
 sW
@@ -20827,16 +20797,16 @@ rc
 rc
 rc
 AI
-hu
+DT
 Vh
 Wo
 Dy
 EE
-MC
+Be
 jI
 jI
 jI
-aY
+ZB
 Pj
 yy
 mT
@@ -20943,7 +20913,7 @@ ho
 Jk
 bX
 vV
-hu
+DT
 RI
 iZ
 iZ
@@ -20957,7 +20927,7 @@ nw
 nw
 nw
 nw
-hu
+DT
 Vh
 Mb
 mn
@@ -21078,7 +21048,7 @@ iZ
 RI
 RI
 iZ
-hu
+DT
 iZ
 RI
 iZ
@@ -21087,12 +21057,12 @@ kY
 kY
 kY
 kY
-hu
+DT
 Vh
 WB
 Oj
 js
-xa
+AE
 jf
 TF
 jf
@@ -21125,7 +21095,7 @@ DT
 ws
 ws
 VC
-Yf
+yd
 bX
 bX
 "}
@@ -21203,10 +21173,10 @@ bX
 bX
 bX
 Kp
-hu
-hu
+DT
+DT
 RI
-hu
+DT
 RI
 RI
 RI
@@ -21226,7 +21196,7 @@ RC
 jf
 TF
 Pd
-jI
+CS
 jI
 xa
 YW
@@ -21333,13 +21303,13 @@ rQ
 rQ
 bX
 bX
-Px
+yd
 dZ
 FJ
 nT
 xV
 UN
-wj
+TS
 iZ
 HO
 Em
@@ -21482,11 +21452,11 @@ Vh
 NJ
 Dy
 EE
-YW
+bl
 jI
 Yt
 aY
-jI
+CS
 yY
 yy
 fa
@@ -21645,7 +21615,7 @@ ws
 ws
 wj
 Zl
-Dz
+yd
 bX
 bX
 "}
@@ -21889,7 +21859,7 @@ hu
 hu
 iZ
 iZ
-AE
+Gy
 ae
 bX
 bX
@@ -22782,7 +22752,7 @@ WE
 sZ
 ws
 wj
-hu
+DT
 Em
 Em
 jl
@@ -22912,7 +22882,7 @@ ws
 ws
 hu
 Em
-hu
+DT
 iZ
 Em
 Zp
@@ -23070,7 +23040,7 @@ zT
 Jc
 Jc
 rJ
-ow
+Yf
 Iv
 Jc
 dq
@@ -23170,7 +23140,7 @@ og
 Rs
 hu
 gp
-hu
+DT
 Em
 iZ
 Em
@@ -23589,7 +23559,7 @@ zA
 ow
 Jc
 Jc
-ow
+pj
 Jc
 Jc
 Jc
@@ -23716,7 +23686,7 @@ bX
 PY
 DP
 yt
-zA
+Dz
 ow
 Jc
 Jc
