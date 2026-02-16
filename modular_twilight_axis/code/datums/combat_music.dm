@@ -6,10 +6,10 @@
 	musicpath = list('modular_twilight_axis/sound/music/combat_grenzelhoft_mage.ogg')
 
 /datum/combat_music/watchman
-	name = "Watchman"
+	name = "Watchman of Rockhill"
 	desc = ""
 	shortname = "Watchman"
-	credits = "Какое то жесткое стучание по батареям, я не помню от куда."
+	credits = "Какое то жесткое стучание по батареям с распиливанием досок на фоне. Я не помню от куда я это выдрал год назад."
 	musicpath = list('modular_twilight_axis/sound/music/combat/combat_watchman.ogg')
 
 /datum/combat_music/inquis_blackpowder

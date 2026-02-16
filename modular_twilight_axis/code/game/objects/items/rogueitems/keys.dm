@@ -21,3 +21,40 @@
 	desc = "The key to the eighth room."
 	icon_state = "brownkey"
 	lockid = "roomviii"
+
+/obj/item/roguekey/mansion
+	name = "Rockhill Mansion"
+	desc = "This key belongs to the sheriff of town guard."
+	icon_state = "cheesekey"
+	lockid = "rockhill_mansion"
+
+/obj/item/roguekey/garrison/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "garisson key"
+		desc = "This key opens many garrison doors in manor."
+
+/obj/item/roguekey/garrison/walls/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "citywatch key"
+		desc = "This key opens the walls and gatehouse of the city."
+
+/obj/item/roguekey/justiciary/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "marshal key"
+		desc = "This key opens the marshal office."
+		lockid = "marshall"
+
+/obj/item/roguekey/university/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "magician tower key"
+		desc = "This key should open anything within the Magician tower."
+
+/obj/item/roguekey/warden/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "vanguard key"
+		desc = "This key opens doors in vanguard stronghold."

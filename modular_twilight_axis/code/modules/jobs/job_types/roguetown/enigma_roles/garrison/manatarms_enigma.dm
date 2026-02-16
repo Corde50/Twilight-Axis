@@ -20,7 +20,7 @@
 	advclass_cat_rolls = list(CTAG_MENATARMS_ENIGMA = 20)
 
 	give_bank_account = TRUE
-	min_pq = 5
+	min_pq = 8
 	max_pq = null
 	round_contrib_points = 2
 	same_job_respawn_delay = 30 MINUTES
@@ -259,7 +259,8 @@
 		STATKEY_STR = 2, // seems kinda lame but remember guardsman bonus!!
 		STATKEY_PER = 1,
 		STATKEY_CON = 2,
-		STATKEY_WIL = 1
+		STATKEY_WIL = 1,
+		STATKEY_INT = 1,
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,

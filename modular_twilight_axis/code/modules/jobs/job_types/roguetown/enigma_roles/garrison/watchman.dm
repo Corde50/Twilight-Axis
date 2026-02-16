@@ -1,0 +1,99 @@
+/datum/job/roguetown/watchman_enigma
+	title = "Watchman"
+	flag = WATCHMANENIGMA
+	department_flag = GARRISON
+	faction = "Station"
+	total_positions = 5
+	spawn_positions = 5
+	allowed_races = RACES_TOLERATED_UP
+	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
+	display_order = JDO_WATCHMANENIGMA
+	tutorial = "Отвечая за безопасность города и соблюдение закона,\
+	вы ходите среди угнетенных, неся справедливость и боль. \
+	Ваша верность принадлежит шерифу и горожанам, ибо ни духовенство, ни дворянство не понимают тягот простолюдина."
+	whitelist_req = TRUE
+	outfit = /datum/outfit/job/roguetown/watchman_enigma
+	advclass_cat_rolls = list(CTAG_WATCHMAN_ENIGMA = 2)
+	give_bank_account = TRUE
+	min_pq = 6
+	max_pq = null
+	always_show_on_latechoices = TRUE
+
+	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_watchman.ogg'
+	job_subclasses = list(
+		/datum/advclass/watchman_enigma,
+	)
+
+/datum/job/roguetown/watchman_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(istype(H.wear_armor, /obj/item/clothing/suit/roguetown/armor/plate/scale/townguard/sheriff))
+			var/obj/item/clothing/S = H.wear_armor
+			var/index = findtext(H.real_name, " ")
+			if(index)
+				index = copytext(H.real_name, 1,index)
+			if(!index)
+				index = H.real_name
+			S.name = "watchman ([index]) armor"
+
+/datum/advclass/watchman_enigma
+	name = "Watchman"
+	tutorial = "Отвечая за безопасность города и соблюдение закона,\
+	вы ходите среди угнетенных, неся справедливость и боль. \
+	Ваша верность принадлежит шерифу и горожанам, ибо ни духовенство, ни дворянство не понимают тягот простолюдина."
+	outfit = /datum/outfit/job/roguetown/watchman_enigma
+
+	category_tags = list(CTAG_WATCHMAN_ENIGMA)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_GUARDSMAN)
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_PER = 2,
+		STATKEY_CON = 1,
+		STATKEY_WIL = 1,
+		STATKEY_SPD = 1,
+	)
+	subclass_skills = list(
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
+	)
+
+/datum/outfit/job/roguetown/watchman_enigma
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/citywatch
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/townguard
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+	shoes = /obj/item/clothing/shoes/roguetown/armor
+	belt = /obj/item/storage/belt/rogue/leather/citywatch
+	beltr = /obj/item/rogueweapon/mace/stunmace
+	beltl = /obj/item/storage/keyring/watchman
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	backr = /obj/item/storage/backpack/rogue/satchel/citywatch
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/rope/chain = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
+
+/datum/outfit/job/roguetown/watchman_enigma/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+
+/obj/item/storage/backpack/rogue/satchel/citywatch
+	name = "city watch satchel"
+	color = "#586ed3e1"
+
+/obj/item/storage/belt/rogue/leather/citywatch
+	name = "city watch belt"
+	color = "#60a0dbbb"

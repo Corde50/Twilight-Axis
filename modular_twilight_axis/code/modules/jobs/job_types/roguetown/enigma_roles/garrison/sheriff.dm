@@ -10,11 +10,11 @@
 	display_order = JDO_SHERIFF
 	tutorial = "Преступность всегда была постоянной составляющей вашей жизни, и вы всегда выбирали сторону справедливости. \
 	Вы поднялись в ряды стражников, и теперь руководите ими - следите за тем, чтобы они соблюдали законы этой земли. \
-	Хотя вы работаете под началом мэра, все знают, что герцог - истинный авторитет, или это не так?"
+	Хотя вы работаете под началом маршала, все знают, что герцог - истинный авторитет, или это не так?"
 	whitelist_req = TRUE
 	outfit = /datum/outfit/job/roguetown/sheriff
 	advclass_cat_rolls = list(CTAG_SHERIFF = 2)
-	give_bank_account = 26
+	give_bank_account = TRUE
 	min_pq = 10
 	max_pq = null
 	always_show_on_latechoices = TRUE
@@ -41,11 +41,11 @@
 	name = "Town Sheriff"
 	tutorial = "Преступность всегда была постоянной составляющей вашей жизни, и вы всегда выбирали сторону справедливости. \
 	Вы поднялись в ряды стражников, и теперь руководите ими - следите за тем, чтобы они соблюдали законы этой земли. \
-	Хотя вы работаете под началом мэра, все знают, что герцог - истинный авторитет, или это не так?"
+	Хотя вы работаете под началом маршала, все знают, что герцог - истинный авторитет, или это не так?"
 	outfit = /datum/outfit/job/roguetown/sheriff
 
 	category_tags = list(CTAG_SHERIFF)
-	traits_applied = list(TRAIT_MEDIUMARMOR)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_STR = 3,
 		STATKEY_PER = 2,
@@ -81,10 +81,11 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	backr = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather/steel/tasset
-	beltl = /obj/item/rogueweapon/sword/sabre
+	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/rogueweapon/mace/stunmace
 	cloak = /obj/item/clothing/cloak/sheriff
-	backpack_contents = list(/obj/item/storage/keyring/sheriff = 1, /obj/item/signal_hornn/blue = 1)
+	r_hand = /obj/item/rogueweapon/sword/sabre
+	backpack_contents = list(/obj/item/storage/keyring/sheriff = 1, /obj/item/signal_hornn/blue = 1, /obj/item/rogueweapon/scabbard/sheath = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1)
 
 /datum/outfit/job/roguetown/sheriff/pre_equip(mob/living/carbon/human/H)
 	..()
