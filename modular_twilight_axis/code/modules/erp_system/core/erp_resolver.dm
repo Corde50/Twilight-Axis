@@ -13,4 +13,8 @@
 		if(H.original_owner && ishuman(H.original_owner))
 			return H.original_owner
 
+	if(istype(target_atom, /mob/living/simple_animal))
+		var/mob/living/simple_animal/A = target_atom
+		return A
+
 	return null

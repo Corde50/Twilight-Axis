@@ -99,107 +99,45 @@
 	if(!ishuman(src) || !ishuman(target))
 		return
 
-	var/mob/living/carbon/human/Hsrc = src
-	var/mob/living/carbon/human/Htgt = target
-
-	if(Hsrc.is_erp_blocked_as_target() || Htgt.is_erp_blocked_as_target())
-		return
-
-	var/datum/erp_controller/C = SSerp.get_or_create_controller(Hsrc.client, Hsrc, Hsrc)
-	C.add_partner_atom(Htgt)
-	C.open_ui()
-
-	return C
+	return erp_try_start(src, target, src)
 
 /mob/living/proc/start_erp_session_atom(atom/target_atom)
-	if(!target_atom || QDELETED(target_atom))
-		return
 	if(!ishuman(src))
 		return
 
-	var/mob/living/carbon/human/consent_target = SSerp.get_consent_mob_for_target(target_atom)
-	if(!consent_target || !ishuman(consent_target))
-		return
-
-	var/mob/living/carbon/human/Hsrc = src
-	var/mob/living/carbon/human/Htgt = consent_target
-	if(Hsrc.is_erp_blocked_as_target() || Htgt.is_erp_blocked_as_target())
-		return
-
-	var/datum/erp_controller/C = SSerp.get_or_create_controller(Hsrc.client, Hsrc, Hsrc)
-	C.add_partner_atom(target_atom)
-	C.open_ui()
-	return C
+	return erp_try_start(src, target_atom, src)
 
 /mob/living/carbon/human/MiddleMouseDrop_T(atom/movable/dragged, mob/living/user)
-	var/mob/living/carbon/human/target = src
-	var/mob/living/carbon/human/human_user = user
-
-	if(!istype(human_user))
-		return
 	if(user.mmb_intent)
 		return ..()
-	if(!istype(dragged))
+
+	if(!dragged)
 		return
 
 	var/is_head = istype(dragged, /obj/item/bodypart/head/dullahan)
+
 	if(dragged != user && !is_head)
 		return
 
-	if(!human_user.can_do_sex)
-		to_chat(user, "<span class='warning'>I can't do this.</span>")
-		return
-
-	var/may_bang = client && client.prefs && client.prefs.sexable == TRUE
-	#ifdef LOCALTEST
-		may_bang = TRUE
-	#endif
-
-	if(!may_bang)
-		to_chat(user, "<span class='warning'>[src] dosn't wish to be touched.</span>")
-		to_chat(src, "<span class='warning'>[user] failed to touch you.</span>")
-		return
-
 	var/atom/initiator = is_head ? dragged : user
-	var/datum/erp_controller/C = SSerp.get_or_create_controller(initiator, human_user.client, human_user)
-	C.add_partner_atom(target)
-	C.open_ui()
-	return C
+
+	return erp_try_start(initiator, src, user)
 
 /mob/living/simple_animal/MiddleMouseDrop_T(atom/movable/dragged, mob/living/user)
-	var/mob/living/carbon/human/target = src
-	var/mob/living/carbon/human/human_user = user
-
-	if(!istype(human_user))
-		return
 	if(user.mmb_intent)
 		return ..()
-	if(!istype(dragged))
+
+	if(!dragged)
 		return
 
 	var/is_head = istype(dragged, /obj/item/bodypart/head/dullahan)
+
 	if(dragged != user && !is_head)
 		return
 
-	if(!human_user.can_do_sex)
-		to_chat(user, "<span class='warning'>I can't do this.</span>")
-		return
-
-	var/may_bang = client && client.prefs && client.prefs.sexable == TRUE
-	#ifdef LOCALTEST
-		may_bang = TRUE
-	#endif
-
-	if(!may_bang)
-		to_chat(user, "<span class='warning'>[src] dosn't wish to be touched.</span>")
-		to_chat(src, "<span class='warning'>[user] failed to touch you.</span>")
-		return
-
 	var/atom/initiator = is_head ? dragged : user
-	var/datum/erp_controller/C = SSerp.get_or_create_controller(initiator, human_user.client, human_user)
-	C.add_partner_atom(target)
-	C.open_ui()
-	return C
+
+	return erp_try_start(initiator, src, user)
 
 /mob/living/carbon/human/proc/set_sex_surrender_to(mob/living/carbon/human/mob_object)
 	if(mob_object)
@@ -238,39 +176,13 @@
 	SSerp.apply_prefs_for_mob(src)
 
 /obj/item/bodypart/head/dullahan/MiddleMouseDrop_T(atom/movable/dragged, mob/living/user)
-	var/mob/living/carbon/human/consent_target = src.original_owner
 	if(user.mmb_intent)
 		return ..()
 
-	if(!istype(dragged))
-		return
 	if(dragged != user)
 		return
 
-	if(!user.can_do_sex())
-		to_chat(user, "<span class='warning'>I can't do this.</span>")
-		return
-	if(!user.client?.prefs?.sexable)
-		to_chat(user, "<span class='warning'>I don't want to touch [consent_target]. (Your ERP preference, in the options)</span>")
-		return
-	if(!consent_target?.client || !consent_target.client.prefs)
-		to_chat(user, span_warning("[consent_target] is simply not there. I can't do this."))
-		log_combat(user, consent_target, "tried ERP menu against d/ced")
-		return
-	if(!consent_target.client.prefs.sexable)
-		to_chat(user, "<span class='warning'>[consent_target] doesn't want to be touched. (Their ERP preference, in the options)</span>")
-		to_chat(consent_target, "<span class='warning'>[user] failed to touch you. (Your ERP preference, in the options)</span>")
-		log_combat(user, consent_target, "tried unwanted ERP menu against")
-		return
-
-	var/client/C = user.client
-	if(!C)
-		return
-
-	var/datum/erp_controller/EC = SSerp.get_or_create_controller(user, C, user)
-	EC.add_partner_atom(src)
-	EC.open_ui(user)
-	return EC
+	return erp_try_start(user, src, user)
 
 /obj/item/bodypart/head/dullahan/drop_limb(special)
 	var/mob/living/carbon/human/user = original_owner
@@ -430,3 +342,61 @@
 
 	to_chat(src, span_notice("Your reflection settles into a new… compromising portrait."))
 	return TRUE
+
+/proc/erp_try_start(atom/initiator, atom/target_atom, mob/living/actor, silent = FALSE)
+	if(!actor || !istype(actor))
+		return null
+
+	if(!target_atom || QDELETED(target_atom))
+		return null
+
+	var/mob/living/carbon/human/consent = SSerp.get_consent_mob_for_target(target_atom)
+
+	if(!consent)
+		return null
+
+	var/force = FALSE
+	#ifdef LOCALTEST
+		force = TRUE
+	#endif
+
+	// ACTOR CHECKS
+	if(!force)
+		var/mob/living/carbon/human/human_actor = actor
+		if(!human_actor.can_do_sex)
+			if(!silent)
+				to_chat(actor, span_warning("I can't do this."))
+			return null
+
+		if(human_actor.is_erp_blocked_as_target())
+			return null
+
+		if(actor.client && actor.client.prefs && !actor.client.prefs.sexable)
+			if(!silent)
+				to_chat(actor, span_warning("You don't want to do this. (ERP preference)"))
+			return null
+
+	// CONSENT CHECKS
+	if(!force)
+		if(consent.is_erp_blocked_as_target())
+			return null
+
+		if(!consent.client)
+			return null //Ранний возврат до ввода хедлесс-клиентов для мобов и объектов
+
+		if(consent.client && consent.client.prefs && !consent.client.prefs.sexable)
+			if(!silent)
+				to_chat(actor, span_warning("[consent] doesn't wish to be touched."))
+				to_chat(consent, span_warning("[actor] failed to touch you."))
+			log_combat(actor, consent, "tried unwanted ERP menu against")
+			return null
+
+	var/client/C = actor.client
+	var/datum/erp_controller/EC = SSerp.get_or_create_controller(initiator, C, actor)
+	if(!EC)
+		return null
+
+	EC.add_partner_atom(target_atom)
+	EC.open_ui(actor)
+
+	return EC
