@@ -33,11 +33,12 @@ SUBSYSTEM_DEF(investments)
 		for(var/i = 1, i<diff, ++i)
 			var/random_investment = pick(investments)
 			var/datum/investment/investment = new random_investment
-			investment.price = floor(investment.price * (rand(80, 130) / 100))
-			investment.onetime_payment = floor(investment.onetime_payment * (rand(80, 130) / 100))
-			investment.pay_eta = floor(investment.pay_eta * (rand(50, 150) / 100))
-			investment.regular_payment = floor(investment.regular_payment * (rand(80, 130) / 100))
-			investment.fail_chance = floor(investment.fail_chance * (rand(80, 120) / 100))
+			if(investment.random_values)
+				investment.price = floor(investment.price * (rand(80, 130) / 100))
+				investment.onetime_payment = max(floor(investment.onetime_payment * (rand(90, 130) / 100)),investment.price+5)
+				investment.pay_eta = floor(investment.pay_eta * (rand(50, 150) / 100))
+				investment.regular_payment = floor(investment.regular_payment * (rand(80, 130) / 100))
+				investment.fail_chance = floor(investment.fail_chance * (rand(80, 120) / 100))
 			available_investments += investment
 	else 
 		return FALSE
@@ -91,25 +92,26 @@ SUBSYSTEM_DEF(investments)
 	var/onetime_payment = 0
 	var/regular_payment = 0
 	var/fail_chance = 0
+	var/random_values = TRUE
 
 /datum/investment/land
 	investment_name = "Инвестиция в землю"
 	price = 1000
-	pay_eta = 7 MINUTES
-	regular_payment = 33
+	pay_eta = 5 MINUTES
+	regular_payment = 35
 	fail_chance = 7
 
 /datum/investment/real_estate
 	investment_name = "Инвестиция в недвижимость"
 	price = 2500
-	pay_eta = 15 MINUTES
-	regular_payment = 60
+	pay_eta = 12.5 MINUTES
+	regular_payment = 64
 	fail_chance = 5
 
 /datum/investment/trade_routes
 	investment_name = "Инвестиция в торговые пути"
 	price = 8000
-	pay_eta = 60 MINUTES
+	pay_eta = 20 MINUTES
 	regular_payment = 400
 	fail_chance = 5
 
@@ -119,6 +121,7 @@ SUBSYSTEM_DEF(investments)
 	pay_eta = 30 MINUTES
 	onetime_payment = -260
 	fail_chance = 0
+	random_values = FALSE
 
 /datum/investment/royal_bond_mid
 	investment_name = "Выпустить среднюю облигацию"
@@ -126,6 +129,7 @@ SUBSYSTEM_DEF(investments)
 	pay_eta = 30 MINUTES
 	onetime_payment = -1250
 	fail_chance = 0
+	random_values = FALSE
 
 /datum/investment/royal_bond_large
 	investment_name = "Выпустить дорогую облигацию"
@@ -133,12 +137,13 @@ SUBSYSTEM_DEF(investments)
 	pay_eta = 30 MINUTES
 	onetime_payment = -2500
 	fail_chance = 0
+	random_values = FALSE
 
 /datum/investment/repair_bridge
 	investment_name = "Профинансировать ремонт торговых путей"
 	price = 100
-	pay_eta = 10 MINUTES
-	regular_payment = 10
+	pay_eta = 7.5 MINUTES
+	regular_payment = 15
 	fail_chance = 3
 
 /datum/investment/trade_loan
@@ -207,13 +212,13 @@ SUBSYSTEM_DEF(investments)
 /datum/investment/feodal_lands
 	investment_name = "Инвестиция в местные феодальные земли"
 	price = 800
-	pay_eta = 10 MINUTES
-	regular_payment = 16
+	pay_eta = 7.5 MINUTES
+	regular_payment = 18
 	fail_chance = 3
 
 /datum/investment/overseas_feodal_lands
 	investment_name = "Инвестиция в заморские феодальные земли"
 	price = 850
-	pay_eta = 10 MINUTES
-	regular_payment = 20
+	pay_eta = 7.5 MINUTES
+	regular_payment = 22
 	fail_chance = 20
