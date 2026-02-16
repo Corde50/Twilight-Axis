@@ -17,16 +17,6 @@
 			A.reserve_target_organ = !!value
 			return TRUE
 
-		if("tick_time")
-			var/n = text2num("[value]")
-			if(!isnum(n))
-				n = 0
-			A.tick_time = _seconds_to_ticks(n)
-			return TRUE
-		if("continuous")
-			A.continuous = !!value
-			return TRUE
-
 		if("active_arousal_coeff")
 			A.active_arousal_coeff = text2num("[value]")
 			return TRUE

@@ -8,9 +8,6 @@
 	var/required_target_organ = null
 	var/reserve_target_organ = FALSE
 
-	var/tick_time = 3 SECONDS
-	var/continuous = TRUE
-
 	var/active_arousal_coeff  = 1.0
 	var/passive_arousal_coeff = 1.0
 	var/active_pain_coeff     = 1.0

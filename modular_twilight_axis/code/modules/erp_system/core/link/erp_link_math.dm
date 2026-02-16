@@ -18,12 +18,12 @@
 		if(SEX_FORCE_EXTREME) return 2.00
 	return 1.00
 
-/// Computes effective tick interval from action.tick_time and speed.
+/// Computes effective tick interval from tick_interval and speed.
 /datum/erp_link_math/proc/get_effective_interval(datum/erp_sex_link/L)
 	if(!L)
 		return 0
 
-	var/base = L.action?.tick_time || L.tick_interval
+	var/base = L.tick_interval
 	var/m = get_speed_mult(L.speed)
 	return base / m
 

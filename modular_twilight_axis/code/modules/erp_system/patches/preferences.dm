@@ -99,9 +99,6 @@
 		if(!istext(data["name"]))
 			data["name"] = "Custom action"
 
-		if("tick_time" in data && !isnum(data["tick_time"]))
-			data["tick_time"] = 3 SECONDS
-
 /datum/preferences/proc/apply_customizer_organs_to_mob(mob/living/carbon/human/H)
 	if(!H || !pref_species)
 		return

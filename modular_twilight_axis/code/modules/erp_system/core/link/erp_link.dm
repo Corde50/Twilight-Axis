@@ -10,7 +10,7 @@
 
 	var/state = LINK_STATE_ACTIVE
 	var/last_tick = 0
-	var/tick_interval = 3 SECONDS
+	var/tick_interval = 2 SECONDS
 	var/pose_state = SEX_POSE_BOTH_STANDING
 	var/datum/erp_controller/session
 
@@ -35,8 +35,6 @@
 		init_organ.links = list()
 	if(!islist(target_organ.links))
 		target_organ.links = list()
-
-	tick_interval = action?.tick_time || tick_interval
 
 	init_organ.links += src
 	target_organ.links += src
@@ -143,7 +141,7 @@
 
 /// Effective tick interval considering speed.
 /datum/erp_sex_link/proc/get_effective_interval()
-	return SSerp?.link_math?.get_effective_interval(src) || (action?.tick_time || tick_interval)
+	return SSerp?.link_math?.get_effective_interval(src) || tick_interval
 
 /// Weight for message selection (speed+force influence).
 /datum/erp_sex_link/proc/get_message_weight()
