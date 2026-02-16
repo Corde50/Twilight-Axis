@@ -3,8 +3,10 @@
     "map_path": "map_files/rockhill_ta",
     "map_file": "rockhill_ta.dmm",
 	"traits": [{"Up": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Up": true, "Down": true}, {"Down": true}],
+	"other_z": ["_maps/map_files/rockhill_ta/rockhill_bases.json"],
 	"space_empty_levels": 0,
 	"space_ruin_levels": 0,
+	"matthios_dungeon": 1,
 	"shuttles": {
 	    "cargo": "cargo_rogue",
 	    "ferry": "ferry_base",

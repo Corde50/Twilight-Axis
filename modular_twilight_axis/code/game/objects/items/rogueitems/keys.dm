@@ -24,7 +24,7 @@
 
 /obj/item/roguekey/mansion
 	name = "Rockhill Mansion"
-	desc = "This key belongs to the sheriff of town guard."
+	desc = "This fancy key opens the doors of the Rockhill mansion."
 	icon_state = "cheesekey"
 	lockid = "rockhill_mansion"
 
@@ -34,11 +34,12 @@
 		name = "garisson key"
 		desc = "This key opens many garrison doors in manor."
 
-/obj/item/roguekey/garrison/walls/Initialize()
+/obj/item/roguekey/walls/Initialize()
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill_TA")
 		name = "citywatch key"
 		desc = "This key opens the walls and gatehouse of the city."
+		lockid = "walls"
 
 /obj/item/roguekey/justiciary/Initialize()
 	. = ..()
@@ -58,3 +59,9 @@
 	if(SSmapping.config.map_name == "Rockhill_TA")
 		name = "vanguard key"
 		desc = "This key opens doors in vanguard stronghold."
+
+/obj/item/roguekey/inquisitionmanor/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "inquisition ship key"
+		desc = "This key opens doors in inquisition ship."

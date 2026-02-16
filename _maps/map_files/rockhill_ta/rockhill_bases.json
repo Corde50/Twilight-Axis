@@ -1,0 +1,6 @@
+{
+	"map_name": "Rockhill Bases",
+	"map_path": "map_files/rockhill_ta",
+	"map_file": "rockhill_bases.dmm",
+	"traits": [{"Name": "rockhill_bases", "Up": true}, {"Up": true, "Down": true}, {"Down": true}]
+}

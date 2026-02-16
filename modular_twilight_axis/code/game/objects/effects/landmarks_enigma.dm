@@ -21,7 +21,7 @@
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/sheriff
-	name = "Sheriff"
+	name = "Town Sheriff"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/watchman
