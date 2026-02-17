@@ -193,3 +193,4 @@
 	name = "executioneer's skin"
 	desc = "Bearing scars of countless whips leaves a gnarly visage. Now it's your time to inflict the same fate upon others."
 	max_integrity = 250
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_STAB)
