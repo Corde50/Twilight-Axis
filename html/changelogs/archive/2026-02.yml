@@ -610,3 +610,33 @@
   - balance: graggar's unholy grasp has a 40 second cd, no viscera requirement, and
       an 8 tile range. only lasts 30 seconds.
   - bugfix: inhumen revival descriptions should make more sense, now.
+2026-02-17:
+  ADONAI:
+  - bugfix: priest and guildmasters should have less lowercase announcements
+  FreeStylaLT:
+  - rscadd: Added Origins & Subraces.
+  - rscadd: Added Old Azurian language, available exclusively to Azurian origin.
+  - bugfix: Added missing Kazengun Origins. Credit to @kodiaksnowleaf on Discord.
+  Lamasmaster:
+  - rscdel: Outlaw Marauder Wretch
+  - balance: Outlaw Wretch
+  Ryan180602:
+  - balance: '1h lancing is now: 2x damfactor, 1 reach, 6s charge.'
+  - balance: 2h thrust is now 1.25x damfactor (down from 1.5x)
+  - balance: 2h lance has an effective range of 3 tiles.
+  Stutternov:
+  - rscadd: Added Aavnr lore blurb.
+  WeNeedMorePhoron:
+  - rscadd: TGUI-Based Loadout Menu with a 10 points based system and the ability
+      to preset colors (Up to all three), custom name, and description
+  - rscadd: Jester's Hat to loadout
+  - rscadd: Fixed some grammar / text for new Astratan / Malum / Ravoxian spells from
+      TA
+  - rscadd: Spells now show cooldown in animated text
+  - rscdel: Removed the Aerosolize Spell
+  - rscadd: Old Magick Witch gains Fortitude in exchange for losing Aerosolize
+  - rscdel: Removed arcane empowerment rituals
+  mumblemancer:
+  - bugfix: 0 armor clothing items will no longer block crits
+  - rscadd: new icons for longstrider, guidance, and a new alert for enlightenment
+  - bugfix: 0 armor clothing will now no longer prevent crits
