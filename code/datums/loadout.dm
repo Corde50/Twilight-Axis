@@ -949,6 +949,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Eoran Caparison"
 	path = /obj/item/caparison/eora
 
+
 //////////////////
 //  TRIUMPHS !  //
 //////////////////

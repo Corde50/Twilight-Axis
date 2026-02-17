@@ -245,8 +245,9 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		to_chat(user, span_danger("Это граггарское отродье, оно не заслуживает быть моим лакеем..."))
 	if(HAS_TRAIT(target, TRAIT_SILVER_WEAK))
 		to_chat(user, span_danger("Мне нужны лишь живые..."))
-	if(target.mob_biotypes & MOB_UNDEAD)
-		to_chat(user, span_danger("Мне нужны лишь живые..."))
+	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/skeleton))
+		to_chat(user, span_danger("Мертвые слуги уже принадлежат Зизо, их не нужно обращать."))
+		return
 	if(istype(target.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || istype(target.wear_wrists, /obj/item/clothing/neck/roguetown/psicross/silver))
 		to_chat(user, span_danger("Он носит серебрянный крест! Он мешает мне обратить его..."))
 		return
@@ -302,11 +303,17 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 /datum/ritual/servantry/zizofication/invoke(mob/living/user, turf/center)
 	var/mob/living/carbon/human/target = locate() in center.contents
 
+	if(!target)
+		return
+	
 	var/list/options = list(
 		"Yield",
 		"Resist"
 	)
-
+	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/skeleton))
+		to_chat(user, span_danger("В пустых глазницах уже сияет воля Зизо. Просветление им не нужно."))
+		return
+	
 	var/chosen = tgui_input_list(target, "Do you yield to the darkness?", "You are shown the path of Zizo.", options)
 
 	if(!chosen)
@@ -837,6 +844,7 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	target.fully_heal()
 	target.revive()
 	target.regenerate_limbs()
+	target.apply_status_effect(/datum/status_effect/debuff/fleshmend_exhaustion)
 	target.heal_wounds()
 	target.apply_status_effect(/datum/status_effect/debuff/fleshmend_exhaustion)
 	to_chat(target, span_notice("ZIZO EMPOWERS ME!"))
