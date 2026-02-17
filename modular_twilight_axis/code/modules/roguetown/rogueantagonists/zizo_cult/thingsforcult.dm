@@ -53,7 +53,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 //шадоу плащ но без уникального спрайта, бяка
 /obj/item/clothing/cloak/half/shadowcloak/cult
-	name = "Ascension's cloak"
+	name = "Zizo cultistic's cloak"
 	desc = "Those who wear, thy should beware, for those who do; never come back as who they once were again."
 	allowed_race = NON_DWARVEN_RACE_TYPES
 	body_parts_covered = ARMS|CHEST|VITALS
@@ -64,7 +64,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CLOAK")
 //котелок, но культа
 /obj/item/clothing/head/roguetown/helmet/skullcap/cult
-	name = "Ascension's hood"
+	name = "Zizo cultistic's hood"
 	desc = "It echoes with ominous laughter. Worn over a skullcap"
 	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/warlock.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/warlock.dmi'
@@ -76,69 +76,12 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 /obj/item/clothing/head/roguetown/helmet/skullcap/cult/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "HOOD")
-//легкая роба культа
-/obj/item/clothing/suit/roguetown/armor/brigandine/light/cult
-	name = "Ascension's robe"
-	icon_state = "warlock"
-	body_parts_covered = COVERAGE_ALL_BUT_LEGS
-
-/obj/item/clothing/suit/roguetown/armor/brigandine/light/cult/Initialize(mapload, ...)
-	. = ..()
-	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "ROBE")
-
-// Крестик
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
-	name = "Reverted psycross of ascension's"
-	desc = "This cursed zcross will give something good por followers of Zizo.."
-	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
-	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
-	icon_state = "zcross"
-	slot_flags = ITEM_SLOT_NECK
-	sellprice = 0
-	max_integrity = 100
-	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET 
-	armor = ARMOR_FATEWEAVER 
-	blade_dulling = DULLING_BASHCHOP
-	blocksound = PLATEHIT
-	break_sound = 'sound/foley/breaksound.ogg'
-	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
-	armor_class = ARMOR_CLASS_LIGHT
-	unenchantable = TRUE
-	anvilrepair = null
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
-	if(!M.can_equip(src, slot, disable_warning, bypass_equip_delay_self))
-		return FALSE
-
-	
-	if(slot == SLOT_WRISTS || (wrist_display && slot != SLOT_NECK))
-		mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
-		sleeved = 'icons/roguetown/clothing/onmob/wrists.dmi'
-	else
-		mob_overlay_icon = initial(mob_overlay_icon)
-		sleeved = initial(sleeved)
-
-	return TRUE
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/Initialize()
-	. = ..()
-	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CROSS")
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(slot == SLOT_RING || slot == SLOT_NECK || SLOT_WRISTS)
-		ADD_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
-
-/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/dropped(mob/living/carbon/human/user)
-	. = ..()
-	REMOVE_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
-
 //коса культа.. дайте две
 /obj/item/rogueweapon/zizo/neant
 	name = "neant"
 	desc = "A dark scythe with a long chain, used to cut the life essence from people, or whip them into shape. The blade is an ominous purple."
 	icon_state = "neant"
-	icon = 'modular_twilight_axis/icons/roguetown/weapons/polearms64.dmi'
+	icon = 'modular_twilight_axis/icons/roguetown/weapons/64.dmi'
 	drop_sound = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sounds/blade_drop.ogg'
 	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = FIRE_PROOF
@@ -283,30 +226,7 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 /datum/intent/shoot/neant/prewarning()
 	if(mastermob)
 		mastermob.visible_message(span_warning("[mastermob] draws [masteritem]!"))
-//статус эффекты
 
-/datum/status_effect/debuff/ritualdefiled/cult
-	id = "ritualdefiled"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
-	effectedstats = list(STATKEY_STR = -2, STATKEY_WIL = -3, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -3)
-	duration = 30 MINUTES // Punishing AS FUCK, but not as punishing as being dead.
-
-/datum/status_effect/debuff/arcynestolen
-	id = "arcynestolen"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/arcynestolen
-	duration = 30 MINUTES
-
-/datum/status_effect/debuff/arcynestolen/on_apply()
-	. = ..()
-	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
-
-/datum/status_effect/debuff/arcynestolen/on_remove()
-	. = ..()
-	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
-
-/atom/movable/screen/alert/status_effect/debuff/arcynestolen
-	name = "Stolen arcyne"
-	desc = "This cultists is stolen my magic.. Maybe it will come back later.."
 /// Fully randomizes everything in the character.
 // Reflect changes in [datum/preferences/proc/randomise_appearance_prefs]
 /mob/living/carbon/human/proc/randomize_human_appearance(randomise_flags = ALL, include_donator = TRUE)
@@ -435,57 +355,85 @@ GLOBAL_DATUM_INIT(html_tags, /regex, regex(@"<.*?>", "g"))
 
 	to_chat(src, span_hypnophrase(span_big("Your form morphs into that of a [what_to_randomize]!")))
 
-/obj/item/natural/worms/leech/propaganda
-	name = "accursed leech"
-	desc = "A leech like none other."
-	icon_state = "leech"
-	drainage = 0
-	blood_sucking = 0
-	embedding = list(
-		"embed_chance" = 100,
-		"embedded_unsafe_removal_time" = 0,
-		"embedded_pain_chance" = 0,
-		"embedded_fall_chance" = 0,
-		"embedded_bloodloss"= 0,
-	)
-
-/obj/item/natural/worms/leech/propaganda/on_embed_life(mob/living/user, obj/item/bodypart/bodypart)
-	. = ..()
-	if(!user)
-		return
-	if(iscarbon(user))
-		var/mob/living/carbon/V = user
-		if(prob(5))
-			record_round_statistic(STATS_ZIZO_PRAISED)
-			V.say(pick( \
-				"СЛАВА ЗИЗО!", \
-				"СМЕРТЬ ДЕСЯТИ...", \
-				"АСТРАТА ПАДЕТ!", \
-				"ДЕСЯТЬ МЕНЯ НЕ ОСТАНОВЯТ!!!", \
-				"ЗИЗО УКАЖЕТ НАМ ПУТЬ!", \
-				"Темная Госпожа указала мне путь!", \
-				"Моя жизнь принадлежит Зизо...", \
-				"Да пусть будет проклят Бог Зверей!", \
-				"Магия и знания Нок ни что, по сравнению с тем, что дарует Зизо!", \
-				"Абиссор - всего лишь зерно соли!", \
-				"Ни от чего так не воняет сильно, как от Пестры!", \
-				"Справедливость Равокса извращена и порочна!", \
-				"Сорвите Тирана Солнца с небес!", \
-				"КСАЙЛИКС НЕ БОЛЕЕ ЧЕМ ЖАЛКИЙ ПРЕДАТЕЛЬ И ШУТ!", \
-				"Бросьте Малума в огонь Тартара!!", \
-				"Лишь Темным Эльфам Зизо доверяет свои самые темные тайны!", \
-				"Я оскверню мертвых Некры тысячу и тысячи раз!", \
-				"Я убью Десять также, как и убила Псайдона!", \
-				"Загасите бьющиеся сердце Эоры!"))
-		V.add_stress(/datum/stressevent/leechcult)
 
 /datum/status_effect/debuff/fleshmend_exhaustion 
-    id = "fleshmend_tax"
-    duration = 6000
-    alert_type = /atom/movable/screen/alert/status_effect/fleshmend_tax
-    effectedstats = list(STATKEY_STR = -2, STATKEY_SP = -2, STATKEY_CON = -2)
+	id = "fleshmend_tax"
+	duration = 6000
+	alert_type = /atom/movable/screen/alert/status_effect/fleshmend_tax
+	effectedstats = list(STATKEY_STR = -2, STATKEY_SP = -2, STATKEY_CON = -2)
 
 /atom/movable/screen/alert/status_effect/fleshmend_tax
-    name = "Истощение плоти"
-    desc = "Ваше тело было исцелено магией Зизо, но цена была высока. Сила, выносливость и скорость снижены."
-    icon_state = "debuff"
+	name = "Истощение плоти"
+	desc = "Ваше тело было исцелено магией Зизо, но цена была высока. Сила, выносливость и скорость снижены."
+	icon_state = "debuff"
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult
+	name = "Reverted psycross of ascension's"
+	desc = "This cursed zcross will give something good por followers of Zizo.."
+	mob_overlay_icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/on_mob/zcross.dmi'
+	icon = 'modular_twilight_axis/code/modules/roguetown/rogueantagonists/zizo_cult/sprites/clothes/zcross.dmi'
+	icon_state = "zcross"
+	slot_flags = ITEM_SLOT_NECK
+	sellprice = 0
+	max_integrity = 100
+	body_parts_covered = COVERAGE_FULL | COVERAGE_HEAD_NOSE | NECK | HANDS | FEET 
+	armor = ARMOR_FATEWEAVER 
+	blade_dulling = DULLING_BASHCHOP
+	blocksound = PLATEHIT
+	break_sound = 'sound/foley/breaksound.ogg'
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	armor_class = ARMOR_CLASS_LIGHT
+	unenchantable = TRUE
+	anvilrepair = null
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
+	if(!M.can_equip(src, slot, disable_warning, bypass_equip_delay_self))
+		return FALSE
+
+	
+	if(slot == SLOT_WRISTS || (wrist_display && slot != SLOT_NECK))
+		mob_overlay_icon = 'icons/roguetown/clothing/onmob/wrists.dmi'
+		sleeved = 'icons/roguetown/clothing/onmob/wrists.dmi'
+	else
+		mob_overlay_icon = initial(mob_overlay_icon)
+		sleeved = initial(sleeved)
+
+	return TRUE
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/Initialize()
+	. = ..()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "CROSS")
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if(slot == SLOT_RING || slot == SLOT_NECK || SLOT_WRISTS)
+		ADD_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy/cult/dropped(mob/living/carbon/human/user)
+	. = ..()
+	REMOVE_TRAIT(user, TRAIT_ZIZOSIGHT, TRAIT_GENERIC)
+
+//статус эффекты
+
+/datum/status_effect/debuff/ritualdefiled/cult
+	id = "ritualdefiled"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/ritualdefiled
+	effectedstats = list(STATKEY_STR = -2, STATKEY_WIL = -3, STATKEY_CON = -1, STATKEY_SPD = -1, STATKEY_LCK = -3)
+	duration = 30 MINUTES // Punishing AS FUCK, but not as punishing as being dead.
+
+/datum/status_effect/debuff/arcynestolen
+	id = "arcynestolen"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/arcynestolen
+	duration = 30 MINUTES
+
+/datum/status_effect/debuff/arcynestolen/on_apply()
+	. = ..()
+	ADD_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
+
+/datum/status_effect/debuff/arcynestolen/on_remove()
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SPELLCOCKBLOCK, id)
+
+/atom/movable/screen/alert/status_effect/debuff/arcynestolen
+	name = "Stolen arcyne"
+	desc = "This cultists is stolen my magic.. Maybe it will come back later.."
