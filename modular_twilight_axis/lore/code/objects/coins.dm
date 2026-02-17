@@ -1,4 +1,5 @@
 #define CTYPE_GOLD "g"
+#define CTYPE_COPPER "c"
 #define CTYPE_KAZEN "e"
 #define MAX_COIN_STACK_SIZE 20
 
@@ -100,6 +101,15 @@
 	if(istype(H))
 		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 			SSwardrobe.recycle_object(H)
+
+/obj/item/roguecoin/coppershilling
+	name = "shilling"
+	desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
+	icon_state = "c1"
+	sellprice = 1
+	base_type = CTYPE_COPPER
+	plural_name = "shillings"
+	icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
 
 //KAZENGUNESE MONIES
 /obj/item/roguecoin/shucoin
@@ -211,5 +221,6 @@
 			SSwardrobe.recycle_object(H)
 
 #undef CTYPE_GOLD
+#undef CTYPE_COPPER
 #undef CTYPE_KAZEN
 #undef MAX_COIN_STACK_SIZE
