@@ -2858,6 +2858,7 @@
 #include "modular\code\controllers\subsystem\processing\sex.dm"
 #include "modular\code\game\objects\gallows.dm"
 #include "modular\code\game\objects\pillory.dm"
+#include "modular\code\game\objects\tent_kit.dm"
 #include "modular\code\game\objects\items\items.dm"
 #include "modular\code\game\objects\items\lewd\dildo.dm"
 #include "modular\code\modules\admin\bunker_bypass.dm"
