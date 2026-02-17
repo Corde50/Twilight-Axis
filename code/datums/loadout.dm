@@ -1471,6 +1471,24 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/jagerrifle
 	donatitem = TRUE
 
+/datum/loadout_item/donator_stinketh_shashka
+	name = "Donator Kit - Fencer's Shashka - Required: Szöréndnížine Sabre Or Aavnic Shashka"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/stinketh_shashka
+	donatitem = TRUE
+
+/datum/loadout_item/donator_stinketh_pike
+	name = "Donator Kit - Kindness of Ravens Standard - Required: Banner Of Szöréndnížina"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/stinketh_pike
+	donatitem = TRUE
+
+/datum/loadout_item/donator_koruu_glaive
+	name = "Donator Kit - Sixty Five Yils - Required: Glaive Or Naginata"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/koruu_glaive
+	donatitem = TRUE
+
 // Разное
 /datum/loadout_item/donat
 	name = "Музыкальная коробка"
