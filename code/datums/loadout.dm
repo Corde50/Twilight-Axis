@@ -949,6 +949,9 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Eoran Caparison"
 	path = /obj/item/caparison/eora
 
+/datum/loadout_item/caparison/fogbeast
+	name = "Fogbeast Caparison"
+	path = /obj/item/caparison/fogbeast
 
 //////////////////
 //  TRIUMPHS !  //
