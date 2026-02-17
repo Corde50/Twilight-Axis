@@ -760,13 +760,13 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		S.on_gain(user)
 
 /datum/mind/proc/check_learnspell()
-	if(!has_spell(/obj/effect/proc_holder/spell/self/learnspell)) //are we missing the learning spell?
+	if(!has_spell(/obj/effect/proc_holder/spell/self/library)) //are we missing the learning spell? TA EDIT Old vers: /obj/effect/proc_holder/spell/self/learnspell
 		if((spell_points - used_spell_points) > 0) //do we have points?
-			AddSpell(new /obj/effect/proc_holder/spell/self/learnspell(null)) //put it in
+			AddSpell(new /obj/effect/proc_holder/spell/self/library(null)) //put it in TA EDIT Old vers: /obj/effect/proc_holder/spell/self/learnspell
 			return
 
 	if((spell_points - used_spell_points) <= 0) //are we out of points?
-		RemoveSpell(/obj/effect/proc_holder/spell/self/learnspell) //bye bye spell
+		RemoveSpell(/obj/effect/proc_holder/spell/self/library) //bye bye spell TA EDIT Old vers: /obj/effect/proc_holder/spell/self/learnspell
 		return
 	return
 
@@ -943,7 +943,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		qdel(O)
 	personal_objectives.Cut()
 
-/proc/handle_special_items_retrieval(mob/user, atom/host_object)
+/* /proc/handle_special_items_retrieval(mob/user, atom/host_object)
 	// Attempts to retrieve an item from a player's stash, and applies any base colors, where preferable.
 	if(user.mind && isliving(user))
 		if(user.mind.special_items && user.mind.special_items.len)
@@ -955,24 +955,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 						user.mind.special_items -= item
 						var/obj/item/I = new path2item(user.loc)
 						user.put_in_hands(I)
-						// Apply loadout-specific properties only if this is a loadout item
-						var/list/metadata = user.client?.prefs?.gear_list?[item]
-						if(islist(metadata))
-							// Free loadout items cannot be sold, smelted, or salvaged (triumph items are exempt)
-							var/datum/loadout_item/LI = GLOB.loadout_items_by_name[item]
-							if(!LI?.triumph_cost)
-								I.sellprice = 0
-								I.smeltresult = null
-								I.salvage_result = null
-							// Apply metadata (color, custom name, custom desc)
-							if(metadata["color"])
-								I.add_atom_colour(metadata["color"], FIXED_COLOUR_PRIORITY)
-							if(metadata["detail_color"] && I.detail_tag)
-								I.detail_color = metadata["detail_color"]
-							if(metadata["altdetail_color"] && I.altdetail_tag)
-								I.altdetail_color = metadata["altdetail_color"]
-							if(metadata["custom_name"])
-								I.name = metadata["custom_name"]
-							if(metadata["custom_desc"])
-								I.desc = metadata["custom_desc"]
-							I.update_icon()
+						if (istype(I, /obj/item/clothing)) // commit any pref dyes to our item if it is clothing and we have them available
+							var/dye = user.client?.prefs.resolve_loadout_to_color(path2item)
+							if (dye)
+								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY) */

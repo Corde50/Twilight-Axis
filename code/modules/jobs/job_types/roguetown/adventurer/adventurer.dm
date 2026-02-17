@@ -30,8 +30,8 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 	wanderer_examine = TRUE
 	advjob_examine = TRUE
 	always_show_on_latechoices = TRUE
-	job_reopens_slots_on_death = TRUE
-	same_job_respawn_delay = 1 MINUTES
+	job_reopens_slots_on_death = FALSE
+	same_job_respawn_delay = 30 MINUTES
 
 	cmode_music = 'sound/music/cmode/adventurer/combat_outlander2.ogg'
 
@@ -70,6 +70,8 @@ GLOBAL_VAR_INIT(adventurer_hugbox_duration_still, 3 MINUTES)
 		/datum/advclass/foreigner/slaver,
 		/datum/advclass/foreigner/shepherd,
 		/datum/advclass/foreigner/fencerguy,
+    /datum/advclass/rogue/soundbreaker, // TA - Soundbreaker Class
+    /datum/advclass/twilight_hunter // TA - Firearm Class
 	)
 
 /mob/living/carbon/human/proc/adv_hugboxing_start()
