@@ -102,14 +102,16 @@
 		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 			SSwardrobe.recycle_object(H)
 
-/obj/item/roguecoin/coppershilling
-	name = "shilling"
-	desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
-	icon_state = "tc1"
-	sellprice = 1
-	base_type = CTYPE_COPPER
-	plural_name = "shillings"
-	icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
+/obj/item/roguecoin/copper/Initialize()
+	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "shilling"
+		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
+		icon_state = "tc1"
+		sellprice = 1
+		base_type = CTYPE_COPPER
+		plural_name = "shillings"
+		icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
 
 //KAZENGUNESE MONIES
 /obj/item/roguecoin/shucoin
