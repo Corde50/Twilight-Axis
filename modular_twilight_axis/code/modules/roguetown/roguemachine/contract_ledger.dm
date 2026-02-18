@@ -1,7 +1,7 @@
 /obj/structure/roguemachine/contractledger/rockhill/cash_in(reward, original_reward, tax_amt)
 	var/list/coin_types = list(
 		/obj/item/roguecoin/goldkrona = FLOOR(reward / 14, 1),
-		/obj/item/roguecoin/coppershilling = reward % 14
+		/obj/item/roguecoin/copper = reward % 14
 	)
 
 	for(var/coin_type in coin_types)
