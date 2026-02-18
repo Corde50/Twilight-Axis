@@ -38,6 +38,7 @@
 // When the sun is blotted out, zchurch, bad-cross, or ritual chalk
 /datum/patron/inhumen/zizo/can_pray(mob/living/follower)
 	. = ..()
+	var/turf/T = get_turf(follower)
 	// Allows prayer in the Zzzzzzzurch(!)
 	if(istype(get_area(follower), /area/rogue/under/cave/inhumen))
 		return TRUE
@@ -56,7 +57,11 @@
 	// Allows praying atop ritual chalk of the god.
 	for(var/obj/structure/ritualcircle/zizo in view(1, get_turf(follower)))
 		return TRUE
-	to_chat(follower, span_danger("For Zizo to hear my prayers I must either be in the church of the abandoned, near an inverted psycross, atop a drawn Zizite symbol, or while the sun is blotted from the sky!"))
+	
+	if(locate(/obj/effect/decal/cleanable/sigil) in T)
+		return TRUE
+	
+	to_chat(follower, span_danger("For Zizo to hear my prayers I must either be in the church of the abandoned, near an inverted psycross, atop a drawn Zizite symbol, stand in sigil, or while the sun is blotted from the sky!"))
 	return FALSE
 
 /datum/patron/inhumen/zizo/on_lesser_heal(
