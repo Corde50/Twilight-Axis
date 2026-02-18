@@ -17,7 +17,7 @@
 					type_to_put = /obj/item/roguecoin/goldkrona
 				if("BRONZE")
 					zenars_to_put = budget
-					type_to_put = /obj/item/roguecoin/coppershilling
+					type_to_put = /obj/item/roguecoin/copper
 				if("MARQUE")
 					zenars_to_put = budget
 					type_to_put = /obj/item/roguecoin/inqcoin
@@ -31,7 +31,7 @@
 				zenars_to_put = zenars
 			if(budget >= 1)
 				if(!highest_found)
-					type_to_put = /obj/item/roguecoin/coppershilling
+					type_to_put = /obj/item/roguecoin/copper
 					zenars_to_put = budget
 				else
 					// Create multiple stacks if needed
