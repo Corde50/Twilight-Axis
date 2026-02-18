@@ -122,4 +122,7 @@
 #include "firearms\firearms.dme"
 #include "code\modules\spell\spell.dme"
 #include "lore\lore.dme"
-
+#include "code\game\objects\items\rogueweapons\melee\axes.dm"
+#include "code\game\objects\items\rogueweapons\melee\special.dm"
+#include "code\game\objects\items\rogueweapons\melee\whip.dm"
+#include "code\game\objects\items\rogueweapons\ranged\crossbows.dm"
