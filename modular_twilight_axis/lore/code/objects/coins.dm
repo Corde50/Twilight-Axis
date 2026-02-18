@@ -102,7 +102,7 @@
 		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 			SSwardrobe.recycle_object(H)
 
-/obj/item/roguecoin/copper/Initialize()
+/obj/item/roguecoin/copper/Initialize(mapload)
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill_TA")
 		name = "shilling"
