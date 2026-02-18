@@ -1,0 +1,4 @@
+author: "FreeStylaLT"
+delete-after: True
+changes:
+  - refactor: "Sun Elves now use the Dark Elf body sprites."
