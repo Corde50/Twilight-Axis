@@ -210,6 +210,163 @@
 		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 			SSwardrobe.recycle_object(H)
 
+//Rockhill coin pouches overrides
+
+/obj/item/storage/belt/rogue/pouch/coins/get_types_to_preload()
+	var/list/to_preload = list()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/poor_pile
+	else
+		to_preload += /obj/item/roguecoin/copper/pile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/mid/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/mid_pile
+	else
+		to_preload += /obj/item/roguecoin/silver/pile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/mid/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/mid_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/mid_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/silver/pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/silver/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		var/obj/item/roguecoin/copper/pile/C = SSwardrobe.provide_type(/obj/item/roguecoin/copper/pile, loc)
+		if(istype(C))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, C, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(C)
+
+/obj/item/storage/belt/rogue/pouch/coins/poor/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/poor_pile
+	else
+		to_preload += /obj/item/roguecoin/copper/pile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/poor/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/poor_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/poor_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/copper/pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/copper/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		if(prob(50))
+			H = SSwardrobe.provide_type(/obj/item/roguecoin/copper/pile, loc)
+			if(istype(H))
+				if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+					SSwardrobe.recycle_object(H)
+
+/obj/item/storage/belt/rogue/pouch/coins/rich/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/rich_pile
+	else
+		to_preload += /obj/item/roguecoin/silver/pile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/rich/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/rich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/rich_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/silver/pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/silver/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		H = SSwardrobe.provide_type(/obj/item/roguecoin/silver/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		if(prob(50))
+			H = SSwardrobe.provide_type(/obj/item/roguecoin/silver/pile, loc)
+			if(istype(H))
+				if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+					SSwardrobe.recycle_object(H)
+
+/obj/item/storage/belt/rogue/pouch/coins/veryrich/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/veryrich_pile
+	else
+		to_preload += /obj/item/roguecoin/gold/pile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/veryrich/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/veryrich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/veryrich_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/gold/pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/gold/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		H = SSwardrobe.provide_type(/obj/item/roguecoin/gold/pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+		if(prob(50))
+			H = SSwardrobe.provide_type(/obj/item/roguecoin/gold/pile, loc)
+			if(istype(H))
+				if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+					SSwardrobe.recycle_object(H)
+
+/obj/item/storage/belt/rogue/pouch/coins/virtuepouch/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/rich_pile
+	else
+		to_preload += /obj/item/roguecoin/gold/virtuepile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/virtuepouch/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/rich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/rich_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/gold/virtuepile/H = SSwardrobe.provide_type(/obj/item/roguecoin/gold/virtuepile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+
+/obj/item/storage/belt/rogue/pouch/coins/readyuppouch/get_types_to_preload()
+	var/list/to_preload = list() 
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		to_preload += /obj/item/roguecoin/goldkrona/mid_pile
+	else
+		to_preload += /obj/item/roguecoin/silver/pile/readyuppile
+	return to_preload
+
+/obj/item/storage/belt/rogue/pouch/coins/readyuppouch/PopulateContents()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		var/obj/item/roguecoin/goldkrona/mid_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/mid_pile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+	else
+		var/obj/item/roguecoin/silver/pile/readyuppile/H = SSwardrobe.provide_type(/obj/item/roguecoin/silver/pile/readyuppile, loc)
+		if(istype(H))
+			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
+				SSwardrobe.recycle_object(H)
+
 #undef CTYPE_GOLD
 #undef CTYPE_KAZEN
 #undef MAX_COIN_STACK_SIZE
