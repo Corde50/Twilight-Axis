@@ -1492,7 +1492,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/koruu_glaive
 	donatitem = TRUE
 
-/datum/loadout_item/donator_drd/lsword
+/datum/loadout_item/donator_drd_lsword
 	name = "Donator Kit - Ornate Longsword - Required: Longsword"
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/drd_lsword
