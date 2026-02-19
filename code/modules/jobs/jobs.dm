@@ -117,18 +117,18 @@ GLOBAL_LIST_INIT(retinue_positions, list( //Manorites
 GLOBAL_LIST_INIT(garrison_positions, list( //Guards
 	"Sergeant",
 	"Man at Arms",
-	"Man at Arms(Enigma)",
+	"Royal Guard",
 	"Warden",
 	"Watchman",
 ))
 
 GLOBAL_LIST_INIT(citywatch_positions, list( //Guards
 	"Town Sheriff",
-	"Watchman",
+	"Town Watch",
 ))
 
 GLOBAL_LIST_INIT(vanguard_positions, list( //Guards
-	"Warden(Enigma)",
+	"Overseer",
 	"Vanguard",
 ))
 

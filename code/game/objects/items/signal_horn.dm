@@ -95,7 +95,7 @@
 				player.playsound_local(get_turf(player), 'sound/items/horn/bogguardhorn.ogg', 35, FALSE, pressure_affected = FALSE)
 			if("Marshall", "Watchman", "Sergeant", "Man at Arms")
 				player.playsound_local(get_turf(player), 'sound/items/horn/wardenhorn.ogg', 35, FALSE, pressure_affected = FALSE)
-			if("Knight")
+			if("Knight", "Royal Guard")
 				player.playsound_local(get_turf(player), 'sound/items/horn/rghorn.ogg', 35, FALSE, pressure_affected = FALSE)
 			else
 				player.playsound_local(get_turf(player), 'sound/items/horn/signalhorn.ogg', 35, FALSE, pressure_affected = FALSE)

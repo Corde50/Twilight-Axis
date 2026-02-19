@@ -1,6 +1,6 @@
-/datum/job/roguetown/manorguard_enigma
-	title = "Man at Arms(Enigma)"
-	flag = MANATARMSENIGMA
+/datum/job/roguetown/royal_guard
+	title = "Royal Guard"
+	flag = ROYALGUARD
 	department_flag = GARRISON
 	faction = "Station"
 	total_positions = 4
@@ -10,14 +10,14 @@
 	allowed_races = ACCEPTED_RACES
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
 	job_traits = list(TRAIT_GUARDSMAN, TRAIT_STEELHEARTED)
-	tutorial = "Доказав свою преданность и способности, вы получили смысл жизни - защищать герцогскую семью и её двор в качестве лейб-гвардейца. \
-				Вы непосредственно подчиняетесь своему сержанту лейб-гвардии. Если вы регулярно проходите обучение боевым и осадным действиям, у вас есть небольшой шанс пережить правление герцога.\
+	tutorial = "Доказав свою преданность и способности, вы получили смысл жизни - защищать Королевскую семью и её двор в качестве лейб-гвардейца. \
+				Вы непосредственно подчиняетесь своему сержанту лейб-гвардии. Если вы регулярно проходите обучение боевым и осадным действиям, у вас есть небольшой шанс пережить правление Короля.\
 				Умереть в составе лейб-гвардии Его Высочества - большая честь, маршал напоминает вам об этом каждую ночь."
-	display_order = JDO_MANATARMSENIGMA
+	display_order = JDO_ROYALGUARD
 	whitelist_req = TRUE
 
-	outfit = /datum/outfit/job/roguetown/manorguard_enigma
-	advclass_cat_rolls = list(CTAG_MENATARMS_ENIGMA = 20)
+	outfit = /datum/outfit/job/roguetown/royal_guard
+	advclass_cat_rolls = list(CTAG_ROYALGUARD_ENIGMA = 20)
 
 	give_bank_account = TRUE
 	min_pq = 8
@@ -27,22 +27,20 @@
 
 	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_retinue.ogg'
 	job_subclasses = list(
-		/datum/advclass/manorguard_enigma/footsman,
-		/datum/advclass/manorguard_enigma/skirmisher,
+		/datum/advclass/royal_guard/footsman,
+		/datum/advclass/royal_guard/skirmisher,
 
-		/datum/advclass/manorguard_enigma/standard_bearer,
+		/datum/advclass/royal_guard/standard_bearer,
 
 	)
 
-/datum/outfit/job/roguetown/manorguard_enigma
+/datum/outfit/job/roguetown/royal_guard
 	job_bitflag = BITFLAG_GARRISON
 
-/datum/job/roguetown/manorguard_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/royal_guard/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		title = "Man at Arms"
-		display_title = "Man At Arms"
 		if(istype(H.cloak, /obj/item/clothing/cloak/tabard/stabard/guard))
 			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
@@ -50,9 +48,9 @@
 				index = copytext(H.real_name, 1,index)
 			if(!index)
 				index = H.real_name
-			S.name = "man-at-arms surcoat ([index])"
+			S.name = "royal guard surcoat ([index])"
 
-/datum/outfit/job/roguetown/manorguard_enigma
+/datum/outfit/job/roguetown/royal_guard
 	cloak = /obj/item/clothing/cloak/tabard/stabard/guard
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes
@@ -62,12 +60,12 @@
 	id = /obj/item/scomstone/bad/garrison
 
 // Melee goon
-/datum/advclass/manorguard_enigma/footsman
+/datum/advclass/royal_guard/footsman
 	name = "Retinue Footman"
-	tutorial = "Вы - член герцогской дружины. Обеспечьте безопасность герцогства и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните герцогство Энигму."
-	outfit = /datum/outfit/job/roguetown/manorguard_enigma/footsman
+	tutorial = "Вы - член королевской дружины. Обеспечьте безопасность Короля и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните Королевству Энигму."
+	outfit = /datum/outfit/job/roguetown/royal_guard/footsman
 
-	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	category_tags = list(CTAG_ROYALGUARD_ENIGMA)
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(
 		STATKEY_STR = 3,// seems kinda lame but remember guardsman bonus!!
@@ -95,7 +93,7 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/manorguard_enigma/footsman/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/royal_guard/footsman/pre_equip(mob/living/carbon/human/H)
 	..()
 
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
@@ -164,12 +162,12 @@
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
-/datum/advclass/manorguard_enigma/skirmisher
+/datum/advclass/royal_guard/skirmisher
 	name = "Retinue Skirmisher"
-	tutorial = "Вы - член герцогской дружины. Обеспечьте безопасность герцогства и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните герцогство Энигму."
-	outfit = /datum/outfit/job/roguetown/manorguard_enigma/skirmisher
+	tutorial = "Вы - член королевской дружины. Обеспечьте безопасность Короля и его жителей, защитите власть предержащих от ужасов внешнего мира и сохраните Королевству Энигму."
+	outfit = /datum/outfit/job/roguetown/royal_guard/skirmisher
 
-	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	category_tags = list(CTAG_ROYALGUARD_ENIGMA)
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_SPD = 2,
@@ -195,7 +193,7 @@
 	)
 	extra_context = "Chooses between Light Armor (Dodge Expert) & Medium Armor."
 
-/datum/outfit/job/roguetown/manorguard_enigma/skirmisher/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/royal_guard/skirmisher/pre_equip(mob/living/carbon/human/H)
 	..()
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -250,12 +248,12 @@
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
-/datum/advclass/manorguard_enigma/standard_bearer
+/datum/advclass/royal_guard/standard_bearer
 	name = "Retinue Standard Bearer"
-	tutorial = "Ты тот, кому была удостоена честь нести знамя Герцогства. \
-	Вдохновляй своих товарищей на подвиги во имя Великого Герцога."
-	outfit = /datum/outfit/job/roguetown/manorguard_enigma/standard_bearer
-	category_tags = list(CTAG_MENATARMS_ENIGMA)
+	tutorial = "Ты тот, кому была удостоена честь нести знамя Королества. \
+	Вдохновляй своих товарищей на подвиги во имя Короля."
+	outfit = /datum/outfit/job/roguetown/royal_guard/standard_bearer
+	category_tags = list(CTAG_ROYALGUARD_ENIGMA)
 	traits_applied = list(TRAIT_STANDARD_BEARER, TRAIT_MEDIUMARMOR)
 	subclass_stats = list(
 		STATKEY_STR = 2, // seems kinda lame but remember guardsman bonus!!
@@ -276,7 +274,7 @@
 	)
 	maximum_possible_slots = 1
 
-/datum/outfit/job/roguetown/manorguard_enigma/standard_bearer/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/royal_guard/standard_bearer/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
 	neck = /obj/item/clothing/neck/roguetown/gorget

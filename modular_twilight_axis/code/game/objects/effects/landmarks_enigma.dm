@@ -25,7 +25,7 @@
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/watchman
-	name = "Watchman"
+	name = "Town Watch"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/prisonerb
@@ -37,3 +37,7 @@
 	icon_state = "arrow"
 	jobspawn_override = list("Beggar")
 	delete_after_roundstart = FALSE
+
+/obj/effect/landmark/start/royal_guard
+	name = "Royal Guard"
+	icon_state = "arrow"

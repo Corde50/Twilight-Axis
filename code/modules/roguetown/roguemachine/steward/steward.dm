@@ -49,10 +49,10 @@
 	daily_payments["Archivist"] = 20
 	daily_payments["Magicians Associate"] = 10
 	if(SSmapping.config.map_name == "Rockhill_TA")
-		daily_payments["Man at Arms(Enigma)"] = 30
+		daily_payments["Royal Guard"] = 30
 		daily_payments["Town Sheriff"] = 40
-		daily_payments["Watchman"] = 20
-		daily_payments["Warden(Enigma)"] = 40
+		daily_payments["Town Watch"] = 20
+		daily_payments["Overseer"] = 40
 		daily_payments["Vanguard"] = 10
 
 /obj/structure/roguemachine/steward/attackby(obj/item/P, mob/user, params)

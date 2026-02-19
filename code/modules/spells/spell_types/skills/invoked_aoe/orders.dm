@@ -27,7 +27,7 @@
 		else if(user.job == "Migrant")
 			affectedjobs = list("Heartfelt Retinue", "Migrant")
 		else if(user.job == "Town Sheriff")
-			affectedjobs = list("Watchman")
+			affectedjobs = list("Town Watch")
 		else if(user.job == "Warden")
 			affectedjobs = list("Vanguard")
 		else //failsafe in case someone somehow gets the spells without a role that uses them
@@ -161,7 +161,7 @@
 				to_chat(user, span_alert("I cannot order one not of the brotherhood cause!"))
 				return
 		if(user.job == "Town Sheriff")
-			if(!(target.job in list("Watchman")))
+			if(!(target.job in list("Town Watch")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
 				return

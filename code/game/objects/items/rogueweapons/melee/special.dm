@@ -1135,7 +1135,7 @@
 	if(active_item)
 		return
 	active_item = TRUE
-	if((user.job == "Man at Arms") || (user.job == "Man at Arms(Enigma)"))
+	if((user.job == "Man at Arms") || (user.job == "Royal Guard"))
 		to_chat(user, span_suppradio("The standard's runes pulse, accepting me as its <b>master</b>."))
 		user.change_stat(STATKEY_LCK, 3)
 		user.change_stat(STATKEY_PER, 2)

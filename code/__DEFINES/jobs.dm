@@ -49,16 +49,17 @@
 #define MANATARMS	(1<<1)
 #define WARDEN		(1<<2)
 #define WATCHMAN	(1<<3)
-#define MANATARMSENIGMA	(1<<4)
+#define ROYALGUARD	(1<<4)
+#define DUNGEONEER		(1<<5)
 
 #define CITYWATCH			(1<<4)
 
 #define SHERIFF			(1<<0)
-#define WATCHMANENIGMA			(1<<1)
+#define TOWNWATCH			(1<<1)
 
 #define VANGUARD			(1<<5)
 
-#define WARDENENIGMA		(1<<0)
+#define OVERSEER		(1<<0)
 #define VANGUARDS 	(1<<1)
 
 #define CHURCHMEN			(1<<6)
@@ -174,11 +175,12 @@
 #define JDO_GUARD 4.1
 #define JDO_WARDEN 4.2
 #define JDO_WATCHMAN 4.3
-#define JDO_MANATARMSENIGMA 4.4 // TA EDIT
+#define JDO_ROYALGUARD 4.4 // TA EDIT
 #define JDO_SHERIFF 4.5 // TA EDIT
-#define JDO_WATCHMANENIGMA 4.6 // TA EDIT
-#define JDO_WARDENENIGMA 4.7 // TA EDIT
+#define JDO_TOWNWATCH 4.6 // TA EDIT
+#define JDO_OVERSEER 4.7 // TA EDIT
 #define JDO_VANGUARD 4.8 // TA EDIT
+#define JDO_DUNGEONEER 4.9 // TA EDIT
 
 // Pantheon Church
 #define JDO_BISHOP 5

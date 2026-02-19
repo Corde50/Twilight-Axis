@@ -1,6 +1,6 @@
-/datum/job/roguetown/warden_enigma
-	title = "Warden(Enigma)"
-	flag = WARDENENIGMA
+/datum/job/roguetown/overseer
+	title = "Overseer"
+	flag = OVERSEER
 	department_flag = VANGUARD
 	faction = "Station"
 	total_positions = 1
@@ -8,14 +8,14 @@
 	selection_color = JCOLOR_VANGUARD
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
-	display_order = JDO_WARDENENIGMA
+	display_order = JDO_OVERSEER
 	tutorial = "Вам, как опытному солдату из свиты герцога, поручено наблюдать за недавно построенным Бастионом. \
 				Вы подчиняетесь маршалу и его советникам,\
 				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными.\
 				Бастион не должен пасть."
 	whitelist_req = TRUE
-	outfit = /datum/outfit/job/roguetown/warden_enigma
-	advclass_cat_rolls = list(CTAG_WARDEN_ENIGMA = 2)
+	outfit = /datum/outfit/job/roguetown/overseer
+	advclass_cat_rolls = list(CTAG_OVERSEER = 2)
 	give_bank_account = TRUE
 	min_pq = 10
 	max_pq = null
@@ -23,14 +23,12 @@
 
 	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_vanguard.ogg'
 	job_subclasses = list(
-		/datum/job/roguetown/warden_enigma,
+		/datum/job/roguetown/overseer,
 	)
 
-/datum/job/roguetown/warden_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/overseer/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
-		title = "Warden"
-		display_title = "Warden"
 		var/mob/living/carbon/human/H = L
 		if(istype(H.wear_armor, /obj/item/clothing/cloak/wardencloak/enigma))
 			var/obj/item/clothing/S = H.wear_armor
@@ -39,17 +37,17 @@
 				index = copytext(H.real_name, 1,index)
 			if(!index)
 				index = H.real_name
-			S.name = "warden's cloak ([index])"
+			S.name = "overseer's cloak ([index])"
 
-/datum/advclass/warden_enigma
-	name = "Warden"
+/datum/advclass/overseer
+	name = "Overseer"
 	tutorial = "Вам, как опытному солдату из свиты герцога, поручено наблюдать за недавно построенным Бастионом. \
 				Вы подчиняетесь маршалу и его советникам,\
 				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными.\
 				Бастион не должен пасть."
-	outfit = /datum/outfit/job/roguetown/warden_enigma
+	outfit = /datum/outfit/job/roguetown/overseer
 
-	category_tags = list(CTAG_WARDEN_ENIGMA)
+	category_tags = list(CTAG_OVERSEER)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_WOODSMAN, TRAIT_STEELHEARTED)
 	subclass_stats = list(
 		STATKEY_STR = 3,
@@ -78,7 +76,7 @@
 		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_APPRENTICE
 	)
 
-/datum/outfit/job/roguetown/warden_enigma
+/datum/outfit/job/roguetown/overseer
 	job_bitflag = BITFLAG_VANGUARD
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler/warden_enigma
 	pants = /obj/item/clothing/under/roguetown/chainlegs
@@ -96,7 +94,7 @@
 	cloak = /obj/item/clothing/cloak/wardencloak
 	backpack_contents = list(/obj/item/storage/keyring/warden_enigma = 1, /obj/item/signal_hornn/green = 1, /obj/item/rogueweapon/scabbard/sheath = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1)
 
-/datum/outfit/job/roguetown/warden_enigma/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/overseer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")

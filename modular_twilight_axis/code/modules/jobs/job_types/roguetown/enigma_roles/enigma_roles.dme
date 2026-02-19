@@ -3,6 +3,7 @@
 #include "garrison\watchman.dm"
 #include "garrison\vanguard.dm"
 #include "garrison\warden_enigma.dm"
+#include "garrison\dungeoneer.dm"
 #include "retinue\knight_enigma.dm"
 //#include "peasants\bogprisoner.dm"
 //#include "peasants\hostage.dm"

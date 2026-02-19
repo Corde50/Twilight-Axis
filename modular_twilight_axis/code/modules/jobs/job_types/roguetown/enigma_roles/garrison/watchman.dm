@@ -1,19 +1,23 @@
-/datum/job/roguetown/watchman_enigma
-	title = "Watchman"
-	flag = WATCHMANENIGMA
+/datum/job/roguetown/town_watch
+	title = "Town Watch"
+	flag = TOWNWATCH
 	department_flag = CITYWATCH
 	faction = "Station"
 	total_positions = 5
 	spawn_positions = 5
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
-	display_order = JDO_WATCHMANENIGMA
-	tutorial = "Отвечая за безопасность города и соблюдение закона,\
-	вы ходите среди угнетенных, неся справедливость и боль. \
-	Ваша верность принадлежит шерифу и горожанам, ибо ни духовенство, ни дворянство не понимают тягот простолюдина."
+	display_order = JDO_TOWNWATCH
+	tutorial = "Отвечая за безопасность города и соблюдение закона, вы ходите среди угнетенных, неся справедливость и боль. \
+	Возможно, вы даже застали ПРОПАЖУ Барона и поспешное прибытие Короля с его свитой, что пришли на готовое и сразу же прибрали власть в городе. \
+	Или же, вы слышали от ваших старых сослуживцев не самые лестные слова про Короля, ведь власть и авторитет Дозора заметно\
+	уменьшились с Его прибытием.\
+	Так или иначе, ваша верность принадлежит пропавшему Барону, ИСТИННОМУ владыке этого города, горожанам \
+	а уже после Королю и его свите, что все еще не хочет выбираться со своей временной ставки. \
+	Да и как защитит эта хваленная Королевская Гвардия жителей Рокхилла, сидя в замке, если не вы?"
 	whitelist_req = TRUE
-	outfit = /datum/outfit/job/roguetown/watchman_enigma
-	advclass_cat_rolls = list(CTAG_WATCHMAN_ENIGMA = 2)
+	outfit = /datum/outfit/job/roguetown/town_watch
+	advclass_cat_rolls = list(CTAG_TOWN_WATCH = 2)
 	give_bank_account = TRUE
 	min_pq = 6
 	max_pq = null
@@ -21,10 +25,10 @@
 
 	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_watchman.ogg'
 	job_subclasses = list(
-		/datum/advclass/watchman_enigma,
+		/datum/advclass/town_watch,
 	)
 
-/datum/job/roguetown/watchman_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/town_watch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -37,14 +41,18 @@
 				index = H.real_name
 			S.name = "watchman ([index]) armor"
 
-/datum/advclass/watchman_enigma
-	name = "Watchman"
-	tutorial = "Отвечая за безопасность города и соблюдение закона,\
-	вы ходите среди угнетенных, неся справедливость и боль. \
-	Ваша верность принадлежит шерифу и горожанам, ибо ни духовенство, ни дворянство не понимают тягот простолюдина."
-	outfit = /datum/outfit/job/roguetown/watchman_enigma
+/datum/advclass/town_watch
+	name = "Town Watch"
+	tutorial = "Отвечая за безопасность города и соблюдение закона, вы ходите среди угнетенных, неся справедливость и боль. \
+	Возможно, вы даже застали ПРОПАЖУ Барона и поспешное прибытие Короля с его свитой, что пришли на готовое и сразу же прибрали власть в городе. \
+	Или же, вы слышали от ваших старых сослуживцев не самые лестные слова про Короля, ведь власть и авторитет Дозора заметно\
+	уменьшились с Его прибытием.\
+	Так или иначе, ваша верность принадлежит пропавшему Барону, ИСТИННОМУ владыке этого города, горожанам \
+	а уже после Королю и его свите, что все еще не хочет выбираться со своей временной ставки. \
+	Да и как защитит эта хваленная Королевская Гвардия жителей Рокхилла, сидя в замке, если не вы?"
+	outfit = /datum/outfit/job/roguetown/town_watch
 
-	category_tags = list(CTAG_WATCHMAN_ENIGMA)
+	category_tags = list(CTAG_TOWN_WATCH)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_GUARDSMAN)
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -70,7 +78,7 @@
 		/datum/skill/combat/crossbows = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/watchman_enigma
+/datum/outfit/job/roguetown/town_watch
 	job_bitflag = BITFLAG_CITYWATCH
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/citywatch
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -86,7 +94,7 @@
 	backr = /obj/item/storage/backpack/rogue/satchel/citywatch
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/rope/chain = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 
-/datum/outfit/job/roguetown/watchman_enigma/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/town_watch/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")

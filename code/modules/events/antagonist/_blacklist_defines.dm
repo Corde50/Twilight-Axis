@@ -25,9 +25,10 @@
 		"Druid",\
 		"Acolyte",\
 		"Man at Arms",\
-		"Man at Arms(Enigma)",\
+		"Royal Guard",\
 		"Vanguard", \
-		"Warden(Enigma)",\
+		"Overseer",\
 		"Watchman", \
+		"Town Watch", \
 		"Squire",\
 	)
