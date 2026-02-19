@@ -3,6 +3,33 @@
 /obj/structure/vine,
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bograt/safe)
+"af" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -2;
+	desc = "A pile of shiny gold.";
+	pixel_y = -2
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 11;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/gems.dmi';
+	icon_state = "quartz_cut";
+	pixel_x = 9;
+	pixel_y = 8;
+	desc = "Shiny gem!"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "ag" = (
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/under/cave)
@@ -64,6 +91,33 @@
 /obj/item/rope/chain,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
+"aT" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "s19";
+	pixel_x = -2;
+	desc = "A pile of shiny silver.";
+	pixel_y = -2
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 11;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "aX" = (
 /obj/item/natural/bone,
 /turf/open/water/bloody,
@@ -71,6 +125,41 @@
 "aY" = (
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/indoors)
+"be" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "lstatue1";
+	pixel_x = 3;
+	desc = "Golden Statue!";
+	pixel_y = -7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/gems.dmi';
+	icon_state = "ruby_cut";
+	pixel_x = -8;
+	pixel_y = -8;
+	desc = "Shiny gem!"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "bg" = (
 /turf/closed/mineral/random/rogue/boglava/med,
 /area/rogue/under/cave)
@@ -662,20 +751,20 @@
 /obj/structure/table/wood{
 	icon_state = "tablewood3"
 	},
-/obj/item/roguekey/walls{
-	lockid = "bandit";
-	name = "old key";
-	pixel_x = -9
+/obj/item/roguekey/inhumen/three{
+	pixel_x = -10;
+	name = "rusty key";
+	lockid = "bandit"
 	},
-/obj/item/roguekey/walls{
-	lockid = "bandit";
-	name = "old key";
-	pixel_y = 3
+/obj/item/roguekey/inhumen/three{
+	pixel_x = 10;
+	name = "rusty key";
+	lockid = "bandit"
 	},
-/obj/item/roguekey/walls{
-	lockid = "bandit";
-	name = "old key";
-	pixel_x = 12
+/obj/item/roguekey/inhumen/three{
+	pixel_x = -1;
+	name = "rusty key";
+	lockid = "bandit"
 	},
 /turf/open/floor/rogue/ruinedwood{
 	dir = 1;
@@ -1150,6 +1239,33 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
+"iA" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -2;
+	desc = "A pile of shiny gold.";
+	pixel_y = -2
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "gstatue2";
+	pixel_x = 11;
+	desc = "A pile of shiny gold.";
+	pixel_y = 1
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "iC" = (
 /obj/structure/fluff/traveltile/vampire{
 	aportalgoesto = "vampexit";
@@ -1246,6 +1362,33 @@
 "jg" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/banditcamp)
+"jh" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -2;
+	desc = "A pile of shiny gold.";
+	pixel_y = -2
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/gems.dmi';
+	icon_state = "diamond_cut";
+	pixel_x = -13;
+	pixel_y = 5;
+	desc = "Shiny gem!"
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "jl" = (
 /obj/structure/fluff/railing/wood/north{
 	layer = 2.7;
@@ -1450,6 +1593,17 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/mountains)
+"kt" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "s19";
+	pixel_x = 5;
+	desc = "A pile of shiny silver.";
+	pixel_y = 3
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "ku" = (
 /obj/structure/fluff/railing/border/west,
 /obj/structure/stairs{
@@ -1506,6 +1660,25 @@
 /obj/structure/fluff/walldeco/bigpainting,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors/vampire_manor)
+"kH" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -2;
+	desc = "A pile of shiny gold.";
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "kJ" = (
 /obj/structure/roguemachine/Hoardmaster{
 	pixel_x = -16
@@ -2153,6 +2326,33 @@
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/bograt/safe)
+"oA" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 11;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "oC" = (
 /obj/effect/decal/edge{
 	color = "#3f3f3f";
@@ -3735,10 +3935,10 @@
 /turf/open/floor/rogue/blocks/platform,
 /area/rogue/under/cave/inhumen)
 "zi" = (
-/obj/structure/pillory{
-	lockid = "inhumen"
-	},
 /obj/item/rope,
+/obj/structure/pillory{
+	lockid = list("inhumen")
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "zj" = (
@@ -3937,7 +4137,12 @@
 /obj/structure/fluff/walldeco/chains{
 	icon_state = "chains5"
 	},
-/obj/structure/table/optable,
+/obj/structure/bed/rogue/inn{
+	name = "operating table";
+	icon = 'icons/obj/surgery.dmi';
+	icon_state = "optable";
+	desc = "A table used for performing surgery on. Not the most comfortable."
+	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/bograt/safe)
 "Ao" = (
@@ -5024,9 +5229,14 @@
 /obj/structure/fluff/walldeco/chains{
 	icon_state = "chains4"
 	},
-/obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood/splatter{
 	icon_state = "gib1"
+	},
+/obj/structure/bed/rogue/inn{
+	name = "operating table";
+	icon = 'icons/obj/surgery.dmi';
+	icon_state = "optable";
+	desc = "A table used for performing surgery on. Not the most comfortable."
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/bograt/safe)
@@ -5436,10 +5646,6 @@
 "JK" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/rack/rogue,
-/obj/structure/curtain/red{
-	icon_state = "curtain-closed";
-	opacity = 1
-	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "JN" = (
@@ -5756,10 +5962,6 @@
 /area/rogue/indoors/banditcamp)
 "LH" = (
 /obj/structure/rack/rogue,
-/obj/structure/curtain/red{
-	icon_state = "curtain-closed";
-	opacity = 1
-	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "LK" = (
@@ -5802,6 +6004,33 @@
 /obj/item/bedsheet/rogue/cloth,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
+"LZ" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "s19";
+	pixel_x = -2;
+	desc = "A pile of shiny silver.";
+	pixel_y = -2
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "Ma" = (
 /obj/structure/fluff/ceramicswheel,
 /turf/open/floor/rogue/ruinedwood/spiral,
@@ -5879,8 +6108,33 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors)
 "Mx" = (
-/obj/structure/closet/crate/chest/gold,
-/turf/open/floor/rogue/blocks,
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "gstatue1";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 19
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -2;
+	desc = "A pile of shiny gold.";
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/blocks{
+	desc = "Golden Statue!"
+	},
 /area/rogue/indoors/banditcamp)
 "MA" = (
 /obj/structure/closet/crate/roguecloset,
@@ -6489,6 +6743,33 @@
 	first_time_text = "Murder Pass";
 	name = "Bandit Woods"
 	})
+"QC" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = -7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "s19";
+	pixel_x = 11;
+	desc = "A pile of shiny silver.";
+	pixel_y = -7
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "QF" = (
 /obj/machinery/light/rogue/candle/blue/r,
 /turf/open/floor/rogue/cobblerock,
@@ -6597,6 +6878,13 @@
 /obj/item/clothing/head/roguetown/helmet/leather/volfhelm,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
+"Rm" = (
+/obj/structure/pillory{
+	lockid = list("inhumen")
+	},
+/obj/item/rope,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors)
 "Ro" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	icon_state = "gibbl5"
@@ -7000,6 +7288,33 @@
 "Uj" = (
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/vampire_manor)
+"Uk" = (
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = -8;
+	desc = "A pile of shiny gold.";
+	pixel_y = 7
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "g19";
+	pixel_x = 7;
+	desc = "A pile of shiny gold.";
+	pixel_y = 6
+	},
+/obj/structure/rack/rogue{
+	name = "Gold pile";
+	icon = 'icons/roguetown/items/valuable.dmi';
+	icon_state = "s19";
+	pixel_x = -2;
+	desc = "A pile of shiny silver.";
+	pixel_y = -2
+	},
+/turf/open/floor/rogue/blocks,
+/area/rogue/indoors/banditcamp)
 "Uo" = (
 /obj/effect/wisp/prestidigitation{
 	desc = "A small, fiery ball of light made up of mystical energy.";
@@ -7086,7 +7401,12 @@
 /turf/open/water/pond,
 /area/rogue/outdoors/mountains)
 "UT" = (
-/obj/structure/table/optable,
+/obj/structure/bed/rogue/inn{
+	name = "operating table";
+	icon = 'icons/obj/surgery.dmi';
+	icon_state = "optable";
+	desc = "A table used for performing surgery on. Not the most comfortable."
+	},
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/banditcamp)
 "Vb" = (
@@ -7276,9 +7596,7 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/vampire_manor)
 "Wv" = (
-/obj/structure/mineral_door/wood/deadbolt{
-	dir = 1
-	},
+/obj/structure/curtain/brown,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
 "Wx" = (
@@ -9358,7 +9676,7 @@ Hi
 Hi
 Hi
 LH
-BF
+vp
 Sy
 uG
 ve
@@ -9481,14 +9799,14 @@ EM
 Hi
 Hi
 Hi
-vp
+Wv
 Hi
 Hi
 hP
 Hi
 Hi
 JK
-BF
+vp
 Bw
 Dv
 zQ
@@ -11558,9 +11876,9 @@ Qh
 Cu
 rn
 Jw
-Mx
-Mx
-Mx
+QC
+af
+kt
 tp
 Ay
 wQ
@@ -11688,8 +12006,8 @@ zq
 rn
 rn
 Jw
-Mx
-Mx
+iA
+oA
 Mx
 tp
 kJ
@@ -11818,9 +12136,9 @@ zq
 fl
 Mi
 Jw
-Mx
-Mx
-Mx
+aT
+be
+Uk
 tp
 Wf
 Ay
@@ -11948,9 +12266,9 @@ Cu
 Cu
 nv
 Jw
-Mx
-Mx
-Mx
+jh
+LZ
+kH
 tp
 Ay
 DN
@@ -21589,7 +21907,7 @@ jI
 aY
 HG
 yy
-zi
+Rm
 Pj
 yb
 YE
