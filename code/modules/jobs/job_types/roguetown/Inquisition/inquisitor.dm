@@ -17,13 +17,15 @@
 	display_order = JDO_INQUISITOR
 	advclass_cat_rolls = list(CTAG_INQUSITOR = 20)
 	give_bank_account = 30
-	min_pq = 10
+	min_pq = 18
 	max_pq = null
 	round_contrib_points = 2
 	job_subclasses = list(
 		/datum/advclass/inquisitor/inspector,
-		/datum/advclass/inquisitor/ordinator
+		/datum/advclass/inquisitor/ordinator,
+    	/datum/advclass/inquisitor/blackpowder
 	)
+	same_job_respawn_delay = 30 MINUTES
 
 /datum/outfit/job/roguetown/inquisitor
 	name = "Inquisitor"
@@ -163,8 +165,8 @@
 	subclass_skills = list(
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_JOURNEYMAN,
