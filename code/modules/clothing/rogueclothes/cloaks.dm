@@ -787,6 +787,9 @@
 /obj/item/clothing/cloak/raincloak/blue
 	color = CLOTHING_BLUE
 
+/obj/item/clothing/cloak/raincloak/mageblue
+	color = CLOTHING_MAGE_BLUE
+
 /obj/item/clothing/cloak/raincloak/purple
 	color = CLOTHING_PURPLE
 

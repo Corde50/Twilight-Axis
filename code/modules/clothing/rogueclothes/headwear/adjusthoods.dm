@@ -61,6 +61,9 @@
 /obj/item/clothing/head/roguetown/roguehood/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/mageblue
+	color = CLOTHING_MAGE_BLUE
+
 /obj/item/clothing/head/roguetown/roguehood/darkgreen
 	color = "#264d26"
 
