@@ -87,3 +87,143 @@
 
 
 
+
+/datum/intent/simple/beast_claws/slash
+	name = "Рассекающий удар"
+	desc = "Звериные когти помогают рвать свою добычу, заставляя её истекать кровью."
+	blade_class = BCLASS_CHOP
+	animname = "cut"
+	hitsound = "genslash"
+	miss_sound = "bluntwoosh"
+	item_d_type = "slash"
+	penfactor = 20
+	item_d_type = "cut"
+	icon_state = "inchop"
+// - - -
+
+/obj/item/rogueweapon/beast_claws
+	name = "Beast claws"
+	gender = PLURAL
+	max_blade_int = INFINITY
+	max_integrity = INFINITY
+	associated_skill = /datum/skill/combat/unarmed
+	wlength = WLENGTH_NORMAL
+	sharpness = IS_SHARP_ACCURATE
+	item_flags = DROPDEL
+	possible_item_intents = list(/datum/intent/simple/beast_claws/slash)
+	can_parry = TRUE
+	wdefense = 7
+	// Временная замена до момента появления спрайтера. Увы.
+	item_state = null
+	lefthand_file = null
+	righthand_file = null
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	icon_state = "claw_r"
+
+/obj/item/rogueweapon/beast_claws/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NOEMBED, TRAIT_GENERIC)
+
+// - - -
+
+/obj/effect/proc_holder/spell/self/beast_claws
+	name = "Когти зверя"
+	desc = "Вытянутые когти подобные острым лезвиям, способным как резать так и колоть. \
+	Старшие друиды рассказывают легенду, согласно которым Дендор использовал свои зверские когти, \
+	когда повздорил с Равоксом, богом войны. \
+	Их битва длилась три дэя, во время которых в леса было страшно даже заглядывать. \
+	Однако, на четвертый дэй все стихло, боги помирились."
+	overlay_state = "dendor"
+	req_items = /obj/item/clothing/neck/roguetown/psicross/dendor
+	antimagic_allowed = TRUE
+	miracle = TRUE
+	devotion_cost = 50
+
+/obj/effect/proc_holder/spell/self/beast_claws/cast(mob/living/user = usr)
+	. = ..()
+
+	var/is_ability_activated = FALSE
+
+	var/obj/item/active_hand_item = user.get_active_held_item()
+
+	// Предовтращение манипуляций с когтями оборотня.
+	if(istype(active_hand_item, /obj/item/rogueweapon/werewolf_claw))
+		revert_cast()
+		return FALSE
+
+	if(istype(active_hand_item, /obj/item/rogueweapon/beast_claws))
+		is_ability_activated = TRUE
+
+	user.dropItemToGround(active_hand_item, TRUE)
+
+	if(is_ability_activated)
+		qdel(active_hand_item)
+		return TRUE
+
+	user.put_in_hands(new /obj/item/rogueweapon/beast_claws(user), TRUE, FALSE, TRUE)
+
+
+// -- Debuff
+
+/atom/movable/screen/alert/status_effect/debuff/beast_rage
+	name = "Уставший зверь"
+	desc = "Мой внутренни зверь устал, как и я."
+	icon_state = "debuff"
+
+/datum/status_effect/debuff/beast_rage_weakness
+	id = "beast_rage_weakness"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/beast_rage
+	effectedstats = list(
+		"speed" = -2,
+		"strength" = -2,
+		"willpower" = -2,
+	)
+	duration = 1 MINUTES
+
+// -- Buff
+
+/atom/movable/screen/alert/status_effect/buff/beast_rage
+	name = "Буйствующий зверь"
+	desc = "Мой внутренни зверь буйствует! Силы переполняют меня, но мой разум гаснет!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/beast_rage
+	id = "beast_rage"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/beast_rage
+	effectedstats = list(
+		"speed" = 2,
+		"strength" = 2,
+		"endurance" = 1,
+		"willpower" = 2
+		"intelligence" = -5,
+	)
+	duration = 1 MINUTES
+
+/datum/status_effect/buff/beast_rage/on_remove()
+	. = ..()
+	owner.apply_status_effect(/datum/status_effect/debuff/beast_rage_weakness)
+	owner.apply_status_effect(/datum/status_effect/debuff/sleepytime)
+	owner.clear_fullscreen("beast_mode")
+
+// -- Spell
+
+/obj/effect/proc_holder/spell/self/beast_rage
+	name = "Буйство зверя"
+	desc = ""
+	overlay_state = "dendor"
+	recharge_time = 2.5 MINUTES
+	req_items = /obj/item/clothing/neck/roguetown/psicross/dendor
+	sound = 'sound/magic/churn.ogg'
+	associated_skill = /datum/skill/magic/druidic
+	invocations = list("Вот она! Ярость дикого сердца!")
+	invocation_type = "shout" //can be none, whisper, emote and shout
+	miracle = TRUE
+	devotion_cost = 100
+
+/obj/effect/proc_holder/spell/self/beast_rage/cast(mob/living/user = usr)
+	. = ..()
+	user.remove_status_effect(/datum/status_effect/debuff/sleepytime)
+	user.apply_status_effect(/datum/status_effect/buff/beast_rage)
+	user.overlay_fullscreen("beast_mode", /atom/movable/screen/fullscreen/color_vision/red)
+	user.Dizzy(10)
