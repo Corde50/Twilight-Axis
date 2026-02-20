@@ -1,4 +1,4 @@
 author: "FreeStylaLT"
 delete-after: True
 changes:
-  - rscadd: "Added Sun Elf subrace"
+  - rscdel: "Removed the scroll-making Noc T3"
