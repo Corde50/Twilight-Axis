@@ -61,7 +61,6 @@
 	if(user.doing)
 		return FALSE
 	
-	
 	var/datum/component/personal_crafting/PC = user.craftingthing
 	if(!PC)
 		return FALSE
@@ -72,47 +71,32 @@
 
 	var/datum/crafting_stage/current_stage_datum = stages_cache[stage]
 	var/recipe_type = current_stage_datum.recipe
-	
-	
 	var/datum/crafting_recipe/R = new recipe_type()
-
-	
 	var/list/surroundings = PC.get_surroundings(user)
 
 
-	if(!PC.check_contents(R, surroundings))
-		if(tool && PC.check_tools(user, R, surroundings))
-			to_chat(user, span_warning("You are missing materials to continue construction."))
+	if(!PC.check_contents(R, surroundings) || !PC.check_tools(user, R, surroundings))
+		var/report = get_missing_report(R, surroundings, user)
+		to_chat(user, span_warning("You are missing requirements for the next stage: [report]."))
 		return FALSE
 
-	
-	if(!PC.check_tools(user, R, surroundings))
-		if(tool && PC.check_contents(R, surroundings))
-			to_chat(user, span_warning("You need a specific tool to continue."))
-		return FALSE
 
-	
 	user.visible_message(span_notice("[user] starts working on [src]..."), span_notice("You start working on [src]..."))
 	
 	if(R.craftsound)
 		playsound(src, R.craftsound, 50, TRUE)
 
 	if(do_after(user, 30, target = src))
-		
 		surroundings = PC.get_surroundings(user)
 		if(!PC.check_contents(R, surroundings) || !PC.check_tools(user, R, surroundings))
 			to_chat(user, span_warning("Conditions changed, construction failed."))
 			return FALSE
 
-	
 		PC.del_reqs(R, user)
 		
-		
 		if(user.mind && R.skillcraft && R.craftdiff)
-			
 			user.mind.add_sleep_experience(R.skillcraft, R.craftdiff * 10, FALSE)
 
-		
 		stage++
 		user.visible_message(span_notice("[user] completes a stage of [src]."), span_notice("You complete a stage."))
 		
@@ -124,6 +108,34 @@
 		return TRUE
 
 	return FALSE
+
+
+/obj/structure/multistage/proc/get_missing_report(datum/crafting_recipe/R, list/surroundings, mob/living/carbon/user)
+	var/list/missing = list()
+	var/list/contents = surroundings["other"]
+
+
+	for(var/path in R.reqs)
+		var/needed = R.reqs[path]
+		var/found = 0
+		for(var/check_path in contents)
+			if(ispath(check_path, path))
+				found += contents[check_path]
+		
+		if(found < needed)
+			var/atom/A = path
+			missing += "[needed - found]x [initial(A.name)]"
+
+
+	var/datum/component/personal_crafting/PC = user.craftingthing
+	if(!PC.check_tools(user, R, surroundings))
+		for(var/tool_path in R.tools)
+		
+			if(!(locate(tool_path) in user.contents) && !(locate(tool_path) in range(1, user)))
+				var/obj/O = tool_path
+				missing += "[initial(O.name)] (tool)"
+
+	return missing.Join(", ")
 
 /obj/structure/multistage/proc/finish_construction(mob/user)
 	if(final_product_type)
