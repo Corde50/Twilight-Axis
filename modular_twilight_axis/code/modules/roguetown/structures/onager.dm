@@ -10,7 +10,7 @@
 	max_integrity = 500
 	layer = OBJ_LAYER
 	
-	armor = list("blunt" = 20, "slash" = 50, "stab" = 50, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = -50, "bio" = 100, "rad" = 100, "fire" = -20, "acid" = 0)
+	armor = list("blunt" = 20, "slash" = 50, "stab" = 50, "piercing" = 50, "fire" = -20, "acid" = 0, "magic" = 0)
 
 	var/min_target_distance = 5
 	var/max_target_distance = 40
@@ -32,6 +32,8 @@
 
 /obj/structure/onager/Initialize()
 	. = ..()
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
 	update_icon()
 
 
@@ -335,7 +337,7 @@
 	anchored = TRUE
 	density = FALSE
 	invisibility = INVISIBILITY_ABSTRACT 
-	forceMove(null) 
+	moveToNullspace() 
 
 	var/flight_time = 20 + (distance * 2)
 	addtimer(CALLBACK(src, PROC_REF(begin_impact), target), flight_time)
@@ -424,12 +426,10 @@
 	animate(src, pixel_z = 600, alpha = 0, time = 10, easing = EASE_IN)
 
 /obj/projectile/rock_shard
-	name = "rock shard"
-	icon_state = "bullet" 
-	damage = 40
-	range = 7
-	pass_flags = PASSTABLE | PASSGRILLE
-	armor_penetration = 15
-	damage_type = BRUTE
-	flag = "bullet"
-	speed = 2
+    name = "rock shard"
+    icon_state = "bullet" 
+    damage = 15
+    range = 5
+    flag = "piercing" 
+    damage_type = BRUTE
+    speed = 2
