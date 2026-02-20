@@ -108,7 +108,7 @@
 			belt = /obj/item/storage/belt/rogue/leather/rope
 
 /datum/outfit/job/roguetown/human/northern/border_reiver/proc/add_random_reiver_cloak(mob/living/carbon/human/H)
-	var/random_reiver_cloak = rand(1,4)
+	var/random_reiver_cloak = rand(1,3)
 	switch(random_reiver_cloak)
 		if(1)
 			cloak = /obj/item/clothing/cloak/raincloak/mageblue
@@ -116,8 +116,6 @@
 			cloak = /obj/item/clothing/cloak/thief_cloak/mageblue
 		if(3)
 			cloak = /obj/item/clothing/cloak/cotehardie/mageblue
-		if(4)
-			cloak = /obj/item/clothing/cloak/poncho/mageblue
 
 /datum/outfit/job/roguetown/human/northern/border_reiver/proc/add_random_reiver_beltl_stuff(mob/living/carbon/human/H)
 	var/add_random_reiver_beltl_stuff = rand(1,7)
@@ -519,7 +517,7 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	robust_searching = 1
 	turns_per_move = 3
-	move_to_delay = 8
+	move_to_delay = 2
 	STACON = 15
 	STASTR = 12
 	STASPD = 18
@@ -548,6 +546,9 @@
 	icon_state = "sabre_rider"
 	icon_living = "sabre_rider"
 	icon_dead = "sabre_rider_dead"
+	harm_intent_damage = 10
+	melee_damage_lower = 30
+	melee_damage_upper = 45
 
 /datum/intent/simple/spear/reiver_rider_lancer
 	reach = 2
