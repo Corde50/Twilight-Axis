@@ -10,7 +10,7 @@
 	round_contrib_points = 5
 
 /datum/job/roguetown/guildmaster
-	round_contrib_points = 4
+	round_contrib_points = 5
 
 /datum/job/roguetown/guildsman
 	round_contrib_points = 4
