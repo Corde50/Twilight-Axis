@@ -69,3 +69,5 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/rogueweapon/huntingknife/stoneknife = 1
 		)
+		
+	wretch_select_bounty(H)
