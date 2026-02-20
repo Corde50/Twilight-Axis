@@ -457,15 +457,16 @@
 /mob/living/simple_animal/hostile/rogue/border_reiver_crossbow
 	name = "Reiver Crossbowman"
 	icon = 'icons/mob/border_reivers.dmi'
+	faction = list("reiver")
 	icon_state = "reiver_crossbow"
 	icon_living = "reiver_crossbow"
 	icon_dead = "reiver_crossbow_dead"
-	projectiletype = /obj/item/ammo_casing/caseless/rogue/bolt
+	projectiletype = /obj/projectile/bullet/reusable/bolt
 	projectilesound = 'sound/combat/Ranged/crossbow-small-shot-01.ogg'
 	ranged = 1
 	retreat_distance = 2
 	minimum_distance = 5
-	ranged_cooldown_time = 60
+	ranged_cooldown_time = 150
 	check_friendly_fire = 1
 	health = 200
 	maxHealth = 200
@@ -476,29 +477,81 @@
 			/obj/item/ammo_casing/caseless/rogue/bolt,
 			)
 	ai_controller = /datum/ai_controller/reiver_crossbow
+	gender = MALE
+	mob_biotypes = MOB_HUMANOID 
+	robust_searching = 1
+	turns_per_move = 1
+	move_to_delay = 3
+	STACON = 13
+	STASTR = 14
+	STASPD = 14
+	harm_intent_damage = 10
+	melee_damage_lower = 10
+	melee_damage_upper = 25
+	vision_range = 7
+	aggro_vision_range = 9
+	retreat_distance = 0
+	minimum_distance = 0
+	limb_destroyer = 0
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bash"
+	attack_sound = 'sound/blank.ogg'
+	canparry = TRUE
+	d_intent = INTENT_PARRY
+	defprob = 50
+	speak_emote = list("grunts")
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
+	del_on_death = FALSE
 
 /mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider
 	name = "Reiver Rider"
+	faction = list("reiver")
 	icon = 'icons/roguetown/mob/monster/reiver_rider.dmi'
-	base_intents = list(/datum/intent/simple/spear/reiver_rider_lancer)
+	base_intents = list(/datum/intent/simple/spear/reiver_rider_lancer,)
 	icon_state = "lance_rider"
 	icon_living = "lance_rider"
 	icon_dead = "lance_rider_dead"
 	attack_sound = 'sound/foley/pierce.ogg'
 	ai_controller = /datum/ai_controller/reiver_rider/lance
-	health = 400
-	maxHealth = 400
+	health = 650
+	maxHealth = 650
+	gender = MALE
+	mob_biotypes = MOB_ORGANIC|MOB_BEAST
+	robust_searching = 1
+	turns_per_move = 3
+	move_to_delay = 8
+	STACON = 15
+	STASTR = 12
+	STASPD = 18
+	harm_intent_damage = 10
+	melee_damage_lower = 60
+	melee_damage_upper = 90
+	vision_range = 7
+	aggro_vision_range = 9
+	retreat_distance = 0
+	minimum_distance = 0
+	limb_destroyer = 0
+	attack_verb_continuous = "hacks"
+	attack_verb_simple = "hack"
+	attack_sound = 'sound/blank.ogg'
+	canparry = TRUE
+	d_intent = INTENT_PARRY
+	defprob = 50
+	speak_emote = list("grunts")
+	footstep_type = FOOTSTEP_MOB_BAREFOOT
+	del_on_death = FALSE
+	pixel_x = -16
 
 /mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider/sabre
 	ai_controller = /datum/ai_controller/reiver_rider
-	base_intents = list(/datum/intent/simple/reiver_rider_sabre)
+	base_intents = list(/datum/intent/simple/reiver_rider_sabre,)
 	icon_state = "sabre_rider"
 	icon_living = "sabre_rider"
 	icon_dead = "sabre_rider_dead"
 
 /datum/intent/simple/spear/reiver_rider_lancer
 	reach = 2
-	clickcd = REIVER_SABRE_ATTACK_SPEED
+	clickcd = REIVER_LANCE_ATTACK_SPEED
 	chargetime = 1
 	animname = "stab"
 	penfactor = 25
@@ -516,3 +569,4 @@
 	candodge = TRUE
 	canparry = TRUE
 	item_d_type = "slash"
+	clickcd = REIVER_SABRE_ATTACK_SPEED
