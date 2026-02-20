@@ -467,21 +467,52 @@
 	minimum_distance = 5
 	ranged_cooldown_time = 60
 	check_friendly_fire = 1
+	health = 200
+	maxHealth = 200
 	loot = list(
 			/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow,
 			/obj/item/ammo_casing/caseless/rogue/bolt,
 			/obj/item/ammo_casing/caseless/rogue/bolt,
 			/obj/item/ammo_casing/caseless/rogue/bolt,
 			)
-	ai_controller = /datum/ai_controller/skeleton_ranged
+	ai_controller = /datum/ai_controller/reiver_crossbow
 
 /mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider
 	name = "Reiver Rider"
-	icon = 'icons/mob/monster/reiver_rider.dmi'
-	base_intents = list(/datum/intent/simple/spear/skeleton)
+	icon = 'icons/roguetown/mob/monster/reiver_rider.dmi'
+	base_intents = list(/datum/intent/simple/spear/reiver_rider_lancer)
 	icon_state = "lance_rider"
 	icon_living = "lance_rider"
 	icon_dead = "lance_rider_dead"
 	attack_sound = 'sound/foley/pierce.ogg'
-	loot = list(/obj/item/natural/bone,	/obj/item/natural/bone, /obj/item/natural/bone,	/obj/item/rogueweapon/spear, /obj/item/skull)
-	ai_controller = /datum/ai_controller/skeleton_spear
+	ai_controller = /datum/ai_controller/reiver_rider/lance
+	health = 400
+	maxHealth = 400
+
+/mob/living/simple_animal/hostile/rogue/border_reiver_lance_rider/sabre
+	ai_controller = /datum/ai_controller/reiver_rider
+	base_intents = list(/datum/intent/simple/reiver_rider_sabre)
+	icon_state = "sabre_rider"
+	icon_living = "sabre_rider"
+	icon_dead = "sabre_rider_dead"
+
+/datum/intent/simple/spear/reiver_rider_lancer
+	reach = 2
+	clickcd = REIVER_SABRE_ATTACK_SPEED
+	chargetime = 1
+	animname = "stab"
+	penfactor = 25
+
+/datum/intent/simple/reiver_rider_sabre
+	name = "hack"
+	icon_state = "instrike"
+	attack_verb = list("hacks at", "chops at", "bashes")
+	animname = "blank22"
+	blade_class = BCLASS_CUT
+	hitsound = list("genchop", "genslash")
+	chargetime = 0
+	penfactor = 0
+	swingdelay = 2
+	candodge = TRUE
+	canparry = TRUE
+	item_d_type = "slash"
