@@ -21,6 +21,10 @@
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/Initialize()
 	. = ..()
+	if(SSmapping.config.map_name == "Rockhill_TA")
+		name = "Crown of Enigma"
+	else
+		name = "Crown of Azuria"
 	if(SSroguemachine.crown)
 		qdel(src)
 	else

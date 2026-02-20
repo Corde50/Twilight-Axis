@@ -580,7 +580,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			var/cat_name = ""
 			switch (SSjob.name_occupations[category[1]].department_flag)
 				if (NOBLEMEN)
-					cat_name = "Ducal Family"
+					if(SSmapping.config.map_name == "Rockhill_TA")
+						cat_name = "Royal Family"
+					else
+						cat_name = "Ducal Family"
 				if (COURTIERS)
 					cat_name = "Courtiers"
 				if (RETINUE)

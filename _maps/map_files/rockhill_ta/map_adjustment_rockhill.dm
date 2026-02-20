@@ -9,7 +9,8 @@
 	realm_name = "Rockhill"
 	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight, /datum/job/roguetown/sergeant)
 	slot_adjust = list(
-	/datum/job/roguetown/squire = 2
+	/datum/job/roguetown/squire = 2,
+	/datum/job/roguetown/wapprentice = 3,
 	)
 	title_adjust = list(
 		/datum/job/roguetown/physician = list(display_title = "Court Physician"),
