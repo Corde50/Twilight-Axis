@@ -6,7 +6,7 @@
 		"Court Magician",\
 		"Marshal",\
 		"Knight",\
-		"Knight(Enigma)", \
+		"Royal Knight", \
 		"Bishop",\
 		"Martyr",\
 		"Keeper",\

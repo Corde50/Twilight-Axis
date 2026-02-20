@@ -1,6 +1,6 @@
 /datum/job/roguetown/knight_enigma
-	title = "Knight(Enigma)" //Back to proper knights.
-	flag = KNIGHT
+	title = "Royal Knight"
+	flag = ROYALKNIGHT
 	department_flag = RETINUE
 	faction = "Station"
 	total_positions = 2
@@ -8,14 +8,14 @@
 	allowed_races = RACES_NO_CONSTRUCT
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "Вы - воин с экспертной подготовкой; рожденный в мелком дворянстве и с юных лет воспитанный как оруженосец, \
-	а теперь охраняете герцога как его верный рыцарь, подчиняется его приказам и защищает его честь, герцогство в целом. \
-	Полностью предан герцогу, герцогской семье, а так же приближенным к трону. В случае, если герцог и его семья отсутствует, \
-	то вы напрямую подчиняетесь маршалу."
-	display_order = JDO_KNIGHT
+	tutorial = "Вы - воин с экспертной подготовкой; рожденный в мелком дворянстве и с юных лет воспитанный как оруженосец. \
+	Ваша доблесть и воинские умения были замечены еще давно короной и теперь вы удостоены величайшей чести - быть подле Короля. \
+	Уже как 12 лет вы защищаете его в этом проклятом баронстве. Вам не на кого положиться, кроме как на себя, Короля и маршала, \
+	а также королевскую гвардию, ведь за стенами замка лишь гнилозубые крестьяне и глупцы, что слепо отрицают смерть Барона."
+	display_order = JDO_ROYALKNIGHT
 	whitelist_req = TRUE
 	outfit = /datum/outfit/job/roguetown/knight_enigma
-	advclass_cat_rolls = list(CTAG_ROYALGUARD = 20)
+	advclass_cat_rolls = list(CTAG_ROYALKNIGHT = 20)
 	job_traits = list(TRAIT_NOBLE, TRAIT_STEELHEARTED)
 	give_bank_account = TRUE
 	noble_income = 10
@@ -36,8 +36,6 @@
 /datum/job/roguetown/knight_enigma/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
 	if(ishuman(L))
-		title = "Knight"
-		display_title = "Knight"
 		var/mob/living/carbon/human/H = L
 	/*	if(istype(H.cloak, /obj/item/clothing/cloak)) //TA EDIT
 			var/obj/item/clothing/S = H.cloak
@@ -86,20 +84,16 @@
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/full
 	pants = /obj/item/clothing/under/roguetown/platelegs
-	backpack_contents = list(
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-		/obj/item/storage/keyring/knight = 1,
-	)
 
 /datum/advclass/knight_enigma/heavy
-	name = "Knight"
-	tutorial = "Вы - воин с экспертной подготовкой; рожденный в мелком дворянстве и с юных лет воспитанный как оруженосец, \
-	а теперь охраняете герцога как его верный рыцарь, подчиняется его приказам и защищает его честь, герцогство в целом. \
-	Полностью предан герцогу, герцогской семье, а так же приближенным к трону. В случае, если герцог и его семья отсутствует, \
-	то вы напрямую подчиняетесь маршалу."
+	name = "Royal Knight"
+	tutorial = "Вы - воин с экспертной подготовкой; рожденный в мелком дворянстве и с юных лет воспитанный как оруженосец. \
+	Ваша доблесть и воинские умения были замечены еще давно короной и теперь вы удостоены величайшей чести - быть подле Короля. \
+	Уже как 12 лет вы защищаете его в этом проклятом баронстве. Вам не на кого положиться, кроме как на себя, Короля и маршала, \
+	а также королевскую гвардию, ведь за стенами замка лишь гнилозубые крестьяне и глупцы, что слепо отрицают смерть Барона."
 	outfit = /datum/outfit/job/roguetown/knight_enigma/heavy
 
-	category_tags = list(CTAG_ROYALGUARD)
+	category_tags = list(CTAG_ROYALKNIGHT)
 	traits_applied = list(TRAIT_HEAVYARMOR)
 	subclass_stats = list(
 		STATKEY_STR = 4,
@@ -135,12 +129,12 @@
 
 	H.adjust_blindness(-3)
 	if(H.mind)
-		var/weapons = list("Claymore","Great Mace","Battle Axe & Shield","Poleaxe","Estoc","Lucerne", "Partizan", "Longsword & Shield", "Flail & Shield", "Warhammer & Shield", "Sabre & Shield")
+		var/weapons = list("Zweihander","Great Mace","Battle Axe & Shield","Poleaxe","Estoc","Lucerne", "Partizan", "Longsword & Shield", "Flail & Shield", "Warhammer & Shield", "Sabre & Shield")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
-			if("Claymore")
-				r_hand = /obj/item/rogueweapon/greatsword/zwei
+			if("Zweihander")
+				r_hand = /obj/item/rogueweapon/greatsword/grenz
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
 			if("Great Mace")
 				r_hand = /obj/item/rogueweapon/mace/goden/steel

@@ -37,6 +37,7 @@
 //	That lack of means enforce you not to evil:
 /obj/structure/roguemachine/steward/proc/setup_default_payments()
 	daily_payments["Sergeant"] = 40 //Garrison
+	daily_payments["Sergeant Royal Guard"] = 60
 	daily_payments["Man at Arms"] = 30
 	daily_payments["Warden"] = 30
 	daily_payments["Veteran"] = 20
@@ -49,7 +50,7 @@
 	daily_payments["Archivist"] = 20
 	daily_payments["Magicians Associate"] = 10
 	if(SSmapping.config.map_name == "Rockhill_TA")
-		daily_payments["Royal Guard"] = 30
+		daily_payments["Royal Guard"] = 40
 		daily_payments["Town Sheriff"] = 40
 		daily_payments["Town Watch"] = 20
 		daily_payments["Overseer"] = 40

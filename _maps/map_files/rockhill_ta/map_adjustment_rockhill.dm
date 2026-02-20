@@ -13,9 +13,10 @@
 	)
 	title_adjust = list(
 		/datum/job/roguetown/physician = list(display_title = "Court Physician"),
+		/datum/job/roguetown/lord = list(display_title = "King", f_title = "Queen")
 	)
 	tutorial_adjust = list(
-		/datum/job/roguetown/physician = "You are a master physician, trusted by the Duke themself to administer expert care to the Royal family, the court, \
+		/datum/job/roguetown/physician = "You are a master physician, trusted by the King themself to administer expert care to the Royal family, the court, \
 		its protectors and its subjects. While primarily a resident of the keep in the manors medical wing, you also have access \
 		 to the local hightown clinic, where lesser licensed apothecaries ply their trade under your occasional passing tutelage."
 	)

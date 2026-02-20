@@ -20,8 +20,8 @@
 	if(!single_target) //We want one spell to use the old method so we'll separate this out
 		if(user.job == "Sergeant")
 			affectedjobs = list("Man at Arms")
-		else if((user.job == "Knight") || (user.job == "Knight(Enigma)"))
-			affectedjobs = list("Knight", "Squire", "Knight(Enigma)")
+		else if((user.job == "Knight") || (user.job == "Royal Knight"))
+			affectedjobs = list("Knight", "Squire", "Royal Knight")
 		else if(user.job == "Wretch")
 			affectedjobs = list("Brother")
 		else if(user.job == "Migrant")
@@ -151,8 +151,8 @@
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
 				return
-		if((user.job == "Knight") || (user.job == "Knight(Enigma)"))
-			if(!(target.job in list("Knight", "Squire", "Knight(Enigma)")))
+		if((user.job == "Knight") || (user.job == "Royal Knight"))
+			if(!(target.job in list("Knight", "Squire", "Royal Knight")))
 				to_chat(user, span_alert("I cannot order one not of my ranks!"))
 				revert_cast()
 				return

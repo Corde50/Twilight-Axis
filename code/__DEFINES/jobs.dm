@@ -41,16 +41,18 @@
 
 #define MARSHAL		(1<<0)
 #define KNIGHT		(1<<2)
-#define SQUIRE		(1<<3)
+#define ROYALKNIGHT (1<<3)
+#define SQUIRE		(1<<4)
 
 #define GARRISON			(1<<3)
 
 #define SERGEANT	(1<<0)
-#define MANATARMS	(1<<1)
-#define WARDEN		(1<<2)
-#define WATCHMAN	(1<<3)
-#define ROYALGUARD	(1<<4)
-#define DUNGEONEER		(1<<5)
+#define ROYALSERGEANT	(1<<1)
+#define MANATARMS	(1<<2)
+#define WARDEN		(1<<3)
+#define WATCHMAN	(1<<4)
+#define ROYALGUARD	(1<<5)
+#define DUNGEONEER		(1<<6)
 
 #define CITYWATCH			(1<<4)
 
@@ -168,19 +170,21 @@
 // Retinue - Manor
 #define JDO_MARSHAL 3
 #define JDO_KNIGHT 3.2
-#define JDO_SQUIRE 3.3
+#define JDO_ROYALKNIGHT 3.3
+#define JDO_SQUIRE 3.4
 
 // Garrison - Town/Outside
 #define JDO_SERGEANT 4
-#define JDO_GUARD 4.1
-#define JDO_WARDEN 4.2
-#define JDO_WATCHMAN 4.3
-#define JDO_ROYALGUARD 4.4 // TA EDIT
-#define JDO_SHERIFF 4.5 // TA EDIT
-#define JDO_TOWNWATCH 4.6 // TA EDIT
-#define JDO_OVERSEER 4.7 // TA EDIT
-#define JDO_VANGUARD 4.8 // TA EDIT
-#define JDO_DUNGEONEER 4.9 // TA EDIT
+#define JDO_ROYALSERGEANT 4.1
+#define JDO_GUARD 4.2
+#define JDO_WARDEN 4.3
+#define JDO_WATCHMAN 4.4
+#define JDO_ROYALGUARD 4.5 // TA EDIT
+#define JDO_SHERIFF 4.6 // TA EDIT
+#define JDO_TOWNWATCH 4.7 // TA EDIT
+#define JDO_OVERSEER 4.8 // TA EDIT
+#define JDO_VANGUARD 4.9 // TA EDIT
+#define JDO_DUNGEONEER 4.10 // TA EDIT
 
 // Pantheon Church
 #define JDO_BISHOP 5

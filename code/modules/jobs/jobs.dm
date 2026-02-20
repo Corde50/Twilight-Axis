@@ -69,6 +69,9 @@ GLOBAL_LIST_INIT(leadership_positions, list( // Used for boldening text primaril
 	"Court Magician",
 	"Marshal",
 	"Sergeant",
+	"Sergeant Royal Guard",
+	"Town Sheriff",
+	"Overseer",
 	"Bishop",
 	"Martyr",
 	"Merchant",
@@ -110,12 +113,13 @@ GLOBAL_LIST_INIT(courtier_positions, list( //Anyone that is officially part of t
 GLOBAL_LIST_INIT(retinue_positions, list( //Manorites
 	"Marshal",
 	"Knight",
-	"Knight(Enigma)",
+	"Royal Knight",
 	"Squire",
 ))
 
 GLOBAL_LIST_INIT(garrison_positions, list( //Guards
 	"Sergeant",
+	"Sergeant Royal Guard",	
 	"Man at Arms",
 	"Royal Guard",
 	"Warden",
@@ -204,7 +208,7 @@ GLOBAL_LIST_INIT(rogueoverthrow_positions, list( //Used for Aspirant / Peasant R
 	"Suitor",
 	"Marshal",
 	"Knight",
-	"Knight(Enigma)",
+	"Royal Knight",
 	"Inquisitor",
 	"Absolver",
 	"Orthodoxist",

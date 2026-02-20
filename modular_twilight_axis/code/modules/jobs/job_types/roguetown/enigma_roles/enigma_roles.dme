@@ -1,4 +1,5 @@
 #include "garrison\manatarms_enigma.dm"
+#include "garrison\sergeant_enigma.dm"
 #include "garrison\sheriff.dm"
 #include "garrison\watchman.dm"
 #include "garrison\vanguard.dm"

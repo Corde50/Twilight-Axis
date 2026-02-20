@@ -60,12 +60,7 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/vanguard_enigma = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		)
+
 // Melee goon
 /datum/advclass/vanguard/footsman
 	name = "Vanguard footman"
@@ -122,6 +117,12 @@
 			if("Spear")
 				r_hand = /obj/item/rogueweapon/spear
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/vanguard_enigma = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -191,6 +192,14 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/vanguard_enigma = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 
 /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf/vanguard
 	name = "volfskull helm"
