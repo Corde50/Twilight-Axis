@@ -59,7 +59,6 @@
 #include "code\game\objects\items\rogueweapons\melee\polearms.dm"
 #include "code\game\objects\items\rogueweapons\melee\soundbreaker_proxy.dm"
 #include "code\game\objects\items\rogueweapons\melee\swords.dm"
-#include "code\game\objects\items\scabbard.dm"
 #include "code\modules\admin\adminhelp.dm"
 #include "code\modules\admin\discord.dm"
 #include "code\modules\admin\ticket_ss.dm"
