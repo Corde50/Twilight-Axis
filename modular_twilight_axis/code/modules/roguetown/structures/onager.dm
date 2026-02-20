@@ -250,25 +250,31 @@
 	fire(user)
 
 /obj/structure/onager/proc/fire(mob/user)
+	
 	var/turf/target = get_ranged_target_turf(src, dir, target_distance)
+	
+	
+	if(!target)
+		to_chat(user, span_warning("The target is out of range or off-map!"))
+		return
 
-	if(target)
-		var/x_off = rand(-2, 2)
-		var/y_off = rand(-2, 2)
-		var/turf/scatter = locate(clamp(target.x + x_off, 1, world.maxx), clamp(target.y + y_off, 1, world.maxy), target.z)
-		if(scatter) target = scatter
 
+	var/x_off = rand(-2, 2)
+	var/y_off = rand(-2, 2)
+	
+	var/turf/scatter = locate(clamp(target.x + x_off, 1, world.maxx), clamp(target.y + y_off, 1, world.maxy), target.z)
+	
+	if(scatter) 
+		target = scatter
+
+	
 	playsound(src, pick(launch_sounds), 60, TRUE)
 	user.visible_message(span_danger("[user] fires the onager!"))
-	
 	set_launched() 
 	
 	
 	var/turf/spawn_loc = get_turf(src)
-	
-
 	var/obj/item/boulder/P = new /obj/item/boulder(spawn_loc)
-	
 	P.launch_artillery(target, target_distance)
 
 /obj/structure/onager/proc/is_obstructed()
@@ -287,32 +293,6 @@
 	else
 		to_chat(user, span_warning("You need a boulder."))
 
-/obj/structure/onager/proc/set_direction(mob/user)
-	var/direction = input(user, "Direction", "Set Direction") as null|anything in directions
-	if(!direction) return
-	var/new_dir = text2dir(direction)
-	if(new_dir == dir) return
-
-	being_used = TRUE
-	playsound(src, pick(aim_sounds), 50, TRUE)
-	if(do_after(user, 30, target = src))
-		dir = new_dir
-		user.visible_message(span_notice("[user] turns the onager."))
-	being_used = FALSE
-
-/obj/structure/onager/proc/set_target_distance(mob/user)
-	var/dist = input(user, "Distance ([min_target_distance]-[max_target_distance])", "Set Distance") as num|null
-	if(!dist) return
-	if(dist < min_target_distance || dist > max_target_distance)
-		to_chat(user, span_warning("Invalid distance."))
-		return
-
-	being_used = TRUE
-	playsound(src, pick(aim_sounds), 50, TRUE)
-	if(do_after(user, 30, target = src))
-		target_distance = dist
-		user.visible_message(span_notice("[user] sets distance to [dist]."))
-	being_used = FALSE
 
 /obj/structure/onager/proc/pack(mob/user)
 	being_used = TRUE
