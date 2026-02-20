@@ -124,6 +124,7 @@
 #include "code\modules\roguetown\roguemachine\hoardmaster.dm"
 #include "code\modules\spells\pantheon\inhumen\matthios.dm"
 #include "code\modules\spells\soundbreaker.dm"
+#include "code\modules\spells\pantheon\divine\dendor.dm"
 #include "code\modules\surgery\organs\feature_organs\horns.dm"
 #include "code\modules\surgery\organs\feature_organs\tails.dm"
 #include "code\modules\surgery\organs\feature_organs\wings.dm"
