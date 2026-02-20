@@ -97,7 +97,7 @@
 	prevent_crits = PREVENT_CRITS_MOST
 	nodismemsleeves = TRUE
 	body_parts_covered = COVERAGE_TORSO
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER 
 	smeltresult = /obj/item/ingot/iron
 	sellprice = 25
 	armor_class = ARMOR_CLASS_LIGHT
@@ -109,9 +109,22 @@
 
 /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
 	name = "cuir-bouilli armor"
-	desc = "Treated, water-boiled and composite-layered leather armor of fine Otavan make."
+	desc = "A padded vest that's been reinforced with 'cuir-bouilli' - leather that's been treated, water-boiled, and composite-layered together. The \
+	thickness makes it an excellent alternative to lighter cuirasses, at the cost of being unfittable beneath most dedicated suits of armor. If the \
+	blacksteel-studded reinforcements and psystitchings're anything to go by, this particular vest was likely fashioned to vestume Otava's finest. "
 	icon_state = "cuirbouilli"
 	item_state = "cuirbouilli"
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 30
+
+/obj/item/clothing/suit/roguetown/armor/leather/studded/cuirbouilli
+	name = "cuir-bouilli vest"
+	desc = "A padded vest that's been reinforced with 'cuir-bouilli' - leather that's been treated, water-boiled, and composite-layered together. It \
+	is traditionally worn beneath a heavier cuirass to protect against bludgeons-and-thrusts, but can be confidently worn on its own without qualm."
+	icon_state = "cuirbouilli"
+	item_state = "cuirbouilli"
+	body_parts_covered = CHEST | VITALS 
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER - 30
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy
 	name = "hardened leather armor"
@@ -183,7 +196,7 @@
 	desc = "A light, flexible button-up leather jacket that will keep your vitals out of harm's way."
 	icon_state = "freijacket"
 	item_state = "freijacket"
-	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM + 35
 	detail_tag = "_detail"
 	color = "#5E4440"
 	detail_color = "#c08955"
@@ -200,6 +213,14 @@
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/freifechter/Initialize()
 	..()
 	update_icon()
+
+/obj/item/clothing/suit/roguetown/armor/leather/heavy/shepherd
+	name = "shepherd's vest"
+	desc = "A light, flexible leather vest worn by shepherds in the forested peaks of Aavnr."
+	icon_state = "freijacket"
+	item_state = "freijacket"
+	max_integrity = ARMOR_INT_CHEST_LIGHT_MEDIUM
+	color = "#313131"
 
 /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
 	name = "treated trophy fur robes"

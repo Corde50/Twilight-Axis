@@ -178,8 +178,14 @@
 			if(prob(50 + ((H.STAPER - 10) * 10)))
 				to_chat(H, span_warning("A pair of prying eyes were laid on me..."))
 		if(!vice_found)
-			vice_found = H.charflaw.name
-		to_chat(user, span_info("They are... [span_warning("a [vice_found]")]"))
+			if(H.charflaws.len > 0)
+				var/list/vices = list()
+				for(var/datum/charflaw/cf in H.charflaws)
+					vices.Add(cf.name)
+				vice_found = english_list(vices)
+			else
+				vice_found = "pure of heart"
+		to_chat(user, span_info("They are... [span_warning("[vice_found]")]"))
 		return TRUE
 	revert_cast()
 	return FALSE
@@ -225,13 +231,13 @@
 
 /datum/reagent/medicine/loversruin/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_CRACKHEAD))
-		if(volume >= 60)
+		if(volume >= 10)
 			M.reagents.remove_reagent(/datum/reagent/medicine/loversruin, 2)
 		if(M.blood_volume < BLOOD_VOLUME_NORMAL)
-			M.blood_volume = min(M.blood_volume+40, BLOOD_VOLUME_MAXIMUM)
+			M.blood_volume = min(M.blood_volume+5, BLOOD_VOLUME_NORMAL)
 		var/list/wCount = M.get_wounds()
 		if(wCount.len > 0)
-			M.heal_wounds(4.5)
+			M.heal_wounds(2, list(/datum/wound/slash, /datum/wound/puncture, /datum/wound/bite, /datum/wound/bruise, /datum/wound/dynamic))
 		if(volume > 0.99)
 			M.adjustBruteLoss(-2  * REAGENTS_EFFECT_MULTIPLIER, 0)
 			M.adjustFireLoss(-2  * REAGENTS_EFFECT_MULTIPLIER, 0)

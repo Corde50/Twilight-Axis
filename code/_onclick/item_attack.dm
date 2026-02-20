@@ -127,6 +127,10 @@
 		to_chat(user, span_warning("I don't want to harm other living beings!"))
 		return
 
+	if(force && user.rogue_sneaking)
+		user.mob_timers[MT_FOUNDSNEAK] = world.time
+		user.update_sneak_invis(reset = TRUE)
+
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
 	M.lastattacker_weakref = WEAKREF(user)
@@ -573,6 +577,10 @@
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	var/hitlim = simple_limb_hit(user.zone_selected)
 
+	if(HAS_TRAIT(src, "ethereal")) //TA EDIT
+		user.visible_message(span_warning("The [I] passes harmlessly through [src]'s misty form!"))
+		return FALSE
+	
 	I.funny_attack_effects(src, user)
 	if(I.force_dynamic)
 		var/newforce = get_complex_damage(I, user)
