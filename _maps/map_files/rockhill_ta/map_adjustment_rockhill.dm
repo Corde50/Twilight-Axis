@@ -7,7 +7,7 @@
 /datum/map_adjustment/template/rockhill
 	map_file_name = "rockhill_ta.dmm"
 	realm_name = "Rockhill"
-	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight)
+	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight, /datum/job/roguetown/sergeant)
 	slot_adjust = list(
 	/datum/job/roguetown/squire = 2
 	)

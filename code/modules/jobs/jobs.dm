@@ -129,6 +129,7 @@ GLOBAL_LIST_INIT(garrison_positions, list( //Guards
 GLOBAL_LIST_INIT(citywatch_positions, list( //Guards
 	"Town Sheriff",
 	"Town Watch",
+	"Dungeoneer",
 ))
 
 GLOBAL_LIST_INIT(vanguard_positions, list( //Guards

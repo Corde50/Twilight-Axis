@@ -50,7 +50,6 @@
 	Так или иначе, ваша верность принадлежит пропавшему Барону, ИСТИННОМУ владыке этого города, горожанам \
 	а уже после Королю и его свите, что все еще не хочет выбираться со своей временной ставки. \
 	Да и как защитит эта хваленная Королевская Гвардия жителей Рокхилла, сидя в замке, если не вы?"
-	outfit = /datum/outfit/job/roguetown/town_watch
 
 	category_tags = list(CTAG_TOWN_WATCH)
 	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_GUARDSMAN)
@@ -95,8 +94,8 @@
 
 /datum/outfit/job/roguetown/town_watch/pre_equip(mob/living/carbon/human/H)
 	..()
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/rope/chain = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 	if(H.mind)
+		backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/rope/chain = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
 
 /obj/item/storage/backpack/rogue/satchel/citywatch

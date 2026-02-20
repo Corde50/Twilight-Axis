@@ -14,4 +14,4 @@
 	keys = list(/obj/item/roguekey/warden)
 
 /obj/item/storage/keyring/dungeoneer
-	keys = list()
+	keys = list(/obj/item/roguekey/walls, /obj/item/roguekey/dungeon)
