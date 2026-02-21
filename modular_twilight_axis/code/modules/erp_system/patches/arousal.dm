@@ -131,7 +131,7 @@
 	if(!H.has_flaw(/datum/charflaw/addiction/lovefiend))
 		return
 
-	var/datum/charflaw/addiction/A = H.charflaw
+	var/datum/charflaw/addiction/A = H.get_flaw(/datum/charflaw/addiction/lovefiend)
 	if(!istype(A, /datum/charflaw/addiction/lovefiend))
 		return
 
