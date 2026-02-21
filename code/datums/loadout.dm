@@ -91,6 +91,86 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/eaststrawhat
 
+/datum/loadout_item/tw_d_horns
+	name = "horns helmkleinod (-4 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_horns
+	triumph_cost = 4
+
+/datum/loadout_item/tw_d_basic
+	name = "helm's chaperon"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_basic
+
+/datum/loadout_item/tw_d_castle_red
+	name = "castle helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_castle_red
+
+/datum/loadout_item/tw_d_graggar
+	name = "bloodied star helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_graggar
+
+/datum/loadout_item/tw_d_efreet
+	name = "afreet helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_efreet
+
+/datum/loadout_item/tw_d_sun
+	name = "sun helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_sun
+
+/datum/loadout_item/tw_d_peace
+	name = "astrata's eye helmkleinod (-4 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_peace
+	triumph_cost = 4
+
+/datum/loadout_item/tw_d_feathers
+	name = "feathers accessory"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_feathers
+
+/datum/loadout_item/tw_d_oathtaker
+	name = "oathtaker symbol"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_oathtaker
+
+/datum/loadout_item/tw_d_windmill
+	name = "windmill helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_windmill
+
+/datum/loadout_item/tw_d_fish
+	name = "gold fish helmkleinod"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_fish
+
+/datum/loadout_item/tw_d_swan
+	name = "swan on lake"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_swan
+
+/datum/loadout_item/tw_d_skull
+	name = "gold skull helmkleinod (-4 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_skull
+	triumph_cost = 4
+
+/datum/loadout_item/tw_d_dragon_red
+	name = "dragon's dread (-4 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_dragon_red
+	triumph_cost = 4
+
+/datum/loadout_item/tw_d_lion
+	name = "lion helmkleinod (-4 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/tw_d_lion
+	triumph_cost = 4
+
 /datum/loadout_item/antlers
 	name = "Old antlers"
 	category = "Головные уборы"

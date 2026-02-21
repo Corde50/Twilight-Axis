@@ -130,6 +130,7 @@
 #include "code\modules\surgery\organs\feature_organs\wings.dm"
 #include "code\modules\vampire_neu\vampire.dm"
 #include "code\onclick\click.dm"
+#include "code\modules\clothing\rogueclothes\headwear\helm_accessories.dm"
 // END_INCLUDE
 
 #include "awful_artillery\awful_artillery.dme"
