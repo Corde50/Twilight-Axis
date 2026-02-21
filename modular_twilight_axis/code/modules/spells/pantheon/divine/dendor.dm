@@ -96,7 +96,7 @@
 	hitsound = "genslash"
 	miss_sound = "bluntwoosh"
 	item_d_type = "slash"
-	penfactor = 20
+	penfactor = 25
 	item_d_type = "cut"
 	icon_state = "inchop"
 // - - -
@@ -119,6 +119,7 @@
 	righthand_file = null
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	icon_state = "claw_r"
+	force = 20
 
 /obj/item/rogueweapon/beast_claws/Initialize()
 	. = ..()
@@ -233,13 +234,13 @@
 	range = -1
 	overlay_state = "blesscrop"
 	releasedrain = 30
-	recharge_time = 10 SECONDS
+	recharge_time = 30 SECONDS
 	req_items = /obj/item/clothing/neck/roguetown/psicross/dendor
 	cast_without_targets = TRUE
 	sound = 'sound/magic/churn.ogg'
 	associated_skill = /datum/skill/magic/druidic
 	miracle = TRUE
-	devotion_cost = 5
+	devotion_cost = 20
 
 /obj/effect/proc_holder/spell/targeted/create_seed/proc/get_seeds_dict()
 	var/list/allowed_seeds = list()
