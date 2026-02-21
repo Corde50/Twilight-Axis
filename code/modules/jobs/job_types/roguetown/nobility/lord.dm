@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 					new_origin = new_origins[choice]
 				else
 					to_chat(player, span_notice("No choice detected. Picking a random compatible origin."))
-					new_origin = pick(/datum/virtue/origin/enigma, /datum/virtue/origin/valorian, /datum/virtue/origin/zybantu)
+					new_origin = pick(/datum/virtue/origin/enigma, /datum/virtue/origin/valorian, /datum/virtue/origin/zybantian)
 				change_origin(H, new_origin, "Royal line")
 		else
 			if(!istype(player.prefs.virtue_origin, /datum/virtue/origin/azuria) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/grenzelhoft) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/valorian))
