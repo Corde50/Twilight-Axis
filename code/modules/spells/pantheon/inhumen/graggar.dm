@@ -74,7 +74,8 @@
 
 /obj/effect/proc_holder/spell/invoked/revel_in_slaughter
 	name = "Revel in Death"
-	desc = "Increases the bleeding and pain of a target by just under double. Does not work on those of a simple sort."
+	desc = "Increases the bleeding and pain of a target. Their blood-loss amount scales with every point of constitution over ten. \
+	Those with ten or less constituion will instead have a flat rate (x1.25)."
 	overlay_state = "bloodsteal"
 	recharge_time = 1 MINUTES
 	chargetime = 10
@@ -94,6 +95,10 @@
 		to_chat(user, span_danger("THAT WONT WORK!"))
 		revert_cast()
 		return FALSE
+
+	if(spell_guard_check(human, TRUE))
+		human.visible_message(span_warning("[human] resists the bloodlust!"))
+		return TRUE
 	
 	human.apply_status_effect(/datum/status_effect/debuff/bloody_mess)
 	human.apply_status_effect(/datum/status_effect/debuff/sensitive_nerves)
