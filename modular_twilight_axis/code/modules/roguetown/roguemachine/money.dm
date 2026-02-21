@@ -37,7 +37,7 @@
 					// Create multiple stacks if needed
 					while(budget > 0)
 						var/stack_size = min(budget, 20)
-						var/obj/item/roguecoin/copper_stack = new /obj/item/roguecoin/coppershilling(T, stack_size)
+						var/obj/item/roguecoin/copper_stack = new /obj/item/roguecoin/copper(T, stack_size)
 						if(user && budget == stack_size) // Only put first stack in hands
 							user.put_in_hands(copper_stack)
 						budget -= stack_size
