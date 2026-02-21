@@ -15,7 +15,7 @@
 	. += list(_make_field("inject_source", "Инъекция: источник", "enum", A.inject_source, "ИНЪЕКЦИЯ", null, null, null, _inject_source_options()))
 	. += list(_make_field("inject_target_mode", "Инъекция: цель", "enum", A.inject_target_mode, "ИНЪЕКЦИЯ", null, null, null, _inject_target_mode_options()))
 	. += list(_make_field("require_same_tile", "Только с одного тайла", "bool", A.require_same_tile, "ОГРАНИЧЕНИЯ"))
-	. += list(_make_field("allow_when_restrained", "Можно в стяжках", "bool", A.allow_when_restrained, "ОГРАНИЧЕНИЯ"))
+	. += list(_make_field("allow_when_restrained", "Можно в оковах", "bool", A.allow_when_restrained, "ОГРАНИЧЕНИЯ"))
 	. += list(_make_field("require_grab", "Нужен граб", "bool", A.require_grab, "ОГРАНИЧЕНИЯ"))
 	. += list(_make_field("required_item_tags", "Нужные теги предмета", "string_list", A.required_item_tags, "ТЕГИ", null, null, null, null, "Напр: dildo. Если список не пуст — действие потребует предмет с одним из тегов. Имя предмета тоже является тегом.", "tag"))
 	. += list(_make_field("action_tags", "Теги действия", "string_list", A.action_tags, "ТЕГИ", null, null, null, null, "Напр: spanking, testicles. Для фильтров/логики/совместимости.", "tag"))
