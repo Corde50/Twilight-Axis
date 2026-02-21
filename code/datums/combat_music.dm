@@ -89,6 +89,13 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "TO PIERCE THE BLACK SKY /// ENVY INTERLUDE - UNFORTUNATE DEVELOPMENT"
 	musicpath = list('sound/music/combat_ascended.ogg')
 
+/datum/combat_music/ascendedsavior
+	name = "Ascended ('Savior' Mix)"
+	desc = "Blessed idiot, sacrificial hero, lowly fool - will you save your world, or will you watch the birth of a new one?"
+	shortname = "Savior"
+	credits = "DON'T BLINK /// OUTCOME MEMORIES - LAST MAN STANDING"
+	musicpath = list('sound/music/combat_savior.ogg')
+
 /datum/combat_music/astrata
 	name = "Astratan Light"
 	desc = ""
@@ -278,13 +285,6 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "Alias Conrad Coldwood - Pepper Steak (OFF OST)"
 	musicpath = list('sound/music/combat_jester.ogg')
 
-/datum/combat_music/BPHunter //TA mandated cmode music
-	name = "Blackpowder Hunter"
-	desc = ""
-	shortname = "Koseposha"
-	credits = "KCD 2, Tavern song"
-	musicpath = list('modular_twilight_axis/firearms/sound/music/combat_blackpowderhunter.ogg')
-
 /datum/combat_music/kazengite
 	name = "Kazengite"
 	desc = ""
@@ -422,7 +422,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	name = "Steppesman"
 	desc = ""
 	shortname = "Steppe"
-	credits = "Tatar Theme (Hellish Quart OST)"
+	credits = "MusicImaginary - Tatars"
 	musicpath = list('sound/music/combat_steppe.ogg')
 
 /datum/combat_music/town_dirt
@@ -488,10 +488,65 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 	credits = "T87-Sulfurhead - Good Men Die Young (https://www.youtube.com/@T87-Sulfurhead)"
 	musicpath = list('sound/music/combat_veteran.ogg')
 
-
 /datum/combat_music/warscholar
 	name = "Warscholar, Naledi"
 	desc = ""
 	shortname = "Warscholar"
 	credits = "Butcher's Boulevard - Kristjan Thomas Haaristo"
 	musicpath = list('sound/music/warscholar.ogg')
+
+/datum/combat_music/freifencer
+	name = "Freifechter, Fencer"
+	desc = "God is dead, yet I follow his word! No fire made by any man will snuff out the Reformation! Paradise awaits!"
+	shortname = "Fencer"
+	credits = "MusicImaginary - Old Church"
+	musicpath = list('sound/music/frei_fencer.ogg')
+
+/datum/combat_music/freilancer
+	name = "Freifechter, Lancer"
+	desc = "Etruscan pike companies are some of Psydonia's most sought-after mercenaries - but you're not one of those. You're a master."
+	shortname = "Lancer"
+	credits = "Lucas Gitano - The Mask of Zorro (Fingerstyle Acoustic Cover)"
+	musicpath = list('sound/music/frei_lancer.ogg')
+
+/datum/combat_music/freisabrist
+	name = "Freifechter, Sabrist"
+	desc = "So long as we still lyve, what the foreign powers have seized from us, we shall recapture with a sabre in hand."
+	shortname = "Sabrist"
+	credits = "MusicImaginary - Lyra"
+	musicpath = list('sound/music/frei_sabre.ogg')
+
+/datum/combat_music/aavshepherd
+	name = "Aavnic Shepherd"
+	desc = "\"No saber in hand, they crush bones with their fokos!\""
+	shortname = "Shepherd"
+	credits = "MusicImaginary - Yendrek"
+	musicpath = list('sound/music/frei_shepherd.ogg')
+
+/datum/combat_music/thespian
+	name = "Thespian-Errant"
+	desc = "Witness us! We, who are about to die, salute thee!"
+	shortname = "Thespian"
+	credits = "Swords And Sandals, Spartacus - Title Theme"
+	musicpath = list('sound/music/combat_thespian.ogg')
+
+/datum/combat_music/dying_world
+	name = "Chant Against a Dying World (Neu Verevolf)"
+	desc = "\"DENDOR! FATHER! SPIRIT GUIDE! LET ME-- VINDICATE MY PRIDE!\""
+	shortname = "Dying World (VOCAL)"
+	credits = "T-87 SULFURHEAD - CHANT AGAINST A DYING WORLD (https://www.youtube.com/watch?v=uf3Iqn-i6EM)"
+	musicpath = list('sound/music/cmode/antag/combat_dying_world.ogg')
+
+/datum/combat_music/dying_world_instrumental
+	name = "Chant Against a Dying World (Instrumental)"
+	desc = "The more common form of the song, lacks the lyrics. Recommended for long-term use."
+	shortname = "Dying World (INSTR)"
+	credits = "T-87 SULFURHEAD - CHANT AGAINST A DYING WORLD INSTRUMENTAL (https://www.youtube.com/watch?v=M0gmFhgPaV8)"
+	musicpath = list('sound/music/cmode/antag/combat_dying_world_instrumental.ogg')
+
+/datum/combat_music/ready_to_die
+	name = "I'M READY TO DIE, ARE YOU?"
+	desc = "\"I REMEMBER A TIME NOT THAT LONG AGO, WHEN WE HAD VAMPIRES AND DUNPEALS BOTH AROUND HERE...\"" // yes it's "dunpeals". ask hunter d not me
+	shortname = "Ready to Die"
+	credits = "T-87 SULFURHEAD - I'M READY TO DIE, ARE YOU? (https://www.youtube.com/watch?v=cJpAxIvd8_g)"
+	musicpath = list('sound/music/cmode/combat_ready_to_die.ogg')

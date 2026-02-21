@@ -29,6 +29,10 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
 	)
+	subclass_stashed_items = list(
+        "Armor Plates" =  /obj/item/repair_kit/metal,
+    )
+
 	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
 
 /datum/outfit/job/roguetown/wretch/heretic
@@ -122,7 +126,7 @@
 			"Slitted Kettle" = /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
 			"None"
 		)
-	
+
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -140,6 +144,7 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/astrata, SLOT_RING, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/templar/astratan, SLOT_CLOAK, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/astratagrasp)
 			helmets += list("Old Astratan Helm" = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm)
 		if(/datum/patron/divine/abyssor)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/abyssor, SLOT_RING, TRUE)
@@ -186,10 +191,14 @@
 			H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE) // Really good at reading... does this really do anything? No. BUT it's soulful.
 			H.adjust_skillrank(/datum/skill/craft/alchemy, 1, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/nocgrasp)
 		if(/datum/patron/divine/ravox)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/ravox, SLOT_RING, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/templar/ravox, SLOT_CLOAK, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/ravoxgrasp)
 		if(/datum/patron/divine/malum)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/malum, SLOT_RING, TRUE)
 			H.equip_to_slot_or_del(new /obj/item/clothing/cloak/templar/malumite, SLOT_CLOAK, TRUE)
@@ -261,6 +270,9 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
 		/datum/skill/craft/traps = SKILL_LEVEL_JOURNEYMAN,
 	)
+	subclass_stashed_items = list(
+        "Sewing Kit" =  /obj/item/repair_kit,
+    )
 	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
 
 
@@ -287,7 +299,7 @@
 	H.cmode_music = 'sound/music/cmode/antag/combat_cutpurse.ogg'
 	if(H.mind)
 		H.mind?.current.faction += "[H.name]_faction"
-		var/weapons = list("Rapier","Dagger", "Bow", "Crossbow", "Slurbow")
+		var/weapons = list("Rapier", "Sabre", "Bow", "Crossbow", "Slurbow")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 		H.set_blindness(0)
 		switch(weapon_choice)
@@ -298,26 +310,36 @@
 				else
 					l_hand = /obj/item/rogueweapon/sword/rapier
 				beltl = /obj/item/rogueweapon/scabbard/sword
-				
-			if("Dagger")
+			if("Sabre")
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
+				l_hand = /obj/item/rogueweapon/sword/sabre
+				beltl = /obj/item/rogueweapon/scabbard/sword
+			if("Bow")
+				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
+				beltl = /obj/item/quiver/arrows
+				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
 				beltl = /obj/item/rogueweapon/scabbard/sheath
 				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 				else
 					l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special
-			if("Bow")
-				H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
-				beltl = /obj/item/quiver/arrows
-				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			if("Crossbow")
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, TRUE) //have to specifically go into bows/crossbows unlike outlaw
 				beltr = /obj/item/quiver/bolts
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+				beltl = /obj/item/rogueweapon/scabbard/sheath
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 			if("Slurbow")
 				H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, TRUE) // I think this is a very good alternative to the crossbow, given that this role involves mobile combat.
 				beltr = /obj/item/quiver/bolts
 				backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
+				H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+				beltl = /obj/item/rogueweapon/scabbard/sheath
+				if(HAS_TRAIT(H, TRAIT_PSYDONIAN_GRIT))
+					l_hand = /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)
 		C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, start_maxed = TRUE)	//Minor regen, starts maxed out.
 		wretch_select_bounty(H)
@@ -348,6 +370,7 @@
 		if(/datum/patron/divine/astrata)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/astrata, SLOT_RING, TRUE)
 			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/astratagrasp)
 		if(/datum/patron/divine/abyssor)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/abyssor, SLOT_RING, TRUE)
 			H.adjust_skillrank(/datum/skill/labor/fishing, 2, TRUE)
@@ -434,7 +457,7 @@
 	if(!ishuman(target))
 		revert_cast()
 		return FALSE
-	
+
 	if(target.cmode)
 		revert_cast()
 		return FALSE
@@ -485,17 +508,17 @@
 	var/saved_level = CLERIC_T0
 	var/saved_max_progression = CLERIC_T1
 	var/saved_devotion_gain = CLERIC_REGEN_MINOR
-	
+
 	if(target.devotion)
 		saved_level = target.devotion.level
 		saved_devotion_gain = target.devotion.passive_devotion_gain
 		saved_max_progression = target.devotion.max_progression
-		
+
 		// Remove all granted spells
 		if(target.patron != user.patron)
 			for(var/obj/effect/proc_holder/spell/S in target.devotion.granted_spells)
 				target.mind.RemoveSpell(S)
-		
+
 		target.devotion.Destroy()
 
 	// Change patron
@@ -513,7 +536,7 @@
 	ADD_TRAIT(target, TRAIT_ZURCH, TRAIT_GENERIC)
 	to_chat(user, span_danger("You've converted [target.name] to [user.patron.name]!"))
 	to_chat(target, span_danger("You feel ancient powers lifting divine burdens from your soul..."))
-	
+
 	return TRUE
 
 /mob/living/carbon/human/proc/revelations()
@@ -539,7 +562,7 @@
 	for(var/obj/structure/fluff/psycross/zizocross/N in oview(5, src))
 		found = N
 	if(!found)
-		to_chat(src, span_warning("I need a large profane shrine structure nearby to extract this divination!"))	
+		to_chat(src, span_warning("I need a large profane shrine structure nearby to extract this divination!"))
 		return
 	if(!H.stat)
 		var/static/list/faith_lines = list(

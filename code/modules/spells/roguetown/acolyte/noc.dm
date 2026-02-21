@@ -32,6 +32,9 @@ to still keep this unavailable to mages... for the moment, at least.
 		var/mob/living/target = targets[1]
 		if(target.anti_magic_check(TRUE, TRUE))
 			return FALSE
+		if(spell_guard_check(target, TRUE))
+			target.visible_message(span_warning("[target] shields their eyes from the darkness!"))
+			return TRUE
 		var/assocskill = user.get_skill_level(associated_skill)
 		target.visible_message(span_warning("[user] points at [target]'s eyes!"), span_userdanger("[user] points at my eyes! Shadowy fingers are digging into my vision-- I can't SEE!"))
 		target.apply_status_effect(STATUS_EFFECT_BLINDED, assocskill)
@@ -198,35 +201,21 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 	associated_skill = /datum/skill/magic/holy
 
 /obj/effect/proc_holder/spell/invoked/invisibility/cast(list/targets, mob/living/user)
-	if(!isliving(targets[1]))
-		revert_cast()
-		return FALSE
-
-	var/mob/living/target = targets[1]
-	if(target.anti_magic_check(TRUE, TRUE))
-		return FALSE
-
-	target.visible_message(span_warning("[target] starts to fade into thin air!"), span_notice("You start to become invisible!"))
-	var/dur = max((5 * (user.get_skill_level(associated_skill))), 5)
-	animate(target, alpha = 0, time = 1 SECONDS, easing = EASE_IN)
-	target.mob_timers[MT_INVISIBILITY] = world.time + dur SECONDS
-
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, update_sneak_invis), TRUE), dur SECONDS)
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[target] fades back into view."), span_notice("You become visible again.")), dur SECONDS)
-
-	return TRUE
-
-/obj/effect/proc_holder/spell/invoked/invisibility/calculate_recharge_time()
-    var/final_time = ..() 
-    
-    if(ranged_ability_user)
-        var/skill_level = ranged_ability_user.get_skill_level(associated_skill)
-        var/dur = max((5 * skill_level), 5) SECONDS
-        
-        if(dur >= final_time)
-            final_time = dur + 5 SECONDS
-            
-    return max(cooldown_min, final_time)
+	if(isliving(targets[1]))
+		var/mob/living/target = targets[1]
+		if(target.anti_magic_check(TRUE, TRUE))
+			return FALSE
+		target.visible_message(span_warning("[target] starts to fade into thin air!"), span_notice("You start to become invisible!"))
+		var/dur = max((5 * (user.get_skill_level(associated_skill))), 5)
+		if(dur >= recharge_time)
+			recharge_time = dur + 5 SECONDS
+		animate(target, alpha = 0, time = 1 SECONDS, easing = EASE_IN)
+		target.mob_timers[MT_INVISIBILITY] = world.time + dur SECONDS
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living, update_sneak_invis), TRUE), dur SECONDS)
+		addtimer(CALLBACK(target, TYPE_PROC_REF(/atom/movable, visible_message), span_warning("[target] fades back into view."), span_notice("You become visible again.")), dur SECONDS)
+		return TRUE
+	revert_cast()
+	return FALSE
 
 /obj/effect/proc_holder/spell/self/noc_spell_bundle
 	name = "Arcyne Affinity"
@@ -362,7 +351,8 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 //T0.
 /obj/effect/proc_holder/spell/self/wise_moon
 	name = "Enlightenment"
-	desc = "Invoke a lesser form of the Moonlight Dance, temporarily increasing your intelligence. Scales with holy skill and grows much more effective at nite."
+	desc = "Invoke a lesser form of the Moonlight Dance, temporarily increasing your intelligence. \
+	Scales with holy skill and grows much more effective at nite."
 	base_icon_state = "wisescroll"
 	overlay_state = "noc_gaze"
 	releasedrain = 10
@@ -389,6 +379,7 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 /atom/movable/screen/alert/status_effect/buff/wise_moon
 	name = "Enlightenment"
 	desc = "Divine magic is boosting my intelligence."
+	icon_state = "enlightenment"
 
 /datum/status_effect/buff/wise_moon
 	id = "wise_moon"
@@ -418,7 +409,7 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 
 /obj/effect/proc_holder/spell/invoked/moondream
 	name = "Hypnagognian Inspiration"
-	desc = "Touch a target. Their next dream will be inspired, granting more dream-points to the target and a few to yourself.\
+	desc = "Touch a target. Their next dream will be inspired, granting more dream-points to the target and a few to yourself. \
 	This spell will fail if it's dae or dawn. Points granted scales with holy skill."
 	overlay_state = "moondream"
 	base_icon_state = "wisescroll"
@@ -768,7 +759,7 @@ GLOBAL_LIST_INIT(noc_scrolls, (list(/obj/item/book/granter/spell/blackstone/fire
 		/obj/item/book/granter/spell/blackstone/spitfire,
 		/obj/item/book/granter/spell/blackstone/lesserknock,
 		/obj/item/book/granter/spell/blackstone/repel,
-		/obj/item/book/granter/spell/blackstone/aerosolize,
+
 		/obj/item/book/granter/spell/blackstone/guidance,
 		/obj/item/book/granter/spell/blackstone/frostbolt,
 		/obj/item/book/granter/spell/blackstone/fortitude,

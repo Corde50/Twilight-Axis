@@ -942,7 +942,9 @@
 
 /obj/structure/fluff/statue/abyssor/dolomite
 	name = "abyssor statue"
-	desc = "A rare dolomite statue of the ancient god Abyssor. Hewn from bleached rock as if the shimmer makes his faceless gaze any less terrifying."
+	desc = "A rare dolomite statue of the ancient god Abyssor, the Dreamer, He Who Slumbers, \
+	patron of the seas and all those that travel by them. He is asleep, and his followers pray \
+	fervently that he remains so for a very long time yet."
 	icon_state = "abyssor_dolomite"
 
 /obj/structure/fluff/statue/knight/r
@@ -1125,6 +1127,21 @@
 		/obj/item/clothing/head/roguetown/crown/serpcrown,
 		/obj/item/clothing/head/roguetown/vampire,
 		/obj/item/scomstone,
+		/obj/item/rogueweapon/greatsword/psygsword,
+		/obj/item/clothing/head/roguetown/circlet,
+		/obj/item/carvedgem,  //Some of these aren't particularly worth much, but it'd be REALLY unintuitive for "valuables" to not actually be offerings
+		/obj/item/rogueweapon/huntingknife/stoneknife/kukri,
+		/obj/item/rogueweapon/huntingknife/stoneknife/opalknife,
+		/obj/item/rogueweapon/mace/cudgel/shellrungu,
+		/obj/item/clothing/mask/rogue/facemask/carved,
+		/obj/item/clothing/neck/roguetown/carved,
+		/obj/item/kitchen/fork/carved,
+		/obj/item/kitchen/spoon/carved,
+		/obj/item/clothing/wrists/roguetown/gem,
+		/obj/item/reagent_containers/glass/bowl/carved,
+		/obj/item/reagent_containers/glass/bucket/pot/carved,
+		/obj/item/clothing/mask/rogue/facemask/carved,
+		/obj/item/cooking/platter/carved,
 		/obj/item/reagent_containers/lux
 	)
 

@@ -108,7 +108,7 @@
 
 	if (!msg)
 		return
-	
+
 	M.adjust_triumphs(msg)
 	log_text = "by [msg], from [old_triumphs] to [old_triumphs + msg]"
 
@@ -125,16 +125,12 @@
 		return
 
 	var/amt = ""
-	var/reason = ""
-	var/prompt = "Please enter the amount of PQ to add/remove:"
-
-	amt = input("Message:", prompt) as num|null
+	amt = input("Message:", "Please enter the amount of PQ to add/remove:") as num|null
 
 	if(!amt)
 		return
-	
-	prompt = "Please specify a reason for the adjustment:"
-	reason = input("Message:", prompt) as text|null
+
+	var/reason = stripped_input(usr, "Please specify a reason for the adjustment:", "Message:", "", MAX_MESSAGE_BIGME)
 	if(!reason)
 		reason = "Player Panel Adjustment"
 
@@ -142,7 +138,7 @@
 
 	//Admin log happens in child proc
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Modify Player Quality") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+cmd_admin_mod_pq
 /client/proc/cmd_admin_world_narrate()
 	set category = "-Special Verbs-"
 	set name = "Narrate - Global"
@@ -570,7 +566,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
-	set category = "-Fun-"
+	set category = "-GameMaster-"
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
@@ -654,7 +650,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/run_weather()
-	set category = "-Fun-"
+	set category = "-GameMaster-"
 	set name = "Run Weather"
 	set desc = ""
 	set hidden = 1 //Replaced by particle weather
@@ -719,7 +715,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/smite(mob/living/target as mob)
 	set name = "Smite"
-	set category = "-Fun-"
+	set category = "-GameMaster-"
 	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
 		return
 	var/static/list/punishment_list = list(
@@ -766,7 +762,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			stoplag(1 SECONDS)
 			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_GIB)
-			target.gib(FALSE)	
+			target.gib(FALSE)
 		if(ADMIN_PUNISHMENT_BSA)
 			bluespace_artillery(target)
 		if(ADMIN_PUNISHMENT_CBT)
@@ -808,7 +804,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			direction = directions[direction]
 			var/target_tile = target.loc
 			for (var/i = 0; i < 10; i++)
-				var/turf/next_tile = get_step(target_tile, direction) 
+				var/turf/next_tile = get_step(target_tile, direction)
 				if (!next_tile)
 					break
 				target_tile = next_tile

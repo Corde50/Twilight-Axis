@@ -54,6 +54,15 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/donor_clothes.dmi'
 	sleeved = 'modular_twilight_axis/icons/clothing/onmob/donor_sleeves_armor.dmi'
 
+/obj/item/clothing/suit/roguetown/armor/brigandine/light/aristocratic
+	name = "aristocratic coat"
+	desc = ""
+	icon_state = "kumiecoat"
+	item_state = "kumiecoat"
+	icon = 'modular_twilight_axis/icons/clothing/donor_clothes.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/donor_clothes.dmi'
+	sleeved = 'modular_twilight_axis/icons/clothing/onmob/donor_sleeves_armor.dmi'
+
 /obj/item/rogueweapon/greatsword/zwei/inverserun/steel
 	name = "Votive Thorns"
 	desc = "Promises hurt, but so does plucking rosa. Hoping hurts, but so does looking at the beauty of Astrata's light. Pick yourself back up. Remember your promise, despite the thorns."
@@ -167,16 +176,19 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/aria.dmi'
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/leather/aria
-	name = "aria necklace"
-	desc = "A pair of golden red silks to cover neck"
-	icon_state = "arianeck"
-	item_state = "arianeck"
-	salvage_result = /obj/item/natural/silk
-	salvage_amount = 1
-	icon = 'modular_twilight_axis/icons/clothing/aria.dmi'
-	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/aria.dmi'
-	resistance_flags = FIRE_PROOF
+/obj/item/clothing/mask/rogue/facemask/aria
+    name = "aria necklace"
+    desc = "A pair of tight golden red silks to cover neck"
+    icon_state = "arianeck"
+    item_state = "arianeck"
+    salvage_result = /obj/item/natural/silk
+    salvage_amount = 1
+    icon = 'modular_twilight_axis/icons/clothing/aria.dmi'
+    mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/aria.dmi'
+    flags_inv = null
+    body_parts_covered = FACE | NECK
+    block2add = FOV_DEFAULT
+    resistance_flags = FIRE_PROOF
 	
 /obj/item/clothing/gloves/roguetown/bandages/pugilist/aria
 	name = "aria bondaged gloves"
