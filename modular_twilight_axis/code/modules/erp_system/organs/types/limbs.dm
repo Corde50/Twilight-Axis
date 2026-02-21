@@ -28,6 +28,7 @@
 	passive_pain = 0.4
 	active_pain = 0.1
 
-/obj/item/organ/tail/Insert(...)
+/obj/item/organ/tail/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
+	. = ..()
 	if(!sex_organ)
 		sex_organ = new /datum/erp_sex_organ/tail(src)
