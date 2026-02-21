@@ -3,19 +3,20 @@
 /// Human-readable force text for templates/UI.
 /datum/erp_link_presenter/proc/get_force_text(force)
 	switch(force)
-		if(SEX_FORCE_LOW)     return "нежно"
-		if(SEX_FORCE_MID)     return "уверенно"
-		if(SEX_FORCE_HIGH)    return "грубо"
-		if(SEX_FORCE_EXTREME) return "неистово"
+		if(SEX_FORCE_LOW)     return pick(list("нежно", "заботливо", "ласково", "мягко", "осторожно"))
+		if(SEX_FORCE_MID)     return pick(list("решительно", "энергично", "страстно", "уверенно", "увлеченно"))
+		if(SEX_FORCE_HIGH)    return pick(list("грубо", "небрежно", "жестко", "пылко", "свирепо"))
+		if(SEX_FORCE_EXTREME) return pick(list("жестоко", "неистово", "неумолимо", "свирепо", "безжалостно"))
 	return "уверенно"
 
 /// Human-readable speed text for templates/UI.
 /datum/erp_link_presenter/proc/get_speed_text(speed)
 	switch(speed)
-		if(SEX_SPEED_LOW)     return "медленно"
-		if(SEX_SPEED_MID)     return "ритмично"
-		if(SEX_SPEED_HIGH)    return "быстро"
-		if(SEX_SPEED_EXTREME) return "яростно"
+		if(SEX_SPEED_LOW)     return pick(list("медленно", "неторопливо", "бережно", "тягуче", "размеренно"))
+		if(SEX_SPEED_MID)     return pick(list("ритмично", "уверенно", "плавно", "напористо", "спокойно"))
+		if(SEX_SPEED_HIGH)    return pick(list("быстро", "часто", "торопливо", "резко", "интенсивно"))
+		if(SEX_SPEED_EXTREME) return pick(list("агрессивно", "стремительно", "бурно", "яростно", "взахлеб"))
+
 	return "ритмично"
 
 /// Human-readable pose text for templates/UI.
