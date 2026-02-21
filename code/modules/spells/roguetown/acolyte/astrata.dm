@@ -70,6 +70,9 @@
 		user.visible_message("<font color='yellow'>[user] points at [L]!</font>")
 		if(L.anti_magic_check(TRUE, TRUE))
 			return FALSE
+		if(spell_guard_check(L, TRUE))
+			L.visible_message(span_warning("[L] shields against the divine flame!"))
+			return TRUE
 		L.adjust_fire_stacks(2)
 		L.ignite_mob()
 
@@ -104,7 +107,7 @@
 
 /obj/effect/proc_holder/spell/invoked/revive
 	name = "Anastasis"
-	desc = "Focus Astratas energy though a stationary psycross, reviving the target from death."
+	desc = "Focus Astratas energy through a stationary psycross, reviving the target from death."
 	overlay_state = "revive"
 	base_icon_state = "regalyscroll"
 	releasedrain = 90
@@ -250,9 +253,12 @@
 				O.fire_act()
 			return TRUE
 		if(L.anti_magic_check())
-			visible_message(span_warning("The magic fades away around you [L] "))  //antimagic needs some testing
+			L.visible_message(span_warning("The magic fades away around [L]!"))
 			playsound(L, 'sound/magic/magic_nulled.ogg', 100)
 			return
+		if(spell_guard_check(L, TRUE))
+			L.visible_message(span_warning("[L] resists the flame order!"))
+			return TRUE
 		if(L.fire_stacks != 0)
 			if(L.fire_stacks >= 20) //cap
 				firemodificator = 0 //any*0 = 0
@@ -378,13 +384,13 @@
 	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
-	name = "Fireresistance"
+	name = "Fire Resistance"
 	desc = "Flames dance at my heels, yet do not sting!"
 	icon_state = "fire"
 
 /datum/status_effect/buff/dragonhide/fireresist
 	id = "fireresist"
-	examine_text = "<font color='red'>A fireresistance!"
+	examine_text = "<font color='red'>SUBJECTPRONOUN is shielded by a veil of sacred flame!</font>"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/dragonhide/fireresist
 	effectedstats = list(STATKEY_CON = -1) //Target body loosing CON, but getting fireresist.
 	duration = 11 SECONDS
@@ -767,6 +773,10 @@
 		revert_cast()
 		return FALSE
 
+	if(spell_guard_check(target, TRUE))
+		target.visible_message(span_warning("[target] resists the immolation!"))
+		return TRUE
+
 	// Channeling requirement
 	user.visible_message(span_danger("[user] begins lighting [target] ablaze with strange, divine fire!"))
 	if(!do_after(user, 1 SECONDS, target = target))
@@ -840,11 +850,11 @@
 
 #undef IMMOLATION_FILTER
 
-//T4 spell. Very slow turf-target ability to cast on day or in churh/nearby Bishop. Take devostating damage, gibs all not-panteon carbons and kill all panteon users.
+//T4 spell. Very slow turf-target ability to cast on day or in churh/nearby Bishop. Take devostating damage, gibs all not-pantheon carbons and kill all pantheon users.
 
 /obj/effect/proc_holder/spell/invoked/sunstrike
 	name = "Sun Strike"
-	desc = "Focus Astratas energy though a stationary Psycross or Bishop hands. Call Devastating Solar Mercy on enemy head."
+	desc = "Focus Astratas energy through a stationary Psycross or Bishop's hands. Call down the mercy of the Sun Goddess upon the enemy."
 	overlay_state = "sunstrike"
 	base_icon_state = "regalyscroll"
 	releasedrain = 200
@@ -1016,7 +1026,7 @@
 
 /obj/effect/proc_holder/spell/self/astrata_sword
 	name = "Solar Blade"
-	desc = "Call for a blade to preserve light and order in Psydonia. Its strength is middling, but it glows fiercly and can be used to cauterize wounds."
+	desc = "Call for a blade to preserve light and order in Psydonia. Its strength is middling, but it glows fiercely and can be used to cauterize wounds."
 	overlay_state = "sacredflame"
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	associated_skill = /datum/skill/magic/holy

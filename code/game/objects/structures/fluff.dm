@@ -942,7 +942,9 @@
 
 /obj/structure/fluff/statue/abyssor/dolomite
 	name = "abyssor statue"
-	desc = "A rare dolomite statue of the ancient god Abyssor. Hewn from bleached rock as if the shimmer makes his faceless gaze any less terrifying."
+	desc = "A rare dolomite statue of the ancient god Abyssor, the Dreamer, He Who Slumbers, \
+	patron of the seas and all those that travel by them. He is asleep, and his followers pray \
+	fervently that he remains so for a very long time yet."
 	icon_state = "abyssor_dolomite"
 
 /obj/structure/fluff/statue/knight/r
@@ -1139,7 +1141,8 @@
 		/obj/item/reagent_containers/glass/bowl/carved,
 		/obj/item/reagent_containers/glass/bucket/pot/carved,
 		/obj/item/clothing/mask/rogue/facemask/carved,
-		/obj/item/cooking/platter/carved
+		/obj/item/cooking/platter/carved,
+		/obj/item/reagent_containers/lux
 	)
 
 /obj/structure/fluff/statue/evil/attackby(obj/item/W, mob/user, params)
