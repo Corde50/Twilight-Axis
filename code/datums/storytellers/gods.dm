@@ -469,7 +469,7 @@
 		"Set 3" = list(
 			STATS_DEADITES_ALIVE = list("name" = "Deadites alive:", "points" = 1, "capacity" = 40),
 		),
-		"Set 43" = list(
+		"Set 4" = list(
 			STATS_CLERGY_DEATHS = list("name" = "Clergy killed:", "points" = 12, "capacity" = 70),
 		),
 		"Set 5" = list(
