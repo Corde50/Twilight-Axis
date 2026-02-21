@@ -7,9 +7,11 @@
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = ACCEPTED_RACES
-	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "You are the most experienced of the Crown's Soldiery, leading the men-at-arms in maintaining order and attending to threats and crimes below the court's attention. \
-				See to those under your command and fill in the gaps knights leave in their wake. Obey the orders of your Marshal and the Crown."
+	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
+	tutorial = "Большую часть своей жизни ты прослужил в лейб-гвардии Его Величества и тебе была удостоина величайшая честь вести твоих товарищей в бой во славу Короны, \
+	хоть и первостепенной твоей целью является защита дворца, семьи монарха и его свиты на этом проклятом острове.  \
+	Местные глупцы считают Барона еще ЖИВЫМ, когда ты прекрасно знаешь, что он МЕРТВ, иначе быть и не может. \
+	Твой долг не дать Королевской династии пасть, во имя будущего Энигмы."
 	display_order = JDO_ROYALSERGEANT
 	selection_color = JCOLOR_GARRISON
 	whitelist_req = TRUE
@@ -59,6 +61,14 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	id = /obj/item/scomstone/garrison
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/sergeant = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		/obj/item/signal_hornn/red = 1,
+		)
 
 //Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
 /datum/advclass/sergeant/royal_sergeant
@@ -104,14 +114,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/guard) // We'll just use Watchmen as sorta conscripts yeag?
 	H.verbs |= list(/mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/sergeant = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-		/obj/item/signal_hornn/red = 1,
-		)
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Flail & Kite Shield","Axe & Kite Shield","Halberd & Heater","Longsword & Crossbow","Sabre & Kite Shield", "Sabre & Pistol")

@@ -93,15 +93,23 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/royal_guard/footsman/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/royal_guard/footsman
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	gloves = /obj/item/clothing/gloves/roguetown/chain
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/manatarms = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		)
+
+/datum/outfit/job/roguetown/royal_guard/footsman/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -136,13 +144,6 @@
 				apply_virtue(H, new /datum/virtue/utility/riding)
 			if("I walk on my legs (+1 for athletics)")
 				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_EXPERT, TRUE)		
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/manatarms = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-		)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -174,6 +175,7 @@
 		STATKEY_PER = 3,
 		STATKEY_WIL = 2
 	)
+	traits_applied = list(TRAIT_ARTILLERY_EXPERT)
 	subclass_skills = list(
 		/datum/skill/combat/knives = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
@@ -193,11 +195,20 @@
 	)
 	extra_context = "Chooses between Light Armor (Dodge Expert) & Medium Armor."
 
-/datum/outfit/job/roguetown/royal_guard/skirmisher/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/royal_guard/skirmisher
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/combat/messser = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/manatarms = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+	)
+
+/datum/outfit/job/roguetown/royal_guard/skirmisher/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -238,13 +249,6 @@
 				pants = /obj/item/clothing/under/roguetown/brigandinelegs
 				ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 
-		backpack_contents = list(
-			/obj/item/rogueweapon/huntingknife/combat/messser = 1,
-			/obj/item/rope/chain = 1,
-			/obj/item/storage/keyring/manatarms = 1,
-			/obj/item/rogueweapon/scabbard/sheath = 1,
-			/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-			)
 		H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -276,9 +280,7 @@
 	)
 	maximum_possible_slots = 1
 
-/datum/outfit/job/roguetown/royal_guard/standard_bearer/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/royal_guard/standard_bearer
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
@@ -295,4 +297,8 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 	)
+
+/datum/outfit/job/roguetown/royal_guard/standard_bearer/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.verbs |= /mob/proc/haltyell

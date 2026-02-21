@@ -68,11 +68,7 @@
 	)
 	adv_stat_ceiling = list(STAT_STRENGTH = 16, STAT_CONSTITUTION = 16, STAT_WILLPOWER = 16)
 
-/datum/outfit/job/roguetown/dungeoneer/base/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	H.verbs |= /mob/living/carbon/human/proc/faith_test
-	H.verbs |= /mob/living/carbon/human/proc/torture_victim
+/datum/outfit/job/roguetown/dungeoneer/base
 	pants = /obj/item/clothing/under/roguetown/trou/leather/mourning
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes
@@ -90,6 +86,12 @@
 		/obj/item/flashlight/flare/torch/lantern = 1,
 		/obj/item/clothing/neck/roguetown/psicross/silver = 1,
 		) //No armoury access
+
+/datum/outfit/job/roguetown/dungeoneer/base/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	H.verbs |= /mob/living/carbon/human/proc/faith_test
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	//Torture victim is for inquisition - doesn't even work without a psicross anymore so maybe come up with a variant for him specifically?
 	switch(H.patron?.type)

@@ -192,10 +192,9 @@
 				"Tabard"		= /obj/item/clothing/cloak/tabard/knight,
 				"Jupon"		= /obj/item/clothing/cloak/tabard/stabard/surcoat/guard,
 				)
-		var/heraldychoice = input("Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
+		var/heraldychoice = input(H, "Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
- 
-	backpack_contents = list(
+		backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
 		/obj/item/rogueweapon/scabbard/sheath/noble = 1,

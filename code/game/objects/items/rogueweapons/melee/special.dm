@@ -1179,7 +1179,7 @@
 	if(!active_item)
 		return
 	active_item = FALSE
-	if(user.job == "Man at Arms")
+	if((user.job == "Man at Arms") || (user.job == "Royal Guard"))
 		to_chat(user, span_monkeyhive("The standard's runes pulse, rhythmically, as if sad to see you release your control."))
 		user.change_stat(STATKEY_LCK, -3)
 		user.change_stat(STATKEY_PER, -2)

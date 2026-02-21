@@ -95,6 +95,13 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN
 	)
 
+/datum/outfit/job/roguetown/vanguard/footsman
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/vanguard_enigma = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
 /datum/outfit/job/roguetown/vanguard/footsman/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -117,12 +124,6 @@
 			if("Spear")
 				r_hand = /obj/item/rogueweapon/spear
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/vanguard_enigma = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -177,6 +178,12 @@
 	beltr = /obj/item/rogueweapon/sword/iron
 	beltl = /obj/item/quiver/arrows
 	backl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/vanguard_enigma = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
 
 /datum/outfit/job/roguetown/vanguard/archer/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -192,15 +199,65 @@
 		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 		if(helmchoice != "None")
 			head = helmets[helmchoice]
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/vanguard_enigma = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
+/* 
+/datum/advclass/vanguard/standard_bearer
+	name = "Vanguard Standard Bearer"
+	tutorial = "Вы показали хорошую выживаемость в боях и были удостоины чести нести знамя, дабы вдохновлять ваших товарищей."
+	outfit = /datum/outfit/job/roguetown/vanguard/standard_bearer
 
+	category_tags = list(CTAG_VANGUARD)
+	traits_applied = list(TRAIT_MEDIUMARMOR)
+	maximum_possible_slots = 1
+	subclass_stats = list(
+		STATKEY_STR = 2,
+		STATKEY_PER = 2,
+		STATKEY_CON = 1,
+		STATKEY_WIL = 2,
+		STATKEY_SPD = 1
+	)
+	subclass_skills = list(
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/slings = SKILL_LEVEL_NOVICE,
+		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/swimming = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN
+	)
+
+/datum/outfit/job/roguetown/vanguard/standard_bearer
+	beltr = /obj/item/rogueweapon/sword/iron
+	backl = /obj/item/rogueweapon/scabbard/gwstrap
+	r_hand = /obj/item/rogueweapon/spear/keep_standard //  Надо сделать так, чтобы у авангарда было особое знамя, дающее бонусы ТОЛЬКО авангарду, игнорящее другую стражу.
+
+
+/datum/outfit/job/roguetown/vanguard/standard_bearer/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
+		var/helmets = list(
+		"Volf"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf,
+		"Ram"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/goat,
+		"Bear"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/bear,
+		"Rous"		= /obj/item/clothing/head/roguetown/helmet/sallet/warden/rat,
+		"None"
+		)
+		var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+		if(helmchoice != "None")
+			head = helmets[helmchoice]
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
+*/
 /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf/vanguard
 	name = "volfskull helm"
 	desc = "The large, intimidating skull of an elusive white volf, plated with steel on its inner side and given padding - paired together with a steel maille mask and worn with a linen shroud. Such trophies are associated with life-long game wardens and their descendants."

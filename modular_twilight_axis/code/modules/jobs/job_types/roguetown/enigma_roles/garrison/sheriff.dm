@@ -44,7 +44,7 @@
 	name = "Town Sheriff"
 	tutorial = "Преступность всегда была постоянной составляющей вашей жизни, и вы всегда выбирали сторону справедливости. \
 	Вы поднялись в ряды стражников, и теперь руководите ими - следите за тем, чтобы они соблюдали законы этой земли. \
-	Уже прошло 12 лет, как вы несете службу Королю, что объявил Рокхилл своей ставкой, сразу же после ПРОПАЖИ Барона Эрика Рейвенкрофта. \
+	Уже прошло 12 лет, как вы несете службу Королю, что объявил Рокхилл своей ставкой, сразу же после ПРОПАЖИ Барона. \
 	В бессонные ночи, вам все время приходит мысль, не дающая покоя, что Король обоснуется тут уже не как обещал на время, а навсегда... \
 	Благо ли это для Рокхилла? Действительно ли Барон пропал без вмешательства Короля?.."
 
@@ -90,11 +90,11 @@
 	beltr = /obj/item/rogueweapon/mace/stunmace
 	cloak = /obj/item/clothing/cloak/sheriff
 	r_hand = /obj/item/rogueweapon/sword/sabre
+	backpack_contents = list(/obj/item/storage/keyring/sheriff = 1, /obj/item/signal_hornn/blue = 1, /obj/item/rogueweapon/scabbard/sheath = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1)
 
 /datum/outfit/job/roguetown/sheriff/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		backpack_contents = list(/obj/item/storage/keyring/sheriff = 1, /obj/item/signal_hornn/blue = 1, /obj/item/rogueweapon/scabbard/sheath = 1, /obj/item/rogueweapon/huntingknife/idagger/steel = 1)
 		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
