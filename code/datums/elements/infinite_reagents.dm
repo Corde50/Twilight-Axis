@@ -11,9 +11,12 @@
 		src.whitelist = whitelist
 	
 	RegisterSignal(target, COMSIG_OBJ_PRE_TRANSFER_REAGENTS, PROC_REF(on_transfer))
+	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/element/infinite_reagents/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_OBJ_PRE_TRANSFER_REAGENTS)
+	UnregisterSignal(target, COMSIG_PARENT_EXAMINE)
+
 	return ..()
 
 /datum/element/infinite_reagents/proc/on_transfer(obj/item/reagent_containers/glass/source, mob/living/carbon/human/target)
@@ -29,3 +32,8 @@
 		target.reagents.add_reagent(reagent.type, source.amount_per_gulp)
 
 	return COMPONENT_PREVENT_CONTAINER_REAGENT_TRANSFER
+
+/datum/element/infinite_reagents/proc/on_examine(atom/atom, mob/living/carbon/human/user, list/examine_info)
+	SIGNAL_HANDLER
+
+	examine_info += span_warning("Blessed by Baotha!")

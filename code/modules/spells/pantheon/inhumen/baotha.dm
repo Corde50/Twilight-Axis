@@ -141,7 +141,7 @@
 	var/printed_dur = round(dur / 600)
 
 	held.AddElement(/datum/element/infinite_reagents, list(/datum/reagent/water, /datum/reagent/consumable/ethanol))
-	addtimer(CALLBACK(held, TYPE_PROC_REF(/datum, _RemoveElement), /datum/element/infinite_reagents), dur)
+	addtimer(CALLBACK(held, TYPE_PROC_REF(/datum, _RemoveElement), list(/datum/element/infinite_reagents)), dur)
 
 	to_chat(user, span_notice("The drink swirls for a mote. This will last around [printed_dur] minute[(printed_dur > 1) ? "s" : ""]."))
 	return TRUE
