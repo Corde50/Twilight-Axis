@@ -62,10 +62,23 @@ SUBSYSTEM_DEF(mapping)
 	HACK_LoadMapConfig()
 	// After assigning a config datum to var/config, we check which map ajudstment fits the current config
 	for(var/datum/map_adjustment/each_adjust as anything in subtypesof(/datum/map_adjustment))
-		if(config.map_file && initial(each_adjust.map_file_name) != config.map_file)
+		var/adj_name = initial(each_adjust.map_file_name) //TA EDIT
+		
+		if(!config.map_file)
 			continue
-		map_adjustment = new each_adjust() // map_adjustment has multiple procs that'll be called from needed places (i.e. job_change)
-		log_world("Loaded '[config.map_file]' map adjustment.")
+
+		
+		if(islist(config.map_file))
+			
+			if(!(adj_name in config.map_file))
+				continue
+		else
+			
+			if(adj_name != config.map_file)
+				continue
+
+		map_adjustment = new each_adjust() 
+		log_world("Loaded '[adj_name]' map adjustment.") //TA EDIT END
 		break
 	return ..()
 
