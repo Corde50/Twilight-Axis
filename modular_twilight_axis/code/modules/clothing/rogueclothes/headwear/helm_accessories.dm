@@ -220,91 +220,91 @@
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_horns
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_castle_red
 	name = "castle helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_castle_red
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_graggar
 	name = "bloodied star helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_graggar
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_sun
 	name = "sun helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/gold = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_sun
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_swan
 	name = "swan on lake"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/natural/feather = 2, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_swan
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_fish
 	name = "gold fish helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/gold = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_fish
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_windmill
 	name = "windmill helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_windmill
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_oathtaker
 	name = "oathtaker symbol"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_oathtaker
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_skull
 	name = "gold skull helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/gold = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_skull
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_lion
 	name = "lion helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_lion
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_peace
 	name = "astrata's eye helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/gold = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_peace
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_dragon_red
 	name = "dragon's dread"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_dragon_red
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/anvil_recipe/armor/tw_d_efreet
 	name = "afreet helmkleinod"
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/ingot/iron = 1, /obj/item/natural/cloth = 1)
 	created_item = /obj/item/clothing/head/roguetown/tw_d_efreet
-	craftdiff = 3
+	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/survival/tw_d_basic
 	name = "helmkleinod chaperon"
