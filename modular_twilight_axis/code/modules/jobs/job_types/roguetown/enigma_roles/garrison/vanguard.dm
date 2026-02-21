@@ -201,14 +201,14 @@
 			head = helmets[helmchoice]
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
-/* 
+
 /datum/advclass/vanguard/standard_bearer
 	name = "Vanguard Standard Bearer"
 	tutorial = "Вы показали хорошую выживаемость в боях и были удостоины чести нести знамя, дабы вдохновлять ваших товарищей."
 	outfit = /datum/outfit/job/roguetown/vanguard/standard_bearer
 
 	category_tags = list(CTAG_VANGUARD)
-	traits_applied = list(TRAIT_MEDIUMARMOR)
+	traits_applied = list(TRAIT_MEDIUMARMOR, TRAIT_STANDARD_BEARER)
 	maximum_possible_slots = 1
 	subclass_stats = list(
 		STATKEY_STR = 2,
@@ -218,7 +218,7 @@
 		STATKEY_SPD = 1
 	)
 	subclass_skills = list(
-		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
@@ -257,7 +257,31 @@
 			head = helmets[helmchoice]
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
-*/
+
+// These are really hacky, but it works.
+// One proc to moodbuff.
+/mob/proc/standard_position_vanguard()
+	set name = "PLANT"
+	set category = "Standard"
+	emote("standard_position", intentional = TRUE)
+	stamina_add(rand(15, 35))
+
+/datum/emote/living/standard_position_vanguard
+	key = "standard_position_vanguard"
+	message = "plants the standard!"
+	emote_type = EMOTE_VISIBLE
+	show_runechat = TRUE
+
+/datum/emote/living/standard_position_vanguard/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(do_after(user, 8 SECONDS)) // SCORE SOME GOALS!!!
+		playsound(user.loc, 'sound/combat/shieldraise.ogg', 100, FALSE, -1)
+		if(.)
+			for(var/mob/living/carbon/human/L in viewers(7, user))
+				if(HAS_TRAIT(L, TRAIT_WOODSMAN))
+					to_chat(L, span_monkeyhive("The standard calls out to me!"))
+					L.add_stress(/datum/stressevent/keep_standard_lesser)
+
 /obj/item/clothing/head/roguetown/helmet/sallet/warden/wolf/vanguard
 	name = "volfskull helm"
 	desc = "The large, intimidating skull of an elusive white volf, plated with steel on its inner side and given padding - paired together with a steel maille mask and worn with a linen shroud. Such trophies are associated with life-long game wardens and their descendants."
