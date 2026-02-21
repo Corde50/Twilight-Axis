@@ -123,21 +123,37 @@
 /obj/item/roguecoin/silver/Initialize(mapload)
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill_TA")
-		name = "shilling"
-		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
-		icon_state = "tc1"
-		sellprice = 1
-		base_type = CTYPE_COPPER
-		plural_name = "shillings"
-		icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
-		quantity = 5
-		update_icon()
+		if(quantity <= 4)
+			name = "shilling"
+			desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
+			icon_state = "tc1"
+			sellprice = 1
+			base_type = CTYPE_COPPER
+			plural_name = "shillings"
+			icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
+			quantity *= 5
+			update_icon()
+		else
+			name = "krona"
+			desc = "The krona, or 'crown' in simplified Imperial, is a gold coin minted in the Valorian capital of Eterna, serving as the national currency of Valoria and several neighbouring realms. The coin bears the Crown of Most Serene Doge and the symbol of Ten Undivided."
+			icon_state = "tg1"
+			sellprice = 14
+			base_type = CTYPE_GOLD
+			plural_name = "kronas"
+			icon = 'modular_twilight_axis/lore/icons/valuable.dmi'
+			quantity = floor(quantity/3)
+			update_icon()
 
 /obj/item/roguecoin/silver/update_icon()
 	. = ..()
 	if(quantity == 1 && SSmapping.config.map_name == "Rockhill_TA")
-		name = "shilling"
-		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
+		switch(base_type)
+			if(CTYPE_COPPER)
+				name = "shilling"
+				desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
+			if(CTYPE_GOLD)
+				name = "krona"
+				desc = "The krona, or 'crown' in simplified Imperial, is a gold coin minted in the Valorian capital of Eterna, serving as the national currency of Valoria and several neighbouring realms. The coin bears the Crown of Most Serene Doge and the symbol of Ten Undivided."
 
 /obj/item/roguecoin/gold/Initialize(mapload)
 	. = ..()
