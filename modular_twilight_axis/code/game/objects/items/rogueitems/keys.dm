@@ -64,3 +64,9 @@
 	desc = "This key opens the Sheriff office."
 	icon_state = "spikekey"
 	lockid = "townsheriff"
+
+/obj/item/roguekey/courtphysician
+	name = "Court Physician key"
+	desc = "This key opens the Court Physician office."
+	icon_state = "ekey"
+	lockid = "courtphysician"

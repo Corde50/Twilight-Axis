@@ -6,6 +6,7 @@
 #include "garrison\warden_enigma.dm"
 #include "garrison\dungeoneer.dm"
 #include "retinue\knight_enigma.dm"
+#include "courtier\courtphysician.dm"
 //#include "peasants\bogprisoner.dm"
 //#include "peasants\hostage.dm"
 //#include "peasants\prisoner.dm"

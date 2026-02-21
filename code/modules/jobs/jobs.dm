@@ -67,6 +67,7 @@ GLOBAL_LIST_INIT(leadership_positions, list( // Used for boldening text primaril
 	"Grand Duke",
 	"Hand",
 	"Court Magician",
+	"Court Physician",
 	"Marshal",
 	"Sergeant",
 	"Sergeant Royal Guard",

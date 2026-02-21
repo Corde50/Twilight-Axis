@@ -7,20 +7,15 @@
 /datum/map_adjustment/template/rockhill
 	map_file_name = "rockhill_ta.dmm"
 	realm_name = "Rockhill"
-	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight, /datum/job/roguetown/sergeant)
+	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight, /datum/job/roguetown/sergeant, /datum/job/roguetown/physician)
 	slot_adjust = list(
 	/datum/job/roguetown/squire = 2,
 	/datum/job/roguetown/wapprentice = 3,
 	)
 	title_adjust = list(
-		/datum/job/roguetown/physician = list(display_title = "Court Physician"),
 		/datum/job/roguetown/lord = list(display_title = "King", f_title = "Queen")
 	)
-	tutorial_adjust = list(
-		/datum/job/roguetown/physician = "You are a master physician, trusted by the King themself to administer expert care to the Royal family, the court, \
-		its protectors and its subjects. While primarily a resident of the keep in the manors medical wing, you also have access \
-		 to the local hightown clinic, where lesser licensed apothecaries ply their trade under your occasional passing tutelage."
-	)
+	
 	threat_regions = list(
 		THREAT_REGION_ROCKHILL_BASIN,
 		THREAT_REGION_ROCKHILL_BOG_NORTH,

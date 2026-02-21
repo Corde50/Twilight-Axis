@@ -4689,6 +4689,7 @@
 /area/rogue/indoors/vampire_manor)
 "AS" = (
 /obj/structure/fermentation_keg/water,
+/obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/twig/platform,
 /area/rogue/indoors)
 "AT" = (
@@ -4890,8 +4891,9 @@
 /obj/item/reagent_containers/food/snacks/rogue/friedrat,
 /obj/item/reagent_containers/food/snacks/rogue/friedrat,
 /obj/item/reagent_containers/food/snacks/rogue/friedrat,
-/obj/item/reagent_containers/food/snacks/rogue/meat_rotten,
-/obj/item/reagent_containers/food/snacks/rogue/meat_rotten,
+/obj/machinery/light/rogue/torchholder/l,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
+/obj/item/reagent_containers/food/snacks/rogue/meat/steak,
 /turf/open/floor/rogue/twig/platform{
 	dir = 4
 	},

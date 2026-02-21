@@ -36,6 +36,7 @@
 #define ARCHIVIST	(1<<7)
 #define SENESCHAL	(1<<8)
 #define SUITOR		(1<<9)
+#define COURTPHYSICIAN	(1<<10) //TA EDIT
 
 #define RETINUE				(1<<2)
 
@@ -166,6 +167,7 @@
 #define JDO_ARCHIVIST 2.6
 #define JDO_SENESCHAL 2.8
 #define JDO_SUITOR 2.9
+#define JDO_COURTPHYSICIAN 2.10 //TA EDIT
 
 // Retinue - Manor
 #define JDO_MARSHAL 3
