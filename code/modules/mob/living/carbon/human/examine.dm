@@ -181,38 +181,58 @@
 		// 		. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [wet_or_dry]!") : span_warning("[m1] letting out some glossy stuff!")
 		// 	else
 		// 		. += span_aiprivradio("[m1] [wet_or_dry]!")
-		var/datum/status_effect/erp_coating/groin/G = null
-		if(observer_privilege || get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
-			G = has_status_effect(/datum/status_effect/erp_coating/groin)
+		
+		// ERP: coating + active partner (hidden-mode aware)
+		var/datum/erp_controller/erpC = SSerp?.get_controller_for(src)
+		var/erp_hidden = erpC?.hidden_mode
+		var/close_enough = Adjacent(user)
+		var/can_see_hidden = observer_privilege || close_enough || (user == src)
+		if(erpC)
+			var/mob/living/partner_mob = erpC._get_partner_effect_mob()
+			if(partner_mob && partner_mob != src)
+				if(erp_hidden)
+					if(can_see_hidden)
+						. += span_warning("[m1] рядом с [partner_mob].")
+				else
+					if(user != src && isliving(user))
+						var/mob/living/L = user
+						. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] рядом с [partner_mob].") : span_warning("[m1] не один.")
+					else
+						. += span_aiprivradio("[m1] рядом с [partner_mob].")
 
-		var/datum/status_effect/erp_coating/chest/CH = null
-		if(observer_privilege || get_location_accessible(src, BODY_ZONE_CHEST, skipundies = TRUE))
-			CH = has_status_effect(/datum/status_effect/erp_coating/chest)
+		if(!erp_hidden || can_see_hidden)
+			var/datum/status_effect/erp_coating/groin/G = null
+			if(observer_privilege || get_location_accessible(src, BODY_ZONE_PRECISE_GROIN, skipundies = TRUE))
+				G = has_status_effect(/datum/status_effect/erp_coating/groin)
 
-		var/datum/status_effect/erp_coating/body/B = has_status_effect(/datum/status_effect/erp_coating/body)
-		if(G)
-			var/txt = !G.has_dried_up ? "с которого/которой ещё стекает что-то влажное" : "с засохшими следами на коже"
-			if(user != src && isliving(user))
-				var/mob/living/L = user
-				. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] выглядит запачканно внизу.")
-			else
-				. += span_aiprivradio("[m1] [txt].")
+			var/datum/status_effect/erp_coating/chest/CH = null
+			if(observer_privilege || get_location_accessible(src, BODY_ZONE_CHEST, skipundies = TRUE))
+				CH = has_status_effect(/datum/status_effect/erp_coating/chest)
 
-		if(CH)
-			var/txt = !CH.has_dried_up ? "с влажными следами на груди" : "с подсохшими пятнами на груди"
-			if(user != src && isliving(user))
-				var/mob/living/L = user
-				. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] чем-то испачкан на груди.")
-			else
-				. += span_aiprivradio("[m1] [txt].")
+			var/datum/status_effect/erp_coating/body/B = has_status_effect(/datum/status_effect/erp_coating/body)
+			if(G)
+				var/txt = !G.has_dried_up ? "имеет влажные стекающие следы выделений на паху" : "имеет влажные подсхощие следы выделений на паху"
+				if(user != src && isliving(user))
+					var/mob/living/L = user
+					. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] выглядит грязно в районе паха.")
+				else
+					. += span_aiprivradio("[m1] [txt].")
 
-		if(B)
-			var/txt = !B.has_dried_up ? "слегка блестит, будто покрыт(а) тонкой плёнкой" : "носит сухие следы на коже"
-			if(user != src && isliving(user))
-				var/mob/living/L = user
-				. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] выглядит запачканно.")
-			else
-				. += span_aiprivradio("[m1] [txt].")
+			if(CH)
+				var/txt = !CH.has_dried_up ? "имеет влажные следы выделений на груди" : "имеет подсхохшие выделения на груди"
+				if(user != src && isliving(user))
+					var/mob/living/L = user
+					. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] имеет чем-то запачканную грудь.")
+				else
+					. += span_aiprivradio("[m1] [txt].")
+
+			if(B)
+				var/txt = !B.has_dried_up ? "блестит влажными выделениями" : "имеет сухие следы выделений на коже"
+				if(user != src && isliving(user))
+					var/mob/living/L = user
+					. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] выглядит грязно.")
+				else
+					. += span_aiprivradio("[m1] [txt].")
 
 		//For tennite schism god-event
 		if(length(GLOB.tennite_schisms))
