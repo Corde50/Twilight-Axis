@@ -93,8 +93,7 @@
 		else
 			. = list(span_info("ø ------------ ø\nThis is the <EM>[used_name]</EM>, the [race_name]."))
 
-		for(var/X in bodyparts)
-			var/obj/item/bodypart/BP = X
+		for(var/obj/item/bodypart/BP in bodyparts)
 			if(BP.brand_text)
 				if(observer_privilege || get_location_accessible(src, BP.body_zone))
 					. += "<span class='userdanger' style='font-size: 1.2em'>BRAND ON [uppertext(BP.name)]: \"[BP.brand_text]\"</span>"

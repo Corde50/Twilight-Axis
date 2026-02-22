@@ -67,7 +67,7 @@
 			to_chat(user, span_warning("I cannot change the letters while the branding iron is hot! I must let it cool down first."))
 			return
 		
-		var/new_text = stripped_input(user, "Enter the brand text (max 6 characters):", "Branding Iron Setup", current_text, 6)
+		var/new_text = tgui_input_text(user, "Enter the brand text (max 6 characters):", "Branding Iron Setup", current_text, 6)
 		if(new_text)
 			current_text = new_text
 			to_chat(user, span_notice("I carefully change the metal letters in the branding iron. It now reads: '[current_text]'."))
