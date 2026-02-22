@@ -61,6 +61,9 @@
 /obj/item/clothing/head/roguetown/roguehood/black
 	color = CLOTHING_BLACK
 
+/obj/item/clothing/head/roguetown/roguehood/mageblue
+	color = CLOTHING_MAGE_BLUE
+
 /obj/item/clothing/head/roguetown/roguehood/darkgreen
 	color = "#264d26"
 
@@ -301,6 +304,9 @@
 	color = null
 	salvage_result = /obj/item/natural/cloth
 	salvage_amount = 1
+
+/obj/item/clothing/head/roguetown/roguehood/shroudwhite/evil_ah_ah
+	color = CLOTHING_SCARLET
 
 //
 
