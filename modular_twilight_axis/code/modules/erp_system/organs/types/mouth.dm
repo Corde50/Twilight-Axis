@@ -4,8 +4,8 @@
 	erp_organ_type = SEX_ORGAN_MOUTH
 	active_arousal = 0.9
 	passive_arousal = 0.6
-	active_pain = 0.3
-	passive_pain = 0.15
+	active_pain = 0.15
+	passive_pain = 0.5
 
 /datum/erp_sex_organ/mouth/New(atom/host_atom)
 	. = ..()

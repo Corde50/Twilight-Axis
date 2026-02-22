@@ -6,7 +6,7 @@
 	var/climax_mode = "outside"
 	active_arousal = 0.9
 	passive_arousal = 0.6
-	active_pain = 0.3
+	active_pain = 0.05
 	passive_pain = 0.15
 
 /datum/erp_sex_organ/penis/New(obj/item/organ/penis/P)

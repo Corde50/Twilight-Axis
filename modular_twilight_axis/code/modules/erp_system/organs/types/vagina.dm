@@ -8,7 +8,7 @@
 	var/pregnant = FALSE
 	active_arousal = 1.4
 	passive_arousal = 1.0
-	active_pain = 0.3
+	active_pain = 0.1
 	passive_pain = 0.2
 
 /datum/erp_sex_organ/vagina/New(obj/item/organ/vagina/V)
