@@ -88,11 +88,15 @@
 	var/mob/living/ma = best?.actor_active?.get_effect_mob()
 	var/mob/living/mp = best?.actor_passive?.get_effect_mob()
 
+	if(best?.actor_active == best?.actor_passive)
+		a_arousal += p_arousal
+		a_pain += p_pain
+
 	if(best?.actor_active)
 		var/multA = controller.inject_d.rel_mult_for(ma, mp)
 		best.actor_active.apply_erp_effect(a_arousal * multA, a_pain, TRUE, avg_force, avg_speed, null)
 
-	if(best?.actor_passive)
+	if(best?.actor_passive && best?.actor_active != best?.actor_passive)
 		var/multP = controller.inject_d.rel_mult_for(mp, ma)
 		best.actor_passive.apply_erp_effect(p_arousal * multP, p_pain, FALSE, avg_force, avg_speed, null)
 
