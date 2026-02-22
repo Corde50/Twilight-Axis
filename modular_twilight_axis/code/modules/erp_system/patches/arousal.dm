@@ -95,7 +95,9 @@
 
 /datum/component/arousal/proc/is_lovefiend()
 	var/mob/living/carbon/human/H = parent
-	return istype(H) && H.has_flaw(/datum/charflaw/addiction/lovefiend)
+	if(!istype(H))
+		return FALSE
+	return !!H.get_flaw(/datum/charflaw/addiction/lovefiend)
 
 /datum/component/arousal/proc/is_baotha_follower()
 	var/mob/living/carbon/human/H = parent
@@ -129,7 +131,7 @@
 	var/mob/living/carbon/human/H = parent
 	if(!istype(H))
 		return
-	if(!H.has_flaw(/datum/charflaw/addiction/lovefiend))
+	if(!is_lovefiend())
 		return
 
 	var/datum/charflaw/addiction/A = H.get_flaw(/datum/charflaw/addiction/lovefiend)
@@ -314,7 +316,7 @@
 	var/mob/living/carbon/human/H = parent
 	if(!istype(H))
 		return
-	if(!H.has_flaw(/datum/charflaw/addiction/lovefiend))
+	if(!is_lovefiend())
 		return
 
 	if(is_nympho_sated())
@@ -343,6 +345,7 @@
 	handle_overload_decay()
 	handle_charge(dt * 1)
 	handle_lovefiend_idle(dt)
+	apply_post_climax_multiplier_gain()
 
 	if(can_lose_arousal())
 		var/dec = dt * ERP_BASE_AROUSAL_DECAY_RATE * get_age_arousal_decay_mult()
@@ -545,6 +548,7 @@
 	if(satisfaction_points >= ERP_OVERLOAD_SP_TRIGGER)
 		try_gain_overload_point()
 
+	apply_post_climax_multiplier_gain()
 	climaxer.emote("moan", forced = TRUE)
 	climaxer.playsound_local(climaxer, 'sound/misc/mat/end.ogg', 100)
 	return
@@ -691,6 +695,21 @@
 
 	clear_overload_points("sleep")
 	last_overload_sleep_decay_time = 0
+
+/datum/component/arousal/adjust_arousal(datum/source, amount, forced = FALSE)
+	if(arousal_frozen)
+		return arousal
+	var/effective = amount * arousal_multiplier
+	return set_arousal(source, arousal + effective, forced)
+
+/datum/component/arousal/proc/apply_post_climax_multiplier_gain()
+	var/delta = 0.0
+	if(is_lovefiend())
+		delta = 0.05 * (satisfaction_points + overload_points)
+	else
+		delta = 0.1 * overload_points
+
+	arousal_multiplier = 1.0 + max(0.0, delta)
 
 #undef ERP_OVERLOAD_SLEEP_DECAY_INTERVAL
 #undef NYMPHO_AROUSAL_SOFT_CAP

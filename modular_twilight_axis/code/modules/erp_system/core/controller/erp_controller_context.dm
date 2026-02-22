@@ -33,7 +33,7 @@
 		ctx.distance = get_dist(ctx.tA, ctx.tB)
 		ctx.same_tile = (ctx.tA == ctx.tB)
 
-	ctx.grabstate = controller.owner.get_highest_grab_state_on(controller.active_partner) || 0
+	ctx.grabstate = controller.owner.get_highest_grab_state_on(controller.active_partner)
 	ctx.has_passive_grab = (ctx.grabstate >= GRAB_PASSIVE)
 	ctx.has_aggressive_grab = (ctx.grabstate >= GRAB_AGGRESSIVE)
 

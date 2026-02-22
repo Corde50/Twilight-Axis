@@ -113,10 +113,17 @@
 /datum/erp_actor/human/get_highest_grab_state_on(datum/erp_actor/other)
 	var/mob/living/carbon/human/A = get_human()
 	if(!A)
-		return 0
+		return -1
 
 	var/mob/living/B = other?.get_mob()
-	return istype(B) ? (A.get_highest_grab_state_on(B) || 0) : 0
+	if(!istype(B))
+		return -1
+
+	var/state = A.get_highest_grab_state_on(B)
+	if(isnull(state))
+		return -1
+
+	return state
 
 /// Adds stamina to the underlying human.
 /datum/erp_actor/human/stamina_add(delta)

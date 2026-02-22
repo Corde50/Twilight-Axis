@@ -1,4 +1,5 @@
 /datum/erp_action/other/mouth/breast_feed
+	abstract = FALSE
 	name = "Облизать грудь"
 	required_target_organ = SEX_ORGAN_BREASTS
 	require_same_tile = FALSE
