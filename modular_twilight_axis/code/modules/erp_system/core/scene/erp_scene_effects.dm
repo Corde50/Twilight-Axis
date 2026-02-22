@@ -1,3 +1,6 @@
+#define ERP_SCENE_AROUSAL_MULT 1.00
+#define ERP_SCENE_PAIN_MULT 1.00
+
 /datum/erp_scene_effects
 	var/datum/erp_controller/controller
 
@@ -39,13 +42,13 @@
 			var/paA = r[ERP_ACTION_PASSIVE_AROUSAL]
 			var/paP = r[ERP_ACTION_PASSIVE_PAIN]
 
-			if(!isnum(arA)) 
+			if(!isnum(arA))
 				arA = r[ERP_ACTION_LEGACY_AROUSAL] || 0
-			if(!isnum(arP)) 
+			if(!isnum(arP))
 				arP = r[ERP_ACTION_LEGACY_AROUSAL] || 0
-			if(!isnum(paA)) 
+			if(!isnum(paA))
 				paA = r[ERP_ACTION_LEGACY_PAIN] || 0
-			if(!isnum(paP)) 
+			if(!isnum(paP))
 				paP = r[ERP_ACTION_LEGACY_PAIN] || 0
 
 			a_arousal_sum += arA
@@ -76,11 +79,11 @@
 	var/avg_force = clamp(round(sum_force / n), SEX_FORCE_LOW, SEX_FORCE_EXTREME)
 	var/avg_speed = clamp(round(sum_speed / n), SEX_SPEED_LOW, SEX_SPEED_EXTREME)
 
-	var/a_arousal = a_arousal_sum / n
-	var/p_arousal = p_arousal_sum / n
+	var/a_arousal = (a_arousal_sum / n) * ERP_SCENE_AROUSAL_MULT
+	var/p_arousal = (p_arousal_sum / n) * ERP_SCENE_AROUSAL_MULT
 
-	var/a_pain = a_pain_sum / n
-	var/p_pain = p_pain_sum / n
+	var/a_pain = (a_pain_sum / n) * ERP_SCENE_PAIN_MULT
+	var/p_pain = (p_pain_sum / n) * ERP_SCENE_PAIN_MULT
 
 	var/mob/living/ma = best?.actor_active?.get_effect_mob()
 	var/mob/living/mp = best?.actor_passive?.get_effect_mob()
