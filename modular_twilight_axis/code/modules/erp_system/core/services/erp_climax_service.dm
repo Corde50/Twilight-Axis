@@ -134,9 +134,9 @@
 			if(!E)
 				E = target.apply_status_effect(/datum/status_effect/erp_coating/chest, capacity)
 		else
-			E = target.has_status_effect(/datum/status_effect/erp_coating/body)
+			E = target.has_status_effect(/datum/status_effect/erp_coating/face)
 			if(!E)
-				E = target.apply_status_effect(/datum/status_effect/erp_coating/body, capacity)
+				E = target.apply_status_effect(/datum/status_effect/erp_coating/face, capacity)
 
 	if(!E)
 		return FALSE

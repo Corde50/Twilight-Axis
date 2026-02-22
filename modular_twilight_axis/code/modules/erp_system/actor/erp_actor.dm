@@ -280,7 +280,7 @@
 				mode = "[P.climax_mode]"
 
 		if(mode == "inside")
-			return list("type" = "into", "partner" = L.actor_passive, "intimate" = TRUE)
+			return list("type" = "inside", "partner" = L.actor_passive, "intimate" = TRUE)
 
 		return list("type" = "outside", "partner" = L.actor_passive, "intimate" = FALSE)
 

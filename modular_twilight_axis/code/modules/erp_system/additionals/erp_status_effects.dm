@@ -114,12 +114,11 @@
 #define ERP_COATING_ZONE_CHEST "chest"
 #define ERP_COATING_ZONE_BODY  "body"
 #define ERP_COATING_DRY_AFTER (4 MINUTES)
-#define ERP_COATING_DEFAULT_DURATION (10 MINUTES)
 
 /datum/status_effect/erp_coating
 	status_type = STATUS_EFFECT_UNIQUE
-	tick_interval = 30 SECONDS
-	duration = ERP_COATING_DEFAULT_DURATION
+	tick_interval = ERP_COATING_DRY_AFTER
+	duration = -1
 	var/coating_zone = "body"
 	var/has_dried_up = FALSE
 	var/datum/reagents/reagents
@@ -143,36 +142,27 @@
 	. = ..()
 	if(owner)
 		RegisterSignal(owner, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(_on_clean_act), override = TRUE)
+	has_dried_up = FALSE
+	return TRUE
 
 /datum/status_effect/erp_coating/on_remove()
 	if(owner)
 		UnregisterSignal(owner, COMSIG_COMPONENT_CLEAN_ACT, PROC_REF(_on_clean_act))
 	return ..()
 
+/datum/status_effect/erp_coating/tick()
+	has_dried_up = TRUE
+
 /datum/status_effect/erp_coating/proc/_on_clean_act(datum/source, clean)
 	SIGNAL_HANDLER
+	if(clean < CLEAN_WEAK || QDELETED(owner))
+		return FALSE
 
 	if(reagents)
 		reagents.clear_reagents()
 
 	qdel(src)
 	return TRUE
-
-/datum/status_effect/erp_coating/tick()
-	. = ..()
-	if(!reagents || reagents.total_volume <= 0)
-		qdel(src)
-		return
-
-	if(!has_dried_up)
-		var/time_left = get_time_left()
-		if(isnum(time_left))
-			var/time_passed = duration - time_left
-			if(time_passed >= ERP_COATING_DRY_AFTER)
-				has_dried_up = TRUE
-
-/datum/status_effect/erp_coating/proc/get_time_left()
-	return null
 
 /datum/status_effect/erp_coating/proc/is_empty()
 	return !reagents || reagents.total_volume <= 0
@@ -187,6 +177,10 @@
 
 	take = min(take, R.total_volume)
 	R.trans_to(reagents, take, 1, TRUE, TRUE)
+
+	has_dried_up = FALSE
+	tick_interval = world.time + initial(tick_interval)
+
 	return take
 
 /datum/status_effect/erp_coating/proc/get_main_reagent_name()
@@ -194,10 +188,6 @@
 		return null
 	var/datum/reagent/top = reagents.get_master_reagent()
 	return top ? top.name : null
-
-#undef ERP_COATING_ZONE_GROIN
-#undef ERP_COATING_ZONE_CHEST
-#undef ERP_COATING_ZONE_BODY
 
 /datum/status_effect/erp_coating/groin
 	id = "erp_coating_groin"
@@ -207,9 +197,13 @@
 	id = "erp_coating_chest"
 	coating_zone = "chest"
 
-/datum/status_effect/erp_coating/body
-	id = "erp_coating_body"
-	coating_zone = "body"
+/datum/status_effect/erp_coating/face
+	id = "erp_coating_face"
+	coating_zone = "face"
+
+#undef ERP_COATING_ZONE_GROIN
+#undef ERP_COATING_ZONE_CHEST
+#undef ERP_COATING_ZONE_BODY
 
 /datum/status_effect/knot_tied
 	id = "knot_tied"

@@ -209,7 +209,7 @@
 			if(observer_privilege || get_location_accessible(src, BODY_ZONE_CHEST, skipundies = TRUE))
 				CH = has_status_effect(/datum/status_effect/erp_coating/chest)
 
-			var/datum/status_effect/erp_coating/body/B = has_status_effect(/datum/status_effect/erp_coating/body)
+			var/datum/status_effect/erp_coating/face/B = has_status_effect(/datum/status_effect/erp_coating/face)
 			if(G)
 				var/txt = !G.has_dried_up ? "имеет влажные стекающие следы выделений на паху" : "имеет влажные подсхощие следы выделений на паху"
 				if(user != src && isliving(user))
@@ -227,7 +227,7 @@
 					. += span_aiprivradio("[m1] [txt].")
 
 			if(B)
-				var/txt = !B.has_dried_up ? "блестит влажными выделениями" : "имеет сухие следы выделений на коже"
+				var/txt = !B.has_dried_up ? "блестит влажными выделениями" : "имеет сухие следы выделений на лице"
 				if(user != src && isliving(user))
 					var/mob/living/L = user
 					. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] [txt].") : span_warning("[m1] выглядит грязно.")
