@@ -79,13 +79,13 @@
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/swords = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/maces = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/swords = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/maces = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/axes = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/slings = SKILL_LEVEL_NOVICE,
-		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/wrestling = SKILL_LEVEL_EXPERT,
+		/datum/skill/combat/shields = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
@@ -114,16 +114,20 @@
 			if("Warhammer & Shield")
 				beltr = /obj/item/rogueweapon/mace/warhammer
 				backl = /obj/item/rogueweapon/shield/wood
+				H.adjust_skillrank_up_to(/datum/skill/combat/maces, 4, TRUE) // Надеюсь, что четвертые навыки не сломают баланс в могилу. Надо смотреть.
 			if("Axe & Shield")
 				beltr = /obj/item/rogueweapon/stoneaxe/woodcut
 				backl = /obj/item/rogueweapon/shield/wood
+				H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
 			if("Sword & Shield")
 				l_hand = /obj/item/rogueweapon/sword/iron
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				backl = /obj/item/rogueweapon/shield/wood
+				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
 			if("Spear")
 				r_hand = /obj/item/rogueweapon/spear
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
+				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)

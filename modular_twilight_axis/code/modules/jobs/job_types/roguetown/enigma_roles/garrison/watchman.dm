@@ -97,6 +97,7 @@
 	if(H.mind)
 		backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel = 1, /obj/item/rope/chain = 1, /obj/item/rogueweapon/scabbard/sheath = 1)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")
+	H.verbs |= /mob/proc/haltyell
 
 /obj/item/storage/backpack/rogue/satchel/citywatch
 	name = "city watch satchel"

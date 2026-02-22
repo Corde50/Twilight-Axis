@@ -90,9 +90,7 @@
 /datum/outfit/job/roguetown/dungeoneer/base/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
-	H.verbs |= /mob/living/carbon/human/proc/faith_test
-	H.verbs |= /mob/living/carbon/human/proc/torture_victim
-	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
+	H.verbs |= list(/mob/living/carbon/human/proc/faith_test, /mob/living/carbon/human/proc/torture_victim, /mob/proc/haltyell)
 	//Torture victim is for inquisition - doesn't even work without a psicross anymore so maybe come up with a variant for him specifically?
 	switch(H.patron?.type)
 		if(/datum/patron/divine/necra)
