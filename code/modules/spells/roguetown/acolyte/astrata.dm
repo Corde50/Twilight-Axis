@@ -336,7 +336,7 @@
     if(skill_level > SKILL_LEVEL_NOVICE)
         per_bonus++
 
-    if(GLOB.tod == "day" || GLOB.tod == "dawn")
+    if(GLOB.tod == "dawn" || GLOB.tod == "day" || GLOB.tod == "dusk")
         per_bonus++
         duration *= 2
 
