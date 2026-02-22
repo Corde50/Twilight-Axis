@@ -53,7 +53,7 @@
 	if(istype(H) && !has_liquid())
 		H.remove_status_effect(/datum/status_effect/mouth_full)
 
-	visible_message(span_notice("[H] сглатывает."), span_notice("Я проглатываю семя во рту."))
+	H.visible_message(span_notice("[H] сглатывает."), span_notice("Я проглатываю семя во рту."))
 	return TRUE
 
 /datum/erp_sex_organ/mouth/proc/spit(amount = 5)
@@ -73,7 +73,7 @@
 	if(istype(H) && !has_liquid())
 		H.remove_status_effect(/datum/status_effect/mouth_full)
 
-	visible_message(span_notice("[H] сплевывает."), span_notice("Я сплевываю семя из рта."))
+	H.visible_message(span_notice("[H] сплевывает."), span_notice("Я сплевываю семя из рта."))
 	return TRUE
 
 /obj/item/bodypart/head/Initialize()
