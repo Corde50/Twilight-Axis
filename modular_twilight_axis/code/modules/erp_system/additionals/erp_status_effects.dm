@@ -322,10 +322,10 @@
 	stacks = clamp(new_stacks, 0, ERP_OVERLOAD_MAX_OP)
 	var/con_bonus = CEILING(stacks / 2, 1)
 	effectedstats = list(
-		STATKEY_WIL = -stacks,
-		STATKEY_INT = -stacks,
-		STATKEY_ACC = -stacks,
-		STATKEY_CON = con_bonus
+		STATKEY_WIL = stacks,
+		STATKEY_INT = stacks,
+		STATKEY_ACC = stacks,
+		STATKEY_CON = -con_bonus
 	)
 
 /atom/movable/screen/alert/status_effect/debuff/erp_overload
