@@ -299,7 +299,7 @@
 	req_bar = /obj/item/ingot/bronze
 	req_blade = /obj/item/blade/bronze_plate
 	additional_items = list(/obj/item/ingot/bronze, /obj/item/ingot/bronze, /obj/item/ingot/bronze, /obj/item/natural/hide/cured, /obj/item/natural/fur)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bronze/alt
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bronze
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/bronze/gorget
