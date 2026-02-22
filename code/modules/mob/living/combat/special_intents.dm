@@ -112,7 +112,7 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 	if(range)
 		str += "\n<i>Max Range: ["\Roman [range]"]"
 	if(requires_wielding)
-		str += "\n<i>Requires Wielding</i>"
+		str += "\n<i>Requires wielding if the weapon can be held in two hands.</i>"
 	str += "\n<i><font size = 1>This ability can be used by right clicking while in STRONG stance or by using the Special MMB.</font></i>"
 	str += "</details>"
 	return str
@@ -176,7 +176,7 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 	return TRUE
 
 /datum/special_intent/proc/check_reqs(mob/living/carbon/human/user, obj/item/I)
-	if(requires_wielding)
+	if(requires_wielding && length(I.gripped_intents))
 		if(I.wielded)
 			return TRUE
 		else
