@@ -2992,4 +2992,8 @@
 #include "virtues\thief.dm"
 #include "virtues\utility.dm"
 #include "modular_twilight_axis\modules.dme"
+#include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\axes.dm"
+#include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\special.dm"
+#include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\whip.dm"
+#include "modular_twilight_axis\code\game\objects\items\rogueweapons\ranged\crossbows.dm"
 // END_INCLUDE
