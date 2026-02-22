@@ -1,4 +1,5 @@
 #define NYMPHO_AROUSAL_SOFT_CAP ERP_NYMPHO_SOFT_CAP
+#define MOAN_THRESHOLD 4.0
 
 /datum/component/arousal
 	var/tmp/last_ejaculation_world_time = -1
@@ -466,7 +467,8 @@
 
 /datum/component/arousal/ejaculate()
 	if(world.time <= (last_ejaculation_world_time + 2 SECONDS))
-		return	last_ejaculation_world_time = world.time
+		return
+	last_ejaculation_world_time = world.time
 
 	var/list/L = get_erp_links()
 	var/datum/erp_sex_link/best = pick_best_erp_link(L)
@@ -602,9 +604,9 @@
 		return
 	var/chosen_emote
 	switch(arousal_amt)
-		if(0 to 2)
+		if(0 to MOAN_THRESHOLD)
 			chosen_emote = "sexmoanlight"
-		if(2 to INFINITY)
+		if(MOAN_THRESHOLD to INFINITY)
 			chosen_emote = "sexmoanhvy"
 
 	if(pain_amt >= PAIN_MILD_EFFECT)

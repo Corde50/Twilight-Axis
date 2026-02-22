@@ -1,4 +1,4 @@
-#define ERP_SCENE_AROUSAL_MULT 1.00
+#define ERP_SCENE_AROUSAL_MULT 3.00
 #define ERP_SCENE_PAIN_MULT 1.00
 
 /datum/erp_scene_effects

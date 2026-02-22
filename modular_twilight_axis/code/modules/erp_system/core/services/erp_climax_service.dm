@@ -313,7 +313,7 @@
 			if("inject_outside_only" in tags) force_outside = TRUE
 			if("no_internal_climax" in tags)  blocks_inside = TRUE
 
-		var/mode = "outside"
+		var/mode = Pk.climax_mode
 		if(force_inside)
 			mode = "inside"
 		else if(force_outside)

@@ -20,7 +20,6 @@
 		return
 
 	if(controller.hidden_mode)
-		// В приватном режиме сообщение получают только участники
 		if(A)
 			A.send_private_message(text)
 
@@ -28,9 +27,6 @@
 			B.send_private_message(text)
 
 		return
-
-	// Обычный режим — рассылаем через visible каждому актёру
-	// visible_message сам разошлёт тем, кто их видит
 
 	if(A)
 		A.send_visible_message(text)

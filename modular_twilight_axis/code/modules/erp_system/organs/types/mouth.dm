@@ -20,7 +20,7 @@
 	if(!added)
 		return 0
 
-	var/mob/living/carbon/human/H = host
+	var/mob/living/carbon/human/H = get_owner()
 	if(!istype(H))
 		return added
 
@@ -46,13 +46,14 @@
 	if(!R || R.total_volume <= 0)
 		return FALSE
 
-	var/mob/living/carbon/human/H = host
+	var/mob/living/carbon/human/H = get_owner()
 	if(istype(H))
 		R.trans_to(H.reagents, R.total_volume)
 
-	if(!has_liquid())
+	if(istype(H) && !has_liquid())
 		H.remove_status_effect(/datum/status_effect/mouth_full)
 
+	visible_message(span_notice("[H] сглатывает."), span_notice("Я проглатываю семя во рту."))
 	return TRUE
 
 /datum/erp_sex_organ/mouth/proc/spit(amount = 5)
@@ -68,11 +69,11 @@
 	drop_to_ground(R)
 	qdel(R)
 
-	var/mob/living/carbon/human/H = host
-	if(istype(H))
-		if(!has_liquid())
-			H.remove_status_effect(/datum/status_effect/mouth_full)
+	var/mob/living/carbon/human/H = get_owner()
+	if(istype(H) && !has_liquid())
+		H.remove_status_effect(/datum/status_effect/mouth_full)
 
+	visible_message(span_notice("[H] сплевывает."), span_notice("Я сплевываю семя из рта."))
 	return TRUE
 
 /obj/item/bodypart/head/Initialize()

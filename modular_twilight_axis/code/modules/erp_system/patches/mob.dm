@@ -20,7 +20,7 @@
 
 /mob/living/proc/get_erp_organ(type)
 	for(var/datum/erp_sex_organ/O in get_erp_organs())
-		if(O.type == type)
+		if(O.erp_organ_type == type)
 			return O
 	return null
 

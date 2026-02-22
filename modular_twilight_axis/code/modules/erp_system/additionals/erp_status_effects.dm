@@ -2,6 +2,7 @@
 	id = "mouth_full"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/mouth_full
+	duration = -1
 
 /atom/movable/screen/alert/status_effect/mouth_full
 	name = "Full Mouth"

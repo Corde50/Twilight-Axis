@@ -55,7 +55,7 @@
 	if(msg)
 		var/list/fs = controller.get_scene_force_speed_avg(active)
 		var/avg_force = fs ? (fs["force"] || SEX_FORCE_MID) : SEX_FORCE_MID
-		var/stam_cost = 0.5 * avg_force
+		var/stam_cost = 2 * avg_force
 		best?.actor_active?.stamina_add(-stam_cost)
 
 		controller.play_tick_effects(active, best, dt)

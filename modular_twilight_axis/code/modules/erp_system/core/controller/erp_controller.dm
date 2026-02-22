@@ -713,6 +713,22 @@
 
 	return null
 
+/datum/erp_controller/proc/has_active_actions()
+	if(!links || !links.len)
+		return FALSE
+
+	for(var/datum/erp_sex_link/L in links)
+		if(!L || QDELETED(L))
+			continue
+		if(!L.is_valid())
+			continue
+		// если у тебя есть state, можно ужесточить:
+		if(L.state && L.state != LINK_STATE_ACTIVE)
+			continue
+		return TRUE
+
+	return FALSE
+
 /// Returns owner effect mob.
 /datum/erp_controller/proc/_get_owner_effect_mob()
 	return owner?.get_effect_mob()

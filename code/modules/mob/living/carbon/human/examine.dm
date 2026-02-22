@@ -189,16 +189,16 @@
 		var/can_see_hidden = observer_privilege || close_enough || (user == src)
 		if(erpC)
 			var/mob/living/partner_mob = erpC._get_partner_effect_mob()
-			if(partner_mob && partner_mob != src)
+			if(partner_mob && partner_mob != src && erpC.has_active_actions())
 				if(erp_hidden)
 					if(can_see_hidden)
-						. += span_warning("[m1] рядом с [partner_mob].")
+						. += span_warning("[m1] сплетается с [partner_mob].")
 				else
 					if(user != src && isliving(user))
 						var/mob/living/L = user
-						. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] рядом с [partner_mob].") : span_warning("[m1] не один.")
+						. += (L.STAPER >= 8 && L.STAINT >= 5) ? span_aiprivradio("[m1] сплетается с [partner_mob].") : span_warning("[m1] сплетается с кем-то...")
 					else
-						. += span_aiprivradio("[m1] рядом с [partner_mob].")
+						. += span_aiprivradio("[m1] сплетается с [partner_mob].")
 
 		if(!erp_hidden || can_see_hidden)
 			var/datum/status_effect/erp_coating/groin/G = null
