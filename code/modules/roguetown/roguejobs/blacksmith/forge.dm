@@ -14,7 +14,6 @@
 	var/heat_time = 20 SECONDS
 
 /obj/machinery/light/rogue/forge/attackby(obj/item/W, mob/living/user, params)
-	// --- СУЩЕСТВУЮЩИЙ КОД ДЛЯ ЩИПЦОВ ---
 	if(istype(W, /obj/item/rogueweapon/tongs) && on)
 		var/obj/item/rogueweapon/tongs/T = W
 		if(T.hingot)
