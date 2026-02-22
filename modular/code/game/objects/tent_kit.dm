@@ -36,9 +36,9 @@
 		tent_doors += door
 
 /obj/item/tent_kit/Destroy()
-	for(var/obj/wall in tent_walls)
+	for(var/obj/structure/tent_wall/wall in tent_walls)
 		if(wall) qdel(wall)
-	for(var/obj/door in tent_doors)
+	for(var/obj/structure/roguetent/door in tent_doors)
 		if(door) qdel(door)
 	tent_walls.Cut()
 	tent_doors.Cut()
@@ -84,7 +84,7 @@
 			to_chat(user, span_warning("There isn't enough clear ground space here!"))
 			return FALSE
 
-		for(var/obj/O in check_turf)
+		for(var/obj/O in check_turf.contents)
 			if(O.density)
 				to_chat(user, span_warning("There are objects blocking the tent area!"))
 				return FALSE
