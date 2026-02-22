@@ -312,13 +312,16 @@
 
 /datum/status_effect/debuff/erp_overload
 	id = "erp_overload"
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REFRESH
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/erp_overload
-	duration = 100
-
+	duration = ERP_OVERLOAD_DECAY_INTERVAL
 	var/stacks = 0
 
 /datum/status_effect/debuff/erp_overload/proc/set_stacks(new_stacks)
+	if(owner && islist(effectedstats))
+		for(var/S in effectedstats)
+			owner.change_stat(S, -(effectedstats[S]))
+
 	stacks = clamp(new_stacks, 0, ERP_OVERLOAD_MAX_OP)
 	var/con_bonus = CEILING(stacks / 2, 1)
 	effectedstats = list(
@@ -327,6 +330,9 @@
 		STATKEY_ACC = stacks,
 		STATKEY_CON = -con_bonus
 	)
+	if(owner)
+		for(var/S in effectedstats)
+			owner.change_stat(S, effectedstats[S])
 
 /atom/movable/screen/alert/status_effect/debuff/erp_overload
 	name = "Overstimulated"

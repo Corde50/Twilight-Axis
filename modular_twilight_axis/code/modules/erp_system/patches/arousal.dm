@@ -210,11 +210,8 @@
 		H.remove_status_effect(/datum/status_effect/debuff/erp_overload)
 		return
 
-	var/datum/status_effect/debuff/erp_overload/E = H.has_status_effect(/datum/status_effect/debuff/erp_overload)
-	if(!E)
-		E = H.apply_status_effect(/datum/status_effect/debuff/erp_overload)
+	var/datum/status_effect/debuff/erp_overload/E = H.apply_status_effect(/datum/status_effect/debuff/erp_overload)
 	if(E)
-		E.duration = 100
 		E.set_stacks(overload_points)
 
 /datum/component/arousal/proc/clear_overload_points(reason = null)
@@ -224,12 +221,23 @@
 
 /datum/component/arousal/proc/handle_overload_decay()
 	if(overload_points <= 0)
+		last_overload_gain_time = 0
 		return
+
 	if(!last_overload_gain_time)
 		last_overload_gain_time = world.time
 		return
-	if(world.time >= last_overload_gain_time + ERP_OVERLOAD_DECAY_INTERVAL)
-		clear_overload_points("timer")
+
+	if(world.time < last_overload_gain_time + ERP_OVERLOAD_DECAY_INTERVAL)
+		return
+
+	var/steps = FLOOR((world.time - last_overload_gain_time) / ERP_OVERLOAD_DECAY_INTERVAL, 1)
+	if(steps <= 0)
+		return
+
+	last_overload_gain_time += steps * ERP_OVERLOAD_DECAY_INTERVAL
+	overload_points = max(0, overload_points - steps)
+	update_overload_debuff()
 
 /datum/component/arousal/proc/adjust_satisfaction(delta)
 	satisfaction_points = clamp(satisfaction_points + delta, 0.0, ERP_SP_MAX)
@@ -330,8 +338,8 @@
 /datum/component/arousal/process(dt)
 	seed_satisfaction_if_needed()
 	handle_satisfaction_decay()
+	handle_overload_sleep_clear()
 	handle_overload_decay()
-	handle_overload_sleep_decay()
 	handle_charge(dt * 1)
 	handle_lovefiend_idle(dt)
 
@@ -663,27 +671,22 @@
 
 #define ERP_OVERLOAD_SLEEP_DECAY_INTERVAL (30 SECONDS)
 
-/datum/component/arousal/proc/handle_overload_sleep_decay()
+/datum/component/arousal/proc/handle_overload_sleep_clear()
 	if(overload_points <= 0)
-		return
-
-	var/mob/living/carbon/human/H = parent
-	if(!istype(H) || !H.IsSleeping())
 		last_overload_sleep_decay_time = 0
 		return
 
-	if(!last_overload_sleep_decay_time)
-		last_overload_sleep_decay_time = world.time
+	var/mob/living/carbon/human/H = parent
+	if(!istype(H))
+		last_overload_sleep_decay_time = 0
 		return
 
-	if(world.time < last_overload_sleep_decay_time + ERP_OVERLOAD_SLEEP_DECAY_INTERVAL)
+	if(!H.IsSleeping())
+		last_overload_sleep_decay_time = 0
 		return
 
-	last_overload_sleep_decay_time = world.time
-
-	overload_points = max(0, overload_points - 1)
-	last_overload_gain_time = world.time
-	update_overload_debuff()
+	clear_overload_points("sleep")
+	last_overload_sleep_decay_time = 0
 
 #undef ERP_OVERLOAD_SLEEP_DECAY_INTERVAL
 #undef NYMPHO_AROUSAL_SOFT_CAP
