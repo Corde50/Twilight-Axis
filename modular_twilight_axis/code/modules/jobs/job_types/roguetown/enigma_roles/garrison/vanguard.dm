@@ -204,7 +204,7 @@
 
 /datum/advclass/vanguard/standard_bearer
 	name = "Vanguard Standard Bearer"
-	tutorial = "Вы показали хорошую выживаемость в боях и были удостоины чести нести знамя, дабы вдохновлять ваших товарищей."
+	tutorial = "Вы хорошо показали себя в многочисленных боях и были удостоены чести нести знамя, дабы вдохновлять ваших товарищей."
 	outfit = /datum/outfit/job/roguetown/vanguard/standard_bearer
 
 	category_tags = list(CTAG_VANGUARD)
@@ -239,7 +239,12 @@
 	beltr = /obj/item/rogueweapon/sword/iron
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	r_hand = /obj/item/rogueweapon/spear/keep_standard //  Надо сделать так, чтобы у авангарда было особое знамя, дающее бонусы ТОЛЬКО авангарду, игнорящее другую стражу.
-
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/vanguard_enigma = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
 
 /datum/outfit/job/roguetown/vanguard/standard_bearer/pre_equip(mob/living/carbon/human/H)
 	..()
