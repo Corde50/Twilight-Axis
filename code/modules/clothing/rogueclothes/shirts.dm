@@ -70,6 +70,9 @@
 /obj/item/clothing/suit/roguetown/shirt/undershirt/red
 	color = "#851a16"
 
+/obj/item/clothing/suit/roguetown/shirt/undershirt/scarlet
+	color = CLOTHING_SCARLET
+
 /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	color = CLOTHING_AZURE
 
