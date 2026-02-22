@@ -480,9 +480,6 @@
 		spread_chain_orgasm(H)
 		handle_climax(climax_type, H, partner, null)
 		award_satisfaction_on_climax(H, partner)
-		if(satisfaction_points >= ERP_OVERLOAD_SP_TRIGGER)
-			try_gain_overload_point()
-
 		after_ejaculation(null, H, partner)
 		return
 
