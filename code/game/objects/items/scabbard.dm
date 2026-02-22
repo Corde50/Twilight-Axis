@@ -89,9 +89,9 @@
 					"sturn" = 0,
 					"wturn" = 0,
 					"eturn" = 0,
-					"nflip" = 1,
+					"nflip" = 4,
 					"sflip" = 0,
-					"wflip" = 1,
+					"wflip" = 8,
 					"eflip" = 0
 				)
 			if("onback")
