@@ -1,5 +1,0 @@
-author: "WeNeedMorePhoron"
-delete-after: True
-changes:
-  - rscadd: "Added a backup refresh button to ERP panel"
-  - rscadd: "Redid Magicians Associate description"

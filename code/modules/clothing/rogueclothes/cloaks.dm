@@ -494,9 +494,6 @@
 	icon_state = "stabard"
 	boobed = TRUE
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
-	sleeved = 'icons/roguetown/clothing/onmob/detailed/tabards.dmi'
-	sleevetype = "shirt"
-	nodismemsleeves = TRUE
 
 /obj/item/clothing/cloak/tabard/stabard/guard
 	name = "guard tabard"

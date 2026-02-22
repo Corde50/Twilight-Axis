@@ -1,8 +1,0 @@
-author: "Ollanius"
-delete-after: True
-changes:
-  - balance: "The Axegauntlet now has increased durability, but reduced sharpness."
-  - rscadd: "Adds the Bronze Gorgette, a bevor-analogue."
-  - bugfix: "Fixes missing icons for snouted masks in the inventory."
-  - bugfix: "Fixes greaves not totally covering the feet."
-  - bugfix: "Fixes a Thespian-Errant's weapon choice not giving the correct weapon."
