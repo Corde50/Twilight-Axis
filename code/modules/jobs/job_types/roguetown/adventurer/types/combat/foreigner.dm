@@ -542,7 +542,7 @@
 				beltl = /obj/item/rogueweapon/scabbard/sword/strap
 			if("Another Khopesh & Skills In Dual-Wielding")
 				ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)
-				l_hand = /obj/item/rogueweapon/sword/short/gladius
+				l_hand = /obj/item/rogueweapon/sword/sabre/bronzekhopesh
 				beltl = /obj/item/rogueweapon/scabbard/sword/strap
 			if("Another Axe & Skills In Dual-Wielding")
 				ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)
@@ -583,7 +583,7 @@
 			if("Bulwark - Fully-Armored & Plate Training")
 				ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 				head = /obj/item/clothing/head/roguetown/helmet/bronze
-				neck = /obj/item/clothing/neck/roguetown/gorget/bronze
+				neck = /obj/item/clothing/neck/roguetown/bevor/bronze
 				wrists = /obj/item/clothing/wrists/roguetown/bracers/bronze
 				armor = /obj/item/clothing/suit/roguetown/armor/plate/full/bronze/alt
 				pants = /obj/item/clothing/under/roguetown/loincloth/brown
@@ -785,8 +785,8 @@
 	it triumphs over the katar when it comes to thawrting blows and cleaving skulls. The wooden handle used to connect its axhead to the gauntlet is fragile, however; \
 	all it takes is a precise strike to neuter such a weapon."
 	wdefense = 5 //Much higher than usual for most unarmed weapons..
-	max_integrity = 55 //..but far more fragile.
-	max_blade_int = 300
+	max_integrity = 150 //..and tougher, too.
+	max_blade_int = 150 // Reduced sharpness, however, as a result. Such a weapon is built for gladitorial combat, not the rigors of the wilderness. Keep it sharpened
 	possible_item_intents = list(/datum/intent/axe/chop/arbelos, /datum/intent/axe/cut/arbelos, /datum/intent/katar/thrust/arbelos, /datum/intent/sword/peel)
 	thrown_bclass = BCLASS_CHOP
 
@@ -842,6 +842,16 @@
 /datum/intent/rend/apophis
 	damfactor = 2.2
 	intent_intdamage_factor = 0.2
+
+/obj/item/clothing/neck/roguetown/bevor/bronze
+	name = "bronze gorgette"
+	desc = "A jutting slab of bronze, traditionally mounted atop a panoplic assembly to veil the neck from precise strikes. </br>To tip the chin up while grounded is an ancient gesture; one which willingly beckons for the 'gift of mercy'."
+	icon_state = "bbevor"
+	smeltresult = /obj/item/ingot/bronze
+	armor = ARMOR_PLATE_BRONZE
+	max_integrity = ARMOR_INT_SIDE_BRONZE
+	prevent_crits = PREVENT_CRITS_ALL
+	anvilrepair = /datum/skill/craft/armorsmithing
 
 /obj/item/clothing/suit/roguetown/armor/plate/bronze/light
 	name = "bronze cardiophylax"
@@ -913,6 +923,16 @@
 	icon_state = "bronzemask_legacy"
 	item_state = "bronzemask_legacy"
 	desc = "Glimmering bronze, meticuliusly shaped to mimic the guise of another. One of civilization's oldest superstitions is the belief that donning such masks would impart a sliver of the mimicked facebearer's power unto its wearer."
+
+/obj/item/clothing/mask/rogue/facemask/bronze/anthro
+	name = "bronze mask"
+	icon_state = "bronzemask_snout"
+	item_state = "bronzemask_snout"
+
+/obj/item/clothing/mask/rogue/facemask/bronze/classic/anthro
+	name = "bronze death mask"
+	icon_state = "bronzemask_legacy_snout"
+	item_state = "bronzemask_legacy_snout"
 
 /obj/item/rogueweapon/shield/bronze/great
 	name = "hoplon greatshield"

@@ -1,0 +1,5 @@
+author: "SpartanBobby"
+delete-after: True
+changes:
+  - rscadd: "Added Border Reiver NPCs for event runner"
+  - rscadd: "Added Zizo Cultist NPCs for event runners, (they are not good at combat and exist purely to be set piece enemies)"
