@@ -37,6 +37,7 @@
 
 		if(link_is_sucking(L))
 			any_sucking = TRUE
+			E["do_thrust"] = FALSE
 
 		var/list/tags = L.action?.action_tags
 		if(!E["sound_slap"] && islist(tags) && ("spanking" in tags))
