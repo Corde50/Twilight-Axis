@@ -202,7 +202,7 @@
 			return TRUE
 
 /obj/structure/onager/attackby(obj/item/I, mob/living/carbon/user)
-	if(I.tool_behaviour == TOOL_SAW) 
+	if(istype(I, /obj/item/rogueweapon/hammer))
 		if(obj_integrity < max_integrity)
 			I.play_tool_sound(src)
 			user.visible_message(span_notice("[user] repairs [src]."), span_notice("You repair [src]."))
