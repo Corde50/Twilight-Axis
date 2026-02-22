@@ -239,7 +239,7 @@
 		/obj/item/recipe_book/survival = 1,
 		)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/airblade)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/arcynestrike)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_WITCH, devotion_limit = CLERIC_REQ_1)
 	if(H.mind)
