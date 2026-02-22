@@ -78,7 +78,7 @@
 				if("The Inquisition")
 					rolestonotify = list("Inquisitor", "Orthodoxist", "Absolver")
 				if("Garrison")
-					rolestonotify = list("Man at Arms", "Sergeant", "Sergeant Royal Guard", "Watchman")
+					rolestonotify = list("Man at Arms", "Sergeant", "Royal Guard Sergeant", "Watchman")
 				if("City Watch")
 					rolestonotify = list("Town Sheriff", "Town Watch")
 				if("Manor", "keep basement")

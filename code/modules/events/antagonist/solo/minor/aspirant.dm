@@ -17,7 +17,7 @@
 		"Knight Captain",
 		"Marshal",
 		"Sergeant",
-		"Sergeant Royal Guard",
+		"Royal Guard Sergeant",
 		"Royal Guard",
 		"Steward",
 		"Court Magician"

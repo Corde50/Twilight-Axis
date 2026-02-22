@@ -238,7 +238,7 @@
 /datum/outfit/job/roguetown/vanguard/standard_bearer
 	beltr = /obj/item/rogueweapon/sword/iron
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
-	r_hand = /obj/item/rogueweapon/spear/keep_standard //  Надо сделать так, чтобы у авангарда было особое знамя, дающее бонусы ТОЛЬКО авангарду, игнорящее другую стражу.
+	r_hand = /obj/item/rogueweapon/spear/keep_standard //  Надо знамени авангарда добавить какие то бафы для толпы, чтобы подчеркнуть их стиль боя "Толпой гасят даже льва".
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger = 1,
 		/obj/item/rope/chain = 1,

@@ -14,7 +14,7 @@
 		"Grand Duchess",
 		"Consort",
 		"Sergeant",
-		"Sergeant Royal Guard",
+		"Royal Guard Sergeant",
 		"Royal Guard",
 		"Town Sheriff",
 		"Town Guard",
