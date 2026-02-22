@@ -790,6 +790,7 @@
 		H.update_hair()
 		H.update_body()
 		H.update_body_parts()
+		erp_mark_actor_organs_dirty(H)
 
 /proc/mirror_pick_accessory_colors(mob/living/carbon/human/H, datum/sprite_accessory/A, current_colors)
 	if(!H || !A)
@@ -827,3 +828,22 @@
 					colors[i] = sanitize_hexcolor(c, 6, TRUE)
 
 	return color_list_to_string(colors)
+
+/proc/erp_mark_actor_organs_dirty(mob/living/M)
+	if(!M)
+		return
+
+	var/datum/erp_controller/C = SSerp.get_controller_for(M)
+	if(C)
+		var/datum/erp_actor/A = C.get_actor_by_mob(M)
+		if(A)
+			A.mark_organs_dirty()
+		return
+
+	for(var/datum/erp_controller/C2 in SSerp.controllers)
+		if(!C2 || QDELETED(C2))
+			continue
+		var/datum/erp_actor/A2 = C2.get_actor_by_mob(M)
+		if(A2)
+			A2.mark_organs_dirty()
+			return
