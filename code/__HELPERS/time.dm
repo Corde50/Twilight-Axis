@@ -27,7 +27,7 @@ GLOBAL_LIST_INIT(time_change_tips, world.file2list("strings/rt/timechangetips.tx
 GLOBAL_VAR_INIT(tod, FALSE)
 GLOBAL_VAR_INIT(forecast, FALSE)
 GLOBAL_VAR_INIT(todoverride, FALSE)
-GLOBAL_VAR_INIT(dayspassed, FALSE)
+GLOBAL_VAR_INIT(dayspassed, 0)
 
 GLOBAL_VAR_INIT(date_override_enabled, FALSE)
 GLOBAL_VAR_INIT(date_override_day, 1)
