@@ -147,6 +147,9 @@
 
 	var/datum/erp_knot_link/L = new(user, target, penis_org, receiving_org, unit)
 
+	if(!islupian(user))
+		record_round_statistic(STATS_KNOTTED_NOT_LUPIANS)
+	record_round_statistic(STATS_KNOTTED)
 	active_links += L
 	_add_to_index(L)
 	_register_btm_moved(L.btm)
