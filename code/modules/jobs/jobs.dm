@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(leadership_positions, list( // Used for boldening text primaril
 	"Court Physician",
 	"Marshal",
 	"Sergeant",
-	"Sergeant Royal Guard",
+	"Royal Guard Sergeant",
 	"Town Sheriff",
 	"Overseer",
 	"Bishop",
@@ -120,7 +120,7 @@ GLOBAL_LIST_INIT(retinue_positions, list( //Manorites
 
 GLOBAL_LIST_INIT(garrison_positions, list( //Guards
 	"Sergeant",
-	"Sergeant Royal Guard",	
+	"Royal Guard Sergeant",	
 	"Man at Arms",
 	"Royal Guard",
 	"Warden",

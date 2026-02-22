@@ -17,8 +17,6 @@
 	whitelist_req = TRUE
 	round_contrib_points = 3
 
-
-	outfit = /datum/outfit/job/roguetown/royal_sergeant
 	advclass_cat_rolls = list(CTAG_ROYALSERGEANT = 20)
 
 	give_bank_account = TRUE
@@ -30,10 +28,7 @@
 		/datum/advclass/sergeant/royal_sergeant
 	)
 	same_job_respawn_delay = 30 MINUTES
-
-/datum/outfit/job/roguetown/royal_sergeant
-	job_bitflag = BITFLAG_GARRISON
-
+	
 /datum/job/roguetown/royal_sergeant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
@@ -50,6 +45,7 @@
 
 //All skills/traits are on the loadouts. All are identical. Welcome to the stupid way we have to make sub-classes...
 /datum/outfit/job/roguetown/royal_sergeant
+	job_bitflag = BITFLAG_GARRISON
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	cloak = /obj/item/clothing/cloak/tabard/stabard/guard
 	neck = /obj/item/clothing/neck/roguetown/gorget
