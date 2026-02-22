@@ -128,6 +128,7 @@
 #include "code\modules\surgery\organs\feature_organs\horns.dm"
 #include "code\modules\surgery\organs\feature_organs\tails.dm"
 #include "code\modules\surgery\organs\feature_organs\wings.dm"
+#include "code\game\objects\items\rogueitems\branding.dm"
 #include "code\modules\vampire_neu\vampire.dm"
 #include "code\onclick\click.dm"
 // END_INCLUDE
