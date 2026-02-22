@@ -4,8 +4,8 @@
 	var/obj/item/organ/penis/source_organ
 	var/erect_mode = "auto"
 	var/climax_mode = "outside"
-	active_arousal = 0.9
-	passive_arousal = 0.6
+	active_arousal = 0.6
+	passive_arousal = 0.9
 	active_pain = 0.05
 	passive_pain = 0.15
 
