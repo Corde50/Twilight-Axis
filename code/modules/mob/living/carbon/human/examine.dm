@@ -989,7 +989,7 @@
 
 	if(HAS_TRAIT(src, TRAIT_COMMIE))
 		if(seer)
-			heretic_text += "Matthiosan."
+			heretic_text += "Matthiosian."
 			if(HAS_TRAIT(examiner, TRAIT_COMMIE))
 				heretic_text += " To share with. To take with. For all, and us."
 		else if(HAS_TRAIT(examiner, TRAIT_COMMIE))

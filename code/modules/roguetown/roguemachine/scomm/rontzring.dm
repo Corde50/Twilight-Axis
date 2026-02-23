@@ -1,4 +1,4 @@
-// MATTHIAN SCOMCOIN
+// MATTHIOSIAN SCOMCOIN
 
 /obj/item/mattcoin
 	name = "rontz ring"
@@ -63,7 +63,7 @@
 	playsound(loc, 'sound/misc/coindispense.ogg', 100, FALSE, -1)
 	listening = !listening
 	speaking = !speaking
-	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the Matthian-SCOMstone"))
+	to_chat(user, span_info("I [speaking ? "unmute" : "mute"] the Matthiosian-SCOMstone"))
 	update_icon()
 
 /obj/item/mattcoin/Destroy()
