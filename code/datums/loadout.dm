@@ -215,6 +215,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/puritan
 
+/datum/loadout_item/gdhat
+	name = "Gravedigger's Hat (-5 TRI)"
+	category = list("Головные уборы", "Триумфы")
+	path = /obj/item/clothing/head/roguetown/duelhat/pretzel
+	triumph_cost = 5
+
 /datum/loadout_item/folded_hat
 	name = "Folded Hat"
 	category = "Головные уборы"
@@ -1304,7 +1310,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/bigfoot_axe
 	donatitem = TRUE
 
-
 /datum/loadout_item/donator_zydrasiconocrown
 	name = "Donator Kit - Iconoclast Crown - Required: Barred Helmet(Only men, no small races)"
 	path = /obj/item/enchantingkit/zydrasiconocrown
@@ -1321,6 +1326,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Donator Kit - Darkwood's Embrace"
 	path = /obj/item/clothing/suit/roguetown/armor/longcoat/eiren
 	category = list("Одежда", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/gdhatsirdon
+	name = "Donator Kit - Gravedigger's Hat"
+	category = list("Головные уборы", "Донат")
+	path = /obj/item/clothing/head/roguetown/duelhat/pretzel
 	donatitem = TRUE
 
 /datum/loadout_item/donator_zydrasiconosash
