@@ -635,3 +635,4 @@
 #undef TAB_LOG
 #undef TAB_STATISTICS
 #undef TAB_PAYDAY
+#undef TAB_INVESTMENTS
