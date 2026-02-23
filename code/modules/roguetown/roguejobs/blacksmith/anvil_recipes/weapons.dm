@@ -678,6 +678,12 @@
 	req_blade = /obj/item/blade/steel_sword
 	created_item = /obj/item/rogueweapon/sword/short/messer
 
+/datum/anvil_recipe/weapons/steel/messeralt
+	name = "Hunting Sword, Steel"
+	req_bar = /obj/item/ingot/steel
+	req_blade = /obj/item/blade/steel_sword
+	created_item = /obj/item/rogueweapon/sword/short/messer/alt
+
 /datum/anvil_recipe/weapons/steel/sword
 	name = "Arming Sword, Steel"
 	req_bar = /obj/item/ingot/steel

@@ -238,7 +238,7 @@ Turf and target are separate in case you want to teleport some distance from a t
 			continue
 		if(M.client && M.client.holder && M.client.holder.fakekey) //stealthmins
 			continue
-		if(skip_antighost && (M.client.prefs.ghost_toggles & TOGGLE_ANTIGHOST))
+		if(skip_mindless && skip_antighost && (M.client?.prefs.ghost_toggles & TOGGLE_ANTIGHOST))
 			continue
 		var/name = avoid_assoc_duplicate_keys(M.real_name, namecounts)
 

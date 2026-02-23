@@ -1276,17 +1276,17 @@
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/blacksteel/modern
 	craftdiff = 5
 
-/datum/anvil_recipe/armor/blacksteel/halfplatechest
-	name = "Blacksteel Half Plate Armor (+2 Blacksteel, +1 Cured Hide)"
+/datum/anvil_recipe/armor/blacksteel/modern/halfplatechest
+	name = "Half-Plate, Blacksteel (+2 Blacksteel, +1 Cured Hide)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/natural/hide/cured)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/blacksteel
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel/modern
 	craftdiff = 5
 
 /datum/anvil_recipe/armor/blacksteel/modern/plategloves
 	name = "Plate Gauntlets, Blacksteel"
 	req_bar = /obj/item/ingot/blacksteel
-	created_item = /obj/item/clothing/gloves/roguetown/blacksteel/modern/plategloves
+	created_item = /obj/item/clothing/gloves/roguetown/plate/blacksteel/modern
 
 /datum/anvil_recipe/armor/blacksteel/modern/platelegs
 	name = "Plate Chausses, Blacksteel (+1 Blacksteel)"
@@ -1298,12 +1298,12 @@
 	name = "Armet, Blacksteel (+1 Blacksteel)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel)
-	created_item = /obj/item/clothing/head/roguetown/helmet/blacksteel/modern/armet
+	created_item = /obj/item/clothing/head/roguetown/helmet/blacksteel/modern
 
 /datum/anvil_recipe/armor/blacksteel/modern/plateboots
 	name = "Plate Boots, Blacksteel"
 	req_bar = /obj/item/ingot/blacksteel
-	created_item = /obj/item/clothing/shoes/roguetown/boots/blacksteel/modern/plateboots
+	created_item = /obj/item/clothing/shoes/roguetown/boots/armor/blacksteel/modern
 
 // BLACKSTEEL, ANCIENT
 
@@ -1312,6 +1312,12 @@
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel)
 	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/blacksteel
+
+/datum/anvil_recipe/armor/blacksteel/halfplatechest
+	name = "Ancient Blacksteel Half Plate Armor (+2 Blacksteel, +1 Cured Hide)"
+	req_bar = /obj/item/ingot/blacksteel
+	additional_items = list(/obj/item/ingot/blacksteel, /obj/item/ingot/blacksteel, /obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/blacksteel
 
 /datum/anvil_recipe/armor/blacksteel/platelegs
 	name = "Ancient Blacksteel Plate Chausses (+1 Blacksteel)"
@@ -1323,17 +1329,17 @@
 	name = "Ancient Blacksteel Bucket Helmet (+1 Blacksteel)"
 	req_bar = /obj/item/ingot/blacksteel
 	additional_items = list(/obj/item/ingot/blacksteel)
-	created_item = /obj/item/clothing/head/roguetown/helmet/blacksteel/bucket
+	created_item = /obj/item/clothing/head/roguetown/helmet/blacksteel
 
 /datum/anvil_recipe/armor/blacksteel/plategloves
 	name = "Ancient Blacksteel Plate Gauntlets"
 	req_bar = /obj/item/ingot/blacksteel
-	created_item = /obj/item/clothing/gloves/roguetown/blacksteel/plategloves
+	created_item = /obj/item/clothing/gloves/roguetown/plate/blacksteel
 
 /datum/anvil_recipe/armor/blacksteel/plateboots
 	name = "Ancient Blacksteel Plate Boots"
 	req_bar = /obj/item/ingot/blacksteel
-	created_item = /obj/item/clothing/shoes/roguetown/boots/blacksteel/plateboots
+	created_item = /obj/item/clothing/shoes/roguetown/boots/armor/blacksteel
 
 // GOLD
 
