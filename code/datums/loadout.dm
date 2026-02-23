@@ -215,6 +215,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = "Головные уборы"
 	path = /obj/item/clothing/head/roguetown/puritan
 
+/datum/loadout_item/gdhat
+	name = "Gravedigger's Hat (-5 TRI)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/duelhat/pretzel
+	triumph_cost = 5
+
 /datum/loadout_item/folded_hat
 	name = "Folded Hat"
 	category = "Головные уборы"
