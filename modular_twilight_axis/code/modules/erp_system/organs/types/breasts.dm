@@ -7,8 +7,8 @@
 /datum/erp_sex_organ/breasts
 	erp_organ_type = SEX_ORGAN_BREASTS
 	var/breast_size = 1
-	active_arousal = 0.6
-	passive_arousal = 0.8
+	active_arousal = 0.9
+	passive_arousal = 1.1
 	active_pain = 0.2
 	passive_pain = 0.4
 

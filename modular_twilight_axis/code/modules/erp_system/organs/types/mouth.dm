@@ -2,8 +2,8 @@
 
 /datum/erp_sex_organ/mouth
 	erp_organ_type = SEX_ORGAN_MOUTH
-	active_arousal = 0.6
-	passive_arousal = 0.9
+	active_arousal = 0.2
+	passive_arousal = 0.5
 	active_pain = 0.15
 	passive_pain = 0.5
 
