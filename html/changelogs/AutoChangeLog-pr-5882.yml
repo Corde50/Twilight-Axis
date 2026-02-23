@@ -1,9 +1,0 @@
-author: "eirenxiv"
-delete-after: True
-changes:
-  - rscadd: "a static consort slot"
-  - balance: "adjusted consort PQ to 10"
-  - balance: "adjusted consort skills and abilities"
-  - balance: "adjusted consort loadout for both fem and masc"
-  - balance: "buffed consort dress (for now)"
-  - balance: "reduced suitor slots to 2 max"
