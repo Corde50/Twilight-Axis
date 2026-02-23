@@ -2995,4 +2995,5 @@
 #include "virtues\thief.dm"
 #include "virtues\utility.dm"
 #include "modular_twilight_axis\modules.dme"
+#include "modular_twilight_axis\code\modules\spells\pantheon\divine\dendor.dm"
 // END_INCLUDE
