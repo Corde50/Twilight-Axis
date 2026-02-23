@@ -217,7 +217,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item/gdhat
 	name = "Gravedigger's Hat (-5 TRI)"
-	category = "Головные уборы"
+	category = list("Головные уборы", "Триумфы")
 	path = /obj/item/clothing/head/roguetown/duelhat/pretzel
 	triumph_cost = 5
 
