@@ -19,6 +19,8 @@
 		"do_knot_action" = FALSE,
 		"has_knotted_penis" = FALSE,
 		"can_knot_now" = FALSE,
+		"base_speed" = SEX_SPEED_MID,
+		"base_force" = SEX_FORCE_MID,
 	)
 
 	var/datum/erp_controller/C = ui.controller
@@ -27,24 +29,17 @@
 
 	var/datum/erp_sex_organ/penis/P = C.get_owner_penis_organ()
 	D["climax_mode"] = P ? (P.climax_mode || "outside") : "outside"
-	D["climax_modes"] = list(
-		list("id"="outside","name"="НАРУЖУ"),
-		list("id"="inside","name"="ВНУТРЬ"),
-	)
-
+	D["climax_modes"] = list(list("id"="outside","name"="НАРУЖУ"),list("id"="inside","name"="ВНУТРЬ"))
 	D["actor_nodes"] = C.get_actor_type_filters_ui() || list()
 	D["partner_nodes"] = C.get_partner_type_filters_ui() || list()
 	D["actions"] = C.get_action_list_ui(selected_actor_type, selected_partner_type) || list()
 	D["active_links"] = C.get_active_links_ui(ui.actor) || list()
-
-	// показываем панель, если пенис есть и по контексту надо
+	D["base_speed"] = C.default_link_speed
+	D["base_force"] = C.default_link_force
 	D["show_penis_panel"] = C.should_show_penis_panel(ui.actor, selected_actor_type) ? TRUE : FALSE
-
-	// knot UI только если на пенисе есть узел
 	if(P && P.have_knot)
 		D["show_knot_toggle"] = TRUE
 		D["do_knot_action"] = C.do_knot_action ? TRUE : FALSE
-
 		var/list/kui = C.get_penis_knot_ui_state(ui.actor)
 		if(islist(kui))
 			D["has_knotted_penis"] = kui["has_knotted_penis"] ? TRUE : FALSE
@@ -102,5 +97,11 @@
 
 		if("toggle_knot")
 			return C.set_do_knot_action(ui.actor, params["value"])
+
+		if("set_base_speed")
+			return C.set_default_link_speed(ui.actor, params["value"])
+
+		if("set_base_force")
+			return C.set_default_link_force(ui.actor, params["value"])
 
 	return FALSE

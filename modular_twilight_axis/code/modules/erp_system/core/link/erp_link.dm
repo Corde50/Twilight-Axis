@@ -39,6 +39,10 @@
 	init_organ.links += src
 	target_organ.links += src
 
+	if(session)
+		force = session.default_link_force
+		speed = session.default_link_speed
+
 	last_tick = world.time
 	. = ..()
 

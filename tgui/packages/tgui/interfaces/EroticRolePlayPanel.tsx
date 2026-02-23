@@ -58,7 +58,8 @@ type ActionsTabPayload = {
 
   actions?: UiActionEntry[];
   active_links?: UiActiveLinkEntry[];
-
+  base_speed?: number;
+  base_force?: number;
   show_knot_toggle?: boolean;
   show_penis_panel?: boolean;
   do_knot_action?: boolean;
@@ -169,6 +170,144 @@ export type SexSessionData = {
       selected?: EditorSelectedPayload | null;
     };
   };
+};
+
+const BaseTuningPanel: React.FC<{
+  baseSpeed: number;
+  baseForce: number;
+  onSetSpeed: (v: number) => void;
+  onSetForce: (v: number) => void;
+}> = ({ baseSpeed, baseForce, onSetSpeed, onSetForce }) => {
+  const clamp14 = (v: any) => {
+    const n = Number(v);
+    if (!Number.isFinite(n)) return 2;
+    return Math.max(1, Math.min(4, Math.round(n)));
+  };
+
+  const sp = clamp14(baseSpeed);
+  const fo = clamp14(baseForce);
+  const spIdx = sp - 1;
+  const foIdx = fo - 1;
+
+  return (
+    <Section title="Базовые настройки новых действий" style={{ paddingTop: 6, paddingBottom: 6 }}>
+      <Stack align="center" justify="space-between">
+        {/* LEFT SIDE: label -> control */}
+        <Stack.Item grow>
+          <Stack align="center">
+            <Stack.Item>
+              <Box
+                color="label"
+                style={{ fontSize: 10, textTransform: 'uppercase', whiteSpace: 'nowrap' }}
+              >
+                Скорость
+              </Box>
+            </Stack.Item>
+
+            <Stack.Item ml={1}>
+              <Stack align="center">
+                <Stack.Item>
+                  <Button
+                    inline
+                    compact
+                    onClick={() => onSetSpeed(sp - 1)}
+                    style={{ padding: '1px 6px' }}
+                  >
+                    {'<'}
+                  </Button>
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Box
+                    as="span"
+                    bold
+                    style={{
+                      color: speedColors?.[spIdx],
+                      display: 'inline-block',
+                      minWidth: 92,
+                      textAlign: 'center',
+                      fontSize: 11,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {speedNames[spIdx]}
+                  </Box>
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Button
+                    inline
+                    compact
+                    onClick={() => onSetSpeed(sp + 1)}
+                    style={{ padding: '1px 6px' }}
+                  >
+                    {'>'}
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+
+        {/* RIGHT SIDE: control -> label */}
+        <Stack.Item>
+          <Stack align="center" justify="end">
+            <Stack.Item>
+              <Stack align="center">
+                <Stack.Item>
+                  <Button
+                    inline
+                    compact
+                    onClick={() => onSetForce(fo - 1)}
+                    style={{ padding: '1px 6px' }}
+                  >
+                    {'<'}
+                  </Button>
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Box
+                    as="span"
+                    bold
+                    style={{
+                      color: forceColors?.[foIdx],
+                      display: 'inline-block',
+                      minWidth: 82,
+                      textAlign: 'center',
+                      fontSize: 11,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {forceNames[foIdx]}
+                  </Box>
+                </Stack.Item>
+
+                <Stack.Item>
+                  <Button
+                    inline
+                    compact
+                    onClick={() => onSetForce(fo + 1)}
+                    style={{ padding: '1px 6px' }}
+                  >
+                    {'>'}
+                  </Button>
+                </Stack.Item>
+              </Stack>
+            </Stack.Item>
+
+            <Stack.Item ml={1}>
+              <Box
+                color="label"
+                style={{ fontSize: 10, textTransform: 'uppercase', whiteSpace: 'nowrap' }}
+              >
+                Сила
+              </Box>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
 };
 
 const clamp01 = (v: number) => Math.max(0, Math.min(100, v || 0));
@@ -827,6 +966,8 @@ const ActionsTab: React.FC<{
   const selectedPartnerNode = payload?.selected_partner_node ?? null;
   const allActions = payload?.actions ?? [];
   const links = payload?.active_links ?? [];
+  const baseSpeed = Number(payload?.base_speed ?? 2);
+  const baseForce = Number(payload?.base_force ?? 2);
   const [searchText, setSearchText] = useState('');
   const filteredActions = useMemo(() => {
     const q = searchText.trim().toLowerCase();
@@ -904,6 +1045,12 @@ const ActionsTab: React.FC<{
           </Stack.Item>
         </Stack>
       </Section>
+      <BaseTuningPanel
+        baseSpeed={baseSpeed}
+        baseForce={baseForce}
+        onSetSpeed={(v) => act('set_base_speed', { value: v })}
+        onSetForce={(v) => act('set_base_force', { value: v })}
+      />
       <PenisTuningPanel
         enabled={!!penisEnabled}
         showKnotToggle={!!payload?.show_knot_toggle}

@@ -272,6 +272,9 @@
 		return null
 
 	var/is_active = (L.actor_active == src)
+
+	var/datum/erp_actor/partner_actor = is_active ? L.actor_passive : L.actor_active
+	var/partner_mob = partner_actor?.get_mob()
 	if(is_active)
 		var/mode = "outside"
 		if(L.session)
@@ -280,11 +283,11 @@
 				mode = "[P.climax_mode]"
 
 		if(mode == "inside")
-			return list("type" = "inside", "partner" = L.actor_passive, "intimate" = TRUE)
+			return list("type" = "inside", "partner" = partner_mob, "intimate" = TRUE)
 
-		return list("type" = "outside", "partner" = L.actor_passive, "intimate" = FALSE)
+		return list("type" = "outside", "partner" = partner_mob, "intimate" = FALSE)
 
-	return list("type" = "self", "partner" = L.actor_active, "intimate" = FALSE)
+	return list("type" = "self", "partner" = partner_mob, "intimate" = FALSE)
 
 /// Returns a stable ref id for UI payloads.
 /datum/erp_actor/proc/get_ref()

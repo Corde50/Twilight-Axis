@@ -7,6 +7,9 @@
 	var/datum/erp_sex_ui/ui
 	var/datum/erp_actor/active_partner
 
+	var/default_link_speed = SEX_SPEED_MID
+	var/default_link_force = SEX_FORCE_MID
+
 	var/hidden_mode = FALSE
 	var/yield_to_partner = FALSE
 	var/do_until_finished = TRUE
@@ -748,3 +751,19 @@
 /// Performs throttled UI update now.
 /datum/erp_controller/proc/_do_ui_update()
 	ui_d?._do_ui_update()
+
+/datum/erp_controller/proc/set_default_link_speed(mob/user, value)
+	if(!user || user.client != owner?.get_client())
+		return FALSE
+	var/v = clamp(round(text2num("[value]")), 1, 4)
+	default_link_speed = v
+	ui?.request_update()
+	return TRUE
+
+/datum/erp_controller/proc/set_default_link_force(mob/user, value)
+	if(!user || user.client != owner?.get_client())
+		return FALSE
+	var/v = clamp(round(text2num("[value]")), 1, 4)
+	default_link_force = v
+	ui?.request_update()
+	return TRUE

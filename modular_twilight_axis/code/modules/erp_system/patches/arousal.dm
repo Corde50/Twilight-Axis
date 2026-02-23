@@ -711,5 +711,14 @@
 
 	arousal_multiplier = 1.0 + max(0.0, delta)
 
+/datum/component/arousal/proc/resolve_partner_mob(p)
+	if(istype(p, /mob/living/carbon/human))
+		return p
+	if(istype(p, /datum/erp_actor))
+		var/datum/erp_actor/A = p
+		var/mob/M = A.get_mob()
+		return istype(M, /mob/living/carbon/human) ? M : null
+	return null
+
 #undef ERP_OVERLOAD_SLEEP_DECAY_INTERVAL
 #undef NYMPHO_AROUSAL_SOFT_CAP
