@@ -299,7 +299,7 @@
 	req_bar = /obj/item/ingot/bronze
 	req_blade = /obj/item/blade/bronze_plate
 	additional_items = list(/obj/item/ingot/bronze, /obj/item/ingot/bronze, /obj/item/ingot/bronze, /obj/item/natural/hide/cured, /obj/item/natural/fur)
-	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bronze/alt
+	created_item = /obj/item/clothing/suit/roguetown/armor/plate/full/bronze
 	craftdiff = 3
 
 /datum/anvil_recipe/armor/bronze/gorget
@@ -308,6 +308,14 @@
 	req_blade = /obj/item/blade/bronze_plate
 	additional_items = list(/obj/item/natural/hide/cured)
 	created_item = /obj/item/clothing/neck/roguetown/gorget/bronze
+
+/datum/anvil_recipe/armor/bronze/bevor
+	name = "Bevor, Bronze (+1 Cured Leather)"
+	req_bar = /obj/item/ingot/bronze
+	req_blade = /obj/item/blade/bronze_plate
+	additional_items = list(/obj/item/natural/hide/cured)
+	created_item = /obj/item/clothing/neck/roguetown/bevor/bronze
+	craftdiff = 2
 
 /datum/anvil_recipe/armor/bronze/bracers
 	name = "Bracers, Bronze (+1 Cured Leather)"
@@ -1156,10 +1164,10 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 
 /datum/anvil_recipe/armor/blessedsilver/helmetabso
-	name = "Psydonian Conical Helm (+2 Blessed Silver)"
+	name = "Psydonian Conical Greathelm (+2 Blessed Silver)"
 	req_bar = /obj/item/ingot/silverblessed
 	additional_items = list(/obj/item/ingot/silverblessed, /obj/item/ingot/silverblessed)
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed
 
 /datum/anvil_recipe/armor/blessedsilver/psyhalfplate
 	name = "Psydonic Half-Plate (+Psydonic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
@@ -1208,10 +1216,10 @@
 	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/psybucket
 
 /datum/anvil_recipe/armor/blessedsilver/helmetabso/inq
-	name = "Psydonian Conical Helm (+2 Blessed Silver)"
+	name = "Psydonian Conical Greathelm (+2 Blessed Silver)"
 	req_bar = /obj/item/ingot/silverblessed/bullion
 	additional_items = list(/obj/item/ingot/silverblessed/bullion, /obj/item/ingot/silverblessed/bullion)
-	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver
+	created_item = /obj/item/clothing/head/roguetown/helmet/heavy/absolver/unblessed
 
 /datum/anvil_recipe/armor/blessedsilver/psyhalfplate/inq
 	name = "Psydonic Half-Plate (+Psydonic Cuirass, +1 Blessed Silver, +2 Cured Leather)"
