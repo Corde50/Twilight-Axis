@@ -148,7 +148,7 @@
 
 /datum/virtue/origin/racial/underdark
 	name = "Underdweller"
-	added_languages = list(/datum/language/otavan)
+	added_languages = list(/datum/language/undercommon)
 	origin_name = "the Underdark"
 	desc = "I originate from the treacherous Underdark, a cavernous region beneath Otava and Grenzelhoft. This unforgiving land is dominated by the prosperous and cruel dark elves and their pets. Most surfacedwellers only come here in chains.<br>"
 	races = list(/datum/species/elf/dark,

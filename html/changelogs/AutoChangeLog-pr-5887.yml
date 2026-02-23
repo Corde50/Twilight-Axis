@@ -1,5 +1,0 @@
-author: "Ollanius"
-delete-after: True
-changes:
-  - rscadd: "Chairs, stools, and bedrolls now have proper inhands."
-  - balance: "Chairs and stools now scale off of Unarmed skills, when calculating accuracy and parrying chances."
