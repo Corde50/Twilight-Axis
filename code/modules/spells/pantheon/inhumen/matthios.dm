@@ -64,7 +64,7 @@
 	recharge_time = 15 MINUTES //Goes down pretty signifcantly if you have high holy level.
 	invocations = list("Set me free once more my Lord.", "Unbynd me mine Lord.", "Lend me thine fyre so I may walk once more.")
 	invocation_type = "whisper"
-	sound = 'sound/magic/bloodrage.ogg'
+	sound = 'sound/misc/chain_snap.ogg'
 	miracle = TRUE
 	devotion_cost = 30
 	antimagic_allowed = FALSE
@@ -142,6 +142,7 @@
 	movement_interrupt = FALSE
 	invocations = list("I offer thee myne gift!", "Blessings upon thine humble servant!", "Grant me thine fyre my lord!", "A transaction for myne lyfe!")
 	invocation_type = "shout"//So someone might actually figures out you are supposed to be valid using this.
+	sound = 'sound/effects/hood_ignite.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
 	recharge_time = 20 SECONDS
