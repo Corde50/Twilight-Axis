@@ -1,4 +1,0 @@
-author: "Shuckonga"
-delete-after: True
-changes:
-  - bugfix: "astratagrasp is now properly called on Heretic spy."
