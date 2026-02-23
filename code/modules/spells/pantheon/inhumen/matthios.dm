@@ -114,7 +114,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/muffle_matthios/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == SLOT_SHOES && HAS_TRAIT(user, TRAIT_COMMIE))
+	if(slot == SLOT_SHOES && HAS_TRAIT(user, TRAIT_FREEMAN))
 		to_chat(user, span_info("Like Him, I slink into the shadows."))
 		ADD_TRAIT(user, TRAIT_SILENT_FOOTSTEPS, "matthiosboon")
 		ADD_TRAIT(user, TRAIT_LIGHT_STEP, "matthiosboon")
@@ -157,10 +157,10 @@
 		return
 	var/helditemvalue = held_item.get_real_price()
 	if(!helditemvalue)
-		to_chat(user, span_info("This has no value, It will be of no use In such a transaction."))
+		to_chat(user, span_info("This has no value, It will be of no use in such a transaction."))
 		return
 	if(helditemvalue<10)
-		to_chat(user, span_info("This has little value, It will be of no use In such a transaction."))
+		to_chat(user, span_info("This has little value, It will be of no use in such a transaction."))
 		return
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
