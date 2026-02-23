@@ -1020,3 +1020,32 @@
   zydras:
   - rscadd: Adds a new Sexton subclass, the Gravetender!
   - balance: adjusted the Sexton's stat pack and skills around
+2026-02-23:
+  Baneuus:
+  - image: Ruma-clan scabbards are no longer upside down.
+  Lamasmaster:
+  - bugfix: Astratan Gaze Scaling
+  - rscadd: Wildtongue Tab to > WT
+  Ollanius:
+  - bugfix: The recipe for a full set of Bronze Panoply Armor should now properly
+      make its namesake, instead of another halved set.
+  QuietSymphony:
+  - bugfix: fixes fae drops, makes them actually heal
+  Ryan180602:
+  - image: fix surcoats having sleeves.
+  - bugfix: re-add jupon sleeves
+  - rscadd: dominant hand will be highlighted on your UI
+  WeNeedMorePhoron:
+  - rscadd: Admin now can override the IC canon date with set date
+  - rscadd: Rounds now start at 8 AM by resetting the time to 8 AM to account for
+      lobby time drift
+  - rscadd: Lycker now gains 5 minutes of sun protection on spawn
+  - rscadd: Heads are now guaranteed from butchering simple animals. However, the
+      quality is scaled to your butchering skills such that the money you gain is
+      largely the same at lower skills level.
+  eirenxiv:
+  - bugfix: 'fixed coverage to no longer include hands on: arming jacket, padded arming
+      jacket, blacksteel half-plate, grenzel shirt, fencer shirt, gronn plate and
+      kazengun cuirass'
+  mumblemancer:
+  - bugfix: brigadine no longer covers hands
