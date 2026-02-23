@@ -80,7 +80,8 @@ GLOBAL_LIST_INIT(leadership_positions, list( // Used for boldening text primaril
 	"Head Physician",
 	"Innkeeper",
 	"Bathmaster",
-	"Inquisitor"
+	"Inquisitor",
+	"Mayor",
 ))
 
 GLOBAL_LIST_INIT(regency_positions, list( // Used to determine elligibility for Regency
@@ -159,6 +160,8 @@ GLOBAL_LIST_INIT(burgher_positions, list( //Artisans, store owners what have you
 	"Bathmaster",
 	"Town Crier",
 	"Magicians Associate",
+	"Mayor", //TA_EDIT
+	"Bailiff", //TA_EDIT
 ))
 
 GLOBAL_LIST_INIT(bathhouse_positions, list(
@@ -222,7 +225,9 @@ GLOBAL_LIST_INIT(rogueoverthrow_positions, list( //Used for Aspirant / Peasant R
 	"Assassin",
 	"Bandit",
 	"Wretch",
-	"Gnoll"
+	"Gnoll",
+	"Mayor",
+	"Bailiff",
 ))
 
 GLOBAL_LIST_INIT(roguewar_positions, list(

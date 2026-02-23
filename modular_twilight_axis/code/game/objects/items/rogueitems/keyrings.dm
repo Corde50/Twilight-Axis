@@ -15,3 +15,9 @@
 
 /obj/item/storage/keyring/courtphysician
 	keys = list(/obj/item/roguekey/manor, /obj/item/roguekey/courtphysician, /obj/item/roguekey/physician, /obj/item/roguekey/keeper)
+	
+/obj/item/storage/keyring/mayor
+	keys = list(/obj/item/roguekey/mayor, /obj/item/roguekey/bailiff)
+
+/obj/item/storage/keyring/bailiff
+	keys = list(/obj/item/roguekey/bailiff)

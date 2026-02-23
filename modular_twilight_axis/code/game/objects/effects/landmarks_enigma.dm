@@ -41,3 +41,11 @@
 /obj/effect/landmark/start/royal_guard
 	name = "Royal Guard"
 	icon_state = "arrow"
+
+/obj/effect/landmark/start/mayor
+	name = "Mayor"
+	icon_state = "arrow"
+
+/obj/effect/landmark/start/bailiff
+	name = "Bailiff"
+	icon_state = "arrow"

@@ -87,6 +87,8 @@
 #define BATHMASTER	(1<<7)
 #define CRIER		(1<<8)
 #define APPRENTICE	(1<<9) //Readd the mage part if you are going to add any other role that uses this tag or use ASSOCIATE to avoid weird spacing.
+#define MAYOR	(1<<10) //TA_EDIT
+#define BAILIFF	(1<<11) //TA_EDIT
 
 #define PEASANTS			(1<<8)
 
@@ -208,6 +210,8 @@
 #define JDO_BATHMASTER 6.7
 #define JDO_CRIER 6.8
 #define JDO_APPRENTICE 6.9
+#define JDO_MAYOR 7.0 //TA_EDIT
+#define JDO_BAILIFF 7.1 //TA_EDIT
 
 // Town Serfs - Peasants
 #define JDO_BATHWORKER 7

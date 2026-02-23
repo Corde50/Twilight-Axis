@@ -70,3 +70,15 @@
 	desc = "This key opens the Court Physician office."
 	icon_state = "ekey"
 	lockid = "courtphysician"
+
+/obj/item/roguekey/mayor
+	name = "Mayor key"
+	desc = "This key opens the Mayor office."
+	icon_state = "cheesekey"
+	lockid = "mayor"
+	
+/obj/item/roguekey/bailiff
+	name = "Mayor mansion key"
+	desc = "This key opens doors in Mayor mansion."
+	icon_state = "brownkey"
+	lockid = "mayorh"

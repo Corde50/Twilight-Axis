@@ -52,6 +52,8 @@
 		daily_payments["Seneschal"] = 40 //Manor-House
 		daily_payments["Servant"] = 20
 		daily_payments["Apothecary"] = 10
+		daily_payments["Mayor"] = 40
+		daily_payments["Bailiff"] = 10
 	else
 		daily_payments["Sergeant"] = 40 //Garrison
 		daily_payments["Man at Arms"] = 30
