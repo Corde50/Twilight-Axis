@@ -151,6 +151,7 @@ h1.alert, h2.alert	{color: #c9c1ba;font-family: Mookmania, TrueType;}
 .etruscan				{font-family: "TolkienCyr", "Mookmania"; font-size: 100%;}
 .gronnic				{font-family: "RUSNeverwinter", "Mookmania"; font-size: 150%;}
 .aavnic					{font-family: "Arabic Cyr (kerning fixed)", "Mookmania"; font-size: 100%;}
+.undercommon			{font-family: "Evil Bible", "Pterra"; font-size: 100%;}
 
 .torture				{color: #42ff20}
 
