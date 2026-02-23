@@ -1328,7 +1328,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Одежда", "Донат")
 	donatitem = TRUE
 
-/datum/loadout_item/gdhat
+/datum/loadout_item/gdhatsirdon
 	name = "Donator Kit - Gravedigger's Hat"
 	category = list("Головные уборы", "Донат")
 	path = /obj/item/clothing/head/roguetown/duelhat/pretzel
