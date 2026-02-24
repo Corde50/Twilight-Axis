@@ -480,7 +480,7 @@
 	attacked_sound = list('sound/combat/hits/onmetal/attackpipewall (1).ogg','sound/combat/hits/onmetal/attackpipewall (2).ogg')
 	canSmoothWith = list(/turf/closed/wall/mineral/rogue/pipe)
 	above_floor = /turf/open/floor/rogue/concrete
-	baseturfs = turf/open/floor/rogue/concrete
+	baseturfs = /turf/open/floor/rogue/concrete
 	climbdiff = 4
 	damage_deflection = 20
 
