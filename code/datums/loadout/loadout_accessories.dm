@@ -246,8 +246,23 @@
 	sort_category = "Accessories"
 
 /datum/loadout_item/wedding_band
-	name = "Silver Wedding Band"
+	name = "Wedding Band, Silver"
 	path = /obj/item/clothing/ring/band
+	sort_category = "Accessories"
+
+/datum/loadout_item/wedding_band_gold
+	name = "Wedding Band, Gold"
+	path = /obj/item/clothing/ring/band/gold
+	sort_category = "Accessories"
+
+/datum/loadout_item/wedding_band_bronze
+	name = "Wedding Band, Bronze"
+	path = /obj/item/clothing/ring/band/bronze
+	sort_category = "Accessories"
+
+/datum/loadout_item/wedding_band_ancient
+	name = "Wedding Band, Ancient"
+	path = /obj/item/clothing/ring/band/paalloy
 	sort_category = "Accessories"
 
 /datum/loadout_item/chaperon
