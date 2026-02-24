@@ -52,7 +52,7 @@
 				paP = r[ERP_ACTION_LEGACY_PAIN] || 0
 
 			a_arousal_sum += arA
-			p_arousal_sum += paA
+			p_arousal_sum += arP
 
 			if(f > SEX_FORCE_MID)
 				if(isnum(paA) && paA != 0)

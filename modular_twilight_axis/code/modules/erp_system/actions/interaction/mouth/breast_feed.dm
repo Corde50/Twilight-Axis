@@ -9,9 +9,9 @@
 	inject_source = INJECT_FROM_PASSIVE
 	inject_target_mode = INJECT_ORGAN
 
-	message_start  = "{actor} {pose} касается губами груди {target} и облизывает их языком."
-	message_tick   = "{actor} {pose}, {force} и {speed} облизывает соски {target}."
-	message_finish = "{actor} убирает губы от груди {target}."
+	message_start  = "{actor} {pose} касается губами груди {partner} и облизывает их языком."
+	message_tick   = "{actor} {pose}, {force} и {speed} облизывает соски {partner}."
+	message_finish = "{actor} убирает губы от груди {partner}."
 
 	message_climax_active  = "Тёплое молоко наполняет рот {actor}."
-	message_climax_passive = "{target} чувствует, как соски отзываются влажным теплом."
+	message_climax_passive = "{partner} чувствует, как соски отзываются влажным теплом."
