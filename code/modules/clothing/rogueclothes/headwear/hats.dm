@@ -450,6 +450,15 @@
 	color = CLOTHING_BLACK
 	detail_color = CLOTHING_BROWN
 
+/obj/item/clothing/head/roguetown/witchhat/old
+	name = "decrepit witch hat"
+	desc = "When shall we three meet again; in thunder lightning or in rain."
+	icon_state = "witchold"
+	item_state = "witchold"
+	detail_tag = ""
+	altdetail_tag = ""
+	color = CLOTHING_WHITE
+
 /obj/item/clothing/head/roguetown/archercap
 	name = "archer's cap"
 	desc = "For the merry men."
