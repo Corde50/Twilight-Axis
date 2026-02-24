@@ -839,4 +839,4 @@ Port of: https://github.com/Monkestation/Vanderlin/commit/84b8b6a716a80040145bb9
 	name = "Report this"
 	desc = "It looks like base turfs went to the fucking moon, TELL YOUR LOCAL CODER TODAY"
 	icon = 'icons/turf/debug.dmi'
-	icon_state = "fucked_baseturfs"
+	icon_state = "debug_turf"
