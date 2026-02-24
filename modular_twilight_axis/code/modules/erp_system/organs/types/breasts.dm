@@ -16,11 +16,12 @@
 	. = ..(B)
 	breast_size = clamp(B.breast_size, 1, 5)
 
-	var/new_capacity = BREAST_STORAGE_BASE + breast_size * BREAST_STORAGE_PER_SIZE
-	storage = new(new_capacity, src)
-	producing = new (new_capacity, src)
-	producing.producing_reagent = /datum/reagent/consumable/milk/erp
-	producing.production_rate = breast_size * BREAST_BASE_PROD_PER_SIZE
+	if(B.lactating)
+		var/new_capacity = BREAST_STORAGE_BASE + breast_size * BREAST_STORAGE_PER_SIZE
+		storage = new(new_capacity, src)
+		producing = new (new_capacity, src)
+		producing.producing_reagent = /datum/reagent/consumable/milk/erp
+		producing.production_rate = breast_size * BREAST_BASE_PROD_PER_SIZE
 
 /datum/erp_sex_organ/breasts/get_production_mult()
 	var/obj/item/organ/breasts/organ_object = host
