@@ -47,7 +47,11 @@
 	switch(described.pronouns)
 		if(SHE_HER)
 			return "matriarch"
+		if(SHE_HER_M)
+			return "matriarch"
 		if(HE_HIM)
+			return "patriarch"
+		if(HE_HIM_F)
 			return "patriarch"
 		if(THEY_THEM)
 			return "hierarch"
