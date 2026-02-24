@@ -10,6 +10,7 @@
 	var/last_overload_gain_time = 0
 	var/tmp/chain_lock_until = 0
 	var/last_overload_sleep_decay_time = 0
+	var/tmp/nympho_sp_floor_until = 0
 
 /datum/component/arousal/RegisterWithParent()
 	. = ..()
@@ -130,6 +131,7 @@
 	var/mob/living/carbon/human/H = parent
 	if(!istype(H))
 		return
+		
 	if(!is_lovefiend())
 		return
 
@@ -139,28 +141,29 @@
 
 	var/was_sated = A.sated
 	var/now_sated = is_nympho_sated()
-
 	if(was_sated == now_sated)
 		return
 
 	A.sated = now_sated
 	A.unsate_time = world.time
+	if(now_sated)
+		nympho_sp_floor_until = world.time + 48 MINUTES
+		if(A.sated_text)
+			to_chat(H, span_blue(A.sated_text))
 
-	if(!now_sated)
+		H.remove_stress(/datum/stressevent/vice)
+		if(A.debuff)
+			H.remove_status_effect(A.debuff)
+	else
 		var/h = get_nympho_hunger_level()
 		if(h >= 2)
 			to_chat(H, span_boldred("I didn't indulge my vice."))
 		else
 			to_chat(H, span_boldwarning("I'm feeling randy."))
+
 		H.add_stress(/datum/stressevent/vice)
 		if(A.debuff)
 			H.apply_status_effect(A.debuff)
-	else
-		if(A.sated_text)
-			to_chat(H, span_blue(A.sated_text))
-		H.remove_stress(/datum/stressevent/vice)
-		if(A.debuff)
-			H.remove_status_effect(A.debuff)
 
 /datum/component/arousal/proc/get_satisfaction_buff_tier()
 	var/start_sp = 1.0
@@ -243,6 +246,9 @@
 
 /datum/component/arousal/proc/adjust_satisfaction(delta)
 	satisfaction_points = clamp(satisfaction_points + delta, 0.0, ERP_SP_MAX)
+	if(is_nympho_sp_floor_active())
+		satisfaction_points = max(satisfaction_points, 2.0)
+
 	last_sp_decay_time = world.time
 	sync_lovefiend_sated_from_sp()
 
@@ -718,6 +724,9 @@
 		var/mob/M = A.get_mob()
 		return istype(M, /mob/living/carbon/human) ? M : null
 	return null
+
+/datum/component/arousal/proc/is_nympho_sp_floor_active()
+	return is_lovefiend() && (world.time < nympho_sp_floor_until)
 
 #undef ERP_OVERLOAD_SLEEP_DECAY_INTERVAL
 #undef NYMPHO_AROUSAL_SOFT_CAP
