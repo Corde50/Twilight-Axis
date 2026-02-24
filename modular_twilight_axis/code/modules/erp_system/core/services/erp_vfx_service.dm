@@ -163,6 +163,9 @@
 	if(init.erp_organ_type != SEX_ORGAN_MOUTH)
 		return FALSE
 
+	if(tgt.erp_organ_type == SEX_ORGAN_MOUTH)
+		return TRUE
+
 	return (tgt.erp_organ_type in list(SEX_ORGAN_VAGINA, SEX_ORGAN_BREASTS, SEX_ORGAN_PENIS, SEX_ORGAN_ANUS))
 
 /// Plays sucking sounds.

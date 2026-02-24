@@ -1,6 +1,6 @@
-#define ERP_CLIMAX_AMOUNT_SINGLE 10
-#define ERP_CLIMAX_AMOUNT_COATING 12
-#define ERP_CLIMAX_AMOUNT_INSIDE 8
+#define ERP_CLIMAX_AMOUNT_SINGLE 5
+#define ERP_CLIMAX_AMOUNT_COATING 8
+#define ERP_CLIMAX_AMOUNT_INSIDE 5
 
 /datum/erp_climax_service
 	var/datum/erp_controller/controller
@@ -346,6 +346,20 @@
 				var/datum/erp_sex_organ/vagina/V = inside_target_organ
 				V.on_climax(who, 0, 0)
 
+			return TRUE
+
+		if(mode == "outside")
+			var/datum/reagents/Rout = orgasm_organ.extract_reagents(ERP_CLIMAX_AMOUNT_COATING)
+			if(Rout)
+				orgasm_organ.route_reagents(Rout, INJECT_GROUND, null)
+				qdel(Rout)
+			return TRUE
+
+		if(mode == "self")
+			var/datum/reagents/Rout = orgasm_organ.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
+			if(Rout)
+				orgasm_organ.route_reagents(Rout, INJECT_GROUND, null)
+				qdel(Rout)
 			return TRUE
 
 		var/mob/living/carbon/human/coating_target = null
