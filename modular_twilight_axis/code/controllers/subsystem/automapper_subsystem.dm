@@ -12,54 +12,107 @@ SUBSYSTEM_DEF(automapper)
 	var/list/preloaded_map_templates = list()
 
 /datum/controller/subsystem/automapper/Initialize()
+	if(!fexists(config_file))
+		CRASH("Automapper: TOML file not found: [config_file]")
+
+	var/txt = file2text(config_file)
+	if(!istext(txt) || !length(txt))
+		loaded_config = list("templates" = list())
+		return SS_INIT_SUCCESS
+
 	var/raw = rustg_read_toml_file(config_file)
-
 	if(!raw)
-		CRASH("Automapper: TOML returned null for [config_file]")
-
-	if(islist(raw) && raw["templates"])
-		loaded_config = raw
+		loaded_config = list("templates" = list())
 		return SS_INIT_SUCCESS
 
-	if(islist(raw) && raw["success"])
-		if(!raw["success"])
-			CRASH("Automapper TOML error: [raw["content"]]")
+	var/list/decoded = null
+	if(islist(raw))
+		if(islist(raw["templates"]))
+			decoded = raw
+		else if(raw["success"] != null)
+			if(!raw["success"])
+				CRASH("Automapper TOML error: [raw["content"]]")
+			if(istext(raw["content"]) && length(raw["content"]))
+				decoded = json_decode(raw["content"])
+		else if(istext(raw["content"]) && length(raw["content"]))
+			decoded = json_decode(raw["content"])
+		else if(istext(raw["json"]) && length(raw["json"]))
+			decoded = json_decode(raw["json"])
+	else if(istext(raw) && length(raw))
+		decoded = json_decode(raw)
 
-		var/list/decoded = json_decode(raw["content"])
-		if(!islist(decoded))
-			CRASH("Automapper: Failed to decode TOML content from [config_file]")
-
-		loaded_config = decoded
+	if(!islist(decoded))
+		loaded_config = list("templates" = list())
 		return SS_INIT_SUCCESS
 
-	CRASH("Automapper: Unknown TOML format for [config_file]")
+	loaded_config = decoded
+	normalize_templates_in_config()
+	if(!islist(loaded_config) || !islist(loaded_config["templates"]))
+		loaded_config = list("templates" = list())
+
+	return SS_INIT_SUCCESS
+
+/datum/controller/subsystem/automapper/proc/normalize_templates_in_config()
+	if(!islist(loaded_config))
+		loaded_config = list()
+
+	var/list/t = loaded_config["templates"]
+	if(!islist(t) || !length(t))
+		loaded_config["templates"] = list()
+		return
+
+	if(islist(t[1]))
+		var/list/assoc = list()
+		for(var/i = 1 to length(t))
+			var/list/entry = t[i]
+			if(!islist(entry))
+				continue
+			var/name = entry["template"] || entry["name"] || entry["id"]
+			if(!istext(name) || !length(name))
+				name = "template_[i]"
+			assoc[name] = entry
+		loaded_config["templates"] = assoc
+		return
 
 /datum/controller/subsystem/automapper/proc/preload_templates_from_toml(map_names)
+	if(!islist(loaded_config) || !islist(loaded_config["templates"]) || !length(loaded_config["templates"]))
+		return
+
 	if(!islist(map_names))
 		map_names = list(map_names)
 
+	var/list/templates = loaded_config["templates"]
 	var/list/main_map_files = islist(SSmapping.config.map_file) ? SSmapping.config.map_file : list(SSmapping.config.map_file)
+	for(var/template_name in templates)
+		var/list/selected_template = templates[template_name]
+		if(!islist(selected_template))
+			continue
 
-	for(var/template in loaded_config["templates"])
-		var/selected_template = loaded_config["templates"][template]
 		var/required_map = selected_template["required_map"]
+		if(!istext(required_map) || !length(required_map))
+			continue
 
 		var/requires_builtin = (required_map == AUTOMAPPER_MAP_BUILTIN) && (LAZYLEN(main_map_files & map_names) || (LAZYLEN(map_names) == 1 && (map_names[1] in main_map_files)))
 		if(!requires_builtin && !(required_map in map_names))
 			continue
 
 		var/list/coordinates = selected_template["coordinates"]
-		if(LAZYLEN(coordinates) != 3)
-			CRASH("Invalid coordinates for automap template [template]!")
+		if(!islist(coordinates) || length(coordinates) != 3)
+			CRASH("Invalid coordinates for automap template [template_name]!")
 
-		if(!LAZYLEN(selected_template["map_files"]))
-			CRASH("Could not find any valid map files for automap template [template]!")
+		var/list/map_files = selected_template["map_files"]
+		if(!islist(map_files) || !length(map_files))
+			CRASH("Could not find any valid map files for automap template [template_name]!")
 
-		var/map_file = selected_template["directory"] + pick(selected_template["map_files"])
+		var/directory = selected_template["directory"]
+		if(!istext(directory) || !length(directory))
+			CRASH("Could not find directory for automap template [template_name]!")
+
+		var/map_file = directory + pick(map_files)
 		if(!fexists(map_file))
-			CRASH("[template] could not find map file [map_file]!")
+			CRASH("[template_name] could not find map file [map_file]!")
 
-		var/datum/map_template/automap_template/map = new(map_file, template, required_map, coordinates)
+		var/datum/map_template/automap_template/map = new(map_file, template_name, required_map, coordinates)
 		preloaded_map_templates += map
 
 /datum/controller/subsystem/automapper/proc/load_templates_from_cache(map_names)
@@ -67,7 +120,6 @@ SUBSYSTEM_DEF(automapper)
 		map_names = list(map_names)
 
 	var/list/main_map_files = islist(SSmapping.config.map_file) ? SSmapping.config.map_file : list(SSmapping.config.map_file)
-
 	for(var/datum/map_template/automap_template/iterating_template as anything in preloaded_map_templates)
 		if(iterating_template.affects_builtin_map && (LAZYLEN(main_map_files & map_names) || (LAZYLEN(map_names) == 1 && (map_names[1] in main_map_files))))
 			iterating_template.resolve_load_turf()
@@ -105,7 +157,7 @@ SUBSYSTEM_DEF(automapper)
 
 /datum/controller/subsystem/automapper/proc/has_turf_noop(datum/map_template/map, x, y)
 	if(!map?.cached_map)
-		CRASH("Automapper: cached_map is null for [map] (path=[map.original_path])")
+		CRASH("Automapper: cached_map is null for [map] (path=[map.mappath])")
 	var/datum/grid_set/map_row = map.cached_map.gridSets[x + 1]
 	var/modelID = map_row.gridLines[map.height - y]
 	var/model = map.cached_map.grid_models[modelID]

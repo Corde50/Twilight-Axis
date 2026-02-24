@@ -168,17 +168,19 @@ SUBSYSTEM_DEF(mapping)
 
 	SSautomapper.preload_templates_from_toml(files)
 
-	for (var/P in parsed_maps)
-		var/datum/parsed_map/pm = P
-		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE))
-			errorList |= pm.original_path
+	var/turf_blacklist = SSautomapper.get_turf_blacklists(files)  
 
-	if(!LAZYLEN(errorList))
-		SSautomapper.load_templates_from_cache(files)
+	for (var/P in parsed_maps)  
+		var/datum/parsed_map/pm = P  
+		pm.turf_blacklist = turf_blacklist  
+		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE))  
+			errorList |= pm.original_path  
 
-	var/turf_blacklist = SSautomapper.get_turf_blacklists(files)
-	if(LAZYLEN(turf_blacklist))
-		LAZYOR(GLOB.automapper_blacklisted_turfs, turf_blacklist)
+	if(!LAZYLEN(errorList))  
+		SSautomapper.load_templates_from_cache(files)  
+
+	if(LAZYLEN(turf_blacklist))  
+		LAZYOR(GLOB.automapper_blacklisted_turfs, turf_blacklist)  
 
 	log_game("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
 

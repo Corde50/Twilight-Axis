@@ -11,7 +11,7 @@
 /datum/map_template/automap_template/New(path, rename, incoming_required_map, incoming_coordinates)
 	. = ..(path, rename, cache = TRUE)
 
-	if(!incoming_required_map || !islist(incoming_coordinates) || (length(incoming_coordinates) != 3)
+	if(!incoming_required_map || !islist(incoming_coordinates) || (length(incoming_coordinates) != 3))
 		return
 
 	required_map = incoming_required_map
