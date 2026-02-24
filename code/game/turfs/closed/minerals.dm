@@ -9,7 +9,7 @@
 	smooth = SMOOTH_MORE|SMOOTH_BORDER
 	flags_1 = CHECK_RICOCHET_1
 	canSmoothWith = null
-	baseturfs = list(/turf/open/floor/rogue/naturalstone)
+	baseturfs = /turf/open/floor/rogue/naturalstone
 	opacity = 1
 	density = TRUE
 //	layer = EDGED_TURF_LAYER
@@ -219,7 +219,7 @@
 	canSmoothWith = list(/turf/closed/mineral/random/rogue, /turf/closed/mineral/rogue)
 	turf_type = /turf/open/floor/rogue/naturalstone
 	above_floor = /turf/open/floor/rogue/naturalstone
-	baseturfs = list(/turf/open/floor/rogue/naturalstone)
+	baseturfs = /turf/open/floor/rogue/naturalstone
 	mineralSpawnChanceList = list(
 		/turf/closed/mineral/rogue/salt = 5,
 		/turf/closed/mineral/rogue/iron = 15,
