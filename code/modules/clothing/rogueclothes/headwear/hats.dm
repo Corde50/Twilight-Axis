@@ -443,8 +443,12 @@
 	desc = "Fair is foul, and foul is fair; Hover through the fog and filthy air."
 	icon_state = "witch"
 	item_state = "witch"
+	detail_tag = "_detail"
+	altdetail_tag = "_detailalt"
 	icon = 'icons/roguetown/clothing/head.dmi'
 	sewrepair = TRUE
+	color = CLOTHING_BLACK
+	detail_color = CLOTHING_BROWN
 
 /obj/item/clothing/head/roguetown/archercap
 	name = "archer's cap"
