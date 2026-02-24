@@ -19,6 +19,7 @@
 	minstr = 1
 	item_flags = DROPDEL
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = null
 	var/mob/living/carbon/human/owner
 
 /obj/item/rogueweapon/sword/rapier/moonlight_rapier
@@ -39,6 +40,7 @@
 	minstr = 1
 	item_flags = DROPDEL
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = null
 	var/mob/living/carbon/human/owner
 
 /obj/item/rogueweapon/spear/partizan/moonlight_spear
@@ -62,6 +64,7 @@
 	minstr = 1
 	item_flags = DROPDEL
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = null
 	var/mob/living/carbon/human/owner
 
 /obj/item/rogueweapon/mace/maul/grand/moonlight_hammer
@@ -76,6 +79,7 @@
 	is_silver = TRUE
 	item_flags = DROPDEL
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = null
 	var/mob/living/carbon/human/owner
 
 /obj/item/rogueweapon/shield/bronze/great/moonlight_shield
@@ -92,6 +96,7 @@
 	is_silver = TRUE
 	item_flags = DROPDEL
 	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = null
 	var/mob/living/carbon/human/owner
 
 /obj/item/rogueweapon/shield/bronze/great/moonlight_shield/Move()
