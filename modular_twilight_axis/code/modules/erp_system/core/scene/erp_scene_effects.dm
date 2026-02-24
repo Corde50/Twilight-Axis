@@ -22,6 +22,7 @@
 	var/a_pain_sum = 0
 	var/p_pain_sum = 0
 
+	var/list/asphyxia_by_actor = list()
 	for(var/datum/erp_sex_link/L in active_links)
 		if(!L || QDELETED(L) || !L.is_valid())
 			continue
@@ -38,8 +39,8 @@
 		var/list/r = L.action?.calc_effect(L)
 		if(r)
 			var/arA = r[ERP_ACTION_ACTIVE_AROUSAL]
-			var/arP = r[ERP_ACTION_ACTIVE_PAIN]
-			var/paA = r[ERP_ACTION_PASSIVE_AROUSAL]
+			var/arP = r[ERP_ACTION_PASSIVE_AROUSAL]
+			var/paA = r[ERP_ACTION_ACTIVE_PAIN]
 			var/paP = r[ERP_ACTION_PASSIVE_PAIN]
 
 			if(!isnum(arA))
@@ -72,6 +73,18 @@
 
 		if(L.action && L.action.inject_timing == INJECT_CONTINUOUS)
 			L.action.handle_inject(L, null)
+
+		if(_is_sucking_link(L))
+			var/datum/erp_actor/mouth_actor = _get_mouth_actor_for_link(L)
+			if(mouth_actor)
+				var/add = 0
+				if(f >= SEX_FORCE_EXTREME)
+					add = 3
+				else if(f >= SEX_FORCE_HIGH)
+					add = 2
+
+				if(add > 0)
+					asphyxia_by_actor[mouth_actor] = (asphyxia_by_actor[mouth_actor] || 0) + add
 
 	if(n <= 0)
 		return
@@ -120,3 +133,17 @@
 		"force" = clamp(round(sum_force / n), SEX_FORCE_LOW, SEX_FORCE_EXTREME),
 		"speed" = clamp(round(sum_speed / n), SEX_SPEED_LOW, SEX_SPEED_EXTREME),
 	)
+
+/datum/erp_scene_effects/proc/_is_sucking_link(datum/erp_sex_link/L)
+	var/init_t = L.init_organ?.erp_organ_type
+	var/tgt_t  = L.target_organ?.erp_organ_type
+	if(!(init_t == SEX_ORGAN_MOUTH || tgt_t == SEX_ORGAN_MOUTH))
+		return FALSE
+	return !(init_t == SEX_ORGAN_MOUTH && tgt_t == SEX_ORGAN_MOUTH)
+
+/datum/erp_scene_effects/proc/_get_mouth_actor_for_link(datum/erp_sex_link/L)
+	if(L.init_organ?.erp_organ_type == SEX_ORGAN_MOUTH)
+		return L.actor_active
+	if(L.target_organ?.erp_organ_type == SEX_ORGAN_MOUTH)
+		return L.actor_passive
+	return null

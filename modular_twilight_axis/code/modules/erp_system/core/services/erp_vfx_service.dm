@@ -18,70 +18,81 @@
 	return data["arousal"]
 
 /// Builds VFX bundle for tick.
-/datum/erp_vfx_service/proc/build_tick_effect_bundle(list/active_links, datum/erp_sex_link/best, dt)
+/datum/erp_vfx_service/proc/build_tick_effect_bundle(list/active_links, dt)
 	var/list/E = list()
-	E["do_thrust"] = FALSE
-	E["do_hearts"] = FALSE
-	E["sound_slap"] = FALSE
-	E["sound_suck"] = FALSE
-
-	var/any_sucking = FALSE
-
+	E["thrust_link"] = null
+	E["suck_link"] = null
+	E["slap_link"] = null
+	E["hearts_mobs"] = list()
 	for(var/datum/erp_sex_link/L in active_links)
 		if(!L || QDELETED(L) || !L.is_valid())
 			continue
 
 		var/init_t = L.init_organ?.erp_organ_type
-		if(init_t && (init_t in list(SEX_ORGAN_MOUTH, SEX_ORGAN_TAIL, SEX_ORGAN_VAGINA, SEX_ORGAN_PENIS, SEX_ORGAN_ANUS)))
-			E["do_thrust"] = TRUE
+		var/tgt_t  = L.target_organ?.erp_organ_type
+		if(!E["suck_link"] && is_sucking_pair(init_t, tgt_t))
+			E["suck_link"] = L
 
-		if(link_is_sucking(L))
-			any_sucking = TRUE
-			E["do_thrust"] = FALSE
+		if(!E["slap_link"])
+			var/list/tags = L.action?.action_tags
+			if(islist(tags) && ("spanking" in tags))
+				E["slap_link"] = L
 
-		var/list/tags = L.action?.action_tags
-		if(!E["sound_slap"] && islist(tags) && ("spanking" in tags))
-			E["sound_slap"] = TRUE
+		if(!E["thrust_link"] && is_thrust_init(init_t))
+			E["thrust_link"] = L
 
-	if(any_sucking)
-		E["sound_suck"] = TRUE
+	for(var/datum/erp_sex_link/L2 in active_links)
+		if(!L2 || QDELETED(L2) || !L2.is_valid())
+			continue
+		var/mob/living/carbon/human/A = L2.actor_active?.get_effect_mob()
+		var/mob/living/carbon/human/B = L2.actor_passive?.get_effect_mob()
 
-	var/mob/living/carbon/human/active_mob = best?.actor_active?.get_effect_mob()
-	if(istype(active_mob))
-		var/ar = get_arousal_value(active_mob)
-		if(isnum(ar) && ar >= 20)
-			E["do_hearts"] = TRUE
+		if(istype(A))
+			var/arA = get_arousal_value(A)
+			if(isnum(arA) && arA >= 20)
+				E["hearts_mobs"][A] = TRUE
+
+		if(istype(B))
+			var/arB = get_arousal_value(B)
+			if(isnum(arB) && arB >= 20)
+				E["hearts_mobs"][B] = TRUE
 
 	return E
 
 /// Plays VFX bundle for tick.
-/datum/erp_vfx_service/proc/play_tick_effects(list/active_links, datum/erp_sex_link/best, dt)
-	if(!best || !best.is_valid())
-		return
+/datum/erp_vfx_service/proc/play_tick_effects(list/active_links, dt)
 	if(controller.hidden_mode)
 		return
 
-	var/mob/living/carbon/human/active_mob = best.actor_active?.get_effect_mob()
-	if(!istype(active_mob))
-		return
-
-	var/list/E = build_tick_effect_bundle(active_links, best, dt)
+	var/list/E = build_tick_effect_bundle(active_links, dt)
 	if(!islist(E))
 		return
 
-	if(E["do_thrust"])
-		do_thrust_bump(best)
-		do_onomatopoeia(active_mob, best)
-		play_thrust_sound(active_mob, best)
+	var/datum/erp_sex_link/suckL = E["suck_link"]
+	if(suckL)
+		var/mob/living/carbon/human/mouth_mob = get_mouth_mob_for_link(suckL)
+		if(istype(mouth_mob))
+			play_suck(mouth_mob, suckL)
 
-	if(E["do_hearts"])
-		spawn_hearts(active_mob)
+	var/datum/erp_sex_link/slapL = E["slap_link"]
+	if(slapL)
+		var/mob/living/carbon/human/slap_mob = slapL.actor_active?.get_effect_mob()
+		if(istype(slap_mob))
+			play_slap(slap_mob)
 
-	if(E["sound_slap"])
-		play_slap(active_mob)
+	var/datum/erp_sex_link/thrustL = E["thrust_link"]
+	if(thrustL)
+		do_thrust_bump(thrustL)
+		var/mob/living/carbon/human/thrust_mob = thrustL.actor_active?.get_effect_mob()
+		if(istype(thrust_mob))
+			do_onomatopoeia(thrust_mob, thrustL)
+			play_thrust_sound(thrust_mob, thrustL)
 
-	if(E["sound_suck"])
-		play_suck(active_mob, best)
+	var/list/HM = E["hearts_mobs"]
+	if(islist(HM))
+		for(var/mob/living/carbon/human/H as anything in HM)
+			if(istype(H))
+				spawn_hearts(H)
 
 /// Performs thrust bump animation.
 /datum/erp_vfx_service/proc/do_thrust_bump(datum/erp_sex_link/best)
@@ -291,3 +302,18 @@
 	for(var/obj/structure/bed/rogue/B in T)
 		return B
 	return null
+
+/datum/erp_vfx_service/proc/is_sucking_pair(init_t, tgt_t)
+	return (init_t == SEX_ORGAN_MOUTH) || (tgt_t == SEX_ORGAN_MOUTH)
+
+/datum/erp_vfx_service/proc/get_mouth_mob_for_link(datum/erp_sex_link/L)
+	if(!L)
+		return null
+	if(L.init_organ?.erp_organ_type == SEX_ORGAN_MOUTH)
+		return L.actor_active?.get_effect_mob()
+	if(L.target_organ?.erp_organ_type == SEX_ORGAN_MOUTH)
+		return L.actor_passive?.get_effect_mob()
+	return null
+
+/datum/erp_vfx_service/proc/is_thrust_init(init_t)
+	return (init_t in list(SEX_ORGAN_MOUTH, SEX_ORGAN_VAGINA, SEX_ORGAN_PENIS, SEX_ORGAN_TAIL))
