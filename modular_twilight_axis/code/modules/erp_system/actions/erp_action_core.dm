@@ -41,8 +41,8 @@
 	var/datum/erp_sex_organ/T = L.target_organ
 	var/a_arousal = (I.active_arousal * active_arousal_coeff)
 	var/a_pain    = (I.active_pain    * active_pain_coeff)
-	var/p_arousal = (T.active_arousal * passive_arousal_coeff)
-	var/p_pain    = (T.active_pain    * passive_pain_coeff)
+	var/p_arousal = (T.passive_arousal * passive_arousal_coeff)
+	var/p_pain    = (T.passive_pain    * passive_pain_coeff)
 	a_arousal *= I.sensitivity
 	a_pain    *= I.sensitivity
 	p_arousal *= T.sensitivity
