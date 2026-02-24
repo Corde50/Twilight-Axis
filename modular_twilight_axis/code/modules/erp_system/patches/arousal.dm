@@ -52,7 +52,6 @@
 
 	var/datum/erp_sex_link/best = null
 	var/best_score = -1
-
 	for(var/datum/erp_sex_link/link in L)
 		if(!link || QDELETED(link) || !link.is_valid() || link.state != LINK_STATE_ACTIVE)
 			continue

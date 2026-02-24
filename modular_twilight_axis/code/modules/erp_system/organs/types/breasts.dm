@@ -9,7 +9,7 @@
 	var/breast_size = 1
 	active_arousal = 0.9
 	passive_arousal = 1.1
-	active_pain = 0.2
+	active_pain = 0.02
 	passive_pain = 0.4
 
 /datum/erp_sex_organ/breasts/New(obj/item/organ/breasts/B)

@@ -30,8 +30,7 @@
 
 	if(A)
 		A.send_visible_message(text)
-
-	if(B && B != A)
+	else if(B)
 		B.send_visible_message(text)
 
 /// Wraps scene tick text with force/speed intensity spans.
