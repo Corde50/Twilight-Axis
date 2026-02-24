@@ -141,9 +141,18 @@ SUBSYSTEM_DEF(erp)
 
 /// Gets existing controller or creates a new one.
 /datum/controller/subsystem/erp/proc/get_or_create_controller(atom/initiator_atom, client/C = null, mob/living/effect_mob = null)
-	var/datum/erp_controller/EC = get_controller_for(initiator_atom)
+	var/datum/erp_controller/EC = null
+	if(C)
+		EC = get_controller_for_client(C)
+
+	if(!EC)
+		EC = get_controller_for(initiator_atom)
+
 	if(!EC)
 		EC = create_controller(initiator_atom, C, effect_mob)
+	else
+		EC.rebind_owner(initiator_atom, C, effect_mob)
+
 	return EC
 
 /// Returns organ-type options list for UI via catalog service.
@@ -176,3 +185,13 @@ SUBSYSTEM_DEF(erp)
 /datum/controller/subsystem/erp/proc/unregister_knotting_decay(datum/component/erp_knotting/K)
 	if(K)
 		decaying_knotting -= K
+
+/datum/controller/subsystem/erp/proc/get_controller_for_client(client/C)
+	if(!C)
+		return null
+	for(var/datum/erp_controller/EC in controllers)
+		if(!EC || QDELETED(EC))
+			continue
+		if(EC.owner_client == C)
+			return EC
+	return null
