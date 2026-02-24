@@ -11,6 +11,9 @@
 	var/wallclimb = FALSE
 	var/climbdiff = 0
 
+/turf/closed/basic
+	baseturfs = /turf/closed/basic
+
 /turf/closed/basic/New()//Do not convert to Initialize
 	SHOULD_CALL_PARENT(FALSE)
 	//This is used to optimize the map loader
