@@ -7,7 +7,7 @@
 	var/can_be_pregnant = FALSE
 	var/pregnant = FALSE
 	active_arousal = 1.0
-	passive_arousal = 1.4
+	passive_arousal = 1.15
 	active_pain = 0.1
 	passive_pain = 0.2
 

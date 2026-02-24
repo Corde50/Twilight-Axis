@@ -5,7 +5,7 @@
 	var/erect_mode = "auto"
 	var/climax_mode = "outside"
 	active_arousal = 1.0
-	passive_arousal = 1.3
+	passive_arousal = 1.1
 	active_pain = 0.05
 	passive_pain = 0.15
 

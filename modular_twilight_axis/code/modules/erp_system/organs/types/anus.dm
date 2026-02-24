@@ -3,7 +3,7 @@
 /datum/erp_sex_organ/anus
 	erp_organ_type = SEX_ORGAN_ANUS
 	active_arousal = 0.9
-	passive_arousal = 1.3
+	passive_arousal = 1.2
 	active_pain = 0.02
 	passive_pain = 0.2
 

@@ -13,5 +13,5 @@
 	message_tick   = "{actor} {pose}, {force} и {speed} облизывает соски {partner}."
 	message_finish = "{actor} убирает губы от груди {partner}."
 
-	message_climax_active  = "Тёплое молоко наполняет рот {actor}."
-	message_climax_passive = "{partner} чувствует, как соски отзываются влажным теплом."
+	message_climax_active  = "Грудь {partner} в руках {actor} пульсирует."
+	message_climax_passive = "{partner} чувствует, как грудь в руках {actor} пульсирует."
