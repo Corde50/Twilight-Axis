@@ -91,6 +91,7 @@
 		inject_mode = INJECT_GROUND
 		target = get_turf(link.actor_passive?.physical) || get_turf(link.actor_active?.physical)
 
+	source.on_inject(link, inject_mode, target, R, who)
 	source.route_reagents(R, inject_mode, target)
 
 /// Checks if there is a nearby container for container-inject actions.

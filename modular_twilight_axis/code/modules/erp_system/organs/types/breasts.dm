@@ -45,6 +45,29 @@
 	if(!sex_organ)
 		sex_organ = new /datum/erp_sex_organ/breasts(src)
 
+/datum/erp_sex_organ/breasts/on_inject(datum/erp_sex_link/link, inject_mode, target, datum/reagents/R, mob/living/carbon/human/who)
+	. = ..()
+	if(!link || !R)
+		return
+	if(R.total_volume <= 0)
+		return
+
+	var/mob/living/carbon/human/me = get_owner()
+	if(!istype(me))
+		return
+
+	var/mob/living/carbon/human/partner = null
+	if(me == link.actor_active?.physical)
+		partner = link.actor_passive?.physical
+	else if(me == link.actor_passive?.physical)
+		partner = link.actor_active?.physical
+
+	if(!istype(partner))
+		return
+
+	to_chat(me, span_warning("Я чувствую, как молоко покидает мою грудь."))
+	to_chat(partner, span_warning("Я чувствую, как молоко [me] попадает мне в рот."))
+
 #undef BREAST_BASE_PROD_PER_SIZE
 #undef BREAST_STORAGE_PER_SIZE
 #undef BREAST_INJECTION_PER_SIZE

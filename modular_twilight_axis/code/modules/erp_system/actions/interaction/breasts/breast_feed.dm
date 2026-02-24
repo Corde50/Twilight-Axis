@@ -1,5 +1,6 @@
 /datum/erp_action/other/breasts/breast_feed
 	name = "Насильное кормление"
+	abstract = FALSE
 	required_target_organ = SEX_ORGAN_MOUTH
 	require_grab = TRUE
 	inject_timing = INJECT_CONTINUOUS

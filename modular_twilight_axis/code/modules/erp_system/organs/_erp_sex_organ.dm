@@ -254,3 +254,6 @@
 /datum/erp_sex_organ/proc/add_pain(pain_amt)
 	pain += pain_amt / 10
 	pain = clamp(pain, 0, pain_max)
+
+/datum/erp_sex_organ/proc/on_inject(datum/erp_sex_link/link, inject_mode, target, datum/reagents/R, mob/living/carbon/human/who)
+	return

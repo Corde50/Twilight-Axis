@@ -629,8 +629,8 @@
 	scene_msg_d?.send_link_start_message(L)
 
 /// Sends link finish message.
-/datum/erp_controller/proc/_send_link_finish_message(datum/erp_sex_link/L)
-	scene_msg_d?.send_link_finish_message(L)
+/datum/erp_controller/proc/_send_link_finish_message(datum/erp_sex_link/link, datum/erp_sex_organ/source, datum/reagents/R)
+	scene_msg_d?.send_link_finish_message(link, source, R)
 
 #define ERP_AROUSAL_HEARTS_THRESHOLD 20
 #define ERP_TICK_EFFECT_COOLDOWN 2
