@@ -40,6 +40,11 @@
 	first_time_text = "The Town of Rockhill"
 	deathsight_message = "the city of Rockhill and all its bustling souls"
 
+/area/rogue/outdoors/town/roofs/rockhillroofs
+	name = "roofs"
+	first_time_text = "The Town of Rockhill"
+	deathsight_message = "the city of Rockhill and all its bustling souls"
+
 /area/rogue/under/town/basement/tavern
 	name = "tavern basement"
 	icon_state = "basement"
@@ -47,3 +52,95 @@
 	town_area = TRUE
 	ceiling_protected = TRUE
 	deathsight_message = "a room full of aging ales"
+	
+/area/rogue/outdoors/town/grovercout
+	name = "Druids Grove"
+	icon_state = "rtfield"
+	color = "#b8b5c9"
+	ambientsounds = 'sound/ambience/forestday.ogg'
+	ambientnight = 'sound/ambience/forestnight.ogg'
+	droning_sound = 'modular_twilight_axis/sound/music/area/druid.ogg'
+	droning_sound_dawn = null
+	converted_type = /area/rogue/indoors/town/grove
+	deathsight_message = "A sacred place of dendor, near the tree of Aeons.."
+	droning_sound_dusk = null
+	droning_sound_night = null
+	warden_area = TRUE
+	town_area = FALSE
+
+/area/rogue/indoors/town/grovercin
+	name = "Druids Grove indoors"
+	icon_state = "indoors"
+	color = "#b8b5c9"
+	ambientsounds = list('sound/ambience/indoorgen.ogg')
+	ambientnight = list('sound/ambience/indoorgen.ogg')
+	droning_sound = 'modular_twilight_axis/sound/music/area/druid.ogg'
+	converted_type = /area/rogue/indoors/town/grove
+	deathsight_message = "A sacred place of dendor, near the tree of Aeons.."
+	droning_sound_dusk = null
+	droning_sound_night = null
+	warden_area = TRUE
+	town_area = FALSE
+	
+/area/rogue/indoors/town/grovercunder
+	name = "Under Druids Grove"
+	icon_state = "cave"
+	color = "#b8b5c9"
+	ambientsounds = list('sound/ambience/cavewater (1).ogg','sound/ambience/cavewater (2).ogg','sound/ambience/cavewater (3).ogg')
+	ambientnight = list('sound/ambience/cavewater (1).ogg','sound/ambience/cavewater (2).ogg','sound/ambience/cavewater (3).ogg')
+	droning_sound = 'modular_twilight_axis/sound/music/area/druid.ogg'
+	converted_type = /area/rogue/indoors/town/grove
+	deathsight_message = "A sacred place of dendor, under the tree of Aeons.."
+	droning_sound_dusk = null
+	droning_sound_night = null
+	warden_area = FALSE
+	town_area = FALSE
+
+/area/rogue/outdoors/mountains/decap/somewhere
+	name = "Mountains"
+	first_time_text = "Somewhere High"
+	deathsight_message = "a twisted tangle of soaring peaks"
+
+/area/rogue/indoors/town/fire_chamber/helly
+	name = "Another Place"
+	first_time_text = "Another Place"
+	ambientsounds = list('sound/ambience/hell1.ogg')
+	droning_sound = 'sound/music/area/dwarf.ogg'
+	town_area = FALSE
+
+/area/rogue/indoors/inq/shipwardroom
+	name = "The Inquisition ship wardroom"
+	droning_sound = 'sound/music/area/sargoth.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+/area/rogue/indoors/inq/office/shipoffice
+	name = "The Inquisitor's cabin"
+	droning_sound = 'sound/music/area/sargoth.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+
+/area/rogue/indoors/inq/basement/shipshold
+	name = "The Inquisition's ship hold"
+	ambientsounds = list('sound/music/area/catacombs.ogg')
+	droning_sound = 'sound/music/area/catacombs.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	
+/area/rogue/indoors/town/magician/tower
+	first_time_text = "Magician Tower"
+	name = "Magician Tower"
+
+/area/rogue/outdoors/beach/rtharbor
+	droning_sound = 'modular_twilight_axis/sound/music/area/harbor.ogg'
+	warden_area = FALSE
+	town_area = TRUE
+	
+/area/rogue/outdoors/beach/inqshipout
+	name = "The Inquisition ship"
+	first_time_text = "ZEALOUS"
+	droning_sound = 'sound/music/area/sargoth.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	warden_area = FALSE
+	town_area = FALSE
