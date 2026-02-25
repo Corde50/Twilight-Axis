@@ -68,8 +68,8 @@
 "aB" = (
 /turf/closed/mineral/random/rogue,
 /area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null
-	first_time_text = null
+	ambush_mobs = null;
+	first_time_text = null;
 	name = "Wretched Caves"
 	})
 "aC" = (
