@@ -217,6 +217,18 @@
 	created_item = /obj/item/ammo_casing/caseless/rogue/javelin/steel/paalloy
 	createditem_num = 2
 
+/datum/anvil_recipe/weapons/aalloy/flamberge
+	name = "Flamberge, Decrepit (+2 Alloy, +1 Small Log, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/aalloy
+	additional_items = list(/obj/item/ingot/aalloy, /obj/item/ingot/aalloy, /obj/item/grown/log/tree/small, /obj/item/natural/hide/cured)
+	created_item = /obj/item/rogueweapon/greatsword/grenz/flamberge/aalloy
+
+/datum/anvil_recipe/weapons/paalloy/flamberge
+	name = "Flamberge, Purified (+2 Purified Alloy, +1 Small Log, +1 Cured Leather)"
+	req_bar = /obj/item/ingot/purifiedaalloy
+	additional_items = list(/obj/item/ingot/purifiedaalloy, /obj/item/ingot/purifiedaalloy, /obj/item/grown/log/tree/small, /obj/item/natural/hide/cured)
+	created_item = /obj/item/rogueweapon/greatsword/grenz/flamberge/paalloy
+
 // COPPER
 
 /datum/anvil_recipe/weapons/copper/caxe
