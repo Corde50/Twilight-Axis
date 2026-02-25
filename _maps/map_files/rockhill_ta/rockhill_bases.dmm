@@ -71,7 +71,7 @@
 	ambush_mobs = null;
 	first_time_text = "Wretched Caves";
 	name = "Wretched Caves"
-	})
+	},)
 "aC" = (
 /obj/structure/bed/rogue,
 /obj/machinery/light/rogue/candle/r,
