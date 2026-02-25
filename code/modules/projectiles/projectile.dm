@@ -495,6 +495,7 @@
 	last_process = world.time
 	if(!loc || !fired || !trajectory)
 		fired = FALSE
+		qdel(src)
 		return PROCESS_KILL
 	if(paused || !isturf(loc))
 		last_projectile_move += world.time - last_process		//Compensates for pausing, so it doesn't become a hitscan projectile when unpaused from charged up ticks.
