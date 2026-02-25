@@ -1172,7 +1172,7 @@ SUBSYSTEM_DEF(gamemode)
 		STATS_INDEBTED,
 		STATS_THRILLSEEKERS,
         STATS_GREEDY_PEOPLE,
-        STATS_PLEASURES,
+        //STATS_PLEASURES, TA addition - New ERP SYSTEM
         STATS_MALE_POPULATION,
         STATS_FEMALE_POPULATION,
         STATS_OTHER_GENDER,
@@ -1252,11 +1252,7 @@ SUBSYSTEM_DEF(gamemode)
 			switch(human_mob.pronouns)
 				if(HE_HIM)
 					record_round_statistic(STATS_MALE_POPULATION)
-				if(HE_HIM_F)
-					record_round_statistic(STATS_MALE_POPULATION)
 				if(SHE_HER)
-					record_round_statistic(STATS_FEMALE_POPULATION)
-				if(SHE_HER_M)
 					record_round_statistic(STATS_FEMALE_POPULATION)
 				else
 					record_round_statistic(STATS_OTHER_GENDER)

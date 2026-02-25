@@ -186,6 +186,24 @@
 				)
 		var/heraldychoice = input("Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
+
+		var/onhelm = list(
+			"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+			"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+			"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+			"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+			"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+			"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+			"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+			"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+			"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+			"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+			"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+			"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+			"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
+			)
+		var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+		l_hand = onhelm[onhelmchoice]
  
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
@@ -286,6 +304,24 @@
 		var/heraldychoice = input("Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
 
+		var/onhelm = list(
+			"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+			"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+			"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+			"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+			"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+			"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+			"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+			"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+			"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+			"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+			"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+			"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+			"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
+			)
+		var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+		r_hand = onhelm[onhelmchoice]
+
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
@@ -364,7 +400,7 @@
 				beltr = /obj/item/quiver/arrows
 				beltl = /obj/item/rogueweapon/mace/goden/steel
 			if("Sabre + Recurve Bow")
-				l_hand = /obj/item/rogueweapon/scabbard/sword/noble
+				backl = /obj/item/rogueweapon/scabbard/sword/noble
 				r_hand = /obj/item/rogueweapon/sword/sabre
 				beltr = /obj/item/quiver/arrows
 				beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
@@ -413,6 +449,24 @@
 		var/heraldychoice = input("Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
 
+		var/onhelm = list(
+			"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+			"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+			"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+			"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+			"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+			"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+			"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+			"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+			"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+			"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+			"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+			"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+			"skull" = /obj/item/clothing/head/roguetown/tw_d_skull,
+			)
+		var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+		l_hand = onhelm[onhelmchoice]
+
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
@@ -460,6 +514,11 @@
 	..()
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/rogueweapon/scabbard/sheath/noble = 1
+	)
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -500,12 +559,16 @@
 				beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 
 			if("Shamshir + Pistol")
-				l_hand = /obj/item/twilight_powderflask
 				r_hand = /obj/item/rogueweapon/sword/sabre/shamshir
 				backl = /obj/item/rogueweapon/scabbard/sword
 				beltr = /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol
 				beltl = /obj/item/quiver/twilight_bullet/lead
 				H.adjust_skillrank_up_to(/datum/skill/combat/twilight_firearms, 4, TRUE)
+				backpack_contents = list(
+					/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+					/obj/item/rope/chain = 1,
+					/obj/item/rogueweapon/scabbard/sheath/noble = 1,
+					/obj/item/twilight_powderflask = 1)
 
 		switch(armor_choice)
 			if("Light Armor")
@@ -549,12 +612,25 @@
 				)
 		var/heraldychoice = input("Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
- 
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/rogueweapon/scabbard/sheath/noble = 1
-	)
+
+		var/onhelm = list(
+			"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+			"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+			"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+			"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+			"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+			"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+			"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+			"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+			"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+			"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+			"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+			"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+			"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
+			)
+		var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+		l_hand = onhelm[onhelmchoice]
+
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")
 
@@ -656,7 +732,7 @@
 		if("Edict & Aegis (Sabre & Buckler)")
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_MASTER, TRUE)
 			r_hand = /obj/item/rogueweapon/sword/sabre/banneret
-			l_hand = /obj/item/rogueweapon/shield/buckler/banneret
+			beltl = /obj/item/rogueweapon/shield/buckler/banneret
 			beltr = /obj/item/rogueweapon/scabbard/sword/royal
 		if("Claymore")
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_MASTER, TRUE)
@@ -753,6 +829,24 @@
 	var/helmchoice = input(H, "Choose your Helm.", "TAKE UP HELMS") as anything in helmets
 	if(helmchoice != "None")
 		head = helmets[helmchoice]
+
+	var/onhelm = list(
+		"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+		"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+		"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+		"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+		"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+		"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+		"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+		"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+		"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+		"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+		"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+		"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+		"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
+		)
+	var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+	l_hand = onhelm[onhelmchoice]
 
 	if(HAS_TRAIT(H, TRAIT_GOODTRAINER))
 		REMOVE_TRAIT(H, TRAIT_GOODTRAINER, JOB_TRAIT)
