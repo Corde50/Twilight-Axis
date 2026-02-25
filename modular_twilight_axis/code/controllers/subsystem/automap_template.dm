@@ -24,7 +24,20 @@
 /datum/map_template/automap_template/proc/resolve_load_turf()
 	if(load_turf)
 		return load_turf
-	load_turf = locate(load_x, load_y, load_z)
+
+	var/real_z = load_z
+	if(required_map && !affects_builtin_map)
+		if(!islist(SSautomapper.map_start_z) || !SSautomapper.map_start_z[required_map])
+			CRASH("Automapper: missing map context for required_map='[required_map]' (template='[name]')")
+
+		var/start_z = SSautomapper.map_start_z[required_map]
+		var/depth = SSautomapper.map_depth?[required_map] || 1
+		if(load_z < 1 || load_z > depth)
+			CRASH("Automapper: template '[name]' has z=[load_z] out of bounds (required_map='[required_map]', depth=[depth])")
+
+		real_z = start_z + load_z - 1
+
+	load_turf = locate(load_x, load_y, real_z)
 	return load_turf
 
 /datum/map_template

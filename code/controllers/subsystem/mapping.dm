@@ -166,24 +166,35 @@ SUBSYSTEM_DEF(mapping)
 		add_new_zlevel("[name][i ? " [i + 1]" : ""]", level)
 		++i
 
+	var/list/map_start_z = list()
+	var/list/map_depth = list()
+	for (var/P0 in parsed_maps)
+		var/datum/parsed_map/pm0 = P0
+
+		var/filename = pm0.original_path
+		var/slash = findlasttext(filename, "/")
+		if (slash)
+			filename = copytext(filename, slash + 1)
+
+		map_start_z[filename] = start_z + parsed_maps[P0]
+		map_depth[filename] = pm0.bounds[MAP_MAXZ] - pm0.bounds[MAP_MINZ] + 1
+
+	SSautomapper.set_map_context(map_start_z, map_depth)
 	SSautomapper.preload_templates_from_toml(files)
+	var/turf_blacklist = SSautomapper.get_turf_blacklists(files)
+	for (var/P in parsed_maps)
+		var/datum/parsed_map/pm = P
+		pm.turf_blacklist = turf_blacklist
+		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE))
+			errorList |= pm.original_path
 
-	var/turf_blacklist = SSautomapper.get_turf_blacklists(files)  
+	if(!LAZYLEN(errorList))
+		SSautomapper.load_templates_from_cache(files)
 
-	for (var/P in parsed_maps)  
-		var/datum/parsed_map/pm = P  
-		pm.turf_blacklist = turf_blacklist  
-		if (!pm.load(1, 1, start_z + parsed_maps[P], no_changeturf = TRUE))  
-			errorList |= pm.original_path  
-
-	if(!LAZYLEN(errorList))  
-		SSautomapper.load_templates_from_cache(files)  
-
-	if(LAZYLEN(turf_blacklist))  
-		LAZYOR(GLOB.automapper_blacklisted_turfs, turf_blacklist)  
+	if(LAZYLEN(turf_blacklist))
+		LAZYOR(GLOB.automapper_blacklisted_turfs, turf_blacklist)
 
 	log_game("Loaded [name] in [(REALTIMEOFDAY - start_time)/10]s!")
-
 	return parsed_maps
 
 /datum/controller/subsystem/mapping/proc/loadWorld()

@@ -10,7 +10,13 @@ SUBSYSTEM_DEF(automapper)
 	var/config_file = "_maps/twilight_axis/automapper.toml"
 	var/loaded_config
 	var/list/preloaded_map_templates = list()
+	var/list/map_start_z = null
+	var/list/map_depth = null
 
+/datum/controller/subsystem/automapper/proc/set_map_context(list/in_start_z, list/in_depth)
+	map_start_z = in_start_z
+	map_depth = in_depth
+	
 /datum/controller/subsystem/automapper/Initialize()
 	if(!fexists(config_file))
 		CRASH("Automapper: TOML file not found: [config_file]")
