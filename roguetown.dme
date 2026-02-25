@@ -3168,8 +3168,6 @@
 #include "modular_twilight_axis\firearms\code\clothes\feet.dm"
 #include "modular_twilight_axis\firearms\code\clothes\hats.dm"
 #include "modular_twilight_axis\firearms\code\clothes\neck.dm"
-#include "modular_twilight_axis\code\modules\roguetown\structures\onager.dm"
-#include "modular_twilight_axis\code\modules\roguetown\structures\onager_unfinished.dm"
 #include "modular_twilight_axis\firearms\code\craft\artificer_recipes.dm"
 #include "modular_twilight_axis\firearms\code\craft\craft_recipes.dm"
 #include "modular_twilight_axis\firearms\code\craft\trade_packs.dm"
