@@ -2624,7 +2624,6 @@
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/bograt/safe)
 "pt" = (
-/obj/machinery/light/rogue/firebowl/standing,
 /obj/structure/fluff/statue/evil,
 /obj/machinery/light/rogue/firebowl/standing,
 /turf/open/floor/rogue/dirt,
@@ -4637,11 +4636,6 @@
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/outdoors/mountains)
-"Cl" = (
-/obj/machinery/light/rogue/torchholder/c,
-/obj/machinery/light/rogue/torchholder/c,
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors)
 "Cn" = (
 /obj/structure/roguemachine/mail/r{
 	mailtag = "Freemen"
@@ -4770,10 +4764,6 @@
 	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/bograt/safe)
-"CX" = (
-/turf/closed/wall/mineral/rogue/wooddark,
-/turf/open/floor/rogue/naturalstone,
-/area/rogue/indoors)
 "CZ" = (
 /obj/structure/fluff/statue/gargoyle,
 /obj/effect/wisp/prestidigitation{
@@ -5905,15 +5895,8 @@
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/cavewet/bogcaves)
 "Kg" = (
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "tablewood1"
-	},
-/obj/structure/table/wood{
-	dir = 1;
-	icon_state = "tablewood1"
-	},
 /obj/item/candle/skull/lit,
+/obj/structure/table/wood/poor,
 /turf/open/floor/rogue/ruinedwood{
 	dir = 1;
 	icon_state = "vertw"
@@ -17048,7 +17031,7 @@ dp
 uS
 WB
 ar
-Cl
+PX
 rm
 WB
 WB
@@ -20858,7 +20841,7 @@ ws
 RY
 KO
 ws
-wj
+TS
 DT
 Em
 Em
@@ -20987,7 +20970,7 @@ ws
 YE
 pm
 YE
-wj
+TS
 DT
 Em
 Em
@@ -21116,7 +21099,7 @@ uz
 oW
 oW
 ws
-hu
+DT
 DT
 Em
 TF
@@ -22426,7 +22409,7 @@ Yt
 jI
 Kx
 aY
-Pj
+yY
 YR
 zg
 Pj
@@ -22556,8 +22539,8 @@ cF
 AH
 TF
 AH
-CX
-Pj
+TF
+yY
 Pj
 TF
 qS
