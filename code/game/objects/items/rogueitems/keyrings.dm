@@ -216,7 +216,7 @@
 ///////////
 
 /obj/item/storage/keyring/lord
-	keys = list(/obj/item/roguekey/royal, /obj/item/roguekey/manor, /obj/item/roguekey/heir, /obj/item/roguekey/vault, /obj/item/roguekey/steward, /obj/item/roguekey/hand, /obj/item/roguekey/justiciary, /obj/item/roguekey/knight, /obj/item/roguekey/sergeant, /obj/item/roguekey/garrison, /obj/item/roguekey/dungeon, /obj/item/roguekey/armory)
+	keys = list(/obj/item/roguekey/royal, /obj/item/roguekey/manor, /obj/item/roguekey/walls, /obj/item/roguekey/heir, /obj/item/roguekey/vault, /obj/item/roguekey/steward, /obj/item/roguekey/hand, /obj/item/roguekey/justiciary, /obj/item/roguekey/knight, /obj/item/roguekey/sergeant, /obj/item/roguekey/garrison, /obj/item/roguekey/dungeon, /obj/item/roguekey/armory)
 
 /obj/item/storage/keyring/lady
 	keys = list(/obj/item/roguekey/royal, /obj/item/roguekey/manor, /obj/item/roguekey/heir, /obj/item/roguekey/vault, /obj/item/roguekey/steward, /obj/item/roguekey/hand)
