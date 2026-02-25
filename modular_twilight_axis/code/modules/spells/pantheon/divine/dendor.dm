@@ -139,7 +139,6 @@
 	req_items = /obj/item/clothing/neck/roguetown/psicross/dendor
 	antimagic_allowed = TRUE
 	miracle = TRUE
-	devotion_cost = 50
 
 /obj/effect/proc_holder/spell/self/beast_claws/cast(mob/living/user = usr)
 	. = ..()
