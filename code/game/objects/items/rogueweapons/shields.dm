@@ -404,7 +404,7 @@
 	flags_1 = CONDUCT_1
 	wdefense = 12
 	coverage = 60
-	heraldry_x_offset = 1 // Shift right by 1px to center flat heraldry.
+	heraldry_x_offset = 1
 	attacked_sound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	parrysound = list('sound/combat/parry/shield/metalshield (1).ogg','sound/combat/parry/shield/metalshield (2).ogg','sound/combat/parry/shield/metalshield (3).ogg')
 	max_integrity = 300
