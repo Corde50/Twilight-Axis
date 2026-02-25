@@ -245,14 +245,14 @@
 /datum/status_effect/buff/equalizebuff
 	id = "equalize"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/equalized
-	effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 2, STATKEY_SPD = 2)
+	effectedstats = list(STATKEY_STR = 2, STATKEY_SPD = 2, STATKEY_LCK = 3)
 	duration = 3 MINUTES
 	var/outline_colour = "#FFD700"
 
 
 /atom/movable/screen/alert/status_effect/buff/equalized
 	name = "Equalized"
-	desc = "I've stolen my opponent's fyre."				// USE. LESS. WORDS.
+	desc = "I've stolen my opponent's fyre."
 	icon_state = "equalize_buff"
 
 /datum/status_effect/buff/equalizebuff/on_apply()
@@ -269,7 +269,7 @@
 /datum/status_effect/debuff/equalizedebuff
 	id = "equalize"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/equalized
-	effectedstats = list(STATKEY_STR = -2, STATKEY_CON = -2, STATKEY_SPD = -2)
+	effectedstats = list(STATKEY_STR = -2, STATKEY_SPD = -2, STATKEY_LCK = -3)
 	duration = 3 MINUTES
 	var/outline_colour = "#FFD700"
 
@@ -291,7 +291,7 @@
 /datum/status_effect/debuff/equalizedebuff_noble
 	id = "equalize"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/equalized_noble
-	effectedstats = list(STATKEY_STR = -3, STATKEY_CON = -3, STATKEY_SPD = -3)
+	effectedstats = list(STATKEY_STR = -3, STATKEY_SPD = -3, , STATKEY_LCK = -6)
 	duration = 3 MINUTES
 	var/outline_colour = "#FFD700"
 
