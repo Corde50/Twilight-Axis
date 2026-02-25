@@ -204,7 +204,6 @@
 		attack_threshold_check(damage, hitlim, armorcheck = armor)
 		log_combat(M, src, "attacked")
 		updatehealth()
-		var/hitlim = simple_limb_hit(M.zone_selected)
 		simple_woundcritroll(M.used_intent.blade_class, damage, M, hitlim)
 		visible_message(span_danger("[M] [atk_verb] [src]![next_attack_msg.Join()]"),\
 						span_danger("[M] [atk_verb] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
