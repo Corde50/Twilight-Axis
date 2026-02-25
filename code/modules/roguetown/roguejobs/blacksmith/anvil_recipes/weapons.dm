@@ -1344,6 +1344,24 @@
 
 // UNIQUE
 
+/datum/anvil_recipe/valuables/deprivedsword
+	name = "Sword, Imperfect (+1 Small Log, +2 Glimmering Slag)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/aaslag, /obj/item/ingot/aaslag, /obj/item/grown/log/tree/small)
+	created_item = /obj/item/rogueweapon/sword/broken
+	appro_skill = /datum/skill/craft/weaponsmithing
+	i_type = "Weapons"
+	craftdiff = SKILL_LEVEL_NOVICE
+
+/datum/anvil_recipe/valuables/deprivedshortsword
+	name = "Shortsword, Imperfect (+1 Stick, +2 Glimmering Slag)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/aaslag, /obj/item/ingot/aaslag, /obj/item/grown/log/tree/stick)
+	created_item = /obj/item/rogueweapon/sword/short/broken
+	appro_skill = /datum/skill/craft/weaponsmithing
+	i_type = "Weapons"
+	craftdiff = SKILL_LEVEL_NOVICE
+
 /datum/anvil_recipe/valuables/iron/execution
 	name = "Executioner's Sword (+2 Iron)"
 	req_bar = /obj/item/ingot/iron
