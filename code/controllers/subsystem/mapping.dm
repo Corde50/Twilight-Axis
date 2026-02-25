@@ -104,6 +104,14 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
 	generate_z_level_linkages()
+	if(config?.map_name == "Rockhill_TA") // TA EDIT START
+		var/list/posters = GLOB.bounty_posters
+		if("AZURIA" in posters)
+			posters -= "AZURIA"
+			posters["ENIGMA"] = "The Justiciary of Enigma"
+		if("GRENZELHOFT" in posters)
+			posters -= "GRENZELHOFT"
+			posters["VALORIA"] = "The Valorian Holy See" // TA EDIT END
 	return ..()
 
 /datum/controller/subsystem/mapping/proc/generate_z_level_linkages()
