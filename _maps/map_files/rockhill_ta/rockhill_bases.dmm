@@ -66,12 +66,9 @@
 /turf/closed/wall/mineral/rogue/stone/moss/unbreakable,
 /area/rogue/outdoors/bograt/safe)
 "aB" = (
+,
 /turf/closed/mineral/random/rogue,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	},)
+/area/rogue/under/cavewet/bogcaves)
 "aC" = (
 /obj/structure/bed/rogue,
 /obj/machinery/light/rogue/candle/r,
@@ -266,11 +263,7 @@
 "bW" = (
 /obj/structure/fluff/walldeco/bath/seven,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "bX" = (
 /turf/closed/mineral/rogue/bedrock,
 /area/rogue)
@@ -416,11 +409,7 @@
 /obj/item/soap,
 /obj/item/handmirror,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "cZ" = (
 /obj/item/skull{
 	pixel_y = -11
@@ -473,11 +462,7 @@
 "dq" = (
 /obj/structure/flora/rogueshroom,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "ds" = (
 /obj/structure/table/church/m,
 /obj/structure/fluff/psycross{
@@ -949,11 +934,7 @@
 /area/rogue/indoors/vampire_manor)
 "fI" = (
 /turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "fK" = (
 /obj/structure/fluff/railing/wood/east{
 	pixel_x = 8
@@ -1048,11 +1029,7 @@
 	pixel_x = 0
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "gd" = (
 /turf/closed/wall/mineral/rogue/tent,
 /area/rogue/indoors)
@@ -1188,11 +1165,7 @@
 "ha" = (
 /obj/effect/decal/cleanable/roguerune/god/baotha,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "hb" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grass,
@@ -1246,11 +1219,7 @@
 /obj/structure/vine,
 /obj/machinery/light/rogue/candle/blue/l,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "hr" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/water/swamp,
@@ -1292,11 +1261,7 @@
 /obj/structure/zizo_bane,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "hD" = (
 /obj/effect/decal/cleanable/sigil/NW,
 /turf/open/floor/rogue/blocks/flipped,
@@ -1929,11 +1894,7 @@
 /obj/structure/flora/roguegrass,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "kP" = (
 /obj/structure/fluff/railing/corner/south_east,
 /turf/open/floor/rogue/dirt/ambush,
@@ -2123,11 +2084,7 @@
 "mc" = (
 /obj/structure/vine,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "md" = (
 /obj/item/alch/airdust,
 /obj/item/alch/airdust,
@@ -2533,11 +2490,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "oo" = (
 /obj/machinery/light/rogue/candle/r,
 /turf/open/floor/rogue/herringbone,
@@ -2564,11 +2517,7 @@
 /area/rogue/indoors)
 "ow" = (
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "ox" = (
 /obj/structure/fluff/walldeco/painting/skull,
 /turf/closed/wall/mineral/rogue/stone/red_moss,
@@ -2648,11 +2597,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/roguegrass/herb/salvia,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "oM" = (
 /obj/structure/fluff/railing/wood/east{
 	pixel_x = 8
@@ -2687,11 +2632,7 @@
 "oS" = (
 /obj/structure/fluff/walldeco/maidensigil,
 /turf/open/floor/rogue/cobblerock,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "oW" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /turf/open/water/swamp/deep,
@@ -2757,11 +2698,7 @@
 "pj" = (
 /obj/machinery/light/rogue/candle/floorcandle/pink,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "pk" = (
 /obj/structure/stairs{
 	dir = 1
@@ -2786,11 +2723,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/zizo_bane,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "pw" = (
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/rogue/dirt,
@@ -2874,19 +2807,11 @@
 "qa" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "qc" = (
 /obj/structure/zizo_bane,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "qd" = (
 /obj/structure/flora/roguetree/burnt,
 /turf/open/floor/rogue/dirt/road,
@@ -2898,11 +2823,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "qf" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/fluff/railing/border/east,
@@ -2936,11 +2857,7 @@
 "qs" = (
 /obj/structure/fluff/walldeco/bath/six,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "qt" = (
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/carpet/royalblack,
@@ -2959,11 +2876,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "qv" = (
 /obj/structure/flora/roguetree/pine,
 /turf/open/floor/rogue/snowpatchy,
@@ -3172,11 +3085,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "rK" = (
 /obj/effect/decal/edge{
 	color = "#3f3f3f";
@@ -3242,11 +3151,7 @@
 "se" = (
 /obj/structure/shisha/hookah,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "sg" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -3320,11 +3225,7 @@
 /obj/structure/fluff/walldeco/bath,
 /obj/structure/fermentation_keg/whitewine,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "sO" = (
 /obj/structure/flora/roguetree/burnt,
 /turf/open/water/swamp,
@@ -3585,11 +3486,7 @@
 /area/rogue/indoors)
 "uK" = (
 /turf/open/floor/rogue/cobblerock,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "uL" = (
 /obj/structure/bed/rogue{
 	dir = 1
@@ -3626,11 +3523,7 @@
 	icon_state = "mush2"
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "uY" = (
 /obj/effect/landmark/chimeric_calyx_spawner/fifteen,
 /turf/open/floor/rogue/grass,
@@ -3777,11 +3670,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "vN" = (
 /obj/machinery/anvil,
 /obj/item/rogueweapon/hammer/iron,
@@ -3790,11 +3679,7 @@
 "vQ" = (
 /obj/structure/vine,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "vU" = (
 /obj/structure/closet/crate/chest,
 /obj/item/rogue/instrument/accord,
@@ -3874,11 +3759,7 @@
 "wq" = (
 /obj/structure/fluff/walldeco/vinez/blue,
 /turf/closed/wall/mineral/rogue/craftstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "ws" = (
 /turf/open/water/swamp,
 /area/rogue/outdoors/bograt/safe)
@@ -4222,11 +4103,7 @@
 	dir = 1
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "yv" = (
 /obj/machinery/light/rogue/candle/r,
 /turf/open/floor/rogue/tile/bfloorz,
@@ -4256,11 +4133,7 @@
 	dir = 8
 	},
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "yB" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/rogue/concrete,
@@ -4388,11 +4261,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "zu" = (
 /obj/structure/rack/rogue,
 /obj/item/reagent_containers/glass/bottle/rogue,
@@ -4442,11 +4311,7 @@
 /area/rogue/outdoors/bograt/safe)
 "zA" = (
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "zB" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/banditcamp)
@@ -4497,11 +4362,7 @@
 "zT" = (
 /obj/machinery/light/rogue/candle/blue,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "zV" = (
 /obj/machinery/light/rogue/firebowl/stump,
 /turf/open/floor/rogue/dirt/road,
@@ -4732,11 +4593,7 @@
 "Bb" = (
 /obj/item/natural/stone,
 /turf/open/floor/rogue/cobblerock,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Bc" = (
 /obj/machinery/light/rogue/candle/r,
 /turf/open/floor/rogue/concrete,
@@ -4902,11 +4759,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/mirror,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "BV" = (
 /obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/blocks,
@@ -5184,11 +5037,7 @@
 "Dz" = (
 /obj/machinery/light/rogue/candle/floorcandle/pink,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "DA" = (
 /obj/structure/flora/roguegrass/water,
 /turf/open/water/river{
@@ -5220,11 +5069,7 @@
 /area/rogue/outdoors/bograt/safe)
 "DI" = (
 /turf/closed/mineral/rogue/elementalmote,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "DK" = (
 /obj/item/chair/stool/bar/rogue,
 /turf/open/floor/rogue/dirt/road,
@@ -5254,11 +5099,7 @@
 /obj/item/reagent_containers/glass/bottle/rogue/redwine,
 /obj/item/reagent_containers/glass/bottle/rogue/wine/sourwine,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "DR" = (
 /obj/structure/bed/rogue,
 /obj/machinery/light/rogue/candle{
@@ -5329,11 +5170,7 @@
 	name = "Star-Sugar"
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Em" = (
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/bograt/safe)
@@ -5411,11 +5248,7 @@
 /obj/structure/zizo_bane,
 /obj/structure/mirror,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "EH" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 1
@@ -5699,11 +5532,7 @@
 /obj/structure/flora/roguegrass,
 /obj/machinery/light/rogue/candle/blue,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Gj" = (
 /obj/structure/fluff/railing/wood/north{
 	layer = 2.7;
@@ -5829,11 +5658,7 @@
 /area/rogue/outdoors/mountains)
 "Hf" = (
 /turf/closed/mineral/rogue/salt,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Hi" = (
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
@@ -6046,11 +5871,7 @@
 "Iv" = (
 /obj/structure/flora/roguegrass/water,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Ix" = (
 /obj/machinery/light/rogue/cauldron,
 /turf/open/floor/rogue/cobblerock,
@@ -6127,11 +5948,7 @@
 /area/rogue/indoors/vampire_manor)
 "Jc" = (
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Je" = (
 /obj/structure/flora/roguegrass,
 /obj/machinery/light/rogue/torchholder/r,
@@ -6322,11 +6139,7 @@
 /obj/structure/mirror/fancy,
 /obj/machinery/light/rogue/candle/floorcandle/alt/pink,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Kg" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -6346,11 +6159,7 @@
 /obj/structure/chair/hotspring_bench/left,
 /obj/structure/mirror/fancy,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Ki" = (
 /obj/machinery/light/rogue/candle/r,
 /obj/structure/ritualcircle/matthios,
@@ -6538,11 +6347,7 @@
 	pixel_x = 0
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Lo" = (
 /obj/machinery/light/rogue/oven/south,
 /obj/machinery/light/rogue/hearth,
@@ -6926,11 +6731,7 @@
 /obj/structure/flora/roguegrass/herb/salvia,
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "No" = (
 /obj/effect/decal/edge{
 	color = "#3f3f3f"
@@ -6998,11 +6799,7 @@
 /obj/structure/flora/roguegrass,
 /obj/machinery/light/rogue/candle/blue/r,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "NH" = (
 /obj/structure/closet/crate/drawer,
 /turf/open/floor/carpet/purple,
@@ -7020,11 +6817,7 @@
 "NN" = (
 /obj/item/natural/stone,
 /turf/open/water/bath,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "NQ" = (
 /obj/structure/well,
 /turf/open/floor/rogue/dirt,
@@ -7059,11 +6852,7 @@
 "Oe" = (
 /obj/structure/flora/mushroomcluster,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Oj" = (
 /obj/machinery/light/rogue/oven/south,
 /obj/machinery/light/rogue/hearth,
@@ -7221,11 +7010,7 @@
 "OS" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "OT" = (
 /obj/structure/table/church,
 /obj/effect/decal/edge{
@@ -7409,11 +7194,7 @@
 "PY" = (
 /obj/structure/fluff/walldeco/vinez/blue,
 /turf/closed/mineral/random/rogue,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Qa" = (
 /obj/structure/closet/crate/coffin/vampire,
 /turf/open/floor/rogue/cobblerock,
@@ -7543,11 +7324,7 @@
 "QF" = (
 /obj/machinery/light/rogue/candle/blue/r,
 /turf/open/floor/rogue/cobblerock,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "QG" = (
 /obj/structure/closet/crate/chest/crate,
 /obj/item/grown/log/tree/small,
@@ -7918,11 +7695,7 @@
 "SQ" = (
 /obj/structure/flora/mushroomcluster,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "ST" = (
 /obj/structure/stairs/stone{
 	dir = 1
@@ -7981,11 +7754,7 @@
 /obj/item/magic/manacrystal,
 /obj/item/magic/manacrystal,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "To" = (
 /obj/machinery/anvil,
 /obj/machinery/light/rogue/torchholder/c,
@@ -8582,11 +8351,7 @@
 	color = "#5232a8"
 	},
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "WM" = (
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woods{
@@ -8762,11 +8527,7 @@
 /area/rogue/outdoors/bograt/safe)
 "XV" = (
 /turf/closed/mineral/rogue/cinnabar,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "XX" = (
 /turf/open/water/pond,
 /area/rogue/outdoors/mountains)
@@ -8793,19 +8554,11 @@
 	pixel_x = 0
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Yf" = (
 /obj/machinery/light/rogue/candle/floorcandle/alt/pink,
 /turf/open/floor/rogue/naturalstone,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Yj" = (
 /obj/structure/roguewindow/stained/zizo{
 	icon_state = "stained-zizobr"
@@ -8819,11 +8572,7 @@
 "Yl" = (
 /obj/structure/fermentation_keg/redwine,
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Yn" = (
 /obj/structure/spike_pit,
 /turf/open/floor/rogue/dirt,
@@ -9004,11 +8753,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/rogue/grasspurple,
-/area/rogue/under/cavewet/bogcaves{
-	ambush_mobs = null;
-	first_time_text = "Wretched Caves";
-	name = "Wretched Caves"
-	})
+/area/rogue/under/cavewet/bogcaves)
 "Zj" = (
 /obj/structure/curtain{
 	color = "#ad885c"
