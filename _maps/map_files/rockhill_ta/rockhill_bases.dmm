@@ -183,9 +183,6 @@
 	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/banditcamp)
-"bf" = (
-/turf/closed/wall/mineral/rogue/wooddark/horizontal,
-/area/rogue/outdoors/banditcamp)
 "bg" = (
 /turf/closed/mineral/random/rogue/boglava/med,
 /area/rogue/under/cave)
@@ -206,6 +203,21 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/vampire_manor)
+"bp" = (
+/obj/item/branding_iron{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/branding_letters{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/structure/table/wood/poor,
+/turf/open/floor/rogue/ruinedwood{
+	dir = 1;
+	icon_state = "vertw"
+	},
+/area/rogue/indoors/banditcamp)
 "bs" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors)
@@ -1445,13 +1457,6 @@
 	},
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/vampire_manor)
-"iI" = (
-/obj/machinery/light/rogue/firebowl/stump,
-/turf/open/floor/rogue/ruinedwood{
-	dir = 1;
-	icon_state = "vertw"
-	},
-/area/rogue/indoors/banditcamp)
 "iJ" = (
 /obj/structure/vine,
 /obj/structure/minecart_rail{
@@ -2109,21 +2114,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/vampire_manor)
-"ms" = (
-/obj/item/branding_iron{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/branding_letters{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/obj/structure/table/wood/poor,
-/turf/open/floor/rogue/ruinedwood{
-	dir = 1;
-	icon_state = "vertw"
-	},
-/area/rogue/indoors/banditcamp)
 "mu" = (
 /obj/structure/table/wood{
 	dir = 10;
@@ -2687,18 +2677,6 @@
 	icon_state = "weird1"
 	},
 /area/rogue/indoors/vampire_manor)
-"pJ" = (
-/obj/item/branding_iron{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/branding_letters{
-	pixel_x = 7;
-	pixel_y = -6
-	},
-/obj/structure/table/wood/poor,
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors)
 "pK" = (
 /obj/structure/closet/crate/chest,
 /obj/item/rope/chain,
@@ -3520,7 +3498,7 @@
 	},
 /area/rogue/under/cave)
 "vC" = (
-/obj/machinery/light/rogue/smelter/bronze,
+/obj/machinery/light/rogue/forge,
 /turf/open/floor/rogue/dirt,
 /area/rogue/indoors)
 "vD" = (
@@ -3627,6 +3605,9 @@
 /obj/structure/closet/crate/coffin/vampire,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/vampire_manor)
+"wd" = (
+/turf/closed/wall/mineral/rogue/wooddark/horizontal,
+/area/rogue/outdoors/banditcamp)
 "wg" = (
 /obj/effect/landmark/start/gnolllate,
 /turf/open/floor/rogue/naturalstone,
@@ -6141,6 +6122,18 @@
 /obj/structure/fluff/railing/border/west,
 /turf/open/floor/rogue/ruinedwood/turned,
 /area/rogue/outdoors/banditcamp)
+"Lw" = (
+/obj/item/branding_iron{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/obj/item/branding_letters{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/structure/table/wood/poor,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors)
 "LA" = (
 /obj/structure/fluff/railing/border/north,
 /turf/open/floor/rogue/grass,
@@ -6975,6 +6968,13 @@
 /obj/structure/fluff/walldeco/bath/wallrope,
 /turf/closed/wall/mineral/rogue/craftstone,
 /area/rogue/indoors/vampire_manor)
+"Qr" = (
+/obj/machinery/light/rogue/forge,
+/turf/open/floor/rogue/ruinedwood{
+	dir = 1;
+	icon_state = "vertw"
+	},
+/area/rogue/indoors/banditcamp)
 "Qu" = (
 /obj/structure/meathook,
 /turf/open/floor/rogue/cobblerock,
@@ -7740,6 +7740,10 @@
 /obj/effect/decal/cleanable/debris/stony,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/inhumen)
+"UJ" = (
+/obj/machinery/light/rogue/smelter/bronze,
+/turf/open/floor/rogue/naturalstone,
+/area/rogue/under/cave)
 "UK" = (
 /obj/structure/fluff/walldeco/vinez/red,
 /turf/closed/wall/mineral/rogue/craftstone,
@@ -11767,8 +11771,8 @@ JD
 JD
 JD
 Dv
-ms
-iI
+bp
+Qr
 LO
 Ve
 Bw
@@ -11897,9 +11901,9 @@ bX
 bX
 bX
 mK
-bf
-bf
-bf
+wd
+wd
+wd
 Fw
 Bw
 Zc
@@ -20083,7 +20087,7 @@ rQ
 bX
 WB
 cM
-pJ
+Lw
 yy
 dp
 gy
@@ -20774,7 +20778,7 @@ pE
 pE
 ag
 pE
-CP
+UJ
 CP
 rW
 YM
