@@ -252,32 +252,19 @@
 	fire(user)
 
 /obj/structure/onager/proc/fire(mob/user)
-	
 	var/turf/target = get_ranged_target_turf(src, dir, target_distance)
-	
-	
-	if(!target)
-		to_chat(user, span_warning("The target is out of range or off-map!"))
-		return
-
-
-	var/x_off = rand(-2, 2)
-	var/y_off = rand(-2, 2)
-	
-	var/turf/scatter = locate(clamp(target.x + x_off, 1, world.maxx), clamp(target.y + y_off, 1, world.maxy), target.z)
-	
-	if(scatter) 
-		target = scatter
+	if(!target) return
 
 	
+	var/flight_height = get_free_z_height(src)
+
 	playsound(src, pick(launch_sounds), 60, TRUE)
-	user.visible_message(span_danger("[user] fires the onager!"))
 	set_launched() 
 	
+	var/obj/item/boulder/P = new /obj/item/boulder(get_turf(src))
 	
-	var/turf/spawn_loc = get_turf(src)
-	var/obj/item/boulder/P = new /obj/item/boulder(spawn_loc)
-	P.launch_artillery(target, target_distance)
+
+	P.launch_artillery(target, target_distance, flight_height)
 
 /obj/structure/onager/proc/is_obstructed()
 	var/turf/T = get_turf(src)
@@ -325,35 +312,36 @@
 	icon_state = "boulder_item" 
 	w_class = WEIGHT_CLASS_HUGE
 	throwforce = 50
+	var/stored_flight_height = 0
 
-
-/obj/item/boulder/proc/launch_artillery(turf/target, distance)
-	
+/obj/item/boulder/proc/launch_artillery(turf/target, distance, flight_height)
+	src.stored_flight_height = flight_height 
 	
 	var/obj/effect/temp_visual/onager_fly/fly = new(get_turf(src))
 	fly.do_launch_anim()
 
-	
 	anchored = TRUE
-	density = FALSE
-	invisibility = INVISIBILITY_ABSTRACT 
 	moveToNullspace() 
 
 	var/flight_time = 20 + (distance * 2)
 	addtimer(CALLBACK(src, PROC_REF(begin_impact), target), flight_time)
-
 
 /obj/item/boulder/proc/begin_impact(turf/target_turf)
 	if(!target_turf)
 		qdel(src)
 		return
 
-	var/turf/final_T = target_turf
-	var/turf/above = get_step_multiz(final_T, UP)
-	while(above)
-		final_T = above
-		above = get_step_multiz(final_T, UP)
 	
+	var/turf/start_impact_turf = target_turf
+	for(var/i in 1 to stored_flight_height)
+		var/turf/above = get_step_multiz(start_impact_turf, UP)
+		if(above)
+			start_impact_turf = above
+		else
+			break
+
+	
+	var/turf/final_T = start_impact_turf
 	var/turf/below = get_step_multiz(final_T, DOWN)
 	while(below && istransparentturf(final_T)) 
 		final_T = below
@@ -361,13 +349,11 @@
 
 	forceMove(final_T)
 	invisibility = 0
-	anchored = TRUE
 	
 	playsound(final_T, 'modular_twilight_axis/sound/catapult/incoming3.ogg', 100, FALSE)
 	
 	pixel_z = 600
 	animate(src, pixel_z = 0, time = 8, easing = EASE_IN)
-
 	addtimer(CALLBACK(src, PROC_REF(impact)), 8)
 
 
@@ -433,3 +419,17 @@
     flag = "piercing" 
     damage_type = BRUTE
     speed = 2
+
+/proc/get_free_z_height(atom/origin)
+	var/height = 0
+	var/turf/current_turf = get_turf(origin)
+	
+	
+	while(current_turf)
+		var/turf/above = get_step_multiz(current_turf, UP)
+		if(!above || above.density)
+			break
+		current_turf = above
+		height++
+	
+	return height
