@@ -288,6 +288,12 @@
 	var/list/available = icon_states('icons/roguetown/weapons/shield_heraldry_masks.dmi')
 	return (mask_state in available)
 
+/obj/item/rogueweapon/shield/obj_break(damage_flag)
+	. = ..()
+	// Clear heraldry so the player can re-apply it after repairing
+	heraldry_state = null
+	heraldry_preview = null
+
 /obj/item/rogueweapon/shield/attack_right(mob/user)
 	if(!has_heraldry_mask())
 		to_chat(user, span_warning("This shield cannot bear heraldry."))
