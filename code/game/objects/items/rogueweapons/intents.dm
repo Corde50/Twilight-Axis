@@ -135,6 +135,8 @@
 				suffix = "at and beyond"
 			if(EFF_RANGE_BELOW)
 				suffix = "at and within"
+			if(EFF_RANGE_NONE)
+				suffix = "not usable"
 			else
 				CRASH("effective_range found without a valid effective_range_type on [src] intent by [user]")
 		inspec += "\n<b>Effective Range:</b> [suffix] [effective_range] paces"

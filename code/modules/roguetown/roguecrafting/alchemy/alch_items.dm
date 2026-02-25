@@ -16,6 +16,9 @@
 
 // Shitty copy paste override until bottle code refactored
 /obj/item/reagent_containers/glass/bottle/alchemical/update_icon(dont_fill=FALSE)
+	if(QDELING(src) || QDELETED(src) || !reagents)
+		return
+
 	if(!fill_icon_thresholds || dont_fill)
 		return
 
@@ -28,9 +31,11 @@
 		var/percent = round((reagents.total_volume / volume) * 100)
 		for(var/i in 1 to fill_icon_thresholds.len)
 			var/threshold = fill_icon_thresholds[i]
-			var/threshold_end = (i == fill_icon_thresholds.len)? INFINITY : fill_icon_thresholds[i+1]
+			var/threshold_end = (i == fill_icon_thresholds.len) ? INFINITY : fill_icon_thresholds[i+1]
 			if(threshold <= percent && percent < threshold_end)
 				filling.icon_state = "vial_fluid_[fill_icon_thresholds[i]]"
+				break
+
 		filling.alpha = mix_alpha_from_reagents(reagents.reagent_list)
 		filling.color = mix_color_from_reagents(reagents.reagent_list)
 		underlays += filling

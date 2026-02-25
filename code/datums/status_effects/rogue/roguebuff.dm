@@ -57,9 +57,12 @@
 	duration = 8 MINUTES
 
 /datum/status_effect/buff/snackbuff/on_creation(mob/living/new_owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
 		return FALSE
-	. = ..()
+	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/snackbuff
 	name = "Good snack"
@@ -80,9 +83,12 @@
 	duration = 10 MINUTES
 
 /datum/status_effect/buff/greatsnackbuff/on_creation(mob/living/new_owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
 		return FALSE
-	. = ..()
+	return TRUE
 
 /atom/movable/screen/alert/status_effect/buff/greatsnackbuff
 	name = "Great Snack!"
@@ -107,9 +113,12 @@
 	icon_state = "foodbuff"
 
 /datum/status_effect/buff/mealbuff/on_creation(mob/living/new_owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
 		return FALSE
-	. = ..()
+	return TRUE
 
 /datum/status_effect/buff/mealbuff/on_apply()
 	. = ..()
@@ -129,9 +138,12 @@
 	icon_state = "foodbuff"
 
 /datum/status_effect/buff/greatmealbuff/on_creation(mob/living/new_owner)
+	. = ..()
+	if(!.)
+		return FALSE
 	if(HAS_TRAIT(new_owner, TRAIT_NOHUNGER))
 		return FALSE
-	. = ..()
+	return TRUE
 
 /datum/status_effect/buff/greatmealbuff/on_apply()
 	. = ..()
@@ -2042,8 +2054,14 @@
 
 /datum/status_effect/buff/dagger_boost/process()
 	. = ..()
-	if(!istype(owner.get_active_held_item(), held_dagger))
-		owner.remove_status_effect(/datum/status_effect/buff/dagger_boost)
+
+	var/mob/living/M = owner
+	if(!M || QDELETED(M))
+		qdel(src)
+		return
+
+	if(!istype(M.get_active_held_item(), held_dagger))
+		M.remove_status_effect(/datum/status_effect/buff/dagger_boost)
 
 // special lirvas dragonskin buffs
 /datum/status_effect/buff/lirvan_broken_scales
