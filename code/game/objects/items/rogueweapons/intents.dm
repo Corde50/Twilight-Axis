@@ -113,6 +113,7 @@
 		QDEL_NULL(mob_light)
 	if(mob_charge_effect)
 		mastermob.vis_contents -= mob_charge_effect
+		mob_charge_effect = null
 	if(mastermob?.curplaying == src)
 		mastermob.curplaying = null
 	mastermob = null

@@ -829,6 +829,11 @@
 /obj/projectile/Destroy()
 	if(hitscan)
 		finalize_hitscan_and_generate_tracers()
+	permutated = null
+	firer = null
+	fired_from = null
+	original = null
+	starting = null
 	STOP_PROCESSING(SSprojectiles, src)
 	cleanup_beam_segments()
 	qdel(trajectory)
