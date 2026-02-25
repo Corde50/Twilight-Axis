@@ -304,6 +304,17 @@
 		return /datum/stressevent/cummax
 	return /datum/stressevent/cumlove
 
+/datum/component/arousal/proc/clear_climax_stress_events(mob/living/carbon/human/H)
+	if(!istype(H))
+		return
+
+	H.remove_stress(/datum/stressevent/cumself)
+	H.remove_stress(/datum/stressevent/cumok)
+	H.remove_stress(/datum/stressevent/cummid)
+	H.remove_stress(/datum/stressevent/cumgood)
+	H.remove_stress(/datum/stressevent/cummax)
+	H.remove_stress(/datum/stressevent/cumlove)
+
 /datum/component/arousal/proc/apply_climax_stress(mob/living/carbon/human/climaxer, mob/living/carbon/human/partner)
 	if(!istype(climaxer) || climaxer.stat == DEAD)
 		return
@@ -315,6 +326,7 @@
 	var/is_masturbation = (!istype(partner) || partner == climaxer)
 	var/event_type = get_climax_stress_event(partner, is_masturbation)
 	if(event_type)
+		clear_climax_stress_events(climaxer)
 		climaxer.add_stress(event_type)
 
 /datum/component/arousal/proc/handle_lovefiend_idle(dt)
