@@ -694,6 +694,7 @@
 #include "code\datums\components\vampire_disguise.dm"
 #include "code\datums\components\waddling.dm"
 #include "code\datums\components\wearertargeting.dm"
+#include "code\datums\components\area_ambience.dm"
 #include "code\datums\components\wet_floor.dm"
 #include "code\datums\components\connect\connect_containers.dm"
 #include "code\datums\components\connect\connect_loc_behalf.dm"
