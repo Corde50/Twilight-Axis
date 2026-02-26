@@ -240,8 +240,6 @@
 		simple_woundcritroll(M.a_intent.blade_class, damage, M, hitlim)
 		visible_message(span_danger("\The [M] [pick(M.a_intent.attack_verb)] [src]![next_attack_msg.Join()]"), \
 					span_danger("\The [M] [pick(M.a_intent.attack_verb)] me![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
-		visible_message(span_danger("[armor]"), \
-					span_danger("[armor]"), null, COMBAT_MESSAGE_RANGE)
 		next_attack_msg.Cut()
 
 /mob/living/simple_animal/onbite(mob/living/carbon/human/user)
