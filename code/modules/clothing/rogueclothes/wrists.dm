@@ -7,7 +7,7 @@
 	resistance_flags = FLAMMABLE
 	sewrepair = TRUE
 	anvilrepair = null
-	experimental_inhand = FALSE
+	experimental_inhand = TRUE
 	grid_width = 32
 	grid_height = 64
 	var/overarmor
