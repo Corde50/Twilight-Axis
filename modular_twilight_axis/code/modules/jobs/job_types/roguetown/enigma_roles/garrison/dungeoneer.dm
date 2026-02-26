@@ -20,7 +20,7 @@
 	announce_latejoin = FALSE
 	outfit = /datum/outfit/job/roguetown/dungeoneer
 	give_bank_account = TRUE
-	min_pq = 0
+	min_pq = 10
 	max_pq = null
 	round_contrib_points = 2
 
