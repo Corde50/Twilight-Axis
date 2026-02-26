@@ -712,21 +712,35 @@ GLOBAL_LIST(teleport_runes)
 
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning/attack_hand(mob/living/user)
 	if(summoning && isarcyne(user))
+		var/mob/living/simple_animal/S = summoned_mob
+		if(!S || !istype(S) || QDELETED(S))
+			to_chat(user, span_warning("The containment has already faded."))
+			summoned_mob = null
+			summoning = FALSE
+			return
+
 		to_chat(user, span_warning("You release the summon from it's containment!"))
-		playsound(usr, 'sound/magic/teleport_diss.ogg', 75, TRUE)
+		playsound(user, 'sound/magic/teleport_diss.ogg', 75, TRUE)
 		do_invoke_glow()
 		clear_obstacles(user)
 		sleep(20)
-		animate(summoned_mob, color = null,time = 5)
-		REMOVE_TRAIT(summoned_mob, TRAIT_PACIFISM, TRAIT_GENERIC)	//can't kill while planar bound.
-		summoned_mob.status_flags -= GODMODE//remove godmode
-		summoned_mob.candodge = TRUE
-		summoned_mob.binded = FALSE
-		summoned_mob.move_resist = MOVE_RESIST_DEFAULT
-		summoned_mob.SetParalyzed(0)
+		if(!S || QDELETED(S))
+			summoned_mob = null
+			summoning = FALSE
+			return
+
+		animate(S, color = null, time = 5)
+		REMOVE_TRAIT(S, TRAIT_PACIFISM, TRAIT_GENERIC) // can't kill while planar bound.
+		S.status_flags -= GODMODE
+		S.candodge = TRUE
+		S.binded = FALSE
+		S.move_resist = MOVE_RESIST_DEFAULT
+		S.SetParalyzed(0)
+
 		summoned_mob = null
 		summoning = FALSE
 		return
+
 	. = ..()
 
 /obj/effect/decal/cleanable/roguerune/arcyne/summoning/invoke(list/invokers, datum/runeritual/runeritual)
