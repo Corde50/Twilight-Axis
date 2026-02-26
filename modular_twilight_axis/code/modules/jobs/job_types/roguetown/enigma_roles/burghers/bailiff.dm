@@ -145,3 +145,7 @@
 /obj/item/clothing/head/roguetown/chaperon/greyscale
 	name = "chaperon hat"
 	color = "#15266f"
+
+/obj/item/clothing/suit/roguetown/shirt/undershirt
+	name = "Bodyguard shirt"
+	color = "#15266f"

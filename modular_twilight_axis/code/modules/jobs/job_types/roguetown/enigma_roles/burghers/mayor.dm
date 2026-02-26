@@ -100,7 +100,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon/noble
 	name = "Mayor's chaperon"
-	color = "#641E16"
+	color = "#15266f"
 	detail_color = "#FFFFFF"
 
 /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
