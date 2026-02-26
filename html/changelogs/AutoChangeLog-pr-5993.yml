@@ -1,4 +1,0 @@
-author: "WeNeedMorePhoron"
-delete-after: True
-changes:
-  - rscadd: "Outlaw NPC from Outlaw contract, Orc Warlord & Treasure Hunter now respect crit threshold"
