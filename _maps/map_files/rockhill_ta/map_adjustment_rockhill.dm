@@ -6,7 +6,9 @@
 
 /datum/map_adjustment/template/rockhill
 	map_file_name = "rockhill_ta.dmm"
-	realm_name = "Rockhill"
+	realm_name = "Enigma"
+	realm_type = "Kingdom"
+	realm_type_short = "Kingdom"
 	blacklist = list(/datum/job/roguetown/manorguard, /datum/job/roguetown/warden, /datum/job/roguetown/knight, /datum/job/roguetown/sergeant, /datum/job/roguetown/physician)
 	slot_adjust = list(
 	/datum/job/roguetown/squire = 2,

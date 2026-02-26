@@ -13,6 +13,10 @@
 	var/map_file_name
 	/// Name of the realm/location for announcements (e.g., "Azure Peak", "Azure Bleak", etc.)
 	var/realm_name = "Twilight Axis"
+	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic"). Changed by usurpation rites. (TA EDIT START)
+	var/realm_type = "Grand Duchy"
+	/// Short form for casual references (e.g. "Duchy", "Republic"). Changed by usurpation rites.)
+	var/realm_type_short = "Duchy" // TA EDIT END
 	/// Jobs that this map won't use
 	var/list/blacklist
 	/// Jobs that have slots changed /datum/job = num
