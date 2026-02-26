@@ -198,8 +198,8 @@
 
 /atom/movable/screen/alert/status_effect/compliance
 	name = "Compliant"
-	desc = "I am currently not resisting any attempts to grab me, or to break free from my grasp. It is also effortless to restrain, subdue, and rob me.\n\
-	<span class='info'>Left click the icon to deactivate. Suppress messages under Options tab.</span>"
+	desc = "I am currently not resisting any attempts to grab me, or to break free from my grasp. It is also effortless to restrain, subdue, and rob me.\n"\
+	+ span_info("Left click the icon to deactivate. Suppress messages under Options tab.")
 	icon_state = "compliance"
 
 // Sadly we can't rely on /atom/movable/screen/Click() to return TRUE at all.

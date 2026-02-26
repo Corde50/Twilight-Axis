@@ -639,13 +639,13 @@
 			L.playsound_local(L, 'sound/misc/click.ogg', 100)
 			L.submit()
 		else if(modifiers["middle"])
-			if(L.mob_timers["complybutton"]) // I am fed up with trying to triage issues with new middle click code. Here, have hacky workaround. - Zoktiik
+			if(L.mob_timers["complybutton"]) // I am fed up with trying to triage issues that new middle click code has. Here, have hacky workaround. - Zoktiik
 				if(world.time < (L.mob_timers["complybutton"] + 0.5 SECONDS))
 					return
 			L.mob_timers["complybutton"] = world.time
 			L.playsound_local(L, 'sound/misc/click.ogg', 100)
 			L.toggle_compliance()
-		else if(modifiers["shift"])
+		else if(modifiers["shift"] && modifiers["left"])
 			to_chat(usr, span_info("* --- *\n\
 			Combat mode button.\n\
 			<b>Left click:</b> toggles combat mode at-will, allowing you to parry or dodge attacks. Usually costs energy (blue stamina) to keep active. Also allows some more destructive interactions with objects.\n\
