@@ -54,7 +54,8 @@
 	deathsight_message = "a room full of aging ales"
 	
 /area/rogue/outdoors/town/grovercout
-	name = "Druids Grove"
+	name = "Druid's Grove"
+	first_time_text = "Druid's Grove"
 	icon_state = "rtfield"
 	color = "#b8b5c9"
 	ambientsounds = 'sound/ambience/forestday.ogg'
@@ -69,7 +70,7 @@
 	town_area = FALSE
 
 /area/rogue/indoors/town/grovercin
-	name = "Druids Grove indoors"
+	name = "Druid's Grove indoors"
 	icon_state = "indoors"
 	color = "#b8b5c9"
 	ambientsounds = list('sound/ambience/indoorgen.ogg')
@@ -83,7 +84,7 @@
 	town_area = FALSE
 	
 /area/rogue/indoors/town/grovercunder
-	name = "Under Druids Grove"
+	name = "Under Druid's Grove"
 	icon_state = "cave"
 	color = "#b8b5c9"
 	ambientsounds = list('sound/ambience/cavewater (1).ogg','sound/ambience/cavewater (2).ogg','sound/ambience/cavewater (3).ogg')
@@ -131,10 +132,34 @@
 	first_time_text = "Magician Tower"
 	name = "Magician Tower"
 
-/area/rogue/outdoors/beach/rtharbor
+/area/rogue/rockharbor
+	name = "Harbor"
+	icon_state = "beach"
+	ambientsounds = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
+	ambientnight = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
 	droning_sound = 'modular_twilight_axis/sound/music/area/harbor.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	spookysounds = list('sound/ambience/noises/birds (1).ogg','sound/ambience/noises/birds (2).ogg','sound/ambience/noises/birds (3).ogg','sound/ambience/noises/birds (4).ogg','sound/ambience/noises/birds (5).ogg','sound/ambience/noises/birds (6).ogg','sound/ambience/noises/birds (7).ogg')
 	warden_area = FALSE
 	town_area = TRUE
+	outdoors = TRUE
+	soundenv = 16
+
+/area/rogue/indoors/town/harborcowered
+	name = "Harbor"
+	first_time_text = "Rockhill Harbor"
+	icon_state = "beach"
+	ambientsounds = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
+	ambientnight = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
+	droning_sound = 'modular_twilight_axis/sound/music/area/harbor.ogg'
+	droning_sound_dusk = null
+	droning_sound_night = null
+	spookysounds = list('sound/ambience/noises/birds (1).ogg','sound/ambience/noises/birds (2).ogg','sound/ambience/noises/birds (3).ogg','sound/ambience/noises/birds (4).ogg','sound/ambience/noises/birds (5).ogg','sound/ambience/noises/birds (6).ogg','sound/ambience/noises/birds (7).ogg')
+	warden_area = FALSE
+	town_area = TRUE
+	outdoors = TRUE
+	soundenv = 16
 	
 /area/rogue/outdoors/beach/inqshipout
 	name = "The Inquisition ship"
