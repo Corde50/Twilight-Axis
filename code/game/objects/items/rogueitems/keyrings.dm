@@ -15,7 +15,8 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 	anvilrepair = /datum/skill/craft/blacksmithing
 	resistance_flags = FIRE_PROOF
-	experimental_inhand = FALSE
+	experimental_inhand = TRUE
+	experimental_onhip = TRUE
 	component_type = /datum/component/storage/concrete/roguetown/keyring
 
 /obj/item/storage/keyring/Initialize()
@@ -108,7 +109,7 @@
 	throwforce = 0
 	var/list/picks = list()
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_MOUTH|ITEM_SLOT_WRISTS
-	experimental_inhand = FALSE
+	experimental_inhand = TRUE
 	dropshrink = 0.7
 
 /obj/item/lockpickring/Initialize()
