@@ -45,6 +45,8 @@ GLOBAL_LIST_INIT(virtue_mount_choices_anthrax, (list(
 
 /datum/component/precious_creature/proc/precious_died()
 	var/mob/living/our_owner = owner.resolve()
+	if(!our_owner || QDELETED(our_owner))
+		return
 	to_chat(our_owner, span_boldwarning("A quavering pang of loneliness streaks through your chest like cold lightning, sinking to the pit of your stomach. THEY ARE GONE!"))
 	our_owner.add_stress(/datum/stressevent/precious_mob_died)
 
