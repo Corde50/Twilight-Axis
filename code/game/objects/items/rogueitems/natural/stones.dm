@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 		magic_power += personality_modifier
 
 	var/max_force_range = sharpness_rating + bluntness_rating // Add them together
-	//max_force_range = round(max_force_range/2) // Divide by 2 and round jus incase
+	max_force_range = round(max_force_range/2) // Divide by 2 and round jus incase // TA EDIT, prev. commented out
 
 	bonus_force = rand(0, max_force_range) // Your total bonus force is now between 1 and your sharpness/bluntness totals
 
