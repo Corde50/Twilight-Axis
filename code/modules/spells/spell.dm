@@ -86,6 +86,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 /obj/effect/proc_holder/Destroy()
 	if (action)
 		qdel(action)
+	if(mob_charge_effect)
+		QDEL_NULL(mob_charge_effect)
 	if(ranged_ability_user)
 		remove_ranged_ability()
 	return ..()
