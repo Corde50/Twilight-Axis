@@ -426,7 +426,7 @@
 /obj/item/storage/belt/rogue/pouch/coins/readyuppouch/get_types_to_preload()
 	var/list/to_preload = list() 
 	if(SSmapping.config.map_name == "Rockhill_TA")
-		to_preload += /obj/item/roguecoin/goldkrona/mid_pile
+		to_preload += /obj/item/roguecoin/copper/ready_pile_rockhill
 	else
 		to_preload += /obj/item/roguecoin/silver/pile/readyuppile
 	return to_preload
