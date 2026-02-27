@@ -150,8 +150,8 @@
 			else
 				. += span_notice("A noble!")
 
-		if((HAS_TRAIT(user, TRAIT_BLACKOAK) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half-Elf")))
-			. += span_phobia("An invader...")
+		if((HAS_TRAIT(src, TRAIT_OUTLANDER) && !HAS_TRAIT(user, TRAIT_OUTLANDER)) || (HAS_TRAIT(user, TRAIT_BLACKOAK) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half Elf"))) //TA EDIT
+			. += span_phobia("A foreigner...") //TA EDIT
 
 		// Knotted effect message
 		if(has_status_effect(/datum/status_effect/knot_tied))
