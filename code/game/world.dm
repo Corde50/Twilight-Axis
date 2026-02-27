@@ -329,9 +329,9 @@ GLOBAL_VAR(restart_counter)
 	new_status += " ("
 	new_status += "<a href=\"[CONFIG_GET(string/discordurl)]\">"
 	new_status += "Discord"
-	new_status += ")\]"
+	new_status += "</a>)"
 	new_status += "<br>[CONFIG_GET(string/servertagline)]"
-
+	new_status += "<br>MAP: <b>[SSmapping.config?.map_name || "Loading..."]</b>"
 	var/players = GLOB.clients.len
 
 	if(SSticker.current_state <= GAME_STATE_PREGAME)
