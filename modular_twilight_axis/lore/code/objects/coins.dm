@@ -120,6 +120,10 @@
 		name = "shilling"
 		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
 
+/obj/item/roguecoin/copper/ready_pile_rockhill/Initialize()
+	. = ..()
+	set_quantity(20)
+
 /obj/item/roguecoin/silver/Initialize(mapload)
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill_TA")
@@ -429,7 +433,7 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/readyuppouch/PopulateContents()
 	if(SSmapping.config.map_name == "Rockhill_TA")
-		var/obj/item/roguecoin/goldkrona/mid_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/mid_pile, loc)
+		var/obj/item/roguecoin/copper/ready_pile_rockhill/H = SSwardrobe.provide_type(/obj/item/roguecoin/copper/ready_pile_rockhill, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
 				SSwardrobe.recycle_object(H)
