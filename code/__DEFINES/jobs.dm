@@ -153,6 +153,21 @@
 #define JCOLOR_ANTAGONIST  "#b8252c"
 // PUT THESE ON THE FIRST ROLE IN THE LIST BELOW (IE NOBLE ON LORD) TO GET DESIRED COLOUR OF THE DEPARTMENT SELECT
 // job display orders //
+	
+/// Key value for taking the department's string and getting a color back
+#define JCOLOR_BY_DEPARTMENT list(\
+	"Noblemen" = JCOLOR_NOBLE,\
+	"Courtiers" = JCOLOR_COURTIER,\
+	"Garrison" = JCOLOR_GARRISON,\
+	"City Watch" = JCOLOR_CITYWATCH,\
+	"Vanguard" = JCOLOR_VANGUARD,\
+	"Church" = JCOLOR_CHURCH,\
+	"Burghres" = JCOLOR_BURGHER,\
+	"Peasants" = JCOLOR_PEASANT,\
+	"Inquisition" = JCOLOR_INQUISITION,\
+	"Sidefolk" = JCOLOR_SIDEFOLK,\
+	"Wanderers" = JCOLOR_WANDERER,\
+)
 
 // Ducal Family
 #define JDO_LORD 1
