@@ -82,14 +82,14 @@
 	if(H.pronouns == SHE_HER)
 		head = /obj/item/lockpick/goldpin
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer
-		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward/mayor
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
 		pants = /obj/item/clothing/under/roguetown/trou/shadowpants
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	else
-		head = /obj/item/clothing/head/roguetown/chaperon/noble
+		head = /obj/item/clothing/head/roguetown/chaperon/noble/mayor
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer
-		shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
+		shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/silktunic/mayor
 		gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
 		pants = /obj/item/clothing/under/roguetown/trou/shadowpants
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -98,16 +98,16 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/writeresidentscroll)
 
-/obj/item/clothing/head/roguetown/chaperon/noble
+/obj/item/clothing/head/roguetown/chaperon/noble/mayor
 	name = "Mayor's chaperon"
 	color = "#15266f"
 	detail_color = "#FFFFFF"
 
-/obj/item/clothing/suit/roguetown/shirt/tunic/silktunic
+/obj/item/clothing/suit/roguetown/shirt/tunic/silktunic/mayor
 	name = "Mayor's silc tunic"
 	color = "#3076ff"
 
-/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
+/obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward/mayor
 	name = "Mayor's silc dress"
 	color = "#3076ff"
 

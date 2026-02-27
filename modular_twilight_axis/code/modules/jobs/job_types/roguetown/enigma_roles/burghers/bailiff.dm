@@ -3,8 +3,8 @@
 	flag = BAILIFF
 	department_flag = BURGHERS
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = ACCEPTED_RACES
 	job_traits = list(TRAIT_SEEPRICES)
@@ -69,9 +69,9 @@
 	..()
 
 	H.adjust_blindness(-3)
-	head = /obj/item/clothing/head/roguetown/chaperon/greyscale
+	head = /obj/item/clothing/head/roguetown/chaperon/greyscale/bailiff
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/bailiff
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
 	gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
@@ -142,10 +142,10 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 
-/obj/item/clothing/head/roguetown/chaperon/greyscale
+/obj/item/clothing/head/roguetown/chaperon/greyscale/bailiff
 	name = "chaperon hat"
 	color = "#15266f"
 
-/obj/item/clothing/suit/roguetown/shirt/undershirt
+/obj/item/clothing/suit/roguetown/shirt/undershirt/bailiff
 	name = "Bodyguard shirt"
 	color = "#15266f"
