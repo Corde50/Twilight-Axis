@@ -3249,6 +3249,7 @@
 #include "modular_twilight_axis\code\modules\spell\spell_types\wizard\projectiles_aoe\rockytrown.dm"
 #include "modular_twilight_axis\code\modules\spell\spell_types\wizard\projectiles_aoe\snowball.toss.dm"
 #include "modular_twilight_axis\code\modules\spell\spell_types\wizard\projectiles_single\magic_icicle.dm"
+#include "modular_twilight_axis\code\modules\spells\pantheon\divine\dendor.dm"
 #include "modular_twilight_axis\code\modules\roguetown\structures\onager.dm"
 #include "modular_twilight_axis\code\modules\roguetown\structures\onager_unfinished.dm"
 #include "modular_twilight_axis\code\modules\spells\pantheon\inhumen\matthios.dm"
