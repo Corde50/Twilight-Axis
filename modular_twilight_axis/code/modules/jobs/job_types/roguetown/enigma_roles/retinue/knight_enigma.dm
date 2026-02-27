@@ -155,7 +155,7 @@
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
 			if("Longsword & Shield")
 				beltl = /obj/item/rogueweapon/scabbard/sword/noble
-				l_hand = /obj/item/rogueweapon/sword/long
+				r_hand = /obj/item/rogueweapon/sword/long
 				backl = /obj/item/rogueweapon/shield/tower/metal
 			if("Flail & Shield")
 				beltr = /obj/item/rogueweapon/flail/sflail
@@ -165,7 +165,7 @@
 				backl = /obj/item/rogueweapon/shield/tower/metal
 			if("Sabre & Shield")
 				beltl = /obj/item/rogueweapon/scabbard/sword/noble
-				l_hand = /obj/item/rogueweapon/sword/sabre
+				r_hand = /obj/item/rogueweapon/sword/sabre
 				backl = /obj/item/rogueweapon/shield/tower/metal
 
 	if(H.mind)
@@ -194,6 +194,25 @@
 				)
 		var/heraldychoice = input(H, "Choose your heraldy.", "RAISE UP THE BANNER") as anything in heraldy
 		cloak = heraldy[heraldychoice]
+
+		var/onhelm = list(
+			"horns" = /obj/item/clothing/head/roguetown/tw_d_horns,
+			"towers" = /obj/item/clothing/head/roguetown/tw_d_castle_red,
+			"afreet" = /obj/item/clothing/head/roguetown/tw_d_efreet,
+			"sun" = /obj/item/clothing/head/roguetown/tw_d_sun,
+			"astrata" = /obj/item/clothing/head/roguetown/tw_d_peace,
+			"feathers" = /obj/item/clothing/head/roguetown/tw_d_feathers,
+			"lion" = /obj/item/clothing/head/roguetown/tw_d_lion,
+			"dragon" = /obj/item/clothing/head/roguetown/tw_d_dragon_red,
+			"swan" = /obj/item/clothing/head/roguetown/tw_d_swan,
+			"Le Fishe" = /obj/item/clothing/head/roguetown/tw_d_fish,
+			"mighty windmill" = /obj/item/clothing/head/roguetown/tw_d_windmill,
+			"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
+			"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
+			)
+		var/onhelmchoice = input(H, "Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+		l_hand = onhelm[onhelmchoice]
+
 		backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
