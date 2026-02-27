@@ -11,6 +11,9 @@
 	if(HAS_TRAIT(user, TRAIT_RESIDENT))
 		to_chat(user, span_danger("I already have citizenship!"))
 		return FALSE
+	if(icon_state == "contractsigned")
+		to_chat(user, span_danger("This scroll already signed."))
+		return FALSE
 	else
 		var/obj/item/writefeather
 		for(var/obj/item/I in user.held_items)
