@@ -306,6 +306,8 @@ SUBSYSTEM_DEF(job)
 			key = "Noblemen"
 		if(COURTIERS)
 			key = "Courtiers"
+		if(RETINUE)
+			key = "Retinue"
 		if(GARRISON)
 			key = "Garrison"
 		if(CITYWATCH)

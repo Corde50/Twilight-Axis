@@ -158,6 +158,7 @@
 #define JCOLOR_BY_DEPARTMENT list(\
 	"Noblemen" = JCOLOR_NOBLE,\
 	"Courtiers" = JCOLOR_COURTIER,\
+	"RETINUE" = JCOLOR_RETINUE, \
 	"Garrison" = JCOLOR_GARRISON,\
 	"City Watch" = JCOLOR_CITYWATCH,\
 	"Vanguard" = JCOLOR_VANGUARD,\

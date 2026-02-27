@@ -119,6 +119,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	var/list/job_list_by_department = list(
 		"Noblemen" = list(),
 		"Courtiers" = list(),
+		"Retinue" = list(),
 		"Garrison" = list(),
 		"City Watch" = list(),
 		"Vanguard" = list(),
