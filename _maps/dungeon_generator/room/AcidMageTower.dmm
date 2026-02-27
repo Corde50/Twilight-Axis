@@ -391,7 +391,7 @@
 /area/rogue/under/tomb/indoors/magic)
 "pz" = (
 /obj/effect/mapping_helpers/secret_door_creator{
-	redstone_id = 15mage
+	redstone_id = "mage_hidden_door"
 	},
 /obj/effect/mapping_helpers/access,
 /turf/closed/wall/mineral/rogue/stonebrick,
@@ -1086,7 +1086,7 @@
 /area/rogue/under/tomb/indoors/magic)
 "PP" = (
 /obj/structure/lever/hidden{
-	redstone_id = 15mage
+	redstone_id = "mage_hidden_door"
 	},
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/under/tomb/indoors/magic)
