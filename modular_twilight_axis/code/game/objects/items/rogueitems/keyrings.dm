@@ -1,8 +1,8 @@
 /obj/item/storage/keyring/sheriff
-	keys = list(/obj/item/roguekey/townsheriff, /obj/item/roguekey/walls, /obj/item/roguekey/armory)
+	keys = list(/obj/item/roguekey/townsheriff, /obj/item/roguekey/walls, /obj/item/roguekey/watcharmory)
 
 /obj/item/storage/keyring/watchman
-	keys = list(/obj/item/roguekey/walls, /obj/item/roguekey/armory)
+	keys = list(/obj/item/roguekey/walls, /obj/item/roguekey/watcharmory)
 
 /obj/item/storage/keyring/warden_enigma
 	keys = list(/obj/item/roguekey/walls, /obj/item/roguekey/warden)

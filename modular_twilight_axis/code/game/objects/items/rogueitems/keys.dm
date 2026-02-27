@@ -82,3 +82,9 @@
 	desc = "This key opens doors in Mayor mansion."
 	icon_state = "brownkey"
 	lockid = "mayorh"
+
+/obj/item/roguekey/watcharmory
+	name = "Town Watch armory key"
+	desc = "This key opens the Town Watch armory."
+	icon_state = "spikekey"
+	lockid = "watcharmory"
