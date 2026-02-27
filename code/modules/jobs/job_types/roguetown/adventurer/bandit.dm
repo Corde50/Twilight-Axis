@@ -134,8 +134,8 @@
 
 	if(SSmapping.config.map_name == "Rockhill_TA")
 		if(current_players > 60)
-			// На Рокхилле - 5 бандитов с 60 онлайна и +1 слот за каждые 20 сверху
-			slots = 5 + round((current_players - 60) / 20)
+			// На Рокхилле - 5 бандитов с 60 онлайна и +1 слот за каждые 40 сверху
+			slots = 5 + round((current_players - 60) / 40)
 	else
 		// Дун ворлд - всегда 5 бандитов
 		if(current_players > 60)
