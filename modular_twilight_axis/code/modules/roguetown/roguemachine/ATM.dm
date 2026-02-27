@@ -10,7 +10,7 @@
 		return
 	if(drilled)
 		if(HAS_TRAIT(H, TRAIT_NOBLE))
-			if(!HAS_TRAIT(H, TRAIT_COMMIE))
+			if(!HAS_TRAIT(H, TRAIT_FREEMAN))
 				var/def_zone = "[(H.active_hand_index == 2) ? "r" : "l" ]_arm"
 				playsound(src, 'sound/items/beartrap.ogg', 100, TRUE)
 				to_chat(user, "<font color='red'>The meister craves my Noble blood!</font>")
