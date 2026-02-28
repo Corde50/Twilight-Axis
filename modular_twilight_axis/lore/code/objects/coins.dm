@@ -104,7 +104,7 @@
 
 /obj/item/roguecoin/copper/Initialize(mapload)
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "shilling"
 		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
 		icon_state = "tc1"
@@ -116,7 +116,7 @@
 
 /obj/item/roguecoin/copper/update_icon()
 	. = ..()
-	if(quantity == 1 && SSmapping.config.map_name == "Rockhill_TA")
+	if(quantity == 1 && SSmapping.config.map_name == "Rockhill")
 		name = "shilling"
 		desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
 
@@ -126,7 +126,7 @@
 
 /obj/item/roguecoin/silver/Initialize(mapload)
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		if(quantity <= 4)
 			name = "shilling"
 			desc = "The shilling is a small copper coin minted by the Valorian Treasury. The coin bears the Lion of Most Serene Eterna and the symbol of Ten Undivided."
@@ -150,7 +150,7 @@
 
 /obj/item/roguecoin/silver/update_icon()
 	. = ..()
-	if(quantity == 1 && SSmapping.config.map_name == "Rockhill_TA")
+	if(quantity == 1 && SSmapping.config.map_name == "Rockhill")
 		switch(base_type)
 			if(CTYPE_COPPER)
 				name = "shilling"
@@ -161,7 +161,7 @@
 
 /obj/item/roguecoin/gold/Initialize(mapload)
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "krona"
 		desc = "The krona, or 'crown' in simplified Imperial, is a gold coin minted in the Valorian capital of Eterna, serving as the national currency of Valoria and several neighbouring realms. The coin bears the Crown of Most Serene Doge and the symbol of Ten Undivided."
 		icon_state = "tg1"
@@ -173,7 +173,7 @@
 
 /obj/item/roguecoin/gold/update_icon()
 	. = ..()
-	if(quantity == 1 && SSmapping.config.map_name == "Rockhill_TA")
+	if(quantity == 1 && SSmapping.config.map_name == "Rockhill")
 		name = "krona"
 		desc = "The krona, or 'crown' in simplified Imperial, is a gold coin minted in the Valorian capital of Eterna, serving as the national currency of Valoria and several neighbouring realms. The coin bears the Crown of Most Serene Doge and the symbol of Ten Undivided."
 
@@ -290,7 +290,7 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/get_types_to_preload()
 	var/list/to_preload = list()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/poor_pile
 	else
 		to_preload += /obj/item/roguecoin/copper/pile
@@ -298,14 +298,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/mid/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/mid_pile
 	else
 		to_preload += /obj/item/roguecoin/silver/pile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/mid/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/mid_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/mid_pile, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
@@ -322,14 +322,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/poor/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/poor_pile
 	else
 		to_preload += /obj/item/roguecoin/copper/pile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/poor/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/poor_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/poor_pile, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
@@ -347,14 +347,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/rich/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/rich_pile
 	else
 		to_preload += /obj/item/roguecoin/silver/pile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/rich/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/rich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/rich_pile, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
@@ -376,14 +376,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/veryrich/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/veryrich_pile
 	else
 		to_preload += /obj/item/roguecoin/gold/pile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/veryrich/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/veryrich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/veryrich_pile, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
@@ -405,14 +405,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/virtuepouch/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/goldkrona/rich_pile
 	else
 		to_preload += /obj/item/roguecoin/gold/virtuepile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/virtuepouch/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/rich_pile/H = SSwardrobe.provide_type(/obj/item/roguecoin/goldkrona/rich_pile, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))
@@ -425,14 +425,14 @@
 
 /obj/item/storage/belt/rogue/pouch/coins/readyuppouch/get_types_to_preload()
 	var/list/to_preload = list() 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		to_preload += /obj/item/roguecoin/copper/ready_pile_rockhill
 	else
 		to_preload += /obj/item/roguecoin/silver/pile/readyuppile
 	return to_preload
 
 /obj/item/storage/belt/rogue/pouch/coins/readyuppouch/PopulateContents()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/copper/ready_pile_rockhill/H = SSwardrobe.provide_type(/obj/item/roguecoin/copper/ready_pile_rockhill, loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))

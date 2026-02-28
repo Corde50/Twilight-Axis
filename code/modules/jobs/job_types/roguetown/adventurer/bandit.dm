@@ -132,7 +132,7 @@
 
 	var/slots = 0
 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		if(current_players > 60)
 			// На Рокхилле - 5 бандитов с 60 онлайна и +1 слот за каждые 40 сверху
 			slots = 5 + round((current_players - 60) / 40)

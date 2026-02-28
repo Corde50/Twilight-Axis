@@ -106,7 +106,7 @@
 
 /obj/item/storage/belt/rogue/pouch/merchant/coins/Initialize() //TA EDIT - Rockhill currency support
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/mid_pile/H = new(loc)
 		if(istype(H))
 			if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, H, null, TRUE, TRUE))

@@ -81,7 +81,7 @@
 		/obj/item/natural/worms/leech/cheele = 1, //little buddy
 		/obj/item/reagent_containers/glass/bottle/waterskin = 1,
 		/obj/item/recipe_book/alchemy = 1,)
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		wrists = /obj/item/storage/keyring/courtphysician
 	else
 		wrists = /obj/item/storage/keyring/physician

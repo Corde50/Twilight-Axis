@@ -40,7 +40,7 @@
 	. = ..()
 	var/client/player = H?.client
 	if(player.prefs)
-		if(SSmapping.config.map_name == "Rockhill_TA")
+		if(SSmapping.config.map_name == "Rockhill")
 			if(!istype(player.prefs.virtue_origin, /datum/virtue/origin/enigma) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/valorian) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/zybantian))
 				var/list/new_origins = list("Enigma" = /datum/virtue/origin/enigma, 
 				"Valoria" = /datum/virtue/origin/valorian,

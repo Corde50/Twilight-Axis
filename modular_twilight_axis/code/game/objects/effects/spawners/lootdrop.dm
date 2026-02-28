@@ -3,7 +3,7 @@
 		if(!spawned)
 			return
 		var/obj/new_type = pick(spawned)
-		if(SSmapping.config.map_name == "Rockhill_TA")
+		if(SSmapping.config.map_name == "Rockhill")
 			switch(new_type)
 				if(/obj/item/roguecoin/silver)
 					new_type = /obj/item/roguecoin/goldkrona

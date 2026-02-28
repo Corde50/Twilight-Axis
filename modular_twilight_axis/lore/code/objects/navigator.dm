@@ -6,7 +6,7 @@
 	var/type_to_put
 	var/zenars_to_put
 	var/highest_found = FALSE
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		if(prob(20))
 			switch(rand(1,2))
 				if(1)

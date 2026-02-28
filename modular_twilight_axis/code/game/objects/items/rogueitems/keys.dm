@@ -30,32 +30,32 @@
 
 /obj/item/roguekey/garrison/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "garisson key"
 		desc = "This key opens many garrison doors in manor."
 
 /obj/item/roguekey/walls/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "citywatch key"
 		desc = "This key opens the walls and gatehouse of the city."
 		lockid = "walls"
 
 /obj/item/roguekey/university/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "magician tower key"
 		desc = "This key should open anything within the Magician tower."
 
 /obj/item/roguekey/warden/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "vanguard key"
 		desc = "This key opens doors in vanguard stronghold."
 
 /obj/item/roguekey/inquisitionmanor/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "inquisition ship key"
 		desc = "This key opens doors in inquisition ship."
 

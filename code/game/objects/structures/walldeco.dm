@@ -237,7 +237,7 @@
 
 /obj/structure/fluff/walldeco/customflag/Initialize()
 	. = ..()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		name = "Enigma flag"
 	else
 		name = "Twilight Axis flag"

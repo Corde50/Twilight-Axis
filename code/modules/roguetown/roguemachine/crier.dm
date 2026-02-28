@@ -59,7 +59,7 @@
 		var/amount = total_payments
 		total_payments = 0
 
-		if(SSmapping.config.map_name == "Rockhill_TA")
+		if(SSmapping.config.map_name == "Rockhill")
 			while(amount >= 14)
 				new /obj/item/roguecoin/goldkrona(get_turf(src))
 				amount -= 14

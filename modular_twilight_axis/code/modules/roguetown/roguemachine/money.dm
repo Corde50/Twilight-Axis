@@ -9,7 +9,7 @@
 	budget = floor(budget)
 	var/type_to_put
 	var/zenars_to_put
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		if(specify)
 			switch(specify)
 				if("GOLD", "SILVER")

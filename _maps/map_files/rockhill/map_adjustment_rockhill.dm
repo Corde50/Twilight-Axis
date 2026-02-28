@@ -5,7 +5,7 @@
 */
 
 /datum/map_adjustment/template/rockhill
-	map_file_name = "rockhill_ta.dmm"
+	map_file_name = "rockhill.dmm"
 	realm_name = "Enigma"
 	realm_type = "Kingdom"
 	realm_type_short = "Kingdom"

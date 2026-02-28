@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(mapping)
 	repopulate_sorted_areas()
 	initialize_reserved_level(transit.z_value)
 	generate_z_level_linkages()
-	if(config?.map_name == "Rockhill_TA") // TA EDIT START
+	if(config?.map_name == "Rockhill") // TA EDIT START
 		var/list/posters = GLOB.bounty_posters
 		if("AZURIA" in posters)
 			posters -= "AZURIA"

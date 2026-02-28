@@ -77,7 +77,7 @@
 	var/remaining_mammon = amt
 	var/list/coins_to_spawn = list()
 
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		if(remaining_mammon > 140)
 			var/gold_count = floor(remaining_mammon / 14)
 			coins_to_spawn[ /obj/item/roguecoin/goldkrona ] = gold_count

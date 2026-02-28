@@ -134,7 +134,7 @@
 			say("Your peasant's tithe is NEGATIVE.")
 			return
 		var/list/choicez = list()
-		if(SSmapping.config.map_name == "Rockhill_TA")
+		if(SSmapping.config.map_name == "Rockhill")
 			if(gamblingprice > 14)
 				choicez += "GOLD"
 		else
@@ -147,7 +147,7 @@
 		if(!selection)
 			return
 		var/mod = 1
-		if(SSmapping.config.map_name == "Rockhill_TA")
+		if(SSmapping.config.map_name == "Rockhill")
 			if(selection == "GOLD")
 				mod = 14
 		else

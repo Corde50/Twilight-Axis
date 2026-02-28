@@ -38,7 +38,7 @@
 //	For competence of life I will allow you,
 //	That lack of means enforce you not to evil:
 /obj/structure/roguemachine/steward/proc/setup_default_payments()
-	if(SSmapping.config.map_name == "Rockhill_TA")
+	if(SSmapping.config.map_name == "Rockhill")
 		daily_payments["Royal Guard Sergeant"] = 40
 		daily_payments["Court Physician"] = 20
 		daily_payments["Court Magician"] = 40 //University

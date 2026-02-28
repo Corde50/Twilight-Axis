@@ -23,7 +23,7 @@ map dun_world
 	votable
 endmap
 
-map rockhill_ta
+map rockhill
 	default
 	votable
 endmap
