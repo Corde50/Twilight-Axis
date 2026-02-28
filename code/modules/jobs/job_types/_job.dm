@@ -256,7 +256,10 @@
 		var/used_title = display_title || title
 		if((H.titles_pref == TITLES_F) && f_title)
 			used_title = f_title
-		scom_announce("[H.real_name] the [used_title] arrives to Twilight Axis.")
+		if(SSmapping.config.map_name == "Rockhill_TA") //TA_EDIT 
+			scom_announce("[H.real_name] the [used_title] arrives to Rockhill.") //TA_EDIT 
+		else
+			scom_announce("[H.real_name] the [used_title] arrives to Twilight Axis.") //TA_EDIT 
 
 	if(give_bank_account)
 		if(give_bank_account > TRUE)
