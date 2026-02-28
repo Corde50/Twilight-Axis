@@ -61,15 +61,14 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		client << browse(null, "window=lobby_window")
 		return
 	if(!winexists(client, "lobby_window"))
-		open_lobby()  // creates window + browser control
+		open_lobby()
 		sleep(0)
 	var/lobby_visible = winget(client, "lobby_window", "is-visible")
-	if(lobby_visible == "false") // winget returns a string...
+	if(lobby_visible == "false")
 		client << browse(null, "window=lobby_window")
 		open_lobby()
 		sleep(0)
 
-	// UPDATE TIMER -- Script in html\lobby\lobby.html / .js
 	var/timer_text
 	if (time_remaining > 0)
 		timer_text = "Time To Start: [round(time_remaining/10)]s"
@@ -81,18 +80,18 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 	client << output(timer_text, "lobby_window.browser:update_timer")
 
-	// Update players ready!!
 	client << output(
 	"Total players ready: [SSticker.totalPlayersReady]",
 	"lobby_window.browser:update_ready_count"
 	)
-	// Ready bonus
+
 	var/bonus_html
 	if (src.ready)
 		bonus_html = span_good("Ready Bonus!")
 	else
 		bonus_html = span_highlight("No bonus! Ready up!")
 	client << output(bonus_html, "lobby_window.browser:update_ready_bonus")
+
 	var/list/dat = list()
 	var/list/ready_players_by_job = list()
 	var/list/wanderer_jobs = list(
@@ -100,6 +99,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		"Wretch",
 		"Court Agent"
 	)
+
 	dat += "<center><b>Classes:</b></center><hr>"
 	for (var/mob/dead/new_player/player in GLOB.player_list)
 		if (player.client?.ckey in GLOB.hiderole)
@@ -119,10 +119,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 	var/list/job_list_by_department = list(
 		"Noblemen" = list(),
 		"Courtiers" = list(),
-		"Retinue" = list(),
 		"Garrison" = list(),
-		"City Watch" = list(),
-		"Vanguard" = list(),
 		"Church" = list(),
 		"Burghers" = list(),
 		"Peasants" = list(),
@@ -130,6 +127,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		"Sidefolk" = list(),
 		"Wanderers" = list(),
 	)
+
 	for(var/job_name in ready_players_by_job)
 		var/datum/job/J = SSjob.GetJob(job_name)
 		var/key
@@ -141,7 +139,14 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 			if(J.display_title)
 				display_name = J.display_title
 
+		if(key == "City Watch" || key == "Vanguard" || key == "Retinue")
+			key = "Garrison"
+
 		var/list/job_players = ready_players_by_job[job_name]
+		
+		if(!job_list_by_department[key])
+			job_list_by_department[key] = list()
+			
 		job_list_by_department[key] += "<B>[display_name]</B> ([job_players.len]) - [job_players.Join(", ")]<br>"
 
 	for(var/department in job_list_by_department)
@@ -156,7 +161,6 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 			dat += "</div>"
 
 	client << output(dat.Join(), "lobby_window.browser:update_jobs")
-
 /mob/dead/new_player/proc/open_lobby()
 	if (!client)
 		return
