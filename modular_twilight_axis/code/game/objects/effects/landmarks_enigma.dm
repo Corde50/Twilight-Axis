@@ -5,11 +5,11 @@
 /obj/effect/landmark/start/bogguardlate
 	name = "Bogguardlate"
 	icon_state = "arrow"
-	jobspawn_override = list("Warden", "Vanguard")
+	jobspawn_override = list("Overseer", "Vanguard")
 	delete_after_roundstart = FALSE
 
 /obj/effect/landmark/start/bogmaster
-	name = "Warden"
+	name = "Overseer"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/bogguardsman
