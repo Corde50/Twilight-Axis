@@ -43,21 +43,31 @@ GLOBAL_VAR_INIT(mobids, 1)
 	qdel(hud_used)
 	for(var/cc in client_colours)
 		qdel(cc)
-	if(used_intent)
-		qdel(used_intent)
-		used_intent = null
+	used_intent = null
+	used_rmb_intent = null
 	if(a_intent && a_intent.mastermob == src)
 		a_intent.mastermob = null
 	a_intent = null
 	o_intent = null
 	QDEL_LIST(possible_a_intents)
 	QDEL_LIST(possible_offhand_intents)
+	QDEL_NULL(mmb_intent)
+	QDEL_NULL(rmb_intent)
+	for(var/datum/action/A in actions)
+		A.Remove(src)
+	actions = null
+	SScrediticons.processing -= src
+	SScrediticons.currentrun -= src
 	SStreasury.remove_person(src) // Call me overly cautious I dunno when they giving dogs bank account
 	if(skills && skills.current == src)
 		var/datum/skill_holder/my_skill = skills
 		my_skill.current = null
 		QDEL_NULL(skills)
 	client_colours = null
+	last_reach_target = null
+	last_reach_tool = null
+	if(active_storage)
+		active_storage.hide_from(src)
 	ghostize(drawskip=TRUE)
 	..()
 	return QDEL_HINT_QUEUE
