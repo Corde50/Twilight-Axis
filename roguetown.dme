@@ -3166,11 +3166,8 @@
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\combat\foreigner.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\wretch\lunacyembracer.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\adventurer\types\wretch\shaman.dm"
-<<<<<<< Rockhill_TA
-=======
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\sidefolk\mercenary.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\sidefolk\mercenary\miragefen.dm"
->>>>>>> main
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\burghers\mage_apprentice.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\acolyte.dm"
 #include "modular_twilight_axis\code\modules\jobs\job_types\roguetown\church\martyr.dm"
