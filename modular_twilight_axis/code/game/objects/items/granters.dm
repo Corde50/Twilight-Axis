@@ -44,3 +44,24 @@
 		name = "[user.real_name] - resident manuscript"
 		desc = "A scroll confirming citizenship with the owner's signature."
 		icon_state = "contractsigned"
+	
+/obj/item/book/granter/residentcardvirtue
+	name = "Resident manuscript"
+	icon_state = "scrollwrite"
+	icon = 'icons/roguetown/items/misc.dmi'
+	drop_sound = 'sound/foley/dropsound/paper_drop.ogg'
+	pickup_sound = 'sound/blank.ogg'
+
+/obj/item/book/granter/residentcardvirtue/attack_self(mob/living/user)
+		to_chat(user, span_info("A scroll confirming citizenship with the owner's signature."))
+
+/obj/item/book/granter/residentcardvirtue/equipped(mob/living/user, slot)
+	. = ..()
+	if(icon_state == "contractsigned")
+		return FALSE
+	else
+		name = "[user.real_name] - resident manuscript"
+		desc = "A scroll confirming citizenship with the owner's signature."
+		icon_state = "contractsigned"
+		onlearned(user)
+		return FALSE

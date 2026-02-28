@@ -43,8 +43,9 @@
 
 /datum/virtue/utility/resident
 	name = "Resident"
-	desc = "I'm a resident of Twilight Axis. I have an account in the city's treasury and a home in the city."
+	desc = "I'm a resident. I have an account in the city's treasury and a home in the city." //TA_EDIT
 	added_traits = list(TRAIT_RESIDENT)
+	added_stashed_items = list("Resident manuscript" = /obj/item/book/granter/residentcardvirtue) //TA_EDIT
 
 /datum/virtue/utility/resident/apply_to_human(mob/living/carbon/human/recipient)
 	var/mapswitch = 0
