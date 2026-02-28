@@ -24,13 +24,21 @@
 
         body {
             font-family: "Mookmania", TrueType;
-            padding: 0;
+            padding: 20px 0 0 0;
             margin: 0;
             background: #000000;
             font-size: 14px;
             color: #aa8f8f;
             line-height: 125%;
             vertical-align: middle;
+        }
+
+        #timer, #readycount, #readybonus {
+            margin-bottom: 8px; 
+        }
+        
+        #readybonus {
+            margin-bottom: 1px; 
         }
 
         hr {
@@ -239,17 +247,13 @@
     <div id="timer">Placeholder</div>
     <div id="readycount"></div>
     <div id="readybonus"></div> 
-    <div id="explainbonus" style="margin-top: 10px;"> 
-		<br>
-		<br>
-		<br>
+    <div id="explainbonus" style="margin-top: 0px;"> 
         <span class='tooltip'>
             <a class='linkOn'>What is the Bonus(?)</a>
             <span class='tooltiptext'>
                 Ready up bonus:<br>
                 20 mammons in a stashed pouch<br>
-                Full Hydration<br>
-                Great Meal bonus<br>
+                Full Hydration & Great Meal bonus<br>
                 +1 Triumph<br>
             </span>
         </span>

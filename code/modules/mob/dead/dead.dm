@@ -166,7 +166,7 @@ INITIALIZE_IMMEDIATE(/mob/dead)
 		return
 	client << browse(
 		file("html/lobby/lobby.html"),
-		"window=lobby_window;size=330x430"
+		"window=lobby_window;size=330x830"
 	)
 
 /mob/dead/proc/server_hop()
