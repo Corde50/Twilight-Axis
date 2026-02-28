@@ -21,7 +21,6 @@
 	give_bank_account = TRUE
 	min_pq = 6
 	max_pq = null
-	always_show_on_latechoices = TRUE
 
 	cmode_music = 'modular_twilight_axis/sound/music/combat/combat_watchman.ogg'
 	job_subclasses = list(
