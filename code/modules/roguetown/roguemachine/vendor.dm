@@ -414,7 +414,7 @@
 
 /obj/structure/roguemachine/vendor/mansion/Initialize()
 	. = ..()
-	for (var/Z in list(/obj/item/roguekey/mansion))
+	for (var/Z in list(/obj/item/storage/keyring/rockhillmansion))
 		var/obj/F = new Z(src)
 		held_items[F] = list()
 		held_items[F]["NAME"] = F.name

@@ -22,3 +22,6 @@
 	droning_sound_night = null
 	warden_area = TRUE
 	town_area = FALSE
+
+/area/rogue/indoors/wretchcamp
+	pseudo_roof = TRUE

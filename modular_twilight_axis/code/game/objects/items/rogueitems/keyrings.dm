@@ -21,3 +21,6 @@
 
 /obj/item/storage/keyring/bailiff
 	keys = list(/obj/item/roguekey/bailiff)
+
+/obj/item/storage/keyring/rockhillmansion
+	keys = list(/obj/item/roguekey/mansion, /obj/item/roguekey/mansion, /obj/item/roguekey/mansion)
