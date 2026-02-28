@@ -10,6 +10,10 @@
 	if(!recipient.HasSpell(/obj/effect/proc_holder/spell/self/choose_riding_virtue_mount))
 		recipient.AddSpell(new /obj/effect/proc_holder/spell/self/choose_riding_virtue_mount)
 
+/datum/virtue/utility/testvirtue
+	name = "TEST VIRTUE FOR VIRTUOUS ONLY"
+	virtuous_only = TRUE
+
 GLOBAL_LIST_INIT(virtue_mount_choices, (list(
 	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled,
 	/mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/tame/saddled,
