@@ -580,14 +580,14 @@ GLOBAL_VAR(restart_counter)
 
 	var/round_duration_timestamp = gameTimestamp("hh:mm:ss", world.time - SSticker.round_start_time)
 	
-	var/current_map_name = "Неизвестно"
+	var/next_map = "Неизвестно"
 	if(SSmapping && SSmapping.config)
-		current_map_name = SSmapping.config.map_name
+		next_map = SSmapping.next_map_config
 
 	var/datum/tgs_chat_embed/structure/embed = new()
 	embed.title = "Конец!"
 
-	embed.description = "Выбранная карта: **[current_map_name]**\n\nИстория длилась [round_duration_timestamp]."
+	embed.description = "Выбранная следующая карта: **[next_map]**\n\nИстория длилась [round_duration_timestamp]."
 	
 	embed.colour = "#9f5255"
 	embed.footer = new(GLOB.rogue_round_id)
