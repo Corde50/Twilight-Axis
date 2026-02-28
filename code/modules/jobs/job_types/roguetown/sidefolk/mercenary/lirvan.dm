@@ -52,7 +52,7 @@
 	cloak = /obj/item/clothing/cloak/ordinatorcape/lirvas
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/lirvas
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltr = /obj/item/rogueweapon/sword/sabre
 	beltl = /obj/item/rogueweapon/scabbard/sword/noble
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/gold
 	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/lirvas
@@ -60,8 +60,8 @@
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/rogueweapon/woodstaff/quarterstaff/gold
-	r_hand = /obj/item/rogueweapon/sword/sabre
+	l_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/gold
+	r_hand = /obj/item/storage/belt/rogue/pouch/coins/mid
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary = 1,
 		/obj/item/flashlight/flare/torch = 1,
