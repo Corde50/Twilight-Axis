@@ -29,8 +29,8 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.wear_armor, /obj/item/clothing/cloak/forrestercloak/vanguard))
-			var/obj/item/clothing/S = H.wear_armor
+		if(istype(H.cloak, /obj/item/clothing/cloak/forrestercloak/vanguard))
+			var/obj/item/clothing/S = H.cloak
 			var/index = findtext(H.real_name, " ")
 			if(index)
 				index = copytext(H.real_name, 1,index)
