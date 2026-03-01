@@ -36,7 +36,7 @@
 /datum/outfit/job/roguetown/vanguard
 	job_bitflag = BITFLAG_VANGUARD
 
-/datum/job/roguetown/bogguardsman/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+/datum/job/roguetown/vanguard/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
