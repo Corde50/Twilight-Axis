@@ -736,7 +736,7 @@
 				return FALSE
 	return TRUE
 
-#define BUCKLE_PENALTY 0.5
+#define BUCKLE_PENALTY 1
 
 //Spread is FORCED!
 /obj/projectile/proc/preparePixelProjectile(atom/target, atom/source, params, spread = 0)
