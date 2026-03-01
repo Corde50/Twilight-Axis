@@ -52,10 +52,10 @@
 /datum/outfit/job/roguetown/vanguard
 	cloak = /obj/item/clothing/cloak/forrestercloak/vanguard
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
-	belt = /obj/item/storage/belt/rogue/leather
-	backr = /obj/item/storage/backpack/rogue/satchel
+	belt = /obj/item/storage/belt/rogue/leather/black
+	backr = /obj/item/storage/backpack/rogue/satchel/black
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/warden/vanguard
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -308,4 +308,15 @@
 	desc = "The large, intimidating skull of the rare giant rous, plated with steel on its inner side and given padding - paired together with a steel maille mask and worn with a linen shroud. Such trophies are associated with life-long sewer dwellers and their descendants."
 
 /obj/item/clothing/cloak/forrestercloak/vanguard
-	desc = "Плащ, который носят бойцы Авангарда."
+	name = "vanguard cloak"
+	desc = "Плащ, который носят бойцы Авангарда. На воротнике, как правило, вышито имя владельца. Согласно традиции, плащи падших бойцов Авангарда сжигаются в присутствии Короля Энигмы, чтобы правитель этих земель помнил о каждом из тех, кто первым встречает удар зла, таящегося во мраке ночи."
+	icon_state = "shadowcloak"
+	item_state = "shadowcloak"
+
+/obj/item/clothing/suit/roguetown/armor/leather/studded/warden/vanguard
+	name = "vanguard armor"
+	desc = "Многослойная броня, состоящая из колчужной подкладки под слоем дубленой кожи, поверх которых нашита тёмная ткань, скрывающая бойца в темноте. «Мы погибаем во мраке ночи, чтобы вы жили при свете дня»."
+	icon = 'icons/roguetown/clothing/armor.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
+	icon_state = "shadowrobe"
+
