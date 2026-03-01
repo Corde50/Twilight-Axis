@@ -1,4 +1,0 @@
-author: "WeNeedMorePhoron"
-delete-after: True
-changes:
-  - rscadd: "For performance reason, Pestran's Bodypart Miracle only attaches from the user's hand and from the same turf."
