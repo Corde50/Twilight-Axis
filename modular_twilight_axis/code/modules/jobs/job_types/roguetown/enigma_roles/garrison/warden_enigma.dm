@@ -9,9 +9,9 @@
 	allowed_races = RACES_TOLERATED_UP
 	allowed_ages = list(AGE_MIDDLEAGED, AGE_OLD)
 	display_order = JDO_OVERSEER
-	tutorial = "Вам, как опытному солдату из свиты герцога, поручено наблюдать за недавно построенным Бастионом. \
-				Вы подчиняетесь маршалу и его советникам,\
-				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными.\
+	tutorial = "Вам, как опытному солдату из свиты Его Величества, поручено наблюдать за недавно построенным Бастионом. \
+				Вы подчиняетесь маршалу и его советникам, \
+				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными. \
 				Бастион не должен пасть."
 	whitelist_req = TRUE
 	outfit = /datum/outfit/job/roguetown/overseer
@@ -29,7 +29,7 @@
 	. = ..()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(istype(H.wear_armor, /obj/item/clothing/cloak/wardencloak/enigma))
+		if(istype(H.wear_armor, /obj/item/clothing/cloak/forrestercloak/vanguard))
 			var/obj/item/clothing/S = H.wear_armor
 			var/index = findtext(H.real_name, " ")
 			if(index)
@@ -40,9 +40,9 @@
 
 /datum/advclass/overseer
 	name = "Overseer"
-	tutorial = "Вам, как опытному солдату из свиты герцога, поручено наблюдать за недавно построенным Бастионом. \
-				Вы подчиняетесь маршалу и его советникам,\
-				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными.\
+	tutorial = "Вам, как опытному солдату из свиты Его Величества, поручено наблюдать за недавно построенным Бастионом. \
+				Вы подчиняетесь маршалу и его советникам, \
+				и ваша задача - держать авангард в строю и следить за тем, чтобы пути в город оставались безопасными. \
 				Бастион не должен пасть."
 
 	category_tags = list(CTAG_OVERSEER)
@@ -76,20 +76,20 @@
 
 /datum/outfit/job/roguetown/overseer
 	job_bitflag = BITFLAG_VANGUARD
-	head = /obj/item/clothing/head/roguetown/helmet/bascinet/antler/warden_enigma
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff
 	pants = /obj/item/clothing/under/roguetown/chainlegs
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass	
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/overseer
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/chain
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/brigandine
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	backl = /obj/item/rogueweapon/shield/tower
-	backr = /obj/item/storage/backpack/rogue/satchel
-	belt = /obj/item/storage/belt/rogue/leather
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
-	cloak = /obj/item/clothing/cloak/wardencloak
+	cloak = /obj/item/clothing/cloak/forrestercloak/vanguard
 
 /datum/outfit/job/roguetown/overseer/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -102,8 +102,8 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
 	H.verbs |= list(/mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
 
-/obj/item/clothing/head/roguetown/helmet/bascinet/antler/warden_enigma
-	desc = "A beastly snouted armet with the large horns of an elder saiga protruding from it."
-
-/obj/item/clothing/cloak/wardencloak/enigma
-	desc = "Плащ, который носит смотритель Авангарда."
+/obj/item/clothing/suit/roguetown/armor/plate/cuirass/overseer
+	name = "overseer's brigandine"
+	desc = "Легкий доспех надзирателя Авангарда, выкрашенный в характерные чёрные цвета. «О, Король сиих земель, те, кто сегодня падут, чествуют тебя»."
+	icon_state = "light_brigandine"
+	item_state = "light_brigandine"
