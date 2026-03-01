@@ -2982,8 +2982,6 @@
 #include "modular\Neu_Food\code\recipes\drying_recipes.dm"
 #include "modular\Neu_Food\code\recipes\stew_recipes.dm"
 #include "modular\ze_genesis_call\genesis_call.dm"
-#include "code\modules\statpacks\_statpacks.dm"
-#include "code\modules\virtues\_virtue.dm"
 #include "code\datums\autopunctuation.dm"
 #include "code\datums\item_equipped_movement_rustle.dm"
 #include "code\datums\slapcrafting.dm"
