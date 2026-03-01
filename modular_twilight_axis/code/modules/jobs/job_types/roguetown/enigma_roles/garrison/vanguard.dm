@@ -3,8 +3,8 @@
 	flag = VANGUARDS
 	department_flag = VANGUARD
 	faction = "Station"
-	total_positions = 10
-	spawn_positions = 10
+	total_positions = 6
+	spawn_positions = 6
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_races = ACCEPTED_RACES
 	job_traits = list(TRAIT_WOODSMAN)
