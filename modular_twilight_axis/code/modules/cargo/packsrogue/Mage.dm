@@ -15,5 +15,5 @@
 
 /datum/supply_pack/rogue/Mage/cinnabar
 	name = "Cinnabar Ore"
-	cost = 10
+	cost = 30
 	contains = list(/obj/item/rogueore/cinnabar = 1)
