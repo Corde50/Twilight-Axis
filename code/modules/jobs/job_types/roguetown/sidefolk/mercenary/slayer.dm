@@ -61,6 +61,7 @@
 				backl = /obj/item/rogueweapon/stoneaxe/woodcut/steel/slayer
 				beltl = /obj/item/rogueweapon/stoneaxe/woodcut/steel/slayer
 				ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)
+		H.AddComponent(/datum/component/trophy_hunter) //TA edit - added trophy_hunter component
 
 /obj/item/rogueweapon/stoneaxe/woodcut/steel/slayer
 	name = "slayer axe"
