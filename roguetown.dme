@@ -3101,7 +3101,6 @@
 #include "modular_twilight_axis\code\datums\trophy_rules\minotaur.dm"
 #include "modular_twilight_axis\code\datums\trophy_rules\troll.dm"
 #include "modular_twilight_axis\code\datums\trophy_rules\trophy_rule.dm"
-#include "modular_twilight_axis\code\game\objects\effects\temporary_visuals\soundbreaker.dm"
 #include "modular_twilight_axis\code\game\area\actualcoast.dm"
 #include "modular_twilight_axis\code\game\area\basingrove.dm"
 #include "modular_twilight_axis\code\game\area\bograt.dm"
