@@ -82,7 +82,7 @@
 			if(!team_ids[T])
 				team_ids[T] = team_gid++
 			antag_info["team"]["id"] = team_ids[T]
-
+ 
 		if(A.objectives.len)
 			for(var/datum/objective/O in A.objectives)
 				var/result = O.check_completion() ? "SUCCESS" : "FAIL"
@@ -214,7 +214,7 @@
 	world.TgsAnnounceRoundEnd()
 
 	sleep(10 SECONDS)
-	SSvote.initiate_vote("map", "Actors")
+//	SSvote.initiate_vote("map", "Actors") // TA EDIT
 	ready_for_reboot = TRUE
 	standard_reboot()
 
