@@ -134,18 +134,23 @@
 	to_chat(world, "<BR><BR><BR><span class='reallybig'>So ends this tale on [realm_name].</span>")
 	get_end_reason()
 
+	var/round_end_music
+	if(prob(1)) 
+		round_end_music = 2
+	else
+		round_end_music = rand(0, 1)
+
 	var/list/key_list = list()
 	for(var/client/C in GLOB.clients)
 		if(C.mob)
 			SSdroning.kill_droning(C)
-			var/round_end_music = rand(0, 2)
 			switch(round_end_music)
 				if(0)
 					C.mob.playsound_local(C.mob, 'sound/music/roundend.ogg', 100, FALSE)
 				if(1)
 					C.mob.playsound_local(C.mob, 'modular_twilight_axis/sound/music/roundend.ogg', 100, FALSE)
-        if(2)
-          C.mob.playsound_local(C.mob, 'sound/music/roundend_mirthful.ogg', 100, FALSE) //Hildegard Von Blingin and Whitney Avalon's transformative cover of 'Manchild' by Sabrina Carpenter, circa 2026.
+				if(2)
+					C.mob.playsound_local(C.mob, 'sound/music/roundend_mirthful.ogg', 100, FALSE) //Hildegard Von Blingin and Whitney Avalon's transformative cover of 'Manchild' by Sabrina Carpenter, circa 2026.
 		if(isliving(C.mob) && C.ckey)
 			key_list += C.ckey
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
