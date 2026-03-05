@@ -512,7 +512,7 @@ GLOBAL_VAR(restart_counter)
 		return
 
 	var/map_name = "Неизвестно"
-	if(SSmapping && SSmapping.next_map_config)
+	if(SSmapping)
 		map_name = SSmapping.config?.map_name
 
 	var/datum/tgs_chat_embed/structure/embed = new()
