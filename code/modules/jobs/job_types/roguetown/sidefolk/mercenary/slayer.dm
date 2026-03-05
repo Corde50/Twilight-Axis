@@ -50,7 +50,8 @@
 			/obj/item/rogueweapon/huntingknife = 1,
 			/obj/item/roguekey/mercenary = 1,
 			/obj/item/rope/chain = 1,
-			/obj/item/natural/head/troll = 1 // will spawn inside of the belt but I can't be bothered to make it spawn in the headhook
+			/obj/item/natural/head/troll = 1, // will spawn inside of the belt but I can't be bothered to make it spawn in the headhook
+			/obj/item/book/rogue/trophy_rules = 1 //TA edit - added trophy_hunter component
 		)
 		var/weapons = list("Hatchets", "Greataxe")
 		var/weapon_choice = input("Choose your weapon", "How will you channel your rage?") as anything in weapons
