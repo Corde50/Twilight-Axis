@@ -5353,10 +5353,6 @@
 /obj/item/clothing/mask/rogue/sack,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/banditcamp)
-"Gf" = (
-/obj/structure/flora/roguegrass/bush/westleach,
-/turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bograt/safe)
 "Gg" = (
 /obj/effect/wisp/prestidigitation{
 	color = "#ff0d00";
@@ -20269,7 +20265,7 @@ ws
 iZ
 oh
 iZ
-hu
+DT
 hu
 vJ
 hu
@@ -20535,8 +20531,8 @@ aE
 yo
 ws
 DH
-Bn
-Bn
+ws
+ws
 Em
 iZ
 xt
@@ -20913,7 +20909,7 @@ aE
 aE
 az
 yd
-hu
+DT
 iZ
 DT
 VC
@@ -21043,11 +21039,11 @@ aE
 Pk
 Gy
 wj
-Gf
+lK
 iZ
 yd
-uz
-uz
+ws
+ws
 aE
 ws
 YE
@@ -21173,12 +21169,12 @@ aE
 EB
 gu
 ng
-hu
+DT
 TS
-Bn
-Bn
-Bn
-uz
+DT
+ws
+ws
+ws
 oW
 oW
 ws
@@ -21302,12 +21298,12 @@ iZ
 iZ
 Uu
 DO
-hu
+DT
 TS
 DT
 VC
-fk
-Bn
+RY
+ws
 ws
 oW
 WE
