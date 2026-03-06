@@ -191,6 +191,7 @@
 		H.set_blindness(0)
 		switch(weapon_choice)
 			if("Footman archer")
+			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				H.change_stat(STATKEY_STR, 1) //Футману силу.
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 3, TRUE)
 			if("Light archer")
