@@ -8,3 +8,28 @@
 	icon = 'modular_twilight_axis/icons/roguetown/clothing/gloves.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/gloves.dmi'
 	color = null
+
+/obj/item/clothing/gloves/roguetown/bloodraider
+	name = "raiders gauntlets"
+	desc = "Clawed plate gauntlets, capable of tormenting N'wah with their tips"
+	icon_state = "bloodgauntlets"
+	item_state = "bloodgauntlets"
+	armor = ARMOR_PLATE
+	resistance_flags = FIRE_PROOF
+	blocksound = PLATEHIT
+	max_integrity = ARMOR_INT_SIDE_STEEL
+	break_sound = 'sound/foley/breaksound.ogg'
+	drop_sound = 'sound/foley/dropsound/armor_drop.ogg'
+	pickup_sound = 'sound/foley/equip/equip_armor_plate.ogg'
+	equip_sound = 'sound/foley/equip/equip_armor_plate.ogg'
+	anvilrepair = /datum/skill/craft/armorsmithing
+	smeltresult = /obj/item/ingot/steel
+	desc = "This brigandine is an example of the painstaking work of a skilled, and very poor, craftsman. The gambenison, lined with metal parts and scraps of chain mail, is impossible to ruin even with such 'artistry'."
+	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
+
+/obj/item/clothing/gloves/roguetown/bloodraider/ComponentInitialize()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "ARMOR")
+
+/obj/item/clothing/gloves/roguetown/bloodraider/get_examine_highlight_status()
+	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_ZIZO_ARMOR)
