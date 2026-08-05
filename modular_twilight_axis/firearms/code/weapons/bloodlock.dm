@@ -40,7 +40,7 @@
 	misfire_chance = 0
 	/// Reload time, in SECONDS
 	reload_time = 10
-	damfactor = 1.2
+	damfactor = 1
 	critfactor = 1
 	npcdamfactor = 4
 
@@ -91,7 +91,7 @@
 						H.adjust_bloodpool(-vitae_cost)
 						H.update_action_buttons()
 					else
-						H.blood_volume = max(H.blood_volume-50, 0) // 2 loads already 1 stage debuff
+						H.blood_volume = max(H.blood_volume-70, 0) // 2 loads already 1 stage debuff
 					playsound(H, 'modular_twilight_axis/firearms/sound/musketcock.ogg', 100, FALSE)
 					cocked = TRUE
 			else
