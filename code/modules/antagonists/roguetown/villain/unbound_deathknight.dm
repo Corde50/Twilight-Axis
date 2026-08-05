@@ -21,7 +21,7 @@
 	var/mob/living/carbon/human/L = owner.current
 	L.become_skeleton()
 	ADD_TRAIT(L, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(L, TRAIT_SHATTER_KILL, TRAIT_GENERIC)
+	//TA_EDIT ADD_TRAIT(L, TRAIT_SHATTER_KILL, TRAIT_GENERIC)
 
 /datum/antagonist/unbound_death_knight/proc/equip_knight()
 	owner.unknow_all_people()
@@ -63,8 +63,8 @@
 	INVOKE_ASYNC(src, PROC_REF(greet)) // Solvful text while we wait 30 seconds for poll to finish
 	// Firstly, we will try finding targets for protect/kill.
 	var/list/targets = pollCandidates(
-		"Would you like to be a target for a death knight?", 
-		ignore_category = POLL_IGNORE_DEATHKNIGHT_TARGET, 
+		"Would you like to be a target for a death knight?",
+		ignore_category = POLL_IGNORE_DEATHKNIGHT_TARGET,
 		group = hoomans
 	)
 	if(!length(targets))
@@ -82,7 +82,7 @@
 	if(poor_sod) // Prioritizing player to player interactions at all costs
 		var/datum/objective/lordscommandment
 		if(rand(50))
-			lordscommandment = new /datum/objective/protect 
+			lordscommandment = new /datum/objective/protect
 		else
 			lordscommandment = new /datum/objective/assassinate
 
@@ -169,7 +169,7 @@
 			H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 
 	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, 
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 	)
 	H.set_blindness(0)
