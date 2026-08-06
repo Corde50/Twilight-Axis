@@ -197,6 +197,8 @@
   changelingonberry:
   - admin: custom descriptors now display in the player panel
 2026-08-06:
+  Ketrai:
+  - bugfix: fixed hunting tracks spawning on lava & water tiles
   Quinalion:
   - bugfix: "ASPERGES \u043C\u043E\u0436\u0435\u0442 \u043A\u043E\u043D\u0432\u0435\
       \u0440\u0442\u0438\u0442\u044C."
@@ -219,6 +221,7 @@
   Ryan180602:
   - bugfix: hair pixel layering
   borneblood:
+  - bugfix: Fixed a bunch of oddities in Dual Wielder. Report any oddities remaining.
   - refactor: Zizo skeleton summoning is fixed (again x6) by reworking the spell.
   - rscdel: The new Zizo spells have been reverted temporarily for reorganization
       purposes, they'll be back shortly.
