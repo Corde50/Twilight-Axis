@@ -8,7 +8,7 @@
 	var/mob/living/U = user
 	if(H && U)
 		prob2defend = 0
-	
+
 	if(!can_see_cone(user))
 		if(!H.get_tempo_bonus(TEMPO_TAG_NOLOS_PARRY))
 			return FALSE
@@ -47,7 +47,7 @@
 		var/parrytime = setparrytime
 		parrytime -= get_tempo_bonus(TEMPO_TAG_PARRYCD_BONUS)
 		changeNext_def(parrytime)
-	
+
 	var/drained = BASE_PARRY_STAMINA_DRAIN
 	var/weapon_parry = FALSE
 	var/offhand_defense = 0
@@ -148,11 +148,10 @@
 
 	var/att_swift_capable = U.check_dodge_skill(check_trait = FALSE)
 	var/def_swift_capable = H.check_dodge_skill(check_trait = FALSE)
-	
-	if(used_weapon)
-		if(used_weapon.wbalance == WBALANCE_SWIFT)
-			if(mainhand && !offhand && def_swift_capable) // We're one-handing a swift-balanced weapon (rapiers, sabers, etc). Small parry boost (1 wdef equiv.)
-				prob2defend += 10
+
+	if(used_weapon?.wbalance == WBALANCE_SWIFT)
+		if(mainhand && !offhand && def_swift_capable) // We're one-handing a swift-balanced weapon (rapiers, sabers, etc). Small parry boost (1 wdef equiv.)
+			prob2defend += 10
 
 	if(intenty.masteritem)
 		attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
@@ -161,28 +160,29 @@
 			intenty.masteritem.remove_bintegrity(intenty.sharpness_penalty)
 
 		prob2defend -= (attacker_skill * 20)
-		if(att_swift_capable)
-			if(!has_status_effect(/datum/status_effect/buff/weapon_binded))
-				if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
-					var/spdmod = ((user.STASPD - src.STASPD) * 10)
-					var/permod = ((src.STAPER - user.STAPER) * 5)
-					var/intmod = ((src.STAINT - user.STAINT) * 3)
-					var/finalmod = spdmod
-					if(mind)
-						var/ceilclamp = SWIFTCAP_CHEST
-						if(user.zone_selected == BODY_ZONE_CHEST)	// Attacker is targeting chest. Worst boons! INT and PER are subtracted.
-							if(permod > 0)
-								spdmod -= permod
-							if(intmod > 0)
-								spdmod -= intmod
-						else if(user.zone_selected != check_zone(user.zone_selected))	// They are targeting a precise zone. Best boons! No INT/ PER influence.
-							ceilclamp = SWIFTCAP_PRECISE
-						else if((check_zone(user.zone_selected) == user.zone_selected) && user.zone_selected != BODY_ZONE_CHEST)
-							ceilclamp = SWIFTCAP_LIMBS
-							if(permod > 0)
-								spdmod -= permod
-						finalmod = clamp(spdmod, 0, ceilclamp)
-					prob2defend -= finalmod
+		if(att_swift_capable && !has_status_effect(/datum/status_effect/buff/weapon_binded))
+			if((intenty.masteritem.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
+				var/spdmod = ((user.STASPD - src.STASPD) * 10)
+				var/permod = ((src.STAPER - user.STAPER) * 5)
+				var/intmod = ((src.STAINT - user.STAINT) * 3)
+				var/finalmod = spdmod
+				if(mind)
+					var/ceilclamp = SWIFTCAP_CHEST
+					if(user.zone_selected == BODY_ZONE_CHEST)	// Attacker is targeting chest. Worst boons! INT and PER are subtracted.
+						if(permod > 0)
+							spdmod -= permod
+						if(intmod > 0)
+							spdmod -= intmod
+					else if(user.zone_selected != check_zone(user.zone_selected))	// They are targeting a precise zone. Best boons! No INT/ PER influence.
+						ceilclamp = SWIFTCAP_PRECISE
+					else if((check_zone(user.zone_selected) == user.zone_selected) && user.zone_selected != BODY_ZONE_CHEST)
+						ceilclamp = SWIFTCAP_LIMBS
+						if(permod > 0)
+							spdmod -= permod
+					if(used_weapon?.wbalance == WBALANCE_NORMAL)
+						ceilclamp -= 10
+					finalmod = clamp(spdmod, 0, ceilclamp)
+				prob2defend -= finalmod
 	else
 		attacker_skill = U.get_skill_level(/datum/skill/combat/unarmed)
 		prob2defend -= (attacker_skill * 20)
@@ -197,7 +197,10 @@
 					spdmod -= intmod
 			var/finalmod = spdmod
 			if(mind)
-				finalmod = clamp(spdmod, 0, 30)
+				if(used_weapon?.wbalance == WBALANCE_NORMAL)
+					finalmod = clamp(spdmod, 0, 20)
+				else
+					finalmod = clamp(spdmod, 0, 30)
 			prob2defend -= finalmod
 
 	// --- Weapon binding! ---
@@ -212,7 +215,7 @@
 					return TRUE	//Tentative, might be better if it only increased parry chance on the initial binding rather than a full block.
 
 	// --- Weapon Binding End! ---
-	
+
 	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
 		prob2defend -= 40
 
@@ -266,11 +269,12 @@
 	if(prob(prob2defend))
 		parry_status = TRUE
 
-	if(parry_status)
-		if(!has_status_effect(/datum/status_effect/buff/weapon_binded))
-			if(intenty.masteritem)
-				if(intenty.masteritem.wbalance == WBALANCE_HEAVY && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
-					drained = drained + ( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) )
+	if(parry_status && !has_status_effect(/datum/status_effect/buff/weapon_binded))
+		if(intenty?.masteritem.wbalance == WBALANCE_HEAVY && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
+			var/heavy_weapon_drain = min(( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) ), 20)
+			if(used_weapon?.wbalance == WBALANCE_NORMAL)
+				heavy_weapon_drain -= 10
+			drained += max(heavy_weapon_drain,0)
 	else
 		text += span_warning(" The enemy defeated my parry!")
 	if(src.client?.prefs.showrolls)
