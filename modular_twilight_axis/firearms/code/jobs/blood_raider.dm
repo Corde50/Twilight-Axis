@@ -1,6 +1,8 @@
+#define VITAE_PER_DRINK 100
+
 /datum/advclass/wretch/twilight_blood_raider
 	name = "Blood Raider"
-	tutorial = "Having obtained the weapon through honest or not-so-honest means, you carry the consequences of your actions across the surface of Grimoria, showcasing the true might of drow craftsmanship"
+	tutorial = "Having harnessed Cain's GIFT, you came to be known as a dhampir. With mastery over your newfound abilities, you obtained the weapon through honest or not-so-honest means, you carry the consequences of your actions across the surface of Grimoria, showcasing the true might of drow craftsmanship"
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(/datum/species/construct/metal, /datum/species/dullahan)
 	outfit = /datum/outfit/job/roguetown/wretch/twilight_blood_raider
@@ -83,7 +85,14 @@
 				H.change_stat(STATKEY_CON, 1)
 				to_chat(H, span_warning("Приспособившись к новому оружию, мне стало легче избегать охотников за головой"))
 
+
 	H.set_patron(/datum/patron/inhumen/zizo)
+	ADD_TRAIT(H, TRAIT_NOHUNGER, "bloodraider")
+	ADD_TRAIT(H, TRAIT_NOBREATH, "bloodraider")
+	ADD_TRAIT(H, TRAIT_VAMPBITE, "bloodraider")
+	ADD_TRAIT(H, TRAIT_NASTY_EATER, "bloodraider")
+	ADD_TRAIT(H, TRAIT_DARKVISION, "bloodraider")
+	ADD_TRAIT(H, TRAIT_NOSLEEP, "bloodraider")
 	shoes = /obj/item/clothing/shoes/roguetown/boots/bloodboots
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/twilight_elven/bloodraider
@@ -94,3 +103,18 @@
 	H.mind.AddSpell(new /datum/action/cooldown/spell/recall_weapon)
 	H.mind.AddSpell(new /datum/action/cooldown/spell/bind_weapon)
 	H.grant_language(/datum/language/undead)
+
+	H.maxbloodpool = 3500
+	H.hud_used?.shutdown_bloodpool()
+	H.hud_used?.initialize_bloodpool()
+	H.hud_used?.bloodpool.set_fill_color("#510000")
+	H.set_bloodpool(H.maxbloodpool)
+
+	RegisterSignal(H, COMSIG_LIVING_DRINKED_LIMB_BLOOD, PROC_REF(on_drink_blood))
+
+/datum/outfit/job/roguetown/wretch/twilight_blood_raider/proc/on_drink_blood(mob/living/drinker, mob/living/target)
+	SIGNAL_HANDLER
+
+	drinker.adjust_bloodpool(VITAE_PER_DRINK)
+
+#undef VITAE_PER_DRINK

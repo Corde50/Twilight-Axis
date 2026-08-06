@@ -20,7 +20,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	spread = 10
-	var/vitae_cost = 400
+	var/vitae_cost = 300
 	recoil = 3
 	force = 10
 	force_wielded = 15
@@ -40,7 +40,7 @@
 	misfire_chance = 0
 	/// Reload time, in SECONDS
 	reload_time = 10
-	damfactor = 1
+	damfactor = 1.2
 	critfactor = 1
 	npcdamfactor = 4
 
@@ -71,13 +71,9 @@
 	if(!cocked)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(HAS_TRAIT(H, TRAIT_ARCYNE))
-				if(H.clan)
-					if(H.bloodpool < vitae_cost)
-						to_chat(H, span_warning("I don't have enough vitae to spare!"))
-						return
-				else if(NOBLOOD in H.dna.species.species_traits)
-					to_chat(H, span_warning("I can't use it, I have no blood to spare!"))
+			if(HAS_TRAIT(H, TRAIT_ARCYNE) && HAS_TRAIT(H, TRAIT_VAMPBITE))
+				if(H.bloodpool < vitae_cost)
+					to_chat(H, span_warning("I don't have enough vitae to spare!"))
 					return
 				to_chat(H, span_info("I ready the bloodlock to be fired..."))
 				playsound(src,'modular_twilight_axis/firearms/sound/bloodreload.ogg', 150, FALSE)
@@ -87,11 +83,8 @@
 					if(skill)
 						adj_reload_time = reload_time / skill
 				if(move_after(H, adj_reload_time SECONDS, target = H))
-					if(H.clan)
-						H.adjust_bloodpool(-vitae_cost)
-						H.update_action_buttons()
-					else
-						H.blood_volume = max(H.blood_volume-70, 0) // 2 loads already 1 stage debuff
+					H.adjust_bloodpool(-vitae_cost)
+					H.update_action_buttons()
 					playsound(H, 'modular_twilight_axis/firearms/sound/musketcock.ogg', 100, FALSE)
 					cocked = TRUE
 			else
