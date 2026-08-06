@@ -29,10 +29,11 @@
 
 	H.set_patron(/datum/patron/inhumen/zizo)
 
-	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
+H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\
-	/datum/rmb_intent/riposte,\
 	/datum/rmb_intent/strong,\
+	/datum/rmb_intent/swift,\ //TA_EDIT
+	/datum/rmb_intent/riposte,\
 	/datum/rmb_intent/weak)
 	H.swap_rmb_intent(num=1)
 
