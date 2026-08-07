@@ -93,6 +93,7 @@
 	ADD_TRAIT(H, TRAIT_NASTY_EATER, "bloodraider")
 	ADD_TRAIT(H, TRAIT_DARKVISION, "bloodraider")
 	ADD_TRAIT(H, TRAIT_NOSLEEP, "bloodraider")
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, "bloodraider")
 	shoes = /obj/item/clothing/shoes/roguetown/boots/bloodboots
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/twilight_elven/bloodraider
