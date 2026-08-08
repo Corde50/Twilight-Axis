@@ -134,6 +134,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	//Job preferences 2.0 - indexed by job title , no key or value implies never
 	var/list/job_preferences = list()
+	/// Preferences specific to a job. Alist, job title = (some object, usually a list)
+	var/list/job_subprefs = list()
+
 	var/list/job_subclass_preferences = list() // TA EDIT START
 	var/list/job_subclass_strict = list() // TA EDIT END
 		// Want randomjob if preferences already filled - Donkie
@@ -1308,6 +1311,14 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					subclass_tooltip = "Subclass: [selected_subclass] / [failure_text]"
 				subclass_button_html = " | <a href='?_src_=prefs;preference=job;task=set_job_subclass;text=[rank]' title='[subclass_tooltip]'><font color='[subclass_color]'>[subclass_star]</font></a>" // TA EDIT END
 
+			var/show_role_subprefs = FALSE
+			if(job.has_subprefs && islist(job.default_subprefs))
+				for(var/subpref_key in job.default_subprefs)
+					if(subpref_key == "favorite_advclass")
+						continue
+					show_role_subprefs = TRUE
+					break
+
 			var/start_font = ""
 			var/end_font = ""
 			var/job_unavailable_status = JOB_AVAILABLE
@@ -1328,6 +1339,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 .tutorialhover .tutorial { visibility: hidden; width: 280px; background-color: black; color: #e3c06f; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; z-index: 1; top: 100%; left: 50%; margin-left: -140px; }
 .tutorialhover:hover .tutorial{ visibility: visible; }
 </style>
+[show_role_subprefs ? "<div class='tutorialhover'><a href='?src=[REF(job)];subprefs=1'>\[+\]</a><span class='tutorial'>Class Preferences</span></div>" : ""]
 <div class="tutorialhover"> [start_font][job.class_setup_examine ? "<a href='?src=[REF(job)];explainjob=1'>[used_name]</a>" : "[used_name]"][end_font]</span>
 <span class="tutorial">[job.tutorial]<br>Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contrib_points]" : ""]</span>
 </div>
@@ -1459,6 +1471,11 @@ GLOBAL_LIST_EMPTY(chosen_names)
 /datum/preferences/proc/ResetJobs()
 	job_preferences = list()
 	job_characters = list() //TA EDIT
+	if(islist(job_subprefs))
+		for(var/job_title in job_subprefs)
+			var/list/roleprefs = job_subprefs[job_title]
+			if(islist(roleprefs))
+				roleprefs["favorite_advclass"] = null
 	job_subclass_preferences = list() // TA EDIT START
 	job_subclass_strict = list() // TA EDIT END
 	save_preferences()   //TA EDIT
@@ -1749,6 +1766,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					else
 						job_subclass_strict -= job_title
 
+				J.get_roleprefs(user.client)
 				save_character()
 				SetChoices(user) // TA EDIT END
 			if("set_job_slot") //TA EDIT START
