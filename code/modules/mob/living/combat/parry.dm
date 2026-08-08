@@ -178,6 +178,8 @@
 							ceilclamp = SWIFTCAP_LIMBS
 							if(permod > 0)
 								spdmod -= permod
+						if(used_weapon?.wbalance == WBALANCE_NORMAL)
+							ceilclamp -= 10
 						finalmod = clamp(spdmod, 0, ceilclamp)
 					prob2defend -= finalmod
 	else
