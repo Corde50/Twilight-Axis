@@ -269,12 +269,13 @@
 	if(prob(prob2defend))
 		parry_status = TRUE
 
-	if(parry_status && !has_status_effect(/datum/status_effect/buff/weapon_binded))
-		if(intenty?.masteritem.wbalance == WBALANCE_HEAVY && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
-			var/heavy_weapon_drain = min(( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) ), 20)
-			if(used_weapon?.wbalance == WBALANCE_NORMAL)
-				heavy_weapon_drain -= 10
-			drained += max(heavy_weapon_drain,0)
+	if(parry_status)
+		if(!has_status_effect(/datum/status_effect/buff/weapon_binded))
+			if(intenty?.masteritem?.wbalance == WBALANCE_HEAVY && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
+				var/heavy_weapon_drain = min(( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) ), 20)
+				if(used_weapon?.wbalance == WBALANCE_NORMAL)
+					heavy_weapon_drain -= 10
+				drained += max(heavy_weapon_drain,0)
 	else
 		text += span_warning(" The enemy defeated my parry!")
 	if(src.client?.prefs.showrolls)
