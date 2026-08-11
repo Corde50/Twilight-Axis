@@ -4,7 +4,7 @@
 	name = "Blood Raider"
 	tutorial = "Having harnessed Cain's GIFT, you came to be known as a dhampir. With mastery over your newfound abilities, you obtained the weapon through honest or not-so-honest means, you carry the consequences of your actions across the surface of Grimoria, showcasing the true might of drow craftsmanship"
 	allowed_sexes = list(MALE, FEMALE)
-	forbidden_races = list(/datum/species/construct/metal, /datum/species/dullahan)
+	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)
 	outfit = /datum/outfit/job/roguetown/wretch/twilight_blood_raider
 	category_tags = list(CTAG_WRETCH)
 	class_select_category = CLASS_CAT_RANGER
