@@ -377,7 +377,8 @@
 	butt-naked in the middle of the kingdom's throne room, and much, much, more. </br>Unlike a regular Healing miracle, \
 	this can affect - and resurrect - devout Psydonians as well."
 	action_icon = 'icons/mob/actions/xylixmiracles.dmi'
-	//we don't adjust the overlay, intended to be disguised as regular anastasis. its funnier that way.
+	overlay_icon = 'icons/mob/actions/xylixmiracles.dmi'
+	overlay_state = "revive"
 	debuff_type = /datum/status_effect/debuff/random_revival
 	alt_required_items = list(
 		/obj/item/clothing/neck/roguetown/psicross/wood = 1
@@ -660,3 +661,40 @@
 	action_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	overlay_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	overlay_state = "revive"
+
+/obj/effect/proc_holder/spell/invoked/resurrect/dream
+	name = "Oneiric Rite of Anastasis"
+	desc = "Resurrects the chosen target, bringing them back from the dead. \
+	Converts material used into random higher tier materials. \
+	The resurrected target will be tethered to a dream entity. They must invoke the daemon and kill it to be freed from their curse. \
+	Requires ocean water near."
+	sound = 'sound/magic/chime.ogg'
+
+	required_items = list(
+		/obj/item/dream_material/dream_spike = 1,
+		/obj/item/dream_material/parchment_raw = 1,
+		/obj/item/dream_material/dream_ring = 1
+	)
+	alt_required_items = list(
+		/obj/item/dream_material/dream_seed = 1
+	)
+
+	debuff_type = /datum/status_effect/debuff/dreamfiend_curse
+	required_structure = /turf/open/water/ocean
+	action_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_icon = 'icons/mob/actions/abyssormiracles.dmi'
+	overlay_state = "paint_revive"
+
+/obj/effect/proc_holder/spell/invoked/resurrect/dream/cast(list/targets, mob/living/user)
+	. = ..()
+	if(.)
+		var/turf/T = get_turf(user)
+		if(T)
+			var/static/list/t2_items = list(
+				/obj/item/dream_material/dream_effigy,
+				/obj/item/dream_material/dream_fishes,
+				/obj/item/dream_material/dream_blade
+			)
+			for(var/i in 1 to 3)
+				var/chosen_type = pick(t2_items)
+				new chosen_type(T)
