@@ -1,4 +1,4 @@
-#define VITAE_PER_DRINK 100
+#define VITAE_PER_DRINK 300
 
 /datum/advclass/wretch/twilight_blood_raider
 	name = "Blood Raider"

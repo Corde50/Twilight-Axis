@@ -24,7 +24,7 @@
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	spread = 10
-	var/vitae_cost = 300
+	var/vitae_cost = 200
 	recoil = 3
 	force = 10
 	force_wielded = 15
