@@ -2,7 +2,7 @@
 
 /datum/advclass/wretch/twilight_blood_raider
 	name = "Blood Raider"
-	tutorial = "Having harnessed Cain's GIFT, you came to be known as a dhampir. With mastery over your newfound abilities, you obtained the weapon through honest or not-so-honest means, you carry the consequences of your actions across the surface of Grimoria, showcasing the true might of drow craftsmanship"
+	tutorial = "Having harnessed Cain's GIFT, you came to be known as a dhampir. With mastery over your newfound abilities, you obtained the weapon through honest or not-so-honest means, you carry the consequences of your actions across the surface of Grimoria, showcasing the true might of drow craftsmanship."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)
 	outfit = /datum/outfit/job/roguetown/wretch/twilight_blood_raider
@@ -59,7 +59,7 @@
 				ADD_TRAIT(H, TRAIT_ANTHRAXI, "bloodraider")
 				H.change_stat(STATKEY_SPD, 1)
 				H.change_stat(STATKEY_PER, 1)
-				to_chat(H, span_warning("Они боятся меня. Моя ловкость и зоркость не подводили ни разу на рейдах мерзких чужеземцев"))
+				to_chat(H, span_warning("Они боятся меня. Моя ловкость и зоркость не подводили ни разу на рейдах мерзких чужеземцев."))
 	else
 		H.set_blindness(0)
 
@@ -78,7 +78,7 @@
 				wretch_select_bounty(H)
 				H.change_stat(STATKEY_WIL, 1)
 				H.change_stat(STATKEY_CON, 1)
-				to_chat(H, span_warning("Приспособившись к новому оружию, мне стало легче избегать охотников за головой"))
+				to_chat(H, span_warning("Приспособившись к новому оружию, мне стало легче избегать охотников за головой."))
 
 
 	H.set_patron(/datum/patron/inhumen/zizo)
