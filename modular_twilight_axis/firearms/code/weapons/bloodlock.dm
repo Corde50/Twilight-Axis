@@ -33,6 +33,7 @@
 	var/bloodlock_awakened = FALSE
 	var/bloodlock_awaken_timer
 	var/bloodlock_loss_timer
+	var/previous_maxbloodpool = 0
 	var/last_slot
 	cartridge_wording = "bullet"
 	load_sound = 'modular_twilight_axis/firearms/sound/musketload.ogg'
@@ -160,7 +161,7 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/proc/is_blood_raider(mob/living/carbon/human/H)
 	if(!H?.mind)
 		return FALSE
-	if(HAS_TRAIT(H, TRAIT_VAMPBITE))
+	if(HAS_TRAIT_FROM(H, TRAIT_VAMPBITE, "bloodraider"))
 		return TRUE
 	return FALSE
 
@@ -238,11 +239,16 @@
 	ADD_TRAIT(H, TRAIT_NASTY_EATER, "bloodlock")
 	ADD_TRAIT(H, TRAIT_VAMPBITE, "bloodlock")
 
-	H.maxbloodpool = 1700
+	previous_maxbloodpool = H.maxbloodpool
+	var/previous_bloodpool = H.bloodpool
+	H.maxbloodpool = max(H.maxbloodpool, 1700)
 	H.hud_used?.shutdown_bloodpool()
 	H.hud_used?.initialize_bloodpool()
 	H.hud_used?.bloodpool.set_fill_color("#510000")
-	H.set_bloodpool(H.maxbloodpool)
+	if(previous_maxbloodpool > 0)
+		H.set_bloodpool(min(previous_bloodpool, H.maxbloodpool))
+	else
+		H.set_bloodpool(H.maxbloodpool)
 
 	RegisterSignal(H, COMSIG_LIVING_DRINKED_LIMB_BLOOD, PROC_REF(on_drink_blood))
 
@@ -258,6 +264,9 @@
 		bloodlock_awaken_timer = null
 		to_chat(user, span_warning("Оружие затихает. Пробуждение прервано."))
 		bloodlock_owner = null
+		return
+	if(bloodlock_awakened && bloodlock_owner == user)
+		reset_loss_timer()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/proc/reset_loss_timer()
 	if(bloodlock_loss_timer)
@@ -286,13 +295,34 @@
 
 	UnregisterSignal(H, COMSIG_LIVING_DRINKED_LIMB_BLOOD)
 
-	H.maxbloodpool = initial(H.maxbloodpool)
+	var/current_bloodpool = H.bloodpool
+	H.maxbloodpool = previous_maxbloodpool
 	H.hud_used?.shutdown_bloodpool()
+	if(H.maxbloodpool > 0)
+		H.hud_used?.initialize_bloodpool()
+		H.hud_used?.bloodpool.set_fill_color("#510000")
+		H.set_bloodpool(min(current_bloodpool, H.maxbloodpool))
+	else
+		H.set_bloodpool(0)
+	previous_maxbloodpool = 0
 	bloodlock_awakened = FALSE
 	bloodlock_owner = null
 
 	to_chat(H, span_warning(pick(
 		"Вы чувствуете, как ОН с вами попрощался", "Как ты посмел меня бросить?!", "Прошлый владелец всё же был лучше", "Н'вах!", "Прогресс явно не для такого остолопа, как ты!")))
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/Destroy()
+	if(bloodlock_awaken_timer)
+		deltimer(bloodlock_awaken_timer)
+		bloodlock_awaken_timer = null
+	if(bloodlock_loss_timer)
+		deltimer(bloodlock_loss_timer)
+		bloodlock_loss_timer = null
+	if(bloodlock_awakened && bloodlock_owner && !QDELETED(bloodlock_owner))
+		remove_bloodlock_power()
+	else
+		bloodlock_owner = null
+	return ..()
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/proc/on_drink_blood(mob/living/drinker, mob/living/target)
 	SIGNAL_HANDLER

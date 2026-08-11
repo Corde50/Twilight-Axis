@@ -87,11 +87,10 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
-	sewrepair = FALSE
 	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
 
-/obj/item/clothing/shoes/roguetown/boots/bloodboots/armor/ComponentInitialize()
+/obj/item/clothing/shoes/roguetown/boots/bloodboots/ComponentInitialize()
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_FENCERDEXTERITY)
 	AddComponent(/datum/component/armour_filtering/negative, TRAIT_HONORBOUND)
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "ARMOR")

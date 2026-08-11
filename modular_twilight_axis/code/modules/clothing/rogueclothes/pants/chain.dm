@@ -65,12 +65,10 @@
 	smeltresult = /obj/item/ingot/steel
 	r_sleeve_status = SLEEVE_NOMOD
 	l_sleeve_status = SLEEVE_NOMOD
-	resistance_flags = FIRE_PROOF
 	armor_class = ARMOR_CLASS_LIGHT
 	w_class = WEIGHT_CLASS_NORMAL
 	//resistance_flags = FIRE_PROOF // these ones should be burning since is cloth + metal
 	sewrepair = FALSE
-	smeltresult = /obj/item/ingot/steel
 	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
 

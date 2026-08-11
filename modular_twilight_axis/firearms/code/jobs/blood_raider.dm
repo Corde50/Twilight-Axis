@@ -25,14 +25,14 @@
 		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/unarmed = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/unarmed = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/climbing = SKILL_LEVEL_EXPERT,
 		/datum/skill/misc/swimming = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/tracking = SKILL_LEVEL_EXPERT,
-		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
+		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
 	)
 
@@ -53,15 +53,13 @@
 		backpack_contents = list(/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/stalker = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/chalk = 1, /obj/item/rogueweapon/spellbook = 1)
 		switch(crimeschoice)
 			if("I'm nobody")
-				H.change_stat(STATKEY_PER, -1)
-				H.change_stat(STATKEY_SPD, -1)
 				to_chat(H, span_warning("Моя прошлая жизнь не даёт мне покоя по ночам. Кошмары заставляют меня оглядываться назад чаще..."))
 			if("They fear me")
 				wretch_select_bounty(H)
-				ADD_TRAIT(H, TRAIT_ANTHRAXI, TRAIT_DARKVISION)
+				ADD_TRAIT(H, TRAIT_ANTHRAXI, "bloodraider")
 				H.change_stat(STATKEY_SPD, 1)
 				H.change_stat(STATKEY_PER, 1)
-				to_chat(H, span_warning("Они боятся меня. Моя ловкость и зоркость не подводили ни разу на рейдах мерзких Н'вах"))
+				to_chat(H, span_warning("Они боятся меня. Моя ловкость и зоркость не подводили ни разу на рейдах мерзких чужеземцев"))
 	else
 		H.set_blindness(0)
 
@@ -75,9 +73,6 @@
 		backpack_contents = list(/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1, /obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/rope/chain = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/chalk = 1, /obj/item/rogueweapon/spellbook = 1)
 		switch(crimeschoice)
 			if("I'm nobody")
-				H.change_stat(STATKEY_WIL, -1)
-				H.change_stat(STATKEY_SPD, -1)
-				H.change_stat(STATKEY_PER, -1)
 				to_chat(H, span_warning("Антракси идут по мою душу, я не могу быть уверенным в завтрашнем дне..."))
 			if("They fear me")
 				wretch_select_bounty(H)

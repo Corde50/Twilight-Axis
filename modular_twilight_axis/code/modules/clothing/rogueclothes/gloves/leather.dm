@@ -24,7 +24,6 @@
 	equip_sound = 'sound/foley/equip/equip_armor_plate.ogg'
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
-	desc = "This brigandine is an example of the painstaking work of a skilled, and very poor, craftsman. The gambenison, lined with metal parts and scraps of chain mail, is impossible to ruin even with such 'artistry'."
 	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
 	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
 
