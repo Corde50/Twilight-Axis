@@ -770,7 +770,7 @@
 	if(LAZYLEN(required_items))
 		var/found = FALSE
 		for(var/obj/item/I in owner.contents)
-			if(is_type_in_list(I, required_items))
+			if(is_type_in_list(I, required_items) || HAS_TRAIT(owner, TRAIT_HALLOWED))
 				found = TRUE
 				break
 		if(!found && feedback)
@@ -854,6 +854,7 @@
 	// If cast() returns FALSE, the spell fizzled - skip cooldown, cost, and feedback
 	if(cast_result == FALSE)
 		weapon_penalty_active = FALSE
+		cancel_casting()
 		if(charge_required && click_to_activate && owner?.client)
 			UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
@@ -1100,6 +1101,7 @@
 		owner.vis_contents += mob_charge_effect
 
 	// Spell glow light
+	QDEL_NULL(spell_glow_light)
 	if(glow_intensity && spell_color && isliving(owner))
 		if(spell_glow_light)
 			QDEL_NULL(spell_glow_light)
@@ -1141,6 +1143,7 @@
 
 /// End the charging cycle
 /datum/action/cooldown/spell/proc/end_charging()
+	QDEL_NULL(spell_glow_light)
 	if(!currently_charging)
 		return
 
