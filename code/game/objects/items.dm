@@ -627,16 +627,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(gripped_intents && !wielded)
 			if(force_wielded)
 				inspec += "\n<b>WIELDED FORCE:</b> [get_force_string(force_wielded)] <span class='info'><a href='?src=[REF(src)];showforcewield=1'>{?}</a></span>"
-
-		inspec += "\n<b>BALANCE: </b>"
-		if(wbalance)
-			if(wbalance == WBALANCE_HEAVY)
-				inspec += "Heavy"
-			if(wbalance == WBALANCE_SWIFT)
-				inspec += "Swift"
-		else
-			inspec += "Normal"
-		inspec += " <span class='info'><a href='?src=[REF(src)];explainbalance=1'>{?}</a></span>"
+		if(force)
+			inspec += "\n<b>BALANCE: </b>"
+			if(wbalance)
+				if(wbalance == WBALANCE_HEAVY)
+					inspec += "Heavy"
+				if(wbalance == WBALANCE_SWIFT)
+					inspec += "Swift"
+			else
+				inspec += "Normal"
+			inspec += " <span class='info'><a href='?src=[REF(src)];explainbalance=1'>{?}</a></span>"
 
 		if(wlength != WLENGTH_NORMAL)
 			inspec += "\n<b>LENGTH:</b> "
