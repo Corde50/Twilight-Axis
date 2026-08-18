@@ -352,3 +352,7 @@ GLOBAL_VAR_INIT(whitelist_remove_limits_loaded, FALSE)
 
 	. += "Discord ID for ckey `[key]` has been set to `[discord_id]`."
 	return
+
+#undef WHITELIST_REMOVE_LIMIT
+#undef WHITELIST_REMOVE_WINDOW
+#undef WHITELIST_REMOVE_LIMIT_FILE
