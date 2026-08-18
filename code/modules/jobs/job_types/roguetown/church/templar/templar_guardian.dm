@@ -309,4 +309,22 @@
 		H.adjust_skillrank(/datum/skill/misc/climbing, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, SKILL_LEVEL_NOVICE, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/music, SKILL_LEVEL_NOVICE, TRUE)
+	// TA ADDITION START - ADDS SKILLRANK BONUSES FOR OTHER PATRONS
+	if(H.patron?.type == /datum/patron/inhumen/baotha)
+		H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/cooking, SKILL_LEVEL_APPRENTICE, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
+	if(H.patron?.type == /datum/patron/inhumen/graggar)
+		H.adjust_skillrank(/datum/skill/combat/whipsflails, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/wrestling, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/craft/tanning, SKILL_LEVEL_NOVICE, TRUE)
+	if(H.patron?.type == /datum/patron/inhumen/matthios)
+		H.adjust_skillrank(/datum/skill/misc/stealing, SKILL_LEVEL_APPRENTICE, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/sneaking, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/lockpicking, SKILL_LEVEL_NOVICE, TRUE)
+	if(H.patron?.type == /datum/patron/inhumen/zizo)
+		H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/tanning, SKILL_LEVEL_NOVICE, TRUE)
+		H.adjust_skillrank(/datum/skill/labor/butchering, SKILL_LEVEL_NOVICE, TRUE)
+	// TA ADDITION START END - ADDS SKILLRANK BONUSES TO OTHER PATRONS
 	// -- End of section for god specific bonuses --
