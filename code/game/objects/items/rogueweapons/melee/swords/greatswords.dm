@@ -248,7 +248,7 @@
 	)
 
 /obj/item/rogueweapon/greatsword/psygsword/relic
-	name = "Apocrypha"
+	name = "\"Apocrypha\""
 	desc = "In Otava's grandest mosaics, Saint Ravox - bare in all but a beaked helmet and loincloth - is depicted wielding such an imposing \
 	greatweapon against the Sinistar, Graggar. Regardless of whether this relic was actually wielded by divinity-or-not, its unparallel strength \
 	will nevertheless command even the greatest foes to fall. Stand fast, childe o' God, and drive the unforgivable back to Hell."
@@ -333,7 +333,7 @@
 	)
 
 /obj/item/rogueweapon/greatsword/bsword/psy/relic
-	name = "Creed"
+	name = "\"Creed\""
 	desc = "Psydonian prayers and Tennite smiths, working as one to craft a weapon to slay the Four. A heavy and large blade, favored by Saint Ravox, to lay \
 	waste to those who threaten His flock. The crossguard's psycross reflects even the faintest of Noc's light. You're the light - show them the way."
 	icon_state = "psybroadsword"

@@ -1,6 +1,8 @@
 // Unarmed base weapon defense equivalents — fed into the same (skill * 20) + (wdef * 10) formula as weapons
 
 /mob/living/proc/attempt_parry(datum/intent/intenty, mob/living/user)
+	if(!user)
+		return FALSE
 	var/prob2defend = user.defprob
 	var/mob/living/H = src
 	var/mob/living/U = user
@@ -57,7 +59,7 @@
 
 	// TA Edit start - new Ronin Class
 	var/need_override = TRUE
-	if(mainhand?.can_parry || offhand?.can_parry)
+	if((istype(mainhand) && mainhand.can_parry) || (istype(offhand) && offhand.can_parry))
 		need_override = FALSE
 
 	if(need_override)
@@ -74,7 +76,7 @@
 	if(istype(offhand, /obj/item/rogueweapon/shield/buckler))
 		skiller.bucklerskill(H)
 	if(istype(mainhand, /obj/item/rogueweapon/shield/buckler))
-		skillerbuck.bucklerskill(H)  //buckler code end
+		skillerbuck.bucklerskill(H)	//buckler code end
 
 	if(mainhand)
 		if(mainhand.can_parry)
@@ -147,9 +149,10 @@
 	var/att_swift_capable = U.check_dodge_skill(check_trait = FALSE)
 	var/def_swift_capable = H.check_dodge_skill(check_trait = FALSE)
 
-	if(used_weapon?.wbalance == WBALANCE_SWIFT)
-		if(mainhand && !offhand && def_swift_capable) // We're one-handing a swift-balanced weapon (rapiers, sabers, etc). Small parry boost (1 wdef equiv.)
-			prob2defend += 10
+	if(used_weapon)
+		if(used_weapon.wbalance == WBALANCE_SWIFT)
+			if(mainhand && !offhand && def_swift_capable) // We're one-handing a swift-balanced weapon (rapiers, sabers, etc). Small parry boost (1 wdef equiv.)
+				prob2defend += 10
 
 	if(intenty.masteritem)
 		attacker_skill = U.get_skill_level(intenty.masteritem.associated_skill)
@@ -273,7 +276,7 @@
 			if(intenty?.masteritem?.wbalance == WBALANCE_HEAVY && user.STASTR > src.STASTR) //enemy weapon is heavy, so get a bonus scaling on strdiff
 				var/heavy_weapon_drain = min(( intenty.masteritem.wbalance * ((user.STASTR - src.STASTR) * STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL) ), 20)
 				if(used_weapon?.wbalance == WBALANCE_NORMAL)
-					heavy_weapon_drain -= STAM_DRAIN_PER_STR_DIFF_HEAVY_BAL
+					heavy_weapon_drain -= 10
 				drained += max(heavy_weapon_drain,0)
 	else
 		text += span_warning(" The enemy defeated my parry!")
@@ -306,7 +309,7 @@
 		if(do_parry(used_weapon, drained, user, untrained_armor)) //show message
 			//only gain experience if attacker and defender aren't using non-combat skills for their weapons
 			if(ispath(attacker_skill_type, /datum/skill/combat) && ispath(used_weapon.associated_skill, /datum/skill/combat))
-				if ((mobility_flags & MOBILITY_STAND))
+				if ((mobility_flags & MOBILITY_STAND) && !isanimal(U))
 					var/skill_target = attacker_skill
 					if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
 						skill_target -= SKILL_LEVEL_NOVICE
@@ -316,7 +319,7 @@
 						mind.add_sleep_experience(used_weapon.associated_skill, max(round(STAINT*exp_multi), 0), FALSE)
 
 				//attacker skill gain
-				if(U.mind)
+				if(U.mind && !isanimal(U))
 					if ((mobility_flags & MOBILITY_STAND))
 						var/skill_target = defender_skill
 						if(!HAS_TRAIT(src, TRAIT_GOODTRAINER))
@@ -387,7 +390,7 @@
 		if(do_unarmed_parry(drained, user, untrained_armor))
 			//only gain experience if attacker isn't using a non-combat skill for their weapon
 			if(ispath(attacker_skill_type, /datum/skill/combat))
-				if((mobility_flags & MOBILITY_STAND))
+				if((mobility_flags & MOBILITY_STAND) && !isanimal(U))
 					var/skill_target = attacker_skill
 					if(!HAS_TRAIT(U, TRAIT_GOODTRAINER))
 						skill_target -= SKILL_LEVEL_NOVICE
@@ -443,12 +446,6 @@
 				if(prob(7 + (L.STALUC - 10)))
 					L.sate_addiction(/datum/charflaw/addiction/clamorous)
 
-			if(!iscarbon(user))	//Non-carbon mobs never make it to the proper parry proc where the other calculations are done.
-				if(W.max_blade_int)
-					W.remove_bintegrity(SHARPNESS_ONHIT_DECAY, user)
-					W.take_damage(INTEG_PARRY_DECAY, BRUTE, "slash")
-				else
-					W.take_damage(INTEG_PARRY_DECAY_NOSHARP, BRUTE, "slash")
 			return TRUE
 		else
 			to_chat(src, span_warning("I'm too tired to parry!"))
