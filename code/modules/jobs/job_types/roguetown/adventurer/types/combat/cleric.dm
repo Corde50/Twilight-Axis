@@ -645,8 +645,8 @@
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/gravemark)
 		// TA ADDITION START - ADDS SKILLRANK BONUSES TO OTHER PATRONS
 			H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
-			H.adjust_skillrank(/datum/skill/misc/tanning, SKILL_LEVEL_NOVICE, TRUE)
-			H.adjust_skillrank(/datum/skill/labor/butchering, SKILL_LEVEL_NOVICE, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/tanning, SKILL_LEVEL_APPRENTICE, TRUE)
+			H.adjust_skillrank(/datum/skill/labor/butchering, SKILL_LEVEL_APPRENTICE, TRUE)
 		if	(/datum/patron/inhumen/baotha)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
