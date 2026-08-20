@@ -651,8 +651,8 @@
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
 			H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/cooking, SKILL_LEVEL_JOURNEYMAN, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_APPRENTICE, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/cooking, SKILL_LEVEL_APPRENTICE, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_JOURNEYMAN, TRUE)
 		if	(/datum/patron/inhumen/graggar)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
