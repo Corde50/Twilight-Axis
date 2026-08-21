@@ -49,8 +49,8 @@
 	/// Chance for the weapon to misfire
 	misfire_chance = 0
 	/// Reload time, in SECONDS
-	reload_time = 10
-	damfactor = 1.2
+	reload_time = 15
+	damfactor = 1.1
 	critfactor = 1
 	npcdamfactor = 4
 
