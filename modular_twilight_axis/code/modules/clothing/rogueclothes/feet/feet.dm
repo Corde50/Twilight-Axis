@@ -97,3 +97,12 @@
 
 /obj/item/clothing/shoes/roguetown/boots/bloodboots/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_ZIZO_ARMOR)
+
+/obj/item/clothing/shoes/roguetown/boots/armor/blacksteel/legate
+	name = "legate's caligae"
+	desc = "Сделанные в форме сандалий сабатоны, выкованные из ценной черной стали. Когда-то это были шлемы гордых рыцарей Грензельхофта, теперь же в них маршируют по горячему песку Зибантии. \
+	</br>‎  </br>Символы чужой гордости и былого величия ныне стали лишь грязью под ногами победителей. Помни об этом, когда будешь воздвигать свой собственный монумент."
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/boots.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/boots.dmi'
+	icon_state = "lplateboots"
+	item_state = "lplateboots"

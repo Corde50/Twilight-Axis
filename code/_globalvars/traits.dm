@@ -1,7 +1,7 @@
 /*
- FUN ZONE OF ADMIN LISTINGS
- Try to keep this in sync with __DEFINES/traits.dm
- quirks have it's own panel so we don't need them here.
+	FUN ZONE OF ADMIN LISTINGS
+	Try to keep this in sync with __DEFINES/traits.dm
+	quirks have it's own panel so we don't need them here.
 */
 GLOBAL_LIST_INIT(traits_by_type, list(
 	/mob = list(
@@ -167,8 +167,6 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		TRAIT_INSPIRING_MUSICIAN,
 		TRAIT_FASTSLEEP,
 		TRAIT_CAUTIOUS_FISHER,
-		TRAIT_POLYTHEIST,
-		TRAIT_MONOTHEIST,
 		TRAIT_GRAVEROBBER,
 		TRAIT_PURITAN,
 		TRAIT_PURITAN_ADVENTURER,
@@ -179,7 +177,7 @@ GLOBAL_LIST_INIT(traits_by_type, list(
 		TRAIT_ZURCH,
 		TRAIT_JACKOFALLTRADES,
 		TRAIT_SIMPLESPEECH,
-		TRAIT_BLOODPOOL_BORN,
+		TRAIT_NOVAMPMITOSIS,
 		TRAIT_ROYALSERVANT,
 		TRAIT_MOUNTABLE,
 		TRAIT_MASTER_CARPENTER,
