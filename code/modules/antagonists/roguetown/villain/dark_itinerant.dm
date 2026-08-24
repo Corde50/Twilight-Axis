@@ -167,7 +167,7 @@
 		"oath" = /obj/item/clothing/head/roguetown/tw_d_oathtaker,
 		"skull" = /obj/item/clothing/head/roguetown/tw_d_skull
 		)
-	var/onhelmchoice = input("Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
+	var/onhelmchoice = input(H, "Choose your decor.", "RAISE UP THE SYMBOL") as anything in onhelm
 	r_hand = onhelm[onhelmchoice]
 	if(H.mind)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/mindlink)

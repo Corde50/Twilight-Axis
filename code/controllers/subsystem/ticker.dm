@@ -132,7 +132,7 @@ SUBSYSTEM_DEF(ticker)
 	var/use_rare_music = prob(1)
 
 	for(var/S in provisional_title_music)
-		var/lower = lowertext(S)
+		var/lower = LOWER_TEXT(S)
 		var/list/L = splittext(lower,"+")
 		switch(L.len)
 			if(3) //rare+MAP+sound.ogg or MAP+rare.sound.ogg -- Rare Map-specific sounds
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(ticker)
 	for(var/S in music)
 		var/list/L = splittext(S,".")
 		if(L.len >= 2)
-			var/ext = lowertext(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
+			var/ext = LOWER_TEXT(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
 			if(byond_sound_formats[ext])
 				continue
 		music -= S
@@ -198,7 +198,7 @@ SUBSYSTEM_DEF(ticker)
 //			start_at = world.time + (CONFIG_GET(number/lobby_countdown) * 10)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
-//			to_chat(world, span_boldnotice("Welcome to [station_name()]!"))
+//			to_world(span_boldnotice("Welcome to [station_name()]!"))
 
 //			send2chat(new /datum/tgs_message_content("New round starting on [SSmapping.config.map_name]! (Round ID: [GLOB.round_id])"), CONFIG_GET(string/chat_announce_new_game))
 
@@ -357,7 +357,7 @@ SUBSYSTEM_DEF(ticker)
 		realm_name = SSmapping.map_adjustment.realm_name
 		realm_type = SSmapping.map_adjustment.realm_type // TA EDIT
 		realm_type_short = SSmapping.map_adjustment.realm_type_short // TA EDIT
-	to_chat(world, "<b><span class='notice'><span class='big'>Welcome to the [SSticker.realm_type] of [SSticker.realm_name].</span></span></b>")
+	to_world("<b><span class='notice'><span class='big'>Welcome to the [SSticker.realm_type] of [SSticker.realm_name].</span></span></b>")
 	var/init_start = world.timeofday
 	CHECK_TICK
 	//Configure mode and assign player to special mode stuff

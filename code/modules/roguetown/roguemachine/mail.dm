@@ -256,11 +256,13 @@
 	user.log_message("sent mail via [name]/[(loc)] from [sender_name] to [recipient_name]", LOG_GAME)
 	message_admins("[key_name(user)] sent mail via [name]/[(loc)] from [sender_name] to [recipient_name]")
 
-/obj/structure/roguemachine/mail/proc/build_sanitized_letter(sender, recipient, content)
+/obj/structure/roguemachine/mail/proc/build_sanitized_letter(mob/user, sender, recipient, content)
 	var/obj/item/paper/P = new
-	P.info += sanitize(content)
+	var/parsed_content = parsemarkdown(html_encode(content), user)
+	P.info += "<font face=\"[FOUNTAIN_PEN_FONT]\" color=#14103f>[parsed_content]</font>"
 	P.mailer = sanitize(sender)
 	P.mailedto = sanitize(recipient)
+	P.reload_fields()
 	P.update_icon()
 	return P
 
@@ -316,7 +318,7 @@
 			if(length(content) > 2000)
 				to_chat(user, span_warning("Letter too long."))
 				return TRUE
-			var/obj/item/paper/P = build_sanitized_letter(params["sender"], params["recipient"], content)
+			var/obj/item/paper/P = build_sanitized_letter(user, params["sender"], params["recipient"], content)
 			var/send2place = P.mailedto
 			var/sentfrom = P.mailer
 			var/free_send = check_free_send(user, send2place) // TA EDIT BEGIN
@@ -770,7 +772,7 @@
 			var/sentfrom = sanitize(input(user, "Who is this from? (Leave blank to send anonymously)", "ROGUETOWN", null))
 			if(!sentfrom)
 				sentfrom = "Anonymous"
-			 // TA EDIT BEGIN
+			// TA EDIT BEGIN
 			var/free_send = check_free_send(user, send2place)
 
 			if(free_send)
@@ -1002,7 +1004,7 @@
 			STR.remove_from_storage(I, get_turf(src))
 	return ..()
 
- // TA EDIT BEGIN
+// TA EDIT BEGIN
 /obj/structure/roguemachine/mail/proc/any_additional_mail(obj/item/roguemachine/mastermail/M, mob/living/carbon/human/H)
 	if(SSroguemachine.secret_mail?.len)
 		for(var/obj/item/I in SSroguemachine.secret_mail)

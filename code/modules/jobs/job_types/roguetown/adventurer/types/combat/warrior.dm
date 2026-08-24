@@ -334,7 +334,7 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/rogueweapon/huntingknife/bronze = 1,
 		)
-   
+
 /datum/advclass/sfighter/ironclad
 	name = "Ironclad"
 	tutorial = "You are a warrior who puts their trust in durable armor. The best offense is a good defense."
@@ -712,7 +712,7 @@
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/noc
 		else
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/undivided
-	
+
 	H.AddComponent(/datum/component/trophy_hunter) //TA edit - added trophy_hunter component
 
 	//Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff.

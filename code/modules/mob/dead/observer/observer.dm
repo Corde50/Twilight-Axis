@@ -1174,7 +1174,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!role_label)
 		return null
 
-	var/normalized_role = lowertext(role_label)
+	var/normalized_role = LOWER_TEXT(role_label)
 	if(normalized_role in list(
 		"necromancer skeleton",
 		"lich skeleton",

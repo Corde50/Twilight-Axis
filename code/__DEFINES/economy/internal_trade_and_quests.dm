@@ -178,15 +178,15 @@
 	return realm_type
 
 /proc/ta_economy_default_azurian_labels()
-	var/realm = lowertext("[ta_economy_realm_name()]")
+	var/realm = LOWER_TEXT("[ta_economy_realm_name()]")
 	return (!realm || realm == "azuria" || realm == "azure peak")
 
 /proc/ta_economy_al_ashur_labels()
-	return lowertext("[ta_economy_realm_name()]") == "al-ashur"
+	return LOWER_TEXT("[ta_economy_realm_name()]") == "al-ashur"
 
 /proc/ta_economy_rockhill_labels()
-	var/map_name = lowertext("[ta_economy_map_name()]")
-	var/realm = lowertext("[ta_economy_realm_name()]")
+	var/map_name = LOWER_TEXT("[ta_economy_map_name()]")
+	var/realm = LOWER_TEXT("[ta_economy_realm_name()]")
 	return (map_name == "rockhill" || realm == "enigma")
 
 /proc/ta_economy_authority_noun()

@@ -825,7 +825,7 @@
 	var/last_used = 0
 	var/bonus_luck_threshould = 600
 
-/obj/effect/proc_holder/spell/invoked/xylixlian_luck/Initialize()
+/obj/effect/proc_holder/spell/invoked/xylixlian_luck/Initialize(mapload)
 	. = ..()
 
 	last_used = world.time	

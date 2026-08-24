@@ -5,7 +5,7 @@
 	mob_overlay_icon = null
 	icon_state = "pouch"
 	item_state = "pouch"
-	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK|ITEM_SLOT_CLOAK
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("whips", "lashes")
 	max_integrity = 300
@@ -104,7 +104,7 @@
 	grid_width = 32
 	component_type = /datum/component/storage/concrete/roguetown/coin_pouch/merchant
 
-/obj/item/storage/belt/rogue/pouch/merchant/coins/Initialize() //TA EDIT - Rockhill currency support
+/obj/item/storage/belt/rogue/pouch/merchant/coins/Initialize(mapload) //TA EDIT - Rockhill currency support
 	. = ..()
 	if(SSmapping.config.map_name == "Rockhill")
 		var/obj/item/roguecoin/goldkrona/mid_pile/H = new(loc)

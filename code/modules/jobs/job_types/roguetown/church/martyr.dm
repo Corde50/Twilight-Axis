@@ -673,7 +673,7 @@
 		var/safe_damage = 20
 		var/safe_damage_wielded = 25
 		AddComponent(/datum/component/martyrweapon, active_intents, active_intents_wielded, safe_damage, safe_damage_wielded)
-   
+
 /obj/item/rogueweapon/sword/long/martyr/proc/anti_stall()
 	src.visible_message(span_danger("The Martyr's sword dissolved into sparkling dust, which instantly rose up and was carried away by the wind."))
 	SSroguemachine.martyrweapon = null

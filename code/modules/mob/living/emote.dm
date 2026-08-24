@@ -1,5 +1,5 @@
 /* Twilight Axis Localisation */
-var/list/zone_translations = list(
+GLOBAL_LIST_INIT(zone_translations, list(
 		BODY_ZONE_HEAD = "голову",
 		BODY_ZONE_CHEST = "туловище",
 		BODY_ZONE_R_ARM = "правую руку",
@@ -19,7 +19,7 @@ var/list/zone_translations = list(
 		BODY_ZONE_PRECISE_NECK = "шею",
 		BODY_ZONE_PRECISE_STOMACH = "живот",
 		BODY_ZONE_PRECISE_GROIN = "пах"
-	)
+	))
 
 /* EMOTE DATUMS */
 /datum/emote/living
@@ -78,7 +78,7 @@ var/list/zone_translations = list(
 	var/mob/living/carbon/follower = user
 	var/datum/patron/patron = follower.patron
 
-	var/prayer = input(user, "Whisper your prayer:", "Prayer") as text|null
+	var/prayer = sanitize(input(user, "Whisper your prayer:", "Prayer") as text|null)
 	if(!prayer)
 		return
 
@@ -90,8 +90,16 @@ var/list/zone_translations = list(
 		return
 	follower.sate_addiction(/datum/charflaw/addiction/godfearing)
 
+	var/devout = FALSE
+	if(ishuman(follower))
+		var/mob/living/carbon/human/hfollower = follower
+		for(var/datum/charflaw/cf in hfollower.charflaws)
+			if(istype(cf, /datum/charflaw/addiction/godfearing))
+				devout = TRUE
+				break
+
 	/* admin stuff - tells you the followers name, key, and what patron they follow */
-	var/follower_ident = "[follower.key]/([follower.real_name]) (follower of [patron])"
+	var/follower_ident = "[follower.key]/([follower.real_name]) ([devout ? "devout " : ""]follower of [patron])"
 	message_admins("[follower_ident] [ADMIN_SM(follower)] [ADMIN_FLW(follower)] prays: [span_info(prayer)]")
 	user.log_message("(follower of [patron]) prays: [prayer]", LOG_GAME)
 	record_round_statistic(STATS_PRAYERS_MADE)
@@ -553,7 +561,7 @@ var/list/zone_translations = list(
 					if(!L.cmode)
 						to_chat(target, span_love("Это приятно..."))
 			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
+				var/ru_zone_selected = GLOB.zone_translations[user.zone_selected]
 				message_param = "целует %t в [ru_zone_selected]."
 	playsound(target.loc, pick('sound/vo/kiss (1).ogg','sound/vo/kiss (2).ogg'), 100, FALSE, -1)
 	if(user.mind)
@@ -608,7 +616,7 @@ var/list/zone_translations = list(
 			else if(J.zone_selected == BODY_ZONE_HEAD)
 				message_param = "лижет щеку %t"
 			else
-				var/ru_zone_selected = zone_translations[user.zone_selected]
+				var/ru_zone_selected = GLOB.zone_translations[user.zone_selected]
 				message_param = "лижет [ru_zone_selected] %t."
 	playsound(target.loc, pick("sound/vo/lick.ogg"), 100, FALSE, -1)
 

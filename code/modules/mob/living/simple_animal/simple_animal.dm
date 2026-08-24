@@ -1282,21 +1282,21 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		toggle_ai(initial(AIStatus))
 
 /mob/living/simple_animal/Move(NewLoc, Dir, step_x, step_y)
-    if(binded)
-        return FALSE
-    var/oldloc = loc
-    . = ..()
-    if(. && loc != oldloc)
-        if(client)
-            // Player
-            set_glide_size(DELAY_TO_GLIDE_SIZE(world.tick_lag))
-        else
-            var/datum/component/riding/riding_datum = get_riding_datum()
-            if(riding_datum && has_buckled_mobs())
-                set_glide_size(DELAY_TO_GLIDE_SIZE(riding_datum.vehicle_move_delay))
-            else
-                set_glide_size(DELAY_TO_GLIDE_SIZE(move_to_delay))
-    return .
+	if(binded)
+		return FALSE
+	var/oldloc = loc
+	. = ..()
+	if(. && loc != oldloc)
+		if(client)
+			// Player
+			set_glide_size(DELAY_TO_GLIDE_SIZE(world.tick_lag))
+		else
+			var/datum/component/riding/riding_datum = get_riding_datum()
+			if(riding_datum && has_buckled_mobs())
+				set_glide_size(DELAY_TO_GLIDE_SIZE(riding_datum.vehicle_move_delay))
+			else
+				set_glide_size(DELAY_TO_GLIDE_SIZE(move_to_delay))
+	return .
 
 /mob/living/simple_animal/proc/eat_plants()
 

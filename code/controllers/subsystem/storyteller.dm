@@ -750,9 +750,9 @@ SUBSYSTEM_DEF(gamemode)
 	for(var/storyteller_name in storytellers)
 		var/datum/storyteller/initialized_storyteller = storytellers[storyteller_name]
 		if(initialized_storyteller?.ascendant)
-			to_chat(world, "<br>")
-			to_chat(world, span_reallybig("[initialized_storyteller.get_display_name()] is ascendant!"))
-			to_chat(world, "<br>")
+			to_world("<br>")
+			to_world(span_reallybig("[initialized_storyteller.get_display_name()] is ascendant!"))
+			to_world("<br>")
 
 	// Safety net: the lobby ticker normally closes the gamemode vote at the end buffer, but if the round was
 	// force-started with it still open, resolve it now so selected_storyteller reflects the votes (or default).
@@ -2085,37 +2085,37 @@ SUBSYSTEM_DEF(gamemode)
 		STATS_NYMPHOMANIACS,
 		STATS_INDEBTED,
 		STATS_THRILLSEEKERS,
-        STATS_GREEDY_PEOPLE,
-        //STATS_PLEASURES, TA addition - New ERP SYSTEM
-        STATS_MALE_POPULATION,
-        STATS_FEMALE_POPULATION,
-        STATS_OTHER_GENDER,
-        STATS_ADULT_POPULATION,
-        STATS_MIDDLEAGED_POPULATION,
-        STATS_ELDERLY_POPULATION,
-        STATS_ALIVE_NORTHERN_HUMANS,
-        STATS_ALIVE_DWARVES,
-        STATS_ALIVE_DARK_ELVES,
-        STATS_ALIVE_WOOD_ELVES,
-        STATS_ALIVE_HALF_ELVES,
+		STATS_GREEDY_PEOPLE,
+		//STATS_PLEASURES, TA addition - New ERP SYSTEM
+		STATS_MALE_POPULATION,
+		STATS_FEMALE_POPULATION,
+		STATS_OTHER_GENDER,
+		STATS_ADULT_POPULATION,
+		STATS_MIDDLEAGED_POPULATION,
+		STATS_ELDERLY_POPULATION,
+		STATS_ALIVE_NORTHERN_HUMANS,
+		STATS_ALIVE_DWARVES,
+		STATS_ALIVE_DARK_ELVES,
+		STATS_ALIVE_WOOD_ELVES,
+		STATS_ALIVE_HALF_ELVES,
 		STATS_ALIVE_SUN_ELVES,
-        STATS_ALIVE_HALF_ORCS,
-        STATS_ALIVE_GOBLINS,
-        STATS_ALIVE_KOBOLDS,
-        STATS_ALIVE_LIZARDS,
-        STATS_ALIVE_AASIMAR,
-        STATS_ALIVE_TIEFLINGS,
-        STATS_ALIVE_HALFKIN,
-        STATS_ALIVE_WILDKIN,
-        STATS_ALIVE_CONSTRUCTS,
-        STATS_ALIVE_VERMINFOLK,
-        STATS_ALIVE_DRACON,
-        STATS_ALIVE_AXIAN,
-        STATS_ALIVE_TABAXI,
-        STATS_ALIVE_VULPS,
-        STATS_ALIVE_LUPIANS,
-        STATS_ALIVE_MOTHS,
-        STATS_ALIVE_AURA
+		STATS_ALIVE_HALF_ORCS,
+		STATS_ALIVE_GOBLINS,
+		STATS_ALIVE_KOBOLDS,
+		STATS_ALIVE_LIZARDS,
+		STATS_ALIVE_AASIMAR,
+		STATS_ALIVE_TIEFLINGS,
+		STATS_ALIVE_HALFKIN,
+		STATS_ALIVE_WILDKIN,
+		STATS_ALIVE_CONSTRUCTS,
+		STATS_ALIVE_VERMINFOLK,
+		STATS_ALIVE_DRACON,
+		STATS_ALIVE_AXIAN,
+		STATS_ALIVE_TABAXI,
+		STATS_ALIVE_VULPS,
+		STATS_ALIVE_LUPIANS,
+		STATS_ALIVE_MOTHS,
+		STATS_ALIVE_AURA
 	)
 
 	for(var/stat_name in statistics_to_clear)

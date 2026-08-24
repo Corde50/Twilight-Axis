@@ -1043,7 +1043,7 @@ GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt")
 	var/buffed_r = FALSE
 	var/mob/living/spirit_owner = null
 
-/mob/living/carbon/human/species/human/northern/ravox_spirit/Initialize(mob/user)
+/mob/living/carbon/human/species/human/northern/ravox_spirit/Initialize(mapload, mob/user)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	if(isliving(user))
@@ -1074,7 +1074,7 @@ GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt")
 	job = "Ravoxian Spirit"
 	patron = /datum/patron/divine/ravox
 	gender = MALE
-	
+
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_GENERIC)
 	ADD_TRAIT(src, TRAIT_LEECHIMMUNE, INNATE_TRAIT)

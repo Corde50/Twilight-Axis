@@ -17,7 +17,7 @@ GLOBAL_LIST_EMPTY(cmode_tracks_by_name)
 /proc/get_custom_combat_music_extension(filename)
 	if(!istext(filename) || !length(filename))
 		return ""
-	return lowertext(copytext(filename, max(length(filename) - 3, 1)))
+	return LOWER_TEXT(copytext(filename, max(length(filename) - 3, 1)))
 
 /proc/is_valid_custom_combat_music_path(path)
 	if(!istext(path) || !length(path))

@@ -189,7 +189,7 @@
 
 	if(HAS_TRAIT(src, "ethereal"))
 		return BULLET_ACT_FORCE_PIERCE
-	
+
 	if(dna && dna.species)
 		var/spec_return = dna.species.bullet_act(P, src, def_zone)
 		if(spec_return)
@@ -313,7 +313,7 @@
 				return TRUE
 	if(blocked)
 		return TRUE
-	
+
 	return ..()
 
 /mob/living/carbon/human/grippedby(mob/living/user, instant = FALSE)
@@ -325,12 +325,12 @@
 /mob/living/carbon/human/attacked_by(obj/item/I, mob/living/user)
 	if(!I || !user)
 		return 0
-	
+
 	if(HAS_TRAIT(src, "ethereal"))
 		user.visible_message(span_danger("[user] tries to strike [src], but the weapon passes right through the mist!"), \
-							 span_warning("My weapon passes right through [src]!"))
+							span_warning("My weapon passes right through [src]!"))
 		return FALSE
-	
+
 	var/obj/item/bodypart/affecting
 	var/useder = user.zone_selected
 	if(!lying_attack_check(user,I))

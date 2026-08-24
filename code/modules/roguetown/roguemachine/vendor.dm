@@ -419,7 +419,7 @@
 /obj/structure/roguemachine/vendor/mansion
 	keycontrol = "steward"
 
-/obj/structure/roguemachine/vendor/mansion/Initialize()
+/obj/structure/roguemachine/vendor/mansion/Initialize(mapload)
 	. = ..()
 	for (var/Z in list(/obj/item/storage/keyring/rockhillmansion))
 		var/obj/F = new Z(src)

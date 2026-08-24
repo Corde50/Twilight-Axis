@@ -1,8 +1,6 @@
 	////////////
 	//SECURITY//
 	////////////
-#define UPLOAD_LIMIT		1048576	//Restricts client uploads to the server to 1MB //Could probably do with being lower.
-
 GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1407" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
 	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
@@ -172,7 +170,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 		var/mob/voice = locate(href_list["voice"])
 		if(QDELETED(schizo) || !voice.client)
 			return
-		var/msg = input("Ask again:", "To the voice of a [schizo.voice_names[voice.client.ckey]]") as text|null
+		var/msg = input(src, "Ask again:", "To the voice of a [schizo.voice_names[voice.client.ckey]]") as text|null
 		if(msg)
 			mob.schizohelp(msg, TRUE, voice, schizo)
 			schizo.asked_again = TRUE
@@ -363,14 +361,20 @@ GLOBAL_LIST_EMPTY(respawncounts)
 		last_message = message
 		src.last_message_count = 0
 		return 0
-/*
-//This stops files larger than UPLOAD_LIMIT being sent from client to server via input(), client.Import() etc.
+
 /client/AllowUpload(filename, filelength)
-	if(filelength > UPLOAD_LIMIT)
-		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [UPLOAD_LIMIT/1024]KiB.</font>")
-		return 0
-	return 1
-*/
+	if(isnull(upload_limit))
+		return TRUE
+	if(filelength > upload_limit)
+		to_chat(src, "<font color='red'>Error: AllowUpload(): File Upload too large. Upload Limit: [round(upload_limit / 1024)]KiB.</font>")
+		return FALSE
+	if(length(upload_exts))
+		var/dot = findlasttext(filename, ".")
+		var/extension = dot ? LOWER_TEXT(copytext(filename, dot)) : ""
+		if(!(extension in upload_exts))
+			to_chat(src, "<font color='red'>Error: AllowUpload(): Wrong file type. Expected: [jointext(upload_exts, ", ")].</font>")
+			return FALSE
+	return TRUE
 
 #if (PRELOAD_RSC == 0)
 GLOBAL_LIST_EMPTY(external_rsc_urls)
@@ -1226,8 +1230,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	if(CONFIG_GET(flag/use_exp_tracking))
 		add_verb(src, /client/proc/self_playtime)
 
-
-#undef UPLOAD_LIMIT
 
 //checks if a client is afk
 //3000 frames = 5 minutes
