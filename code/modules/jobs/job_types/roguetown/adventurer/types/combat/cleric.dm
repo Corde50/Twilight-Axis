@@ -644,21 +644,18 @@
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/minion_order)
 			H.mind?.AddSpell(new /datum/action/cooldown/spell/gravemark)
 		// TA ADDITION START - ADDS SKILLRANK BONUSES TO OTHER PATRONS
-			H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/tanning, SKILL_LEVEL_APPRENTICE, TRUE)
-			H.adjust_skillrank(/datum/skill/labor/butchering, SKILL_LEVEL_APPRENTICE, TRUE)
+			H.adjust_skillrank(/datum/skill/magic/holy, SKILL_LEVEL_NOVICE, TRUE)
 		if	(/datum/patron/inhumen/baotha)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
 			H.adjust_skillrank(/datum/skill/misc/medicine, SKILL_LEVEL_NOVICE, TRUE)
 			H.adjust_skillrank(/datum/skill/craft/cooking, SKILL_LEVEL_APPRENTICE, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_JOURNEYMAN, TRUE)
+			H.adjust_skillrank(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 		if	(/datum/patron/inhumen/graggar)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
 			head = /obj/item/clothing/head/roguetown/roguehood
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, SKILL_LEVEL_APPRENTICE, TRUE)
+			H.adjust_skillrank(/datum/skill/combat/whipsflails, SKILL_LEVEL_NOVICE, TRUE)
 			H.adjust_skillrank(/datum/skill/combat/wrestling, SKILL_LEVEL_APPRENTICE, TRUE)
-			H.adjust_skillrank(/datum/skill/craft/tanning, SKILL_LEVEL_APPRENTICE, TRUE)
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		if	(/datum/patron/inhumen/matthios)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe
