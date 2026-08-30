@@ -1,0 +1,4 @@
+author: "Quinalion"
+delete-after: True
+changes:
+  - balance: "Слоты класса приключенца Oblate ограничены до 1."
