@@ -166,7 +166,7 @@ LICH SKELETONS
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	belt = /obj/item/storage/belt/rogue/leather/black
@@ -265,7 +265,7 @@ LICH SKELETONS
 	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy //Intended as non-plate, stands out from knights this way.
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/paalloy
 	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 	belt = /obj/item/storage/belt/rogue/leather/black
 
@@ -406,7 +406,7 @@ LICH SKELETONS
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket/lich
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith/lich
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	belt = /obj/item/storage/belt/rogue/leather //regular looks nicer
 
 	backl = /obj/item/storage/backpack/rogue/backpack
@@ -486,7 +486,7 @@ LICH SKELETONS
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 	belt = /obj/item/storage/belt/rogue/leather/black
 
@@ -571,7 +571,7 @@ LICH SKELETONS
 	pants = /obj/item/clothing/under/roguetown/platelegs/paalloy
 	gloves = /obj/item/clothing/gloves/roguetown/plate/paalloy
 	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	belt = /obj/item/storage/belt/rogue/leather/black
 
 	backl = /obj/item/storage/backpack/rogue/satchel/black
@@ -665,7 +665,7 @@ LICH SKELETONS
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy/chain
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 	backr = /obj/item/rogueweapon/shield/bronze/paalloy
 	belt = /obj/item/storage/belt/rogue/leather/black
@@ -854,7 +854,7 @@ LICH SKELETONS
 	cloak = /obj/item/clothing/cloak/tabard/toga/lich //Goes with the fit, so you get no choice of picks
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/lich
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy // TA EDIT
 	gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted/lich //Second weak spot, hands.
 	id = /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy //UP THE Z
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded/dark
