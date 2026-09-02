@@ -501,8 +501,7 @@
 			H.cmode_music = 'sound/music/combat_graggar.ogg'
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar, SLOT_RING, TRUE)
 			// TA ADDITION START - ADDS SKILLRANK BONUSES TO OTHER PATRONS
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			// TA ADDITION END
 		if(/datum/patron/divine/astrata)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/astrata, SLOT_RING, TRUE)
