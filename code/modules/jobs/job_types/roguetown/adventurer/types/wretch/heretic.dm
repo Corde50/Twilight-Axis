@@ -190,8 +190,8 @@
 			H.change_stat(STATKEY_STR, 2)
 			H.change_stat(STATKEY_WIL, 1)
 			// TA ADDITION START - ADDS SKILLRANK BONUSES TO OTHER PATRONS
-			H.adjust_skillrank(/datum/skill/combat/whipsflails, 1, TRUE)
-			H.adjust_skillrank(/datum/skill/combat/wrestling, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+			H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			// TA ADDITION END
 		if(/datum/patron/divine/astrata)
 			H.equip_to_slot_or_del(new /obj/item/clothing/neck/roguetown/psicross/astrata, SLOT_RING, TRUE)
