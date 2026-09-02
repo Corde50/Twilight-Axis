@@ -96,8 +96,6 @@
 	belt = /obj/item/storage/belt/rogue/leather/double
 	beltl = /obj/item/quiver/twilight_bullet/lead
 	beltr = /obj/item/rogueweapon/scabbard/sword
-	H.mind.AddSpell(new /datum/action/cooldown/spell/recall_weapon)
-	H.mind.AddSpell(new /datum/action/cooldown/spell/bind_weapon)
 	H.grant_language(/datum/language/undead)
 
 	H.maxbloodpool = 3500
