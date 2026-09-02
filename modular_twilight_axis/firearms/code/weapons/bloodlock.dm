@@ -1,6 +1,7 @@
 #define BLOODLOCK_AWAKEN_TIME 90 SECONDS
 #define BLOODLOCK_LOSS_TIME 120 SECONDS
 #define BLOODLOCK_VITAE_PER_DRINK 90
+#define BLOODLOCK_PHRASE_TIME 1200 SECONDS
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock
 	name = "bloodlock rifle"
@@ -32,6 +33,8 @@
 	var/mob/living/carbon/human/bloodlock_owner
 	var/bloodlock_awakened = FALSE
 	var/bloodlock_awaken_timer
+	var/bloodlock_phrase_timer
+	var/mob/living/carbon/human/bloodlock_phrase_user
 	var/bloodlock_loss_timer
 	var/previous_maxbloodpool = 0
 	var/last_slot
@@ -57,6 +60,7 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "GUN")
+	addtimer(CALLBACK(src, PROC_REF(bloodlock_random_phrase)), BLOODLOCK_PHRASE_TIME)
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_ZIZO_WEAPON)
@@ -83,10 +87,13 @@
 			var/mob/living/carbon/human/H = user
 			if(HAS_TRAIT(H, TRAIT_ARCYNE) && HAS_TRAIT(H, TRAIT_VAMPBITE))
 				if(H.bloodpool < vitae_cost)
-					to_chat(H, span_warning(pick(
-						"Мне не хватает твоей крови, найди беднягу!", "Мне нужно больше крови", "Ну же, забери у любого крови, для меня!", "Мне нечем запитаться...")))
+					to_chat(H, span_warning("Ружье требует больше крови!"))
+					if(prob(5))
+						to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Мне не хватает твоей крови, найди беднягу!\"</i>", "<i>\"Мне нужно больше крови\"</i>", "<i>\"Ну же, забери у любого крови, для меня!\"</i>", "<i>\"Мне нечем запитаться...\"</i>")))
 					return
-				to_chat(H, span_info(pick("Вы насыщаете ЕГО, вы чувствуете уверенность", "Да, да, ДА! Какое же блаженство...", "Этот прилив сил...Пристрели шавку!", "Они поплатятся за то, что поднимут на тебя клинок!")))
+				to_chat(H, span_warning("Ружье начинает вибрировать и запитываться..."))
+				if(prob(5))
+					to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Да, да, ДА! Какое же блаженство...\"</i>","<i>\"Этот прилив сил...Пристрели шавку!\"</i>","<i>\"Они поплатятся за то, что поднимут на тебя клинок!\"</i>")))
 				playsound(src,'modular_twilight_axis/firearms/sound/bloodreload.ogg', 150, FALSE)
 				var/adj_reload_time = reload_time
 				if(H.mind)
@@ -187,23 +194,25 @@
 		last_slot = null
 		if(H == bloodlock_owner && bloodlock_awakened)
 			reset_loss_timer()
+
 		return
 
 	last_slot = null
 
 	if(is_blood_raider(H))
-		to_chat(H, span_warning(pick("Здравствуй...", "Приветствую!", "Я скучал...", "Направь меня, дай выстрелить!")))
+		if(prob(10))
+			to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Здравствуй...", "<i>\"Приветствую!", "<i>\"Я скучал...", "<i>\"Направь меня, дай выстрелить!")))
 		return
 
 	if(bloodlock_awakened)
 		if(H == bloodlock_owner)
 			reset_loss_timer()
-			to_chat(H, span_info(pick("Здравствуй...", "Приветствую!", "Я скучал...", "Направь меня, дай выстрелить!")))
+			if(prob(10))
+				to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Здравствуй...", "<i>\"Приветствую!", "<i>\"Я скучал...", "<i>\"Направь меня, дай выстрелить!")))
 		return
 
 	if(!can_awaken(H))
-		to_chat(H, span_warning(pick(
-			"Оружие молчит", "Похоже, вам показалось", "Вы ничего не чувствуете, держа оружие в руках")))
+		to_chat(H, span_warning(pick("Оружие молчит", "Похоже, вам показалось", "Вы ничего не чувствуете, держа оружие в руках")))
 		return
 
 	if(bloodlock_awaken_timer)
@@ -254,17 +263,28 @@
 
 	reset_loss_timer()
 
-	to_chat(H, span_danger(pick(
-		"Приветствую нового владельца...", "Ощущаешь меня?", "Почувствуй же мой дар!", "Моё имя С'анг, запомни его", "Прошлый владелец был противен мне, но ты...!")))
+	to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Приветствую нового владельца...\"<i>", "<i>\"Ощущаешь меня?\"<i>", "<i>\"Почувствуй же мой дар!\"<i>", "<i>\"Моё имя С'анг, запомни его\"<i>", "<i>\"Прошлый владелец был противен мне, но ты...!\"<i>")))
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/proc/bloodlock_random_phrase()
+	if(ishuman(src.loc))
+		var/mob/living/carbon/human/H = src.loc
+
+		to_chat(H, span_warning("Он что-то пытается вам рассказать..."))
+		if(prob(40))
+			to_chat(H,"<span style='color:#5E2129'>The Bloodlock</span> whispers, " + span_cult(pick("<i>\"Еще когда меня держали в каком-то закаулке Мензоберразана, в лавку пришла группа Антаракса. Помню лишь…Тьму\"</i>","<i>\"Ходили слухи, что те - кто заточил меня и создал одну из первых оболочек - заключили какую-то сделку с тварями Инферно.. А что думаешь ты?\"</i>","<i>\"Кажется запах железа застал тебя врасплох. А ты точно подходишь мне?! \"</i>","<i>\"Дом Бэнр -  властители Мензоберранзана. Младшая дочь заняла трон, назначив старших сестру и брата советниками.. Ах... Маги тесно связаны с призывами демонов.. Как думаешь, тот огромный паук был его рук дела? \"</i>","<i>\"Ох, вспоминаю прекрасные моменты в доме Грейвс. Как же часто меня тогда заводили, как же часто мы стреляли. Нет-нет, ты не подумай ничего плохого! Но ты и впрямь не дотягиваешь!\"</i>","<i>\"Вон, посмотри на того урода, может выстрелим?\"</i>","<i>\"Нихрена не вижу…Может поднимешь ствол?\"</i>","<i>\"Я думал ты намного хуже, когда подбирал меня впервые. Приятно ошибаться \"</i>","<i>\"Вон, посмотри на того урода, может выстрелим?\"</i>","<i>\"Когда мы уже сделаем что-то?!\"</i>","<i>\"Таким красавцем я стал не так уж и давно, может…Пару йиллов назад, раньше меня так и водили по сосудам\"</i>","<i>\"Они назвали меня С’анг. Был еще один, или даже близнецы, но их имен я совсем не помню\"</i>","<i>\"Пум-пурум-пурум-пум…\"</i>","<i>\"А какой сейчас Йилл? Наверно уже наступил 1000, да?\"</i>","<i>\"А...А?! Мьерда, ты тут...\"</i>")))
+
+	addtimer(CALLBACK(src, PROC_REF(bloodlock_random_phrase)), BLOODLOCK_PHRASE_TIME)
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/dropped(mob/user, silent)
 	. = ..()
+
 	if(bloodlock_awaken_timer && bloodlock_owner == user)
 		deltimer(bloodlock_awaken_timer)
 		bloodlock_awaken_timer = null
 		to_chat(user, span_warning("Оружие затихает. Пробуждение прервано."))
 		bloodlock_owner = null
 		return
+
 	if(bloodlock_awakened && bloodlock_owner == user)
 		reset_loss_timer()
 
@@ -308,8 +328,7 @@
 	bloodlock_awakened = FALSE
 	bloodlock_owner = null
 
-	to_chat(H, span_warning(pick(
-		"Вы чувствуете, как ОН с вами попрощался", "Как ты посмел меня бросить?!", "Прошлый владелец всё же был лучше", "Н'вах!", "Прогресс явно не для такого остолопа, как ты!")))
+	to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> slurs, " + span_cult(pick("<i>\"Как ты посмел меня бросить?!\"</i>", "<i>\"Прошлый владелец всё же был лучше\"</i>", "<i>\"Н'вах!\"</i>", "<i>\"Прогресс явно не для такого остолопа, как ты!\"</i>")))
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/Destroy()
 	if(bloodlock_awaken_timer)
@@ -330,6 +349,51 @@
 		return
 	drinker.adjust_bloodpool(BLOODLOCK_VITAE_PER_DRINK)
 
+/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/get_examine_string(mob/living/user)
+	. = ..()
+
+	if(name != "bloodlock rifle")
+		return
+
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	var/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/own_bloodlock
+
+	for(var/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/B in H)
+		if(B.loc != H)
+			continue
+
+		if(B.bloodlock_owner == H && B.bloodlock_awakened)
+			own_bloodlock = B
+			break
+
+		if(B.is_blood_raider(H))
+			own_bloodlock = B
+			break
+
+	if(!own_bloodlock)
+		return
+
+	if(own_bloodlock == src)
+		return
+
+	own_bloodlock.bloodlock_second_examine(H)
+
+
+/obj/item/gun/ballistic/revolver/grenadelauncher/twilight_runelock/twilight_bloodlock/proc/bloodlock_second_examine(mob/living/carbon/human/H)
+	if(!H)
+		return
+
+	if(bloodlock_owner != H && !is_blood_raider(H))
+		return
+
+	to_chat(H, span_warning("Ружье начинает тревожно вибрировать при виде близнеца."))
+	if(prob(50))
+		to_chat(H, "<span style='color:#5E2129'>The Bloodlock</span> whispers, " + span_cult(pick("<i>\"Какого Зизо?! Фальшивка!\"</i>","<i>\"Нон..нон...НОН!УБЕЙ ВЛАДЕЛЬЦА ЭТОЙ ФАЛЬШИВКИ И УНИЧТОЖЬ ЕЁ!\"</i>","<i>\"Пристрели владельца и сломай фальшивку, пока они нас не заметили!\"</i>","<i>\"УБЕЙ, УБЕЙ, УБЕЙ!!!\"</i>","<i>\"Уничтожь самозванцев!\"</i>","<i>\"Ха... Нам стоит покончить с фальшивкой, пока она это первая не сделала!\"</i>")))
+
 #undef BLOODLOCK_AWAKEN_TIME
 #undef BLOODLOCK_LOSS_TIME
 #undef BLOODLOCK_VITAE_PER_DRINK
+#undef BLOODLOCK_PHRASE_TIME
