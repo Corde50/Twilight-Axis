@@ -86,22 +86,20 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 	if(!user.client)
 		return
 
-	var/list/available_rituals = list()
-	var/list/ritual_categories = list()
+	var/list/categories = list(
+		"Servantry" = /datum/ritual/servantry,
+		"Transmutation" = /datum/ritual/transmutation,
+		"Fleshcrafting" = /datum/ritual/fleshcrafting,
+		"Weaponary" = /datum/ritual/weaponary
+	)
 
-	switch(sigil_type)
-		if("Transmutation")
-			ritual_categories = subtypesof(/datum/ritual/transmutation)
-		if("Fleshcrafting")
-			ritual_categories = subtypesof(/datum/ritual/fleshcrafting)
-		if("Servantry")
-			ritual_categories = subtypesof(/datum/ritual/servantry)
-		if("Weaponary")
-			ritual_categories = subtypesof(/datum/ritual/weaponary)
-
-	if(!length(ritual_categories))
+	var/chosen_category = tgui_input_list(user, "Choose Ritual Category:", "Ritual Categories", categories)
+	if(!chosen_category || !user.Adjacent(src))
 		return
 
+	var/category_type = categories[chosen_category]
+	var/list/ritual_categories = subtypesof(category_type)
+	var/list/available_rituals = list()
 	var/current_cultists = length(SSmapping.retainer.cultists)
 
 	for(var/datum/ritual/ritual_type as anything in ritual_categories)
@@ -117,10 +115,10 @@ GLOBAL_LIST_INIT(ritual_counters, list())
 		available_rituals[ritual_name] = ritual_type
 
 	if(!length(available_rituals))
-		to_chat(user, span_warning("No rituals for this rune."))
+		to_chat(user, span_warning("No available rituals in this category."))
 		return
 
-	var/chosen_ritual_name = tgui_input_list(user, "Choose Ritual:", "Rituals [sigil_type]", available_rituals)
+	var/chosen_ritual_name = tgui_input_list(user, "Choose Ritual:", "Rituals - [chosen_category]", available_rituals)
 	if(!chosen_ritual_name || !user.Adjacent(src))
 		return
 

@@ -518,7 +518,7 @@
 
 	return TRUE
 
-/turf/open/floor/proc/generateSigils(mob/M, input)
+/turf/open/floor/proc/generateSigils(mob/M)
 	if(!can_generate_sigils(M))
 		return
 
@@ -531,7 +531,7 @@
 	M.bloody_hands--
 	M.update_inv_gloves()
 	var/obj/effect/decal/cleanable/sigil/C = new(src)
-	C.sigil_type = input
+	C.sigil_type = "Ritual"
 	playsound(M, 'sound/items/write.ogg', 100)
 	var/list/sigilsPath = list(
 		/obj/effect/decal/cleanable/sigil/N,
@@ -558,19 +558,13 @@
 	if(mind && mind.has_antag_datum(/datum/antagonist/skeleton))
 		return
 
-	var/list/runes = list("Servantry", "Transmutation", "Fleshcrafting", "Weaponary")
-
 	if(!bloody_hands)
 		to_chat(src, span_danger("My hands aren't bloody enough."))
 		return
 
-	var/input = input("Sigil Type", "ZIZO") as null|anything in runes
-	if(!input)
-		return
-
 	var/turf/open/floor/T = get_turf(src)
 	if(istype(T))
-		T.generateSigils(src, input)
+		T.generateSigils(src)
 
 /mob/living/carbon/human/proc/release_minion()
 	set name = "Release Lackey"
