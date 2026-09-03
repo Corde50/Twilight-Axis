@@ -558,8 +558,6 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 	if(!H)
 		return
 
-	var/target_name = H.real_name
-
 	var/list/curse_choices = list(
 		"Curse of Astrata" = /datum/curse/astrata,
 		"Curse of Noc" = /datum/curse/noc,
