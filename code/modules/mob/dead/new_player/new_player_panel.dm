@@ -53,7 +53,8 @@
 		"Adventurer",
 		"Wretch",
 		"Court Agent",
-		"Bandit"
+		"Bandit",
+		"Assasin"
 	)
 	var/list/count_only_job = list(
 		"Hag"
