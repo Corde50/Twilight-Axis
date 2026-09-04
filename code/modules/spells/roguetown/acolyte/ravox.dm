@@ -1017,9 +1017,16 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 		new /mob/living/carbon/human/species/human/northern/ravox_spirit(spawn_turf, user)
 		for(var/mob/living/carbon/human/species/human/northern/ravox_spirit/swarm in view(3, user))
 			swarm.faction |= list("ravox_spirit", "[user.mind.current.real_name]_faction")
+			swarm.ai_controller.CancelActions() // TA EDIT
+			swarm.ai_controller.clear_blackboard_key(BB_FOLLOW_TARGET) // TA EDIT
+			swarm.ai_controller.set_blackboard_key(BB_CURRENT_PET_TARGET, target) // TA EDIT
 			swarm.ai_controller.set_blackboard_key(BB_BASIC_MOB_CURRENT_TARGET, target)
+			swarm.ai_controller.set_blackboard_key(BB_HIGHEST_THREAT_MOB, target) // TA EDIT
 			swarm.ai_controller.set_blackboard_key(BB_MAIN_TARGET, target)
 			swarm.ai_controller.insert_blackboard_key_lazylist(BB_BASIC_MOB_RETALIATE_LIST, target)
+			swarm.pet_passive = FALSE // TA EDIT
+			swarm.ai_controller.nudge_target_scan() // TA EDIT
+			swarm.ai_controller.wake_for_combat() // TA EDIT
 			swarm.visible_message(span_notice("A [swarm] manifests following after [target]... !"))
 			if(swarm.buffed_r == FALSE)
 				addtimer(CALLBACK(swarm, TYPE_PROC_REF(/mob/living/simple_animal/hostile/rogue/skeleton, deathtime), TRUE), time)
@@ -1034,8 +1041,13 @@ GLOBAL_LIST_EMPTY(arenafolks) // we're just going to use a list and add to it. S
 
 GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt"))
 
+/datum/ai_controller/human_npc/melee/ravox_spirit // TA EDIT
+	parent_type = /datum/ai_controller/human_npc/melee/summoned_skeleton // TA EDIT
+	max_target_distance = 30 // TA EDIT
+
 /mob/living/carbon/human/species/human/northern/ravox_spirit
-	ai_controller = /datum/ai_controller/human_npc
+	ai_controller = /datum/ai_controller/human_npc/melee/ravox_spirit // TA EDIT
+	pet_passive = FALSE // TA EDIT
 	d_intent = INTENT_PARRY
 	faction = list(FACTION_DUNDEAD)
 	ambushable = FALSE
@@ -1132,7 +1144,7 @@ GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt")
 	. = ..()
 	l_hand = /obj/item/rogueweapon/sword/long/ravox_spirit
 	r_hand = /obj/item/rogueweapon/sword/long/ravox_spirit
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm 
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm
 	mask = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	cloak = /obj/item/clothing/cloak/templar/ravox
