@@ -28,6 +28,7 @@
 	ADD_TRAIT(H, TRAIT_NO_VOICEPACK_OVERRIDE, TRAIT_GENERIC) //In case we get edge-cases I.E siege skeletons. Otherwise its on the skeleton race too.
 
 	H.set_patron(/datum/patron/inhumen/zizo)
+	H.can_do_sex = FALSE // we've had one too many skeletons panel themselves in public
 
 	H.possible_rmb_intents = list(/datum/rmb_intent/feint,\
 	/datum/rmb_intent/aimed,\

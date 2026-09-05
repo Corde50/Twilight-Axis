@@ -19,6 +19,19 @@ LICH SKELETONS
 	ADD_TRAIT(H, TRAIT_LICHLAIR, TRAIT_GENERIC) //Ability to leave/enter the lich's lair without being softlocked inside.
 	H.taints_loot = TRUE
 
+// TA EDIT START
+/datum/advclass/greater_skeleton/lich/equipme(mob/living/carbon/human/H)
+	. = ..()
+	if(maximum_possible_slots != -1)
+		RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(on_limited_lich_skeleton_death))
+
+/datum/advclass/greater_skeleton/lich/proc/on_limited_lich_skeleton_death(mob/living/carbon/human/H)
+	SIGNAL_HANDLER
+	UnregisterSignal(H, COMSIG_LIVING_DEATH)
+	if(total_slots_occupied > 0)
+		SSrole_class_handler.adjust_class_amount(src, -1)
+// TA EDIT END
+
 // Melee goon w/ sidearm picks like javs/sling/knife/single use net. All-rounder.
 /datum/advclass/greater_skeleton/lich/legionnaire
 	name = "Ancient Legionnaire"
@@ -183,11 +196,11 @@ LICH SKELETONS
 	H.set_blindness(0)
 	switch(weapon_choice)
 		if("Bow & 20 Arrows")
-			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
 			beltl = /obj/item/quiver/paalloy
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Bow & 20 Broadheads")
-			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
+			l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow
 			beltl = /obj/item/quiver/broadhead_aalloy
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 		if("Longbow & 20 Arrows")
@@ -725,11 +738,13 @@ LICH SKELETONS
 	H.adjust_blindness(-3)
 	switch(subclass_selected)
 		if("blade")
-			var/weapons = list("Ancient Khopesh", "Ancient Dagger")
+			var/weapons = list("Ancient Khopesh", "Ancient Longsword", "Ancient Dagger")
 			var/weapon_choice = input(H, "Choose your BLADE.", "RAGE AGAINST THE LYVING.") as anything in weapons
 			switch(weapon_choice)
 				if("Ancient Khopesh")
 					beltr = /obj/item/rogueweapon/sword/sabre/palloy
+				if("Ancient Longsword")
+					beltr = /obj/item/rogueweapon/sword/long/palloy //role unique
 				if("Ancient Dagger")
 					beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
 			if(weapon_choice == "Ancient Dagger")
@@ -873,7 +888,7 @@ LICH SKELETONS
 	H.adjust_blindness(-3)
 
 	//Our offensive kit
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/unholyblast)
+	H.mind.AddSpell(new /datum/action/cooldown/spell/projectile/unholy_blast)
 	H.mind.AddSpell(new /datum/action/cooldown/spell/raise_deadite) //SPREAD THE... ROT? turn-player-corpses-into-player-zombies spell. No skeleton mitosis please.
 	//Our Utility Spells
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
@@ -895,7 +910,7 @@ LICH SKELETONS
 	H.energy = H.max_energy
 
 /////////////////////////////
-// UNIQUE ITEMS!           //
+// UNIQUE ITEMS!			//
 /////////////////////////////
 /obj/item/clothing/suit/roguetown/armor/vestments_padded/lich //Zizo acolyte esc-robes, armor is meant to be the same as padded vestaments
 	name = "decrepit unholy undervestaments"
@@ -993,24 +1008,26 @@ LICH SKELETONS
 	name = "decrepit toga"
 	desc = "Roughspun fabrics from beyond your lyfetime, donned by those who fight a war without reason."
 	color = CLOTHING_BLACK
+	detail_color = "#bb9696"
+	open_wear = FALSE
 
 /obj/item/clothing/cloak/tabard/toga/lich/alt
-	name = "opened decrepit toga"
+	name = "decrepit bared toga"
 	desc = "Roughspun fabrics from beyond your lyfetime, donned by those who fight a war without reason, parted to reveal what remains beneath its cloth."
 	body_parts_covered = GROIN
-	icon_state = "whitepsydontabardalt"
-	item_state = "whitepsydontabardalt"
+	icon_state = "togaalt"
+	item_state = "togaalt"
 	flags_inv = HIDECROTCH
 	open_wear = TRUE
 
 /obj/item/clothing/cloak/tabard/toga/lich/attack_right(mob/user)
 	switch(open_wear)
 		if(FALSE)
-			name = "opened decrepit toga"
+			name = "decrepit bared toga"
 			desc = "Roughspun fabrics from beyond your lyfetime, donned by those who fight a war without reason, parted to reveal what remains beneath its cloth."
 			body_parts_covered = GROIN
-			icon_state = "whitepsydontabardalt"
-			item_state = "whitepsydontabardalt"
+			icon_state = "togaalt"
+			item_state = "togaalt"
 			open_wear = TRUE
 			flags_inv = HIDECROTCH // BARE YOUR CHEST, NOT YOUR WEEN! Not urm, you have one, you're a fucking skeleton sire.
 			to_chat(usr, span_warning("You pull back the roughspun fabric, baring what remains to Psydonia's eyes."))
@@ -1018,8 +1035,8 @@ LICH SKELETONS
 			name = "decrepit toga"
 			desc = "Roughspun fabrics from beyond your lyfetime, donned by those who fight a war without reason.."
 			body_parts_covered = CHEST|GROIN
-			icon_state = "whitepsydontabard"
-			item_state = "whitekpsydontabard"
+			icon_state = "toga"
+			item_state = "toga"
 			flags_inv = HIDECROTCH|HIDEBOOB
 			open_wear = FALSE
 			to_chat(usr, span_warning("You cloak yourself in the roughspun fabric, veiling what remains from Psydonia's eyes."))
@@ -1096,7 +1113,7 @@ LICH SKELETONS
 
 /obj/item/rogueweapon/shield/bronze/paalloy
 	name = "ancient hoplon shield"
-	desc = "The finest companion to a javelin and gladius, in Her name; a deceptively thin-yet-sturdy shield of gilbronze. This alloy even this thin, used to once surpass steel yet despite aeon's grip being lyfted, it never will regain its former strength."
+	desc = "The finest companion to a javelin and gladius, in Her name; a deceptively thin-yet-sturdy shield of gilbranze. This alloy even this thin, used to once surpass steel yet despite aeon's grip being lyfted, it never will regain its former strength."
 	icon_state = "ancientlegionshield"
 	force = 15
 	throwforce = 25 // DO NOT GIVE ANYTHING; BUT TAKE FROM THEM.. EVERYTHING!
