@@ -1057,6 +1057,7 @@ GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt")
 
 /mob/living/carbon/human/species/human/northern/ravox_spirit/Initialize(mapload, mob/user)
 	. = ..()
+	ADD_TRAIT(src, TRAIT_CONJURED_SUMMON, TRAIT_GENERIC) // TA EDIT
 	addtimer(CALLBACK(src, PROC_REF(after_creation)), 1 SECONDS)
 	if(isliving(user))
 		spirit_owner = user
@@ -1064,6 +1065,8 @@ GLOBAL_LIST_INIT(ravox_aggro, world.file2list("strings/rt/ravoxspiritlines.txt")
 /mob/living/carbon/human/species/human/northern/ravox_spirit/death(gibbed, nocutscene)
 	say("Ravox, I return to you...", forced = TRUE, npc_speech = TRUE)
 	emote("painscream")
+	for(var/obj/item/held_item in held_items) // TA EDIT
+		qdel(held_item) // TA EDIT
 	. = ..()
 	if(!gibbed)
 		dust(FALSE, FALSE, TRUE)
