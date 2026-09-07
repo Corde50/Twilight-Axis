@@ -179,7 +179,7 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/iron/aalloy
 	name = "decrepit coif"
-	desc = "Frayed bronze rings, linked together to form a billowing hood. Shrapnel peppers the linkage; arrowheads and speartips, brought along from a battlefield who's history - and legionnaires - have been lost to tyme."
+	desc = "Rotted metal rings, linked together to form a billowing hood. Shrapnel peppers the linkage; arrowheads and speartips, brought along from a battlefield who's history - and legionnaires - have been lost to tyme."
 	icon_state = "achaincoif"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	color = "#bb9696"
@@ -393,7 +393,7 @@
 
 /obj/item/clothing/neck/roguetown/gorget/aalloy
 	name = "decrepit gorget"
-	desc = "Frayed bronze plates, shingled together to shroud the neck. Primitive scrapes line the flanks, yet the center seems to've been cored out by a spear's thrust."
+	desc = "Rotted metal plates, shingled together to shroud the neck. Primitive scrapes line the flanks, yet the center seems to've been cored out by a spear's thrust."
 	icon_state = "ancientgorget"
 	max_integrity = ARMOR_INT_SIDE_DECREPIT
 	color = "#bb9696"
@@ -1465,6 +1465,7 @@
 	item_state = "baothacoif"
 	armor = ARMOR_PADDED
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER + 150
+	flags_inv = HIDEFACE
 	body_parts_covered = NECK | HAIR | EARS | HEAD | NOSE
 	armor_class = ARMOR_CLASS_LIGHT
 	adjustable = CAN_CADJUST
@@ -1749,7 +1750,7 @@
 	icon_state = "gold_opal"
 	desc = "A luxurious golden amulet encrusted with a polished piece of opal, donnable both on neck and wrist."
 
-/obj/clothing/neck/roguetown/carved/goldjade
+/obj/item/clothing/neck/roguetown/carved/goldjade
 	name = "golden jade amulet"
 	icon_state = "gold_jade"
 	desc = "A luxurious golden amulet encrusted with a polished piece of jade, donnable both on neck and wrist."

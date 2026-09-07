@@ -26,6 +26,15 @@
 	tastes = list("spelt" = 1)
 	bitesize = 6
 	rotprocess = null
+	var/fished = FALSE
+
+/obj/item/reagent_containers/food/snacks/rogue/crackerscooked/Initialize()
+	if(prob(20))
+		icon = 'modular_twilight_axis/icons/obj/items/fish.dmi'
+		icon_state += "_fish"
+		desc += span_notice("\nAbyssor's blessing.")
+		fished = TRUE
+	. = ..()
 
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked/On_Consume(mob/living/eater)
 	..()
@@ -40,6 +49,8 @@
 	if(bitecount == 5)
 		icon_state = "tack1"
 
+	if(fished)
+		icon_state += "_fish"
 
 /*	.................	Bread	................... */
 /obj/item/reagent_containers/food/snacks/rogue/bread
@@ -216,6 +227,14 @@
 	icon_state = "toast_ham"
 	foodtype = GRAIN | MEAT
 
+/obj/item/reagent_containers/food/snacks/rogue/sandwich/ham_smoked
+	tastes = list("smoky ham" = 1,"bread" = 1)
+	name = "roast ham bread"
+	desc = "A piece of bread with a fat slice of smoked ham atop. Said to move mountains with the delicious mixture of flavors alone."
+	icon_state = "bread_ham"
+	rotprocess = null
+	foodtype = GRAIN | MEAT
+
 /*	.................	Bread Buns	................... */
 /obj/item/reagent_containers/food/snacks/rogue/bun
 	cuisine = CUISINE_NORTH_IMPERIAL|CUISINE_SOUTH_IMPERIAL
@@ -239,7 +258,7 @@
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	tastes = list("sweetly-sour jamminess" = 1, "a lavish break from the dae's woes" = 1)
 	icon_state = "bun_jamtallow"
-	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_FULL_MEAL)
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_FINE
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -254,7 +273,7 @@
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	tastes = list("sweet-tarty jamminess" = 1, "a lavish break from the dae's woes" = 1)
 	icon_state = "bun_marmalade"
-	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_FULL_MEAL)
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_FINE
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -295,6 +314,7 @@
 	practice to add a slice of marmalade to their crossbuns, in reverance of Her golden authority."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun"
+	list_reagents = list(/datum/reagent/consumable/nutriment = SMALLDOUGH_NUTRITION)
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
@@ -308,6 +328,7 @@
 	desc = "So sinfully delicious!"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun_jamtallow"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -325,6 +346,7 @@
 	radiance, though the spiritual implication tends to be lost on more eager-minded children."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "crossbun_marmalade"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -355,6 +377,7 @@
 	tears, though the spiritual implication tends to be lost on more eager-minded children."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "psycrossbun_jamtallow"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -370,6 +393,7 @@
 	desc = "Wait, isn't it meant to be the other way around? Ah, well!"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "psycrossbun_marmalade"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -386,6 +410,7 @@
 	helping of jam or marmalade."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun"
+	list_reagents = list(/datum/reagent/consumable/nutriment = SMALLDOUGH_NUTRITION)
 	faretype = FARE_NEUTRAL // Having nobles vomit from eating holy buns is not a good idea
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("bread" = 1)
@@ -401,6 +426,7 @@
 	desc = "A decabun, cruelly parted to be slathered with a spread of jamtallow. Seperate, but joined in sweet unity."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun_jamtallow"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4
@@ -417,6 +443,7 @@
 	but the overall texture goes down smoothly."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun_marmalade"
+	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THREE_QUARTER_MEAL)
 	faretype = FARE_LAVISH
 	w_class = WEIGHT_CLASS_NORMAL
 	bitesize = 4

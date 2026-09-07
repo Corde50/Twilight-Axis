@@ -42,6 +42,7 @@
 		TRAIT_NOWW,
 		TRAIT_MASTERFUL_HUNTER,
 		TRAIT_TOUGH_COOKIE,
+		TRAIT_HARDSOLE,
 		TRAIT_BLOOD_RESISTANCE,
 	)
 	inherent_biotypes = MOB_HUMANOID
@@ -62,6 +63,7 @@
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver,
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
 		ORGAN_SLOT_APPENDIX = /obj/item/organ/appendix,
+		ORGAN_SLOT_GUTS = /obj/item/organ/guts,
 		)
 	languages = list(
 		/datum/language/common,
