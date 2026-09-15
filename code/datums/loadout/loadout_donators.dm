@@ -1174,6 +1174,10 @@
 /datum/loadout_item/donator/rezathedwarf/blade
 	name = "Donator Kit - The Enclave Blade"
 	path = /obj/item/enchantingkit/weapon/donator_rezathedwarf_blade
+
+/datum/loadout_item/donator/limetease/limesaber
+	name = "Donator Kit - Malignant Blade"
+	path = /obj/item/enchantingkit/weapon/limesaber
 	ckeywhitelist = list("linxsysart", "Pessime959")
 	sort_category = "Donator"
 */

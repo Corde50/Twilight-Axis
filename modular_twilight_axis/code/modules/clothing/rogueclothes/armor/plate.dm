@@ -339,3 +339,14 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/cuirass/bloodraider/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_ZIZO_ARMOR)
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/overseer
+	name = "confessor coat"
+	desc = "Тяжелое, укрепленное пальто с изысканным бордовым покрытием не оставит никого равнодушным."
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/overseer.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/onmob/overseer_onmob.dmi'
+	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/onmob/overseer_onmob.dmi'
+	icon_state = "viceseercoat"
+	item_state = "viceseercoat"
+	color = null
+	boobed = TRUE

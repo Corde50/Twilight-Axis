@@ -29,8 +29,8 @@
 	value_mode = VALUE_MODE_FLAG
 	protection = CONFIG_ENTRY_LOCKED
 
-#define WHITELIST_REMOVE_LIMIT 5
-#define WHITELIST_REMOVE_WINDOW (6 HOURS)
+#define WHITELIST_REMOVE_LIMIT 4
+#define WHITELIST_REMOVE_WINDOW (24 HOURS)
 #define WHITELIST_REMOVE_LIMIT_FILE "data/whitelist_remove_limits.sav"
 
 GLOBAL_LIST_EMPTY(whitelist_remove_limits)
@@ -258,7 +258,7 @@ GLOBAL_VAR_INIT(whitelist_remove_limits_loaded, FALSE)
 
 			var/remove_limit_exempt = whitelist_remove_limit_exempt(sender)
 			if(!remove_limit_exempt && whitelist_remove_limit_reached(sender.id))
-				. += "Whitelist remove limit reached: [WHITELIST_REMOVE_LIMIT] removals per 6 hours."
+				. += "Whitelist remove limit reached: [WHITELIST_REMOVE_LIMIT] removals per 24 hours."
 				return
 
 			var/key = ckey(all_params[2])
@@ -301,7 +301,7 @@ GLOBAL_VAR_INIT(whitelist_remove_limits_loaded, FALSE)
 			if(!remove_limit_exempt)
 				var/remove_count = register_whitelist_remove(sender.id)
 				if(remove_count >= WHITELIST_REMOVE_LIMIT)
-					. += "Whitelist remove limit reached: [WHITELIST_REMOVE_LIMIT] removals per 6 hours."
+					. += "Whitelist remove limit reached: [WHITELIST_REMOVE_LIMIT] removals per 24 hours."
 			return
 
 		if("list")
