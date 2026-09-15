@@ -550,7 +550,9 @@
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/rtfield/abandonedhotsprings)
 "afi" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/shelter/mountains)
 "afj" = (
@@ -720,7 +722,9 @@
 /turf/open/floor/rogue/grassgrey,
 /area/rogue/outdoors/bograt/sunken)
 "agM" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
 "agN" = (
@@ -6249,13 +6253,18 @@
 /area/rogue/indoors/shelter/bog/bogmanfort)
 "bkg" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/swamp/deep,
 /area/rogue/under/cavewet)
 "bkm" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
 "bko" = (
@@ -6764,7 +6773,8 @@
 /area/rogue/indoors/town/manor/rockhill)
 "bpO" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
@@ -7115,7 +7125,9 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/bograt/above)
 "bua" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "bud" = (
@@ -7698,7 +7710,9 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet)
 "bAx" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/churchmarble,
 /area/rogue/indoors/town/church/chapel)
 "bAA" = (
@@ -8446,7 +8460,8 @@
 /area/rogue/under/town/sewer)
 "bJn" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
@@ -10158,7 +10173,8 @@
 /area/rogue/rockharbor)
 "caj" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/rogue/cobble,
@@ -12888,7 +12904,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/bath)
 "cAA" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/skeletoncrypt)
 "cAN" = (
@@ -13024,7 +13042,9 @@
 /turf/open/floor/rogue/tile/masonic/inverted,
 /area/rogue/indoors/town/tavern)
 "cCm" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "cCr" = (
@@ -14108,7 +14128,8 @@
 /area/rogue/outdoors/beach/inqshipout)
 "cMk" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow,
 /area/rogue/under/town/sewer)
@@ -14527,7 +14548,9 @@
 	},
 /area/rogue/under/cave/mazedungeon)
 "cQu" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/chapel)
 "cQx" = (
@@ -14680,7 +14703,9 @@
 /area/rogue/under/cave/inhumen)
 "cSb" = (
 /obj/item/natural/rock,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
 "cSf" = (
@@ -16697,7 +16722,9 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/outdoors/rtfield/rockhill)
 "dmX" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/basement)
 "dmZ" = (
@@ -17108,8 +17135,12 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/bog)
 "dqF" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "dqH" = (
@@ -18347,8 +18378,12 @@
 /area/rogue/indoors/town/shop)
 "dCJ" = (
 /obj/item/natural/stone,
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
 "dCW" = (
@@ -18454,7 +18489,9 @@
 /area/rogue/indoors/town)
 "dDP" = (
 /obj/structure/rack/rogue,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
@@ -18838,7 +18875,9 @@
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/outdoors/town/rockhill)
 "dIy" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/fermentation_keg,
 /turf/open/floor/rogue/cobble,
 /area/rogue/rockharbor)
@@ -19814,7 +19853,9 @@
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town/church)
 "dSs" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/sewer)
@@ -20733,7 +20774,9 @@
 	},
 /area/rogue/indoors)
 "ebe" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/swamp,
 /area/rogue/under/cavewet)
 "ebh" = (
@@ -20953,7 +20996,8 @@
 /area/rogue/indoors/town/tavern)
 "eds" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/closed/mineral/random/rogue,
 /area/rogue/under/town/basement)
@@ -21019,7 +21063,9 @@
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/physician)
 "eee" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/sewer)
 "eej" = (
@@ -21957,7 +22003,9 @@
 	dir = 1;
 	icon_state = "stickyweb2"
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/underdark)
 "eny" = (
@@ -22381,7 +22429,9 @@
 /area/rogue/outdoors/town/rockhill)
 "esS" = (
 /obj/structure/bars,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
 "esT" = (
@@ -22626,7 +22676,8 @@
 /area/rogue/indoors/town)
 "evA" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river{
 	icon_state = "rockwd";
@@ -22877,7 +22928,9 @@
 /turf/open/floor/rogue/twig,
 /area/rogue/outdoors/rtfield/rockhill)
 "eyl" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/fluff/railing/fence{
 	dir = 8
 	},
@@ -23464,7 +23517,9 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/shelter/bog)
 "eEy" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/basement)
 "eEz" = (
@@ -23917,8 +23972,12 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/grovercout)
 "eIa" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
 "eIf" = (
@@ -27051,7 +27110,8 @@
 "fqo" = (
 /obj/structure/flora/roguegrass/water/reeds,
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/swamp,
 /area/rogue/under/town/sewer)
@@ -27324,7 +27384,8 @@
 /area/rogue/under/cave/goblinfort)
 "fta" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/cobble/mossy,
@@ -28115,7 +28176,8 @@
 /area/rogue/under/cave/goblinfort)
 "fAF" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/rogue/cobble,
@@ -30264,7 +30326,8 @@
 /area/rogue/indoors/town)
 "fWK" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cavewet)
@@ -30371,7 +30434,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/beach/inqshipout)
 "fXG" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/bograt/north)
 "fXJ" = (
@@ -30581,7 +30646,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs/rockhillroofs)
 "fZL" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/swamp,
 /area/rogue/under/town/sewer)
 "fZR" = (
@@ -31199,7 +31266,9 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "ggG" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/town/sewer)
 "ggO" = (
@@ -32253,7 +32322,8 @@
 /area/rogue/indoors/town/grovercin)
 "grx" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/indoors)
@@ -32998,7 +33068,9 @@
 /obj/structure/stairs{
 	dir = 1
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "gyJ" = (
@@ -33351,7 +33423,9 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/cave/goblinfort)
 "gCw" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cave)
 "gCz" = (
@@ -34564,7 +34638,9 @@
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/underdark/south)
 "gOx" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/town/sewer)
 "gOz" = (
@@ -34760,7 +34836,9 @@
 /turf/open/floor/carpet/purple,
 /area/rogue/indoors/town/bath)
 "gQW" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
 "gRb" = (
@@ -34936,7 +35014,9 @@
 /turf/open/water/bath,
 /area/rogue/indoors/town)
 "gTh" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/fluff/railing/fence{
 	dir = 8
 	},
@@ -35020,7 +35100,9 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
 "gUd" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 1;
 	icon_state = "wooddir"
@@ -35462,7 +35544,9 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors)
 "gYE" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/metal,
 /area/rogue/under/town/sewer)
 "gYH" = (
@@ -35513,7 +35597,9 @@
 /turf/open/floor/rogue/tile/harem1,
 /area/rogue/indoors/town/bath)
 "gYZ" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/town/sewer)
 "gZc" = (
@@ -36992,9 +37078,12 @@
 /area/rogue/under/town/sewer)
 "hoW" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "hpd" = (
@@ -37911,7 +38000,8 @@
 /area/rogue/indoors/town/tavern)
 "hyV" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors/woodsrat/north)
@@ -39995,7 +40085,9 @@
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/bograt/sunken)
 "hTE" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/bars,
 /turf/open/water/swamp,
 /area/rogue/under/town/sewer)
@@ -41112,7 +41204,9 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/underdark/south)
 "ifp" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/skeletoncrypt)
 "ift" = (
@@ -41598,7 +41692,9 @@
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "ikY" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cavewet)
 "ilb" = (
@@ -41902,7 +41998,9 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/town/church/chapel)
 "ipb" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/sewer)
 "ipd" = (
@@ -42326,7 +42424,9 @@
 /obj/structure/fluff/railing/fence{
 	dir = 4
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave)
 "isU" = (
@@ -43233,7 +43333,9 @@
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/fishmandungeon)
 "iCS" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
 "iCV" = (
@@ -44968,7 +45070,9 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/town/roofs/rockhillroofs)
 "iSI" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/table/wood/poor,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
@@ -45819,7 +45923,9 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors/town/physician)
 "jcm" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave)
 "jco" = (
@@ -46028,7 +46134,9 @@
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/town/rockhill)
 "jdW" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/cavewet)
 "jdY" = (
@@ -46834,7 +46942,8 @@
 /area/rogue/outdoors/rtfield/rockhill/above)
 "jmC" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/under/cave)
@@ -47476,7 +47585,9 @@
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor/rockhill)
 "jrV" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet)
@@ -48129,7 +48240,8 @@
 /area/rogue/outdoors/town/roofs/rockhillroofs)
 "jBn" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/swamp/deep,
 /area/rogue/outdoors/bograt/sunken)
@@ -50078,7 +50190,9 @@
 	},
 /area/rogue/under/cave)
 "jVu" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave)
@@ -50263,7 +50377,9 @@
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/indoors/town/tavern)
 "jWV" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/item/reagent_containers/food/snacks/smallrat,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/basement)
@@ -51205,7 +51321,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/rockharbor)
 "kfu" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/transparent/openspace,
 /area/rogue/under/cave)
 "kfw" = (
@@ -51966,7 +52084,8 @@
 /area/rogue/indoors/town/dwarfin/rockhill)
 "kod" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow,
 /area/rogue/under/cavewet)
@@ -54096,7 +54215,9 @@
 /obj/structure/stairs{
 	dir = 8
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "kKH" = (
@@ -54123,7 +54244,9 @@
 /turf/closed/wall/mineral/rogue/decowood,
 /area/rogue/indoors/shelter/bog)
 "kKZ" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/water/swamp,
 /area/rogue/under/cave/skeletoncrypt)
 "kLc" = (
@@ -54605,7 +54728,9 @@
 /turf/open/floor/rogue/carpet/lord/center,
 /area/rogue/indoors/town/manor/rockhill)
 "kRb" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/rock,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
@@ -54756,7 +54881,8 @@
 /area/rogue/indoors/town/tavern)
 "kSY" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/sewer)
@@ -55343,7 +55469,9 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/indoors)
 "kZo" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/rockharbor)
 "kZp" = (
@@ -55438,7 +55566,9 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town/church)
 "lak" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/fluff/railing/wood{
 	pixel_y = -4
 	},
@@ -59225,9 +59355,15 @@
 /turf/closed/wall/mineral/rogue/stone/red_moss,
 /area/rogue/indoors/shelter/mountains)
 "lQj" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/underdark)
 "lQs" = (
@@ -61019,7 +61155,9 @@
 /turf/open/floor/rogue/blocks/newstone,
 /area/rogue/indoors/town/manor/rockhill)
 "mir" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "miv" = (
@@ -61537,7 +61675,9 @@
 	pixel_x = -3;
 	pixel_y = 33
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/fermentation_keg/water,
 /turf/open/floor/rogue/blocks,
 /area/rogue/rockharbor)
@@ -63011,7 +63151,9 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woodsrat/south)
 "mDm" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/outdoors/woodsrat/south)
 "mDo" = (
@@ -63580,7 +63722,9 @@
 /turf/open/floor/rogue/woodturned/nosmooth,
 /area/rogue/indoors)
 "mKB" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave)
 "mKC" = (
@@ -64568,9 +64712,12 @@
 	},
 /area/rogue/indoors)
 "mVY" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/swamp/deep,
 /area/rogue/under/town/sewer)
@@ -65529,8 +65676,12 @@
 /area/rogue/outdoors/bograt/above)
 "nfY" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/underdark)
 "ngc" = (
@@ -65903,7 +66054,9 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/town/roofs/rockhillroofs)
 "njF" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/woodsrat/north)
 "njJ" = (
@@ -66127,7 +66280,8 @@
 /area/rogue/indoors/town/manor/rockhill)
 "nmv" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/west,
 /area/rogue/under/cavewet)
@@ -67160,7 +67314,9 @@
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/town/manor/rockhill)
 "nxO" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/town/sewer)
 "nxS" = (
@@ -68591,7 +68747,9 @@
 	dir = 1;
 	icon_state = "stickyweb2"
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/underdark)
 "nNf" = (
@@ -72133,7 +72291,9 @@
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/warden)
 "ovn" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/woodsrat/south)
 "ovz" = (
@@ -72246,7 +72406,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/magician/tower)
 "owE" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/cavewet)
 "owH" = (
@@ -74759,7 +74921,9 @@
 /area/rogue/outdoors/rtfield/rockhill)
 "oWM" = (
 /obj/structure/closet/crate/chest,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
 "oWN" = (
@@ -75390,7 +75554,9 @@
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/manor/rockhill)
 "pel" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/rock,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet)
@@ -75449,7 +75615,9 @@
 /obj/structure/rack/rogue,
 /obj/item/rope,
 /obj/item/rope,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
 "peS" = (
@@ -76556,7 +76724,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/grovercout)
 "ppl" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/rockharbor)
 "ppo" = (
@@ -76592,7 +76762,8 @@
 /area/rogue/indoors/inq/shipwardroom)
 "ppB" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/north,
 /area/rogue/under/town/sewer)
@@ -76886,7 +77057,9 @@
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/town)
 "psJ" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors)
 "psL" = (
@@ -76949,7 +77122,9 @@
 /obj/structure/rack/rogue,
 /obj/item/rope,
 /obj/item/rope,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/machinery/light/rogue/candle/l{
 	light_power = 0;
 	pixel_x = 32
@@ -76967,7 +77142,8 @@
 /area/rogue/indoors/town/manor/rockhill)
 "ptr" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/swamp,
 /area/rogue/under/town/sewer)
@@ -79793,7 +79969,8 @@
 /area/rogue/outdoors/town/grovercout)
 "pVn" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/sewer,
 /area/rogue/under/town/sewer)
@@ -79838,7 +80015,9 @@
 /area/rogue/outdoors/rtfield/abandonedhotsprings)
 "pVP" = (
 /obj/item/grown/log/tree/small,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/shelter/bog)
 "pVZ" = (
@@ -80071,7 +80250,9 @@
 	layer = 2;
 	pixel_y = -8
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/town/sewer)
 "pYq" = (
@@ -80515,7 +80696,9 @@
 /turf/closed/wall/mineral/rogue/pipe,
 /area/rogue/indoors/inq/basement/shipshold)
 "qdy" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/cavewet)
 "qdB" = (
@@ -83869,7 +84052,8 @@
 /area/rogue/under/cavewet)
 "qLT" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/north,
 /area/rogue/outdoors/woodsrat/north)
@@ -83990,7 +84174,9 @@
 /obj/item/grown/log/tree/small,
 /obj/item/grown/log/tree/small,
 /obj/item/grown/log/tree/small,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/indoors/shelter/bog)
 "qNN" = (
@@ -84115,7 +84301,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/indoors/town)
 "qPM" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/flora/roguegrass/swampweed,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/greenstone,
@@ -84371,7 +84559,9 @@
 /area/rogue/indoors/town/fire_chamber/helly)
 "qTl" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/spider/rock,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/rockharbor)
 "qTm" = (
@@ -86136,7 +86326,9 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/basement)
 "rpg" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/structure/bars/pipe{
 	dir = 1;
 	layer = 2.05;
@@ -86748,7 +86940,8 @@
 /area/rogue/rockharbor)
 "rtV" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/cleanshallow,
 /area/rogue/under/town/sewer)
@@ -88443,8 +88636,12 @@
 /turf/open/floor/rogue/hexstone,
 /area/rogue/under/underdark)
 "rMG" = (
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave)
 "rMJ" = (
@@ -88851,7 +89048,8 @@
 /area/rogue/indoors/town/church/chapel)
 "rQO" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river{
 	dir = 4;
@@ -88911,7 +89109,9 @@
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/outdoors/rtfield/rockhill)
 "rRh" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/indoors/town/grovercunder)
 "rRk" = (
@@ -93223,7 +93423,8 @@
 /area/rogue/outdoors/rtfield/rockhill/above)
 "sLK" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /obj/structure/curtain/black{
 	icon_state = "curtain-closed";
@@ -97101,7 +97302,9 @@
 /turf/open/water/bath,
 /area/rogue/indoors/town/church/chapel)
 "tCx" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/item/grown/log/tree/stick,
 /obj/effect/decal/cleanable/debris/woody,
 /turf/open/floor/rogue/naturalstone,
@@ -97411,7 +97614,8 @@
 /area/rogue/outdoors/bograt/south)
 "tFM" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow,
 /area/rogue/outdoors/woodsrat/north)
@@ -98145,7 +98349,9 @@
 /turf/open/floor/carpet/inn,
 /area/rogue/indoors/town/manor/rockhill)
 "tOC" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/cave)
 "tOI" = (
@@ -100154,7 +100360,9 @@
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/cave/goblinfort)
 "unc" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/under/cave)
 "unf" = (
@@ -102461,7 +102669,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/town/roofs/rockhillroofs)
 "uJZ" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/under/town/sewer)
 "uKd" = (
@@ -103163,7 +103373,8 @@
 /area/rogue/under/cave)
 "uRn" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/north,
 /area/rogue/indoors/shelter/mountains)
@@ -103661,9 +103872,12 @@
 /area/rogue/indoors/town/fire_chamber/helly)
 "uVK" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/greenstone,
 /area/rogue/under/town/basement)
 "uVP" = (
@@ -105204,9 +105418,12 @@
 /area/rogue/indoors/town/steward)
 "vmI" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/rockharbor)
 "vmJ" = (
@@ -106886,8 +107103,12 @@
 /area/rogue/indoors)
 "vDz" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/spider/stickyweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasscold,
 /area/rogue/under/underdark)
 "vDH" = (
@@ -106901,7 +107122,9 @@
 	dir = 1;
 	icon_state = "stickyweb2"
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/grasspurple,
 /area/rogue/under/underdark)
 "vDM" = (
@@ -107000,7 +107223,9 @@
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/goblinfort)
 "vET" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "vEW" = (
@@ -109931,7 +110156,9 @@
 /area/rogue/indoors/town/manor/rockhill)
 "wiz" = (
 /obj/effect/decal/cleanable/dirt/cobweb,
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors)
 "wiA" = (
@@ -110682,7 +110909,8 @@
 /area/rogue/indoors/town/warden)
 "wqR" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/north,
 /area/rogue/under/cavewet)
@@ -112431,7 +112659,9 @@
 /obj/structure/closet/crate/chest{
 	lockid = "harbor"
 	},
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /obj/item/flashlight/flare/torch/lantern,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/rockharbor)
@@ -113005,7 +113235,9 @@
 /turf/open/floor/rogue/metal,
 /area/rogue/under/town/sewer)
 "wOc" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
 "wOf" = (
@@ -115494,7 +115726,8 @@
 /area/rogue/indoors)
 "xpO" = (
 /obj/structure/plasticflaps{
-	layer = 4.1
+	layer = 4.1;
+	plane = -3
 	},
 /turf/open/water/river/flow/west,
 /area/rogue/outdoors/woodsrat/north)
@@ -116105,7 +116338,9 @@
 /turf/open/floor/rogue/wood,
 /area/rogue/rockharbor)
 "xwE" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/town/sewer)
 "xwG" = (
@@ -118971,7 +119206,9 @@
 	},
 /area/rogue/indoors/town/bath)
 "yar" = (
-/obj/structure/spider/stickyweb,
+/obj/structure/spider/stickyweb{
+	plane = -3
+	},
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cavewet)
 "yas" = (
