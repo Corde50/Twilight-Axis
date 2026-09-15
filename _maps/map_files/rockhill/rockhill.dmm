@@ -96027,6 +96027,7 @@
 	layer = 2.7;
 	pixel_y = 7
 	},
+/obj/machinery/light/rogue/torchholder/r,
 /turf/open/floor/rogue/concrete,
 /area/rogue/outdoors/town/rockhill)
 "tqT" = (
@@ -415827,7 +415828,7 @@ rfx
 xAt
 xAt
 xAt
-mNX
+xAt
 tqH
 fnA
 bPr
