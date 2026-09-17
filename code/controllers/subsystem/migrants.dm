@@ -329,9 +329,7 @@ SUBSYSTEM_DEF(migrants)
 		var/mob_rank = role.name // TA EDIT
 		if(character.mind.special_role == "Court Agent")
 			mob_rank = "Adventurer"
-		if(!GLOB.actors_list["Migrants"]) // TA EDIT
-			GLOB.actors_list["Migrants"] = list() // TA EDIT
-		GLOB.actors_list["Migrants"] += list("[character.mobid]" = "[mob_name] as the [humanc.dna.species.name] [mob_rank]<BR>") // TA EDIT
+		GLOB.actors_list[character.mobid] = list("name" = mob_name, "rank" = mob_rank) // TA EDIT
 		log_character("[character.ckey] ([fakekey]) - [character.real_name] - [rank]")
 	if(GLOB.respawncounts[character.ckey])
 		var/AN = GLOB.respawncounts[character.ckey]
@@ -374,6 +372,7 @@ SUBSYSTEM_DEF(migrants)
 		human_character.flag_gear_as_worn()
 
 	if(role.advclass_cat_rolls)
+		hugboxify_for_class_selection(character) // TA EDIT
 		SSrole_class_handler.setup_class_handler(character, role.advclass_cat_rolls)
 	else
 		// Apply a special if we're not applying an adv class, otherwise let the adv class apply it afterwards

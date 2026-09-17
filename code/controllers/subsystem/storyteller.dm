@@ -12,6 +12,8 @@
 /// A half combatant (acolyte) counts as 1 + this value towards effective population
 #define HALF_COMBATANT_ADDITIONAL_WEIGHT 1
 
+#define ROUND_MIN_POP_TRIGGER 40
+
 /// The gamemode preset datum governing this round (the roundstart pick, or the pending pick pre-round).
 /proc/active_preset()
 	return SSgamemode?.get_storyteller(TRUE)
@@ -76,6 +78,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/storytellers = list()
 	/// Cached storyteller type that won the previous round's storyteller vote.
 	var/last_storyteller_vote
+	//what was the population for the last storyteller vote
+	var/last_storyteller_vote_pop = 0
 	/// Next process for our storyteller. The wait time is STORYTELLER_WAIT_TIME
 	var/next_storyteller_process = 0
 	/// Associative list of even track points.
@@ -233,6 +237,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/forced_preset = FALSE
 	/// Whether soft antags (wretch/gnoll/assassin) scale with population under admin fine-tuning.
 	var/soft_scaling = TRUE
+	/// When TRUE, every player who spawns this round receives TRAIT_DNR.
+	var/dnr_round = FALSE
 	/// Admin per-antag roundstart slot overrides. null = derive from preset; a number = hard override.
 	var/list/admin_slots = list(
 		"Wretch" = null,
@@ -596,7 +602,8 @@ SUBSYSTEM_DEF(gamemode)
 		roundstart_storyteller = selected_storyteller
 	if(ispath(roundstart_storyteller, /datum/storyteller))
 		last_storyteller_vote = roundstart_storyteller
-		SSvote.save_storyteller_vote_log(roundstart_storyteller, "completed")
+		last_storyteller_vote_pop = length(GLOB.clients)
+		SSvote.save_storyteller_vote_log(roundstart_storyteller, "completed", last_storyteller_vote_pop)
 	var/roundstart_population // TA EDIT START
 	var/old_points = event_track_points[EVENT_TRACK_CHARACTER_INJECTION]
 	if(use_ready_population)
@@ -936,6 +943,8 @@ SUBSYSTEM_DEF(gamemode)
 	var/list/valid_storytellers = get_valid_storytellers()
 	var/previous_storyteller = get_last_storyteller_vote()
 	var/previous_pool = get_story_pool(previous_storyteller)
+	if(last_storyteller_vote_pop < ROUND_MIN_POP_TRIGGER)
+		previous_pool = null
 	var/list/available_pools = list()
 	for(var/datum/storyteller/storyboy in valid_storytellers)
 		var/pool_name = get_story_pool(storyboy.type)
@@ -1043,6 +1052,8 @@ SUBSYSTEM_DEF(gamemode)
 		else
 			if(preset.block_soft)
 				continue
+			if((ec.storyteller_antag_flags & STORYTELLER_ANTAG_MEDIUM) && storyteller_type != /datum/storyteller/gamemode/no_antag)
+				continue
 			if(preset.starting_point_multipliers[EVENT_TRACK_CHARACTER_INJECTION] <= 0 && !preset.guaranteed_hard)
 				continue
 			if(istype(ec, /datum/round_event_control/antagonist/solo/dreamwalker) && !preset.allow_dreamwalker)
@@ -1054,6 +1065,8 @@ SUBSYSTEM_DEF(gamemode)
 			continue
 		seen += label
 		caps[label] = cap
+	if(preset.allow_dreamwalker) // TA EDIT
+		caps["Dreamwalker"] = 1 // TA EDIT
 	return caps
 
 /// Compact pill row shown under a preset in the vote panel: each antag the preset opens and its max count, at a
@@ -1125,6 +1138,8 @@ SUBSYSTEM_DEF(gamemode)
 			var/loaded_path = text2path(trim(last_round_stats[LAST_ROUND_STATS_STORYTELLER_VOTE]))
 			if(ispath(loaded_path, /datum/storyteller))
 				last_storyteller_vote = loaded_path
+				if(!isnull(last_round_stats["storyteller_vote_pop"]))
+					last_storyteller_vote_pop = text2num(last_round_stats["storyteller_vote_pop"])
 				return last_storyteller_vote
 	if(last_storyteller_vote)
 		return last_storyteller_vote
@@ -1278,6 +1293,8 @@ SUBSYSTEM_DEF(gamemode)
 		return FALSE
 	if(isnull(player_count))
 		player_count = get_correct_popcount()
+	if(antag_datum == /datum/antagonist/bandit && story_policy_type(TRUE) == /datum/storyteller/gamemode/guaranteed_antag) // TA EDIT
+		return player_count >= 60 // TA EDIT
 	return player_count >= story_antag_min_players(antag_datum)
 
 /// Lazy cache: antag type path -> assoc list of storyteller type -> max cap (or null if none defined).
@@ -1300,6 +1317,11 @@ SUBSYSTEM_DEF(gamemode)
 	if(!ispath(antag_datum, /datum/antagonist))
 		return 0
 	storyteller_type = story_policy_type(roundstart, storyteller_type)
+	if(antag_datum == /datum/antagonist/bandit) // TA EDIT START
+		if(storyteller_type == /datum/storyteller/gamemode/guaranteed_antag)
+			return 5
+		if(storyteller_type == /datum/storyteller/gamemode/guaranteed_antag/low_wretch)
+			return 9 // TA EDIT END
 	var/storyteller_antag_flags = initial(antag_datum:storyteller_antag_flags)
 	if(storyteller_blocks_antag(storyteller_antag_flags, roundstart, storyteller_type) && !(ispath(antag_datum, /datum/antagonist/bandit) && storyteller_type == /datum/storyteller/gamemode/no_antag)) // TA EDIT
 		return 0
@@ -1309,11 +1331,15 @@ SUBSYSTEM_DEF(gamemode)
 		return max(0, maxcaps[storyteller_type])
 	return default_cap
 /datum/controller/subsystem/gamemode/proc/story_antag_slots(slot_count, antag_datum, player_count = null)
-	if(slot_count <= 0)
-		return 0
 	if(isnull(player_count))
 		player_count = get_correct_popcount()
-	if(ispath(antag_datum, /datum/antagonist/bandit)) // TA EDIT START
+	if(antag_datum == /datum/antagonist/bandit && story_policy_type(TRUE) == /datum/storyteller/gamemode/guaranteed_antag) // TA EDIT START
+		var/admin_bandit_slot = get_admin_slot(antag_datum)
+		if(isnull(admin_bandit_slot))
+			return player_count >= 60 ? 5 : 0
+	if(slot_count <= 0)
+		return 0
+	if(ispath(antag_datum, /datum/antagonist/bandit))
 		if(story_bandit_conflicts())
 			return 0
 	else if(initial(antag_datum:storyteller_antag_flags) & STORYTELLER_ANTAG_VILLAIN && story_villain_conflicts(antag_datum))
@@ -1324,17 +1350,8 @@ SUBSYSTEM_DEF(gamemode)
 	return slot_count
 
 
-/datum/controller/subsystem/gamemode/proc/story_bandit_conflicts() // TA EDIT START
-	if(story_policy_type(TRUE) != /datum/storyteller/gamemode/guaranteed_antag) // TA EDIT
-		return FALSE // TA EDIT
-	var/datum/round_event_control/antagonist/solo/roundstart_event = current_roundstart_event
-	if(!roundstart_event)
-		return FALSE
-	if(istype(roundstart_event, /datum/round_event_control/antagonist/solo/lich))
-		return TRUE
-	if(istype(roundstart_event, /datum/round_event_control/antagonist/solo/vampires))
-		return TRUE
-	return FALSE // TA EDIT END
+/datum/controller/subsystem/gamemode/proc/story_bandit_conflicts()
+	return FALSE // TA EDIT
 
 /datum/controller/subsystem/gamemode/proc/story_villain_conflicts(antag_datum)
 	if(!ispath(antag_datum, /datum/antagonist))
@@ -1640,6 +1657,9 @@ SUBSYSTEM_DEF(gamemode)
 			dat += " <a href='byond://?src=[REF(src)];panel=main;action=clear_antag_slot;antag=[antag_name]'>Clear</a>"
 		dat += "</td></tr>"
 	dat += "</table>"
+
+	dat += "<HR><b>--- Round Types ---</b>"
+	dat += "<BR>Merciless Round (all spawning players get TRAIT_DNR): <a href='byond://?src=[REF(src)];panel=main;action=toggle_dnr_round'>[dnr_round ? "<font color='red'>ON</font>" : "OFF"]</a>"
 
 	dat += "<HR>Active Players: [active_players]	(Royalty: [royalty], Garrison: [garrison], Town Workers: [constructor], Holy Warriors: [holy_warrior], Acolytes: [half_combatant])"
 	dat += "<BR>Effective Population: [effective_pop] (Total: [active_players] + Garrison Bonus: [garrison * 2] + Holy Warrior Bonus: [holy_warrior * 2] + Acolyte Bonus: [half_combatant * 1])"
@@ -1955,6 +1975,14 @@ SUBSYSTEM_DEF(gamemode)
 				if("halt_storyteller")
 					halted_storyteller = !halted_storyteller
 					message_admins("[key_name_admin(usr)] has [halted_storyteller ? "HALTED" : "un-halted"] the Storyteller.")
+				if("toggle_dnr_round")
+					dnr_round = !dnr_round
+					message_admins("[key_name_admin(usr)] has turned the DNR round type [dnr_round ? "ON" : "OFF"]. All spawning players will [dnr_round ? "" : "no longer "]receive TRAIT_DNR.")
+					log_admin("[key_name(usr)] set DNR round = [dnr_round ? "ON" : "OFF"].")
+					if(dnr_round)
+						to_world(span_boldannounce("This round is <b>MERCILESS</b>. All who walk these lands carry the burden of a final death."))
+					else
+						to_world(span_boldannounce("The Merciless decree has been lifted. Death is no longer final."))
 				if("vars")
 					var/track = href_list["track"]
 					switch(href_list["var"])
@@ -2400,5 +2428,5 @@ SUBSYSTEM_DEF(gamemode)
 #undef DESC_POPUP_HEIGHT
 #undef TOWN_COMBATANT_ADDITIONAL_WEIGHT
 #undef HALF_COMBATANT_ADDITIONAL_WEIGHT
-
+#undef ROUND_MIN_POP_TRIGGER
 #undef INIT_ORDER_GAMEMODE

@@ -49,3 +49,20 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/pants.dmi'
 	smeltresult = /obj/item/ingot/drow
 	smelt_bar_num = 2
+
+/obj/item/clothing/under/roguetown/platelegs/zizo/bloodraider
+	name = "raider's splinted leggings"
+	desc = "Raider's best friend, designed to protect the legs while still providing almost complete free range of movement."
+	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
+	icon_state = "bloodsplintlegs"
+	item_state = "bloodsplintlegs"
+	max_integrity = ARMOR_INT_CHEST_LIGHT_ANTAG
+	armor = ARMOR_BRIGANDINE
+	armor_class = ARMOR_CLASS_LIGHT
+	unenchantable = FALSE
+	resistance_flags = null
+
+/obj/item/clothing/under/roguetown/platelegs/zizo/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_PLATE_STEP, 8)

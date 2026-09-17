@@ -314,3 +314,34 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/baotha_ta/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_BAOTHA_ARMOR)
+
+/obj/item/clothing/suit/roguetown/armor/plate/fluted/zizo/bloodraider
+	name = "raider's cuirass"
+	desc = "An elegant cuirass that doesn't restrict movement, intimidates enemies, and is simply beautiful. What more could you need?"
+	icon = 'modular_twilight_axis/icons/clothing/bloodraider.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/clothing/onmob/bloodraider.dmi'
+	icon_state = "bloodcuirass"
+	item_state = "bloodcuirass"
+	allowed_race = list(/datum/species/elf/wood, /datum/species/human/halfelf, /datum/species/elf/dark)
+	body_parts_covered = COVERAGE_ALL_BUT_HANDFEET
+	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG - 400
+	armor_class = ARMOR_CLASS_LIGHT
+	unenchantable = FALSE
+	smelt_bar_num = 1
+
+/obj/item/clothing/suit/roguetown/armor/plate/cuirass/bloodraider/ComponentInitialize()
+	AddComponent(/datum/component/cursed_item, TRAIT_CABAL, "ARMOR")
+
+/obj/item/clothing/suit/roguetown/armor/plate/cuirass/bloodraider/get_examine_highlight_status()
+	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_ALARMING, HERESYDESC_ZIZO_ARMOR)
+
+/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/overseer
+	name = "confessor coat"
+	desc = "Тяжелое, укрепленное пальто с изысканным бордовым покрытием не оставит никого равнодушным."
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/overseer.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/onmob/overseer_onmob.dmi'
+	sleeved = 'modular_twilight_axis/icons/roguetown/clothing/inquisition_overseer/onmob/overseer_onmob.dmi'
+	icon_state = "viceseercoat"
+	item_state = "viceseercoat"
+	color = null
+	boobed = TRUE
