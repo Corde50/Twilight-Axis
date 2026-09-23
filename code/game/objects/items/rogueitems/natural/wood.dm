@@ -435,6 +435,7 @@
 	gripped_intents = null
 	slot_flags = ITEM_SLOT_MOUTH|ITEM_SLOT_HIP
 	lumber_amount = 0
+	obj_flags_ignore = TRUE // needed for staking iron ingots
 
 /obj/item/grown/log/tree/stake/get_mechanics_examine(mob/user)
 	. = ..()
@@ -472,8 +473,8 @@
 		var/obj/item/I = O
 		if(istype(I, /obj/item/ingot/iron) || (I.anvilrepair && I.smeltresult == /obj/item/ingot/iron))
 			if(!do_after(user, 4 SECONDS, target = I))
-				return
-			to_chat(user, span_warning("The [user] breaks an [I] into small parts with the stake!"))
+				return ..()
+			user.visible_message(span_warning("[user] breaks \an [I] into small parts with [src]!"))
 			new /obj/item/scrap(get_turf(I))
 			qdel(I)
 			return
