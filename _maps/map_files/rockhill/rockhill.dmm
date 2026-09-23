@@ -1515,7 +1515,6 @@
 /turf/open/floor/rogue/grasscold,
 /area/rogue/outdoors/woodsrat/above)
 "apN" = (
-/obj/structure/fluff/alch,
 /obj/structure/rack/rogue/shelf{
 	pixel_y = 26
 	},
@@ -1530,6 +1529,7 @@
 	pixel_y = 40;
 	pixel_x = 7
 	},
+/obj/structure/fluff/alch/trans/uni,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/magician/tower)
 "apT" = (
@@ -4139,11 +4139,10 @@
 "aPo" = (
 /obj/machinery/light/rogue/candle/green/r,
 /obj/structure/table/vtable/v2,
-/obj/item/storage/roguebag{
-	pixel_y = 8;
-	pixel_x = 2
-	},
 /obj/structure/roguemachine/withdraw,
+/obj/item/storage/roguebag/trans{
+	pixel_y = 8
+	},
 /turf/open/floor/rogue/tile/bath{
 	icon_state = "bathtileratwood"
 	},
@@ -30378,6 +30377,9 @@
 /area/rogue/outdoors/bograt/above)
 "fVP" = (
 /obj/structure/table/wood/poor,
+/obj/item/storage/roguebag/trans{
+	pixel_y = 8
+	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "fVQ" = (
@@ -33520,7 +33522,7 @@
 /turf/open/floor/rogue/churchrough,
 /area/rogue/indoors/town/bath)
 "gCe" = (
-/obj/structure/fluff/alch,
+/obj/structure/fluff/alch/trans,
 /turf/open/floor/rogue/concrete,
 /area/rogue/under/cavewet/wizarddungeon)
 "gCt" = (
@@ -56148,6 +56150,10 @@
 /obj/structure/deadbody/skeleton,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/town/sewer)
+"ldO" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/under/cavewet/wizarddungeon)
 "ldP" = (
 /obj/structure/table/wood/long_table/right,
 /obj/item/paper,
@@ -82810,6 +82816,7 @@
 /obj/structure/closet/crate/chest/old_crate{
 	pixel_y = 9
 	},
+/obj/item/storage/roguebag/trans,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "qvA" = (
@@ -101258,6 +101265,25 @@
 	dir = 2
 	},
 /area/rogue/indoors)
+"urF" = (
+/obj/structure/table/wood,
+/obj/structure/fermentation_keg/random/water{
+	icon_state = "barrel_tapped_ready";
+	pixel_x = -9;
+	pixel_y = 5
+	},
+/obj/structure/fermentation_keg/random/water{
+	icon_state = "barrel_tapped_ready";
+	pixel_x = 8;
+	pixel_y = 5
+	},
+/obj/structure/fermentation_keg/random/water{
+	icon_state = "barrel_tapped_ready";
+	pixel_y = 15;
+	layer = 3.1
+	},
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/under/cavewet/wizarddungeon)
 "urO" = (
 /obj/structure/roguemachine/scomm{
 	pixel_y = 33;
@@ -105742,6 +105768,9 @@
 	pixel_y = -5
 	},
 /obj/structure/rack/rogue/shelf,
+/obj/item/storage/roguebag/trans{
+	pixel_y = 41
+	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors)
 "vmm" = (
@@ -621594,7 +621623,7 @@ jFi
 hTR
 hTR
 qkr
-hTR
+urF
 iZk
 hTR
 iJp
@@ -622026,7 +622055,7 @@ hTR
 iZk
 gZs
 pgs
-hTR
+ldO
 gZs
 kqt
 jiC
