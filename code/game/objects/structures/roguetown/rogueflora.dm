@@ -153,8 +153,9 @@
 
 /obj/structure/flora/roguetree/wise/examine(mob/user)
 	. = ..()
+	// clear any pre-exising sound
 	SEND_SOUND(usr, sound(null))
-	playsound(user, 'sound/music/tree.ogg', 80)
+	user.playsound_local(src, 'sound/music/tree.ogg', 80, FALSE)
 
 /obj/structure/flora/roguetree/wise/druids/take_damage(damage_amount, damage_type = BRUTE || BURN, damage_flag, sound_effect = TRUE)
 	. = ..()
@@ -395,7 +396,12 @@
 	..()
 	if(isliving(AM))
 		var/mob/living/L = AM
-		if(L.m_intent == MOVE_INTENT_RUN && (L.mobility_flags & MOBILITY_STAND))
+		var/thorn_inmune = FALSE
+		if(HAS_TRAIT(L, TRAIT_KNEESTINGER_IMMUNITY) || HAS_TRAIT(L, TRAIT_AZURENATIVE))
+			thorn_inmune = TRUE
+		if (!thorn_inmune && !(L.movement_type & (FLYING|FLOATING)) && !(L.is_jumping) && !(L.pulledby))
+			L.Slowdown(1)
+		if(!thorn_inmune && L.m_intent == MOVE_INTENT_RUN && (L.mobility_flags & MOBILITY_STAND))
 			if(!ishuman(L))
 				to_chat(L, span_warning("I'm cut on a thorn!"))
 				L.apply_damage(5, BRUTE)
@@ -426,7 +432,7 @@
 		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish()
-			if(prob(50) && looty.len)
+			if(looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
 				var/obj/item/B = pick_n_take(looty)
@@ -492,8 +498,6 @@
 		return 0
 	if(istype(mover) && (mover.pass_flags & PASSGRILLE))
 		return 1
-	if(get_dir(loc, target) == dir)
-		return 0
 	return 1
 
 /obj/structure/flora/roguegrass/bush/onkick(mob/user)
@@ -736,7 +740,7 @@
 		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish2()
-			if(prob(50) && looty.len)
+			if(looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
 				var/obj/item/B = pick_n_take(looty)
@@ -788,7 +792,7 @@
 		if(do_after(L, SEARCHTIME, target = src))
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish3()
-			if(prob(50) && looty.len)
+			if(looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
 				var/obj/item/B = pick_n_take(looty)
@@ -847,7 +851,7 @@
 		user.changeNext_move(CLICK_CD_INTENTCAP)
 		playsound(src.loc, "plantcross", 80, FALSE, -1)
 		if(do_after(L, SEARCHTIME, target = src))
-			if(looty.len && prob(75))
+			if(looty.len)
 				var/obj/item/B = pick_n_take(looty)
 				if(B)
 					B = new B(user.loc)
@@ -1063,5 +1067,40 @@
 /obj/structure/flora/roguetree/pine/dead/Initialize(mapload)
 	. = ..()
 	icon_state = "dead[rand(1, 3)]"
+
+/obj/structure/flora/roguetree/dead
+	name = "dead tree"
+	desc = "A weathered dead tree, long stripped of life."
+	icon = 'icons/obj/flora/deadtrees.dmi'
+	icon_state = "tree_1"
+	max_integrity = 50
+	static_debris = list(/obj/item/grown/log/tree = 2)
+	stump_type = /obj/structure/flora/roguetree/stump
+
+/obj/structure/flora/roguetree/dead/Initialize(mapload)
+	. = ..()
+	icon_state = "tree_[rand(1, 6)]"
+
+/obj/structure/flora/roguetree/jungle
+	name = "jungle tree"
+	icon = 'icons/obj/flora/jungletrees.dmi'
+	icon_state = "tree1"
+	pixel_x = -48
+	pixel_y = -20
+	max_integrity = 100
+	static_debris = list(/obj/item/grown/log/tree = 2)
+	stump_type = /obj/structure/flora/roguetree/stump
+
+/obj/structure/flora/roguetree/jungle/Initialize(mapload)
+	. = ..()
+	icon_state = "tree[rand(1, 6)]"
+
+/obj/structure/flora/roguetree/jungle/small
+	name = "small jungle tree"
+	icon = 'icons/obj/flora/jungletreesmall.dmi'
+	pixel_x = -32
+	pixel_y = 0
+	static_debris = list(/obj/item/grown/log/tree = 1)
+	stump_type = /obj/structure/flora/roguetree/stump
 
 #undef SEARCHTIME

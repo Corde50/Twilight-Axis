@@ -742,6 +742,31 @@
 	allowed_race = ALL_RACES_TYPES
 	armor = ARMOR_PLATE
 
+/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots/heels
+	name = "inquisitorial heels"
+	desc = "Elegantly crafted heeled boots inlaid with silver clasps and blacksteel. They clack rhythmically with every stride, made to stomp out darkness."
+	icon_state = "inqheels"
+	item_state = "inqheels"
+
+/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots/heels/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_HEELS, 2)
+	stepnoise_flag = STEPNOISE_HEELS
+
+/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots/heels/attack_self(mob/living/user)
+	. = ..()
+	user.visible_message(span_notice("[user] begins carefully detaching the heavy blacksteel heels from [src]..."))
+	if(do_after(user, 3 SECONDS, target = src))
+		var/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots/B = new /obj/item/clothing/shoes/roguetown/boots/otavan/inqboots(get_turf(src.loc))
+		if(user.is_holding(src))
+			user.dropItemToGround(src)
+			user.put_in_hands(B)
+		B.obj_integrity = src.obj_integrity
+		user.visible_message(span_notice("[user] snaps off the heels of [src], turning them back into standard inquisitorial boots."))
+		qdel(src)
+	else
+		user.visible_message(span_notice("[user] stops adjusting [src]."))
+		return
 
 // ----------------- BLACKSTEEL -----------------------
 
@@ -882,7 +907,6 @@
 	. = ..()
 	update_icon()
 
-
 /obj/item/clothing/shoes/courtphysician/female/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_HEELS, 2)
@@ -962,4 +986,48 @@
 	item_state = "togasandals"
 	salvage_amount = 1
 	salvage_result = /obj/item/natural/cloth
+
+/obj/item/clothing/shoes/roguetown/rosa
+	name = "ivory shoes"
+	desc = "Finely crafted shoes of silk and leather."
+	icon_state = "rosashoes1"
+	icon = 'icons/roguetown/clothing/special/rosewood.dmi'
+	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/rosewood.dmi'
+	sleeved = 'icons/roguetown/clothing/special/onmob/rosewood.dmi'
+
+/obj/item/clothing/shoes/roguetown/rosa/two
+	name = "scarlet shoes"
+	icon_state = "rosashoes2"
+
+/obj/item/clothing/shoes/roguetown/rosa/three
+	name = "silvered shoes"
+	icon_state = "rosashoes3"
+
+/obj/item/clothing/shoes/roguetown/rosa/four
+	name = "obsidian shoes"
+	icon_state = "rosashoes4"
+
+/obj/item/clothing/shoes/roguetown/rosa/five
+	name = "sable shoes"
+	icon_state = "rosashoes5"
+
+/obj/item/clothing/shoes/roguetown/rosa/six
+	name = "maroon shoes"
+	icon_state = "rosashoes6"
+
+/obj/item/clothing/shoes/roguetown/rosa/seven
+	name = "regal shoes"
+	icon_state = "rosashoes7"
+
+/obj/item/clothing/shoes/roguetown/rosa/eight
+	name = "courtly shoes"
+	icon_state = "rosashoes8"
+
+/obj/item/clothing/shoes/roguetown/rosa/nine
+	name = "royal shoes"
+	icon_state = "rosashoes9"
+
+/obj/item/clothing/shoes/roguetown/rosa/ten
+	name = "stately shoes"
+	icon_state = "rosashoes10"
 
