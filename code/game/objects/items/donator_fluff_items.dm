@@ -1026,7 +1026,7 @@
 	item_state = "jadehalfmask"
 	smeltresult = /obj/item/ingot/aaslag
 
-/obj/item/clothing/cloak/donator_greatcoat
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat
 	name = "greatcoat"
 	desc = "A product of fashionable apparel originating from the Island Nation of Etrusca's Tailor Society. Popularized by renowned \
 	duelists, privateers, and the likes of Etrusca all over. It now has been seen in the hands of many others across Psydonia."
@@ -1039,14 +1039,17 @@
 	sleevetype = "shirt"
 	nodismemsleeves = TRUE
 	inhand_mod = FALSE
-	alternate_worn_layer = TABARD_LAYER
-	slot_flags = ITEM_SLOT_CLOAK|ITEM_SLOT_BACK_R
+	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_CLOAK|ITEM_SLOT_BACK_R
 	flags_inv = HIDEBOOB
+	sewrepair = TRUE
 	salvage_result = /obj/item/natural/hide/cured
 	salvage_amount = 1
 	var/flipped = FALSE
 
-/obj/item/clothing/cloak/donator_greatcoat/attack_right(mob/user)
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat/ComponentInitialize()
+	AddComponent(/datum/component/storage/concrete/roguetown/cloak)
+
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat/attack_right(mob/user)
 	if(!flipped)
 		icon_state += "alt"
 		flipped = TRUE
@@ -1056,18 +1059,18 @@
 		flipped = FALSE
 	user.regenerate_icons()
 
-/obj/item/clothing/cloak/donator_greatcoat/dyeable
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat/dyeable
 	name = "greatcoat"
 	icon_state = "dgreatcoat"
 	item_state = "dgreatcoat"
 	detail_tag = "_detail"
 	detail_color = CLOTHING_WHITE
 
-/obj/item/clothing/cloak/donator_greatcoat/dyeable/Initialize(mapload)
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat/dyeable/Initialize(mapload)
 	. = ..()
 	update_icon()
 
-/obj/item/clothing/cloak/donator_greatcoat/dyeable/update_icon()
+/obj/item/clothing/suit/roguetown/armor/donator_greatcoat/dyeable/update_icon()
 	cut_overlays()
 	if(get_detail_tag())
 		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
