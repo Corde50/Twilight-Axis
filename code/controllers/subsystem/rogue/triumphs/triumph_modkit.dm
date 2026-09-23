@@ -19,6 +19,7 @@
 		)
 	result_item = null
 	exact_type = TRUE
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/legacy
 
 /obj/item/enchantingkit/triumph_armorkit_iron
 	name = "'Valorian Iron Armor' morphing elixir"
@@ -29,6 +30,7 @@
 		/obj/item/clothing/suit/roguetown/armor/plate/iron					= /obj/item/clothing/suit/roguetown/armor/plate/iron/legacy
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/plate/iron/legacy
 
 /obj/item/enchantingkit/triumph_armorkit_slimmedsteel
 	name = "'Slimfitted Steel Armor' morphing elixir"
@@ -43,6 +45,7 @@
 		/obj/item/clothing/suit/roguetown/armor/plate							= /obj/item/clothing/suit/roguetown/armor/plate/triumph_slim
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/triumph_slim
 
 /obj/item/enchantingkit/triumph_armorkit_heavybrig
 	name = "'Brigandine with Plate' morphing elixir"
@@ -61,7 +64,7 @@
 		/obj/item/clothing/suit/roguetown/armor/leather/studded		= /obj/item/clothing/suit/roguetown/armor/leather/heavy/shadowvest
 		)
 	result_item = null
-	exact_type = TRUE
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/leather/heavy/shadowvest
 
 /obj/item/enchantingkit/triumph_weaponkit_axe
 	name = "'Valorian Axe' morphing elixir"
@@ -71,6 +74,7 @@
 		/obj/item/rogueweapon/stoneaxe/woodcut								= /obj/item/rogueweapon/stoneaxe/woodcut/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/stoneaxe/handaxe/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_axedouble
 	name = "'Doublehead' morphing elixir"
@@ -85,6 +89,7 @@
 		/obj/item/rogueweapon/stoneaxe/woodcut							= /obj/item/rogueweapon/stoneaxe/woodcut/triumph_doublehead
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/stoneaxe/battle/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_fancymace
 	name = "'Rungu-Shishpar' morphing elixir"
@@ -97,6 +102,7 @@
 		/obj/item/rogueweapon/mace								= /obj/item/rogueweapon/mace/rungu
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/mace/steel/rungu
 
 /obj/item/enchantingkit/triumph_weaponkit_kris
 	name = "'Kris' morphing elixir"
@@ -108,6 +114,7 @@
 		/obj/item/rogueweapon/huntingknife/combat					= /obj/item/rogueweapon/huntingknife/combat/kris
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/huntingknife/combat/kris
 
 /obj/item/enchantingkit/triumph_weaponkit_njora
 	name = "'Njora' morphing elixir"
@@ -119,6 +126,7 @@
 		/obj/item/rogueweapon/huntingknife								= /obj/item/rogueweapon/huntingknife/njora
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/huntingknife/combat/njora
 
 /obj/item/enchantingkit/triumph_weaponkit_whip
 	name = "'Alloytip' morphing elixir"
@@ -130,6 +138,7 @@
 		/obj/item/rogueweapon/whip						= /obj/item/rogueweapon/whip/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/whip/silver/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_urumi
 	name = "'Urumi' morphing elixir"
@@ -141,6 +150,7 @@
 		/obj/item/rogueweapon/whip						= /obj/item/rogueweapon/whip/urumi
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/whip/urumi
 
 /obj/item/enchantingkit/triumph_weaponkit_pata
 	name = "'Pata' morphing elixir"
@@ -151,6 +161,7 @@
 		/obj/item/rogueweapon/katar						= /obj/item/rogueweapon/katar/pata
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/katar/pata
 
 /obj/item/enchantingkit/triumph_weaponkit_tri
 	name = "'Valorian Longsword' morphing elixir"
@@ -166,6 +177,7 @@
 		/obj/item/clothing/head/roguetown/helmet/skullcap					= /obj/item/clothing/head/roguetown/helmet/skullcap/old
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/head/roguetown/helmet/skullcap/old
 
 /obj/item/enchantingkit/triumph_weaponkit_wide
 	name = "'Wideguard' morphing elixir"
@@ -175,6 +187,7 @@
 		/obj/item/rogueweapon/sword/rapier						= /obj/item/rogueweapon/sword/rapier/wideguard
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/sword/long/triumph/wideguard
 
 /obj/item/enchantingkit/triumph_weaponkit_sabre
 	name = "'Sabreguard' morphing elixir"
@@ -184,6 +197,7 @@
 		/obj/item/rogueweapon/sword/long							= /obj/item/rogueweapon/sword/long/triumph/sabreguard
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/sword/long/triumph/sabreguard
 
 /obj/item/enchantingkit/triumph_weaponkit_estoc
 	name = "'Kriegstetcher' morphing elixir"
@@ -193,6 +207,7 @@
 		/obj/item/rogueweapon/estoc							= /obj/item/rogueweapon/estoc/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/estoc/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_psy
 	name = "'Psycrucifix' morphing elixir"
@@ -203,6 +218,7 @@
 		/obj/item/rogueweapon/sword/long							= /obj/item/rogueweapon/sword/long/triumph/psycrucifix
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/sword/long/triumph/psycrucifix
 
 /obj/item/enchantingkit/sci_flame
 	name = "'Flametongue' morphing elixir"
@@ -210,6 +226,7 @@
 	target_items = list(
 		/obj/item/rogueweapon/sword/sabre/shamshir = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_flame
 	)
+	icon_loadout = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_flame
 
 /obj/item/enchantingkit/sci_sand
 	name = "'Sandlash' morphing elixir"
@@ -217,6 +234,7 @@
 	target_items = list(
 		/obj/item/rogueweapon/sword/sabre/shamshir = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_sand
 	)
+	icon_loadout = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_sand
 
 /obj/item/enchantingkit/triumph_armorkit_classiciron
 	name = "'Aged Iron Breastplate' morphing elixir"
@@ -224,6 +242,7 @@
 	target_items = list(
 		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron/triumph
 	)
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron/triumph
 
 /obj/item/enchantingkit/triumph_armorkit_classicleather
 	name = "'Classic Leathers' morphing elixir"
@@ -234,6 +253,7 @@
 		/obj/item/clothing/suit/roguetown/armor/leather/heavy/coat		= /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/triumph
 
 /obj/item/enchantingkit/triumph_armorkit_pleather
 	name = "'Padded Leathers' morphing elixir"
@@ -245,6 +265,7 @@
 		/obj/item/clothing/suit/roguetown/armor/leather					= /obj/item/clothing/suit/roguetown/armor/leather/triumph_padded
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/leather/triumph_padded
 	exact_type = TRUE
 
 /obj/item/enchantingkit/triumph_weaponkit_classicdaggers
@@ -255,6 +276,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger				= /obj/item/rogueweapon/huntingknife/idagger/triumph_classic
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/huntingknife/idagger/steel/triumph_classic
 
 
 /obj/item/enchantingkit/triumph_weaponkit_psyswords
@@ -265,6 +287,7 @@
 		/obj/item/rogueweapon/sword/long/psysword			= /obj/item/rogueweapon/sword/long/psysword/triumph_slim
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/sword/long/oldpsysword/triumph_slim
 
 /obj/item/enchantingkit/triumph_transmutekit_armorkinis
 	name = "'Armorkini' transmutation elixir"
@@ -281,6 +304,7 @@
 		/obj/item/clothing/suit/roguetown/armor/plate/full						= /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/plate/full/bikini
 
 //'Skinned' variants. These are less thorough than the 'Replacement' variants, but are cleaner (and lead to a lot less extra instances that can clog up the spawning menu.)
 // Unlike the 'Replacement' variants, these basically just apply a new sprite onto the old item and call it a day. If you need to give custom onmobs to a certain weapon to make it look good, use the former method instead.
@@ -345,6 +369,7 @@
 		/obj/item/rogueweapon/sword						= /obj/item/rogueweapon/sword/khanda
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/sword/khanda
 
 /obj/item/enchantingkit/weapon/triumph_weaponkit_hwi
 	name = "'Hwi' morphing elixir"
@@ -409,6 +434,7 @@
 		)
 	result_item = null
 	exact_type = TRUE
+	icon_loadout =  /obj/item/clothing/head/roguetown/helmet/sallet/visored/legacy
 
 /obj/item/enchantingkit/triumph_armorkit_ironoldhelmets
 	name = "'Valorian Iron Helmet' morphing elixir"
@@ -420,6 +446,7 @@
 		/obj/item/clothing/head/roguetown/helmet/kettle/iron					= /obj/item/clothing/head/roguetown/helmet/kettle/iron/legacy
 		)
 	result_item = null
+	icon_loadout =  /obj/item/clothing/head/roguetown/helmet/sallet/visored/iron/legacy
 
 /obj/item/enchantingkit/craftable_armorkit_slimmedsteel
 	name = "plate-slimming refitter's kit"
@@ -447,6 +474,7 @@
 		/obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm			= /obj/item/clothing/head/roguetown/helmet/heavy/ravoxhelm/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/crusader/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_psymace
 	name = "'Classic Psydonic Handmace' morphing elixir"
@@ -456,6 +484,7 @@
 		/obj/item/rogueweapon/mace/cudgel/psy								= /obj/item/rogueweapon/mace/cudgel/psy/triumph_classic
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/mace/cudgel/psy/old/triumph_classic
 
 //////////////////////////////
 // TRIUMPH-RESKIN EXAMPLES! //
@@ -467,6 +496,7 @@
 	name = "valorian sword"
 	desc = "A modest take on a mythical design, hailing from the blood-splattered crossroads \
 	between Valoria and Rockhill. It feels right at home, in the palm of your hand."
+	icon = 'icons/roguetown/weapons/swords32.dmi'
 	icon_state = "iswordalt"
 	sheathe_icon = "iswordalt"
 
