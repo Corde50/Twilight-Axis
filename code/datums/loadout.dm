@@ -5045,14 +5045,14 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donator/universal/greatcoat
 	name = "Donator Item - Greatcoat"
 	category = list("Плащи", "Донат")
-	path = /obj/item/clothing/cloak/donator_greatcoat
+	path = /obj/item/clothing/suit/roguetown/armor/donator_greatcoat
 	donatitem = TRUE
 	donat_tier = 3
 
 /datum/loadout_item/donator/universal/greatcoat_dyeable
 	name = "Donator Item - Greatcoat, Dyeable"
 	category = list("Плащи", "Донат")
-	path = /obj/item/clothing/cloak/donator_greatcoat/dyeable
+	path = /obj/item/clothing/suit/roguetown/armor/donator_greatcoat/dyeable
 	donatitem = TRUE
 	donat_tier = 3
 
