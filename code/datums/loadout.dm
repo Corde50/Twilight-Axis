@@ -3562,6 +3562,20 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 	ckeywhitelist = list("alex23116571")
 
+/datum/loadout_item/donator_commandant_blade
+	name = "Donator Kit - Commandant's Blade - Required: Rapier or Sabre"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/commandant_blade
+	donatitem = TRUE
+	ckeywhitelist = list("alex23116571")
+
+/datum/loadout_item/donator_commandant_cane
+	name = "Donator Kit - Commandant's Cane - Required: Any Sword Scabbard"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/commandant_cane
+	donatitem = TRUE
+	ckeywhitelist = list("alex23116571")
+
 // COMMANDANT SET END
 
 // Etruscan vol.3 Kit Start
@@ -4353,7 +4367,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/triumph_plaquegoldenbeltfancy
 	name = "Belt of Plaque, Golden, Fancy"
 	category = list("Триумфы")
-	path = /obj/item/storage/belt/rogue/leather/plaquegold/steward
+	path = /obj/item/storage/belt/rogue/leather/plaquegold/noble
 	triumph_cost = 7
 
 /datum/loadout_item/triumph_armorkit_slimmedsteel

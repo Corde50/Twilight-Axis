@@ -51,7 +51,7 @@
 	H.STAINT = rand(1, 21)
 	H.STAPER = rand(1, 21)
 	H.STALUC = rand(1, 21)
-	H.cmode_music = 'sound/music/combat_jester.ogg'
+	H.cmode_music = sound("sound/music/combat_jester.ogg")
 	if(H.mind)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/projectile/vicious_mockery)
 		// Mime vs Jester.
@@ -64,6 +64,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/telltragedy)
 	add_verb(H, /mob/living/carbon/human/proc/ventriloquate)
 	add_verb(H, /mob/living/carbon/human/proc/ear_trick)
+	add_verb(H, /mob/living/carbon/human/proc/jester_flip)
 	if(!istype(H.getorganslot(ORGAN_SLOT_TONGUE), /obj/item/organ/tongue/wild_tongue))
 		H.internal_organs_slot[ORGAN_SLOT_TONGUE] = new /obj/item/organ/tongue/wild_tongue
 	if(prob(50))
