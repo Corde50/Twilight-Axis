@@ -374,6 +374,8 @@
 	var/mob/living/hiddenguy = null // So we can find them with fixed eye search
 	var/list/looty = list()
 	var/bushtype
+	var/bush_base_state
+	var/bush_season_suffix = ""
 
 /obj/structure/flora/roguegrass/bush/Initialize(mapload)
 	if(prob(88) && isnull(bushtype))
@@ -382,7 +384,26 @@
 					/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed=1))
 	loot_replenish()
 	pixel_x += rand(-3,3)
-	return ..()
+	. = ..()
+	register_seasonal_flora(mapload)
+
+/obj/structure/flora/roguegrass/bush/proc/refresh_bush_icon()
+	icon_state = "[bush_base_state][bush_season_suffix]"
+
+// Fall uses the plain (unsuffixed) sprites, Spring reuses the summer sprites (no separate spring art), Winter gets its own.
+/obj/structure/flora/roguegrass/bush/apply_flora_season(season)
+	var/target_suffix
+	switch(season)
+		if(FLORA_SEASON_WINTER)
+			target_suffix = FLORA_SEASON_WINTER
+		if(FLORA_SEASON_SPRING, FLORA_SEASON_SUMMER)
+			target_suffix = FLORA_SEASON_SUMMER
+		else
+			target_suffix = ""
+	if(bush_season_suffix == target_suffix)
+		return
+	bush_season_suffix = target_suffix
+	refresh_bush_icon()
 
 /obj/structure/flora/roguegrass/bush/proc/loot_replenish()
 	if(bushtype)
@@ -480,18 +501,13 @@
 		unhide(user)
 
 /obj/structure/flora/roguegrass/bush/update_icon()
-	icon_state = "bush[rand(2, 4)]"
+	bush_base_state = "bush[rand(2, 4)]"
+	refresh_bush_icon()
 
 /obj/structure/flora/roguegrass/bush/CanAStarPass(ID, travel_dir, caller)
 	if(occupied)
 		return FALSE
-	if(ismovableatom(caller))
-		var/atom/movable/mover = caller
-		if(mover.pass_flags & PASSGRILLE)
-			return TRUE
-	if(travel_dir == dir)
-		return FALSE // just don't even try, not even if you can climb it
-	return ..()
+	return TRUE
 
 /obj/structure/flora/roguegrass/bush/CanPass(atom/movable/mover, turf/target)
 	if(occupied)
@@ -513,6 +529,7 @@
 	name = "westleach bush"
 	desc = "Large, red leaves peek out of it with an alluring aroma."
 	icon_state = "bush1"
+	bush_base_state = "bush1"
 
 /obj/structure/flora/roguegrass/bush/westleach/update_icon()
 	return
@@ -539,10 +556,25 @@
 
 /obj/structure/flora/roguegrass/bush/wall/Initialize(mapload)
 	. = ..()
-	icon_state = "bushwall[pick(1,2)]"
+	bush_base_state = "bushwall[pick(1,2)]"
+	refresh_bush_icon()
 
 /obj/structure/flora/roguegrass/bush/wall/update_icon()
 	return
+
+/obj/structure/flora/roguegrass/bush/wall/CanAStarPass(ID, travel_dir, caller)
+	if(occupied)
+		return FALSE
+	if(ismovableatom(caller))
+		var/atom/movable/mover = caller
+		if(mover.pass_flags & PASSGRILLE)
+			return TRUE
+	return !density
+
+/obj/structure/flora/roguegrass/bush/wall/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover) && (mover.pass_flags & PASSGRILLE))
+		return TRUE
+	return !density
 
 /obj/structure/flora/roguegrass/bush/wall/tall
 	icon = 'icons/roguetown/misc/foliagetall.dmi'
@@ -554,8 +586,8 @@
 
 /obj/structure/flora/roguegrass/bush/wall/tall/Initialize(mapload)
 	. = ..()
-	icon_state = "tallbush[pick(1,2)]"
-
+	bush_base_state = "tallbush[pick(1,2)]"
+	refresh_bush_icon()
 
 /obj/structure/flora/rogueshroom
 	name = "mushroom"

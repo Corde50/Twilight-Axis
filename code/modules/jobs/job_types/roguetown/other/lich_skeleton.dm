@@ -19,6 +19,8 @@ LICH SKELETONS
 	ADD_TRAIT(H, TRAIT_LICHLAIR, TRAIT_GENERIC) //Ability to leave/enter the lich's lair without being softlocked inside.
 	H.taints_loot = TRUE
 
+	change_origin(H, /datum/virtue/origin/unselectable/skeleton, "Legion")
+
 // TA EDIT START
 /datum/advclass/greater_skeleton/lich/equipme(mob/living/carbon/human/H)
 	. = ..()
