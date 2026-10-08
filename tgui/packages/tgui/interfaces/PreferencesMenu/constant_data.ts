@@ -41,6 +41,7 @@ export type ConstantCharflaw = {
   desc: TrustedHTML;
   icon: string | null;
   needs_extra_vice: BooleanLike;
+  requirements_warning: string | null; // TA EDIT
   restricted_species: string[];
 };
 
