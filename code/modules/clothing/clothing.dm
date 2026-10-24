@@ -75,6 +75,7 @@
 	var/detail_color
 	var/altdetail_color
 	var/mutable_appearance/detail_overlay
+	var/mutable_appearance/altdetail_overlay
 	var/boobed_detail = TRUE
 	var/sleeved_detail = TRUE
 	var/malumblessed_c = FALSE
@@ -321,7 +322,6 @@
 	desc = ""
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("dust" = 1, "lint" = 1)
-	foodtype = CLOTH
 
 /obj/item/clothing/attack(mob/living/M, mob/living/user, def_zone)
 	if(user.used_intent.type != INTENT_HARM && ismoth(M))

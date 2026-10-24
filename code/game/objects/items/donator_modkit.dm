@@ -232,6 +232,9 @@
 	var/obj/item/new_item = new result_type(T)
 
 	inherit_item_mechanics(I, new_item)
+	if(istype(I, /obj/item/rogueweapon) && istype(new_item, /obj/item/rogueweapon)) // TA EDIT
+		var/obj/item/rogueweapon/old_weapon = I // TA EDIT
+		old_weapon.transfer_implement_state(new_item, user) // TA EDIT
 	transfer_item_contents(I, new_item)
 
 	to_chat(user, span_notice("You apply the [src] to [I], using the enchanting dust and tools to turn it into [new_item]."))
@@ -393,7 +396,7 @@
 	target_items = list(
 		/obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate		= /obj/item/clothing/suit/roguetown/armor/plate/full/fluted/ornate/donator_gothic,
 		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate		= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate/donator_gothic,
-		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon		= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/psydon/donator_gothic,
+		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/ornate		= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/ornate/donator_gothic,
 		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer			= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer/donator_gothic,
 		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted			= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/donator_gothic,
 		/obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate				= /obj/item/clothing/suit/roguetown/armor/plate/fluted/ornate/donator_gothic,
@@ -423,9 +426,9 @@
 	exact_type = TRUE
 	custom_name = TRUE
 
-/obj/item/enchantingkit/gothicpsydoniccuirass
+/obj/item/enchantingkit/gothicornatecuirass
 	name = "'Ornate Gothic Armor' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to make a Fluted Cuirass or Half-Plate appear like a Gothic Fluted Cuirass, instead of the more ornate design present in \
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to make a Fluted Cuirass or Half-Plate appear like a Gothic Fluted Cuirass, instead of the plainer design present in \
 	the 'Gothic Steel Armor' morphing elixir."
 	target_items = list(
 		/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted			= /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate/donator_gothic,
@@ -436,12 +439,23 @@
 	exact_type = TRUE
 	custom_name = TRUE
 
+/obj/item/enchantingkit/gothicpsydoniccuirass
+	name = "Psydonic Gothic Armor' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to make a Psydonic Cuirass appear like a Gothic Cuirass, instead of the more ornate design present in the \
+	'Gothic Steel Armor' morphing elixir."
+	target_items = list(/obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate)
+	result_item = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fluted/ornate/donator_ornate
+	custom_name = TRUE
+
 /obj/item/enchantingkit/gothicsallet
-	name = "'Gothic Sallet' morphing elixir"
+	name = "'Gothic Visored Sallet' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Steel Visored Sallet."
-	target_items = list(/obj/item/clothing/head/roguetown/helmet/sallet/visored = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gothic)
+	target_items = list(
+		/obj/item/clothing/head/roguetown/helmet/sallet/visored			= /obj/item/clothing/head/roguetown/helmet/sallet/visored/gothic
+		)
 	result_item = null
-	exact_type = TRUE
+	custom_name = TRUE
+	icon_loadout = /obj/item/clothing/head/roguetown/helmet/sallet/visored/gothic
 
 /obj/item/enchantingkit/croppedhaubergeon
 	name = "'Cropped Haubergeon' morphing elixir"
@@ -452,7 +466,6 @@
 		/obj/item/clothing/suit/roguetown/armor/chainmail				= /obj/item/clothing/suit/roguetown/armor/chainmail/donator
 	)
 	result_item = null
-	exact_type = TRUE
 	custom_name = TRUE
 	icon_loadout = /obj/item/clothing/suit/roguetown/armor/chainmail/donator
 
@@ -616,6 +629,16 @@
 	)
 	result_item = null
 
+/obj/item/enchantingkit/sabatons
+	name = "'Foot Plates' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a set of Steel Plated Boots."
+	target_items = list(
+		/obj/item/clothing/shoes/roguetown/boots/armor							= /obj/item/clothing/shoes/roguetown/boots/armor/bare
+	)
+	result_item = null
+	exact_type = TRUE
+	custom_name = TRUE
+
 /obj/item/enchantingkit/donator_universal_armory
 	name = "'Elegant Armory' morphing elixir" //Small compromise to avoid bloating the Loadout tab.
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of most Steel weapons, including their Decorated variants. Note that while this can be used on Silver weapons \
@@ -654,6 +677,7 @@
 		/obj/item/rogueweapon/halberd										= /obj/item/rogueweapon/halberd/donator_elegant,
 		/obj/item/rogueweapon/eaglebeak										= /obj/item/rogueweapon/eaglebeak/donator_elegant,
 		/obj/item/rogueweapon/estoc											= /obj/item/rogueweapon/estoc/donator_elegant,
+		/obj/item/rogueweapon/contraption/linker/mace/big/steel				= /obj/item/rogueweapon/contraption/linker/mace/big/steel/donator_elegant,
 		/obj/item/rogueweapon/sword											= /obj/item/rogueweapon/sword/donator_elegant
 	)
 	result_item = null
@@ -673,7 +697,7 @@
 		/obj/item/rogueweapon/whip/bronze,
 		/obj/item/rogueweapon/whip/blacksteel,
 		/obj/item/rogueweapon/whip/silver,
-		/obj/item/rogueweapon/whip/psywhip_lesser
+		/obj/item/rogueweapon/whip/silver/psy
 	)
 	result_item = /obj/item/rogueweapon/example/donator_elegant_urumi
 
@@ -771,6 +795,7 @@
 		/obj/item/storage/backpack/rogue/satchel			= /obj/item/storage/backpack/rogue/satchel/case
 	)
 	result_item = null
+	icon_loadout = /obj/item/storage/backpack/rogue/backpack/case/donator_thistle
 
 /obj/item/enchantingkit/donator_avantynehelm
 	name = "'Avantyne-Threaded Barbute' morphing elixir"
@@ -790,6 +815,7 @@
 	)
 	result_item = null
 	custom_name = TRUE
+	icon_loadout = /obj/item/clothing/head/roguetown/helmet/heavy/knight/rockhill
 
 /obj/item/enchantingkit/donator_rockhillmaille
 	name = "'Jacketed Plate-And-Maille' morphing elixir"
@@ -801,6 +827,7 @@
 	)
 	result_item = null
 	custom_name = TRUE
+	icon_loadout = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron/heavy/rockhill
 
 /////////////////////////////
 // ! Player / Donor Kits ! //
@@ -956,6 +983,7 @@
 	name = "'Weeper's Lathe' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Kriegmesser"
 	target_items = list(/obj/item/rogueweapon/sword/long/kriegmesser,
+						/obj/item/rogueweapon/sword/long/broadsword/silver,
 						/obj/item/rogueweapon/greatsword)
 	result_item = /obj/item/rogueweapon/example/waffai_broadsword
 
@@ -1017,9 +1045,10 @@
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Psydonic Helmet(Armet,Barbute,Bucket Helmet or Sallet)"
 	target_items = list(
 		/obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
-		/obj/item/clothing/head/roguetown/helmet/heavy/psybucket = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
-		/obj/item/clothing/head/roguetown/helmet/heavy/psysallet = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
-		/obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan)
+		/obj/item/clothing/head/roguetown/helmet/heavy/ornate = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
+		/obj/item/clothing/head/roguetown/helmet/heavy/ornate/bucket = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
+		/obj/item/clothing/head/roguetown/helmet/heavy/ornate/sallet = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan,
+		/obj/item/clothing/head/roguetown/helmet/heavy/ornate/barbute = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan)
 	icon_loadout = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm/ryan
 
 //Ryan180602 - Naginata
@@ -1231,12 +1260,14 @@
 
 /obj/item/enchantingkit/donator_rivercadaver_tabis
 	name = "'Tabis' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of some Leather Boots, Psydonic \
-	Leather Boots, or Inquisitorial Boots."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of some Leather Boots, Hardened \
+	Leather Boots, Psydonic Leather Boots, or Inquisitorial Boots."
 	target_items = list(
-	/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots		= /obj/item/clothing/shoes/roguetown/boots/tabi/otavan/inqboots,
-	/obj/item/clothing/shoes/roguetown/boots/psydonboots			= /obj/item/clothing/shoes/roguetown/boots/tabi/otavan,
-	/obj/item/clothing/shoes/roguetown/boots						= /obj/item/clothing/shoes/roguetown/boots/tabi
+	/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots		=	/obj/item/clothing/shoes/roguetown/boots/tabi/otavan/inqboots,
+	/obj/item/clothing/shoes/roguetown/boots/psydonboots			=	/obj/item/clothing/shoes/roguetown/boots/tabi/otavan,
+	/obj/item/clothing/shoes/roguetown/boots/leather/reinforced		=	/obj/item/clothing/shoes/roguetown/boots/tabi/hardened,
+	/obj/item/clothing/shoes/roguetown/boots/leather				=	/obj/item/clothing/shoes/roguetown/boots/tabi,
+	/obj/item/clothing/shoes/roguetown/boots						=	/obj/item/clothing/shoes/roguetown/boots/tabi
 	)
 	result_item = null
 	icon_loadout = /obj/item/clothing/shoes/roguetown/boots/tabi/otavan/inqboots
@@ -1257,8 +1288,8 @@
 	name = "'Psydonic Leachwhacker' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Dagger"
 	target_items = list(
-		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger,
-		/obj/item/rogueweapon/huntingknife/idagger/silver
+		/obj/item/rogueweapon/huntingknife/idagger/steel/silver/psy,
+		/obj/item/rogueweapon/huntingknife/idagger/steel/silver
 
 	)
 	result_item = /obj/item/rogueweapon/koruu/kukri/silver
@@ -1348,7 +1379,7 @@
 	target_items = list(
 	/obj/item/rogueweapon/greataxe/steel/knight,
 	/obj/item/rogueweapon/greataxe/steel/knight/silver,
-	/obj/item/rogueweapon/greataxe/steel/knight/psy,
+	/obj/item/rogueweapon/greataxe/steel/knight/silver/psy,
 	/obj/item/rogueweapon/greataxe/bronze,
 	/obj/item/rogueweapon/greataxe/
 
@@ -1430,10 +1461,8 @@
 /obj/item/enchantingkit/morto_staff
 	name = "'Frozen Vow' morphing elixir"
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/grand				=	/obj/item/rogueweapon/woodstaff/implement/grand/morto,
 		/obj/item/rogueweapon/woodstaff/implement/grand/magos		=	/obj/item/rogueweapon/woodstaff/implement/grand/magos/morto,
-		/obj/item/rogueweapon/woodstaff/implement/greater/quartz	=	/obj/item/rogueweapon/woodstaff/implement/greater/quartz/morto,
-		/obj/item/rogueweapon/woodstaff/implement/amethyst			=	/obj/item/rogueweapon/woodstaff/implement/amethyst/morto
+		/obj/item/rogueweapon/woodstaff/implement/					=	/obj/item/rogueweapon/woodstaff/implement/morto
 	)
 	result_item = null
 
@@ -1467,9 +1496,10 @@
 /obj/item/enchantingkit/racobio_staff
 	name = "'Obsidian Tower' morphing elixir"
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/grand
+		/obj/item/rogueweapon/woodstaff/implement/grand/magos	= /obj/item/rogueweapon/woodstaff/implement/grand/magos/racobio,
+		/obj/item/rogueweapon/woodstaff/implement				= /obj/item/rogueweapon/woodstaff/implement/racobio
 	)
-	result_item = /obj/item/rogueweapon/woodstaff/implement/grand/racobio
+	result_item = null
 
 //Cobb Anti-Christ - Conviction
 /obj/item/enchantingkit/weapon/cobb_conviction
@@ -1589,52 +1619,48 @@
 //RhynnRhynn
 /obj/item/enchantingkit/rhynnrhynn_staff
 	name = "'Celestial Staff' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance either a regular or refined Blacksteel Staff."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Blacksteel Staff."
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel		= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn,
-		/obj/item/rogueweapon/woodstaff/implement/grand/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/grand/blacksteel/donator_rhynn
+		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn
 	)
 	result_item = null
 	icon_loadout = /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn
 
 /obj/item/enchantingkit/rhynnrhynn_staff_crested
 	name = "'Celestial Staff, Crested' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance either a regular or refined Blacksteel Staff."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Blacksteel Staff."
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel		= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/crested,
-		/obj/item/rogueweapon/woodstaff/implement/grand/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/grand/blacksteel/donator_rhynn/crested
+		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/crested
 	)
 	result_item = null
 	icon_loadout = /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/crested
 
 /obj/item/enchantingkit/rhynnrhynn_staff_winged
 	name = "'Celestial Staff, Winged' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance either a regular or refined Blacksteel Staff."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Blacksteel Staff."
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel		= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/winged,
-		/obj/item/rogueweapon/woodstaff/implement/grand/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/grand/blacksteel/donator_rhynn/winged
+		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/winged
 	)
 	result_item = null
 	icon_loadout = /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/winged
 
 /obj/item/enchantingkit/rhynnrhynn_staff_solar
 	name = "'Celestial Staff, Solar' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance either a regular or refined Blacksteel Staff."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Blacksteel Staff."
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel		= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/solar,
-		/obj/item/rogueweapon/woodstaff/implement/grand/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/grand/blacksteel/donator_rhynn/solar
+		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/solar
 	)
 	result_item = null
 	icon_loadout = /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/solar
 
 /obj/item/enchantingkit/rhynnrhynn_staff_glow
 	name = "'Celestial Staff, Glow' morphing elixir"
-	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance either a regular or refined Blacksteel Staff."
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Blacksteel Staff."
 	target_items = list(
-		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel		= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/glow,
-		/obj/item/rogueweapon/woodstaff/implement/grand/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/grand/blacksteel/donator_rhynn/glow
+		/obj/item/rogueweapon/woodstaff/implement/greater/blacksteel			= /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/glow
 	)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/woodstaff/implement/greater/blacksteel/donator_rhynn/glow
 
 /obj/item/enchantingkit/rhynnrhynn_brigandine
 	name = "'Jacketed Brigandine' morphing elixir"
@@ -2037,3 +2063,28 @@
 		/obj/item/rogueweapon/sword/sabre/shamshir = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_sand
 	)
 	icon_loadout = /obj/item/rogueweapon/sword/sabre/shamshir/dono_scidragon_sand
+
+// Cynthia
+/obj/item/enchantingkit/weapon/forgefiend_wrench
+	name = "'Forgefiend Wrench' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of any massive wrench."
+	target_items = list(
+		/obj/item/rogueweapon/contraption/linker/mace/big
+	)
+	result_item = /obj/item/rogueweapon/example/forgefiend_wrench
+
+//Yoshi
+/obj/item/enchantingkit/weapon/yoshi_estoc
+	name = "'Xylixian Estoc' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a Stecher or an Estoc."
+	target_items = list(
+		/obj/item/rogueweapon/sword/long/ap = /obj/item/rogueweapon/sword/long/ap/yoshi_estoc,
+		/obj/item/rogueweapon/estoc = /obj/item/rogueweapon/sword/long/ap/yoshi_estoc
+	) // TA EDIT
+	result_item = /obj/item/rogueweapon/sword/long/ap/yoshi_estoc
+
+/obj/item/enchantingkit/limeastratahelm
+	name = "The True Astratan Helmet"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of an Astratan Helmet."
+	target_items = list(/obj/item/clothing/head/roguetown/helmet/heavy/astratahelm)
+	result_item = /obj/item/clothing/head/roguetown/helmet/heavy/astratahelm/limeastratahelm
