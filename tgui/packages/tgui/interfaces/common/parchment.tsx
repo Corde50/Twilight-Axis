@@ -258,12 +258,14 @@ export const compactButtonStyle = (
 export const PriceTag = (props: {
   price: number;
   tariff?: number;
+  surcharge?: number;
   cantAfford?: boolean;
   title?: string;
   strikethrough?: number;
 }) => {
-  const { price, tariff, cantAfford, title, strikethrough } = props;
+  const { price, tariff, surcharge, cantAfford, title, strikethrough } = props;
   const hasTariff = !!tariff && tariff > 0;
+  const hasSurcharge = !!surcharge && surcharge > 0;
   const hasStrike = !!strikethrough && strikethrough > price;
   return (
     <div
@@ -289,14 +291,22 @@ export const PriceTag = (props: {
       )}
       <span style={{ color: hasStrike ? SEAL_GREEN : 'inherit' }}>{price}</span>
       <span style={{ color: INK_SOFT, fontSize: FONT_SMALL }}>m</span>
-      {hasTariff && (
+      {(hasSurcharge || hasTariff) && (
         <span
           style={{ color: INK_SOFT, fontSize: FONT_SMALL, marginLeft: '3px' }}
         >
           (incl.
-          <span style={{ color: SEAL_AMBER, marginLeft: '2px' }}>
-            {tariff}
-          </span>
+          {hasSurcharge && (
+            <span style={{ color: SEAL_RED, marginLeft: '2px' }}>
+              {surcharge}
+            </span>
+          )}
+          {hasSurcharge && hasTariff && ' +'}
+          {hasTariff && (
+            <span style={{ color: SEAL_AMBER, marginLeft: '2px' }}>
+              {tariff}
+            </span>
+          )}
           )
         </span>
       )}

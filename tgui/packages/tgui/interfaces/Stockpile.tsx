@@ -114,6 +114,7 @@ const StockRowView = (props: {
     row.amount > 0 &&
     (row.withdraw_price <= data.budget || !!data.food_stipend);
   const canImport =
+    !embargoed &&
     row.import_price > 0 &&
     (row.import_price <= data.budget || !!data.food_stipend);
   return (
@@ -258,11 +259,13 @@ const StockRowView = (props: {
           title={
             row.import_price <= 0
               ? 'No region has supply of this good today.'
-              : data.food_stipend && row.import_price > data.budget
-                ? 'Your food stipend pays for this import from the Treasury.'
-                : data.charter_active
-                  ? 'Order one from abroad. The markup goes to the Treasury.'
-                  : 'Order one from abroad. The markup pays for shipping.'
+              : overriding
+                ? 'Closed to the public. As a Crown official, you can still import it.'
+                : data.food_stipend && row.import_price > data.budget
+                  ? 'Your food stipend pays for this import from the Treasury.'
+                  : data.charter_active
+                    ? 'Order one from abroad. The markup goes to the Treasury.'
+                    : 'Order one from abroad. The markup pays for shipping.'
           }
         >
           {row.import_price > 0 ? `Import ${row.import_price}m` : 'NO SUPPLY'}

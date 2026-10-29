@@ -12,8 +12,6 @@
 	tp_budget = QUEST_TP_BUDGET_KILL_EASY
 	min_mobs = 2
 	threat_bands_cleared = QUEST_BANDS_KILL_EASY
-	fellowship_threat_rate = QUEST_FELLOWSHIP_THREAT_PER_EXTRA_EASY
-	fellowship_reward_rate = QUEST_FELLOWSHIP_REWARD_PER_EXTRA
 	objective_verb = "Slay"
 
 /datum/quest/kill/easy/get_title()

@@ -123,5 +123,4 @@
 		return
 
 	auto_import_daily_spent += spent
-	record_treasury_expense(TREASURY_FLOW_AUTOIMPORT, tg.name, spent)
 	today_lines += "[tg.name]: +[AUTO_IMPORT_BATCH] from [region.name] ([spent]m)."

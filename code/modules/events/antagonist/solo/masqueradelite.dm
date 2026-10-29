@@ -15,10 +15,11 @@
 
 	weight = 8
 
-	denominator = 20
+	denominator = 80
 
-	base_antags = 0
-	maximum_antags = 6
+	base_antags = 2
+	maximum_antags = 2
+	min_players = 40
 
 	earliest_start = 0 SECONDS
 

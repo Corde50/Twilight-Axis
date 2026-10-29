@@ -138,6 +138,7 @@
 #undef NOTABLE_SHREWD
 
 #define SOCIALITE_BEAUTIFUL "Beautiful Trait"
+#define SOCIALITE_MASSAGE "Massage Ability"
 #define SOCIALITE_NUTCRACKER "Nutcracker Trait"
 #define SOCIALITE_EMPATH "Empath Trait"
 #define SOCIALITE_PERFORMER "Performer Trait"
@@ -209,6 +210,7 @@
 				recipient.mind.special_items[choice] = extra_choices[choice]
 
 #undef SOCIALITE_BEAUTIFUL
+#undef SOCIALITE_MASSAGE
 #undef SOCIALITE_NUTCRACKER
 #undef SOCIALITE_EMPATH
 #undef SOCIALITE_PERFORMER

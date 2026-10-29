@@ -101,10 +101,7 @@
 
 /datum/threat_region/proc/allows_quest_type(quest_type)
 	var/datum/quest/proto = GLOB.quest_prototypes[quest_type]
-	if(!proto || !proto.fits_region(src))
-		return FALSE
-	var/required_type = proto.region_quest_type || quest_type
-	return required_type in allowed_quest_types
+	return proto && (region_name in proto.eligible_regions) && proto.fits_region(src)
 
 /datum/threat_region/proc/get_threat_weight()
 	if(!max_ambush || latent_ambush <= 0)

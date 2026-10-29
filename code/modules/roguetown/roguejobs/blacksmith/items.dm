@@ -243,23 +243,18 @@
 			remove_atom_colour(FIXED_COLOUR_PRIORITY)
 			UnregisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT)
 
-/obj/item/proc/apply_full_polish()
-	if(polished == 4)
-		return
-	polished = 4
-	polish_bonus = ceil(max_integrity * 0.10)
-	max_integrity += polish_bonus
-	obj_integrity += polish_bonus
-	force += 2
-	force_wielded += 3
-	update_force_dynamic()
-	AddComponent(/datum/component/metal_glint)
-
-/obj/item/proc/remove_polish(datum/source, strength)
+/obj/item/proc/remove_polish(datum/source, strength) // kill polska
 	if(polished == 3 && obj_integrity >= max_integrity)
+		polished = 4
 		if(color == "#cccccc")
 			remove_atom_colour(FIXED_COLOUR_PRIORITY)
-		apply_full_polish()
+		polish_bonus = ceil(max_integrity * 0.10)
+		max_integrity += polish_bonus
+		obj_integrity += polish_bonus
+		force += 2
+		force_wielded += 3
+		update_force_dynamic()
+		AddComponent(/datum/component/metal_glint)
 		UnregisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT)
 
 	else if(polished < 4)

@@ -5,7 +5,6 @@ import type { BooleanLike } from 'tgui-core/react';
 import { useBackend } from '../backend';
 
 type Tier = 'medium' | 'hard';
-type Funder = 'personal' | 'crown' | 'company';
 
 type Delivery = 'hand' | 'board';
 
@@ -35,7 +34,7 @@ type Posting = {
   rules?: string[];
   eligible: BooleanLike;
   eligible_jobs: string[];
-  funder: Funder | null;
+  crown_funded: BooleanLike;
   tiers: Record<Tier, TierSummary>;
   varieties: Variety[];
 };
@@ -43,10 +42,8 @@ type Posting = {
 type TownerData = {
   balance: number;
   towner_purse_balance: number;
-  towner_company_balance: number;
   towner_postings: Posting[];
   towner_crown_cost_mult: number;
-  towner_company_cost_mult: number;
   towner_active_postings: number;
   towner_max_postings: number;
 };
@@ -104,9 +101,7 @@ const ActivePostingCard = (props: {
   posting: Posting;
   balance: number;
   purseBalance: number;
-  companyBalance: number;
   crownCostMult: number;
-  companyCostMult: number;
   atCap: boolean;
   onPost: (tier: Tier, delivery: Delivery, variety: string) => void;
 }) => {
@@ -120,13 +115,8 @@ const ActivePostingCard = (props: {
     varieties.find((v) => v.key === varietyKey) || varieties[0];
   const summary = props.posting.tiers[tier];
   const cost = summary ? summary.cost : 0;
-  const crown = props.posting.funder === 'crown';
-  const company = props.posting.funder === 'company';
-  const purse = crown
-    ? props.purseBalance
-    : company
-      ? props.companyBalance
-      : props.balance;
+  const crown = !!props.posting.crown_funded;
+  const purse = crown ? props.purseBalance : props.balance;
   const canAfford = purse >= cost;
   return (
     <div className="ContractLedger__Card" style={{ width: 300 }}>
@@ -139,15 +129,6 @@ const ActivePostingCard = (props: {
         >
           Crown contract: paid from the Treasury at {props.crownCostMult}x the
           price.
-        </div>
-      )}
-      {company && (
-        <div
-          className="ContractLedger__CardObjective"
-          style={{ marginTop: 4, fontSize: '0.85em', fontWeight: 'bold' }}
-        >
-          Company contract: paid from the ATC's treasury at{' '}
-          {props.companyCostMult}x the price.
         </div>
       )}
       <RulesBlock rules={props.posting.rules} />
@@ -224,9 +205,7 @@ const ActivePostingCard = (props: {
               : !canAfford
                 ? crown
                   ? `The Treasury can't afford ${cost}m.`
-                  : company
-                    ? `The ATC can't afford ${cost}m.`
-                    : `You need ${cost}m on account.`
+                  : `You need ${cost}m on account.`
                 : undefined
           }
           onClick={() =>
@@ -300,8 +279,7 @@ export const TownerPostingPanel = () => {
 
   const yourPostings = postings.filter((p) => !!p.eligible);
   const otherPostings = postings.filter((p) => !p.eligible);
-  const anyCrown = yourPostings.some((p) => p.funder === 'crown');
-  const anyCompany = yourPostings.some((p) => p.funder === 'company');
+  const anyCrown = yourPostings.some((p) => !!p.crown_funded);
 
   const sectionStyle: React.CSSProperties = {
     marginTop: 12,
@@ -331,7 +309,6 @@ export const TownerPostingPanel = () => {
           Postings: {data.towner_active_postings} / {data.towner_max_postings} |
           Balance: {data.balance}m
           {anyCrown && <> | Treasury: {data.towner_purse_balance ?? 0}m</>}
-          {anyCompany && <> | ATC: {data.towner_company_balance ?? 0}m</>}
         </span>
       </div>
       <div style={blurbStyle}>
@@ -348,9 +325,7 @@ export const TownerPostingPanel = () => {
                 posting={p}
                 balance={data.balance}
                 purseBalance={data.towner_purse_balance ?? 0}
-                companyBalance={data.towner_company_balance ?? 0}
                 crownCostMult={data.towner_crown_cost_mult}
-                companyCostMult={data.towner_company_cost_mult}
                 atCap={data.towner_active_postings >= data.towner_max_postings}
                 onPost={(t, d, v) => post(p.type, t, d, v)}
               />

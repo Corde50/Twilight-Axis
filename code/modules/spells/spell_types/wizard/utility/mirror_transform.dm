@@ -572,11 +572,7 @@
 				to_chat(H, span_warning("You don't have breasts!")) // TA EDIT END
 
 		if("Vagina")
-			// var/list/valid_vagina_types = list("none", "human", "hairy", "spade", "furred", "gaping", "cloaca") TA EDIT
-			var/list/valid_vagina_types = list("none") // TA EDIT
-			for(var/vagina_path in subtypesof(/datum/sprite_accessory/vagina)) // TA EDIT
-				var/datum/sprite_accessory/vagina/vagina = new vagina_path() // TA EDIT
-				valid_vagina_types[vagina.name] = vagina_path // TA EDIT
+			var/list/valid_vagina_types = list("none", "human", "hairy", "spade", "furred", "gaping", "cloaca")
 			var/new_style = input(H, "Choose your vagina type", "Vagina Customization") as null|anything in valid_vagina_types
 
 			if(new_style)
@@ -605,8 +601,7 @@
 					should_update = TRUE
 
 		if("Breast Size")
-			// var/list/breast_sizes = list("Flat", "Slight", "Small", "Moderate", "Large", "Generous", "Heavy", "Massive", "Heaping", "Obscene") TA EDIT
-			var/list/breast_sizes = list("Flat", "Very Small", "Small", "Normal", "Large", "Enormous") // TA EDIT
+			var/list/breast_sizes = list("Flat", "Slight", "Small", "Moderate", "Large", "Generous", "Heavy", "Massive", "Heaping", "Obscene")
 			var/new_size = input(H, "Choose your breast size", "Breast Size") as null|anything in breast_sizes
 			if(new_size)
 				var/obj/item/organ/breasts/breasts = H.getorganslot(ORGAN_SLOT_BREASTS)
@@ -615,25 +610,25 @@
 					switch(new_size)
 						if("Flat")
 							size_num = 0
-						if("Very Small") // TA EDIT
+						if("Slight")
 							size_num = 1
 						if("Small")
 							size_num = 2
-						if("Normal") // TA EDIT
+						if("Moderate")
 							size_num = 3
 						if("Large")
 							size_num = 4
-						if("Enormous") // TA EDIT
+						if("Generous")
 							size_num = 5
-/* 						if("Heavy") TA EDIT START
+						if("Heavy")
 							size_num = 6
 						if("Massive")
 							size_num = 7
-						if("Heaping")			MAX_BREASTS_SIZE - BREAST_SIZE_ENORMOUS
+						if("Heaping")
 							size_num = 8
 						if("Obscene")
 							size_num = 9
-										TA EDIT END */
+
 					breasts.breast_size = size_num
 					H.update_body()
 					should_update = TRUE

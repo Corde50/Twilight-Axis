@@ -59,7 +59,7 @@
 			continue
 		if(ship.realm_id == realm_id)
 			available_kin += ship
-		else if(!ship.sent_for)
+		else
 			available_other += ship
 	if(length(available_kin))
 		return

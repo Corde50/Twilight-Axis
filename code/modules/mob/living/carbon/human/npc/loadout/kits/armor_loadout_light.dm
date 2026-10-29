@@ -74,6 +74,16 @@
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 
+//** BRIGANDINE **//
+
+/datum/npc_loadout/armor/light/brigandine
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/brigandine
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	pants = /obj/item/clothing/under/roguetown/brigandinelegs
+	gloves = /obj/item/clothing/gloves/roguetown/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
+
 //** BANDIT LIGHT **//
 
 /datum/npc_loadout/armor/light/bandit
@@ -95,11 +105,7 @@
 
 //** BOG DESERTER **//
 
-/datum/npc_loadout/armor/light/leather/deserter
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+/datum/npc_loadout/armor/light/brigandine/deserter
 	neck = /obj/item/clothing/neck/roguetown/coif
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	head = list(

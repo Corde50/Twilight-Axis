@@ -134,11 +134,3 @@
 		/obj/item/alch/mentha = 1)
 	result = /obj/item/reagent_containers/food/snacks/grown/rogue/blend/avantare
 	craftdiff = 3
-
-/datum/crafting_recipe/roguetown/cooking/blend/fyrebloom
-	name = "fyrebloom preparation"
-	reqs = list(
-		/obj/item/reagent_containers/food/snacks/grown/rogue/fyritius = 1,
-		/obj/item/alch/manabloompowder = 1)
-	result = /obj/item/reagent_containers/food/snacks/grown/rogue/blend/fyrebloom
-	craftdiff = 3

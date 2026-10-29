@@ -8,6 +8,3 @@
 
 /obj/effect/decal/cleanable/roguerune/god/psydon
 	name = "Rune of Sacrament"
-
-/obj/structure/ritualcircle/noc
-	lunarrites = list("Moonlight Dance")

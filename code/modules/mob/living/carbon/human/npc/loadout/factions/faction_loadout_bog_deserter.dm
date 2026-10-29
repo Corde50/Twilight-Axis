@@ -11,7 +11,6 @@
 	traits = list(TRAIT_STEELHEARTED)
 	melee = SKILL_LEVEL_EXPERT
 	brawl = SKILL_LEVEL_EXPERT
-	survival = SKILL_LEVEL_APPRENTICE
 	athletics = SKILL_LEVEL_JOURNEYMAN
 
 /datum/npc_archetype/bog_deserter/mixed
@@ -39,7 +38,7 @@
 	statpack = /datum/npc_statpack/marksman/t2
 	skills = list(/datum/skill/combat/bows = SKILL_LEVEL_JOURNEYMAN)
 	loadouts = list(
-		/datum/npc_loadout/armor/light/leather/deserter,
+		/datum/npc_loadout/armor/light/brigandine/deserter,
 		/datum/npc_loadout/kit/deserter_flavor/ranged,
 		/datum/npc_loadout/weapon/deserter_bow,
 	)
@@ -102,7 +101,7 @@
 	statpack = /datum/npc_statpack/marksman/t2
 	skills = list(/datum/skill/combat/bows = SKILL_LEVEL_EXPERT)
 	loadouts = list(
-		/datum/npc_loadout/armor/light/leather/deserter,
+		/datum/npc_loadout/armor/light/brigandine/deserter,
 		/datum/npc_loadout/kit/deserter_flavor/ranged,
 		/datum/npc_loadout/weapon/deserter_bow,
 	)
