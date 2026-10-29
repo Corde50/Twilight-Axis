@@ -145,6 +145,12 @@
 	loot_budget = LOOT_BUDGET_RH_DEEP_LAIR
 	loot_pool_key = "rh_deep_lair"
 
+/area/rogue/under/cavewet/deeplair
+	name = "Deep Lair"
+	first_time_text = "DEEP LAIR"
+	loot_budget = LOOT_BUDGET_RH_DEEP_LAIR
+	loot_pool_key = "rh_deep_lair"
+
 /area/rogue/under/cave/inhumen/rockhill
 	name = "Zizo Church"
 	first_time_text = "CHURCH OF ZIZO"
@@ -154,3 +160,15 @@
 /area/rogue/under/cave/licharena/grim/rockhill
 	loot_budget = LOOT_BUDGET_RH_LICH_LAIR
 	loot_pool_key = "rh_lich_lair"
+
+/area/rogue/under/cavewet/rh_underbog
+	name = "Under bog"
+	first_time_text = "UNDER BOG"
+	loot_budget = "LOOT_BUDGET_RH_UNDER_BOG"
+	loot_pool_key = "rh_under_bog"
+
+/area/rogue/under/cavewet/rh_sea_raiders
+	name = "Hidden Grotto"
+	first_time_text = "HIDDEN GROTTO"
+	loot_budget = "LOOT_BUDGET_RH_SEA_RAIDERS"
+	loot_pool_key = "rh_sea_raiders"
