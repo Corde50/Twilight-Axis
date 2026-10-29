@@ -34,6 +34,8 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	warden_area = FALSE
+	loot_budget = LOOT_BUDGET_RH_BOG_SHELTER
+	loot_pool_key = "rh_bog_shelter"
 
 /area/rogue/outdoors/bograt/north
 	name = "Northern Terrorbog"
@@ -47,10 +49,11 @@
 		/mob/living/carbon/human/species/skeleton/npc/rockhill = 15,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf = 20,
 		/mob/living/simple_animal/hostile/retaliate/rogue/wolf_undead = 10,)
-
 	threat_region = THREAT_REGION_ROCKHILL_BOG_NORTH
 	deathsight_message = "a waterlogged mire bridging civilization and the wretched, fetid bog"
-	warden_area = FALSE
+	warden_area = TRUE
+	loot_budget = LOOT_BUDGET_RH_BOG_NORTH
+	loot_pool_key = "rh_bog_north"
 
 /area/rogue/outdoors/bograt/south
 	name = "Southern Terrorbog"
@@ -72,6 +75,8 @@
 		/mob/living/simple_animal/hostile/retaliate/rogue/mossback = 10,)
 	deathsight_message = "the depths of the wretched bog, home to old magycks and zizite prayers alike"
 	warden_area = FALSE
+	loot_budget = LOOT_BUDGET_RH_BOG_SOUTH
+	loot_pool_key = "rh_bog_south"
 
 /area/rogue/outdoors/bograt/west
 	name = "Western Terrorbog"
@@ -92,6 +97,8 @@
 		/datum/npc_warband/deepone_party = 20,)
 	deathsight_message = "the terrible marsh towards setting sun"
 	warden_area = FALSE
+	loot_budget = LOOT_BUDGET_RH_BOG_WEST
+	loot_pool_key = "rh_bog_west"
 
 /area/rogue/outdoors/bograt/sunken
 	name = "Cursed Mire"
@@ -111,6 +118,8 @@
 		/datum/npc_warband/mirespiders_unfair = 5)
 	deathsight_message = "the deepest depths of the mire, as dangerous as it is sunken"
 	warden_area = FALSE
+	loot_budget = LOOT_BUDGET_RH_BOG_MIRE
+	loot_pool_key = "rh_bog_mire"
 
 /area/rogue/outdoors/bograt/safe
 	name = "Terrorbog Pass"
@@ -129,3 +138,19 @@
 
 /area/rogue/under/cave
 	warden_area = FALSE
+
+/area/rogue/under/cavewet/deeplair
+	name = "Deep Lair"
+	first_time_text = "DEEP LAIR"
+	loot_budget = LOOT_BUDGET_RH_DEEP_LAIR
+	loot_pool_key = "rh_deep_lair"
+
+/area/rogue/under/cave/inhumen/rockhill
+	name = "Zizo Church"
+	first_time_text = "CHURCH OF ZIZO"
+	loot_budget = LOOT_BUDGET_RH_ZIZO_CHURCH
+	loot_pool_key = "rh_zizo_church"
+
+/area/rogue/under/cave/licharena/grim/rockhill
+	loot_budget = LOOT_BUDGET_RH_LICH_LAIR
+	loot_pool_key = "rh_lich_lair"
