@@ -13,6 +13,8 @@
 	soundenv = 17
 	town_area = FALSE
 	warden_area = TRUE
+	loot_budget = LOOT_BUDGET_RH_VILLAGE
+	loot_pool_key = "rh_village"
 
 /area/rogue/under/cavewet
 	warden_area = FALSE
@@ -24,15 +26,21 @@
 	loot_pool_key = "rh_vill_indoors"
 	warden_area = TRUE
 
-/area/rogue/under/cave/rh_east
+/area/rogue/under/cave/rh_east_caves
 	name = "East caves"
 	loot_budget = LOOT_BUDGET_RH_EAST_MOUNTAINS
 	loot_pool_key = "rh_east_mountains"
 
-/area/rogue/under/cave/rh_west
+/area/rogue/under/cave/rh_west_caves
 	name = "West caves"
 	loot_budget = LOOT_BUDGET_RH_WEST_MOUNTAINS
 	loot_pool_key = "rh_west_mountains"
+
+/area/rogue/under/cave/rh_south_caves
+	name = "South caves"
+	loot_budget = LOOT_BUDGET_RH_SOUTH_MOUNTAINS
+	loot_pool_key = "rh_south_mountains"
+
 
 /area/rogue/under/cave/abandonedmines
 	name = "Abandoned Mines"
@@ -49,6 +57,22 @@
 	name = "West Mountains"
 	loot_budget = LOOT_BUDGET_RH_WEST_MOUNTAINS
 	loot_pool_key = "rh_west_mountains"
+
+/area/rogue/outdoors/mountains/rh_east_mountains
+	name = "East Mountains"
+	loot_budget = LOOT_BUDGET_RH_EAST_MOUNTAINS
+	loot_pool_key = "rh_east_mountains"
+
+/area/rogue/outdoors/mountains/rh_west_mountains
+	name = "West Mountains"
+	loot_budget = LOOT_BUDGET_RH_WEST_MOUNTAINS
+	loot_pool_key = "rh_west_mountains"
+
+/area/rogue/indoors/shelter/mountains/rh_south_mountains
+	name = "South Mountains"
+	loot_budget = LOOT_BUDGET_RH_SOUTH_MOUNTAINS
+	loot_pool_key = "rh_south_mountains"
+
 
 /area/rogue/under/cavewet/rh_undervilage
 	name = "Under village"

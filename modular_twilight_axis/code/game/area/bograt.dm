@@ -145,12 +145,6 @@
 	loot_budget = LOOT_BUDGET_RH_DEEP_LAIR
 	loot_pool_key = "rh_deep_lair"
 
-/area/rogue/under/cavewet/deeplair
-	name = "Deep Lair"
-	first_time_text = "DEEP LAIR"
-	loot_budget = LOOT_BUDGET_RH_DEEP_LAIR
-	loot_pool_key = "rh_deep_lair"
-
 /area/rogue/under/cave/inhumen/rockhill
 	name = "Zizo Church"
 	first_time_text = "CHURCH OF ZIZO"
@@ -164,11 +158,66 @@
 /area/rogue/under/cavewet/rh_underbog
 	name = "Under bog"
 	first_time_text = "UNDER BOG"
-	loot_budget = "LOOT_BUDGET_RH_UNDER_BOG"
+	loot_budget = LOOT_BUDGET_RH_UNDER_BOG
 	loot_pool_key = "rh_under_bog"
 
 /area/rogue/under/cavewet/rh_sea_raiders
 	name = "Hidden Grotto"
 	first_time_text = "HIDDEN GROTTO"
-	loot_budget = "LOOT_BUDGET_RH_SEA_RAIDERS"
+	loot_budget = LOOT_BUDGET_RH_SEA_RAIDERS
 	loot_pool_key = "rh_sea_raiders"
+
+/area/rogue/under/cavelava/rh_lava_east
+	name = "East lava caves"
+	first_time_text = "EAST LAVA CAVES"
+	loot_budget = LOOT_BUDGET_RH_EAST_LAVA
+	loot_pool_key = "rh_east_lava"
+	droning_sound = 'sound/music/area/caves.ogg'
+
+/area/rogue/under/cavelava/rh_lava_west
+	name = "West lava caves"
+	first_time_text = "WEST LAVA CAVES"
+	loot_budget = LOOT_BUDGET_RH_WEST_LAVA
+	loot_pool_key = "rh_west_lava"
+	droning_sound = 'sound/music/area/caves.ogg'
+
+/area/rogue/under/town/basement/rh_bog_basement
+	name = "Dusty basement"
+	loot_budget = LOOT_BUDGET_RH_BOG_SHELTER
+	loot_pool_key = "rh_bog_shelter"
+
+/area/rogue/under/cave/skeletoncrypt/rh_skeleton_fort
+	name = "Forgotten Fortress"
+	first_time_text = "FORGOTTEN FORTRESS"
+	loot_budget = LOOT_BUDGET_RH_ROCK_CASTLE
+	loot_pool_key = "rh_rock_castle"
+
+/area/rogue/under/cave/rh_cursed_peak
+	name = "Caves of the cursed Peak"
+	first_time_text = "CAVES OF THE CURSED PEAK"
+	loot_budget = LOOT_BUDGET_RH_MOUNTAIN_CAVES
+	loot_pool_key = "rh_mountain_caves"
+
+/area/rogue/under/cavewet/rh_bog_caves
+	name = "Bog Caves"
+	first_time_text = "BOG CAVES"
+	loot_budget = LOOT_BUDGET_RH_BOG_CAVES
+	loot_pool_key = "rh_bog_caves"
+
+/area/rogue/under/underdark/south/drowdungeon
+	name = "Drow Hiedout"
+	first_time_text = "DROW HIDEOUT"
+	loot_budget = LOOT_BUDGET_RH_DROW_VILLAGE
+	loot_pool_key = "rh_drow_village"
+
+/area/rogue/under/cave/mazedungeon/rh_maze_dungeon
+	loot_budget = LOOT_BUDGET_RH_MAZE_DUNGEON
+	loot_pool_key = "rh_maze_dungeon"
+
+/area/rogue/under/cave/fishmandungeon/rh_fishmandungeon
+	loot_budget = LOOT_BUDGET_RH_BOG_FISHMAN
+	loot_pool_key = "rh_bog_fishman"
+
+/area/rogue/under/cave/orcdungeon/rh_orcdungeon
+	loot_budget = LOOT_BUDGET_RH_ORC_DUNGEON
+	loot_pool_key = "rh_orc_dungeon"

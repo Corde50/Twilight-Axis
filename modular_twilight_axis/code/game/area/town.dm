@@ -42,6 +42,7 @@
 	deathsight_message = "the city of Rockhill and all its bustling souls"
 	loot_budget = LOOT_BUDGET_RH_TOWN
 	loot_pool_key = "rh_town"
+	droning_sound = 'modular_twilight_axis/sound/music/area/townstreets_rh.ogg'
 
 /area/rogue/outdoors/town/roofs/rockhillroofs
 	name = "roofs"
@@ -103,12 +104,14 @@
 	town_area = FALSE
 
 /area/rogue/outdoors/mountains/decap/somewhere
-	name = "Mountains"
-	first_time_text = "Somewhere High"
+	name = "Cursed Peaks"
+	first_time_text = "CURSED PEAKS"
 	deathsight_message = "a twisted tangle of soaring peaks"
 	warden_area = FALSE
-	loot_budget = LOOT_BUDGET_RH_MOUNTAINS
-	loot_pool_key = "rh_mountains"
+	loot_budget = LOOT_BUDGET_RH_DECAP
+	loot_pool_key = "rh_decap"
+	droning_sound = 'sound/music/area/grimspire.ogg'
+
 
 /area/rogue/indoors/town/fire_chamber/helly
 	name = "Another Place"
@@ -118,6 +121,8 @@
 	town_area = FALSE
 	warden_area = FALSE
 	deathsight_message = "a burning hell of inferno"
+	loot_budget = LOOT_BUDGET_RH_HELL
+	loot_pool_key = "rh_hell"
 
 /area/rogue/indoors/inq/shipwardroom
 	name = "The Inquisition ship wardroom"
@@ -147,6 +152,7 @@
 
 /area/rogue/rockharbor
 	name = "Harbor"
+	first_time_text = "Rockhill Harbor"
 	icon_state = "beach"
 	ambientsounds = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
 	ambientnight = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
@@ -162,8 +168,7 @@
 	deathsight_message = "harbor posts reeking of salt and fish"
 
 /area/rogue/indoors/town/harborcowered
-	name = "Harbor"
-	first_time_text = "Rockhill Harbor"
+
 	icon_state = "beach"
 	ambientsounds = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
 	ambientnight = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
@@ -192,6 +197,7 @@
 	loot_budget = LOOT_BUDGET_RH_SEWERS
 	loot_pool_key = "rh_sewers"
 	deathsight_message = "dark tunnels beneath the city, drowning in rot and filth"
+	droning_sound = 'sound/music/area/sewerdrone.ogg'
 
 /area/rogue/indoors/town/rockhill
 	name = "Town indoors"
@@ -204,6 +210,7 @@
 	icon_state = "beach"
 	ambientsounds = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
 	ambientnight = list('sound/ambience/lake (1).ogg','sound/ambience/lake (2).ogg','sound/ambience/lake (3).ogg')
+	droning_sound = 'modular_twilight_axis/sound/music/area/harbor.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
 	soundenv = 16
