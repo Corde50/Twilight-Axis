@@ -25,7 +25,7 @@
 	converted_type = /area/rogue/indoors/shelter/bograt
 	deathsight_message = "a wretched, fetid bog"
 	threat_region = THREAT_REGION_ROCKHILL_BOG_NORTH
-	warden_area = FALSE
+	warden_area = TRUE
 
 /area/rogue/indoors/shelter/bograt
 	name = "Rockhill Bog"
