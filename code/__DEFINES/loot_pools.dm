@@ -106,6 +106,8 @@
 #define LOOT_BUDGET_RH_HELL				1500
 #define LOOT_BUDGET_RH_MAZE_DUNGEON		1500
 #define LOOT_BUDGET_RH_ORC_DUNGEON		2500
+#define LOOT_BUDGET_RH_KING_DUNGEON		2000
+
 // ---- Spawner Loot Values (mammons) ----
 // Expected mammon value of what each spawner category rolls.
 // General spawners are heavily diluted (mostly junk), so their expected value is low.

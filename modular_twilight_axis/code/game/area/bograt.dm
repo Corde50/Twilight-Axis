@@ -221,3 +221,11 @@
 /area/rogue/under/cave/orcdungeon/rh_orcdungeon
 	loot_budget = LOOT_BUDGET_RH_ORC_DUNGEON
 	loot_pool_key = "rh_orc_dungeon"
+
+/area/rogue/under/kingtomb/rh_kingtomb
+	loot_budget = LOOT_BUDGET_RH_KING_DUNGEON
+	loot_pool_key = "rh_king_dungeon"
+
+/area/rogue/under/kingtomb/rh_kingtomb/bossarena
+
+/area/rogue/under/kingtomb/rh_kingtomb/approaching
